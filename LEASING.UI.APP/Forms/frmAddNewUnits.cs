@@ -62,7 +62,7 @@ namespace LEASING.UI.APP.Forms
             }
         }
 
-        public class UnitStatus
+        private class UnitStatus
         {
             public string UnitStatusName { get; set; }
         }
@@ -81,7 +81,9 @@ namespace LEASING.UI.APP.Forms
             txtBaseRentalVatPercentage.Text = string.Empty;
             txtSecAndMainVatPercentage.Text = string.Empty;
             txtSecAndMainAmount.Text = string.Empty;
-
+            vWithHoldingTax = 0;
+            lblSecAndMainTax.Text = "TAX  : 0%";
+            lblBaseRentalTax.Text = "TAX  : 0%";
             using (DataSet dt = RateSettingsContext.GetRESIDENTIALSettings())
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
@@ -89,7 +91,8 @@ namespace LEASING.UI.APP.Forms
                     txtBaseRentalVatPercentage.Text = Convert.ToString(dt.Tables[0].Rows[0]["GenVat"]);
                     txtSecAndMainVatPercentage.Text = Convert.ToString(dt.Tables[0].Rows[0]["GenVat"]);
                     txtSecAndMainAmount.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecurityAndMaintenance"]);
-
+                    lblSecAndMainTax.Text = "TAX  : " + Convert.ToString(vWithHoldingTax) + "%";
+                    lblBaseRentalTax.Text = "TAX  : " + Convert.ToString(vWithHoldingTax) + "%";
                 }
             }
         }
@@ -98,6 +101,9 @@ namespace LEASING.UI.APP.Forms
             txtBaseRentalVatPercentage.Text = string.Empty;
             txtSecAndMainVatPercentage.Text = string.Empty;
             txtSecAndMainAmount.Text = string.Empty;
+            vWithHoldingTax = 0;
+            lblSecAndMainTax.Text = "TAX  : 0%";
+            lblBaseRentalTax.Text = "TAX  : 0%";
             using (DataSet dt = RateSettingsContext.GetWAREHOUSESettings())
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
@@ -106,7 +112,10 @@ namespace LEASING.UI.APP.Forms
                     txtSecAndMainVatPercentage.Text = Convert.ToString(dt.Tables[0].Rows[0]["GenVat"]);
                     txtSecAndMainAmount.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecurityAndMaintenance"]);
                     vWithHoldingTax = Convert.ToInt32(dt.Tables[0].Rows[0]["WithHoldingTax"]);
-                   
+                    lblSecAndMainTax.Text = "TAX  : " + Convert.ToString(vWithHoldingTax) + "%";
+                    lblBaseRentalTax.Text = "TAX  : " + Convert.ToString(vWithHoldingTax) + "%";
+
+
 
                 }
             }
@@ -116,6 +125,9 @@ namespace LEASING.UI.APP.Forms
             txtBaseRentalVatPercentage.Text = string.Empty;
             txtSecAndMainVatPercentage.Text = string.Empty;
             txtSecAndMainAmount.Text = string.Empty;
+            vWithHoldingTax = 0;
+            lblSecAndMainTax.Text = "TAX  : 0%";
+            lblBaseRentalTax.Text = "TAX  : 0%";
             using (DataSet dt = RateSettingsContext.GetCOMMERCIALSettings())
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
@@ -124,8 +136,8 @@ namespace LEASING.UI.APP.Forms
                     txtSecAndMainVatPercentage.Text = Convert.ToString(dt.Tables[0].Rows[0]["GenVat"]);
                     txtSecAndMainAmount.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecurityAndMaintenance"]);
                     vWithHoldingTax = Convert.ToInt32(dt.Tables[0].Rows[0]["WithHoldingTax"]);
-                    //txtBaseRentalTax.Text = Convert.ToString(dt.Tables[0].Rows[0]["WithHoldingTax"]);
-                    //txtSecAndMainTax.Text = Convert.ToString(dt.Tables[0].Rows[0]["WithHoldingTax"]);
+                    lblSecAndMainTax.Text = "TAX  : " +Convert.ToString(vWithHoldingTax) + "%";
+                    lblBaseRentalTax.Text = "TAX  : " + Convert.ToString(vWithHoldingTax) + "%";
 
                 }
             }
@@ -141,6 +153,8 @@ namespace LEASING.UI.APP.Forms
             txtSecAndMainAmount.Enabled = false;
             txtSecAndMainVatAmount.Enabled = false;
             txtSecAndMainWithVatAmount.Enabled = false;
+            txtBaseRentalTax.Enabled = false;
+            txtSecAndMainTax.Enabled = false;
 
         }
         private void M_GetUnitStatus()
@@ -376,6 +390,7 @@ namespace LEASING.UI.APP.Forms
         private void frmAddNewUnits_Load(object sender, EventArgs e)
         {
             strUnitFormMode = "READ";
+            txtTotalRental.ReadOnly = true;
             ddlFloorType.Visible = false;
             lblFloorType.Visible = false;
             lblUnitStatus.Visible = false;
@@ -645,6 +660,72 @@ namespace LEASING.UI.APP.Forms
         private void txtSecAndMainWithVatAmount_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtAreTotal_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
+                e.Handled = true;
+        }
+
+        private void txtBaseRentalVatPercentage_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
+                e.Handled = true;
+        }
+
+        private void txtBaseRentalVatAmount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
+                e.Handled = true;
+        }
+
+        private void txtBaseRentalWithVatAmount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
+                e.Handled = true;
+        }
+
+        private void txtBaseRentalTax_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
+                e.Handled = true;
+        }
+
+        private void txtSecAndMainVatPercentage_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
+                e.Handled = true;
+        }
+
+        private void txtSecAndMainAmount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
+                e.Handled = true;
+        }
+
+        private void txtSecAndMainVatAmount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
+                e.Handled = true;
+        }
+
+        private void txtSecAndMainWithVatAmount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
+                e.Handled = true;
+        }
+
+        private void txtSecAndMainTax_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
+                e.Handled = true;
+        }
+
+        private void txtTotalRental_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
+                e.Handled = true;
         }
     }
 }

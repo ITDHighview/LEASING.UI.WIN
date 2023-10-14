@@ -11,49 +11,49 @@ namespace LEASING.UI.APP.Context
 {
    public class Class1
     {
-        public DataSet GEtLIST()
-        {
+        //public DataSet GEtLIST()
+        //{
 
-            SqlCommand _SqlCommand = null;
-            // SqlParameter _SqlParameter;
-            SqlConnection _SqlConnection = null;
+        //    SqlCommand _SqlCommand = null;
+        //    SqlParameter _SqlParameter;
+        //    SqlConnection _SqlConnection = null;
 
 
-            using (DataSet dsRec = new DataSet())
-            {
-                _SqlCommand = new SqlCommand();
-                _SqlCommand.CommandText = "proc_AAA_MIGRATION_GET";
+        //    using (DataSet dsRec = new DataSet())
+        //    {
+        //        _SqlCommand = new SqlCommand();
+        //        _SqlCommand.CommandText = "proc_AAA_MIGRATION_GET";
 
-                //_SqlParameter = new SqlParameter("@ApproverEmpNno", _AssignTo);
-                //_SqlCommand.Parameters.Add(_SqlParameter);
+        //        _SqlParameter = new SqlParameter("@ApproverEmpNno", _AssignTo);
+        //        _SqlCommand.Parameters.Add(_SqlParameter);
 
-                try
-                {
-                    _SqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
-                    _SqlCommand.Connection = _SqlConnection;
-                    _SqlCommand.CommandType = CommandType.StoredProcedure;
-                    using (SqlDataAdapter dataAdaptor = new SqlDataAdapter(_SqlCommand))
-                    {
-                        dataAdaptor.Fill(dsRec);
-                    }
-                }
-                catch (Exception expCommon)
-                {
-                    return null;
-                }
-                finally
-                {
-                    if (_SqlConnection.State != ConnectionState.Closed)
-                    {
-                        _SqlConnection.Close();
-                    }
-                    //_SqlParameter = null;
-                    _SqlCommand = null;
-                    _SqlConnection = null;
-                }
-                return dsRec;
-            }
-        }
+        //        try
+        //        {
+        //            _SqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
+        //            _SqlCommand.Connection = _SqlConnection;
+        //            _SqlCommand.CommandType = CommandType.StoredProcedure;
+        //            using (SqlDataAdapter dataAdaptor = new SqlDataAdapter(_SqlCommand))
+        //            {
+        //                dataAdaptor.Fill(dsRec);
+        //            }
+        //        }
+        //        catch (Exception expCommon)
+        //        {
+        //            return null;
+        //        }
+        //        finally
+        //        {
+        //            if (_SqlConnection.State != ConnectionState.Closed)
+        //            {
+        //                _SqlConnection.Close();
+        //            }
+        //            _SqlParameter = null;
+        //            _SqlCommand = null;
+        //            _SqlConnection = null;
+        //        }
+        //        return dsRec;
+        //    }
+        //}
 
 
 

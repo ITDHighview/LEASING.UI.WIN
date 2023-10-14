@@ -1,0 +1,1561 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{08CCC35F-4446-42EA-AF80-03978A5FFDF7}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LEASING.UI.APP</RootNamespace>
+    <AssemblyName>LEASING.UI.APP</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Executable\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Laptop #2.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.configuration">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Core">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Deployment">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls, Version=2014.3.1104.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.GridView, Version=2014.3.1104.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.Office2007Black, Version=2014.3.1104.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.Themes.Office2010Blue, Version=2014.3.1104.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.Themes.Office2013Dark, Version=2014.3.1104.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.Themes.Office2013Light, Version=2014.3.1104.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.Themes.Windows8, Version=2014.3.1104.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.UI, Version=2014.3.1104.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="TelerikCommon, Version=2014.3.1104.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e">
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\Config.cs" />
+    <Compile Include="Context\Class1.cs" />
+    <Compile Include="Context\ClientContext.cs" />
+    <Compile Include="Context\ComputationContext.cs" />
+    <Compile Include="Context\FloorTypeContext.cs" />
+    <Compile Include="Context\LocationContext.cs" />
+    <Compile Include="Context\PaymentContext.cs" />
+    <Compile Include="Context\ProjectContext.cs" />
+    <Compile Include="Context\PurchaseItemContext.cs" />
+    <Compile Include="Context\RateSettingsContext.cs" />
+    <Compile Include="Context\UnitContext.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmAddNewClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmAddNewClient.Designer.cs">
+      <DependentUpon>frmAddNewClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmAddNewLocation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmAddNewLocation.Designer.cs">
+      <DependentUpon>frmAddNewLocation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmAddNewProject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmAddNewProject.Designer.cs">
+      <DependentUpon>frmAddNewProject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmAddNewPurchaseItemByProject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmAddNewPurchaseItemByProject.Designer.cs">
+      <DependentUpon>frmAddNewPurchaseItemByProject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmAddNewPurchaseItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmAddNewPurchaseItem.Designer.cs">
+      <DependentUpon>frmAddNewPurchaseItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmAddNewUnitsByProject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmAddNewUnitsByProject.Designer.cs">
+      <DependentUpon>frmAddNewUnitsByProject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmAddNewUnits.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmAddNewUnits.Designer.cs">
+      <DependentUpon>frmAddNewUnits.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmCheckClientUnits.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmCheckClientUnits.Designer.cs">
+      <DependentUpon>frmCheckClientUnits.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmCheckUnits.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmCheckUnits.Designer.cs">
+      <DependentUpon>frmCheckUnits.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmClientInformation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmClientInformation.Designer.cs">
+      <DependentUpon>frmClientInformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmCommercialRateSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmCommercialRateSettings.Designer.cs">
+      <DependentUpon>frmCommercialRateSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmReceivePayment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmReceivePayment.Designer.cs">
+      <DependentUpon>frmReceivePayment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmClientTransaction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmClientTransaction.Designer.cs">
+      <DependentUpon>frmClientTransaction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmUnitComputation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmUnitComputation.Designer.cs">
+      <DependentUpon>frmUnitComputation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmComputation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmComputation.Designer.cs">
+      <DependentUpon>frmComputation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmEditClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmEditClient.Designer.cs">
+      <DependentUpon>frmEditClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmEditLocation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmEditLocation.Designer.cs">
+      <DependentUpon>frmEditLocation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmEditProject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmEditProject.Designer.cs">
+      <DependentUpon>frmEditProject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmEditPurchaseItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmEditPurchaseItem.Designer.cs">
+      <DependentUpon>frmEditPurchaseItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmEditUnitComputation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmEditUnitComputation.Designer.cs">
+      <DependentUpon>frmEditUnitComputation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmEditUnits.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmEditUnits.Designer.cs">
+      <DependentUpon>frmEditUnits.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmGenerateTrasaction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmGenerateTrasaction.Designer.cs">
+      <DependentUpon>frmGenerateTrasaction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmGetSelectClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmGetSelectClient.Designer.cs">
+      <DependentUpon>frmGetSelectClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmInActiveLocationList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmInActiveLocationList.Designer.cs">
+      <DependentUpon>frmInActiveLocationList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmInActiveProjectList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmInActiveProjectList.Designer.cs">
+      <DependentUpon>frmInActiveProjectList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmInActivePurchaseItemList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmInActivePurchaseItemList.Designer.cs">
+      <DependentUpon>frmInActivePurchaseItemList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmMainDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmMainDashboard.Designer.cs">
+      <DependentUpon>frmMainDashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmPurchaseItemList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmPurchaseItemList.Designer.cs">
+      <DependentUpon>frmPurchaseItemList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmPurchaseItemLogs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmPurchaseItemLogs.Designer.cs">
+      <DependentUpon>frmPurchaseItemLogs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmResidentialRateSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmResidentialRateSettings.Designer.cs">
+      <DependentUpon>frmResidentialRateSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmSelectClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmSelectClient.Designer.cs">
+      <DependentUpon>frmSelectClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmSelectUnit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmSelectUnit.Designer.cs">
+      <DependentUpon>frmSelectUnit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmSettings.Designer.cs">
+      <DependentUpon>frmSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmUploadFile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmUploadFile.Designer.cs">
+      <DependentUpon>frmUploadFile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmWarehouseRateSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmWarehouseRateSettings.Designer.cs">
+      <DependentUpon>frmWarehouseRateSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ClientModel.cs" />
+    <Compile Include="Models\CommonModel.cs" />
+    <Compile Include="Models\ComputationModel.cs" />
+    <Compile Include="Models\LocationModel.cs" />
+    <Compile Include="Models\ProjectModel.cs" />
+    <Compile Include="Models\PurchaseItemModel.cs" />
+    <Compile Include="Models\Reports.cs" />
+    <Compile Include="Models\UnitModel.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmAddNewClient.resx">
+      <DependentUpon>frmAddNewClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmAddNewLocation.resx">
+      <DependentUpon>frmAddNewLocation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmAddNewProject.resx">
+      <DependentUpon>frmAddNewProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmAddNewPurchaseItemByProject.resx">
+      <DependentUpon>frmAddNewPurchaseItemByProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmAddNewPurchaseItem.resx">
+      <DependentUpon>frmAddNewPurchaseItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmAddNewUnitsByProject.resx">
+      <DependentUpon>frmAddNewUnitsByProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmAddNewUnits.resx">
+      <DependentUpon>frmAddNewUnits.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmCheckClientUnits.resx">
+      <DependentUpon>frmCheckClientUnits.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmCheckUnits.resx">
+      <DependentUpon>frmCheckUnits.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmClientInformation.resx">
+      <DependentUpon>frmClientInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmCommercialRateSettings.resx">
+      <DependentUpon>frmCommercialRateSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmReceivePayment.resx">
+      <DependentUpon>frmReceivePayment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmClientTransaction.resx">
+      <DependentUpon>frmClientTransaction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmUnitComputation.resx">
+      <DependentUpon>frmUnitComputation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmComputation.resx">
+      <DependentUpon>frmComputation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmEditClient.resx">
+      <DependentUpon>frmEditClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmEditLocation.resx">
+      <DependentUpon>frmEditLocation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmEditProject.resx">
+      <DependentUpon>frmEditProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmEditPurchaseItem.resx">
+      <DependentUpon>frmEditPurchaseItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmEditUnitComputation.resx">
+      <DependentUpon>frmEditUnitComputation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmEditUnits.resx">
+      <DependentUpon>frmEditUnits.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmGenerateTrasaction.resx">
+      <DependentUpon>frmGenerateTrasaction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmGetSelectClient.resx">
+      <DependentUpon>frmGetSelectClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmInActiveLocationList.resx">
+      <DependentUpon>frmInActiveLocationList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmInActiveProjectList.resx">
+      <DependentUpon>frmInActiveProjectList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmInActivePurchaseItemList.resx">
+      <DependentUpon>frmInActivePurchaseItemList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmMainDashboard.resx">
+      <DependentUpon>frmMainDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmPurchaseItemList.resx">
+      <DependentUpon>frmPurchaseItemList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmPurchaseItemLogs.resx">
+      <DependentUpon>frmPurchaseItemLogs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmResidentialRateSettings.resx">
+      <DependentUpon>frmResidentialRateSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmSelectClient.resx">
+      <DependentUpon>frmSelectClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmSelectUnit.resx">
+      <DependentUpon>frmSelectUnit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmSettings.resx">
+      <DependentUpon>frmSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmUploadFile.resx">
+      <DependentUpon>frmUploadFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmWarehouseRateSettings.resx">
+      <DependentUpon>frmWarehouseRateSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Resources\license.docx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\_24_ToolUndo_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_hourglass.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_jorder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\16_ClockGreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\16_ClockViolet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\16_delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\16_DeleteRed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\16_edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\16_handIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\16_MyLogsBook.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\16_new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\16_ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\16_OpenFolder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\16_print.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\16_RefreshArrowGreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\16_Remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\16_save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\16_search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\16_search1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\16_Ticketlink.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\16_time.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\16_ToolClose.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\16_ToolDelete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\16_ToolEdit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\16_ToolPrint.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\16_ToolSave.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\16_trash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\16_Undo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\16x16_PinGreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\16x16RedBell.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\20x20RedBell.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\24_binoculars.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\24_CloseWindow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\24_day view.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\24_delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\24_edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\24_find and replace.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\24_new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\24_ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\24_Refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\24_Refresh1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\24_save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\24_search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\24_search1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\24_ToolEdit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\24_ToolPrint.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\24_ToolSearch.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\24_ToolUndo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\24_trash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\24_Undo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\034_095_format_indent_decrease-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\accept.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\action_refresh_blue.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\address_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\address_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\address_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\address_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\almana logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application_go.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_redo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_refresh_small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\attach.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\backColorButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\block_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\block_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\block_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\block_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bookmark_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bookmark_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bookmark_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bookmark_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\briefcase_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\briefcase_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\briefcase_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\briefcase_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bubble_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bubble_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bubble_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bubble_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Building.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Building_Big.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bullet15-Arrow-Blue.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button_ON8x8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\buy_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\buy_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\buy_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\buy_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel_diagonal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Clinic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Clinic_Big.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clipboard_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clipboard_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clipboard_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clipboard_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clock_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clock_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clock_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clock_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\co_add-new-20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\co_add-new-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\co_arrow-left-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\co_arrow-right-20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\co_browse-page-20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\co_calendar-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\co_calendar-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\co_checkmark-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\co_delete-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\co_folder-20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\co_print-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\comment.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cross.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database_save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DateNext.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DatePrevious.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Department.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Department_Big.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\diagram_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\diagram_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\diagram_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\diagram_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\document_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\down_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\down_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\down_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\down_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EmailICon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Exceptions 32-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Exceptions 40-40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Exceptions50x501.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\export32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\export48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\export64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\export128.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\export256.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\File_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flag_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Floor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Floor_Big.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\form_bg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\form_bg_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\forward32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\forward48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\forward64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\forward128.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\forward256.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gear_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gear_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gear_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gear_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\globe_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\globe_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\globe_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\globe_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\greenbullet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\heart_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\heart_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\heart_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\heart_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\help_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\help_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\help_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\help_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Home 32-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Home16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Home40-40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Home50x50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hospital_ward.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HospitalBuilding.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HospitalLocations.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HospitalLocations_Big.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HospitalLocations32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HospitalWard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HospitalWard_Big.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ico_add_item.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ico_doctors_appointment.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ico_edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ico_fingerprint.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ico_first.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ico_last.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ico_name_dictionary.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ico_next.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ico_playbutton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ico_previous.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ico_Right_24x24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ico_save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ico_undo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\IconBold.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Iconecolor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Iconeunderline.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\IconItalic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Iconlink.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\images.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\info_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\info_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\info_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\info_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\insurance 32-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\insurance 40-40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\insurance50x501.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Item of service 32-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Item of service40-40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ItemOfService50x501.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ITSM Login.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\joreport.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\justifycenter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\justifyfull.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\justifyright.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\key_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\key_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\key_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\key_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\label_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\label_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\label_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\label_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Laptop #2.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\left_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\left_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\left_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\left_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\letter_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\letter_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\letter_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\letter_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\list-ol-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\list-unordered-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\log-2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\login_btn_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LogIn_ButtonSilver.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Login_MouseHoverButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\magnifier.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\monitor_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\monitor_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\monitor_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\monitor_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ok_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\orangebullet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\page_excel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pencil_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pencil_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pencil_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pencil_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PinBlue24x24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\present_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\present_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\present_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\present_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\print_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\print_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\print_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\print_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\progressbar-ajax-loader.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Publication1 - Publisher %28Product Activation Failed%29_2020-09-01_10-08-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\redbullet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\right_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\right_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\right_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\right_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SCAN4.ICO" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search_logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shield_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shield_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shield_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shield_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stamp_pattern.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stargold_1616.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stargray_1616.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\statistics_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\statistics_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\statistics_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\statistics_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stop_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stop_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stop_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stop_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\text_outdent-increase-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tick_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tick_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tick_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tick_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tick16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trash_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trash_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trash_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trash_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\up_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\up_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\up_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\up_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_green20x20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user32-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user40-40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user50x501.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ustifyleft.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\utilities 32-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\utilities40-40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\utilities50x501.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\uv_add-new-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\uv_change-user-100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\uv_edit-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\uv_new-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\uv_save-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\uv_undo-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\uv_updates-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\uv_updates-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wallet_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wallet_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wallet_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wallet_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\WARD.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\WARD20x20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\warning_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\warning_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\warning_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\warning_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Laptop #2.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

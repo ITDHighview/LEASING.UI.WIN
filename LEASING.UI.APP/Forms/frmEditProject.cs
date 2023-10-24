@@ -292,9 +292,9 @@ namespace LEASING.UI.APP.Forms
         private void dgvUnitList_CellFormatting(object sender, Telerik.WinControls.UI.CellFormattingEventArgs e)
         {
 
-            if (!string.IsNullOrEmpty(Convert.ToString(this.dgvUnitList.Rows[e.RowIndex].Cells["UnitStatus"].Value)))
+            if (!string.IsNullOrEmpty(Convert.ToString(this.dgvUnitList.Rows[e.RowIndex].Cells["UnitStat"].Value)))
             {
-                if (Convert.ToString(this.dgvUnitList.Rows[e.RowIndex].Cells["UnitStatus"].Value) == "VACANT")
+                if (Convert.ToString(this.dgvUnitList.Rows[e.RowIndex].Cells["UnitStat"].Value) == "VACANT")
                 {
                     //e.CellElement.ForeColor = Color.Green;
                     //e.CellElement.Font = new Font("Tahoma", 7f, FontStyle.Bold);
@@ -303,20 +303,20 @@ namespace LEASING.UI.APP.Forms
                     e.CellElement.GradientStyle = GradientStyles.Solid;
                     e.CellElement.BackColor = Color.Yellow;
                 }
-                else if (Convert.ToString(this.dgvUnitList.Rows[e.RowIndex].Cells["UnitStatus"].Value) == "RESERVED")
+                else if (Convert.ToString(this.dgvUnitList.Rows[e.RowIndex].Cells["UnitStat"].Value) == "RESERVED")
                 {
                     e.CellElement.DrawFill = true;
                     e.CellElement.GradientStyle = GradientStyles.Solid;
                     e.CellElement.BackColor = Color.LightSkyBlue;
                 }
-                else if (Convert.ToString(this.dgvUnitList.Rows[e.RowIndex].Cells["UnitStatus"].Value) == "OCCUPIED")
+                else if (Convert.ToString(this.dgvUnitList.Rows[e.RowIndex].Cells["UnitStat"].Value) == "OCCUPIED")
                 {
                     e.CellElement.DrawFill = true;
                     e.CellElement.GradientStyle = GradientStyles.Solid;
                     e.CellElement.BackColor = Color.LightGreen;
 
                 }
-                else if (Convert.ToString(this.dgvUnitList.Rows[e.RowIndex].Cells["UnitStatus"].Value) == "NOT AVAILABLE")
+                else if (Convert.ToString(this.dgvUnitList.Rows[e.RowIndex].Cells["UnitStat"].Value) == "NOT AVAILABLE")
                 {
                     e.CellElement.DrawFill = true;
                     e.CellElement.GradientStyle = GradientStyles.Solid;

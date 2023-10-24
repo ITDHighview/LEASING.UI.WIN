@@ -21,6 +21,8 @@ namespace LEASING.UI.APP.Forms
         {
             this.WindowState = FormWindowState.Maximized;
             this.radMenuItemNotification.Text = "NOTIFICATION (1)";
+            radPanel9.Visible = false;//Project information button
+            radPanel10.Visible = false;//Purchase Items button
             //radMenu7.Visible = false;
             //radPanel7.Visible = false;
         }

@@ -42,6 +42,7 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn12 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn13 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -371,7 +372,7 @@
             gridViewTextBoxColumn2.FieldName = "UnitStatus";
             gridViewTextBoxColumn2.HeaderText = "Unit Status";
             gridViewTextBoxColumn2.Name = "UnitStatus";
-            gridViewTextBoxColumn2.Width = 100;
+            gridViewTextBoxColumn2.Width = 280;
             gridViewTextBoxColumn3.FieldName = "UnitNo";
             gridViewTextBoxColumn3.HeaderText = "Unit No";
             gridViewTextBoxColumn3.Name = "UnitNo";
@@ -413,6 +414,10 @@
             gridViewTextBoxColumn12.IsVisible = false;
             gridViewTextBoxColumn12.Name = "IsActive";
             gridViewTextBoxColumn12.Width = 80;
+            gridViewTextBoxColumn13.FieldName = "UnitStat";
+            gridViewTextBoxColumn13.HeaderText = "column1";
+            gridViewTextBoxColumn13.IsVisible = false;
+            gridViewTextBoxColumn13.Name = "UnitStat";
             this.dgvUnitList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewCommandColumn1,
             gridViewCommandColumn2,
@@ -427,7 +432,8 @@
             gridViewTextBoxColumn9,
             gridViewTextBoxColumn10,
             gridViewTextBoxColumn11,
-            gridViewTextBoxColumn12});
+            gridViewTextBoxColumn12,
+            gridViewTextBoxColumn13});
             this.dgvUnitList.MasterTemplate.EnableFiltering = true;
             this.dgvUnitList.Name = "dgvUnitList";
             this.dgvUnitList.ReadOnly = true;

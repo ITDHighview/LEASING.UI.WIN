@@ -90,25 +90,25 @@ namespace LEASING.UI.APP.Forms
             }
         }
 
-        private void M_GetClientTypeAndID()
-        {
+        //private void M_GetClientTypeAndID()
+        //{
 
-            txtClientType.Text = string.Empty;
-            txtClientId.Text = string.Empty;
-            using (DataSet dt = ClientContext.GetGetClientTypeAndID(ClientId))
-            {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
-                {
-                    txtClientType.Text = Convert.ToString(dt.Tables[0].Rows[0]["ClientType"]);
-                    txtClientId.Text = Convert.ToString(dt.Tables[0].Rows[0]["ClientID"]);
-                }
-            }
-        }
+        //    txtClientType.Text = string.Empty;
+        //    txtClientId.Text = string.Empty;
+        //    using (DataSet dt = ClientContext.GetGetClientTypeAndID(ClientId))
+        //    {
+        //        if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+        //        {
+        //            txtClientType.Text = Convert.ToString(dt.Tables[0].Rows[0]["ClientType"]);
+        //            txtClientId.Text = Convert.ToString(dt.Tables[0].Rows[0]["ClientID"]);
+        //        }
+        //    }
+        //}
         private void frmSelectClient_Load(object sender, EventArgs e)
         {
             //M_GetSelecClient();
             M_GetComputationById();
-            M_GetClientTypeAndID();
+            //M_GetClientTypeAndID();
             M_GetMonthLedgerByRefIdAndClientId();
             //lblPostDatedCheck.Text = string.Empty;
             //lblPostDatedCheck.Text = "(" +"0"+ ")" + " POST-DATED CHECKS:";

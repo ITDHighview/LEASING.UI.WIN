@@ -49,8 +49,8 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.88506F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.11494F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.47126F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 67.52873F));
             this.tableLayoutPanel1.Controls.Add(this.btnOK, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.radLabel2, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.radLabel1, 0, 1);
@@ -71,7 +71,7 @@
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(106, 78);
+            this.btnOK.Location = new System.Drawing.Point(115, 78);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(110, 24);
             this.btnOK.TabIndex = 0;
@@ -80,48 +80,57 @@
             // 
             // radLabel2
             // 
+            this.radLabel2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radLabel2.Location = new System.Drawing.Point(3, 3);
             this.radLabel2.Name = "radLabel2";
-            this.radLabel2.Size = new System.Drawing.Size(71, 18);
+            this.radLabel2.Size = new System.Drawing.Size(83, 19);
             this.radLabel2.TabIndex = 1;
-            this.radLabel2.Text = "Paid Amount";
+            this.radLabel2.Text = "Paid Amount :";
             // 
             // radLabel1
             // 
+            this.radLabel1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radLabel1.Location = new System.Drawing.Point(3, 28);
             this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(88, 18);
+            this.radLabel1.Size = new System.Drawing.Size(102, 19);
             this.radLabel1.TabIndex = 1;
-            this.radLabel1.Text = "Receive Amount";
+            this.radLabel1.Text = "Receive Amount :";
             // 
             // radLabel3
             // 
+            this.radLabel3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radLabel3.Location = new System.Drawing.Point(3, 53);
             this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(88, 18);
+            this.radLabel3.Size = new System.Drawing.Size(101, 19);
             this.radLabel3.TabIndex = 1;
-            this.radLabel3.Text = "Change Amount";
+            this.radLabel3.Text = "Change Amount :";
             // 
             // txtPaidAmount
             // 
-            this.txtPaidAmount.Location = new System.Drawing.Point(106, 3);
+            this.txtPaidAmount.Location = new System.Drawing.Point(115, 3);
             this.txtPaidAmount.Name = "txtPaidAmount";
+            this.txtPaidAmount.NullText = "Type here...";
             this.txtPaidAmount.Size = new System.Drawing.Size(100, 20);
             this.txtPaidAmount.TabIndex = 2;
+            this.txtPaidAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPaidAmount_KeyPress);
             // 
             // txtReceiveAmount
             // 
-            this.txtReceiveAmount.Location = new System.Drawing.Point(106, 28);
+            this.txtReceiveAmount.Location = new System.Drawing.Point(115, 28);
             this.txtReceiveAmount.Name = "txtReceiveAmount";
+            this.txtReceiveAmount.NullText = "Optional...";
             this.txtReceiveAmount.Size = new System.Drawing.Size(100, 20);
             this.txtReceiveAmount.TabIndex = 2;
+            this.txtReceiveAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtReceiveAmount_KeyPress);
             // 
             // txtChangeAmount
             // 
-            this.txtChangeAmount.Location = new System.Drawing.Point(106, 53);
+            this.txtChangeAmount.Location = new System.Drawing.Point(115, 53);
             this.txtChangeAmount.Name = "txtChangeAmount";
+            this.txtChangeAmount.NullText = "Optional...";
             this.txtChangeAmount.Size = new System.Drawing.Size(100, 20);
             this.txtChangeAmount.TabIndex = 2;
+            this.txtChangeAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtChangeAmount_KeyPress);
             // 
             // frmReceivePayment
             // 

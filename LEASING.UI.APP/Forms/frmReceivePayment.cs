@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -29,6 +30,24 @@ namespace LEASING.UI.APP.Forms
         {
             txtPaidAmount.Text = string.Empty;
             txtPaidAmount.Text = Amount;
+        }
+
+        private void txtPaidAmount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
+                e.Handled = true;
+        }
+
+        private void txtReceiveAmount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
+                e.Handled = true;
+        }
+
+        private void txtChangeAmount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
+                e.Handled = true;
         }
     }
 }

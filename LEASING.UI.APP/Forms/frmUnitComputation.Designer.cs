@@ -36,6 +36,7 @@
             this.btnNewComputation = new System.Windows.Forms.ToolStripButton();
             this.btnUndo = new System.Windows.Forms.ToolStripButton();
             this.btnPrint = new System.Windows.Forms.ToolStripButton();
+            this.btnCompute = new System.Windows.Forms.ToolStripButton();
             this.ddlProject = new Telerik.WinControls.UI.RadDropDownList();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
@@ -71,10 +72,12 @@
             this.btnCheckunits = new Telerik.WinControls.UI.RadButton();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.txtProjectType = new Telerik.WinControls.UI.RadTextBox();
-            this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
             this.radGroupBox2 = new Telerik.WinControls.UI.RadGroupBox();
             this.dgvpostdatedcheck = new Telerik.WinControls.UI.RadGridView();
-            this.btnCompute = new System.Windows.Forms.ToolStripButton();
+            this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
+            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
+            this.txtTotalCheck = new Telerik.WinControls.UI.RadTextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ddlProject)).BeginInit();
@@ -112,12 +115,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnCheckunits)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtProjectType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
-            this.radGroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).BeginInit();
             this.radGroupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvpostdatedcheck)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvpostdatedcheck.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
+            this.radGroupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTotalCheck)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -126,10 +132,9 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 182F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 116F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 134F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 235F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 241F));
             this.tableLayoutPanel1.Controls.Add(this.toolStrip1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.ddlProject, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.radLabel4, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.radLabel5, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.txtProjectAddress, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.radLabel9, 0, 5);
@@ -145,7 +150,6 @@
             this.tableLayoutPanel1.Controls.Add(this.txtRental, 1, 10);
             this.tableLayoutPanel1.Controls.Add(this.radLabel14, 0, 11);
             this.tableLayoutPanel1.Controls.Add(this.txtSecAndMaintenance, 1, 11);
-            this.tableLayoutPanel1.Controls.Add(this.lblVat, 2, 11);
             this.tableLayoutPanel1.Controls.Add(this.radLabel15, 0, 12);
             this.tableLayoutPanel1.Controls.Add(this.txtTotalRental, 1, 12);
             this.tableLayoutPanel1.Controls.Add(this.radLabel17, 0, 13);
@@ -164,10 +168,15 @@
             this.tableLayoutPanel1.Controls.Add(this.radLabel2, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.txtProjectType, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.radGroupBox2, 0, 18);
+            this.tableLayoutPanel1.Controls.Add(this.lblVat, 2, 12);
+            this.tableLayoutPanel1.Controls.Add(this.radLabel1, 0, 15);
+            this.tableLayoutPanel1.Controls.Add(this.radLabel4, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.radLabel3, 1, 19);
+            this.tableLayoutPanel1.Controls.Add(this.txtTotalCheck, 2, 19);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(2, 18);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 19;
+            this.tableLayoutPanel1.RowCount = 20;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
@@ -186,6 +195,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(673, 793);
             this.tableLayoutPanel1.TabIndex = 0;
@@ -231,12 +241,21 @@
             this.btnPrint.Text = "Print";
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
+            // btnCompute
+            // 
+            this.btnCompute.Image = global::LEASING.UI.APP.Properties.Resources.right_16;
+            this.btnCompute.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnCompute.Name = "btnCompute";
+            this.btnCompute.Size = new System.Drawing.Size(77, 22);
+            this.btnCompute.Text = "Compute";
+            this.btnCompute.Click += new System.EventHandler(this.btnCompute_Click);
+            // 
             // ddlProject
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.ddlProject, 2);
             this.ddlProject.Location = new System.Drawing.Point(185, 53);
             this.ddlProject.Name = "ddlProject";
-            this.ddlProject.Size = new System.Drawing.Size(224, 20);
+            this.ddlProject.Size = new System.Drawing.Size(224, 19);
             this.ddlProject.TabIndex = 2;
             this.ddlProject.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.ddlProject_SelectedIndexChanged);
             // 
@@ -266,7 +285,7 @@
             this.txtProjectAddress.Location = new System.Drawing.Point(185, 78);
             this.txtProjectAddress.Name = "txtProjectAddress";
             this.txtProjectAddress.NullText = "Generated";
-            this.txtProjectAddress.Size = new System.Drawing.Size(320, 20);
+            this.txtProjectAddress.Size = new System.Drawing.Size(320, 19);
             this.txtProjectAddress.TabIndex = 4;
             // 
             // radLabel9
@@ -284,7 +303,7 @@
             this.ddlUnitNumber.Location = new System.Drawing.Point(185, 128);
             this.ddlUnitNumber.Name = "ddlUnitNumber";
             this.ddlUnitNumber.NullText = "--SELECT--";
-            this.ddlUnitNumber.Size = new System.Drawing.Size(94, 20);
+            this.ddlUnitNumber.Size = new System.Drawing.Size(94, 19);
             this.ddlUnitNumber.TabIndex = 2;
             this.ddlUnitNumber.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.ddlUnitNumber_SelectedIndexChanged);
             // 
@@ -294,7 +313,7 @@
             this.radLabel10.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radLabel10.Location = new System.Drawing.Point(104, 153);
             this.radLabel10.Name = "radLabel10";
-            this.radLabel10.Size = new System.Drawing.Size(75, 19);
+            this.radLabel10.Size = new System.Drawing.Size(75, 16);
             this.radLabel10.TabIndex = 1;
             this.radLabel10.Text = "Floor Type :";
             // 
@@ -304,7 +323,7 @@
             this.txtFloorType.Location = new System.Drawing.Point(185, 153);
             this.txtFloorType.Name = "txtFloorType";
             this.txtFloorType.NullText = "Generated";
-            this.txtFloorType.Size = new System.Drawing.Size(127, 20);
+            this.txtFloorType.Size = new System.Drawing.Size(127, 16);
             this.txtFloorType.TabIndex = 4;
             // 
             // radLabel11
@@ -345,7 +364,7 @@
             this.radLabel12.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radLabel12.Location = new System.Drawing.Point(101, 226);
             this.radLabel12.Name = "radLabel12";
-            this.radLabel12.Size = new System.Drawing.Size(78, 19);
+            this.radLabel12.Size = new System.Drawing.Size(78, 18);
             this.radLabel12.TabIndex = 1;
             this.radLabel12.Text = "Finish Date :";
             // 
@@ -354,7 +373,7 @@
             this.dtpFinishDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpFinishDate.Location = new System.Drawing.Point(185, 226);
             this.dtpFinishDate.Name = "dtpFinishDate";
-            this.dtpFinishDate.Size = new System.Drawing.Size(90, 20);
+            this.dtpFinishDate.Size = new System.Drawing.Size(90, 18);
             this.dtpFinishDate.TabIndex = 3;
             this.dtpFinishDate.TabStop = false;
             this.dtpFinishDate.Text = "7/31/2023";
@@ -375,7 +394,7 @@
             this.txtRental.Location = new System.Drawing.Point(185, 250);
             this.txtRental.Name = "txtRental";
             this.txtRental.NullText = "0";
-            this.txtRental.Size = new System.Drawing.Size(94, 20);
+            this.txtRental.Size = new System.Drawing.Size(94, 19);
             this.txtRental.TabIndex = 4;
             this.txtRental.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRental_KeyPress);
             // 
@@ -394,7 +413,7 @@
             this.txtSecAndMaintenance.Location = new System.Drawing.Point(185, 275);
             this.txtSecAndMaintenance.Name = "txtSecAndMaintenance";
             this.txtSecAndMaintenance.NullText = "0";
-            this.txtSecAndMaintenance.Size = new System.Drawing.Size(94, 20);
+            this.txtSecAndMaintenance.Size = new System.Drawing.Size(94, 19);
             this.txtSecAndMaintenance.TabIndex = 4;
             this.txtSecAndMaintenance.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSecAndMaintenance_KeyPress);
             // 
@@ -403,7 +422,7 @@
             this.lblVat.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblVat.Font = new System.Drawing.Font("Segoe UI", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblVat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.lblVat.Location = new System.Drawing.Point(301, 275);
+            this.lblVat.Location = new System.Drawing.Point(301, 300);
             this.lblVat.Name = "lblVat";
             this.lblVat.Size = new System.Drawing.Size(106, 18);
             this.lblVat.TabIndex = 1;
@@ -424,7 +443,7 @@
             this.txtTotalRental.Location = new System.Drawing.Point(185, 300);
             this.txtTotalRental.Name = "txtTotalRental";
             this.txtTotalRental.NullText = "0";
-            this.txtTotalRental.Size = new System.Drawing.Size(94, 20);
+            this.txtTotalRental.Size = new System.Drawing.Size(94, 19);
             this.txtTotalRental.TabIndex = 4;
             this.txtTotalRental.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTotalRental_KeyPress);
             // 
@@ -444,7 +463,7 @@
             this.txtMonthsAdvance1.Location = new System.Drawing.Point(185, 350);
             this.txtMonthsAdvance1.Name = "txtMonthsAdvance1";
             this.txtMonthsAdvance1.NullText = "0";
-            this.txtMonthsAdvance1.Size = new System.Drawing.Size(94, 20);
+            this.txtMonthsAdvance1.Size = new System.Drawing.Size(94, 19);
             this.txtMonthsAdvance1.TabIndex = 4;
             this.txtMonthsAdvance1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMonthsAdvance1_KeyPress);
             // 
@@ -453,7 +472,7 @@
             this.txtMonthsAdvance2.Location = new System.Drawing.Point(185, 375);
             this.txtMonthsAdvance2.Name = "txtMonthsAdvance2";
             this.txtMonthsAdvance2.NullText = "0";
-            this.txtMonthsAdvance2.Size = new System.Drawing.Size(94, 20);
+            this.txtMonthsAdvance2.Size = new System.Drawing.Size(94, 19);
             this.txtMonthsAdvance2.TabIndex = 4;
             this.txtMonthsAdvance2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMonthsAdvance2_KeyPress);
             // 
@@ -482,7 +501,7 @@
             this.dtpApplicableFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpApplicableFrom.Location = new System.Drawing.Point(435, 350);
             this.dtpApplicableFrom.Name = "dtpApplicableFrom";
-            this.dtpApplicableFrom.Size = new System.Drawing.Size(94, 20);
+            this.dtpApplicableFrom.Size = new System.Drawing.Size(94, 19);
             this.dtpApplicableFrom.TabIndex = 3;
             this.dtpApplicableFrom.TabStop = false;
             this.dtpApplicableFrom.Text = "7/31/2023";
@@ -493,7 +512,7 @@
             this.dtpApplicableTo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpApplicableTo.Location = new System.Drawing.Point(435, 375);
             this.dtpApplicableTo.Name = "dtpApplicableTo";
-            this.dtpApplicableTo.Size = new System.Drawing.Size(94, 20);
+            this.dtpApplicableTo.Size = new System.Drawing.Size(94, 19);
             this.dtpApplicableTo.TabIndex = 3;
             this.dtpApplicableTo.TabStop = false;
             this.dtpApplicableTo.Text = "7/31/2023";
@@ -514,7 +533,7 @@
             this.txtMonthsSecurityDeposit.Location = new System.Drawing.Point(185, 400);
             this.txtMonthsSecurityDeposit.Name = "txtMonthsSecurityDeposit";
             this.txtMonthsSecurityDeposit.NullText = "0";
-            this.txtMonthsSecurityDeposit.Size = new System.Drawing.Size(94, 20);
+            this.txtMonthsSecurityDeposit.Size = new System.Drawing.Size(94, 19);
             this.txtMonthsSecurityDeposit.TabIndex = 4;
             this.txtMonthsSecurityDeposit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMonthsSecurityDeposit_KeyPress);
             // 
@@ -522,18 +541,18 @@
             // 
             this.radLabel21.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.radLabel21.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel21.Location = new System.Drawing.Point(136, 425);
+            this.radLabel21.Location = new System.Drawing.Point(89, 425);
             this.radLabel21.Name = "radLabel21";
-            this.radLabel21.Size = new System.Drawing.Size(43, 19);
+            this.radLabel21.Size = new System.Drawing.Size(90, 19);
             this.radLabel21.TabIndex = 1;
-            this.radLabel21.Text = "Total :";
+            this.radLabel21.Text = "Total Amount:";
             // 
             // txtTotal
             // 
             this.txtTotal.Location = new System.Drawing.Point(185, 425);
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.NullText = "0";
-            this.txtTotal.Size = new System.Drawing.Size(94, 20);
+            this.txtTotal.Size = new System.Drawing.Size(94, 19);
             this.txtTotal.TabIndex = 4;
             this.txtTotal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTotal_KeyPress);
             // 
@@ -541,11 +560,11 @@
             // 
             this.radLabel22.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.radLabel22.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel22.Location = new System.Drawing.Point(57, 350);
+            this.radLabel22.Location = new System.Drawing.Point(45, 350);
             this.radLabel22.Name = "radLabel22";
-            this.radLabel22.Size = new System.Drawing.Size(122, 19);
+            this.radLabel22.Size = new System.Drawing.Size(134, 19);
             this.radLabel22.TabIndex = 1;
-            this.radLabel22.Text = "2 Months Advance :";
+            this.radLabel22.Text = "First Month Advance :";
             // 
             // btnCheckunits
             // 
@@ -572,20 +591,8 @@
             this.txtProjectType.Location = new System.Drawing.Point(185, 103);
             this.txtProjectType.Name = "txtProjectType";
             this.txtProjectType.NullText = "Generated";
-            this.txtProjectType.Size = new System.Drawing.Size(94, 20);
+            this.txtProjectType.Size = new System.Drawing.Size(94, 19);
             this.txtProjectType.TabIndex = 4;
-            // 
-            // radGroupBox1
-            // 
-            this.radGroupBox1.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.radGroupBox1.Controls.Add(this.tableLayoutPanel1);
-            this.radGroupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radGroupBox1.HeaderText = "COMPUTATION DETAILS";
-            this.radGroupBox1.Location = new System.Drawing.Point(0, 0);
-            this.radGroupBox1.Name = "radGroupBox1";
-            this.radGroupBox1.Size = new System.Drawing.Size(677, 813);
-            this.radGroupBox1.TabIndex = 1;
-            this.radGroupBox1.Text = "COMPUTATION DETAILS";
             // 
             // radGroupBox2
             // 
@@ -596,7 +603,7 @@
             this.radGroupBox2.HeaderText = "Post Dated Check ";
             this.radGroupBox2.Location = new System.Drawing.Point(3, 450);
             this.radGroupBox2.Name = "radGroupBox2";
-            this.radGroupBox2.Size = new System.Drawing.Size(667, 340);
+            this.radGroupBox2.Size = new System.Drawing.Size(667, 315);
             this.radGroupBox2.TabIndex = 7;
             this.radGroupBox2.Text = "Post Dated Check ";
             // 
@@ -637,17 +644,49 @@
             this.dgvpostdatedcheck.ReadOnly = true;
             this.dgvpostdatedcheck.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgvpostdatedcheck.ShowGroupPanel = false;
-            this.dgvpostdatedcheck.Size = new System.Drawing.Size(663, 320);
+            this.dgvpostdatedcheck.Size = new System.Drawing.Size(663, 295);
             this.dgvpostdatedcheck.TabIndex = 1;
             // 
-            // btnCompute
+            // radGroupBox1
             // 
-            this.btnCompute.Image = global::LEASING.UI.APP.Properties.Resources.right_16;
-            this.btnCompute.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnCompute.Name = "btnCompute";
-            this.btnCompute.Size = new System.Drawing.Size(77, 22);
-            this.btnCompute.Text = "Compute";
-            this.btnCompute.Click += new System.EventHandler(this.btnCompute_Click);
+            this.radGroupBox1.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this.radGroupBox1.Controls.Add(this.tableLayoutPanel1);
+            this.radGroupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radGroupBox1.HeaderText = "COMPUTATION DETAILS";
+            this.radGroupBox1.Location = new System.Drawing.Point(0, 0);
+            this.radGroupBox1.Name = "radGroupBox1";
+            this.radGroupBox1.Size = new System.Drawing.Size(677, 813);
+            this.radGroupBox1.TabIndex = 1;
+            this.radGroupBox1.Text = "COMPUTATION DETAILS";
+            // 
+            // radLabel1
+            // 
+            this.radLabel1.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.radLabel1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel1.Location = new System.Drawing.Point(28, 375);
+            this.radLabel1.Name = "radLabel1";
+            this.radLabel1.Size = new System.Drawing.Size(151, 19);
+            this.radLabel1.TabIndex = 1;
+            this.radLabel1.Text = "Second Month Advance :";
+            // 
+            // radLabel3
+            // 
+            this.radLabel3.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.radLabel3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel3.Location = new System.Drawing.Point(217, 771);
+            this.radLabel3.Name = "radLabel3";
+            this.radLabel3.Size = new System.Drawing.Size(78, 19);
+            this.radLabel3.TabIndex = 1;
+            this.radLabel3.Text = "Total Check:";
+            // 
+            // txtTotalCheck
+            // 
+            this.txtTotalCheck.Location = new System.Drawing.Point(301, 771);
+            this.txtTotalCheck.Name = "txtTotalCheck";
+            this.txtTotalCheck.NullText = "0";
+            this.txtTotalCheck.Size = new System.Drawing.Size(94, 20);
+            this.txtTotalCheck.TabIndex = 4;
+            this.txtTotalCheck.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTotalCheck_KeyPress);
             // 
             // frmUnitComputation
             // 
@@ -700,12 +739,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnCheckunits)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtProjectType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).EndInit();
-            this.radGroupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).EndInit();
             this.radGroupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvpostdatedcheck.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvpostdatedcheck)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).EndInit();
+            this.radGroupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTotalCheck)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -756,5 +798,8 @@
         private Telerik.WinControls.UI.RadGroupBox radGroupBox2;
         private Telerik.WinControls.UI.RadGridView dgvpostdatedcheck;
         private System.Windows.Forms.ToolStripButton btnCompute;
+        private Telerik.WinControls.UI.RadLabel radLabel1;
+        private Telerik.WinControls.UI.RadLabel radLabel3;
+        private Telerik.WinControls.UI.RadTextBox txtTotalCheck;
     }
 }

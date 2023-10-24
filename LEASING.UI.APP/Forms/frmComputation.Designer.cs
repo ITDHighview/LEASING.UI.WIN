@@ -100,6 +100,7 @@
             this.txtTotalPostDatedAmount = new Telerik.WinControls.UI.RadTextBox();
             this.btnGeneratePostdatedCountMonth = new Telerik.WinControls.UI.RadButton();
             this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
+            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.tableLayoutPanel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
@@ -155,6 +156,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnGeneratePostdatedCountMonth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
             this.radGroupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -184,7 +186,6 @@
             this.tableLayoutPanel1.Controls.Add(this.txtRental, 1, 10);
             this.tableLayoutPanel1.Controls.Add(this.radLabel14, 0, 11);
             this.tableLayoutPanel1.Controls.Add(this.txtSecAndMaintenance, 1, 11);
-            this.tableLayoutPanel1.Controls.Add(this.lblVat, 2, 11);
             this.tableLayoutPanel1.Controls.Add(this.radLabel15, 0, 12);
             this.tableLayoutPanel1.Controls.Add(this.txtTotalRental, 1, 12);
             this.tableLayoutPanel1.Controls.Add(this.radLabel17, 0, 13);
@@ -212,6 +213,8 @@
             this.tableLayoutPanel1.Controls.Add(this.radLabel1, 4, 16);
             this.tableLayoutPanel1.Controls.Add(this.txtTotalPostDatedAmount, 5, 16);
             this.tableLayoutPanel1.Controls.Add(this.btnGeneratePostdatedCountMonth, 5, 17);
+            this.tableLayoutPanel1.Controls.Add(this.radLabel3, 0, 15);
+            this.tableLayoutPanel1.Controls.Add(this.lblVat, 2, 12);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(2, 18);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -448,7 +451,7 @@
             this.lblVat.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblVat.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblVat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.lblVat.Location = new System.Drawing.Point(401, 275);
+            this.lblVat.Location = new System.Drawing.Point(401, 300);
             this.lblVat.Name = "lblVat";
             this.lblVat.Size = new System.Drawing.Size(116, 19);
             this.lblVat.TabIndex = 1;
@@ -548,11 +551,11 @@
             // 
             this.radLabel20.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.radLabel20.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel20.Location = new System.Drawing.Point(32, 400);
+            this.radLabel20.Location = new System.Drawing.Point(28, 400);
             this.radLabel20.Name = "radLabel20";
-            this.radLabel20.Size = new System.Drawing.Size(163, 19);
+            this.radLabel20.Size = new System.Drawing.Size(167, 19);
             this.radLabel20.TabIndex = 1;
-            this.radLabel20.Text = "3 Months Security Deposit:";
+            this.radLabel20.Text = "3 Months Security Deposit :";
             // 
             // txtMonthsSecurityDeposit
             // 
@@ -567,11 +570,11 @@
             // 
             this.radLabel21.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.radLabel21.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel21.Location = new System.Drawing.Point(152, 425);
+            this.radLabel21.Location = new System.Drawing.Point(101, 425);
             this.radLabel21.Name = "radLabel21";
-            this.radLabel21.Size = new System.Drawing.Size(43, 19);
+            this.radLabel21.Size = new System.Drawing.Size(94, 19);
             this.radLabel21.TabIndex = 1;
-            this.radLabel21.Text = "Total :";
+            this.radLabel21.Text = "Total Amount :";
             // 
             // txtTotal
             // 
@@ -586,11 +589,11 @@
             // 
             this.radLabel22.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.radLabel22.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel22.Location = new System.Drawing.Point(73, 350);
+            this.radLabel22.Location = new System.Drawing.Point(61, 350);
             this.radLabel22.Name = "radLabel22";
-            this.radLabel22.Size = new System.Drawing.Size(122, 19);
+            this.radLabel22.Size = new System.Drawing.Size(134, 19);
             this.radLabel22.TabIndex = 1;
-            this.radLabel22.Text = "2 Months Advance :";
+            this.radLabel22.Text = "First Month Advance :";
             // 
             // radGroupBox2
             // 
@@ -854,11 +857,11 @@
             // 
             this.radLabel1.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.radLabel1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel1.Location = new System.Drawing.Point(726, 400);
+            this.radLabel1.Location = new System.Drawing.Point(688, 400);
             this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(43, 19);
+            this.radLabel1.Size = new System.Drawing.Size(81, 19);
             this.radLabel1.TabIndex = 1;
-            this.radLabel1.Text = "Total :";
+            this.radLabel1.Text = "Total Check :";
             // 
             // txtTotalPostDatedAmount
             // 
@@ -890,6 +893,16 @@
             this.radGroupBox1.Size = new System.Drawing.Size(1011, 747);
             this.radGroupBox1.TabIndex = 1;
             this.radGroupBox1.Text = "COMPUTATION DETAILS";
+            // 
+            // radLabel3
+            // 
+            this.radLabel3.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.radLabel3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel3.Location = new System.Drawing.Point(44, 375);
+            this.radLabel3.Name = "radLabel3";
+            this.radLabel3.Size = new System.Drawing.Size(151, 19);
+            this.radLabel3.TabIndex = 1;
+            this.radLabel3.Text = "Second Month Advance :";
             // 
             // frmComputation
             // 
@@ -960,6 +973,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnGeneratePostdatedCountMonth)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).EndInit();
             this.radGroupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1019,5 +1033,6 @@
         private Telerik.WinControls.UI.RadLabel radLabel1;
         private Telerik.WinControls.UI.RadTextBox txtTotalPostDatedAmount;
         private Telerik.WinControls.UI.RadButton btnGeneratePostdatedCountMonth;
+        private Telerik.WinControls.UI.RadLabel radLabel3;
     }
 }

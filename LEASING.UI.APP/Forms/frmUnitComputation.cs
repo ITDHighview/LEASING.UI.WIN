@@ -493,7 +493,17 @@ namespace LEASING.UI.APP.Forms
 
         private void btnCompute_Click(object sender, EventArgs e)
         {
+            txtTotalCheck.Text = string.Empty;
+
             M_GetPostDatedCountMonth();
+            var TotalPostDatedAmount = (dgvpostdatedcheck.Rows.Count() < 0) ? 0 : (Convert.ToDecimal(dgvpostdatedcheck.Rows.Count().ToString()) * ((txtTotalRental.Text == "") ? 0 : Convert.ToDecimal(txtTotalRental.Text)));
+            txtTotalCheck.Text = TotalPostDatedAmount.ToString();
+        }
+
+        private void txtTotalCheck_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
+                e.Handled = true;
         }
     }
 }

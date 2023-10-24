@@ -464,6 +464,7 @@
             this.dgvLedgerList.TabIndex = 0;
             this.dgvLedgerList.Text = "radGridView1";
             this.dgvLedgerList.CellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.dgvLedgerList_CellFormatting);
+            this.dgvLedgerList.CellClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.dgvLedgerList_CellClick);
             // 
             // frmClientTransaction
             // 

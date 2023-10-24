@@ -529,6 +529,11 @@ namespace LEASING.UI.APP.Forms
             e.CellElement.BackColor = Color.Green;
         }
 
+        private void dgvLedgerList_CellClick(object sender, GridViewCellEventArgs e)
+        {
+
+        }
+
         //private void btnGenerate_Click(object sender, EventArgs e)
         //{
         //    frmReceivePayment frmReceivePayment = new frmReceivePayment();

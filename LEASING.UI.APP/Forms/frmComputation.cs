@@ -591,6 +591,10 @@ namespace LEASING.UI.APP.Forms
                 txtTotalPostDatedAmount.Text = TotalPostDatedAmount.ToString();
 
             }
+            else
+            {
+                MessageBox.Show("please select client", "System Message",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            }
         }
     }
 }

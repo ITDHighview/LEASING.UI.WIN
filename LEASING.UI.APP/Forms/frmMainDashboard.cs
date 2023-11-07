@@ -33,11 +33,6 @@ namespace LEASING.UI.APP.Forms
             forms.ShowDialog();
         }
 
-        private void radMenuItemSettings_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void radMenuItemAddNewLocation_Click(object sender, EventArgs e)
         {
             frmAddNewLocation forms = new frmAddNewLocation();
@@ -57,11 +52,6 @@ namespace LEASING.UI.APP.Forms
         }
 
         private void radMenuItem5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void radMenuItem4_Click(object sender, EventArgs e)
         {
 
         }
@@ -143,6 +133,36 @@ namespace LEASING.UI.APP.Forms
         private void radMenuItem14_Click(object sender, EventArgs e)
         {
             frmClientTransaction forms = new frmClientTransaction();
+            forms.ShowDialog();
+        }
+
+        private void radMenuItemClientInformation_Click(object sender, EventArgs e)
+        {
+            frmClientInformation forms = new frmClientInformation();
+            forms.ShowDialog();
+        }
+
+        private void radMenuItemTransactions_Click(object sender, EventArgs e)
+        {
+            frmGenerateTrasaction forms = new frmGenerateTrasaction();
+            forms.ShowDialog();
+        }
+
+        private void radMenuItemLedger_Click(object sender, EventArgs e)
+        {
+            frmClientTransaction forms = new frmClientTransaction();
+            forms.ShowDialog();
+        }
+
+        private void radMenuItemComputation_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radMenuItemGenerateComputationUnit_Click(object sender, EventArgs e)
+        {
+
+            frmComputation forms = new frmComputation();
             forms.ShowDialog();
         }
     }

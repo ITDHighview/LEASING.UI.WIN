@@ -68,8 +68,8 @@ namespace LEASING.UI.APP.Forms
         {
             new UnitStatus { UnitStatusName = "--SELECT--"},
             new UnitStatus { UnitStatusName = "VACANT"},
-            new UnitStatus { UnitStatusName = "RESERVED"},
-            new UnitStatus { UnitStatusName = "OCCUPIED"},
+            //new UnitStatus { UnitStatusName = "RESERVED"},
+            //new UnitStatus { UnitStatusName = "OCCUPIED"},
              new UnitStatus { UnitStatusName = "NOT AVAILABLE"}
         };
 
@@ -230,6 +230,19 @@ namespace LEASING.UI.APP.Forms
             M_SelectProject();
             M_SelectFloortypes();
             M_GetUnitById();
+            if (ddlUnitStatus.Text == "RESERVED")
+            {
+
+                btnUndo.Visible = false;
+                btnSave.Visible = false;
+                btnEdit.Visible = false;
+            }
+            else
+            {
+                btnUndo.Visible = true;
+                btnSave.Visible = true;
+                btnEdit.Visible = true;
+            }
             this.Text = "UNIT # ( " + txtUnitNumber.Text + " )-" + ddlUnitStatus.Text;
         }
 

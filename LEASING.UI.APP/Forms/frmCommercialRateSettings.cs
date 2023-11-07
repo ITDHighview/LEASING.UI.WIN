@@ -49,8 +49,11 @@ namespace LEASING.UI.APP.Forms
 
                         txtGenVat.Enabled = false;
                         txtSecAndMaintenance.Enabled = false;
-
                         txtWithHoldingTax.Enabled = false;
+                        txtVatAmount.Enabled = false;
+                        txtSecAndMaintenanceWithVat.Enabled = false;
+                        txtSecAndMaintenanceWithVatLessTAX.Enabled = false;
+                        txtWithHoldingTaxAmount.Enabled = false;
 
                         break;
 
@@ -84,10 +87,34 @@ namespace LEASING.UI.APP.Forms
             }
         }
 
+        private void M_GetVatAMount()
+        {
+            var AMount = ((txtSecAndMaintenance.Text == "" ? 0 : Convert.ToDecimal(txtSecAndMaintenance.Text)) * (txtGenVat.Text == "" ? 0 : Convert.ToDecimal(txtGenVat.Text)) / 100);
+            txtVatAmount.Text = Convert.ToString(AMount);
+        }
+        private void M_GetSecAndMainVatAMount()
+        {
+            var AMount = ((txtSecAndMaintenance.Text == "" ? 0 : Convert.ToDecimal(txtSecAndMaintenance.Text)) + (txtVatAmount.Text == "" ? 0 : Convert.ToDecimal(txtVatAmount.Text)));
+            txtSecAndMaintenanceWithVat.Text = Convert.ToString(AMount);
+        }
+        private void M_GetTaxAMount()
+        {
+            var AMount = ((txtSecAndMaintenanceWithVat.Text == "" ? 0 : Convert.ToDecimal(txtSecAndMaintenanceWithVat.Text)) * (txtWithHoldingTax.Text == "" ? 0 : Convert.ToDecimal(txtWithHoldingTax.Text)) / 100);
+            txtWithHoldingTaxAmount.Text = Convert.ToString(AMount);
+        }
+        private void M_GetSecAndMainWithVatandLessTax()
+        {
+            var AMount = (txtSecAndMaintenanceWithVat.Text == "" ? 0 : Convert.ToDecimal(txtSecAndMaintenanceWithVat.Text)) - (txtWithHoldingTaxAmount.Text == "" ? 0 : Convert.ToDecimal(txtWithHoldingTaxAmount.Text));
+            txtSecAndMaintenanceWithVatLessTAX.Text = Convert.ToString(AMount);
+        }
         private void frmCommercialRateSettings_Load(object sender, EventArgs e)
         {
             strRateFormMode = "READ";
             M_GetRateSettings();
+            M_GetVatAMount();
+            M_GetSecAndMainVatAMount();
+            M_GetTaxAMount();
+            M_GetSecAndMainWithVatandLessTax();
         }
 
         private void txtGenVat_KeyPress(object sender, KeyPressEventArgs e)
@@ -133,6 +160,32 @@ namespace LEASING.UI.APP.Forms
         private void btnUndo_Click(object sender, EventArgs e)
         {
             strRateFormMode = "READ";
+        }
+
+        private void txtVatAmount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9\b]"))
+                e.Handled = true;
+        }
+
+        private void txtSecAndMaintenanceWithVat_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9\b]"))
+                e.Handled = true;
+        }
+
+        private void txtGenVat_TextChanged(object sender, EventArgs e)
+        {
+            M_GetVatAMount();
+            M_GetSecAndMainVatAMount();
+            M_GetTaxAMount();
+            M_GetSecAndMainWithVatandLessTax();
+        }
+
+        private void txtWithHoldingTax_TextChanged(object sender, EventArgs e)
+        {
+            M_GetTaxAMount();
+            M_GetSecAndMainWithVatandLessTax();
         }
     }
 }

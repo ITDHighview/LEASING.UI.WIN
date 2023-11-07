@@ -38,8 +38,8 @@ namespace LEASING.UI.APP.Forms
 
                         txtGenVat.Enabled = true;
                         txtSecAndMaintenance.Enabled = true;
-                        txtVatAmount.Enabled = true;
-                        txtSecAndMaintenanceWithVat.Enabled = true;
+                        //txtVatAmount.Enabled = true;
+                        //txtSecAndMaintenanceWithVat.Enabled = true;
 
 
                         break;

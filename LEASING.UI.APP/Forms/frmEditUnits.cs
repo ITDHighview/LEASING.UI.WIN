@@ -255,7 +255,7 @@ namespace LEASING.UI.APP.Forms
             UnitModel dto = new UnitModel();
             dto.UnitId = Recid;
             //dto.UnitDescription = unitDescription.Text;
-            dto.FloorNo = Convert.ToInt32(txtFloorNumber.Text);
+            dto.FloorNo = txtFloorNumber.Text == string.Empty ? 0 : Convert.ToInt32(txtFloorNumber.Text);
             dto.AreaSqm = txtAreSql.Text == string.Empty ? 0 : decimal.Parse(txtAreSql.Text);
             dto.AreaRateSqm = txtAreRateSqm.Text == string.Empty ? 0 : decimal.Parse(txtAreRateSqm.Text);
             dto.FloorType = ddlFloorType.Text;
@@ -263,7 +263,7 @@ namespace LEASING.UI.APP.Forms
             dto.UnitStatus = ddlUnitStatus.Text;
             dto.DetailsofProperty = txtDetailsOfProperty.Text;
             dto.UnitNo = txtUnitNumber.Text;
-            dto.UnitSequence = Convert.ToInt32(txtUnitSequence.Text);
+            dto.UnitSequence = txtUnitSequence.Text == string.Empty ? 0 : Convert.ToInt32(txtUnitSequence.Text);
             dto.LastchangedBy = 1;
 
             dto.Message_Code = UnitContext.EditUnit(dto);

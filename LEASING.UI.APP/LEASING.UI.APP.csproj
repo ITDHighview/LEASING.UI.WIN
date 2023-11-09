@@ -168,11 +168,29 @@
     <Compile Include="Forms\frmClientInformation.Designer.cs">
       <DependentUpon>frmClientInformation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmClientTransactionParking.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmClientTransactionParking.Designer.cs">
+      <DependentUpon>frmClientTransactionParking.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmCommercialRateSettings.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\frmCommercialRateSettings.Designer.cs">
       <DependentUpon>frmCommercialRateSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmEditParkingComputation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmEditParkingComputation.Designer.cs">
+      <DependentUpon>frmEditParkingComputation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmParkComputation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmParkComputation.Designer.cs">
+      <DependentUpon>frmParkComputation.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmReceivePayment.cs">
       <SubType>Form</SubType>
@@ -185,6 +203,12 @@
     </Compile>
     <Compile Include="Forms\frmClientTransaction.Designer.cs">
       <DependentUpon>frmClientTransaction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmParkingComputation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmParkingComputation.Designer.cs">
+      <DependentUpon>frmParkingComputation.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmUnitComputation.cs">
       <SubType>Form</SubType>
@@ -361,14 +385,26 @@
     <EmbeddedResource Include="Forms\frmClientInformation.resx">
       <DependentUpon>frmClientInformation.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmClientTransactionParking.resx">
+      <DependentUpon>frmClientTransactionParking.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmCommercialRateSettings.resx">
       <DependentUpon>frmCommercialRateSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmEditParkingComputation.resx">
+      <DependentUpon>frmEditParkingComputation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmParkComputation.resx">
+      <DependentUpon>frmParkComputation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmReceivePayment.resx">
       <DependentUpon>frmReceivePayment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmClientTransaction.resx">
       <DependentUpon>frmClientTransaction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmParkingComputation.resx">
+      <DependentUpon>frmParkingComputation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmUnitComputation.resx">
       <DependentUpon>frmUnitComputation.cs</DependentUpon>

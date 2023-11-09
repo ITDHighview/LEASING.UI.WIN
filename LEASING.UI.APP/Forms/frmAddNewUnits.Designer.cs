@@ -500,6 +500,7 @@
             this.chkIsParking.Size = new System.Drawing.Size(119, 18);
             this.chkIsParking.TabIndex = 8;
             this.chkIsParking.Text = "Please flag this box ";
+            this.chkIsParking.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.chkIsParking_ToggleStateChanged);
             // 
             // radLabel10
             // 

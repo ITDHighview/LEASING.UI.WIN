@@ -165,5 +165,17 @@ namespace LEASING.UI.APP.Forms
             frmComputation forms = new frmComputation();
             forms.ShowDialog();
         }
+
+        private void radMenuParkingComputation_Click(object sender, EventArgs e)
+        {
+            frmParkingComputation forms = new frmParkingComputation();
+            forms.ShowDialog();
+        }
+
+        private void radMenuItemGenerateComputationParking_Click(object sender, EventArgs e)
+        {
+            frmParkComputation forms = new frmParkComputation();
+            forms.ShowDialog();
+        }
     }
 }

@@ -347,14 +347,29 @@ namespace LEASING.UI.APP.Forms
         }
         private void M_GetBaseRentalWithVatAmount()
         {
-            var AMount = ((txtBaseRental.Text == "" ? 0 : Convert.ToDecimal(txtBaseRental.Text)) + (txtBaseRentalVatAmount.Text == "" ? 0 : Convert.ToDecimal(txtBaseRentalVatAmount.Text)));
-            txtBaseRentalWithVatAmount.Text = Convert.ToString(AMount);
-            /*TAX*/
-            M_GetBaseRentalTaxAMount();
-            var tax = ((txtBaseRentalTax.Text == "" ? 0 : Convert.ToDecimal(txtBaseRentalTax.Text)) + (txtSecAndMainTax.Text == "" ? 0 : Convert.ToDecimal(txtSecAndMainTax.Text))); 
-             var totalrental = ((txtBaseRentalWithVatAmount.Text == "" ? 0 : Convert.ToDecimal(txtBaseRentalWithVatAmount.Text)) + (txtSecAndMainWithVatAmount.Text == "" ? 0 : Convert.ToDecimal(txtSecAndMainWithVatAmount.Text)));
-            var result = (totalrental - tax);
-            txtTotalRental.Text = Convert.ToString(result);
+            if (!chkIsParking.Checked)
+            {
+                var AMount = ((txtBaseRental.Text == "" ? 0 : Convert.ToDecimal(txtBaseRental.Text)) + (txtBaseRentalVatAmount.Text == "" ? 0 : Convert.ToDecimal(txtBaseRentalVatAmount.Text)));
+                txtBaseRentalWithVatAmount.Text = Convert.ToString(AMount);
+                /*TAX*/
+                M_GetBaseRentalTaxAMount();
+                var tax = ((txtBaseRentalTax.Text == "" ? 0 : Convert.ToDecimal(txtBaseRentalTax.Text)) + (txtSecAndMainTax.Text == "" ? 0 : Convert.ToDecimal(txtSecAndMainTax.Text)));
+                var totalrental = ((txtBaseRentalWithVatAmount.Text == "" ? 0 : Convert.ToDecimal(txtBaseRentalWithVatAmount.Text)) + (txtSecAndMainWithVatAmount.Text == "" ? 0 : Convert.ToDecimal(txtSecAndMainWithVatAmount.Text)));
+                var result = (totalrental - tax);
+                txtTotalRental.Text = Convert.ToString(result);
+            }
+            else
+            {
+                var AMount = ((txtBaseRental.Text == "" ? 0 : Convert.ToDecimal(txtBaseRental.Text)) + (txtBaseRentalVatAmount.Text == "" ? 0 : Convert.ToDecimal(txtBaseRentalVatAmount.Text)));
+                txtBaseRentalWithVatAmount.Text = Convert.ToString(AMount);
+                /*TAX*/
+                M_GetBaseRentalTaxAMount();
+                var tax =(txtBaseRentalTax.Text == "" ? 0 : Convert.ToDecimal(txtBaseRentalTax.Text));
+                var totalrental = (txtBaseRentalWithVatAmount.Text == "" ? 0 : Convert.ToDecimal(txtBaseRentalWithVatAmount.Text));
+                var result = (totalrental - tax);
+                txtTotalRental.Text = Convert.ToString(result);
+            }
+      
         }
         private void M_GetSecAndMainVatAMount()
         {
@@ -488,7 +503,7 @@ namespace LEASING.UI.APP.Forms
 
         private void txtBaseRental_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9\b]"))
+            if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
         }
 
@@ -516,13 +531,13 @@ namespace LEASING.UI.APP.Forms
             //dto.UnitStatus = ddlUnitStatus.Text;
             dto.UnitNo = txtUnitNumber.Text;
             dto.IsParking = chkIsParking.Checked;
-            dto.FloorNo = Convert.ToInt32(txtFloorNumber.Text);
+            dto.FloorNo = txtFloorNumber.Text==string.Empty ? 0 : Convert.ToInt32(txtFloorNumber.Text);
             dto.AreaSqm = txtAreSql.Text == string.Empty ? 0 : decimal.Parse(txtAreSql.Text);
             dto.AreaRateSqm = txtAreRateSqm.Text == string.Empty ? 0 : decimal.Parse(txtAreRateSqm.Text);
             dto.FloorType = ddlFloorType.Text;
             dto.BaseRental = txtBaseRental.Text == string.Empty ? 0 : decimal.Parse(txtBaseRental.Text);
             dto.DetailsofProperty = txtDetailsOfProperty.Text;
-            dto.UnitSequence = Convert.ToInt32(txtUnitSequence.Text);
+            dto.UnitSequence = txtUnitSequence.Text==string.Empty ? 0 : Convert.ToInt32(txtUnitSequence.Text);
             dto.EncodedBy = 1;
             dto.Message_Code = UnitContext.SaveUnit(dto);
             if (dto.Message_Code.Equals("SUCCESS"))
@@ -726,6 +741,56 @@ namespace LEASING.UI.APP.Forms
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
+        }
+
+        private void chkIsParking_ToggleStateChanged(object sender, Telerik.WinControls.UI.StateChangedEventArgs args)
+        {
+            if (chkIsParking.CheckState == CheckState.Checked)
+            {
+                txtSecAndMainVatPercentage.Text = string.Empty;
+                txtSecAndMainAmount.Text = string.Empty;
+                txtSecAndMainVatAmount.Text = string.Empty;
+                txtSecAndMainWithVatAmount.Text = string.Empty;
+                txtSecAndMainTax.Text = string.Empty;
+                txtTotalRental.Text = string.Empty;
+                M_GetBaseRentalVatAmount();
+                M_GetBaseRentalWithVatAmount();
+            }
+            else
+            {
+                if (isResidential)
+                {
+                    M_GetResendentialRateSettings();
+
+                    M_GetSecAndMainVatAMount();
+                    M_GetSecAndMainWithVatAMount();
+                    M_GetBaseRentalVatAmount();
+                    M_GetBaseRentalWithVatAmount();
+                    M_GetSecAndMainTaxAMount();
+                }
+                else if (isCommercial)
+                {
+                    M_GetCOMMERCIALateSettings();
+
+                    M_GetSecAndMainVatAMount();
+                    M_GetSecAndMainWithVatAMount();
+                    M_GetBaseRentalVatAmount();
+                    M_GetBaseRentalWithVatAmount();
+                    M_GetSecAndMainTaxAMount();
+
+                }
+                else if (isWarehouse)
+                {
+                    M_GetWAREHOUSERateSettings();
+
+                    M_GetSecAndMainVatAMount();
+                    M_GetSecAndMainWithVatAMount();
+                    M_GetBaseRentalVatAmount();
+                    M_GetBaseRentalWithVatAmount();
+                    M_GetSecAndMainTaxAMount();
+
+                }
+            }
         }
     }
 }

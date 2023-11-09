@@ -426,6 +426,7 @@
             this.radMenuParkingComputation.Image = global::LEASING.UI.APP.Properties.Resources._16_MyLogsBook;
             this.radMenuParkingComputation.Name = "radMenuParkingComputation";
             this.radMenuParkingComputation.Text = "Parking Computation";
+            this.radMenuParkingComputation.Click += new System.EventHandler(this.radMenuParkingComputation_Click);
             // 
             // radMenuGenerateComputation
             // 
@@ -454,6 +455,7 @@
             this.radMenuItemGenerateComputationParking.Image = global::LEASING.UI.APP.Properties.Resources.Bullet15_Arrow_Blue;
             this.radMenuItemGenerateComputationParking.Name = "radMenuItemGenerateComputationParking";
             this.radMenuItemGenerateComputationParking.Text = "PARKING";
+            this.radMenuItemGenerateComputationParking.Click += new System.EventHandler(this.radMenuItemGenerateComputationParking_Click);
             // 
             // radPanel5
             // 

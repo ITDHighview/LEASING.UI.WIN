@@ -47,18 +47,21 @@ namespace LEASING.UI.APP.Forms
 
                     e.CellElement.DrawFill = true;
                     e.CellElement.GradientStyle = GradientStyles.Solid;
+                    e.CellElement.ForeColor = Color.Black;
                     e.CellElement.BackColor = Color.Yellow;
                 }
-                else if (Convert.ToString(this.dgvUnitList.Rows[e.RowIndex].Cells["UnitStatus"].Value) == "RESERVED")
+                else if (Convert.ToString(this.dgvUnitList.Rows[e.RowIndex].Cells["UnitStat"].Value) == "RESERVED")
                 {
                     e.CellElement.DrawFill = true;
                     e.CellElement.GradientStyle = GradientStyles.Solid;
+                    e.CellElement.ForeColor = Color.Black;
                     e.CellElement.BackColor = Color.LightSkyBlue;
                 }
                 else if (Convert.ToString(this.dgvUnitList.Rows[e.RowIndex].Cells["UnitStatus"].Value) == "OCCUPIED")
                 {
                     e.CellElement.DrawFill = true;
                     e.CellElement.GradientStyle = GradientStyles.Solid;
+                    e.CellElement.ForeColor = Color.Black;
                     e.CellElement.BackColor = Color.LightGreen;
 
                 }
@@ -66,7 +69,16 @@ namespace LEASING.UI.APP.Forms
                 {
                     e.CellElement.DrawFill = true;
                     e.CellElement.GradientStyle = GradientStyles.Solid;
+                    e.CellElement.ForeColor = Color.Black;
                     e.CellElement.BackColor = Color.LightSalmon;
+
+                }
+                else if (Convert.ToString(this.dgvUnitList.Rows[e.RowIndex].Cells["UnitStatus"].Value) == "HOLD")
+                {
+                    e.CellElement.DrawFill = true;
+                    e.CellElement.GradientStyle = GradientStyles.Solid;
+                    e.CellElement.ForeColor = Color.White;
+                    e.CellElement.BackColor = Color.Red;
 
                 }
             }

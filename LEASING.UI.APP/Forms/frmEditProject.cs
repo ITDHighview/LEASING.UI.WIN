@@ -298,7 +298,7 @@ namespace LEASING.UI.APP.Forms
                 {
                     //e.CellElement.ForeColor = Color.Green;
                     //e.CellElement.Font = new Font("Tahoma", 7f, FontStyle.Bold);
-
+                    e.CellElement.ForeColor = Color.Black;
                     e.CellElement.DrawFill = true;
                     e.CellElement.GradientStyle = GradientStyles.Solid;
                     e.CellElement.BackColor = Color.Yellow;
@@ -307,12 +307,14 @@ namespace LEASING.UI.APP.Forms
                 {
                     e.CellElement.DrawFill = true;
                     e.CellElement.GradientStyle = GradientStyles.Solid;
+                    e.CellElement.ForeColor = Color.Black;
                     e.CellElement.BackColor = Color.LightSkyBlue;
                 }
                 else if (Convert.ToString(this.dgvUnitList.Rows[e.RowIndex].Cells["UnitStat"].Value) == "OCCUPIED")
                 {
                     e.CellElement.DrawFill = true;
                     e.CellElement.GradientStyle = GradientStyles.Solid;
+                    e.CellElement.ForeColor = Color.Black;
                     e.CellElement.BackColor = Color.LightGreen;
 
                 }
@@ -320,7 +322,16 @@ namespace LEASING.UI.APP.Forms
                 {
                     e.CellElement.DrawFill = true;
                     e.CellElement.GradientStyle = GradientStyles.Solid;
+                    e.CellElement.ForeColor = Color.Black;
                     e.CellElement.BackColor = Color.LightSalmon;
+
+                }
+                else if (Convert.ToString(this.dgvUnitList.Rows[e.RowIndex].Cells["UnitStat"].Value) == "HOLD")
+                {
+                    e.CellElement.DrawFill = true;
+                    e.CellElement.GradientStyle = GradientStyles.Solid;
+                    e.CellElement.ForeColor = Color.White;
+                    e.CellElement.BackColor = Color.Red;
 
                 }
             }

@@ -37,62 +37,52 @@ namespace LEASING.UI.APP.Forms
 
         public decimal ReceiveAmount { get; set; }
         public decimal ChangeAmount { get; set; }
+
+        public string CompanyORNo { get; set; }
+        public string BankAccountName { get; set; }
+        public string BankAccountNumber { get; set; }
+        public string BankName { get; set; }
+        public string SerialNo { get; set; }
+        public string PaymentRemarks { get; set; }
+        public string REF { get; set; }
+        public int ModeType { get; set; }
+
         public frmClientTransactionParking()
         {
-            InitializeComponent();
-            //data.Columns.Add("ID", typeof(int));
-            //data.Columns.Add("Name", typeof(string));
-            //data.Columns.Add("Age", typeof(int));
-            //data.Columns.Add("Date", typeof(DateTime));
-
-
-
-            // Bind the DataTable to the DataGridView
-            //dgvLedgerList.DataSource = data;
-        }
-
-        //private void GenerateDataForMonths(DateTime startDate, DateTime endDate)
-        //{
-        //    DateTime currentDate = startDate;
-
-        //    while (currentDate <= endDate)
-        //    {
-        //        data.Rows.Add(data.Rows.Count + 1, $"Person {data.Rows.Count + 1}", 20 + data.Rows.Count, currentDate);
-        //        currentDate = currentDate.AddMonths(1);
-        //    }
-        //}
+            InitializeComponent();        
+        } 
         private bool IsComputationValid()
         {
             if (ClientId == string.Empty)
             {
                 MessageBox.Show("Client  cannot be empty !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return false;
-            }
-
-            //if (ddlFloorType.SelectedText == "--SELECT--")
-            //{
-            //    MessageBox.Show("Floor Type cannot be empty !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            //    return false;
-            //}
-
-
+            }      
             return true;
         }
-        //private void M_GetMonthLedgerByRefIdAndClientId()
-        //{
+       
 
-        //    dgvLedgerList.DataSource = null;
-        //    using (DataSet dt = ComputationContext.GetMonthLedgerByRefIdAndClientId(ComputationRecid, ClientId, MonthsAdvance1, MonthsAdvance2))
-        //    {
-        //        if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
-        //        {
-
-        //            dgvLedgerList.DataSource = dt.Tables[0];
-        //        }
-        //    }
-        //}
-
-
+        private void M_sp_GenerateFirstPayment()
+        {
+            var result = PaymentContext.GeneratePaymentParking(RefId,
+                Convert.ToString(dgvLedgerList.CurrentRow.Cells["LedgAmount"].Value) == string.Empty ? 0 : decimal.Parse(Convert.ToString(dgvLedgerList.CurrentRow.Cells["LedgAmount"].Value)),
+                ReceiveAmount,
+                ChangeAmount,
+                CompanyORNo,
+                BankAccountName,
+                BankAccountNumber,
+                BankName,
+                SerialNo,
+                PaymentRemarks,
+                REF,
+                ModeType,
+                Convert.ToInt32(dgvLedgerList.CurrentRow.Cells["Recid"].Value));
+            if (result.Equals("SUCCESS"))
+            {
+                MessageBox.Show("PAYMENT SUCCESS", "System Message", MessageBoxButtons.OK);
+                IsProceed = true;
+            }
+        }
         private void M_GetLedgerList()
         {
 
@@ -106,22 +96,6 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-
-
-        //private void M_GetReferenceByClientID()
-        //{
-
-        //    dgvTransactionList.DataSource = null;
-        //    using (DataSet dt = ComputationContext.GetReferenceByClientID(ClientId))
-        //    {
-        //        if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
-        //        {
-
-        //            dgvTransactionList.DataSource = dt.Tables[0];
-        //        }
-        //    }
-        //}
-
         private void M_GetPaymentListByReferenceId()
         {
 
@@ -135,8 +109,6 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-
-
         private void M_GetClientTypeAndID()
         {
 
@@ -195,100 +167,19 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-
-
-
-        //private void M_sp_GenerateFirstPayment()
-        //{
-
-        //    var result = PaymentContext.GenerateFirstPayment(RefId, txtTotalForPayment.Text == string.Empty ? 0 : decimal.Parse(txtTotalForPayment.Text), ReceiveAmount, ChangeAmount, txtThreeMonSecDep.Text == string.Empty ? 0 : decimal.Parse(txtThreeMonSecDep.Text));
-        //    if (result.Equals("SUCCESS"))
-        //    {
-        //        MessageBox.Show("SUCCESS", "System Message", MessageBoxButtons.OK);
-        //        IsProceed = true;
-        //        this.Close();
-        //    }
-        //}
-
+  
         private void radTextBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
-        }
-        //private int CountMonths(DateTime startDate, DateTime endDate)
-        //{
-        //    // The rest of the code remains the same as in the previous example
-        //    if (endDate < startDate)
-        //    {
-        //        DateTime temp = startDate;
-        //        startDate = endDate;
-        //        endDate = temp;
-        //    }
-
-        //    int months = ((endDate.Year - startDate.Year) * 12) + endDate.Month - startDate.Month;
-
-        //    if (endDate.Day >= startDate.Day)
-        //    {
-        //        months++;
-        //    }
-
-        //    return months;
-        //}
-
+        }     
 
         private void radDateTimePicker2_ValueChanged(object sender, EventArgs e)
-        {
-            //DateTime startDate = DateTime.ParseExact(dtpFrom.Value.ToString("MM/dd/yyyy"), "MM/dd/yyyy", null);
-            //DateTime endDate = DateTime.ParseExact(dtpTo.Value.ToString("MM/dd/yyyy"), "MM/dd/yyyy", null);
-
-            //int numberOfMonths = CountMonths(startDate, endDate);
-            //lblPostDatedCheck.Text = "(" + Convert.ToString(numberOfMonths) + ")" + " POST-DATED CHECKS:";
-            //txtTotal.Text = Convert.ToString(TotalRental * numberOfMonths);
+        {        
         }
-
-
-        //private void M_Generatedler()
-        //{
-
-
-        //    var result  = ComputationContext.GenerateLedger(dtpFrom.Value.ToString("MM/dd/yyyy"), dtpFrom.Value.ToString("MM/dd/yyyy"), dtpTo.Value.ToString("MM/dd/yyyy"), TotalRental, ComputationRecid, Convert.ToString(ddlClientList.SelectedValue), 1);
-        //    if (result.Equals("SUCCESS"))
-        //    {
-        //        MessageBox.Show("New Reference has been generated successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        //        this.Close();    
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show(result, "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-        //    }
-        //}
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            if (IsComputationValid())
-            {
-                if (MessageBox.Show("Are you sure you want to generate ledger for this Reference ?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
-                {
-                    //M_Generatedler();
-                }
-            }
-        }
-
+    
         private void btnCheckUnits_Click(object sender, EventArgs e)
-        {
-            //data.Clear(); // Clear existing data
-
-            //DateTime startDate = dtpFrom.Value;
-            //DateTime endDate = dtpTo.Value;
-
-            //if (startDate > endDate)
-            //{
-            //    MessageBox.Show("Start date cannot be after end date.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    return;
-            //}
-
-            //GenerateDataForMonths(startDate, endDate);
-
+        {          
             frmCheckClientUnits forms = new frmCheckClientUnits();
             forms.ClientId = ClientId;
             forms.ShowDialog();
@@ -488,38 +379,17 @@ namespace LEASING.UI.APP.Forms
         }
 
         private void radButton1_Click(object sender, EventArgs e)
-        {
-            //dgvTransactionList.DataSource = null;
+        {          
             dgvLedgerList.DataSource = null;
             dgvPaymentList.DataSource = null;
             ComputationRecid = 0;
             RefId = string.Empty;
             ClientId = string.Empty;
-            txtClientName.Text = string.Empty;
-            //frmGetSelectClient forms = new frmGetSelectClient();
-            //forms.ShowDialog();
-            //if (forms.IsProceed)
-            //{
-            //    ClientId = forms.ClientID;
-            //}
-            //M_GetReferenceByClientID();
-
+            txtClientName.Text = string.Empty;          
             M_GetComputationById();
             M_GetPaymentListByReferenceId();
         }
-
-        //private void dgvTransactionList_SelectionChanged(object sender, EventArgs e)
-        //{
-        //    if (dgvTransactionList.Rows.Count > 0)
-        //    {
-        //        ComputationRecid = Convert.ToInt32(dgvTransactionList.CurrentRow.Cells["RecId"].Value);
-        //        M_GetLedgerList();
-        //        M_GetComputationById();
-        //        M_GetPaymentListByReferenceId();
-
-        //    }
-        //}
-
+      
         private void dgvPaymentList_CellFormatting(object sender, Telerik.WinControls.UI.CellFormattingEventArgs e)
         {
             e.CellElement.ForeColor = Color.White;
@@ -533,21 +403,48 @@ namespace LEASING.UI.APP.Forms
         private void dgvLedgerList_CellClick(object sender, GridViewCellEventArgs e)
         {
 
+            if (e.RowIndex >= 0)
+            {
+                if (this.dgvLedgerList.Columns[e.ColumnIndex].Name == "ColPay")
+                {
+                    if (MessageBox.Show("Are you sure you want to proceed  to this payment?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                    {
+                        frmPaymentMode frmPaymentMode = new frmPaymentMode();
+                        frmPaymentMode.ShowDialog();
+                        if (frmPaymentMode.IsProceed)
+                        {
+                            CompanyORNo = frmPaymentMode.CompanyORNo;
+                            BankAccountName = frmPaymentMode.BankAccountName;
+                            BankAccountNumber = frmPaymentMode.BankAccountNumber;
+                            BankName = frmPaymentMode.BankName;
+                            SerialNo = frmPaymentMode.SerialNo;
+                            PaymentRemarks = frmPaymentMode.PaymentRemarks;
+                            REF = frmPaymentMode.REF;
+                            ModeType = frmPaymentMode.ModeType;
+
+                            frmReceivePayment frmReceivePayment = new frmReceivePayment();
+                            frmReceivePayment.Amount = Convert.ToString(dgvLedgerList.CurrentRow.Cells["LedgAmount"].Value);
+                            frmReceivePayment.ShowDialog();
+                            if (frmReceivePayment.IsProceed)
+                            {
+                                ReceiveAmount = frmReceivePayment.txtReceiveAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtReceiveAmount.Text);
+                                ChangeAmount = frmReceivePayment.txtChangeAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtChangeAmount.Text);
+                                M_sp_GenerateFirstPayment();
+                                M_GetLedgerList();
+                                M_GetPaymentListByReferenceId();
+                            }
+                        }
+                    }
+                }
+                else if (this.dgvLedgerList.Columns[e.ColumnIndex].Name == "ColHold")
+                {
+                    if (MessageBox.Show("Are you sure you want to hold to this payment?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                    {
+
+                    }
+                }
+            }
         }
-
-        //private void btnGenerate_Click(object sender, EventArgs e)
-        //{
-        //    frmReceivePayment frmReceivePayment = new frmReceivePayment();
-
-        //    frmReceivePayment.Amount = txtTotalForPayment.Text;
-        //    frmReceivePayment.ShowDialog();
-        //    if (frmReceivePayment.IsProceed)
-        //    {
-        //        ReceiveAmount = frmReceivePayment.txtReceiveAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtReceiveAmount.Text);
-        //        ChangeAmount = frmReceivePayment.txtChangeAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtChangeAmount.Text);
-
-        //        M_sp_GenerateFirstPayment();
-        //    }
-        //}
+      
     }
 }

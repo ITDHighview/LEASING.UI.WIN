@@ -183,6 +183,12 @@
     <Compile Include="Forms\frmClientTransactionParking.Designer.cs">
       <DependentUpon>frmClientTransactionParking.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmClosedContracts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmClosedContracts.Designer.cs">
+      <DependentUpon>frmClosedContracts.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmCommercialRateSettings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -445,8 +451,14 @@
     <EmbeddedResource Include="Forms\frmClientTransactionParking.resx">
       <DependentUpon>frmClientTransactionParking.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmClosedContracts.resx">
+      <DependentUpon>frmClosedContracts.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmCommercialRateSettings.resx">
       <DependentUpon>frmCommercialRateSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmContractSignedUnit.resx">
+      <DependentUpon>frmContractSignedUnit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmEditParkingComputation.resx">
       <DependentUpon>frmEditParkingComputation.cs</DependentUpon>
@@ -465,6 +477,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmParkingComputation.resx">
       <DependentUpon>frmParkingComputation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmTenantMoveUnit.resx">
+      <DependentUpon>frmTenantMoveUnit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmUnitComputation.resx">
       <DependentUpon>frmUnitComputation.cs</DependentUpon>

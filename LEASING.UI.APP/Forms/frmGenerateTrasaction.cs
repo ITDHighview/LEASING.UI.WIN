@@ -21,7 +21,6 @@ namespace LEASING.UI.APP.Forms
         }
         private void M_GetComputationList()
         {
-
             dgvList.DataSource = null;
             using (DataSet dt = ComputationContext.GetComputationList())
             {
@@ -32,8 +31,6 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-
-
 
         private void frmGenerateTrasaction_Load(object sender, EventArgs e)
         {
@@ -59,15 +56,10 @@ namespace LEASING.UI.APP.Forms
                         forms.Recid = Convert.ToInt32(dgvList.CurrentRow.Cells["RecId"].Value);
                         forms.Text = Convert.ToString(dgvList.CurrentRow.Cells["ProjectName"].Value) + " - " + " UNIT";
                         forms.ShowDialog();
-                    }
-                    //if (forms.IsProceed)
-                    //{
-                    //    //M_GetUnitList();
-                    //}
+                    }                 
                 }
                 else if (this.dgvList.Columns[e.ColumnIndex].Name == "ColGenerate")
                 {
-
                     if (MessageBox.Show("Are you sure you want to generate transaction to this reference?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                     {
                         if (Convert.ToString(dgvList.CurrentRow.Cells["TypeOf"].Value) == "TYPE OF PARKING")
@@ -83,15 +75,7 @@ namespace LEASING.UI.APP.Forms
                             forms.ComputationRecid = Convert.ToInt32(dgvList.CurrentRow.Cells["RecId"].Value);
                             forms.ShowDialog();
                             M_GetComputationList();
-                        }
-                       
-                        
-                        //var result = ComputationContext.DeleteComputation(Convert.ToInt32(dgvList.CurrentRow.Cells["RecId"].Value), Convert.ToInt32(dgvList.CurrentRow.Cells["UnitId"].Value));
-                        //if (result.Equals("SUCCESS"))
-                        //{
-                        //    MessageBox.Show("Reference has been deleted successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        //    M_GetComputationList();
-                        //}
+                        }                                                             
                     }
                 }
             }

@@ -86,7 +86,11 @@
             this.radMenu3 = new Telerik.WinControls.UI.RadMenu();
             this.radMenuItemContracts = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItemUnitContracts = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItemContractSignedUnit = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItemTenantMoveUnit = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItemParkingContracts = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItemContractSignedParking = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItemTenantMoveParking = new Telerik.WinControls.UI.RadMenuItem();
             this.radPanel2 = new Telerik.WinControls.UI.RadPanel();
             this.radMenu2 = new Telerik.WinControls.UI.RadMenu();
             this.radMenuItemClient = new Telerik.WinControls.UI.RadMenuItem();
@@ -99,10 +103,7 @@
             this.radMenuItemCommercialSettings = new Telerik.WinControls.UI.RadMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.radPanel8 = new Telerik.WinControls.UI.RadPanel();
-            this.radMenuItemContractSignedUnit = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemTenantMoveUnit = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemContractSignedParking = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemTenantMoveParking = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItemCloseContract = new Telerik.WinControls.UI.RadMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblUserInfoPanel)).BeginInit();
             this.lblUserInfoPanel.SuspendLayout();
@@ -726,7 +727,8 @@
             this.radMenuItemContracts.Image = global::LEASING.UI.APP.Properties.Resources.bookmark_32;
             this.radMenuItemContracts.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.radMenuItemUnitContracts,
-            this.radMenuItemParkingContracts});
+            this.radMenuItemParkingContracts,
+            this.radMenuItemCloseContract});
             this.radMenuItemContracts.Name = "radMenuItemContracts";
             this.radMenuItemContracts.Text = "CONTRACTS";
             this.radMenuItemContracts.Click += new System.EventHandler(this.radMenuItem1_Click);
@@ -743,6 +745,22 @@
             this.radMenuItemUnitContracts.Text = "Unit Contract";
             this.radMenuItemUnitContracts.Click += new System.EventHandler(this.radMenuItemUnitContracts_Click);
             // 
+            // radMenuItemContractSignedUnit
+            // 
+            this.radMenuItemContractSignedUnit.AccessibleDescription = "radMenuItemContractSignedUnit";
+            this.radMenuItemContractSignedUnit.AccessibleName = "radMenuItemContractSignedUnit";
+            this.radMenuItemContractSignedUnit.Name = "radMenuItemContractSignedUnit";
+            this.radMenuItemContractSignedUnit.Text = "Contract Signed Unit";
+            this.radMenuItemContractSignedUnit.Click += new System.EventHandler(this.radMenuItemContractSignedUnit_Click);
+            // 
+            // radMenuItemTenantMoveUnit
+            // 
+            this.radMenuItemTenantMoveUnit.AccessibleDescription = "radMenuItemTenantMoveUnit";
+            this.radMenuItemTenantMoveUnit.AccessibleName = "radMenuItemTenantMoveUnit";
+            this.radMenuItemTenantMoveUnit.Name = "radMenuItemTenantMoveUnit";
+            this.radMenuItemTenantMoveUnit.Text = "Tenant Move Unit";
+            this.radMenuItemTenantMoveUnit.Click += new System.EventHandler(this.radMenuItemTenantMoveUnit_Click);
+            // 
             // radMenuItemParkingContracts
             // 
             this.radMenuItemParkingContracts.AccessibleDescription = "Parking Contract";
@@ -754,6 +772,22 @@
             this.radMenuItemParkingContracts.Name = "radMenuItemParkingContracts";
             this.radMenuItemParkingContracts.Text = "Parking Contract";
             this.radMenuItemParkingContracts.Click += new System.EventHandler(this.radMenuItemParkingContracts_Click);
+            // 
+            // radMenuItemContractSignedParking
+            // 
+            this.radMenuItemContractSignedParking.AccessibleDescription = "radMenuItemContractSignedParking";
+            this.radMenuItemContractSignedParking.AccessibleName = "radMenuItemContractSignedParking";
+            this.radMenuItemContractSignedParking.Name = "radMenuItemContractSignedParking";
+            this.radMenuItemContractSignedParking.Text = "Contract Signed Parking";
+            this.radMenuItemContractSignedParking.Click += new System.EventHandler(this.radMenuItemContractSignedParking_Click);
+            // 
+            // radMenuItemTenantMoveParking
+            // 
+            this.radMenuItemTenantMoveParking.AccessibleDescription = "radMenuItemTenantMoveParking";
+            this.radMenuItemTenantMoveParking.AccessibleName = "radMenuItemTenantMoveParking";
+            this.radMenuItemTenantMoveParking.Name = "radMenuItemTenantMoveParking";
+            this.radMenuItemTenantMoveParking.Text = "Tenant Move Parking";
+            this.radMenuItemTenantMoveParking.Click += new System.EventHandler(this.radMenuItemTenantMoveParking_Click);
             // 
             // radPanel2
             // 
@@ -882,37 +916,14 @@
             this.radPanel8.Size = new System.Drawing.Size(790, 536);
             this.radPanel8.TabIndex = 3;
             // 
-            // radMenuItemContractSignedUnit
+            // radMenuItemCloseContract
             // 
-            this.radMenuItemContractSignedUnit.AccessibleDescription = "radMenuItemContractSignedUnit";
-            this.radMenuItemContractSignedUnit.AccessibleName = "radMenuItemContractSignedUnit";
-            this.radMenuItemContractSignedUnit.Name = "radMenuItemContractSignedUnit";
-            this.radMenuItemContractSignedUnit.Text = "Contract Signed Unit";
-            this.radMenuItemContractSignedUnit.Click += new System.EventHandler(this.radMenuItemContractSignedUnit_Click);
-            // 
-            // radMenuItemTenantMoveUnit
-            // 
-            this.radMenuItemTenantMoveUnit.AccessibleDescription = "radMenuItemTenantMoveUnit";
-            this.radMenuItemTenantMoveUnit.AccessibleName = "radMenuItemTenantMoveUnit";
-            this.radMenuItemTenantMoveUnit.Name = "radMenuItemTenantMoveUnit";
-            this.radMenuItemTenantMoveUnit.Text = "Tenant Move Unit";
-            this.radMenuItemTenantMoveUnit.Click += new System.EventHandler(this.radMenuItemTenantMoveUnit_Click);
-            // 
-            // radMenuItemContractSignedParking
-            // 
-            this.radMenuItemContractSignedParking.AccessibleDescription = "radMenuItemContractSignedParking";
-            this.radMenuItemContractSignedParking.AccessibleName = "radMenuItemContractSignedParking";
-            this.radMenuItemContractSignedParking.Name = "radMenuItemContractSignedParking";
-            this.radMenuItemContractSignedParking.Text = "Contract Signed Parking";
-            this.radMenuItemContractSignedParking.Click += new System.EventHandler(this.radMenuItemContractSignedParking_Click);
-            // 
-            // radMenuItemTenantMoveParking
-            // 
-            this.radMenuItemTenantMoveParking.AccessibleDescription = "radMenuItemTenantMoveParking";
-            this.radMenuItemTenantMoveParking.AccessibleName = "radMenuItemTenantMoveParking";
-            this.radMenuItemTenantMoveParking.Name = "radMenuItemTenantMoveParking";
-            this.radMenuItemTenantMoveParking.Text = "Tenant Move Parking";
-            this.radMenuItemTenantMoveParking.Click += new System.EventHandler(this.radMenuItemTenantMoveParking_Click);
+            this.radMenuItemCloseContract.AccessibleDescription = "radMenuItemCloseContract";
+            this.radMenuItemCloseContract.AccessibleName = "radMenuItemCloseContract";
+            this.radMenuItemCloseContract.Image = global::LEASING.UI.APP.Properties.Resources._16_MyLogsBook;
+            this.radMenuItemCloseContract.Name = "radMenuItemCloseContract";
+            this.radMenuItemCloseContract.Text = "Closed Contract";
+            this.radMenuItemCloseContract.Click += new System.EventHandler(this.radMenuItemCloseContract_Click);
             // 
             // frmMainDashboard
             // 
@@ -1058,5 +1069,6 @@
         private Telerik.WinControls.UI.RadMenuItem radMenuItemTenantMoveUnit;
         private Telerik.WinControls.UI.RadMenuItem radMenuItemContractSignedParking;
         private Telerik.WinControls.UI.RadMenuItem radMenuItemTenantMoveParking;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemCloseContract;
     }
 }

@@ -46,28 +46,8 @@ namespace LEASING.UI.APP.Forms
         public int ModeType { get; set; }
         public frmSelectClient()
         {
-            InitializeComponent();
-            //data.Columns.Add("ID", typeof(int));
-            //data.Columns.Add("Name", typeof(string));
-            //data.Columns.Add("Age", typeof(int));
-            //data.Columns.Add("Date", typeof(DateTime));
-
-
-
-            // Bind the DataTable to the DataGridView
-            //dgvLedgerList.DataSource = data;
-        }
-
-        //private void GenerateDataForMonths(DateTime startDate, DateTime endDate)
-        //{
-        //    DateTime currentDate = startDate;
-
-        //    while (currentDate <= endDate)
-        //    {
-        //        data.Rows.Add(data.Rows.Count + 1, $"Person {data.Rows.Count + 1}", 20 + data.Rows.Count, currentDate);
-        //        currentDate = currentDate.AddMonths(1);
-        //    }
-        //}
+            InitializeComponent();          
+        }   
         private bool IsComputationValid()
         {
             if (ClientId == string.Empty)
@@ -99,29 +79,11 @@ namespace LEASING.UI.APP.Forms
             }
         }
 
-        //private void M_GetClientTypeAndID()
-        //{
-
-        //    txtClientType.Text = string.Empty;
-        //    txtClientId.Text = string.Empty;
-        //    using (DataSet dt = ClientContext.GetGetClientTypeAndID(ClientId))
-        //    {
-        //        if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
-        //        {
-        //            txtClientType.Text = Convert.ToString(dt.Tables[0].Rows[0]["ClientType"]);
-        //            txtClientId.Text = Convert.ToString(dt.Tables[0].Rows[0]["ClientID"]);
-        //        }
-        //    }
-        //}
+     
         private void frmSelectClient_Load(object sender, EventArgs e)
-        {
-            //M_GetSelecClient();
-            M_GetComputationById();
-            //M_GetClientTypeAndID();
-            M_GetMonthLedgerByRefIdAndClientId();
-            //lblPostDatedCheck.Text = string.Empty;
-            //lblPostDatedCheck.Text = "(" +"0"+ ")" + " POST-DATED CHECKS:";
-            //txtTotal.Text = string.Empty;
+        {         
+            M_GetComputationById();       
+            M_GetMonthLedgerByRefIdAndClientId();        
         }
         private void M_GetComputationById()
         {
@@ -161,13 +123,16 @@ namespace LEASING.UI.APP.Forms
 
         private void M_sp_GenerateFirstPayment()
         {
-
             var result = PaymentContext.GenerateFirstPayment(RefId, txtTotalForPayment.Text == string.Empty ? 0 : decimal.Parse(txtTotalForPayment.Text), ReceiveAmount, ChangeAmount, txtThreeMonSecDep.Text == string.Empty ? 0 : decimal.Parse(txtThreeMonSecDep.Text),CompanyORNo,BankAccountName,BankAccountNumber,BankName,SerialNo,PaymentRemarks,REF,ModeType);
             if (result.Equals("SUCCESS"))
             {
-                MessageBox.Show("SUCCESS", "System Message", MessageBoxButtons.OK);
+                MessageBox.Show("PAYMENT SUCCESS", "System Message", MessageBoxButtons.OK);
                 IsProceed = true;
                 this.Close();
+            }
+            else
+            {
+                MessageBox.Show(result, "System Message", MessageBoxButtons.OK);
             }
         }
 
@@ -176,80 +141,14 @@ namespace LEASING.UI.APP.Forms
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
         }
-        //private int CountMonths(DateTime startDate, DateTime endDate)
-        //{
-        //    // The rest of the code remains the same as in the previous example
-        //    if (endDate < startDate)
-        //    {
-        //        DateTime temp = startDate;
-        //        startDate = endDate;
-        //        endDate = temp;
-        //    }
-
-        //    int months = ((endDate.Year - startDate.Year) * 12) + endDate.Month - startDate.Month;
-
-        //    if (endDate.Day >= startDate.Day)
-        //    {
-        //        months++;
-        //    }
-
-        //    return months;
-        //}
-
-
+      
         private void radDateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
-            //DateTime startDate = DateTime.ParseExact(dtpFrom.Value.ToString("MM/dd/yyyy"), "MM/dd/yyyy", null);
-            //DateTime endDate = DateTime.ParseExact(dtpTo.Value.ToString("MM/dd/yyyy"), "MM/dd/yyyy", null);
-
-            //int numberOfMonths = CountMonths(startDate, endDate);
-            //lblPostDatedCheck.Text = "(" + Convert.ToString(numberOfMonths) + ")" + " POST-DATED CHECKS:";
-            //txtTotal.Text = Convert.ToString(TotalRental * numberOfMonths);
+            
         }
-
-
-        //private void M_Generatedler()
-        //{
-
-
-        //    var result  = ComputationContext.GenerateLedger(dtpFrom.Value.ToString("MM/dd/yyyy"), dtpFrom.Value.ToString("MM/dd/yyyy"), dtpTo.Value.ToString("MM/dd/yyyy"), TotalRental, ComputationRecid, Convert.ToString(ddlClientList.SelectedValue), 1);
-        //    if (result.Equals("SUCCESS"))
-        //    {
-        //        MessageBox.Show("New Reference has been generated successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        //        this.Close();    
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show(result, "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-        //    }
-        //}
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            if (IsComputationValid())
-            {
-                if (MessageBox.Show("Are you sure you want to generate ledger for this Reference ?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
-                {
-                    //M_Generatedler();
-                }
-            }
-        }
-
+  
         private void btnCheckUnits_Click(object sender, EventArgs e)
-        {
-            //data.Clear(); // Clear existing data
-
-            //DateTime startDate = dtpFrom.Value;
-            //DateTime endDate = dtpTo.Value;
-
-            //if (startDate > endDate)
-            //{
-            //    MessageBox.Show("Start date cannot be after end date.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    return;
-            //}
-
-            //GenerateDataForMonths(startDate, endDate);
-
+        {           
             frmCheckClientUnits forms = new frmCheckClientUnits();
             forms.ClientId = ClientId;
             forms.ShowDialog();
@@ -295,27 +194,30 @@ namespace LEASING.UI.APP.Forms
 
         private void btnGenerate_Click(object sender, EventArgs e)
         {
-            frmPaymentMode frmPaymentMode = new frmPaymentMode();
-            frmPaymentMode.ShowDialog();
-            if (frmPaymentMode.IsProceed)
+            if (MessageBox.Show("Are you sure you want to proceed  to this payment?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
             {
-                CompanyORNo = frmPaymentMode.CompanyORNo;
-                BankAccountName = frmPaymentMode.BankAccountName;
-                BankAccountNumber = frmPaymentMode.BankAccountNumber;
-                BankName = frmPaymentMode.BankName;
-                SerialNo = frmPaymentMode.SerialNo;
-                PaymentRemarks = frmPaymentMode.PaymentRemarks;
-                REF = frmPaymentMode.REF;
-                ModeType = frmPaymentMode.ModeType;
-
-                frmReceivePayment frmReceivePayment = new frmReceivePayment();
-                frmReceivePayment.Amount = txtTotalForPayment.Text;
-                frmReceivePayment.ShowDialog();
-                if (frmReceivePayment.IsProceed)
+                frmPaymentMode frmPaymentMode = new frmPaymentMode();
+                frmPaymentMode.ShowDialog();
+                if (frmPaymentMode.IsProceed)
                 {
-                    ReceiveAmount = frmReceivePayment.txtReceiveAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtReceiveAmount.Text);
-                    ChangeAmount = frmReceivePayment.txtChangeAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtChangeAmount.Text);
-                    M_sp_GenerateFirstPayment();
+                    CompanyORNo = frmPaymentMode.CompanyORNo;
+                    BankAccountName = frmPaymentMode.BankAccountName;
+                    BankAccountNumber = frmPaymentMode.BankAccountNumber;
+                    BankName = frmPaymentMode.BankName;
+                    SerialNo = frmPaymentMode.SerialNo;
+                    PaymentRemarks = frmPaymentMode.PaymentRemarks;
+                    REF = frmPaymentMode.REF;
+                    ModeType = frmPaymentMode.ModeType;
+
+                    frmReceivePayment frmReceivePayment = new frmReceivePayment();
+                    frmReceivePayment.Amount = txtTotalForPayment.Text;
+                    frmReceivePayment.ShowDialog();
+                    if (frmReceivePayment.IsProceed)
+                    {
+                        ReceiveAmount = frmReceivePayment.txtReceiveAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtReceiveAmount.Text);
+                        ChangeAmount = frmReceivePayment.txtChangeAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtChangeAmount.Text);
+                        M_sp_GenerateFirstPayment();
+                    }
                 }
             }
         }

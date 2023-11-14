@@ -295,5 +295,11 @@ namespace LEASING.UI.APP.Forms
             frmClientRecieptTransaction forms = new frmClientRecieptTransaction();
             forms.ShowDialog();
         }
+
+        private void radMenuItemCloseContract_Click(object sender, EventArgs e)
+        {
+            frmClosedContracts forms = new frmClosedContracts();
+            forms.ShowDialog();
+        }
     }
 }

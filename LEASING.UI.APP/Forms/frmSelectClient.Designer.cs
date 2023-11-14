@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.radGroupBox2 = new Telerik.WinControls.UI.RadGroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -149,19 +149,18 @@
             this.dtpTo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpTo.Location = new System.Drawing.Point(103, 128);
             this.dtpTo.Name = "dtpTo";
-            this.dtpTo.Size = new System.Drawing.Size(107, 20);
+            this.dtpTo.Size = new System.Drawing.Size(107, 18);
             this.dtpTo.TabIndex = 5;
             this.dtpTo.TabStop = false;
             this.dtpTo.Text = "8/1/2023";
             this.dtpTo.Value = new System.DateTime(2023, 8, 1, 19, 31, 26, 6);
-            this.dtpTo.ValueChanged += new System.EventHandler(this.radDateTimePicker2_ValueChanged);
             // 
             // dtpFrom
             // 
             this.dtpFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpFrom.Location = new System.Drawing.Point(103, 103);
             this.dtpFrom.Name = "dtpFrom";
-            this.dtpFrom.Size = new System.Drawing.Size(107, 20);
+            this.dtpFrom.Size = new System.Drawing.Size(107, 19);
             this.dtpFrom.TabIndex = 5;
             this.dtpFrom.TabStop = false;
             this.dtpFrom.Text = "8/1/2023";
@@ -183,7 +182,7 @@
             this.radLabel3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radLabel3.Location = new System.Drawing.Point(8, 128);
             this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(89, 19);
+            this.radLabel3.Size = new System.Drawing.Size(89, 18);
             this.radLabel3.TabIndex = 2;
             this.radLabel3.Text = "FINISH DATE :";
             // 
@@ -193,7 +192,7 @@
             this.radLabel4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radLabel4.Location = new System.Drawing.Point(3, 3);
             this.radLabel4.Name = "radLabel4";
-            this.radLabel4.Size = new System.Drawing.Size(95, 19);
+            this.radLabel4.Size = new System.Drawing.Size(94, 19);
             this.radLabel4.TabIndex = 2;
             this.radLabel4.Text = "CLIENT NAME :";
             // 
@@ -211,7 +210,7 @@
             // 
             this.txtClientName.Location = new System.Drawing.Point(103, 3);
             this.txtClientName.Name = "txtClientName";
-            this.txtClientName.Size = new System.Drawing.Size(179, 20);
+            this.txtClientName.Size = new System.Drawing.Size(179, 19);
             this.txtClientName.TabIndex = 8;
             // 
             // radGroupBox3
@@ -327,27 +326,27 @@
             // 
             this.dgvLedgerList.MasterTemplate.AllowAddNewRow = false;
             this.dgvLedgerList.MasterTemplate.AllowColumnReorder = false;
-            gridViewTextBoxColumn5.FieldName = "seq";
-            gridViewTextBoxColumn5.HeaderText = "seq";
-            gridViewTextBoxColumn5.Name = "seq";
-            gridViewTextBoxColumn5.Width = 80;
-            gridViewTextBoxColumn6.FieldName = "LedgMonth";
-            gridViewTextBoxColumn6.HeaderText = "Month";
-            gridViewTextBoxColumn6.Name = "LedgMonth";
-            gridViewTextBoxColumn6.Width = 150;
-            gridViewTextBoxColumn7.FieldName = "LedgAmount";
-            gridViewTextBoxColumn7.HeaderText = "Amount";
-            gridViewTextBoxColumn7.Name = "LedgAmount";
-            gridViewTextBoxColumn7.Width = 150;
-            gridViewTextBoxColumn8.FieldName = "Remarks";
-            gridViewTextBoxColumn8.HeaderText = "Remarks";
-            gridViewTextBoxColumn8.Name = "Remarks";
-            gridViewTextBoxColumn8.Width = 200;
+            gridViewTextBoxColumn1.FieldName = "seq";
+            gridViewTextBoxColumn1.HeaderText = "seq";
+            gridViewTextBoxColumn1.Name = "seq";
+            gridViewTextBoxColumn1.Width = 80;
+            gridViewTextBoxColumn2.FieldName = "LedgMonth";
+            gridViewTextBoxColumn2.HeaderText = "Month";
+            gridViewTextBoxColumn2.Name = "LedgMonth";
+            gridViewTextBoxColumn2.Width = 150;
+            gridViewTextBoxColumn3.FieldName = "LedgAmount";
+            gridViewTextBoxColumn3.HeaderText = "Amount";
+            gridViewTextBoxColumn3.Name = "LedgAmount";
+            gridViewTextBoxColumn3.Width = 150;
+            gridViewTextBoxColumn4.FieldName = "Remarks";
+            gridViewTextBoxColumn4.HeaderText = "Remarks";
+            gridViewTextBoxColumn4.Name = "Remarks";
+            gridViewTextBoxColumn4.Width = 200;
             this.dgvLedgerList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn5,
-            gridViewTextBoxColumn6,
-            gridViewTextBoxColumn7,
-            gridViewTextBoxColumn8});
+            gridViewTextBoxColumn1,
+            gridViewTextBoxColumn2,
+            gridViewTextBoxColumn3,
+            gridViewTextBoxColumn4});
             this.dgvLedgerList.Name = "dgvLedgerList";
             this.dgvLedgerList.ReadOnly = true;
             this.dgvLedgerList.RightToLeft = System.Windows.Forms.RightToLeft.No;

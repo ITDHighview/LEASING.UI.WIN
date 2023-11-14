@@ -11,17 +11,17 @@ using System.Windows.Forms;
 
 namespace LEASING.UI.APP.Forms
 {
-    public partial class frmTenantMoveUnit : Form
+    public partial class frmClosedContracts : Form
     {
         PaymentContext PaymentContext = new PaymentContext();
-        public frmTenantMoveUnit()
+        public frmClosedContracts()
         {
             InitializeComponent();
         }
-        private void M_GetForMoveInUnitList()
+        private void M_GetClosedContracts()
         {
             dgvList.DataSource = null;
-            using (DataSet dt = PaymentContext.GetForMoveInUnitList())
+            using (DataSet dt = PaymentContext.GetClosedContracts())
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                 {
@@ -30,14 +30,9 @@ namespace LEASING.UI.APP.Forms
             }
         }
 
-        private void frmTenantMoveUnit_Load(object sender, EventArgs e)
+        private void frmClosedContracts_Load(object sender, EventArgs e)
         {
-            M_GetForMoveInUnitList();
-        }
-
-        private void btnRefresh_Click(object sender, EventArgs e)
-        {
-            M_GetForMoveInUnitList();
+            M_GetClosedContracts();
         }
     }
 }

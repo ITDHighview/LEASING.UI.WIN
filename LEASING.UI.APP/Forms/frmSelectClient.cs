@@ -35,6 +35,15 @@ namespace LEASING.UI.APP.Forms
 
         public decimal ReceiveAmount { get; set; }
         public decimal ChangeAmount { get; set; }
+
+        public string CompanyORNo { get; set; }
+        public string BankAccountName { get; set; }
+        public string BankAccountNumber { get; set; }
+        public string BankName { get; set; }
+        public string SerialNo { get; set; }
+        public string PaymentRemarks { get; set; }
+        public string REF { get; set; }
+        public int ModeType { get; set; }
         public frmSelectClient()
         {
             InitializeComponent();
@@ -153,7 +162,7 @@ namespace LEASING.UI.APP.Forms
         private void M_sp_GenerateFirstPayment()
         {
 
-            var result = PaymentContext.GenerateFirstPayment(RefId, txtTotalForPayment.Text == string.Empty ? 0 : decimal.Parse(txtTotalForPayment.Text), ReceiveAmount, ChangeAmount, txtThreeMonSecDep.Text == string.Empty ? 0 : decimal.Parse(txtThreeMonSecDep.Text));
+            var result = PaymentContext.GenerateFirstPayment(RefId, txtTotalForPayment.Text == string.Empty ? 0 : decimal.Parse(txtTotalForPayment.Text), ReceiveAmount, ChangeAmount, txtThreeMonSecDep.Text == string.Empty ? 0 : decimal.Parse(txtThreeMonSecDep.Text),CompanyORNo,BankAccountName,BankAccountNumber,BankName,SerialNo,PaymentRemarks,REF,ModeType);
             if (result.Equals("SUCCESS"))
             {
                 MessageBox.Show("SUCCESS", "System Message", MessageBoxButtons.OK);
@@ -286,16 +295,28 @@ namespace LEASING.UI.APP.Forms
 
         private void btnGenerate_Click(object sender, EventArgs e)
         {
-            frmReceivePayment frmReceivePayment = new frmReceivePayment();
-
-            frmReceivePayment.Amount = txtTotalForPayment.Text;
-            frmReceivePayment.ShowDialog();
-            if (frmReceivePayment.IsProceed)
+            frmPaymentMode frmPaymentMode = new frmPaymentMode();
+            frmPaymentMode.ShowDialog();
+            if (frmPaymentMode.IsProceed)
             {
-                ReceiveAmount = frmReceivePayment.txtReceiveAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtReceiveAmount.Text);
-                ChangeAmount = frmReceivePayment.txtChangeAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtChangeAmount.Text);
+                CompanyORNo = frmPaymentMode.CompanyORNo;
+                BankAccountName = frmPaymentMode.BankAccountName;
+                BankAccountNumber = frmPaymentMode.BankAccountNumber;
+                BankName = frmPaymentMode.BankName;
+                SerialNo = frmPaymentMode.SerialNo;
+                PaymentRemarks = frmPaymentMode.PaymentRemarks;
+                REF = frmPaymentMode.REF;
+                ModeType = frmPaymentMode.ModeType;
 
-                M_sp_GenerateFirstPayment();
+                frmReceivePayment frmReceivePayment = new frmReceivePayment();
+                frmReceivePayment.Amount = txtTotalForPayment.Text;
+                frmReceivePayment.ShowDialog();
+                if (frmReceivePayment.IsProceed)
+                {
+                    ReceiveAmount = frmReceivePayment.txtReceiveAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtReceiveAmount.Text);
+                    ChangeAmount = frmReceivePayment.txtChangeAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtChangeAmount.Text);
+                    M_sp_GenerateFirstPayment();
+                }
             }
         }
     }

@@ -667,6 +667,7 @@
             this.radMenuItemReciept.Image = global::LEASING.UI.APP.Properties.Resources.text_outdent_increase_16;
             this.radMenuItemReciept.Name = "radMenuItemReciept";
             this.radMenuItemReciept.Text = "Reciept";
+            this.radMenuItemReciept.Click += new System.EventHandler(this.radMenuItemReciept_Click);
             // 
             // radPanel4
             // 

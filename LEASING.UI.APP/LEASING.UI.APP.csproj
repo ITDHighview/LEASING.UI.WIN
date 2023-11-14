@@ -171,6 +171,12 @@
     <Compile Include="Forms\frmClientInformation.Designer.cs">
       <DependentUpon>frmClientInformation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmClientRecieptTransaction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmClientRecieptTransaction.Designer.cs">
+      <DependentUpon>frmClientRecieptTransaction.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmClientTransactionParking.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -212,6 +218,12 @@
     </Compile>
     <Compile Include="Forms\frmParkComputation.Designer.cs">
       <DependentUpon>frmParkComputation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmPaymentMode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmPaymentMode.Designer.cs">
+      <DependentUpon>frmPaymentMode.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmReceivePayment.cs">
       <SubType>Form</SubType>
@@ -441,6 +453,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmParkComputation.resx">
       <DependentUpon>frmParkComputation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmPaymentMode.resx">
+      <DependentUpon>frmPaymentMode.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmReceivePayment.resx">
       <DependentUpon>frmReceivePayment.cs</DependentUpon>

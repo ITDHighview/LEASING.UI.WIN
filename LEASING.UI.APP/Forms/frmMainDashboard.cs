@@ -289,5 +289,11 @@ namespace LEASING.UI.APP.Forms
             frmGroupSecurity forms = new frmGroupSecurity();
             forms.ShowDialog();
         }
+
+        private void radMenuItemReciept_Click(object sender, EventArgs e)
+        {
+            frmClientRecieptTransaction forms = new frmClientRecieptTransaction();
+            forms.ShowDialog();
+        }
     }
 }

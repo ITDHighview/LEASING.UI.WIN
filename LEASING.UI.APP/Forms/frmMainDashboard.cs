@@ -26,7 +26,7 @@ namespace LEASING.UI.APP.Forms
             this.WindowState = FormWindowState.Maximized;
          
             this.radMenuItemNotification.Text = "NOTIFICATION (1)";
-            radPanel9.Visible = false;//Project information button
+
             radPanel10.Visible = false;//Purchase Items button
             
             //radMenu7.Visible = false;
@@ -240,6 +240,53 @@ namespace LEASING.UI.APP.Forms
         private void radMenuItemWareHouseSettings2_Click(object sender, EventArgs e)
         {
             frmWarehouseRateSettings forms = new frmWarehouseRateSettings();
+            forms.ShowDialog();
+        }
+
+        private void radMenuItemContractSignedUnit_Click(object sender, EventArgs e)
+        {
+            frmContractSignedUnit forms = new frmContractSignedUnit();
+            forms.ShowDialog();
+        }
+
+        private void radMenuItemUnitContracts_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radMenuItemTenantMoveUnit_Click(object sender, EventArgs e)
+        {
+            frmTenantMoveUnit forms = new frmTenantMoveUnit();
+            forms.ShowDialog();
+        }
+
+        private void radMenuItemContractSignedParking_Click(object sender, EventArgs e)
+        {
+            frmContractSignedParking forms = new frmContractSignedParking();
+            forms.ShowDialog();
+        }
+
+        private void radMenuItemParkingContracts_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radMenuItemTenantMoveParking_Click(object sender, EventArgs e)
+        {
+            frmTenantMoveParking forms = new frmTenantMoveParking();
+            forms.ShowDialog();
+
+        }
+
+        private void radMenuItemUser_Click(object sender, EventArgs e)
+        {
+            frmUserSecurity forms = new frmUserSecurity();
+            forms.ShowDialog();
+        }
+
+        private void radMenuItemGroupSecurity_Click(object sender, EventArgs e)
+        {
+            frmGroupSecurity forms = new frmGroupSecurity();
             forms.ShowDialog();
         }
     }

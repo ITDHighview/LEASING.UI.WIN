@@ -15,9 +15,19 @@ namespace LEASING.UI.APP
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmMainDashboard());
+            try
+            {
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new frmPreEmp_Login(frmPreEmp_Login.LoginMethod.Login));
+                //Application.Run(new frmMainDashboard());
+            }
+
+            catch (Exception vValue)
+            {
+                MessageBox.Show(vValue.Message, "Programs");
+            }
+
         }
     }
 }

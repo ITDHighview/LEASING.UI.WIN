@@ -20,6 +20,7 @@ namespace LEASING.UI.APP.Forms
         public frmClientInformation()
         {
             InitializeComponent();
+          
         }
         private string _strClientFormMode;
         public string strClientFormMode
@@ -34,13 +35,13 @@ namespace LEASING.UI.APP.Forms
                 switch (_strClientFormMode)
                 {
                     case "VIEW":
-                        btnUndo.Enabled = true;           
                         btnEnableView.Enabled = false;
+                        btnUndo.Enabled = true;
                         EnabledFields();
                         break;
                     case "READ":
-                        btnUndo.Enabled = false;
                         btnEnableView.Enabled = true;
+                        btnUndo.Enabled = false;
                         DisabledFields();
                         break;
 
@@ -227,6 +228,7 @@ namespace LEASING.UI.APP.Forms
         private void frmClientInformation_Load(object sender, EventArgs e)
         {
             strClientFormMode = "READ";
+            //Functions.SecurityControls(this);
         }
 
         private void btnUndo_Click(object sender, EventArgs e)
@@ -304,6 +306,11 @@ namespace LEASING.UI.APP.Forms
                 txtClienID.Text = forms.ClientID;
                 txtClienID.Focus();
             }
+        }
+
+        private void btnEnableView_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

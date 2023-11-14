@@ -92,6 +92,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\Config.cs" />
+    <Compile Include="Common\Functions.cs" />
+    <Compile Include="Common\Variables.cs" />
     <Compile Include="Context\Class1.cs" />
     <Compile Include="Context\ClientContext.cs" />
     <Compile Include="Context\ComputationContext.cs" />
@@ -101,6 +103,7 @@
     <Compile Include="Context\ProjectContext.cs" />
     <Compile Include="Context\PurchaseItemContext.cs" />
     <Compile Include="Context\RateSettingsContext.cs" />
+    <Compile Include="Context\SecurityControlContext.cs" />
     <Compile Include="Context\UnitContext.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -342,6 +345,12 @@
     <Compile Include="Forms\frmWarehouseRateSettings.Designer.cs">
       <DependentUpon>frmWarehouseRateSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmPreEmp_Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPreEmp_Login.designer.cs">
+      <DependentUpon>frmPreEmp_Login.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\ClientModel.cs" />
     <Compile Include="Models\CommonModel.cs" />
     <Compile Include="Models\ComputationModel.cs" />
@@ -471,6 +480,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmWarehouseRateSettings.resx">
       <DependentUpon>frmWarehouseRateSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPreEmp_Login.resx">
+      <DependentUpon>frmPreEmp_Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -1585,6 +1597,46 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Laptop #2.ico" />
+    <None Include="Resources\Username1.jpg" />
+    <None Include="Resources\User11.png" />
+    <None Include="Resources\Remove1.gif" />
+    <None Include="Resources\radioactivity1.png" />
+    <None Include="Resources\printer1.png" />
+    <None Include="Resources\pencil1.png" />
+    <None Include="Resources\Password1.jpg" />
+    <None Include="Resources\page_white_edit1.png" />
+    <None Include="Resources\Lock11.png" />
+    <None Include="Resources\injection16x161.png" />
+    <None Include="Resources\Icon_Group1.png" />
+    <None Include="Resources\ico_undo1.png" />
+    <None Include="Resources\ico_save1.png" />
+    <None Include="Resources\ico_new1.png" />
+    <None Include="Resources\ico_fingerprint1.png" />
+    <None Include="Resources\ico_edit1.png" />
+    <None Include="Resources\eye1.png" />
+    <None Include="Resources\ETWhite1.png" />
+    <None Include="Resources\ET1.png" />
+    <None Include="Resources\EmploymentLogoWhite1.png" />
+    <None Include="Resources\EmploymentLogo1.png" />
+    <None Include="Resources\EmailSendButton1.png" />
+    <None Include="Resources\download24x241.png" />
+    <None Include="Resources\Documents-X-Ray-Hand-icon16x161.png" />
+    <None Include="Resources\DarkBackground1.jpg" />
+    <None Include="Resources\close1.png" />
+    <None Include="Resources\chart_stock1.png" />
+    <None Include="Resources\bullet_blue1.png" />
+    <None Include="Resources\box_down1.png" />
+    <None Include="Resources\BackgroundMedical21.jpg" />
+    <None Include="Resources\BackgroundMedical1.jpg" />
+    <None Include="Resources\attach1.png" />
+    <None Include="Resources\arrow_refresh1.png" />
+    <None Include="Resources\apply-icon1.png" />
+    <None Include="Resources\application_view_tile1.png" />
+    <None Include="Resources\application_form_magnify1.png" />
+    <None Include="Resources\application_cascade16X161.png" />
+    <None Include="Resources\application_cascade1.png" />
+    <None Include="Resources\action_log1.png" />
+    <None Include="Resources\accept1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

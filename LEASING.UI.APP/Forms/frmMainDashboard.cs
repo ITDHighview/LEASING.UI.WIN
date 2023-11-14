@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LEASING.UI.APP.Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,17 +13,22 @@ namespace LEASING.UI.APP.Forms
 {
     public partial class frmMainDashboard : Form
     {
+        frmPreEmp_Login _frmPreEmp_Login;
+        private bool IsSwithUserLogOut = false;
         public frmMainDashboard()
         {
             InitializeComponent();
+            Functions.SecurityControls(this);
         }
 
         private void frmMainDashboard_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
+         
             this.radMenuItemNotification.Text = "NOTIFICATION (1)";
             radPanel9.Visible = false;//Project information button
             radPanel10.Visible = false;//Purchase Items button
+            
             //radMenu7.Visible = false;
             //radPanel7.Visible = false;
         }
@@ -159,12 +165,12 @@ namespace LEASING.UI.APP.Forms
 
         }
 
-        private void radMenuItemGenerateComputationUnit_Click(object sender, EventArgs e)
-        {
+        //private void radMenuItemGenerateComputationUnit_Click(object sender, EventArgs e)
+        //{
 
-            frmComputation forms = new frmComputation();
-            forms.ShowDialog();
-        }
+        //    frmComputation forms = new frmComputation();
+        //    forms.ShowDialog();
+        //}
 
         private void radMenuParkingComputation_Click(object sender, EventArgs e)
         {
@@ -175,6 +181,65 @@ namespace LEASING.UI.APP.Forms
         private void radMenuItemGenerateComputationParking_Click(object sender, EventArgs e)
         {
             frmParkComputation forms = new frmParkComputation();
+            forms.ShowDialog();
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are you sure you want to exit this application ?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+            {
+                IsSwithUserLogOut = true;
+                Application.Exit();
+            }
+        }
+
+        private void linkSwitchUser_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            IsSwithUserLogOut = true;
+            _frmPreEmp_Login = new frmPreEmp_Login(frmPreEmp_Login.LoginMethod.Switch, this);
+            _frmPreEmp_Login.StartPosition = FormStartPosition.CenterScreen;
+            _frmPreEmp_Login.ShowDialog();
+            IsSwithUserLogOut = false;
+        }
+
+        private void frmMainDashboard_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!IsSwithUserLogOut)
+                e.Cancel = true;
+        }
+
+        private void radMenuItemAdministrative_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radMenuItemGenerateComputationUnit2_Click(object sender, EventArgs e)
+        {
+            frmComputation forms = new frmComputation();
+            forms.ShowDialog();
+        }
+
+        private void radMenuItemGenerateComputationParking2_Click(object sender, EventArgs e)
+        {
+            frmParkComputation forms = new frmParkComputation();
+            forms.ShowDialog();
+        }
+
+        private void radMenuItemResidentialSettings2_Click(object sender, EventArgs e)
+        {
+            frmResidentialRateSettings forms = new frmResidentialRateSettings();
+            forms.ShowDialog();
+        }
+
+        private void radMenuItemCommercialSettings2_Click(object sender, EventArgs e)
+        {
+            frmCommercialRateSettings forms = new frmCommercialRateSettings();
+            forms.ShowDialog();
+        }
+
+        private void radMenuItemWareHouseSettings2_Click(object sender, EventArgs e)
+        {
+            frmWarehouseRateSettings forms = new frmWarehouseRateSettings();
             forms.ShowDialog();
         }
     }

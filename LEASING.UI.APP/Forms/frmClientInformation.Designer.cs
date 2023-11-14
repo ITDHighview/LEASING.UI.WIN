@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.RadListDataItem radListDataItem3 = new Telerik.WinControls.UI.RadListDataItem();
-            Telerik.WinControls.UI.RadListDataItem radListDataItem4 = new Telerik.WinControls.UI.RadListDataItem();
             Telerik.WinControls.UI.RadListDataItem radListDataItem1 = new Telerik.WinControls.UI.RadListDataItem();
             Telerik.WinControls.UI.RadListDataItem radListDataItem2 = new Telerik.WinControls.UI.RadListDataItem();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem3 = new Telerik.WinControls.UI.RadListDataItem();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem4 = new Telerik.WinControls.UI.RadListDataItem();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn2 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
@@ -42,107 +42,107 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.radGroupBox3 = new Telerik.WinControls.UI.RadGroupBox();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.radLabel15 = new Telerik.WinControls.UI.RadLabel();
-            this.txtnameofchildren = new Telerik.WinControls.UI.RadTextBox();
-            this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
-            this.txtspousename = new Telerik.WinControls.UI.RadTextBox();
-            this.radLabel19 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
+            this.txtage = new Telerik.WinControls.UI.RadTextBox();
+            this.ddlClientType = new Telerik.WinControls.UI.RadDropDownList();
+            this.radLabel23 = new Telerik.WinControls.UI.RadLabel();
             this.txtnoofvisitorperday = new Telerik.WinControls.UI.RadTextBox();
-            this.radLabel18 = new Telerik.WinControls.UI.RadLabel();
-            this.txtnameofdriver = new Telerik.WinControls.UI.RadTextBox();
+            this.radLabel19 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel17 = new Telerik.WinControls.UI.RadLabel();
             this.txtnameofmaid = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel16 = new Telerik.WinControls.UI.RadLabel();
             this.txttotalnoofperson = new Telerik.WinControls.UI.RadTextBox();
+            this.radLabel15 = new Telerik.WinControls.UI.RadLabel();
+            this.txtnameofchildren = new Telerik.WinControls.UI.RadTextBox();
+            this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
+            this.txtspousename = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel14 = new Telerik.WinControls.UI.RadLabel();
             this.txtaddresstelephoneno = new Telerik.WinControls.UI.RadTextBox();
-            this.radLabel13 = new Telerik.WinControls.UI.RadLabel();
             this.txtnameofemployer = new Telerik.WinControls.UI.RadTextBox();
-            this.radLabel11 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel13 = new Telerik.WinControls.UI.RadLabel();
             this.txtoccupation = new Telerik.WinControls.UI.RadTextBox();
+            this.radLabel11 = new Telerik.WinControls.UI.RadLabel();
+            this.txttelno = new Telerik.WinControls.UI.RadTextBox();
+            this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
+            this.dtpdob = new Telerik.WinControls.UI.RadDateTimePicker();
+            this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel12 = new Telerik.WinControls.UI.RadLabel();
             this.txtannualincome = new Telerik.WinControls.UI.RadTextBox();
-            this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
-            this.txttelno = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel10 = new Telerik.WinControls.UI.RadLabel();
             this.txtnationality = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
             this.ddlgender = new Telerik.WinControls.UI.RadDropDownList();
-            this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
-            this.dtpdob = new Telerik.WinControls.UI.RadDateTimePicker();
-            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.txtpostaladdress = new Telerik.WinControls.UI.RadTextBox();
+            this.radLabel18 = new Telerik.WinControls.UI.RadLabel();
+            this.txtnameofdriver = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.txtname = new Telerik.WinControls.UI.RadTextBox();
-            this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
-            this.txtage = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel21 = new Telerik.WinControls.UI.RadLabel();
             this.txtreferencenumber = new Telerik.WinControls.UI.RadTextBox();
-            this.ddlClientType = new Telerik.WinControls.UI.RadDropDownList();
             this.radLabel20 = new Telerik.WinControls.UI.RadLabel();
             this.txtClienID = new Telerik.WinControls.UI.RadTextBox();
-            this.radLabel23 = new Telerik.WinControls.UI.RadLabel();
-            this.radGroupBox4 = new Telerik.WinControls.UI.RadGroupBox();
-            this.dgvFileList = new Telerik.WinControls.UI.RadGridView();
-            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
-            this.btnEnableView = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.btnUndo = new System.Windows.Forms.ToolStripButton();
-            this.lblFoot = new Telerik.WinControls.UI.RadLabel();
             this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
             this.btnSelectClient = new Telerik.WinControls.UI.RadButton();
+            this.radGroupBox4 = new Telerik.WinControls.UI.RadGroupBox();
+            this.dgvFileList = new Telerik.WinControls.UI.RadGridView();
+            this.lblFoot = new Telerik.WinControls.UI.RadLabel();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.btnUndo = new System.Windows.Forms.ToolStripButton();
+            this.btnEnableView = new System.Windows.Forms.ToolStripButton();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).BeginInit();
             this.radGroupBox3.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtnameofchildren)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtspousename)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel19)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlClientType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel23)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtnoofvisitorperday)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel18)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtnameofdriver)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel19)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel17)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtnameofmaid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txttotalnoofperson)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtnameofchildren)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtspousename)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtaddresstelephoneno)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtnameofemployer)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtoccupation)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txttelno)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpdob)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtannualincome)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txttelno)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtnationality)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlgender)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtpdob)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtpostaladdress)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel18)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtnameofdriver)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtname)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel21)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtreferencenumber)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlClientType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel20)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtClienID)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel23)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSelectClient)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox4)).BeginInit();
             this.radGroupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFileList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFileList.MasterTemplate)).BeginInit();
-            this.toolStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lblFoot)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnSelectClient)).BeginInit();
+            this.toolStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel2
@@ -154,7 +154,6 @@
             this.tableLayoutPanel2.Controls.Add(this.radGroupBox4, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.toolStrip2, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.lblFoot, 0, 3);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 4;
@@ -252,41 +251,54 @@
             this.tableLayoutPanel6.Size = new System.Drawing.Size(928, 402);
             this.tableLayoutPanel6.TabIndex = 1;
             // 
-            // radLabel15
+            // radLabel2
             // 
-            this.radLabel15.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.radLabel15.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel15.Location = new System.Drawing.Point(55, 303);
-            this.radLabel15.Name = "radLabel15";
-            this.radLabel15.Size = new System.Drawing.Size(116, 19);
-            this.radLabel15.TabIndex = 0;
-            this.radLabel15.Text = "Name of Children :";
+            this.radLabel2.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.radLabel2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel2.Location = new System.Drawing.Point(621, 53);
+            this.radLabel2.Name = "radLabel2";
+            this.radLabel2.Size = new System.Drawing.Size(36, 19);
+            this.radLabel2.TabIndex = 0;
+            this.radLabel2.Text = "Age :";
             // 
-            // txtnameofchildren
+            // txtage
             // 
-            this.txtnameofchildren.Location = new System.Drawing.Point(177, 303);
-            this.txtnameofchildren.Name = "txtnameofchildren";
-            this.txtnameofchildren.NullText = "Type here...";
-            this.txtnameofchildren.Size = new System.Drawing.Size(343, 20);
-            this.txtnameofchildren.TabIndex = 1;
+            this.txtage.Location = new System.Drawing.Point(663, 53);
+            this.txtage.MaxLength = 2;
+            this.txtage.Name = "txtage";
+            this.txtage.NullText = "0";
+            this.txtage.Size = new System.Drawing.Size(82, 19);
+            this.txtage.TabIndex = 1;
             // 
-            // radLabel5
+            // ddlClientType
             // 
-            this.radLabel5.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.radLabel5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel5.Location = new System.Drawing.Point(78, 253);
-            this.radLabel5.Name = "radLabel5";
-            this.radLabel5.Size = new System.Drawing.Size(93, 19);
-            this.radLabel5.TabIndex = 0;
-            this.radLabel5.Text = "Spouse Name :";
+            radListDataItem1.Text = "INDIVIDUAL";
+            radListDataItem2.Text = "CORPORATE";
+            this.ddlClientType.Items.Add(radListDataItem1);
+            this.ddlClientType.Items.Add(radListDataItem2);
+            this.ddlClientType.Location = new System.Drawing.Point(663, 28);
+            this.ddlClientType.Name = "ddlClientType";
+            this.ddlClientType.NullText = "Select here...";
+            this.ddlClientType.Size = new System.Drawing.Size(125, 19);
+            this.ddlClientType.TabIndex = 3;
             // 
-            // txtspousename
+            // radLabel23
             // 
-            this.txtspousename.Location = new System.Drawing.Point(177, 253);
-            this.txtspousename.Name = "txtspousename";
-            this.txtspousename.NullText = "Type here...";
-            this.txtspousename.Size = new System.Drawing.Size(343, 20);
-            this.txtspousename.TabIndex = 1;
+            this.radLabel23.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.radLabel23.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel23.Location = new System.Drawing.Point(578, 28);
+            this.radLabel23.Name = "radLabel23";
+            this.radLabel23.Size = new System.Drawing.Size(79, 19);
+            this.radLabel23.TabIndex = 0;
+            this.radLabel23.Text = "Client Type :";
+            // 
+            // txtnoofvisitorperday
+            // 
+            this.txtnoofvisitorperday.Location = new System.Drawing.Point(177, 378);
+            this.txtnoofvisitorperday.Name = "txtnoofvisitorperday";
+            this.txtnoofvisitorperday.NullText = "0";
+            this.txtnoofvisitorperday.Size = new System.Drawing.Size(74, 20);
+            this.txtnoofvisitorperday.TabIndex = 1;
             // 
             // radLabel19
             // 
@@ -297,32 +309,6 @@
             this.radLabel19.Size = new System.Drawing.Size(149, 19);
             this.radLabel19.TabIndex = 0;
             this.radLabel19.Text = "No. of Visitor\'s Per Day :";
-            // 
-            // txtnoofvisitorperday
-            // 
-            this.txtnoofvisitorperday.Location = new System.Drawing.Point(177, 378);
-            this.txtnoofvisitorperday.Name = "txtnoofvisitorperday";
-            this.txtnoofvisitorperday.NullText = "0";
-            this.txtnoofvisitorperday.Size = new System.Drawing.Size(74, 20);
-            this.txtnoofvisitorperday.TabIndex = 1;
-            // 
-            // radLabel18
-            // 
-            this.radLabel18.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.radLabel18.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel18.Location = new System.Drawing.Point(554, 379);
-            this.radLabel18.Name = "radLabel18";
-            this.radLabel18.Size = new System.Drawing.Size(103, 19);
-            this.radLabel18.TabIndex = 0;
-            this.radLabel18.Text = "Name of Driver :";
-            // 
-            // txtnameofdriver
-            // 
-            this.txtnameofdriver.Location = new System.Drawing.Point(663, 378);
-            this.txtnameofdriver.Name = "txtnameofdriver";
-            this.txtnameofdriver.NullText = "Type here...";
-            this.txtnameofdriver.Size = new System.Drawing.Size(262, 20);
-            this.txtnameofdriver.TabIndex = 1;
             // 
             // radLabel17
             // 
@@ -339,7 +325,7 @@
             this.txtnameofmaid.Location = new System.Drawing.Point(177, 353);
             this.txtnameofmaid.Name = "txtnameofmaid";
             this.txtnameofmaid.NullText = "Type here...";
-            this.txtnameofmaid.Size = new System.Drawing.Size(343, 20);
+            this.txtnameofmaid.Size = new System.Drawing.Size(343, 19);
             this.txtnameofmaid.TabIndex = 1;
             // 
             // radLabel16
@@ -358,8 +344,44 @@
             this.txttotalnoofperson.MaxLength = 3;
             this.txttotalnoofperson.Name = "txttotalnoofperson";
             this.txttotalnoofperson.NullText = "0";
-            this.txttotalnoofperson.Size = new System.Drawing.Size(74, 20);
+            this.txttotalnoofperson.Size = new System.Drawing.Size(74, 19);
             this.txttotalnoofperson.TabIndex = 1;
+            // 
+            // radLabel15
+            // 
+            this.radLabel15.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.radLabel15.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel15.Location = new System.Drawing.Point(55, 303);
+            this.radLabel15.Name = "radLabel15";
+            this.radLabel15.Size = new System.Drawing.Size(116, 19);
+            this.radLabel15.TabIndex = 0;
+            this.radLabel15.Text = "Name of Children :";
+            // 
+            // txtnameofchildren
+            // 
+            this.txtnameofchildren.Location = new System.Drawing.Point(177, 303);
+            this.txtnameofchildren.Name = "txtnameofchildren";
+            this.txtnameofchildren.NullText = "Type here...";
+            this.txtnameofchildren.Size = new System.Drawing.Size(343, 19);
+            this.txtnameofchildren.TabIndex = 1;
+            // 
+            // radLabel5
+            // 
+            this.radLabel5.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.radLabel5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel5.Location = new System.Drawing.Point(78, 253);
+            this.radLabel5.Name = "radLabel5";
+            this.radLabel5.Size = new System.Drawing.Size(93, 19);
+            this.radLabel5.TabIndex = 0;
+            this.radLabel5.Text = "Spouse Name :";
+            // 
+            // txtspousename
+            // 
+            this.txtspousename.Location = new System.Drawing.Point(177, 253);
+            this.txtspousename.Name = "txtspousename";
+            this.txtspousename.NullText = "Type here...";
+            this.txtspousename.Size = new System.Drawing.Size(343, 19);
+            this.txtspousename.TabIndex = 1;
             // 
             // radLabel14
             // 
@@ -376,8 +398,16 @@
             this.txtaddresstelephoneno.Location = new System.Drawing.Point(177, 228);
             this.txtaddresstelephoneno.Name = "txtaddresstelephoneno";
             this.txtaddresstelephoneno.NullText = "Type here...";
-            this.txtaddresstelephoneno.Size = new System.Drawing.Size(343, 20);
+            this.txtaddresstelephoneno.Size = new System.Drawing.Size(343, 19);
             this.txtaddresstelephoneno.TabIndex = 1;
+            // 
+            // txtnameofemployer
+            // 
+            this.txtnameofemployer.Location = new System.Drawing.Point(177, 203);
+            this.txtnameofemployer.Name = "txtnameofemployer";
+            this.txtnameofemployer.NullText = "Type here...";
+            this.txtnameofemployer.Size = new System.Drawing.Size(343, 19);
+            this.txtnameofemployer.TabIndex = 1;
             // 
             // radLabel13
             // 
@@ -389,13 +419,13 @@
             this.radLabel13.TabIndex = 0;
             this.radLabel13.Text = "Name of Employer :";
             // 
-            // txtnameofemployer
+            // txtoccupation
             // 
-            this.txtnameofemployer.Location = new System.Drawing.Point(177, 203);
-            this.txtnameofemployer.Name = "txtnameofemployer";
-            this.txtnameofemployer.NullText = "Type here...";
-            this.txtnameofemployer.Size = new System.Drawing.Size(343, 20);
-            this.txtnameofemployer.TabIndex = 1;
+            this.txtoccupation.Location = new System.Drawing.Point(177, 178);
+            this.txtoccupation.Name = "txtoccupation";
+            this.txtoccupation.NullText = "Type here...";
+            this.txtoccupation.Size = new System.Drawing.Size(343, 19);
+            this.txtoccupation.TabIndex = 1;
             // 
             // radLabel11
             // 
@@ -407,13 +437,54 @@
             this.radLabel11.TabIndex = 0;
             this.radLabel11.Text = "Occupation :";
             // 
-            // txtoccupation
+            // txttelno
             // 
-            this.txtoccupation.Location = new System.Drawing.Point(177, 178);
-            this.txtoccupation.Name = "txtoccupation";
-            this.txtoccupation.NullText = "Type here...";
-            this.txtoccupation.Size = new System.Drawing.Size(343, 20);
-            this.txtoccupation.TabIndex = 1;
+            this.txttelno.Location = new System.Drawing.Point(177, 153);
+            this.txttelno.Name = "txttelno";
+            this.txttelno.NullText = "Type here...";
+            this.txttelno.Size = new System.Drawing.Size(343, 19);
+            this.txttelno.TabIndex = 1;
+            // 
+            // radLabel9
+            // 
+            this.radLabel9.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.radLabel9.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel9.Location = new System.Drawing.Point(113, 153);
+            this.radLabel9.Name = "radLabel9";
+            this.radLabel9.Size = new System.Drawing.Size(58, 19);
+            this.radLabel9.TabIndex = 0;
+            this.radLabel9.Text = "Tel. No. :";
+            // 
+            // dtpdob
+            // 
+            this.dtpdob.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpdob.Location = new System.Drawing.Point(177, 128);
+            this.dtpdob.Name = "dtpdob";
+            this.dtpdob.Size = new System.Drawing.Size(94, 19);
+            this.dtpdob.TabIndex = 2;
+            this.dtpdob.TabStop = false;
+            this.dtpdob.Text = "7/5/2023";
+            this.dtpdob.Value = new System.DateTime(2023, 7, 5, 21, 32, 28, 354);
+            // 
+            // radLabel4
+            // 
+            this.radLabel4.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.radLabel4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel4.Location = new System.Drawing.Point(83, 128);
+            this.radLabel4.Name = "radLabel4";
+            this.radLabel4.Size = new System.Drawing.Size(88, 19);
+            this.radLabel4.TabIndex = 0;
+            this.radLabel4.Text = "Date of Birth :";
+            // 
+            // radLabel3
+            // 
+            this.radLabel3.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.radLabel3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel3.Location = new System.Drawing.Point(72, 103);
+            this.radLabel3.Name = "radLabel3";
+            this.radLabel3.Size = new System.Drawing.Size(99, 19);
+            this.radLabel3.TabIndex = 0;
+            this.radLabel3.Text = "Postal Address :";
             // 
             // radLabel12
             // 
@@ -431,26 +502,8 @@
             this.txtannualincome.MaxLength = 12;
             this.txtannualincome.Name = "txtannualincome";
             this.txtannualincome.NullText = "0.00";
-            this.txtannualincome.Size = new System.Drawing.Size(125, 20);
+            this.txtannualincome.Size = new System.Drawing.Size(125, 19);
             this.txtannualincome.TabIndex = 1;
-            // 
-            // radLabel9
-            // 
-            this.radLabel9.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.radLabel9.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel9.Location = new System.Drawing.Point(113, 153);
-            this.radLabel9.Name = "radLabel9";
-            this.radLabel9.Size = new System.Drawing.Size(58, 19);
-            this.radLabel9.TabIndex = 0;
-            this.radLabel9.Text = "Tel. No. :";
-            // 
-            // txttelno
-            // 
-            this.txttelno.Location = new System.Drawing.Point(177, 153);
-            this.txttelno.Name = "txttelno";
-            this.txttelno.NullText = "Type here...";
-            this.txttelno.Size = new System.Drawing.Size(343, 20);
-            this.txttelno.TabIndex = 1;
             // 
             // radLabel10
             // 
@@ -467,7 +520,7 @@
             this.txtnationality.Location = new System.Drawing.Point(663, 153);
             this.txtnationality.Name = "txtnationality";
             this.txtnationality.NullText = "Type here...";
-            this.txtnationality.Size = new System.Drawing.Size(125, 20);
+            this.txtnationality.Size = new System.Drawing.Size(125, 19);
             this.txtnationality.TabIndex = 1;
             // 
             // radLabel6
@@ -489,39 +542,8 @@
             this.ddlgender.Location = new System.Drawing.Point(663, 128);
             this.ddlgender.Name = "ddlgender";
             this.ddlgender.NullText = "Select Here...";
-            this.ddlgender.Size = new System.Drawing.Size(125, 20);
+            this.ddlgender.Size = new System.Drawing.Size(125, 19);
             this.ddlgender.TabIndex = 3;
-            // 
-            // radLabel4
-            // 
-            this.radLabel4.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.radLabel4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel4.Location = new System.Drawing.Point(83, 128);
-            this.radLabel4.Name = "radLabel4";
-            this.radLabel4.Size = new System.Drawing.Size(88, 19);
-            this.radLabel4.TabIndex = 0;
-            this.radLabel4.Text = "Date of Birth :";
-            // 
-            // dtpdob
-            // 
-            this.dtpdob.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpdob.Location = new System.Drawing.Point(177, 128);
-            this.dtpdob.Name = "dtpdob";
-            this.dtpdob.Size = new System.Drawing.Size(94, 20);
-            this.dtpdob.TabIndex = 2;
-            this.dtpdob.TabStop = false;
-            this.dtpdob.Text = "7/5/2023";
-            this.dtpdob.Value = new System.DateTime(2023, 7, 5, 21, 32, 28, 354);
-            // 
-            // radLabel3
-            // 
-            this.radLabel3.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.radLabel3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel3.Location = new System.Drawing.Point(72, 103);
-            this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(99, 19);
-            this.radLabel3.TabIndex = 0;
-            this.radLabel3.Text = "Postal Address :";
             // 
             // txtpostaladdress
             // 
@@ -529,8 +551,26 @@
             this.txtpostaladdress.Location = new System.Drawing.Point(177, 103);
             this.txtpostaladdress.Name = "txtpostaladdress";
             this.txtpostaladdress.NullText = "Type here...";
-            this.txtpostaladdress.Size = new System.Drawing.Size(748, 20);
+            this.txtpostaladdress.Size = new System.Drawing.Size(748, 19);
             this.txtpostaladdress.TabIndex = 1;
+            // 
+            // radLabel18
+            // 
+            this.radLabel18.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.radLabel18.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel18.Location = new System.Drawing.Point(554, 379);
+            this.radLabel18.Name = "radLabel18";
+            this.radLabel18.Size = new System.Drawing.Size(103, 19);
+            this.radLabel18.TabIndex = 0;
+            this.radLabel18.Text = "Name of Driver :";
+            // 
+            // txtnameofdriver
+            // 
+            this.txtnameofdriver.Location = new System.Drawing.Point(663, 378);
+            this.txtnameofdriver.Name = "txtnameofdriver";
+            this.txtnameofdriver.NullText = "Type here...";
+            this.txtnameofdriver.Size = new System.Drawing.Size(262, 20);
+            this.txtnameofdriver.TabIndex = 1;
             // 
             // radLabel1
             // 
@@ -547,27 +587,8 @@
             this.txtname.Location = new System.Drawing.Point(177, 78);
             this.txtname.Name = "txtname";
             this.txtname.NullText = "Type here...";
-            this.txtname.Size = new System.Drawing.Size(343, 20);
+            this.txtname.Size = new System.Drawing.Size(343, 19);
             this.txtname.TabIndex = 1;
-            // 
-            // radLabel2
-            // 
-            this.radLabel2.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.radLabel2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel2.Location = new System.Drawing.Point(621, 53);
-            this.radLabel2.Name = "radLabel2";
-            this.radLabel2.Size = new System.Drawing.Size(36, 19);
-            this.radLabel2.TabIndex = 0;
-            this.radLabel2.Text = "Age :";
-            // 
-            // txtage
-            // 
-            this.txtage.Location = new System.Drawing.Point(663, 53);
-            this.txtage.MaxLength = 2;
-            this.txtage.Name = "txtage";
-            this.txtage.NullText = "0";
-            this.txtage.Size = new System.Drawing.Size(82, 20);
-            this.txtage.TabIndex = 1;
             // 
             // radLabel21
             // 
@@ -584,20 +605,8 @@
             this.txtreferencenumber.Location = new System.Drawing.Point(663, 3);
             this.txtreferencenumber.Name = "txtreferencenumber";
             this.txtreferencenumber.NullText = "N/A";
-            this.txtreferencenumber.Size = new System.Drawing.Size(180, 20);
+            this.txtreferencenumber.Size = new System.Drawing.Size(180, 19);
             this.txtreferencenumber.TabIndex = 1;
-            // 
-            // ddlClientType
-            // 
-            radListDataItem1.Text = "INDIVIDUAL";
-            radListDataItem2.Text = "CORPORATE";
-            this.ddlClientType.Items.Add(radListDataItem1);
-            this.ddlClientType.Items.Add(radListDataItem2);
-            this.ddlClientType.Location = new System.Drawing.Point(663, 28);
-            this.ddlClientType.Name = "ddlClientType";
-            this.ddlClientType.NullText = "Select here...";
-            this.ddlClientType.Size = new System.Drawing.Size(125, 20);
-            this.ddlClientType.TabIndex = 3;
             // 
             // radLabel20
             // 
@@ -614,20 +623,30 @@
             this.txtClienID.Location = new System.Drawing.Point(177, 53);
             this.txtClienID.Name = "txtClienID";
             this.txtClienID.NullText = "Type here...";
-            this.txtClienID.Size = new System.Drawing.Size(180, 20);
+            this.txtClienID.Size = new System.Drawing.Size(180, 19);
             this.txtClienID.TabIndex = 1;
             this.txtClienID.TextChanged += new System.EventHandler(this.txtClienID_TextChanged);
             this.txtClienID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtClienID_KeyDown);
             // 
-            // radLabel23
+            // radLabel7
             // 
-            this.radLabel23.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.radLabel23.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel23.Location = new System.Drawing.Point(578, 28);
-            this.radLabel23.Name = "radLabel23";
-            this.radLabel23.Size = new System.Drawing.Size(79, 19);
-            this.radLabel23.TabIndex = 0;
-            this.radLabel23.Text = "Client Type :";
+            this.radLabel7.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.radLabel7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel7.Location = new System.Drawing.Point(86, 3);
+            this.radLabel7.Name = "radLabel7";
+            this.radLabel7.Size = new System.Drawing.Size(85, 19);
+            this.radLabel7.TabIndex = 0;
+            this.radLabel7.Text = "Select Client :";
+            // 
+            // btnSelectClient
+            // 
+            this.btnSelectClient.Image = global::LEASING.UI.APP.Properties.Resources.magnifier;
+            this.btnSelectClient.Location = new System.Drawing.Point(177, 3);
+            this.btnSelectClient.Name = "btnSelectClient";
+            this.btnSelectClient.Size = new System.Drawing.Size(110, 19);
+            this.btnSelectClient.TabIndex = 4;
+            this.btnSelectClient.Text = "Client List";
+            this.btnSelectClient.Click += new System.EventHandler(this.btnSelectClient_Click);
             // 
             // radGroupBox4
             // 
@@ -714,6 +733,22 @@
             this.dgvFileList.Text = "radGridView2";
             this.dgvFileList.CellClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.dgvFileList_CellClick);
             // 
+            // lblFoot
+            // 
+            this.lblFoot.AutoSize = false;
+            this.lblFoot.BackColor = System.Drawing.Color.DarkSlateBlue;
+            this.tableLayoutPanel2.SetColumnSpan(this.lblFoot, 2);
+            this.lblFoot.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblFoot.Location = new System.Drawing.Point(3, 714);
+            this.lblFoot.Name = "lblFoot";
+            this.lblFoot.Size = new System.Drawing.Size(932, 30);
+            this.lblFoot.TabIndex = 3;
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
             // toolStrip2
             // 
             this.toolStrip2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
@@ -728,21 +763,6 @@
             this.toolStrip2.TabIndex = 2;
             this.toolStrip2.Text = "toolStrip2";
             // 
-            // btnEnableView
-            // 
-            this.btnEnableView.ForeColor = System.Drawing.Color.Black;
-            this.btnEnableView.Image = global::LEASING.UI.APP.Properties.Resources.co_folder_20;
-            this.btnEnableView.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnEnableView.Name = "btnEnableView";
-            this.btnEnableView.Size = new System.Drawing.Size(90, 22);
-            this.btnEnableView.Text = "Enable View";
-            this.btnEnableView.Click += new System.EventHandler(this.btnEnableView_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
             // btnUndo
             // 
             this.btnUndo.ForeColor = System.Drawing.Color.Black;
@@ -753,36 +773,15 @@
             this.btnUndo.Text = "Undo";
             this.btnUndo.Click += new System.EventHandler(this.btnUndo_Click);
             // 
-            // lblFoot
+            // btnEnableView
             // 
-            this.lblFoot.AutoSize = false;
-            this.lblFoot.BackColor = System.Drawing.Color.DarkSlateBlue;
-            this.tableLayoutPanel2.SetColumnSpan(this.lblFoot, 2);
-            this.lblFoot.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblFoot.Location = new System.Drawing.Point(3, 714);
-            this.lblFoot.Name = "lblFoot";
-            this.lblFoot.Size = new System.Drawing.Size(932, 30);
-            this.lblFoot.TabIndex = 3;
-            // 
-            // radLabel7
-            // 
-            this.radLabel7.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.radLabel7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel7.Location = new System.Drawing.Point(86, 3);
-            this.radLabel7.Name = "radLabel7";
-            this.radLabel7.Size = new System.Drawing.Size(85, 19);
-            this.radLabel7.TabIndex = 0;
-            this.radLabel7.Text = "Select Client :";
-            // 
-            // btnSelectClient
-            // 
-            this.btnSelectClient.Image = global::LEASING.UI.APP.Properties.Resources.magnifier;
-            this.btnSelectClient.Location = new System.Drawing.Point(177, 3);
-            this.btnSelectClient.Name = "btnSelectClient";
-            this.btnSelectClient.Size = new System.Drawing.Size(110, 19);
-            this.btnSelectClient.TabIndex = 4;
-            this.btnSelectClient.Text = "Client List";
-            this.btnSelectClient.Click += new System.EventHandler(this.btnSelectClient_Click);
+            this.btnEnableView.ForeColor = System.Drawing.Color.Black;
+            this.btnEnableView.Image = global::LEASING.UI.APP.Properties.Resources.co_folder_20;
+            this.btnEnableView.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnEnableView.Name = "btnEnableView";
+            this.btnEnableView.Size = new System.Drawing.Size(90, 22);
+            this.btnEnableView.Text = "Enable View";
+            this.btnEnableView.Click += new System.EventHandler(this.btnEnableView_Click);
             // 
             // frmClientInformation
             // 
@@ -801,55 +800,55 @@
             this.radGroupBox3.ResumeLayout(false);
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtnameofchildren)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtspousename)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel19)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlClientType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel23)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtnoofvisitorperday)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel18)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtnameofdriver)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel19)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel17)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtnameofmaid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txttotalnoofperson)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtnameofchildren)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtspousename)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtaddresstelephoneno)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtnameofemployer)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtoccupation)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txttelno)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpdob)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtannualincome)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txttelno)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtnationality)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlgender)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtpdob)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtpostaladdress)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel18)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtnameofdriver)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtname)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel21)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtreferencenumber)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlClientType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel20)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtClienID)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel23)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSelectClient)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox4)).EndInit();
             this.radGroupBox4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvFileList.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFileList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblFoot)).EndInit();
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lblFoot)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnSelectClient)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -901,12 +900,12 @@
         private Telerik.WinControls.UI.RadLabel radLabel23;
         private Telerik.WinControls.UI.RadGroupBox radGroupBox4;
         private Telerik.WinControls.UI.RadGridView dgvFileList;
-        private System.Windows.Forms.ToolStrip toolStrip2;
-        private System.Windows.Forms.ToolStripButton btnEnableView;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripButton btnUndo;
         private Telerik.WinControls.UI.RadLabel lblFoot;
         private Telerik.WinControls.UI.RadLabel radLabel7;
         private Telerik.WinControls.UI.RadButton btnSelectClient;
+        private System.Windows.Forms.ToolStrip toolStrip2;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripButton btnUndo;
+        private System.Windows.Forms.ToolStripButton btnEnableView;
     }
 }

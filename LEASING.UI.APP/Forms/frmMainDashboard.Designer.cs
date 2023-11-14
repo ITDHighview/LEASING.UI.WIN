@@ -28,7 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.components = new System.ComponentModel.Container();
+            this.radDesktopAlert1 = new Telerik.WinControls.UI.RadDesktopAlert(this.components);
+            this.radMenuItem5 = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItemLogsLocation = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItemLogProject = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItemNotification = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
+            this.lblUserInfoPanel = new Telerik.WinControls.UI.RadLabel();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
+            this.linkSwitchUser = new System.Windows.Forms.LinkLabel();
             this.lblMenus = new Telerik.WinControls.UI.RadLabel();
             this.radPanel7 = new Telerik.WinControls.UI.RadPanel();
             this.radMenu7 = new Telerik.WinControls.UI.RadMenu();
@@ -37,9 +51,6 @@
             this.radMenuItemAddNewProject = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItemAddNewPurhcaseItem = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItem8 = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemResidentialSettings = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemWareHouseSettings = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemCommercialSettings = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItemAddNewUnit = new Telerik.WinControls.UI.RadMenuItem();
             this.radPanel10 = new Telerik.WinControls.UI.RadPanel();
             this.radMenu9 = new Telerik.WinControls.UI.RadMenu();
@@ -50,14 +61,14 @@
             this.radMenu8 = new Telerik.WinControls.UI.RadMenu();
             this.radMenuItem6 = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItem16 = new Telerik.WinControls.UI.RadMenuItem();
-            this.radButton1 = new Telerik.WinControls.UI.RadButton();
+            this.btnLogout = new Telerik.WinControls.UI.RadButton();
             this.radPanel6 = new Telerik.WinControls.UI.RadPanel();
             this.radMenu6 = new Telerik.WinControls.UI.RadMenu();
             this.radMenuItemComputation = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuParkingComputation = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuGenerateComputation = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemGenerateComputationUnit = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemGenerateComputationParking = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItemGenerateComputationUnit2 = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItemGenerateComputationParking2 = new Telerik.WinControls.UI.RadMenuItem();
             this.radPanel5 = new Telerik.WinControls.UI.RadPanel();
             this.radMenu5 = new Telerik.WinControls.UI.RadMenu();
             this.radMenuItemPayments = new Telerik.WinControls.UI.RadMenuItem();
@@ -79,21 +90,23 @@
             this.radMenuItemClientInformation = new Telerik.WinControls.UI.RadMenuItem();
             this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
             this.btnMainMenu = new Telerik.WinControls.UI.RadButton();
-            this.lblUserInfoPanel = new Telerik.WinControls.UI.RadLabel();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.radMenuItemResidentialSettings = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItemWareHouseSettings = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItemCommercialSettings = new Telerik.WinControls.UI.RadMenuItem();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.radPanel8 = new Telerik.WinControls.UI.RadPanel();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
-            this.radMenuItem5 = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemLogsLocation = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemLogProject = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemNotification = new Telerik.WinControls.UI.RadMenuItem();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.radMenuItemResidentialSettings2 = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItemCommercialSettings2 = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItemWareHouseSettings2 = new Telerik.WinControls.UI.RadMenuItem();
+            ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblUserInfoPanel)).BeginInit();
+            this.lblUserInfoPanel.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblMenus)).BeginInit();
             this.lblMenus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel7)).BeginInit();
@@ -105,7 +118,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radPanel9)).BeginInit();
             this.radPanel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radMenu8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnLogout)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel6)).BeginInit();
             this.radPanel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radMenu6)).BeginInit();
@@ -124,47 +137,167 @@
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
             this.radPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnMainMenu)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblUserInfoPanel)).BeginInit();
-            this.lblUserInfoPanel.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel8)).BeginInit();
-            this.radPanel8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
             this.SuspendLayout();
             // 
-            // tableLayoutPanel1
+            // radMenuItem5
             // 
-            this.tableLayoutPanel1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 215F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.lblMenus, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.lblUserInfoPanel, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.radPanel8, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.radMenu1, 1, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 74F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 131F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1011, 747);
-            this.tableLayoutPanel1.TabIndex = 0;
+            this.radMenuItem5.AccessibleDescription = "LOGS";
+            this.radMenuItem5.AccessibleName = "LOGS";
+            this.radMenuItem5.Image = global::LEASING.UI.APP.Properties.Resources.info_32;
+            this.radMenuItem5.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.radMenuItemLogsLocation,
+            this.radMenuItemLogProject});
+            this.radMenuItem5.Name = "radMenuItem5";
+            this.radMenuItem5.Text = "LOGS";
+            this.radMenuItem5.Click += new System.EventHandler(this.radMenuItem5_Click);
+            // 
+            // radMenuItemLogsLocation
+            // 
+            this.radMenuItemLogsLocation.AccessibleDescription = "LOCATION LOGS";
+            this.radMenuItemLogsLocation.AccessibleName = "LOCATION LOGS";
+            this.radMenuItemLogsLocation.Image = global::LEASING.UI.APP.Properties.Resources.info_16;
+            this.radMenuItemLogsLocation.Name = "radMenuItemLogsLocation";
+            this.radMenuItemLogsLocation.Text = "LOCATION LOGS";
+            // 
+            // radMenuItemLogProject
+            // 
+            this.radMenuItemLogProject.AccessibleDescription = "PROJECT LOGS";
+            this.radMenuItemLogProject.AccessibleName = "PROJECT LOGS";
+            this.radMenuItemLogProject.Image = global::LEASING.UI.APP.Properties.Resources.info_16;
+            this.radMenuItemLogProject.Name = "radMenuItemLogProject";
+            this.radMenuItemLogProject.Text = "PROJECT LOGS";
+            // 
+            // radMenuItemNotification
+            // 
+            this.radMenuItemNotification.AccessibleDescription = "NOTIFICATION";
+            this.radMenuItemNotification.AccessibleName = "NOTIFICATION";
+            this.radMenuItemNotification.Image = global::LEASING.UI.APP.Properties.Resources._20x20RedBell;
+            this.radMenuItemNotification.Name = "radMenuItemNotification";
+            this.radMenuItemNotification.Text = "NOTIFICATION";
+            // 
+            // radMenu1
+            // 
+            this.radMenu1.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.radMenuItem5,
+            this.radMenuItemNotification});
+            this.radMenu1.Location = new System.Drawing.Point(218, 3);
+            this.radMenu1.Name = "radMenu1";
+            this.radMenu1.Size = new System.Drawing.Size(790, 36);
+            this.radMenu1.TabIndex = 4;
+            this.radMenu1.Text = "radMenu1";
+            // 
+            // lblUserInfoPanel
+            // 
+            this.lblUserInfoPanel.AutoSize = false;
+            this.lblUserInfoPanel.BackColor = System.Drawing.Color.DarkSlateBlue;
+            this.lblUserInfoPanel.Controls.Add(this.tableLayoutPanel2);
+            this.lblUserInfoPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblUserInfoPanel.Location = new System.Drawing.Point(3, 3);
+            this.lblUserInfoPanel.Name = "lblUserInfoPanel";
+            this.tableLayoutPanel1.SetRowSpan(this.lblUserInfoPanel, 2);
+            this.lblUserInfoPanel.Size = new System.Drawing.Size(209, 199);
+            this.lblUserInfoPanel.TabIndex = 2;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.BackgroundImage = global::LEASING.UI.APP.Properties.Resources.DarkBackground1;
+            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 65F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Controls.Add(this.pictureBox1, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.radLabel1, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.radLabel5, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.radLabel2, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.radLabel3, 1, 2);
+            this.tableLayoutPanel2.Controls.Add(this.linkSwitchUser, 1, 3);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 4;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 21F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(209, 199);
+            this.tableLayoutPanel2.TabIndex = 0;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.White;
+            this.tableLayoutPanel2.SetColumnSpan(this.pictureBox1, 2);
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Image = global::LEASING.UI.APP.Properties.Resources.uv_change_user_100;
+            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(203, 120);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            // 
+            // radLabel1
+            // 
+            this.radLabel1.BackColor = System.Drawing.Color.Black;
+            this.radLabel1.ForeColor = System.Drawing.Color.White;
+            this.radLabel1.Location = new System.Drawing.Point(3, 129);
+            this.radLabel1.Name = "radLabel1";
+            this.radLabel1.Size = new System.Drawing.Size(56, 18);
+            this.radLabel1.TabIndex = 0;
+            this.radLabel1.Text = "LOGIN AS";
+            // 
+            // radLabel5
+            // 
+            this.radLabel5.BackColor = System.Drawing.Color.Black;
+            this.radLabel5.ForeColor = System.Drawing.Color.White;
+            this.radLabel5.Location = new System.Drawing.Point(68, 129);
+            this.radLabel5.Name = "radLabel5";
+            this.radLabel5.Size = new System.Drawing.Size(93, 18);
+            this.radLabel5.TabIndex = 0;
+            this.radLabel5.Text = "ADMINISTRATOR";
+            // 
+            // radLabel2
+            // 
+            this.radLabel2.BackColor = System.Drawing.Color.Black;
+            this.radLabel2.ForeColor = System.Drawing.Color.White;
+            this.radLabel2.Location = new System.Drawing.Point(3, 157);
+            this.radLabel2.Name = "radLabel2";
+            this.radLabel2.Size = new System.Drawing.Size(38, 18);
+            this.radLabel2.TabIndex = 0;
+            this.radLabel2.Text = "NAME";
+            // 
+            // radLabel3
+            // 
+            this.radLabel3.BackColor = System.Drawing.Color.Black;
+            this.radLabel3.ForeColor = System.Drawing.Color.White;
+            this.radLabel3.Location = new System.Drawing.Point(68, 157);
+            this.radLabel3.Name = "radLabel3";
+            this.radLabel3.Size = new System.Drawing.Size(74, 18);
+            this.radLabel3.TabIndex = 0;
+            this.radLabel3.Text = "MARK JASON";
+            // 
+            // linkSwitchUser
+            // 
+            this.linkSwitchUser.AutoSize = true;
+            this.linkSwitchUser.BackColor = System.Drawing.Color.Black;
+            this.linkSwitchUser.LinkColor = System.Drawing.Color.White;
+            this.linkSwitchUser.Location = new System.Drawing.Point(68, 178);
+            this.linkSwitchUser.Name = "linkSwitchUser";
+            this.linkSwitchUser.Size = new System.Drawing.Size(67, 13);
+            this.linkSwitchUser.TabIndex = 2;
+            this.linkSwitchUser.TabStop = true;
+            this.linkSwitchUser.Text = "Switch User";
+            this.linkSwitchUser.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkSwitchUser_LinkClicked);
             // 
             // lblMenus
             // 
             this.lblMenus.AutoSize = false;
             this.lblMenus.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblMenus.BackgroundImage = global::LEASING.UI.APP.Properties.Resources.DarkBackground1;
             this.lblMenus.Controls.Add(this.radPanel7);
             this.lblMenus.Controls.Add(this.radPanel10);
             this.lblMenus.Controls.Add(this.radPanel9);
-            this.lblMenus.Controls.Add(this.radButton1);
+            this.lblMenus.Controls.Add(this.btnLogout);
             this.lblMenus.Controls.Add(this.radPanel6);
             this.lblMenus.Controls.Add(this.radPanel5);
             this.lblMenus.Controls.Add(this.radPanel4);
@@ -210,6 +343,7 @@
             this.radMenuItemAddNewUnit});
             this.radMenuItemAdministrative.Name = "radMenuItemAdministrative";
             this.radMenuItemAdministrative.Text = "ADMINISTRATIVE";
+            this.radMenuItemAdministrative.Click += new System.EventHandler(this.radMenuItemAdministrative_Click);
             // 
             // radMenuItemAddNewLocation
             // 
@@ -244,38 +378,11 @@
             this.radMenuItem8.AccessibleName = "RATES";
             this.radMenuItem8.Image = global::LEASING.UI.APP.Properties.Resources.gear_16;
             this.radMenuItem8.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radMenuItemResidentialSettings,
-            this.radMenuItemWareHouseSettings,
-            this.radMenuItemCommercialSettings});
+            this.radMenuItemResidentialSettings2,
+            this.radMenuItemCommercialSettings2,
+            this.radMenuItemWareHouseSettings2});
             this.radMenuItem8.Name = "radMenuItem8";
             this.radMenuItem8.Text = "Rates";
-            // 
-            // radMenuItemResidentialSettings
-            // 
-            this.radMenuItemResidentialSettings.AccessibleDescription = "RESIDENTIAL";
-            this.radMenuItemResidentialSettings.AccessibleName = "RESIDENTIAL";
-            this.radMenuItemResidentialSettings.Image = global::LEASING.UI.APP.Properties.Resources.bookmark_16;
-            this.radMenuItemResidentialSettings.Name = "radMenuItemResidentialSettings";
-            this.radMenuItemResidentialSettings.Text = "RESIDENTIAL";
-            this.radMenuItemResidentialSettings.Click += new System.EventHandler(this.radMenuItemResidentialSettings_Click);
-            // 
-            // radMenuItemWareHouseSettings
-            // 
-            this.radMenuItemWareHouseSettings.AccessibleDescription = "WAREHOUSE";
-            this.radMenuItemWareHouseSettings.AccessibleName = "WAREHOUSE";
-            this.radMenuItemWareHouseSettings.Image = global::LEASING.UI.APP.Properties.Resources.bookmark_16;
-            this.radMenuItemWareHouseSettings.Name = "radMenuItemWareHouseSettings";
-            this.radMenuItemWareHouseSettings.Text = "WAREHOUSE";
-            this.radMenuItemWareHouseSettings.Click += new System.EventHandler(this.radMenuItemWareHouseSettings_Click);
-            // 
-            // radMenuItemCommercialSettings
-            // 
-            this.radMenuItemCommercialSettings.AccessibleDescription = "COMMERCIAL";
-            this.radMenuItemCommercialSettings.AccessibleName = "COMMERCIAL";
-            this.radMenuItemCommercialSettings.Image = global::LEASING.UI.APP.Properties.Resources.bookmark_16;
-            this.radMenuItemCommercialSettings.Name = "radMenuItemCommercialSettings";
-            this.radMenuItemCommercialSettings.Text = "COMMERCIAL";
-            this.radMenuItemCommercialSettings.Click += new System.EventHandler(this.radMenuItemCommercialSettings_Click);
             // 
             // radMenuItemAddNewUnit
             // 
@@ -376,15 +483,17 @@
             this.radMenuItem16.Name = "radMenuItem16";
             this.radMenuItem16.Text = "Project Information";
             // 
-            // radButton1
+            // btnLogout
             // 
-            this.radButton1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.radButton1.Location = new System.Drawing.Point(0, 504);
-            this.radButton1.Name = "radButton1";
-            this.radButton1.Size = new System.Drawing.Size(209, 32);
-            this.radButton1.TabIndex = 10;
-            this.radButton1.Text = "LOG OUT";
-            this.radButton1.ThemeName = "ControlDefault";
+            this.btnLogout.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnLogout.Image = global::LEASING.UI.APP.Properties.Resources.block_32;
+            this.btnLogout.Location = new System.Drawing.Point(0, 504);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(209, 32);
+            this.btnLogout.TabIndex = 10;
+            this.btnLogout.Text = "LOG OUT";
+            this.btnLogout.ThemeName = "ControlDefault";
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
             // radPanel6
             // 
@@ -434,28 +543,26 @@
             this.radMenuGenerateComputation.AccessibleName = "Generate Transaction";
             this.radMenuGenerateComputation.Image = global::LEASING.UI.APP.Properties.Resources.edit;
             this.radMenuGenerateComputation.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radMenuItemGenerateComputationUnit,
-            this.radMenuItemGenerateComputationParking});
+            this.radMenuItemGenerateComputationUnit2,
+            this.radMenuItemGenerateComputationParking2});
             this.radMenuGenerateComputation.Name = "radMenuGenerateComputation";
             this.radMenuGenerateComputation.Text = "Generate Computation";
             // 
-            // radMenuItemGenerateComputationUnit
+            // radMenuItemGenerateComputationUnit2
             // 
-            this.radMenuItemGenerateComputationUnit.AccessibleDescription = "UNIT";
-            this.radMenuItemGenerateComputationUnit.AccessibleName = "UNIT";
-            this.radMenuItemGenerateComputationUnit.Image = global::LEASING.UI.APP.Properties.Resources.Bullet15_Arrow_Blue;
-            this.radMenuItemGenerateComputationUnit.Name = "radMenuItemGenerateComputationUnit";
-            this.radMenuItemGenerateComputationUnit.Text = "UNIT";
-            this.radMenuItemGenerateComputationUnit.Click += new System.EventHandler(this.radMenuItemGenerateComputationUnit_Click);
+            this.radMenuItemGenerateComputationUnit2.AccessibleDescription = "radMenuItemGenerateComputationUnit2";
+            this.radMenuItemGenerateComputationUnit2.AccessibleName = "radMenuItemGenerateComputationUnit2";
+            this.radMenuItemGenerateComputationUnit2.Name = "radMenuItemGenerateComputationUnit2";
+            this.radMenuItemGenerateComputationUnit2.Text = "UNIT";
+            this.radMenuItemGenerateComputationUnit2.Click += new System.EventHandler(this.radMenuItemGenerateComputationUnit2_Click);
             // 
-            // radMenuItemGenerateComputationParking
+            // radMenuItemGenerateComputationParking2
             // 
-            this.radMenuItemGenerateComputationParking.AccessibleDescription = "PARKING";
-            this.radMenuItemGenerateComputationParking.AccessibleName = "PARKING";
-            this.radMenuItemGenerateComputationParking.Image = global::LEASING.UI.APP.Properties.Resources.Bullet15_Arrow_Blue;
-            this.radMenuItemGenerateComputationParking.Name = "radMenuItemGenerateComputationParking";
-            this.radMenuItemGenerateComputationParking.Text = "PARKING";
-            this.radMenuItemGenerateComputationParking.Click += new System.EventHandler(this.radMenuItemGenerateComputationParking_Click);
+            this.radMenuItemGenerateComputationParking2.AccessibleDescription = "radMenuItemGenerateComputationParking2";
+            this.radMenuItemGenerateComputationParking2.AccessibleName = "radMenuItemGenerateComputationParking2";
+            this.radMenuItemGenerateComputationParking2.Name = "radMenuItemGenerateComputationParking2";
+            this.radMenuItemGenerateComputationParking2.Text = "PARKING";
+            this.radMenuItemGenerateComputationParking2.Click += new System.EventHandler(this.radMenuItemGenerateComputationParking2_Click);
             // 
             // radPanel5
             // 
@@ -661,159 +768,86 @@
             this.btnMainMenu.Text = "MAIN MENU";
             this.btnMainMenu.ThemeName = "Office2013Light";
             // 
-            // lblUserInfoPanel
+            // radMenuItemResidentialSettings
             // 
-            this.lblUserInfoPanel.AutoSize = false;
-            this.lblUserInfoPanel.BackColor = System.Drawing.Color.DarkSlateBlue;
-            this.lblUserInfoPanel.Controls.Add(this.tableLayoutPanel2);
-            this.lblUserInfoPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblUserInfoPanel.Location = new System.Drawing.Point(3, 3);
-            this.lblUserInfoPanel.Name = "lblUserInfoPanel";
-            this.tableLayoutPanel1.SetRowSpan(this.lblUserInfoPanel, 2);
-            this.lblUserInfoPanel.Size = new System.Drawing.Size(209, 199);
-            this.lblUserInfoPanel.TabIndex = 2;
+            this.radMenuItemResidentialSettings.AccessibleDescription = "RESIDENTIAL";
+            this.radMenuItemResidentialSettings.AccessibleName = "RESIDENTIAL";
+            this.radMenuItemResidentialSettings.Image = global::LEASING.UI.APP.Properties.Resources.bookmark_16;
+            this.radMenuItemResidentialSettings.Name = "radMenuItemResidentialSettings";
+            this.radMenuItemResidentialSettings.Text = "RESIDENTIAL";
+            this.radMenuItemResidentialSettings.Click += new System.EventHandler(this.radMenuItemResidentialSettings_Click);
             // 
-            // tableLayoutPanel2
+            // radMenuItemWareHouseSettings
             // 
-            this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 65F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Controls.Add(this.radLabel2, 0, 3);
-            this.tableLayoutPanel2.Controls.Add(this.radLabel3, 1, 3);
-            this.tableLayoutPanel2.Controls.Add(this.radLabel1, 0, 2);
-            this.tableLayoutPanel2.Controls.Add(this.radLabel5, 1, 2);
-            this.tableLayoutPanel2.Controls.Add(this.pictureBox1, 0, 0);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 4;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 21F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(209, 199);
-            this.tableLayoutPanel2.TabIndex = 0;
+            this.radMenuItemWareHouseSettings.AccessibleDescription = "WAREHOUSE";
+            this.radMenuItemWareHouseSettings.AccessibleName = "WAREHOUSE";
+            this.radMenuItemWareHouseSettings.Image = global::LEASING.UI.APP.Properties.Resources.bookmark_16;
+            this.radMenuItemWareHouseSettings.Name = "radMenuItemWareHouseSettings";
+            this.radMenuItemWareHouseSettings.Text = "WAREHOUSE";
+            this.radMenuItemWareHouseSettings.Click += new System.EventHandler(this.radMenuItemWareHouseSettings_Click);
             // 
-            // radLabel2
+            // radMenuItemCommercialSettings
             // 
-            this.radLabel2.ForeColor = System.Drawing.Color.White;
-            this.radLabel2.Location = new System.Drawing.Point(3, 181);
-            this.radLabel2.Name = "radLabel2";
-            this.radLabel2.Size = new System.Drawing.Size(38, 15);
-            this.radLabel2.TabIndex = 0;
-            this.radLabel2.Text = "NAME";
+            this.radMenuItemCommercialSettings.AccessibleDescription = "COMMERCIAL";
+            this.radMenuItemCommercialSettings.AccessibleName = "COMMERCIAL";
+            this.radMenuItemCommercialSettings.Image = global::LEASING.UI.APP.Properties.Resources.bookmark_16;
+            this.radMenuItemCommercialSettings.Name = "radMenuItemCommercialSettings";
+            this.radMenuItemCommercialSettings.Text = "COMMERCIAL";
+            this.radMenuItemCommercialSettings.Click += new System.EventHandler(this.radMenuItemCommercialSettings_Click);
             // 
-            // radLabel3
+            // tableLayoutPanel1
             // 
-            this.radLabel3.ForeColor = System.Drawing.Color.White;
-            this.radLabel3.Location = new System.Drawing.Point(68, 181);
-            this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(74, 15);
-            this.radLabel3.TabIndex = 0;
-            this.radLabel3.Text = "MARK JASON";
-            // 
-            // radLabel1
-            // 
-            this.radLabel1.ForeColor = System.Drawing.Color.White;
-            this.radLabel1.Location = new System.Drawing.Point(3, 157);
-            this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(56, 18);
-            this.radLabel1.TabIndex = 0;
-            this.radLabel1.Text = "LOGIN AS";
-            // 
-            // radLabel5
-            // 
-            this.radLabel5.ForeColor = System.Drawing.Color.White;
-            this.radLabel5.Location = new System.Drawing.Point(68, 157);
-            this.radLabel5.Name = "radLabel5";
-            this.radLabel5.Size = new System.Drawing.Size(93, 18);
-            this.radLabel5.TabIndex = 0;
-            this.radLabel5.Text = "ADMINISTRATOR";
-            // 
-            // pictureBox1
-            // 
-            this.tableLayoutPanel2.SetColumnSpan(this.pictureBox1, 2);
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Image = global::LEASING.UI.APP.Properties.Resources.uv_change_user_100;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(203, 120);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
+            this.tableLayoutPanel1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.tableLayoutPanel1.BackgroundImage = global::LEASING.UI.APP.Properties.Resources.DarkBackground1;
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 215F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.lblMenus, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.lblUserInfoPanel, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.radPanel8, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.radMenu1, 1, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 74F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 131F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1011, 747);
+            this.tableLayoutPanel1.TabIndex = 0;
             // 
             // radPanel8
             // 
-            this.radPanel8.BackColor = System.Drawing.Color.DarkSlateBlue;
-            this.radPanel8.Controls.Add(this.tableLayoutPanel3);
+            this.radPanel8.BackColor = System.Drawing.Color.White;
             this.radPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radPanel8.Location = new System.Drawing.Point(218, 208);
             this.radPanel8.Name = "radPanel8";
             this.radPanel8.Size = new System.Drawing.Size(790, 536);
             this.radPanel8.TabIndex = 3;
             // 
-            // tableLayoutPanel3
+            // radMenuItemResidentialSettings2
             // 
-            this.tableLayoutPanel3.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.tableLayoutPanel3.ColumnCount = 2;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48.98734F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 51.01266F));
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 3;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 170F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 176F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 15F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(790, 536);
-            this.tableLayoutPanel3.TabIndex = 0;
+            this.radMenuItemResidentialSettings2.AccessibleDescription = "radMenuItemResidentialSettings2";
+            this.radMenuItemResidentialSettings2.AccessibleName = "radMenuItemResidentialSettings2";
+            this.radMenuItemResidentialSettings2.Name = "radMenuItemResidentialSettings2";
+            this.radMenuItemResidentialSettings2.Text = "RESIDENTIAL";
+            this.radMenuItemResidentialSettings2.Click += new System.EventHandler(this.radMenuItemResidentialSettings2_Click);
             // 
-            // radMenu1
+            // radMenuItemCommercialSettings2
             // 
-            this.radMenu1.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radMenuItem5,
-            this.radMenuItemNotification});
-            this.radMenu1.Location = new System.Drawing.Point(218, 3);
-            this.radMenu1.Name = "radMenu1";
-            this.radMenu1.Size = new System.Drawing.Size(790, 36);
-            this.radMenu1.TabIndex = 4;
-            this.radMenu1.Text = "radMenu1";
+            this.radMenuItemCommercialSettings2.AccessibleDescription = "radMenuItemCommercialSettings2";
+            this.radMenuItemCommercialSettings2.AccessibleName = "radMenuItemCommercialSettings2";
+            this.radMenuItemCommercialSettings2.Name = "radMenuItemCommercialSettings2";
+            this.radMenuItemCommercialSettings2.Text = "COMMERCIAL";
+            this.radMenuItemCommercialSettings2.Click += new System.EventHandler(this.radMenuItemCommercialSettings2_Click);
             // 
-            // radMenuItem5
+            // radMenuItemWareHouseSettings2
             // 
-            this.radMenuItem5.AccessibleDescription = "LOGS";
-            this.radMenuItem5.AccessibleName = "LOGS";
-            this.radMenuItem5.Image = global::LEASING.UI.APP.Properties.Resources.info_32;
-            this.radMenuItem5.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radMenuItemLogsLocation,
-            this.radMenuItemLogProject});
-            this.radMenuItem5.Name = "radMenuItem5";
-            this.radMenuItem5.Text = "LOGS";
-            this.radMenuItem5.Click += new System.EventHandler(this.radMenuItem5_Click);
-            // 
-            // radMenuItemLogsLocation
-            // 
-            this.radMenuItemLogsLocation.AccessibleDescription = "LOCATION LOGS";
-            this.radMenuItemLogsLocation.AccessibleName = "LOCATION LOGS";
-            this.radMenuItemLogsLocation.Image = global::LEASING.UI.APP.Properties.Resources.info_16;
-            this.radMenuItemLogsLocation.Name = "radMenuItemLogsLocation";
-            this.radMenuItemLogsLocation.Text = "LOCATION LOGS";
-            // 
-            // radMenuItemLogProject
-            // 
-            this.radMenuItemLogProject.AccessibleDescription = "PROJECT LOGS";
-            this.radMenuItemLogProject.AccessibleName = "PROJECT LOGS";
-            this.radMenuItemLogProject.Image = global::LEASING.UI.APP.Properties.Resources.info_16;
-            this.radMenuItemLogProject.Name = "radMenuItemLogProject";
-            this.radMenuItemLogProject.Text = "PROJECT LOGS";
-            // 
-            // radMenuItemNotification
-            // 
-            this.radMenuItemNotification.AccessibleDescription = "NOTIFICATION";
-            this.radMenuItemNotification.AccessibleName = "NOTIFICATION";
-            this.radMenuItemNotification.Image = global::LEASING.UI.APP.Properties.Resources._20x20RedBell;
-            this.radMenuItemNotification.Name = "radMenuItemNotification";
-            this.radMenuItemNotification.Text = "NOTIFICATION";
+            this.radMenuItemWareHouseSettings2.AccessibleDescription = "radMenuItemWareHouseSettings2";
+            this.radMenuItemWareHouseSettings2.AccessibleName = "radMenuItemWareHouseSettings2";
+            this.radMenuItemWareHouseSettings2.Name = "radMenuItemWareHouseSettings2";
+            this.radMenuItemWareHouseSettings2.Text = "WAREHOUSE";
+            this.radMenuItemWareHouseSettings2.Click += new System.EventHandler(this.radMenuItemWareHouseSettings2_Click);
             // 
             // frmMainDashboard
             // 
@@ -825,9 +859,18 @@
             this.Name = "frmMainDashboard";
             this.ShowIcon = false;
             this.Text = "LEASING SYSTEM";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMainDashboard_FormClosing);
             this.Load += new System.EventHandler(this.frmMainDashboard_Load);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblUserInfoPanel)).EndInit();
+            this.lblUserInfoPanel.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblMenus)).EndInit();
             this.lblMenus.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radPanel7)).EndInit();
@@ -842,7 +885,7 @@
             this.radPanel9.ResumeLayout(false);
             this.radPanel9.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radMenu8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnLogout)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel6)).EndInit();
             this.radPanel6.ResumeLayout(false);
             this.radPanel6.PerformLayout();
@@ -866,88 +909,84 @@
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
             this.radPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnMainMenu)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblUserInfoPanel)).EndInit();
-            this.lblUserInfoPanel.ResumeLayout(false);
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel8)).EndInit();
-            this.radPanel8.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
+        private Telerik.WinControls.UI.RadDesktopAlert radDesktopAlert1;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItem5;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemLogsLocation;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemLogProject;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemNotification;
+        private Telerik.WinControls.UI.RadMenu radMenu1;
+        private Telerik.WinControls.UI.RadLabel lblUserInfoPanel;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private Telerik.WinControls.UI.RadLabel radLabel1;
+        private Telerik.WinControls.UI.RadLabel radLabel5;
+        private Telerik.WinControls.UI.RadLabel radLabel2;
+        private Telerik.WinControls.UI.RadLabel radLabel3;
+        private System.Windows.Forms.LinkLabel linkSwitchUser;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private Telerik.WinControls.UI.RadLabel lblMenus;
-        private Telerik.WinControls.UI.RadLabel lblUserInfoPanel;
         private Telerik.WinControls.UI.RadPanel radPanel7;
         private Telerik.WinControls.UI.RadMenu radMenu7;
         private Telerik.WinControls.UI.RadMenuItem radMenuItemAdministrative;
         private Telerik.WinControls.UI.RadMenuItem radMenuItemAddNewLocation;
         private Telerik.WinControls.UI.RadMenuItem radMenuItemAddNewProject;
-        private Telerik.WinControls.UI.RadPanel radPanel6;
-        private Telerik.WinControls.UI.RadMenu radMenu6;
-        private Telerik.WinControls.UI.RadPanel radPanel5;
-        private Telerik.WinControls.UI.RadMenu radMenu5;
-        private Telerik.WinControls.UI.RadPanel radPanel4;
-        private Telerik.WinControls.UI.RadMenu radMenu4;
-        private Telerik.WinControls.UI.RadPanel radPanel3;
-        private Telerik.WinControls.UI.RadMenu radMenu3;
-        private Telerik.WinControls.UI.RadPanel radPanel2;
-        private Telerik.WinControls.UI.RadPanel radPanel1;
         private Telerik.WinControls.UI.RadMenuItem radMenuItemAddNewPurhcaseItem;
-        private Telerik.WinControls.UI.RadButton btnMainMenu;
-        private Telerik.WinControls.UI.RadMenuItem radMenuItemClient;
-        private Telerik.WinControls.UI.RadMenuItem radMenuItemAddNewClient;
-        private Telerik.WinControls.UI.RadButton radButton1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private Telerik.WinControls.UI.RadLabel radLabel1;
-        private Telerik.WinControls.UI.RadLabel radLabel2;
-        private Telerik.WinControls.UI.RadLabel radLabel5;
-        private Telerik.WinControls.UI.RadLabel radLabel3;
-        private Telerik.WinControls.UI.RadMenuItem radMenuItemComputation;
-        private Telerik.WinControls.UI.RadMenuItem radMenuItemPayments;
-        private Telerik.WinControls.UI.RadMenuItem radMenuItemReports;
-        private Telerik.WinControls.UI.RadMenuItem radMenuItemContracts;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private Telerik.WinControls.UI.RadPanel radPanel8;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private Telerik.WinControls.UI.RadMenu radMenu1;
-        private Telerik.WinControls.UI.RadMenuItem radMenuItem5;
-        private Telerik.WinControls.UI.RadMenuItem radMenuItemNotification;
-        private Telerik.WinControls.UI.RadMenuItem radMenuItemLogsLocation;
-        private Telerik.WinControls.UI.RadMenuItem radMenuItemLogProject;
-        private Telerik.WinControls.UI.RadMenuItem radMenuUnitComputation;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItem8;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemAddNewUnit;
         private Telerik.WinControls.UI.RadPanel radPanel10;
         private Telerik.WinControls.UI.RadMenu radMenu9;
         private Telerik.WinControls.UI.RadMenuItem radMenuItem7;
+        private Telerik.WinControls.UI.RadMenuItem radMenuUnitComputation;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItem10;
         private Telerik.WinControls.UI.RadPanel radPanel9;
         private Telerik.WinControls.UI.RadMenu radMenu8;
         private Telerik.WinControls.UI.RadMenuItem radMenuItem6;
-        private Telerik.WinControls.UI.RadMenuItem radMenuItem8;
-        private Telerik.WinControls.UI.RadMenuItem radMenuItemResidentialSettings;
-        private Telerik.WinControls.UI.RadMenuItem radMenuItemWareHouseSettings;
-        private Telerik.WinControls.UI.RadMenuItem radMenuItemCommercialSettings;
-        private Telerik.WinControls.UI.RadMenuItem radMenuItemAddNewUnit;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItem16;
+        private Telerik.WinControls.UI.RadButton btnLogout;
+        private Telerik.WinControls.UI.RadPanel radPanel6;
+        private Telerik.WinControls.UI.RadMenu radMenu6;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemComputation;
+        private Telerik.WinControls.UI.RadMenuItem radMenuParkingComputation;
+        private Telerik.WinControls.UI.RadMenuItem radMenuGenerateComputation;
+        private Telerik.WinControls.UI.RadPanel radPanel5;
+        private Telerik.WinControls.UI.RadMenu radMenu5;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemPayments;
         private Telerik.WinControls.UI.RadMenuItem radMenuItemTransactions;
         private Telerik.WinControls.UI.RadMenuItem radMenuItemLedger;
         private Telerik.WinControls.UI.RadMenuItem radMenuItemReciept;
+        private Telerik.WinControls.UI.RadPanel radPanel4;
+        private Telerik.WinControls.UI.RadMenu radMenu4;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemReports;
+        private Telerik.WinControls.UI.RadPanel radPanel3;
+        private Telerik.WinControls.UI.RadMenu radMenu3;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemContracts;
         private Telerik.WinControls.UI.RadMenuItem radMenuItemUnitContracts;
         private Telerik.WinControls.UI.RadMenuItem radMenuItemParkingContracts;
+        private Telerik.WinControls.UI.RadPanel radPanel2;
+        public Telerik.WinControls.UI.RadMenu radMenu2;
+        public Telerik.WinControls.UI.RadMenuItem radMenuItemClient;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemAddNewClient;
         private Telerik.WinControls.UI.RadMenuItem radMenuItemClientInformation;
-        private Telerik.WinControls.UI.RadMenuItem radMenuItem16;
-        private Telerik.WinControls.UI.RadMenu radMenu2;
-        private Telerik.WinControls.UI.RadMenuItem radMenuItem10;
-        private Telerik.WinControls.UI.RadMenuItem radMenuParkingComputation;
-        private Telerik.WinControls.UI.RadMenuItem radMenuGenerateComputation;
-        private Telerik.WinControls.UI.RadMenuItem radMenuItemGenerateComputationUnit;
-        private Telerik.WinControls.UI.RadMenuItem radMenuItemGenerateComputationParking;
+        private Telerik.WinControls.UI.RadPanel radPanel1;
+        private Telerik.WinControls.UI.RadButton btnMainMenu;
+
+       
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemResidentialSettings;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemWareHouseSettings;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemCommercialSettings;
+        private Telerik.WinControls.UI.RadPanel radPanel8;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemGenerateComputationUnit2;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemGenerateComputationParking2;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemResidentialSettings2;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemCommercialSettings2;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemWareHouseSettings2;
     }
 }

@@ -17,7 +17,7 @@ namespace LEASING.UI.APP.Forms
     public partial class frmEditClient : Form
     {
         ClientContext ClientContext = new ClientContext();
-
+        public bool IsContractSigned { get; set; } = false;
         private string _strClientFormMode;
         public string strClientFormMode
         {
@@ -47,6 +47,14 @@ namespace LEASING.UI.APP.Forms
 
                         break;
 
+                    case "IsContractSigned":
+                        btnUndo.Enabled = false;
+                        btnSave.Enabled = false;
+                        btnNewProject.Enabled = false;
+                        DisabledFields();
+                        btnUploadFile.Enabled = true;
+
+                        break;
                     default:
                         break;
                 }
@@ -181,6 +189,8 @@ namespace LEASING.UI.APP.Forms
                         string destFilePath = Path.Combine(folderPath, fileName);
                         frmUploadFile frmUploadFile = new frmUploadFile();
                         frmUploadFile.sFilePath = folderPath;
+                        frmUploadFile.txtClientID.Text = sClientID;
+                        frmUploadFile.IsContractSigned = IsContractSigned;
                         frmUploadFile.ShowDialog();
                         if (frmUploadFile.IsProceed)
                         {
@@ -225,7 +235,15 @@ namespace LEASING.UI.APP.Forms
 
         private void frmEditClient_Load(object sender, EventArgs e)
         {
-            strClientFormMode = "READ";
+            if (IsContractSigned)
+            {
+                strClientFormMode = "IsContractSigned";
+            }
+            else
+            {
+                strClientFormMode = "READ";
+            }
+           
             txtClienID.Text = ClientID;
             M_GetClientById();
             M_GetClientFileList();

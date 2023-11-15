@@ -144,6 +144,7 @@
             this.dgvList.Size = new System.Drawing.Size(586, 287);
             this.dgvList.TabIndex = 0;
             this.dgvList.Text = "radGridView1";
+            this.dgvList.CellClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.dgvList_CellClick);
             // 
             // frmContractSignedUnit
             // 

@@ -260,8 +260,8 @@ namespace LEASING.UI.APP.Context
                             string filePath = reader.GetString(1);
                             byte[] fileData = (byte[])reader.GetValue(2);
 
-                            string folderName = Path.GetFileNameWithoutExtension(filePath);
-                            string folderPath = Path.Combine(baseFolderPath, clientid, folderName);
+                            //string folderName = Path.GetFileNameWithoutExtension(filePath);
+                            string folderPath = Path.Combine(baseFolderPath, clientid);
 
                             if (!Directory.Exists(folderPath))
                                 Directory.CreateDirectory(folderPath);
@@ -317,7 +317,7 @@ namespace LEASING.UI.APP.Context
         //    }
         //}
 
-        public string SaveFileInDatabase(string clientName, string filePath,string FileNames,string files,string Notes)
+        public string SaveFileInDatabase(string clientName, string filePath,string FileNames,string files,string Notes,string ReferenceId)
         {
             SqlCommand _sqlcmd = null;
             SqlParameter _sqlpara;
@@ -340,7 +340,9 @@ namespace LEASING.UI.APP.Context
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@Notes", Notes);
             _sqlcmd.Parameters.Add(_sqlpara);
-
+            _sqlpara = new SqlParameter("@ReferenceId", ReferenceId);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            
             try
             {
                 _sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());

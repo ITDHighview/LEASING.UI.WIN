@@ -16,6 +16,7 @@ namespace LEASING.UI.APP.Forms
         public string sFilePath;
         public bool IsProceed = false;
         public bool IsContractSigned { get; set; } = false;
+        public string ReferenceId { get; set; } = string.Empty;
         private bool IsFIleValid()
         {
             if (string.IsNullOrEmpty(txtfilename.Text))
@@ -23,14 +24,14 @@ namespace LEASING.UI.APP.Forms
                 MessageBox.Show("File Name cannot be empty !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return false;
             }
-            if (chkSignContract.Checked)
-            {
-                if (string.IsNullOrEmpty(txtReference.Text))
-                {
-                    MessageBox.Show("Please select Reference!", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return false;
-                }
-            }
+            //if (chkSignContract.Checked)
+            //{
+            //    if (string.IsNullOrEmpty(txtReference.Text))
+            //    {
+            //        MessageBox.Show("Please select Reference!", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            //        return false;
+            //    }
+            //}
 
 
 
@@ -55,11 +56,10 @@ namespace LEASING.UI.APP.Forms
 
         private void frmUploadFile_Load(object sender, EventArgs e)
         {
+            txtReference.Text = string.Empty;
             if (IsContractSigned)
             {
-                chkSignContract.CheckState = CheckState.Checked;
-
-
+                txtReference.Text = ReferenceId;
                 btnReference.Enabled = true;
                 txtnotes.Text = "Contract Signed";
                 txtReference.Enabled = true;
@@ -77,23 +77,6 @@ namespace LEASING.UI.APP.Forms
                 txtClientID.ReadOnly = true;
             }
            
-        }
-
-        private void chkSignContract_ToggleStateChanged(object sender, Telerik.WinControls.UI.StateChangedEventArgs args)
-        {
-            txtnotes.Text = string.Empty;
-            if (chkSignContract.CheckState == CheckState.Checked)
-            {
-                btnReference.Enabled = true;
-                txtnotes.Text = "Contract Signed";
-                txtReference.Enabled = true;
-            }
-            else
-            {
-                btnReference.Enabled = false;
-                txtnotes.Text = string.Empty;
-                txtReference.Enabled = false;
-            }
         }
 
         private void btnReference_Click(object sender, EventArgs e)

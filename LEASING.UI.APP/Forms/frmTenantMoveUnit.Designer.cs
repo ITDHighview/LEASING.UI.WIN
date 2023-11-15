@@ -33,6 +33,7 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnRefresh = new System.Windows.Forms.ToolStripButton();
@@ -107,9 +108,9 @@
             this.dgvList.MasterTemplate.AllowAddNewRow = false;
             this.dgvList.MasterTemplate.AllowColumnReorder = false;
             gridViewCommandColumn1.FieldName = "ColApproved";
-            gridViewCommandColumn1.HeaderImage = global::LEASING.UI.APP.Properties.Resources.attach;
+            gridViewCommandColumn1.HeaderImage = global::LEASING.UI.APP.Properties.Resources.accept;
             gridViewCommandColumn1.HeaderText = "";
-            gridViewCommandColumn1.Image = global::LEASING.UI.APP.Properties.Resources.attach;
+            gridViewCommandColumn1.Image = global::LEASING.UI.APP.Properties.Resources.accept;
             gridViewCommandColumn1.Name = "ColApproved";
             gridViewCommandColumn1.Width = 30;
             gridViewCommandColumn2.FieldName = "ColView";
@@ -130,12 +131,17 @@
             gridViewTextBoxColumn3.HeaderText = "Client";
             gridViewTextBoxColumn3.Name = "InquiringClient";
             gridViewTextBoxColumn3.Width = 200;
+            gridViewTextBoxColumn4.FieldName = "RecId";
+            gridViewTextBoxColumn4.HeaderText = "RecId";
+            gridViewTextBoxColumn4.IsVisible = false;
+            gridViewTextBoxColumn4.Name = "RecId";
             this.dgvList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewCommandColumn1,
             gridViewCommandColumn2,
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
-            gridViewTextBoxColumn3});
+            gridViewTextBoxColumn3,
+            gridViewTextBoxColumn4});
             this.dgvList.MasterTemplate.EnableFiltering = true;
             this.dgvList.Name = "dgvList";
             this.dgvList.ReadOnly = true;
@@ -144,6 +150,7 @@
             this.dgvList.Size = new System.Drawing.Size(586, 287);
             this.dgvList.TabIndex = 0;
             this.dgvList.Text = "radGridView1";
+            this.dgvList.CellClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.dgvList_CellClick);
             // 
             // frmTenantMoveUnit
             // 

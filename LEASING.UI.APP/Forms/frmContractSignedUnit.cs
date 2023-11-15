@@ -15,6 +15,7 @@ namespace LEASING.UI.APP.Forms
     {
         PaymentContext PaymentContext = new PaymentContext();
         public bool IsContractSigned { get; set; } = true;
+        public string ReferenceId { get; set; } = string.Empty;
         public frmContractSignedUnit()
         {
             InitializeComponent();
@@ -51,45 +52,15 @@ namespace LEASING.UI.APP.Forms
                     frmEditClient forms = new frmEditClient();
                     forms.ClientID = Convert.ToString(dgvList.CurrentRow.Cells["ClientID"].Value);
                     forms.IsContractSigned = IsContractSigned;
+                    forms.ReferenceId = Convert.ToString(dgvList.CurrentRow.Cells["RefId"].Value);
                     forms.ShowDialog();
-                    if (forms.IsProceed)
-                    {
-                        // M_GetProjectList();
-                    }
-                    //if (Convert.ToString(dgvList.CurrentRow.Cells["TypeOf"].Value) == "TYPE OF PARKING")
-                    //{
-                    //    frmEditParkingComputation forms = new frmEditParkingComputation();
-                    //    forms.Recid = Convert.ToInt32(dgvList.CurrentRow.Cells["RecId"].Value);
-                    //    forms.Text = Convert.ToString(dgvList.CurrentRow.Cells["ProjectName"].Value) + " - " + " UNIT";
-                    //    forms.ShowDialog();
-                    //}
-                    //else
-                    //{
-                    //    frmEditUnitComputation forms = new frmEditUnitComputation();
-                    //    forms.Recid = Convert.ToInt32(dgvList.CurrentRow.Cells["RecId"].Value);
-                    //    forms.Text = Convert.ToString(dgvList.CurrentRow.Cells["ProjectName"].Value) + " - " + " UNIT";
-                    //    forms.ShowDialog();
-                    //}
+                    M_GetForContractSignedUnitList();                                    
                 }
-                else if (this.dgvList.Columns[e.ColumnIndex].Name == "View")
+                else if (this.dgvList.Columns[e.ColumnIndex].Name == "ColView")
                 {
-                    //if (MessageBox.Show("Are you sure you want to generate transaction to this reference?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
-                    //{
-                    //    if (Convert.ToString(dgvList.CurrentRow.Cells["TypeOf"].Value) == "TYPE OF PARKING")
-                    //    {
-                    //        frmClientTransactionParking forms = new frmClientTransactionParking();
-                    //        forms.ComputationRecid = Convert.ToInt32(dgvList.CurrentRow.Cells["RecId"].Value);
-                    //        forms.ClientId = Convert.ToString(dgvList.CurrentRow.Cells["ClientID"].Value);
-                    //        forms.ShowDialog();
-                    //    }
-                    //    else
-                    //    {
-                    //        frmSelectClient forms = new frmSelectClient();
-                    //        forms.ComputationRecid = Convert.ToInt32(dgvList.CurrentRow.Cells["RecId"].Value);
-                    //        forms.ShowDialog();
-                            
-                    //    }
-                    //}
+                    frmEditUnitComputation forms = new frmEditUnitComputation();
+                    forms.Recid = Convert.ToInt32(dgvList.CurrentRow.Cells["RecId"].Value);
+                    forms.ShowDialog();
                 }
             }
         }

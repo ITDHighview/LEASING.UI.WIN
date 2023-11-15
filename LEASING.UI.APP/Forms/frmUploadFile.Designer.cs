@@ -38,7 +38,6 @@
             this.radLabel20 = new Telerik.WinControls.UI.RadLabel();
             this.btnReference = new Telerik.WinControls.UI.RadButton();
             this.txtReference = new Telerik.WinControls.UI.RadTextBox();
-            this.chkSignContract = new Telerik.WinControls.UI.RadCheckBox();
             this.txtClientID = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
@@ -52,7 +51,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel20)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnReference)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtReference)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkSignContract)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtClientID)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
@@ -76,7 +74,6 @@
             this.tableLayoutPanel1.Controls.Add(this.radLabel20, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.btnReference, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtReference, 3, 2);
-            this.tableLayoutPanel1.Controls.Add(this.chkSignContract, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtClientID, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.radLabel3, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -175,15 +172,6 @@
             this.txtReference.Size = new System.Drawing.Size(116, 19);
             this.txtReference.TabIndex = 2;
             // 
-            // chkSignContract
-            // 
-            this.chkSignContract.Location = new System.Drawing.Point(218, 3);
-            this.chkSignContract.Name = "chkSignContract";
-            this.chkSignContract.Size = new System.Drawing.Size(100, 18);
-            this.chkSignContract.TabIndex = 4;
-            this.chkSignContract.Text = "Contract Signed";
-            this.chkSignContract.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.chkSignContract_ToggleStateChanged);
-            // 
             // txtClientID
             // 
             this.txtClientID.Location = new System.Drawing.Point(100, 3);
@@ -236,7 +224,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel20)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnReference)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtReference)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkSignContract)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtClientID)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).EndInit();
@@ -255,7 +242,6 @@
         private Telerik.WinControls.UI.RadButton btnOk;
         public Telerik.WinControls.UI.RadTextBox txtnotes;
         public Telerik.WinControls.UI.RadTextBox txtfilename;
-        private Telerik.WinControls.UI.RadCheckBox chkSignContract;
         private Telerik.WinControls.UI.RadGroupBox radGroupBox1;
         private Telerik.WinControls.UI.RadButton btnReference;
         public Telerik.WinControls.UI.RadTextBox txtReference;

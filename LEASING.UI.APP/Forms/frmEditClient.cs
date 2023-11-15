@@ -4,7 +4,9 @@ using LEASING.UI.APP.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -16,8 +18,11 @@ namespace LEASING.UI.APP.Forms
 {
     public partial class frmEditClient : Form
     {
+      
+
         ClientContext ClientContext = new ClientContext();
         public bool IsContractSigned { get; set; } = false;
+        public string ReferenceId { get; set; } = string.Empty;
         private string _strClientFormMode;
         public string strClientFormMode
         {
@@ -35,7 +40,7 @@ namespace LEASING.UI.APP.Forms
                         btnSave.Enabled = true;
                         btnNewProject.Enabled = false;
                         EnabledFields();
-                      
+
 
                         break;
                     case "READ":
@@ -43,7 +48,7 @@ namespace LEASING.UI.APP.Forms
                         btnSave.Enabled = false;
                         btnNewProject.Enabled = true;
                         DisabledFields();
-                       
+
 
                         break;
 
@@ -89,7 +94,7 @@ namespace LEASING.UI.APP.Forms
             txtreferencenumber.Enabled = true;
             txtreferencenumber.ReadOnly = true;
 
-            
+
         }
         private void DisabledFields()
         {
@@ -119,14 +124,40 @@ namespace LEASING.UI.APP.Forms
             txtreferencenumber.Enabled = false;
             txtreferencenumber.ReadOnly = true;
         }
-    
+
         public string ClientID { get; set; }
         public bool IsProceed = false;
         public frmEditClient()
         {
             InitializeComponent();
         }
+        private void LogErrorIntoStoredProcedure(string storedProcedureName, string procedureName, string errorMessage, DateTime logDateTime)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString()))
+                {
+                    connection.Open();
 
+                    using (SqlCommand command = new SqlCommand(storedProcedureName, connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        // Add parameters
+                        command.Parameters.AddWithValue("@ProcedureName", procedureName);
+                        command.Parameters.AddWithValue("@ErrorMessage", errorMessage);
+                        command.Parameters.AddWithValue("@LogDateTime", logDateTime);
+
+                        // Execute the stored procedure
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {           
+                MessageBox.Show(ex.ToString(), "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
         private void M_GetClientFileList()
         {
             dgvFileList.DataSource = null;
@@ -142,7 +173,7 @@ namespace LEASING.UI.APP.Forms
 
         private void M_GetClientById()
         {
-            
+
             using (DataSet dt = ClientContext.GetClientById(ClientID))
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
@@ -171,66 +202,99 @@ namespace LEASING.UI.APP.Forms
 
         private void btnUploadFile_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Multiselect = true;
-
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            try
             {
-                string[] filePaths = openFileDialog.FileNames;
-                string sClientID = ClientID.Trim();
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Multiselect = true;
 
-                if (!string.IsNullOrWhiteSpace(sClientID) && filePaths.Length > 0)
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    foreach (string filePath in filePaths)
+                    string[] filePaths = openFileDialog.FileNames;
+                    string sClientID = ClientID.Trim();
+
+                    if (!string.IsNullOrWhiteSpace(sClientID) && filePaths.Length > 0)
                     {
-                        string fileName = Path.GetFileName(filePath);
-                        string folderName = Path.GetFileNameWithoutExtension(filePath);
-                        string folderPath = Path.Combine(Config.baseFolderPath, sClientID, folderName);
-                        string destFilePath = Path.Combine(folderPath, fileName);
-                        frmUploadFile frmUploadFile = new frmUploadFile();
-                        frmUploadFile.sFilePath = folderPath;
-                        frmUploadFile.txtClientID.Text = sClientID;
-                        frmUploadFile.IsContractSigned = IsContractSigned;
-                        frmUploadFile.ShowDialog();
-                        if (frmUploadFile.IsProceed)
+                        foreach (string filePath in filePaths)
                         {
-                            if (!Directory.Exists(folderPath))
+                            string fileName = Path.GetFileName(filePath);
+                            //string folderName = Path.GetFileNameWithoutExtension(filePath);
+                            string folderPath = Path.Combine(Config.baseFolderPath, sClientID);
+                            string destFilePath = Path.Combine(folderPath, fileName);
+                            frmUploadFile frmUploadFile = new frmUploadFile();
+                            frmUploadFile.sFilePath = folderPath;
+                            frmUploadFile.txtClientID.Text = sClientID;
+                            frmUploadFile.IsContractSigned = IsContractSigned;
+                            frmUploadFile.ReferenceId = ReferenceId;
+                            frmUploadFile.ShowDialog();
+                            if (frmUploadFile.IsProceed)
                             {
-                                Directory.CreateDirectory(folderPath);
-
-                                string destinationFilePath = Path.Combine(folderPath, fileName);
-                                File.Copy(filePath, destinationFilePath);
-
-                                ClientContext.SaveFileInDatabase(sClientID, destinationFilePath, frmUploadFile.txtfilename.Text, fileName, frmUploadFile.txtnotes.Text);
-                                MessageBox.Show("System Message", "Files attached successfully!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                M_GetClientFileList();
-                            }
-                            else if (Directory.Exists(folderPath))
-                            {
-                                //if (File.Exists(destFilePath))
-                                //{
-                                    ClientContext.DeleteFileFromDatabase(destFilePath);
-                                    //File.Delete(destFilePath);
-                                    Directory.Delete(folderPath);
+                                if (!Directory.Exists(folderPath))
+                                {
                                     Directory.CreateDirectory(folderPath);
 
                                     string destinationFilePath = Path.Combine(folderPath, fileName);
                                     File.Copy(filePath, destinationFilePath);
 
-                                    ClientContext.SaveFileInDatabase(sClientID, destinationFilePath, frmUploadFile.txtfilename.Text, fileName, frmUploadFile.txtnotes.Text);
-                                    MessageBox.Show("Files attached successfully!", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                M_GetClientFileList();
-                                //}
-                            }
+                                    string result = ClientContext.SaveFileInDatabase(sClientID, destinationFilePath, frmUploadFile.txtfilename.Text, fileName, frmUploadFile.txtnotes.Text, ReferenceId);
+                                    if (result.Equals("SUCCESS"))
+                                    {
+                                      
+                                        MessageBox.Show("Files attached successfully!", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        M_GetClientFileList();
+                                    }
 
+                                }
+                                else if (Directory.Exists(folderPath))
+                                {
+                                    string destinationFilePath = Path.Combine(folderPath, fileName);
+                                    if (File.Exists(destinationFilePath))
+                                    {
+                                        if (MessageBox.Show("File Already Exists would you like to replace the file?","System Message",MessageBoxButtons.YesNo,MessageBoxIcon.Question,MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                                        {
+                                            File.Delete(destinationFilePath);
+                                            ClientContext.DeleteFileFromDatabase(destinationFilePath);
+                                        }
+
+
+                                    }
+                                    //Directory.Delete(folderPath);
+                                    //Directory.CreateDirectory(folderPath);
+
+                                  
+                                    File.Copy(filePath, destinationFilePath);
+
+                                    string result = ClientContext.SaveFileInDatabase(sClientID, destinationFilePath, frmUploadFile.txtfilename.Text, fileName, frmUploadFile.txtnotes.Text, ReferenceId);
+                                    if (result.Equals("SUCCESS"))
+                                    {
+                                        MessageBox.Show("Files attached successfully!", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        M_GetClientFileList();
+                                    }
+
+                                    
+                                }
+
+                            }
                         }
                     }
-                }
-                else
-                {
-                    MessageBox.Show("Please enter a client name and select at least one file.");
+                    else
+                    {
+                        MessageBox.Show("Please enter a client name and select at least one file.");
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+
+                // Log the exception
+              
+
+                // Log the error into the stored procedure
+                LogErrorIntoStoredProcedure("sp_LogError", "sp_SaveFile " +"Upload File", ex.Message, DateTime.Now);
+
+                // Optionally, show a message box to the user
+                MessageBox.Show("An error occurred : "+ ex.ToString() + " Please check the log table details.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
         private void frmEditClient_Load(object sender, EventArgs e)
@@ -243,7 +307,7 @@ namespace LEASING.UI.APP.Forms
             {
                 strClientFormMode = "READ";
             }
-           
+
             txtClienID.Text = ClientID;
             M_GetClientById();
             M_GetClientFileList();
@@ -333,7 +397,7 @@ namespace LEASING.UI.APP.Forms
             {
                 MessageBox.Show("New Client  has been added successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 strClientFormMode = "READ";
-               
+
 
             }
             else

@@ -78,18 +78,22 @@ namespace LEASING.UI.APP.Forms
                 {
                     try
                     {
-                        string result = UnitContext.MovedIn(Convert.ToString(dgvList.CurrentRow.Cells["RefId"].Value));
-                        if (result.Equals("SUCCESS"))
+                        if (MessageBox.Show("Are you sure you want tag this as Move-in?","",MessageBoxButtons.YesNo,MessageBoxIcon.Question,MessageBoxDefaultButton.Button2)== DialogResult.Yes)
                         {
-                            MessageBox.Show("Move-In Successfully! ", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            M_GetForMoveInUnitList();
-                        }
-                        else
-                        {
-                            MessageBox.Show(result, "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            string result = UnitContext.MovedIn(Convert.ToString(dgvList.CurrentRow.Cells["RefId"].Value));
+                            if (result.Equals("SUCCESS"))
+                            {
+                                MessageBox.Show("Move-In Successfully! ", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                M_GetForMoveInUnitList();
+                            }
+                            else
+                            {
+                                MessageBox.Show(result, "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                            LogErrorIntoStoredProcedure("sp_LogError", "sp_MovedIn: " + "Move-In", result, DateTime.Now);
+                                LogErrorIntoStoredProcedure("sp_LogError", "sp_MovedIn: " + "Move-In", result, DateTime.Now);
+                            }
                         }
+               
                     }
                     catch (Exception ex)
                     {                    

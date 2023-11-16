@@ -178,6 +178,12 @@
     <Compile Include="Forms\frmClientRecieptTransaction.Designer.cs">
       <DependentUpon>frmClientRecieptTransaction.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmClosedClientTransaction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmClosedClientTransaction.Designer.cs">
+      <DependentUpon>frmClosedClientTransaction.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmClientTransactionParking.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -213,6 +219,12 @@
     </Compile>
     <Compile Include="Forms\frmEditParkingComputation.Designer.cs">
       <DependentUpon>frmEditParkingComputation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmGetContactSignedDocumentsByReference.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmGetContactSignedDocumentsByReference.Designer.cs">
+      <DependentUpon>frmGetContactSignedDocumentsByReference.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmGroupSecurity.cs">
       <SubType>Form</SubType>
@@ -455,6 +467,9 @@
     <EmbeddedResource Include="Forms\frmClientInformation.resx">
       <DependentUpon>frmClientInformation.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmClosedClientTransaction.resx">
+      <DependentUpon>frmClosedClientTransaction.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmClientTransactionParking.resx">
       <DependentUpon>frmClientTransactionParking.cs</DependentUpon>
     </EmbeddedResource>
@@ -469,6 +484,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmEditParkingComputation.resx">
       <DependentUpon>frmEditParkingComputation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmGetContactSignedDocumentsByReference.resx">
+      <DependentUpon>frmGetContactSignedDocumentsByReference.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmParkComputation.resx">
       <DependentUpon>frmParkComputation.cs</DependentUpon>

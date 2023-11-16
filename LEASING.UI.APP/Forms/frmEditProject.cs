@@ -310,12 +310,12 @@ namespace LEASING.UI.APP.Forms
                     e.CellElement.ForeColor = Color.Black;
                     e.CellElement.BackColor = Color.LightSkyBlue;
                 }
-                else if (Convert.ToString(this.dgvUnitList.Rows[e.RowIndex].Cells["UnitStat"].Value) == "OCCUPIED")
+                else if (Convert.ToString(this.dgvUnitList.Rows[e.RowIndex].Cells["UnitStat"].Value) == "MOVE-IN")
                 {
                     e.CellElement.DrawFill = true;
                     e.CellElement.GradientStyle = GradientStyles.Solid;
-                    e.CellElement.ForeColor = Color.Black;
-                    e.CellElement.BackColor = Color.LightGreen;
+                    e.CellElement.ForeColor = Color.White;
+                    e.CellElement.BackColor = Color.Green;
 
                 }
                 else if (Convert.ToString(this.dgvUnitList.Rows[e.RowIndex].Cells["UnitStat"].Value) == "NOT AVAILABLE")

@@ -14,6 +14,7 @@ namespace LEASING.UI.APP.Forms
     public partial class frmClosedContracts : Form
     {
         PaymentContext PaymentContext = new PaymentContext();
+
         public frmClosedContracts()
         {
             InitializeComponent();
@@ -33,6 +34,33 @@ namespace LEASING.UI.APP.Forms
         private void frmClosedContracts_Load(object sender, EventArgs e)
         {
             M_GetClosedContracts();
+        }
+
+        private void dgvList_CellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                if (this.dgvList.Columns[e.ColumnIndex].Name == "ColViewFile")
+                {
+                    frmGetContactSignedDocumentsByReference forms = new frmGetContactSignedDocumentsByReference();
+                    forms.ClientID = Convert.ToString(dgvList.CurrentRow.Cells["ClientID"].Value);                
+                    forms.ReferenceID = Convert.ToString(dgvList.CurrentRow.Cells["RefId"].Value);
+                    forms.ShowDialog();                 
+                }
+                else if (this.dgvList.Columns[e.ColumnIndex].Name == "ColView")
+                {
+                    frmEditUnitComputation forms = new frmEditUnitComputation();
+                    forms.Recid = Convert.ToInt32(dgvList.CurrentRow.Cells["RecId"].Value);
+                    forms.ShowDialog();
+                }
+                else if (this.dgvList.Columns[e.ColumnIndex].Name == "ColLedger")
+                {
+                    frmClosedClientTransaction forms = new frmClosedClientTransaction();
+                    forms.ComputationRecid = Convert.ToInt32(dgvList.CurrentRow.Cells["RecId"].Value);
+                    forms.ClientId  = Convert.ToString(dgvList.CurrentRow.Cells["ClientID"].Value);
+                    forms.ShowDialog();
+                }          
+            }
         }
     }
 }

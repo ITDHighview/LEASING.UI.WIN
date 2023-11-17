@@ -59,6 +59,7 @@ BEGIN
            tblUnitReference.HeaderRefId,
            tblUnitReference.IsSignedContract,
            tblUnitReference.IsUnitMove,
+		    tblUnitReference.IsUnitMoveOut,
            tblUnitReference.IsTerminated
     FROM tblUnitReference WITH (NOLOCK)
         INNER JOIN tblUnitMstr WITH (NOLOCK)
@@ -67,7 +68,8 @@ BEGIN
           and ISNULL(tblUnitReference.IsDone, 0) = 0
           and ISNULL(tblUnitReference.IsSignedContract, 0) = 1
           and ISNULL(tblUnitReference.IsUnitMove, 0) = 0
-          and ISNULL(tblUnitReference.IsTerminated, 0) = 0
+		  and ISNULL(tblUnitReference.IsUnitMoveOut, 0) = 0
+          and ISNULL(tblUnitReference.IsTerminated, 0) = 0		  
           and ISNULL(tblUnitMstr.IsParking, 0) = 0
 END
 GO

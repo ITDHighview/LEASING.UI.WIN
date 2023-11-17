@@ -18,7 +18,7 @@ namespace LEASING.UI.APP.Forms
 {
     public partial class frmEditClient : Form
     {
-      
+
 
         ClientContext ClientContext = new ClientContext();
         public bool IsContractSigned { get; set; } = false;
@@ -90,11 +90,6 @@ namespace LEASING.UI.APP.Forms
 
             txtClienID.Enabled = true;
             txtClienID.ReadOnly = true;
-
-            txtreferencenumber.Enabled = true;
-            txtreferencenumber.ReadOnly = true;
-
-
         }
         private void DisabledFields()
         {
@@ -120,9 +115,6 @@ namespace LEASING.UI.APP.Forms
 
             txtClienID.Enabled = false;
             txtClienID.ReadOnly = true;
-
-            txtreferencenumber.Enabled = false;
-            txtreferencenumber.ReadOnly = true;
         }
 
         public string ClientID { get; set; }
@@ -131,33 +123,7 @@ namespace LEASING.UI.APP.Forms
         {
             InitializeComponent();
         }
-        private void LogErrorIntoStoredProcedure(string storedProcedureName, string procedureName, string errorMessage, DateTime logDateTime)
-        {
-            try
-            {
-                using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString()))
-                {
-                    connection.Open();
 
-                    using (SqlCommand command = new SqlCommand(storedProcedureName, connection))
-                    {
-                        command.CommandType = CommandType.StoredProcedure;
-
-                        // Add parameters
-                        command.Parameters.AddWithValue("@ProcedureName", procedureName);
-                        command.Parameters.AddWithValue("@ErrorMessage", errorMessage);
-                        command.Parameters.AddWithValue("@LogDateTime", logDateTime);
-
-                        // Execute the stored procedure
-                        command.ExecuteNonQuery();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {           
-                MessageBox.Show(ex.ToString(), "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
         private void M_GetClientFileList()
         {
             dgvFileList.DataSource = null;
@@ -200,8 +166,21 @@ namespace LEASING.UI.APP.Forms
             }
         }
 
+        private void M_GetReferenceByClientID()
+        {
+            dgvList.DataSource = null;
+            using (DataSet dt = ClientContext.GetReferenceByClientID(ClientID))
+            {
+                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                {
+                    dgvList.DataSource = dt.Tables[0];
+                }
+            }
+        }
+
         private void btnUploadFile_Click(object sender, EventArgs e)
         {
+     
             try
             {
                 OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -238,9 +217,10 @@ namespace LEASING.UI.APP.Forms
                                     string result = ClientContext.SaveFileInDatabase(sClientID, destinationFilePath, frmUploadFile.txtfilename.Text, fileName, frmUploadFile.txtnotes.Text, ReferenceId);
                                     if (result.Equals("SUCCESS"))
                                     {
-                                      
+
                                         MessageBox.Show("Files attached successfully!", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                         M_GetClientFileList();
+                                       
                                     }
 
                                 }
@@ -249,7 +229,7 @@ namespace LEASING.UI.APP.Forms
                                     string destinationFilePath = Path.Combine(folderPath, fileName);
                                     if (File.Exists(destinationFilePath))
                                     {
-                                        if (MessageBox.Show("File Already Exists would you like to replace the file?","System Message",MessageBoxButtons.YesNo,MessageBoxIcon.Question,MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                                        if (MessageBox.Show("File Already Exists would you like to replace the file?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                                         {
                                             File.Delete(destinationFilePath);
                                             ClientContext.DeleteFileFromDatabase(destinationFilePath);
@@ -260,7 +240,7 @@ namespace LEASING.UI.APP.Forms
                                     //Directory.Delete(folderPath);
                                     //Directory.CreateDirectory(folderPath);
 
-                                  
+
                                     File.Copy(filePath, destinationFilePath);
 
                                     string result = ClientContext.SaveFileInDatabase(sClientID, destinationFilePath, frmUploadFile.txtfilename.Text, fileName, frmUploadFile.txtnotes.Text, ReferenceId);
@@ -268,9 +248,10 @@ namespace LEASING.UI.APP.Forms
                                     {
                                         MessageBox.Show("Files attached successfully!", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                         M_GetClientFileList();
+                                        
                                     }
 
-                                    
+
                                 }
 
                             }
@@ -286,13 +267,13 @@ namespace LEASING.UI.APP.Forms
             {
 
                 // Log the exception
-              
+
 
                 // Log the error into the stored procedure
-                LogErrorIntoStoredProcedure("sp_LogError", "sp_SaveFile " +"Upload File", ex.Message, DateTime.Now);
+                Functions.LogErrorIntoStoredProcedure("sp_SaveFile" + "Upload File", "EDIT Client", ex.Message, DateTime.Now, this);
 
                 // Optionally, show a message box to the user
-                MessageBox.Show("An error occurred : "+ ex.ToString() + " Please check the log table details.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred : " + ex.ToString() + " Please check the log table details.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -311,6 +292,7 @@ namespace LEASING.UI.APP.Forms
             txtClienID.Text = ClientID;
             M_GetClientById();
             M_GetClientFileList();
+            M_GetReferenceByClientID();
         }
 
 
@@ -425,6 +407,33 @@ namespace LEASING.UI.APP.Forms
         private void btnUndo_Click(object sender, EventArgs e)
         {
             strClientFormMode = "READ";
+        }
+
+        private void dgvList_CellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                if (this.dgvList.Columns[e.ColumnIndex].Name == "ColViewFile")
+                {
+                    frmGetContactSignedDocumentsByReference forms = new frmGetContactSignedDocumentsByReference();
+                    forms.ClientID = Convert.ToString(dgvList.CurrentRow.Cells["ClientID"].Value);
+                    forms.ReferenceID = Convert.ToString(dgvList.CurrentRow.Cells["RefId"].Value);
+                    forms.ShowDialog();
+                }
+                else if (this.dgvList.Columns[e.ColumnIndex].Name == "ColView")
+                {
+                    frmEditUnitComputation forms = new frmEditUnitComputation();
+                    forms.Recid = Convert.ToInt32(dgvList.CurrentRow.Cells["RecId"].Value);
+                    forms.ShowDialog();
+                }
+                else if (this.dgvList.Columns[e.ColumnIndex].Name == "ColLedger")
+                {
+                    frmClosedClientTransaction forms = new frmClosedClientTransaction();
+                    forms.ComputationRecid = Convert.ToInt32(dgvList.CurrentRow.Cells["RecId"].Value);
+                    forms.ClientId = Convert.ToString(dgvList.CurrentRow.Cells["ClientID"].Value);
+                    forms.ShowDialog();
+                }
+            }
         }
     }
 }

@@ -29,7 +29,7 @@ BEGIN
 	SET NOCOUNT ON;
 
     -- Insert statements for procedure here
-	update tblUnitReference set IsTerminated = 1,LastCHangedBy =@EncodedBy,ComputerName = @ComputerName,LastChangedDate=GETDATE()  where RefId = @ReferenceID
+	update tblUnitReference set IsTerminated = 1,IsDone=1,LastCHangedBy =@EncodedBy,ComputerName = @ComputerName,LastChangedDate=GETDATE()  where RefId = @ReferenceID
 	update tblUnitMstr set UnitStatus = 'HOLD',LastCHangedBy =@EncodedBy,ComputerName = @ComputerName,LastChangedDate=GETDATE() where RecId = (select UnitId from tblUnitReference where RefId = @ReferenceID)
 	if(@@ROWCOUNT > 0)
 		BEGIN

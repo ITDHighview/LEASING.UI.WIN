@@ -177,7 +177,7 @@
             // txtGenVat
             // 
             this.txtGenVat.Location = new System.Drawing.Point(272, 3);
-            this.txtGenVat.MaxLength = 2;
+            this.txtGenVat.MaxLength = 10;
             this.txtGenVat.Name = "txtGenVat";
             this.txtGenVat.Size = new System.Drawing.Size(78, 19);
             this.txtGenVat.TabIndex = 0;
@@ -210,7 +210,7 @@
             // txtWithHoldingTax
             // 
             this.txtWithHoldingTax.Location = new System.Drawing.Point(609, 3);
-            this.txtWithHoldingTax.MaxLength = 2;
+            this.txtWithHoldingTax.MaxLength = 10;
             this.txtWithHoldingTax.Name = "txtWithHoldingTax";
             this.txtWithHoldingTax.Size = new System.Drawing.Size(80, 19);
             this.txtWithHoldingTax.TabIndex = 0;

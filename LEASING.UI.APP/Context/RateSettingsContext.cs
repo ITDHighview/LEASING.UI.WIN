@@ -184,7 +184,7 @@ namespace LEASING.UI.APP.Context
             }
         }
 
-        public string UpdateRESIDENTIALSettings(int vGenVat,decimal vSecurityAndMaintenance)
+        public string UpdateRESIDENTIALSettings(decimal vGenVat,decimal vSecurityAndMaintenance)
         {
             SqlCommand _sqlcmd = null;
             SqlParameter _sqlpara;
@@ -242,7 +242,7 @@ namespace LEASING.UI.APP.Context
             }
             return "";
         }
-        public string UpdateCOMMERCIALSettings(int vGenVat, decimal vSecurityAndMaintenance,int vWithHoldingTax)
+        public string UpdateCOMMERCIALSettings(decimal vGenVat, decimal vSecurityAndMaintenance, decimal vWithHoldingTax)
         {
             SqlCommand _sqlcmd = null;
             SqlParameter _sqlpara;
@@ -302,7 +302,7 @@ namespace LEASING.UI.APP.Context
             }
             return "";
         }
-        public string UpdateWAREHOUSESettings(int vGenVat, decimal vSecurityAndMaintenance ,int vWithHoldingTax)
+        public string UpdateWAREHOUSESettings(decimal vGenVat, decimal vSecurityAndMaintenance , decimal vWithHoldingTax)
         {
             SqlCommand _sqlcmd = null;
             SqlParameter _sqlpara;

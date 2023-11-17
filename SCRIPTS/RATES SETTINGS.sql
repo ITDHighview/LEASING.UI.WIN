@@ -1,3 +1,9 @@
+ALTER TABLE tblRatesSettings
+ALTER COLUMN GenVat DECIMAL(18,2);
+
+ALTER TABLE tblRatesSettings
+ALTER COLUMN WithHoldingTax DECIMAL(18,2);
+
 INSERT INTO tblRatesSettings
 (
     ProjectType,

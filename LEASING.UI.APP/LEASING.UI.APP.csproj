@@ -268,6 +268,18 @@
     <Compile Include="Forms\frmSelectClientReferencePaid.Designer.cs">
       <DependentUpon>frmSelectClientReferencePaid.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmTenantMoveOutParking.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmTenantMoveOutParking.Designer.cs">
+      <DependentUpon>frmTenantMoveOutParking.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmTenantMoveOutUnit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmTenantMoveOutUnit.Designer.cs">
+      <DependentUpon>frmTenantMoveOutUnit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmTenantMoveParking.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -505,6 +517,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmSelectClientReferencePaid.resx">
       <DependentUpon>frmSelectClientReferencePaid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmTenantMoveOutUnit.resx">
+      <DependentUpon>frmTenantMoveOutUnit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmTenantMoveUnit.resx">
       <DependentUpon>frmTenantMoveUnit.cs</DependentUpon>

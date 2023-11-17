@@ -79,7 +79,7 @@ namespace LEASING.UI.APP.Forms
         }
         private void M_UpdateRates()
         {
-            string results = RateSettingsContext.UpdateWAREHOUSESettings(txtGenVat.Text == string.Empty ? 0 : Convert.ToInt32(txtGenVat.Text), txtSecAndMaintenance.Text == string.Empty ? 0 : decimal.Parse(txtSecAndMaintenance.Text), txtWithHoldingTax.Text == string.Empty ? 0 : Convert.ToInt32(txtWithHoldingTax.Text));
+            string results = RateSettingsContext.UpdateWAREHOUSESettings(txtGenVat.Text == string.Empty ? 0 : decimal.Parse(txtGenVat.Text), txtSecAndMaintenance.Text == string.Empty ? 0 : decimal.Parse(txtSecAndMaintenance.Text), txtWithHoldingTax.Text == string.Empty ? 0 : decimal.Parse(txtWithHoldingTax.Text));
             if (results.Equals("SUCCESS"))
             {
                 MessageBox.Show("Rate  has been Upated successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -140,13 +140,13 @@ namespace LEASING.UI.APP.Forms
 
         private void txtGenVat_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9\b]"))
+            if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
         }
 
         private void txtWithHoldingTax_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9\b]"))
+            if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
         }
 

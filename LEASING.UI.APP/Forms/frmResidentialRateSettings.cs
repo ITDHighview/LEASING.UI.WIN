@@ -79,7 +79,7 @@ namespace LEASING.UI.APP.Forms
 
         private void M_UpdateRates()
         {
-            string results = RateSettingsContext.UpdateRESIDENTIALSettings(txtGenVat.Text == string.Empty ? 0 : Convert.ToInt32(txtGenVat.Text), txtSecAndMaintenance.Text == string.Empty ? 0 : decimal.Parse(txtSecAndMaintenance.Text));
+            string results = RateSettingsContext.UpdateRESIDENTIALSettings(txtGenVat.Text == string.Empty ? 0 : decimal.Parse(txtGenVat.Text), txtSecAndMaintenance.Text == string.Empty ? 0 : decimal.Parse(txtSecAndMaintenance.Text));
             if (results.Equals("SUCCESS"))
             {
                 MessageBox.Show("Rate  has been Upated successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -132,7 +132,7 @@ namespace LEASING.UI.APP.Forms
 
         private void txtGenVat_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9\b]"))
+            if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
         }
 

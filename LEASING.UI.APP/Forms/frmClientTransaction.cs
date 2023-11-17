@@ -46,6 +46,7 @@ namespace LEASING.UI.APP.Forms
         public string PaymentRemarks { get; set; }
         public string REF { get; set; }
         public int ModeType { get; set; }
+        public bool IsMoveOut { get; set; } = false;
         public frmClientTransaction()
         {
             InitializeComponent();
@@ -204,6 +205,7 @@ namespace LEASING.UI.APP.Forms
         {
             M_GetComputationById();
             M_GetClientTypeAndID();
+            btnCloseContract.Enabled = IsMoveOut;
         }
         private void M_GetComputationById()
         {
@@ -214,6 +216,7 @@ namespace LEASING.UI.APP.Forms
                 {
                     RefId = Convert.ToString(dt.Tables[0].Rows[0]["RefId"]);
                     txtClientName.Text = Convert.ToString(dt.Tables[0].Rows[0]["InquiringClient"]);
+                    IsMoveOut = Convert.ToBoolean(dt.Tables[0].Rows[0]["IsUnitMoveOut"]);
 
                     ////ddlProject.SelectedValue = Convert.ToInt32(dt.Tables[0].Rows[0]["ProjectId"]);
                     //ClientId = Convert.ToString(dt.Tables[0].Rows[0]["ClientID"]);
@@ -248,13 +251,13 @@ namespace LEASING.UI.APP.Forms
                     txtPaymentStatus.Text = Convert.ToString(dt.Tables[0].Rows[0]["PAYMENT_STATUS"]);
                     if (Convert.ToString(dt.Tables[0].Rows[0]["PAYMENT_STATUS"]) == "IN-PROGRESS")
                     {
-                        btnCloseContract.Enabled = false;
+
                         btnTerminateContract.Visible = true;
                     }
-                    else if(Convert.ToString(dt.Tables[0].Rows[0]["PAYMENT_STATUS"]) == "PAYMENT DONE")
+                    else if (Convert.ToString(dt.Tables[0].Rows[0]["PAYMENT_STATUS"]) == "PAYMENT DONE")
                     {
                         GetNotification("Payment Status", txtPaymentStatus.Text);
-                        btnCloseContract.Enabled = true;
+                        btnCloseContract.Enabled = IsMoveOut;
                         btnTerminateContract.Visible = false;
                     }
 
@@ -574,54 +577,62 @@ namespace LEASING.UI.APP.Forms
             {
                 if (this.dgvLedgerList.Columns[e.ColumnIndex].Name == "ColPay")
                 {
-                    if (MessageBox.Show("Are you sure you want to proceed  to this payment?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                    if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "PENDING" || Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "HOLD")
                     {
-                        frmPaymentMode frmPaymentMode = new frmPaymentMode();
-                        frmPaymentMode.ShowDialog();
-                        if (frmPaymentMode.IsProceed)
+                        if (MessageBox.Show("Are you sure you want to proceed  to this payment?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                         {
-                            CompanyORNo = frmPaymentMode.CompanyORNo;
-                            BankAccountName = frmPaymentMode.BankAccountName;
-                            BankAccountNumber = frmPaymentMode.BankAccountNumber;
-                            BankName = frmPaymentMode.BankName;
-                            SerialNo = frmPaymentMode.SerialNo;
-                            PaymentRemarks = frmPaymentMode.PaymentRemarks;
-                            REF = frmPaymentMode.REF;
-                            ModeType = frmPaymentMode.ModeType;
-
-                            frmReceivePayment frmReceivePayment = new frmReceivePayment();
-                            frmReceivePayment.Amount = Convert.ToString(dgvLedgerList.CurrentRow.Cells["LedgAmount"].Value);
-                            frmReceivePayment.ShowDialog();
-                            if (frmReceivePayment.IsProceed)
+                            frmPaymentMode frmPaymentMode = new frmPaymentMode();
+                            frmPaymentMode.ShowDialog();
+                            if (frmPaymentMode.IsProceed)
                             {
-                                ReceiveAmount = frmReceivePayment.txtReceiveAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtReceiveAmount.Text);
-                                ChangeAmount = frmReceivePayment.txtChangeAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtChangeAmount.Text);
-                                M_sp_GenerateFirstPayment();
-                                M_GetCheckPaymentStatus();
-                                M_GetLedgerList();
-                                M_GetPaymentListByReferenceId();
+                                CompanyORNo = frmPaymentMode.CompanyORNo;
+                                BankAccountName = frmPaymentMode.BankAccountName;
+                                BankAccountNumber = frmPaymentMode.BankAccountNumber;
+                                BankName = frmPaymentMode.BankName;
+                                SerialNo = frmPaymentMode.SerialNo;
+                                PaymentRemarks = frmPaymentMode.PaymentRemarks;
+                                REF = frmPaymentMode.REF;
+                                ModeType = frmPaymentMode.ModeType;
+
+                                frmReceivePayment frmReceivePayment = new frmReceivePayment();
+                                frmReceivePayment.Amount = Convert.ToString(dgvLedgerList.CurrentRow.Cells["LedgAmount"].Value);
+                                frmReceivePayment.ShowDialog();
+                                if (frmReceivePayment.IsProceed)
+                                {
+                                    ReceiveAmount = frmReceivePayment.txtReceiveAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtReceiveAmount.Text);
+                                    ChangeAmount = frmReceivePayment.txtChangeAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtChangeAmount.Text);
+                                    M_sp_GenerateFirstPayment();
+                                    M_GetCheckPaymentStatus();
+                                    M_GetLedgerList();
+                                    M_GetPaymentListByReferenceId();
+                                }
                             }
                         }
                     }
+
                 }
                 else if (this.dgvLedgerList.Columns[e.ColumnIndex].Name == "ColHold")
                 {
-                    if (MessageBox.Show("Are you sure you want to hold to this payment?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                    if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "PENDING")
                     {
-                        string result = PaymentContext.HoldPayment(RefId,Convert.ToInt32(dgvLedgerList.CurrentRow.Cells["Recid"].Value));
-                        if (!string.IsNullOrEmpty(result))
+                        if (MessageBox.Show("Are you sure you want to hold to this payment?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                         {
-                            if (result.Equals("SUCCESS"))
+                            string result = PaymentContext.HoldPayment(RefId, Convert.ToInt32(dgvLedgerList.CurrentRow.Cells["Recid"].Value));
+                            if (!string.IsNullOrEmpty(result))
                             {
-                                MessageBox.Show("PAYMENT HOLD SUCCESS", "System Message", MessageBoxButtons.OK);
-                                M_GetReferenceByClientID();
-                            }
-                            else
-                            {
-                                MessageBox.Show(result, "System Message", MessageBoxButtons.OK);
+                                if (result.Equals("SUCCESS"))
+                                {
+                                    MessageBox.Show("PAYMENT HOLD SUCCESS", "System Message", MessageBoxButtons.OK);
+                                    M_GetReferenceByClientID();
+                                }
+                                else
+                                {
+                                    MessageBox.Show(result, "System Message", MessageBoxButtons.OK);
+                                }
                             }
                         }
                     }
+                   
                 }
             }
         }
@@ -636,13 +647,13 @@ namespace LEASING.UI.APP.Forms
                     if (result.Equals("SUCCESS"))
                     {
                         MessageBox.Show("CLOSE CONTRACT SUCCESS", "System Message", MessageBoxButtons.OK);
-                        M_GetReferenceByClientID();                                               
+                        M_GetReferenceByClientID();
                     }
                     else
                     {
                         MessageBox.Show(result, "System Message", MessageBoxButtons.OK);
                     }
-                }      
+                }
             }
         }
 

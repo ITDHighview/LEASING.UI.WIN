@@ -51,16 +51,16 @@
             this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel13 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel14 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel15 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel16 = new Telerik.WinControls.UI.RadLabel();
+            this.txtWithHoldingTaxAmount = new Telerik.WinControls.UI.RadTextBox();
+            this.txtSecAndMaintenanceWithVatLessTAX = new Telerik.WinControls.UI.RadTextBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnEdit = new System.Windows.Forms.ToolStripButton();
             this.btnSave = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.btnUndo = new System.Windows.Forms.ToolStripButton();
             this.btnLogs = new System.Windows.Forms.ToolStripButton();
-            this.radLabel15 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel16 = new Telerik.WinControls.UI.RadLabel();
-            this.txtWithHoldingTaxAmount = new Telerik.WinControls.UI.RadTextBox();
-            this.txtSecAndMaintenanceWithVatLessTAX = new Telerik.WinControls.UI.RadTextBox();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
             this.radGroupBox1.SuspendLayout();
@@ -86,11 +86,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).BeginInit();
-            this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtWithHoldingTaxAmount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSecAndMaintenanceWithVatLessTAX)).BeginInit();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel2
@@ -177,9 +177,9 @@
             // txtGenVat
             // 
             this.txtGenVat.Location = new System.Drawing.Point(269, 3);
-            this.txtGenVat.MaxLength = 2;
+            this.txtGenVat.MaxLength = 10;
             this.txtGenVat.Name = "txtGenVat";
-            this.txtGenVat.Size = new System.Drawing.Size(74, 20);
+            this.txtGenVat.Size = new System.Drawing.Size(74, 19);
             this.txtGenVat.TabIndex = 0;
             this.txtGenVat.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtGenVat.TextChanged += new System.EventHandler(this.txtGenVat_TextChanged);
@@ -220,9 +220,9 @@
             // txtWithHoldingTax
             // 
             this.txtWithHoldingTax.Location = new System.Drawing.Point(609, 3);
-            this.txtWithHoldingTax.MaxLength = 2;
+            this.txtWithHoldingTax.MaxLength = 10;
             this.txtWithHoldingTax.Name = "txtWithHoldingTax";
-            this.txtWithHoldingTax.Size = new System.Drawing.Size(74, 20);
+            this.txtWithHoldingTax.Size = new System.Drawing.Size(74, 19);
             this.txtWithHoldingTax.TabIndex = 0;
             this.txtWithHoldingTax.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtWithHoldingTax.TextChanged += new System.EventHandler(this.txtWithHoldingTax_TextChanged);
@@ -242,7 +242,7 @@
             // 
             this.txtSecAndMaintenance.Location = new System.Drawing.Point(269, 28);
             this.txtSecAndMaintenance.Name = "txtSecAndMaintenance";
-            this.txtSecAndMaintenance.Size = new System.Drawing.Size(74, 20);
+            this.txtSecAndMaintenance.Size = new System.Drawing.Size(74, 19);
             this.txtSecAndMaintenance.TabIndex = 0;
             this.txtSecAndMaintenance.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSecAndMaintenance.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSecAndMaintenance_KeyPress);
@@ -304,7 +304,7 @@
             // 
             this.txtVatAmount.Location = new System.Drawing.Point(269, 53);
             this.txtVatAmount.Name = "txtVatAmount";
-            this.txtVatAmount.Size = new System.Drawing.Size(74, 20);
+            this.txtVatAmount.Size = new System.Drawing.Size(74, 19);
             this.txtVatAmount.TabIndex = 0;
             this.txtVatAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtVatAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtVatAmount_KeyPress);
@@ -313,7 +313,7 @@
             // 
             this.txtSecAndMaintenanceWithVat.Location = new System.Drawing.Point(269, 78);
             this.txtSecAndMaintenanceWithVat.Name = "txtSecAndMaintenanceWithVat";
-            this.txtSecAndMaintenanceWithVat.Size = new System.Drawing.Size(74, 20);
+            this.txtSecAndMaintenanceWithVat.Size = new System.Drawing.Size(74, 19);
             this.txtSecAndMaintenanceWithVat.TabIndex = 0;
             this.txtSecAndMaintenanceWithVat.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSecAndMaintenanceWithVat.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSecAndMaintenanceWithVat_KeyPress);
@@ -361,7 +361,7 @@
             this.radLabel13.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radLabel13.Location = new System.Drawing.Point(3, 103);
             this.radLabel13.Name = "radLabel13";
-            this.radLabel13.Size = new System.Drawing.Size(261, 19);
+            this.radLabel13.Size = new System.Drawing.Size(260, 19);
             this.radLabel13.TabIndex = 1;
             this.radLabel13.Text = "Security and Maintenance W/ VAT less TAX:";
             // 
@@ -371,9 +371,48 @@
             this.radLabel14.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radLabel14.Location = new System.Drawing.Point(425, 28);
             this.radLabel14.Name = "radLabel14";
-            this.radLabel14.Size = new System.Drawing.Size(180, 19);
+            this.radLabel14.Size = new System.Drawing.Size(178, 19);
             this.radLabel14.TabIndex = 1;
             this.radLabel14.Text = "With Holding Tax Computed :";
+            // 
+            // radLabel15
+            // 
+            this.radLabel15.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.radLabel15.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel15.ForeColor = System.Drawing.Color.DarkRed;
+            this.radLabel15.Location = new System.Drawing.Point(694, 28);
+            this.radLabel15.Name = "radLabel15";
+            this.radLabel15.Size = new System.Drawing.Size(63, 19);
+            this.radLabel15.TabIndex = 1;
+            this.radLabel15.Text = "(Amount)";
+            // 
+            // radLabel16
+            // 
+            this.radLabel16.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.radLabel16.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel16.ForeColor = System.Drawing.Color.DarkRed;
+            this.radLabel16.Location = new System.Drawing.Point(350, 103);
+            this.radLabel16.Name = "radLabel16";
+            this.radLabel16.Size = new System.Drawing.Size(63, 19);
+            this.radLabel16.TabIndex = 1;
+            this.radLabel16.Text = "(Amount)";
+            // 
+            // txtWithHoldingTaxAmount
+            // 
+            this.txtWithHoldingTaxAmount.Location = new System.Drawing.Point(609, 28);
+            this.txtWithHoldingTaxAmount.MaxLength = 2;
+            this.txtWithHoldingTaxAmount.Name = "txtWithHoldingTaxAmount";
+            this.txtWithHoldingTaxAmount.Size = new System.Drawing.Size(74, 19);
+            this.txtWithHoldingTaxAmount.TabIndex = 0;
+            this.txtWithHoldingTaxAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtSecAndMaintenanceWithVatLessTAX
+            // 
+            this.txtSecAndMaintenanceWithVatLessTAX.Location = new System.Drawing.Point(269, 103);
+            this.txtSecAndMaintenanceWithVatLessTAX.Name = "txtSecAndMaintenanceWithVatLessTAX";
+            this.txtSecAndMaintenanceWithVatLessTAX.Size = new System.Drawing.Size(74, 19);
+            this.txtSecAndMaintenanceWithVatLessTAX.TabIndex = 0;
+            this.txtSecAndMaintenanceWithVatLessTAX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // toolStrip1
             // 
@@ -430,45 +469,6 @@
             this.btnLogs.Size = new System.Drawing.Size(52, 22);
             this.btnLogs.Text = "Logs";
             // 
-            // radLabel15
-            // 
-            this.radLabel15.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.radLabel15.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel15.ForeColor = System.Drawing.Color.DarkRed;
-            this.radLabel15.Location = new System.Drawing.Point(694, 28);
-            this.radLabel15.Name = "radLabel15";
-            this.radLabel15.Size = new System.Drawing.Size(63, 19);
-            this.radLabel15.TabIndex = 1;
-            this.radLabel15.Text = "(Amount)";
-            // 
-            // radLabel16
-            // 
-            this.radLabel16.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.radLabel16.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel16.ForeColor = System.Drawing.Color.DarkRed;
-            this.radLabel16.Location = new System.Drawing.Point(350, 103);
-            this.radLabel16.Name = "radLabel16";
-            this.radLabel16.Size = new System.Drawing.Size(63, 19);
-            this.radLabel16.TabIndex = 1;
-            this.radLabel16.Text = "(Amount)";
-            // 
-            // txtWithHoldingTaxAmount
-            // 
-            this.txtWithHoldingTaxAmount.Location = new System.Drawing.Point(609, 28);
-            this.txtWithHoldingTaxAmount.MaxLength = 2;
-            this.txtWithHoldingTaxAmount.Name = "txtWithHoldingTaxAmount";
-            this.txtWithHoldingTaxAmount.Size = new System.Drawing.Size(74, 20);
-            this.txtWithHoldingTaxAmount.TabIndex = 0;
-            this.txtWithHoldingTaxAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // txtSecAndMaintenanceWithVatLessTAX
-            // 
-            this.txtSecAndMaintenanceWithVatLessTAX.Location = new System.Drawing.Point(269, 103);
-            this.txtSecAndMaintenanceWithVatLessTAX.Name = "txtSecAndMaintenanceWithVatLessTAX";
-            this.txtSecAndMaintenanceWithVatLessTAX.Size = new System.Drawing.Size(74, 20);
-            this.txtSecAndMaintenanceWithVatLessTAX.TabIndex = 0;
-            this.txtSecAndMaintenanceWithVatLessTAX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // frmCommercialRateSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -508,12 +508,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).EndInit();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtWithHoldingTaxAmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSecAndMaintenanceWithVatLessTAX)).EndInit();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
 
         }

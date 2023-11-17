@@ -1,7 +1,9 @@
 ﻿using LEASING.UI.APP.Context;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -348,6 +350,39 @@ namespace LEASING.UI.APP.Common
 
             dtTable = null;
             dvView = null;
+        }
+
+        public static void LogErrorIntoStoredProcedure(string procedureName, string FormName, string errorMessage, DateTime logDateTime , Control _ctrl)
+        {
+            int len = _ctrl.GetType().ToString().Length - _ctrl.GetType().ToString().LastIndexOf('.');
+            string vName = _ctrl.GetType().ToString().Substring(_ctrl.GetType().ToString().LastIndexOf('.') + 1, len - 1);
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString()))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand("sp_LogError", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        // Add parameters
+                        command.Parameters.AddWithValue("@ProcedureName", procedureName);
+                        command.Parameters.AddWithValue("@frmName", vName);
+                        command.Parameters.AddWithValue("@FormName", FormName);
+                        command.Parameters.AddWithValue("@UserId", Variables.UserID);
+                        command.Parameters.AddWithValue("@ErrorMessage", errorMessage);                
+                        command.Parameters.AddWithValue("@LogDateTime", logDateTime);
+
+                        // Execute the stored procedure
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
     }

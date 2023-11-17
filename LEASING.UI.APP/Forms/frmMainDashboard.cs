@@ -18,7 +18,7 @@ namespace LEASING.UI.APP.Forms
         public frmMainDashboard()
         {
             InitializeComponent();
-            Functions.SecurityControls(this);
+            //Functions.SecurityControls(this);
         }
 
         private void frmMainDashboard_Load(object sender, EventArgs e)
@@ -299,6 +299,18 @@ namespace LEASING.UI.APP.Forms
         private void radMenuItemCloseContract_Click(object sender, EventArgs e)
         {
             frmClosedContracts forms = new frmClosedContracts();
+            forms.ShowDialog();
+        }
+
+        private void radMenuItemTenantMoveOutUnit_Click(object sender, EventArgs e)
+        {
+            frmTenantMoveOutUnit forms = new frmTenantMoveOutUnit();
+            forms.ShowDialog();
+        }
+
+        private void radMenuItemTenantMoveOutParking_Click(object sender, EventArgs e)
+        {
+            frmTenantMoveOutParking forms = new frmTenantMoveOutParking();
             forms.ShowDialog();
         }
     }

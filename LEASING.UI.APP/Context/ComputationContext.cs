@@ -628,7 +628,7 @@ namespace LEASING.UI.APP.Context
             using (DataSet dsRec = new DataSet())
             {
                 _SqlCommand = new SqlCommand();
-                _SqlCommand.CommandText = "sp_GetReferenceByClientID";
+                _SqlCommand.CommandText = "sp_GetReferenceByClientIDpaid";
 
                 _SqlParameter = new SqlParameter("@ClientID", ClientID);
                 _SqlCommand.Parameters.Add(_SqlParameter);

@@ -107,9 +107,9 @@
             this.dgvList.MasterTemplate.AllowAddNewRow = false;
             this.dgvList.MasterTemplate.AllowColumnReorder = false;
             gridViewCommandColumn1.FieldName = "ColApproved";
-            gridViewCommandColumn1.HeaderImage = global::LEASING.UI.APP.Properties.Resources.attach;
+            gridViewCommandColumn1.HeaderImage = global::LEASING.UI.APP.Properties.Resources.accept;
             gridViewCommandColumn1.HeaderText = "";
-            gridViewCommandColumn1.Image = global::LEASING.UI.APP.Properties.Resources.attach;
+            gridViewCommandColumn1.Image = global::LEASING.UI.APP.Properties.Resources.accept;
             gridViewCommandColumn1.Name = "ColApproved";
             gridViewCommandColumn1.Width = 30;
             gridViewCommandColumn2.FieldName = "ColView";

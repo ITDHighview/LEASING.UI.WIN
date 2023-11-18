@@ -349,7 +349,7 @@ namespace LEASING.UI.APP.Forms
                 }
                 else if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "PENDING")
                 {
-                    // e.CellElement.ForeColor = Color.White;
+                    e.CellElement.ForeColor = Color.Black;
 
                     e.CellElement.DrawFill = true;
                     e.CellElement.GradientStyle = GradientStyles.Solid;
@@ -357,7 +357,7 @@ namespace LEASING.UI.APP.Forms
                 }
                 else if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "FOR PAYMENT")
                 {
-                    // e.CellElement.ForeColor = Color.White;
+                    e.CellElement.ForeColor = Color.White;
 
                     e.CellElement.DrawFill = true;
                     e.CellElement.GradientStyle = GradientStyles.Solid;
@@ -520,6 +520,46 @@ namespace LEASING.UI.APP.Forms
                         //   element.Enabled = false;
                         //}
                     }
+                    if (column.Name == "ColPay")
+                    {
+                        if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "FOR PAYMENT")
+                        {
+                            element.ImageAlignment = ContentAlignment.MiddleCenter;
+                            element.TextImageRelation = TextImageRelation.TextBeforeImage;
+                            element.Image = Properties.Resources.Bullet15_Arrow_Blue;
+                            element.ToolTipText = "Click to Pay";
+
+                            element.Enabled = true;
+                        }
+                        //else
+                        //{
+                        //    element.ImageAlignment = ContentAlignment.MiddleCenter;
+                        //    element.TextImageRelation = TextImageRelation.TextBeforeImage;
+                        //    element.Image = Properties.Resources.apply_icon;
+                        //    element.ToolTipText = "Done";
+                        //   element.Enabled = false;
+                        //}
+                    }
+                    if (column.Name == "ColHold")
+                    {
+                        if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "FOR PAYMENT")
+                        {
+                            element.ImageAlignment = ContentAlignment.MiddleCenter;
+                            element.TextImageRelation = TextImageRelation.TextBeforeImage;
+                            element.Image = Properties.Resources.bookmark_16;
+                            element.ToolTipText = "Click to Hold";
+
+                            element.Enabled = true;
+                        }
+                        //else
+                        //{
+                        //    element.ImageAlignment = ContentAlignment.MiddleCenter;
+                        //    element.TextImageRelation = TextImageRelation.TextBeforeImage;
+                        //    element.Image = Properties.Resources.apply_icon;
+                        //    element.ToolTipText = "Done";
+                        //   element.Enabled = false;
+                        //}
+                    }
 
 
                 }
@@ -577,7 +617,7 @@ namespace LEASING.UI.APP.Forms
             {
                 if (this.dgvLedgerList.Columns[e.ColumnIndex].Name == "ColPay")
                 {
-                    if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "PENDING" || Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "HOLD")
+                    if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "PENDING" || Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "HOLD" || Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "FOR PAYMENT")
                     {
                         if (MessageBox.Show("Are you sure you want to proceed  to this payment?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                         {
@@ -623,7 +663,7 @@ namespace LEASING.UI.APP.Forms
                                 if (result.Equals("SUCCESS"))
                                 {
                                     MessageBox.Show("PAYMENT HOLD SUCCESS", "System Message", MessageBoxButtons.OK);
-                                    M_GetReferenceByClientID();
+                                    M_GetPaymentListByReferenceId();
                                 }
                                 else
                                 {
@@ -632,7 +672,7 @@ namespace LEASING.UI.APP.Forms
                             }
                         }
                     }
-                   
+
                 }
             }
         }
@@ -647,7 +687,10 @@ namespace LEASING.UI.APP.Forms
                     if (result.Equals("SUCCESS"))
                     {
                         MessageBox.Show("CLOSE CONTRACT SUCCESS", "System Message", MessageBoxButtons.OK);
-                        M_GetReferenceByClientID();
+                        M_GetPaymentListByReferenceId();
+                        M_GetComputationById();
+                        M_GetCheckPaymentStatus();
+                        this.btnCloseContract.Enabled = false;
                     }
                     else
                     {
@@ -667,7 +710,9 @@ namespace LEASING.UI.APP.Forms
                     if (result.Equals("SUCCESS"))
                     {
                         MessageBox.Show("CLOSE CONTRACT SUCCESS", "System Message", MessageBoxButtons.OK);
-                        M_GetReferenceByClientID();
+                        M_GetComputationById();
+                        M_GetCheckPaymentStatus();
+                        M_GetPaymentListByReferenceId();
                     }
                     else
                     {

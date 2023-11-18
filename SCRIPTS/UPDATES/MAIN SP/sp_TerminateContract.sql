@@ -18,24 +18,120 @@ GO
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-ALTER PROCEDURE sp_TerminateContract 
-	@ReferenceID VARCHAR(50)=null
-	,@EncodedBy INT = NULL
-	,@ComputerName VARCHAR(20) = null
+ALTER PROCEDURE sp_TerminateContract
+    @ReferenceID VARCHAR(50) = null,
+    @EncodedBy INT = NULL,
+    @ComputerName VARCHAR(20) = null
 AS
 BEGIN
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
-	SET NOCOUNT ON;
+    -- SET NOCOUNT ON added to prevent extra result sets from
+    -- interfering with SELECT statements.
+    SET NOCOUNT ON;
 
+    DECLARE @Message_Code NVARCHAR(MAX);
     -- Insert statements for procedure here
-	update tblUnitReference set IsTerminated = 1,IsDone=1,LastCHangedBy =@EncodedBy,ComputerName = @ComputerName,LastChangedDate=GETDATE()  where RefId = @ReferenceID
-	update tblUnitMstr set UnitStatus = 'HOLD',LastCHangedBy =@EncodedBy,ComputerName = @ComputerName,LastChangedDate=GETDATE() where RecId = (select UnitId from tblUnitReference where RefId = @ReferenceID)
-	if(@@ROWCOUNT > 0)
-		BEGIN
-			SELECT 'SUCCESS' AS Message_Code
-		END
+    update tblUnitReference
+    set IsTerminated = 1,
+        IsDone = 1,
+        LastCHangedBy = @EncodedBy,
+        ContactDoneDate = GETDATE(),
+        TerminationDate = GETDATE()
+    where RefId = @ReferenceID
 
-	--select IIF(COUNT(*)>0,'IN-PROGRESS','PAYMENT DONE') AS PAYMENT_STATUS from tblMonthLedger where ReferenceID = substring(@ReferenceID,4,11) and ISNULL(IsPaid,0)=0
+    IF (@@ROWCOUNT > 0)
+    BEGIN
+        -- Log a success event
+        INSERT INTO LoggingEvent
+        (
+            EventType,
+            EventMessage
+        )
+        VALUES
+        ('SUCCESS',
+         'Result From : sp_TerminateContract -(' + @ReferenceID
+         + ': IsTerminated= 1,IsDone=1) tblUnitReference updated successfully'
+        );
+
+        SET @Message_Code = 'SUCCESS'
+    END
+    ELSE
+    BEGIN
+        -- Log an error event
+        INSERT INTO LoggingEvent
+        (
+            EventType,
+            EventMessage
+        )
+        VALUES
+        ('ERROR', 'Result From : sp_TerminateContract -' + 'No rows affected in tblUnitReference table');
+
+    END
+
+    update tblUnitMstr
+    set UnitStatus = 'HOLD'
+        --LastCHangedBy = @EncodedBy,
+        --ComputerName = @ComputerName,
+        --LastChangedDate = GETDATE()
+    where RecId =
+    (
+        select UnitId from tblUnitReference where RefId = @ReferenceID
+    )
+
+    IF (@@ROWCOUNT > 0)
+    BEGIN
+        -- Log a success event
+        INSERT INTO LoggingEvent
+        (
+            EventType,
+            EventMessage
+        )
+        VALUES
+        ('SUCCESS', 'Result From : sp_TerminateContract -(UnitStatus= HOLD) tblUnitMstr updated successfully');
+
+        SET @Message_Code = 'SUCCESS'
+    END
+    ELSE
+    BEGIN
+        -- Log an error event
+        INSERT INTO LoggingEvent
+        (
+            EventType,
+            EventMessage
+        )
+        VALUES
+        ('ERROR', 'Result From : sp_TerminateContract -' + 'No rows affected in tblUnitMstr table');
+
+    END
+    -- Log the error message
+    DECLARE @ErrorMessage NVARCHAR(MAX);
+    SET @ErrorMessage = ERROR_MESSAGE();
+
+    if @ErrorMessage <> ''
+    begin
+        -- Log an error event
+        INSERT INTO LoggingEvent
+        (
+            EventType,
+            EventMessage
+        )
+        VALUES
+        ('ERROR', 'From : sp_TerminateContract -' + @ErrorMessage);
+
+        -- Insert into a logging table
+        INSERT INTO ErrorLog
+        (
+            ProcedureName,
+            ErrorMessage,
+            LogDateTime
+        )
+        VALUES
+        ('sp_TerminateContract', @ErrorMessage, GETDATE());
+
+        -- Return an error message				
+        SET @Message_Code = @ErrorMessage
+    end
+
+    SELECT @Message_Code AS Message_Code;
+
 END
 GO

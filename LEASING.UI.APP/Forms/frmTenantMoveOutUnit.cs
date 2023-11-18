@@ -1,4 +1,5 @@
-﻿using LEASING.UI.APP.Context;
+﻿using LEASING.UI.APP.Common;
+using LEASING.UI.APP.Context;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,6 +15,7 @@ namespace LEASING.UI.APP.Forms
     public partial class frmTenantMoveOutUnit : Form
     {
         PaymentContext PaymentContext = new PaymentContext();
+        UnitContext UnitContext = new UnitContext();
 
         public string ReferenceId { get; set; } = string.Empty;
         public frmTenantMoveOutUnit()
@@ -38,12 +40,31 @@ namespace LEASING.UI.APP.Forms
             {
                 if (this.dgvList.Columns[e.ColumnIndex].Name == "ColApproved")
                 {
-                    //    frmEditClient forms = new frmEditClient();
-                    //    forms.ClientID = Convert.ToString(dgvList.CurrentRow.Cells["ClientID"].Value);
-                    //    //forms.IsContractSigned = IsContractSigned;
-                    //    forms.ReferenceId = Convert.ToString(dgvList.CurrentRow.Cells["RefId"].Value);
-                    //    forms.ShowDialog();
-                    M_GetForMoveOutUnitList();
+                    try
+                    {
+                        if (MessageBox.Show("Are you sure you want tag this as Move-Out?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                        {
+                            string result = UnitContext.MovedOut(Convert.ToString(dgvList.CurrentRow.Cells["RefId"].Value));
+                            if (result.Equals("SUCCESS"))
+                            {
+                                MessageBox.Show("Move-Out Successfully! ", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                M_GetForMoveOutUnitList();
+                            }
+                            else
+                            {
+                                MessageBox.Show(result, "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                Functions.LogErrorIntoStoredProcedure("sp_MovedOut: ", "Move Out Unit", result, DateTime.Now, this);
+                            }
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        Functions.LogErrorIntoStoredProcedure("sp_MovedOut: ", "Move Out Unit", ex.Message, DateTime.Now, this);
+                        MessageBox.Show("An error occurred : " + ex.ToString() + "Please Contact IT Administrator", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
                 }
                 else if (this.dgvList.Columns[e.ColumnIndex].Name == "ColView")
                 {
@@ -52,7 +73,7 @@ namespace LEASING.UI.APP.Forms
                     forms.ShowDialog();
                 }
             }
-            
+
         }
 
         private void frmTenantMoveOutUnit_Load(object sender, EventArgs e)

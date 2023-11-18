@@ -73,5 +73,5 @@ BEGIN
 		  and ISNULL(IsUnitMove, 0) = 1
           and ISNULL(IsTerminated, 0) = 0
           and ISNULL(IsDone, 0) = 0
-		  and ISNULL(IsUnitMoveOut, 0) = 0
+		  --and ISNULL(IsUnitMoveOut, 0) = 0
 END

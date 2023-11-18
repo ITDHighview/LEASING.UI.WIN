@@ -68,7 +68,7 @@ namespace LEASING.UI.APP.Forms
             txtnameofmaid.Text = string.Empty;
             txtnameofdriver.Text = string.Empty;
             txtnoofvisitorperday.Text = string.Empty;
-            txtreferencenumber.Text = string.Empty;
+           
             ddlgender.Text = string.Empty;
             dgvFileList.DataSource = null;
         }
@@ -92,7 +92,7 @@ namespace LEASING.UI.APP.Forms
             txtnameofmaid.Enabled = true;
             txtnameofdriver.Enabled = true;
             txtnoofvisitorperday.Enabled = true;
-            txtreferencenumber.Enabled = true;
+           
             ReadOnlyFields();
         }
         private void DisabledFields()
@@ -115,7 +115,7 @@ namespace LEASING.UI.APP.Forms
             txtnameofmaid.Enabled = false;
             txtnameofdriver.Enabled = false;
             txtnoofvisitorperday.Enabled = false;
-            txtreferencenumber.Enabled = false;
+           
 
             ReadOnlyFields();
         }
@@ -140,7 +140,7 @@ namespace LEASING.UI.APP.Forms
             txtnameofmaid.ReadOnly = true;
             txtnameofdriver.ReadOnly = true;
             txtnoofvisitorperday.ReadOnly = true;
-            txtreferencenumber.ReadOnly = true;
+           
 
         }
 
@@ -198,6 +198,17 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
+        private void M_GetReferenceByClientID()
+        {
+            dgvList.DataSource = null;
+            using (DataSet dt = ClientContext.GetReferenceByClientID(ClientID))
+            {
+                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                {
+                    dgvList.DataSource = dt.Tables[0];
+                }
+            }
+        }
 
         private void txtClienID_KeyDown(object sender, KeyEventArgs e)
         {
@@ -208,6 +219,7 @@ namespace LEASING.UI.APP.Forms
                     M_GetClientID();
                     M_GetClientById();
                     M_GetClientFileList();
+                    M_GetReferenceByClientID();
                     if (!string.IsNullOrEmpty(Message_Code))
                     {
                         MessageBox.Show(Message_Code, "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -311,6 +323,33 @@ namespace LEASING.UI.APP.Forms
         private void btnEnableView_Click_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void dgvList_CellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                if (this.dgvList.Columns[e.ColumnIndex].Name == "ColViewFile")
+                {
+                    frmGetContactSignedDocumentsByReference forms = new frmGetContactSignedDocumentsByReference();
+                    forms.ClientID = Convert.ToString(dgvList.CurrentRow.Cells["ClientID"].Value);
+                    forms.ReferenceID = Convert.ToString(dgvList.CurrentRow.Cells["RefId"].Value);
+                    forms.ShowDialog();
+                }
+                else if (this.dgvList.Columns[e.ColumnIndex].Name == "ColView")
+                {
+                    frmEditUnitComputation forms = new frmEditUnitComputation();
+                    forms.Recid = Convert.ToInt32(dgvList.CurrentRow.Cells["RecId"].Value);
+                    forms.ShowDialog();
+                }
+                else if (this.dgvList.Columns[e.ColumnIndex].Name == "ColLedger")
+                {
+                    frmClosedClientTransaction forms = new frmClosedClientTransaction();
+                    forms.ComputationRecid = Convert.ToInt32(dgvList.CurrentRow.Cells["RecId"].Value);
+                    forms.ClientId = Convert.ToString(dgvList.CurrentRow.Cells["ClientID"].Value);
+                    forms.ShowDialog();
+                }
+            }
         }
     }
 }

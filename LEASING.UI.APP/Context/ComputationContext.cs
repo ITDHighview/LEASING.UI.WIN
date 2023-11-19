@@ -369,7 +369,7 @@ namespace LEASING.UI.APP.Context
             }
         }
 
-        public DataSet GetPostDatedCountMonth(string FromDate,string EndDate,string ApplicableDate1,string ApplicableDate2,string rental)
+        public DataSet GetPostDatedCountMonth(string FromDate,string EndDate,string rental,string XML)
         {
 
             SqlCommand _SqlCommand = null;
@@ -386,13 +386,16 @@ namespace LEASING.UI.APP.Context
                 _SqlCommand.Parameters.Add(_SqlParameter);
                 _SqlParameter = new SqlParameter("@EndDate", EndDate);
                 _SqlCommand.Parameters.Add(_SqlParameter);
-                _SqlParameter = new SqlParameter("@ApplicableDate1", ApplicableDate1);
-                _SqlCommand.Parameters.Add(_SqlParameter);
-                _SqlParameter = new SqlParameter("@ApplicableDate2", ApplicableDate2);
-                _SqlCommand.Parameters.Add(_SqlParameter);
+                //_SqlParameter = new SqlParameter("@ApplicableDate1", ApplicableDate1);
+                //_SqlCommand.Parameters.Add(_SqlParameter);
+                //_SqlParameter = new SqlParameter("@ApplicableDate2", ApplicableDate2);
+                //_SqlCommand.Parameters.Add(_SqlParameter);
                 _SqlParameter = new SqlParameter("@Rental", rental);
                 _SqlCommand.Parameters.Add(_SqlParameter);
+                _SqlParameter = new SqlParameter("@XML", XML);
+                _SqlCommand.Parameters.Add(_SqlParameter);
 
+                
                 try
                 {
                     _SqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());

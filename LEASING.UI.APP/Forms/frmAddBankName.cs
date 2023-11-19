@@ -75,7 +75,6 @@ namespace LEASING.UI.APP.Forms
                     MessageBox.Show("New Bank Name has been added successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     strBankNameFormMode = "READ";
                     M_GetBankNameList();
-
                 }
                 else
                 {
@@ -84,10 +83,29 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.ToString(), "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-    
+        }
+        private void DeleteBankName()
+        {
+            try
+            {
+                string result = PaymentContext.DeleteBankName(Convert.ToString(dgvList.CurrentRow.Cells["BankName"].Value));
+                if (result.Equals("SUCCESS"))
+                {
+                    MessageBox.Show("Deleted successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    strBankNameFormMode = "READ";
+                    M_GetBankNameList();
+                }
+                else
+                {
+                    MessageBox.Show(result, "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void M_GetBankNameList()
@@ -125,6 +143,20 @@ namespace LEASING.UI.APP.Forms
                 {
                     SaveBankName();
                 }
+            }
+        }
+
+        private void dgvList_CellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                if (this.dgvList.Columns[e.ColumnIndex].Name == "ColRemoved")
+                {
+                    if (MessageBox.Show("Are you sure you want to delete this Bank Name ?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                    {
+                        DeleteBankName();
+                    }
+                }       
             }
         }
     }

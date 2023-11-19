@@ -269,15 +269,15 @@ namespace LEASING.UI.APP.Forms
         private void M_GetPostDatedCountMonth()
         {
 
-            dgvpostdatedcheck.DataSource = null;
-            using (DataSet dt = ComputationContext.GetPostDatedCountMonth(dtpApplicableFrom.Text, dtpFinishDate.Text, dtpApplicableFrom.Text, dtpApplicableTo.Text, txtTotalRental.Text))
-            {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
-                {
+            //dgvpostdatedcheck.DataSource = null;
+            //using (DataSet dt = ComputationContext.GetPostDatedCountMonth(dtpApplicableFrom.Text, dtpFinishDate.Text, dtpApplicableFrom.Text, dtpApplicableTo.Text, txtTotalRental.Text, M_getXMLData()))
+            //{
+            //    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+            //    {
 
-                    dgvpostdatedcheck.DataSource = dt.Tables[0];
-                }
-            }
+            //        dgvpostdatedcheck.DataSource = dt.Tables[0];
+            //    }
+            //}
         }
         private void M_GetProjecAddress()
         {

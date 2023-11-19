@@ -28,26 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn12 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnNew = new System.Windows.Forms.ToolStripButton();
             this.btnSave = new System.Windows.Forms.ToolStripButton();
             this.btnUndo = new System.Windows.Forms.ToolStripButton();
             this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
-            this.radGroupBox2 = new Telerik.WinControls.UI.RadGroupBox();
-            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.txtBankName = new Telerik.WinControls.UI.RadTextBox();
+            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
+            this.radGroupBox2 = new Telerik.WinControls.UI.RadGroupBox();
             this.dgvList = new Telerik.WinControls.UI.RadGridView();
             this.tableLayoutPanel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
             this.radGroupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtBankName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).BeginInit();
             this.radGroupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtBankName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvList.MasterTemplate)).BeginInit();
             this.SuspendLayout();
@@ -122,6 +123,22 @@
             this.radGroupBox1.TabIndex = 1;
             this.radGroupBox1.Text = "Bank Details";
             // 
+            // txtBankName
+            // 
+            this.txtBankName.Location = new System.Drawing.Point(119, 39);
+            this.txtBankName.Name = "txtBankName";
+            this.txtBankName.Size = new System.Drawing.Size(181, 20);
+            this.txtBankName.TabIndex = 1;
+            // 
+            // radLabel1
+            // 
+            this.radLabel1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel1.Location = new System.Drawing.Point(33, 39);
+            this.radLabel1.Name = "radLabel1";
+            this.radLabel1.Size = new System.Drawing.Size(80, 19);
+            this.radLabel1.TabIndex = 0;
+            this.radLabel1.Text = "Bank Name :";
+            // 
             // radGroupBox2
             // 
             this.radGroupBox2.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
@@ -133,22 +150,6 @@
             this.radGroupBox2.Size = new System.Drawing.Size(307, 296);
             this.radGroupBox2.TabIndex = 2;
             this.radGroupBox2.Text = "Bank Name List";
-            // 
-            // radLabel1
-            // 
-            this.radLabel1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel1.Location = new System.Drawing.Point(33, 39);
-            this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(80, 19);
-            this.radLabel1.TabIndex = 0;
-            this.radLabel1.Text = "Bank Name :";
-            // 
-            // txtBankName
-            // 
-            this.txtBankName.Location = new System.Drawing.Point(119, 39);
-            this.txtBankName.Name = "txtBankName";
-            this.txtBankName.Size = new System.Drawing.Size(181, 20);
-            this.txtBankName.TabIndex = 1;
             // 
             // dgvList
             // 
@@ -164,17 +165,25 @@
             // 
             this.dgvList.MasterTemplate.AllowAddNewRow = false;
             this.dgvList.MasterTemplate.AllowColumnReorder = false;
-            gridViewTextBoxColumn11.FieldName = "RecId";
-            gridViewTextBoxColumn11.HeaderText = "ID";
-            gridViewTextBoxColumn11.Name = "RecId";
-            gridViewTextBoxColumn11.Width = 100;
-            gridViewTextBoxColumn12.FieldName = "BankName";
-            gridViewTextBoxColumn12.HeaderText = "Bank Name";
-            gridViewTextBoxColumn12.Name = "BankName";
-            gridViewTextBoxColumn12.Width = 200;
+            this.dgvList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
+            gridViewCommandColumn1.FieldName = "ColRemoved";
+            gridViewCommandColumn1.HeaderImage = global::LEASING.UI.APP.Properties.Resources.Remove1;
+            gridViewCommandColumn1.HeaderText = "";
+            gridViewCommandColumn1.Image = global::LEASING.UI.APP.Properties.Resources.Remove1;
+            gridViewCommandColumn1.Name = "ColRemoved";
+            gridViewCommandColumn1.Width = 33;
+            gridViewTextBoxColumn1.FieldName = "RecId";
+            gridViewTextBoxColumn1.HeaderText = "ID";
+            gridViewTextBoxColumn1.Name = "RecId";
+            gridViewTextBoxColumn1.Width = 54;
+            gridViewTextBoxColumn2.FieldName = "BankName";
+            gridViewTextBoxColumn2.HeaderText = "Bank Name";
+            gridViewTextBoxColumn2.Name = "BankName";
+            gridViewTextBoxColumn2.Width = 217;
             this.dgvList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn11,
-            gridViewTextBoxColumn12});
+            gridViewCommandColumn1,
+            gridViewTextBoxColumn1,
+            gridViewTextBoxColumn2});
             this.dgvList.MasterTemplate.EnableFiltering = true;
             this.dgvList.MasterTemplate.ShowRowHeaderColumn = false;
             this.dgvList.Name = "dgvList";
@@ -184,6 +193,7 @@
             this.dgvList.Size = new System.Drawing.Size(303, 276);
             this.dgvList.TabIndex = 0;
             this.dgvList.Text = "radGridView1";
+            this.dgvList.CellClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.dgvList_CellClick);
             // 
             // frmAddBankName
             // 
@@ -204,10 +214,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).EndInit();
             this.radGroupBox1.ResumeLayout(false);
             this.radGroupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtBankName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).EndInit();
             this.radGroupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtBankName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvList.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvList)).EndInit();
             this.ResumeLayout(false);

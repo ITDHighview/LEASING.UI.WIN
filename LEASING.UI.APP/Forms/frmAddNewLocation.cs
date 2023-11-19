@@ -84,17 +84,30 @@ namespace LEASING.UI.APP.Forms
         }
         private void M_SaveLocation()
         {
-            LocationModel dto = new LocationModel();
-            dto.Description = txtLocDescription.Text;
-            dto.LocAddress = txtLocAddress.Text;
-            dto.Message_Code = LocationContext.SaveLocation(dto);
-            if (dto.Message_Code.Equals("SUCCESS"))
+            try
             {
-                MessageBox.Show("New Location has been added successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                strlocationFormMode = "READ";
-                M_GetLocationList();
+                LocationModel dto = new LocationModel();
+                dto.Description = txtLocDescription.Text;
+                dto.LocAddress = txtLocAddress.Text;
+                dto.Message_Code = LocationContext.SaveLocation(dto);
+                if (dto.Message_Code.Equals("SUCCESS"))
+                {
+                    MessageBox.Show("New Location has been added successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    strlocationFormMode = "READ";
+                    M_GetLocationList();
 
+                }
+                else
+                {
+                    MessageBox.Show(dto.Message_Code, "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString(), "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+      
         }
 
         private void frmAddNewLocation_Load(object sender, EventArgs e)

@@ -1,0 +1,3 @@
+CREATE TABLE tblBankName(
+RecId INT IDENTITY(1,1),
+BankName VARCHAR(50))

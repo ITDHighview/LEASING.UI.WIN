@@ -38,14 +38,14 @@
             this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
             this.txtCompanyORNo = new Telerik.WinControls.UI.RadTextBox();
             this.txtReferrence = new Telerik.WinControls.UI.RadTextBox();
-            this.txtBankName = new Telerik.WinControls.UI.RadTextBox();
             this.txtBankAccountName = new Telerik.WinControls.UI.RadTextBox();
             this.txtBankAccountNo = new Telerik.WinControls.UI.RadTextBox();
-            this.btnOk = new Telerik.WinControls.UI.RadButton();
             this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
             this.txtSerialNo = new Telerik.WinControls.UI.RadTextBox();
+            this.btnOk = new Telerik.WinControls.UI.RadButton();
             this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
             this.txtRemarks = new Telerik.WinControls.UI.RadTextBox();
+            this.ddlbankName = new Telerik.WinControls.UI.RadDropDownList();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlSelectMode)).BeginInit();
@@ -56,14 +56,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCompanyORNo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtReferrence)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtBankName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBankAccountName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBankAccountNo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnOk)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSerialNo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnOk)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRemarks)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlbankName)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -81,7 +81,6 @@
             this.tableLayoutPanel1.Controls.Add(this.radLabel6, 0, 6);
             this.tableLayoutPanel1.Controls.Add(this.txtCompanyORNo, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.txtReferrence, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.txtBankName, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.txtBankAccountName, 1, 5);
             this.tableLayoutPanel1.Controls.Add(this.txtBankAccountNo, 1, 6);
             this.tableLayoutPanel1.Controls.Add(this.radLabel7, 0, 7);
@@ -89,6 +88,7 @@
             this.tableLayoutPanel1.Controls.Add(this.btnOk, 1, 9);
             this.tableLayoutPanel1.Controls.Add(this.radLabel8, 0, 8);
             this.tableLayoutPanel1.Controls.Add(this.txtRemarks, 1, 8);
+            this.tableLayoutPanel1.Controls.Add(this.ddlbankName, 1, 4);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -121,7 +121,7 @@
             this.ddlSelectMode.Location = new System.Drawing.Point(146, 28);
             this.ddlSelectMode.Name = "ddlSelectMode";
             this.ddlSelectMode.NullText = "Select Here...";
-            this.ddlSelectMode.Size = new System.Drawing.Size(155, 20);
+            this.ddlSelectMode.Size = new System.Drawing.Size(155, 19);
             this.ddlSelectMode.TabIndex = 1;
             this.ddlSelectMode.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.ddlSelectMode_SelectedIndexChanged);
             // 
@@ -165,7 +165,7 @@
             this.radLabel5.ForeColor = System.Drawing.Color.DarkRed;
             this.radLabel5.Location = new System.Drawing.Point(3, 128);
             this.radLabel5.Name = "radLabel5";
-            this.radLabel5.Size = new System.Drawing.Size(138, 19);
+            this.radLabel5.Size = new System.Drawing.Size(137, 19);
             this.radLabel5.TabIndex = 0;
             this.radLabel5.Text = "Bank Account Name.  :";
             // 
@@ -185,7 +185,7 @@
             this.txtCompanyORNo.Location = new System.Drawing.Point(146, 53);
             this.txtCompanyORNo.Name = "txtCompanyORNo";
             this.txtCompanyORNo.NullText = "Type here...";
-            this.txtCompanyORNo.Size = new System.Drawing.Size(155, 20);
+            this.txtCompanyORNo.Size = new System.Drawing.Size(155, 19);
             this.txtCompanyORNo.TabIndex = 2;
             // 
             // txtReferrence
@@ -193,23 +193,15 @@
             this.txtReferrence.Location = new System.Drawing.Point(146, 78);
             this.txtReferrence.Name = "txtReferrence";
             this.txtReferrence.NullText = "Type here...";
-            this.txtReferrence.Size = new System.Drawing.Size(155, 20);
+            this.txtReferrence.Size = new System.Drawing.Size(155, 19);
             this.txtReferrence.TabIndex = 2;
-            // 
-            // txtBankName
-            // 
-            this.txtBankName.Location = new System.Drawing.Point(146, 103);
-            this.txtBankName.Name = "txtBankName";
-            this.txtBankName.NullText = "Type here...";
-            this.txtBankName.Size = new System.Drawing.Size(155, 20);
-            this.txtBankName.TabIndex = 2;
             // 
             // txtBankAccountName
             // 
             this.txtBankAccountName.Location = new System.Drawing.Point(146, 128);
             this.txtBankAccountName.Name = "txtBankAccountName";
             this.txtBankAccountName.NullText = "Type here...";
-            this.txtBankAccountName.Size = new System.Drawing.Size(155, 20);
+            this.txtBankAccountName.Size = new System.Drawing.Size(155, 19);
             this.txtBankAccountName.TabIndex = 2;
             // 
             // txtBankAccountNo
@@ -217,17 +209,8 @@
             this.txtBankAccountNo.Location = new System.Drawing.Point(146, 153);
             this.txtBankAccountNo.Name = "txtBankAccountNo";
             this.txtBankAccountNo.NullText = "Type here...";
-            this.txtBankAccountNo.Size = new System.Drawing.Size(155, 20);
+            this.txtBankAccountNo.Size = new System.Drawing.Size(155, 19);
             this.txtBankAccountNo.TabIndex = 2;
-            // 
-            // btnOk
-            // 
-            this.btnOk.Location = new System.Drawing.Point(146, 231);
-            this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(110, 24);
-            this.btnOk.TabIndex = 3;
-            this.btnOk.Text = "Ok.";
-            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // radLabel7
             // 
@@ -245,8 +228,17 @@
             this.txtSerialNo.Location = new System.Drawing.Point(146, 178);
             this.txtSerialNo.Name = "txtSerialNo";
             this.txtSerialNo.NullText = "Type here...";
-            this.txtSerialNo.Size = new System.Drawing.Size(155, 20);
+            this.txtSerialNo.Size = new System.Drawing.Size(155, 19);
             this.txtSerialNo.TabIndex = 2;
+            // 
+            // btnOk
+            // 
+            this.btnOk.Location = new System.Drawing.Point(146, 231);
+            this.btnOk.Name = "btnOk";
+            this.btnOk.Size = new System.Drawing.Size(110, 24);
+            this.btnOk.TabIndex = 3;
+            this.btnOk.Text = "Ok.";
+            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // radLabel8
             // 
@@ -266,6 +258,13 @@
             this.txtRemarks.NullText = "Type here...";
             this.txtRemarks.Size = new System.Drawing.Size(216, 20);
             this.txtRemarks.TabIndex = 2;
+            // 
+            // ddlbankName
+            // 
+            this.ddlbankName.Location = new System.Drawing.Point(146, 103);
+            this.ddlbankName.Name = "ddlbankName";
+            this.ddlbankName.Size = new System.Drawing.Size(155, 20);
+            this.ddlbankName.TabIndex = 4;
             // 
             // frmPaymentMode
             // 
@@ -290,14 +289,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCompanyORNo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtReferrence)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtBankName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBankAccountName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBankAccountNo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnOk)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSerialNo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnOk)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRemarks)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlbankName)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -314,7 +313,6 @@
         private Telerik.WinControls.UI.RadLabel radLabel6;
         private Telerik.WinControls.UI.RadTextBox txtCompanyORNo;
         private Telerik.WinControls.UI.RadTextBox txtReferrence;
-        private Telerik.WinControls.UI.RadTextBox txtBankName;
         private Telerik.WinControls.UI.RadTextBox txtBankAccountName;
         private Telerik.WinControls.UI.RadTextBox txtBankAccountNo;
         private Telerik.WinControls.UI.RadButton btnOk;
@@ -322,5 +320,6 @@
         private Telerik.WinControls.UI.RadTextBox txtSerialNo;
         private Telerik.WinControls.UI.RadLabel radLabel8;
         private Telerik.WinControls.UI.RadTextBox txtRemarks;
+        private Telerik.WinControls.UI.RadDropDownList ddlbankName;
     }
 }

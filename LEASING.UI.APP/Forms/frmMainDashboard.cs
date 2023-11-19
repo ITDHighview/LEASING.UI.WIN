@@ -313,5 +313,11 @@ namespace LEASING.UI.APP.Forms
             frmTenantMoveOutParking forms = new frmTenantMoveOutParking();
             forms.ShowDialog();
         }
+
+        private void radMenuItemBankName_Click(object sender, EventArgs e)
+        {
+            frmAddBankName forms = new frmAddBankName();
+            forms.ShowDialog();
+        }
     }
 }

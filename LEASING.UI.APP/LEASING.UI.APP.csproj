@@ -112,6 +112,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmAddBankName.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmAddBankName.Designer.cs">
+      <DependentUpon>frmAddBankName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmAddNewClient.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -448,6 +454,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmAddBankName.resx">
+      <DependentUpon>frmAddBankName.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmAddNewClient.resx">
       <DependentUpon>frmAddNewClient.cs</DependentUpon>

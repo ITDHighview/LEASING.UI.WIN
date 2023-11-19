@@ -39,20 +39,21 @@ namespace LEASING.UI.APP.Forms
                 _strPaymentmMode = value;
                 switch (_strPaymentmMode)
                 {
-                    case "CASE":
+                    case "CASH":
 
                         txtCompanyORNo.Enabled = true;
                         txtReferrence.Enabled = false;
-                        txtBankName.Enabled = false;
+                        ddlbankName.Enabled = false;
                         txtBankAccountName.Enabled = false;
                         txtBankAccountNo.Enabled = false;
                         txtSerialNo.Enabled = false;
+                        ddlbankName.Text = string.Empty;
 
                         break;
                     case "BANK":
                         txtCompanyORNo.Enabled = true;
                         txtReferrence.Enabled = true;
-                        txtBankName.Enabled = true;
+                        ddlbankName.Enabled = true;
                         txtBankAccountName.Enabled = true;
                         txtBankAccountNo.Enabled = true;
                         txtSerialNo.Enabled = false;
@@ -61,7 +62,7 @@ namespace LEASING.UI.APP.Forms
                     case "PDC":
                         txtCompanyORNo.Enabled = true;
                         txtReferrence.Enabled = false;
-                        txtBankName.Enabled = true;
+                        ddlbankName.Enabled = true;
                         txtBankAccountName.Enabled = true;
                         txtBankAccountNo.Enabled = true;
                         txtSerialNo.Enabled = true;
@@ -78,7 +79,7 @@ namespace LEASING.UI.APP.Forms
         {
             txtCompanyORNo.Text = string.Empty;
             txtReferrence.Text = string.Empty;
-            txtBankName.Text = string.Empty;
+            ddlbankName.Text = string.Empty;
             txtBankAccountName.Text = string.Empty;
             txtBankAccountNo.Text = string.Empty;
             txtSerialNo.Text = string.Empty;
@@ -97,18 +98,33 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
+        private void M_GetSelectBanknName()
+        {
+
+            ddlbankName.DataSource = null;
+            using (DataSet dt = PaymentContext.GetSelectBankName())
+            {
+                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                {
+                    ddlbankName.DisplayMember = "BankName";
+                    ddlbankName.ValueMember = "BankName";
+                    ddlbankName.DataSource = dt.Tables[0];
+                }
+            }
+        }
 
         private void frmPaymentMode_Load(object sender, EventArgs e)
         {
             ClearFields();
             M_GetSelectPaymentMode();
+            M_GetSelectBanknName();
         }
 
         private void ddlSelectMode_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
         {
             if (Convert.ToInt32(ddlSelectMode.SelectedValue) == 1)
             {
-                strPaymentmMode = "CASE";
+                strPaymentmMode = "CASH";
             }
             else if (Convert.ToInt32(ddlSelectMode.SelectedValue) == 2)
             {
@@ -130,7 +146,7 @@ namespace LEASING.UI.APP.Forms
                  CompanyORNo = txtCompanyORNo.Text;
                 BankAccountName = txtBankAccountName.Text;
                 BankAccountNumber = txtBankAccountNo.Text;
-                BankName = txtBankName.Text;
+                BankName = ddlbankName.Text;
                 SerialNo = txtSerialNo.Text;
                 PaymentRemarks = txtRemarks.Text;
                 REF = txtReferrence.Text;

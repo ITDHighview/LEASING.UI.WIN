@@ -30,11 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.radDesktopAlert1 = new Telerik.WinControls.UI.RadDesktopAlert(this.components);
-            this.radMenuItem5 = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemLogsLocation = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemLogProject = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItemNotification = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
             this.lblUserInfoPanel = new Telerik.WinControls.UI.RadLabel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -88,9 +84,11 @@
             this.radMenuItemUnitContracts = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItemContractSignedUnit = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItemTenantMoveUnit = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItemTenantMoveOutUnit = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItemParkingContracts = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItemContractSignedParking = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItemTenantMoveParking = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItemTenantMoveOutParking = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItemCloseContract = new Telerik.WinControls.UI.RadMenuItem();
             this.radPanel2 = new Telerik.WinControls.UI.RadPanel();
             this.radMenu2 = new Telerik.WinControls.UI.RadMenu();
@@ -104,9 +102,8 @@
             this.radMenuItemCommercialSettings = new Telerik.WinControls.UI.RadMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.radPanel8 = new Telerik.WinControls.UI.RadPanel();
-            this.radMenuItemTenantMoveOutUnit = new Telerik.WinControls.UI.RadMenuItem();
-            this.radMenuItemTenantMoveOutParking = new Telerik.WinControls.UI.RadMenuItem();
-            ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
+            this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
+            this.radMenuItemBankName = new Telerik.WinControls.UI.RadMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.lblUserInfoPanel)).BeginInit();
             this.lblUserInfoPanel.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -147,35 +144,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnMainMenu)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // radMenuItem5
-            // 
-            this.radMenuItem5.AccessibleDescription = "LOGS";
-            this.radMenuItem5.AccessibleName = "LOGS";
-            this.radMenuItem5.Image = global::LEASING.UI.APP.Properties.Resources.info_32;
-            this.radMenuItem5.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radMenuItemLogsLocation,
-            this.radMenuItemLogProject});
-            this.radMenuItem5.Name = "radMenuItem5";
-            this.radMenuItem5.Text = "LOGS";
-            this.radMenuItem5.Click += new System.EventHandler(this.radMenuItem5_Click);
-            // 
-            // radMenuItemLogsLocation
-            // 
-            this.radMenuItemLogsLocation.AccessibleDescription = "LOCATION LOGS";
-            this.radMenuItemLogsLocation.AccessibleName = "LOCATION LOGS";
-            this.radMenuItemLogsLocation.Image = global::LEASING.UI.APP.Properties.Resources.info_16;
-            this.radMenuItemLogsLocation.Name = "radMenuItemLogsLocation";
-            this.radMenuItemLogsLocation.Text = "LOCATION LOGS";
-            // 
-            // radMenuItemLogProject
-            // 
-            this.radMenuItemLogProject.AccessibleDescription = "PROJECT LOGS";
-            this.radMenuItemLogProject.AccessibleName = "PROJECT LOGS";
-            this.radMenuItemLogProject.Image = global::LEASING.UI.APP.Properties.Resources.info_16;
-            this.radMenuItemLogProject.Name = "radMenuItemLogProject";
-            this.radMenuItemLogProject.Text = "PROJECT LOGS";
             // 
             // radMenuItemNotification
             // 
@@ -184,17 +154,6 @@
             this.radMenuItemNotification.Image = global::LEASING.UI.APP.Properties.Resources._20x20RedBell;
             this.radMenuItemNotification.Name = "radMenuItemNotification";
             this.radMenuItemNotification.Text = "NOTIFICATION";
-            // 
-            // radMenu1
-            // 
-            this.radMenu1.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radMenuItem5,
-            this.radMenuItemNotification});
-            this.radMenu1.Location = new System.Drawing.Point(218, 3);
-            this.radMenu1.Name = "radMenu1";
-            this.radMenu1.Size = new System.Drawing.Size(790, 36);
-            this.radMenu1.TabIndex = 4;
-            this.radMenu1.Text = "radMenu1";
             // 
             // lblUserInfoPanel
             // 
@@ -349,7 +308,8 @@
             this.radMenuItemAddNewProject,
             this.radMenuItemAddNewPurhcaseItem,
             this.radMenuItem8,
-            this.radMenuItemAddNewUnit});
+            this.radMenuItemAddNewUnit,
+            this.radMenuItemBankName});
             this.radMenuItemAdministrative.Name = "radMenuItemAdministrative";
             this.radMenuItemAdministrative.Text = "ADMINISTRATIVE";
             this.radMenuItemAdministrative.Click += new System.EventHandler(this.radMenuItemAdministrative_Click);
@@ -764,6 +724,14 @@
             this.radMenuItemTenantMoveUnit.Text = "Tenant Move-In Unit";
             this.radMenuItemTenantMoveUnit.Click += new System.EventHandler(this.radMenuItemTenantMoveUnit_Click);
             // 
+            // radMenuItemTenantMoveOutUnit
+            // 
+            this.radMenuItemTenantMoveOutUnit.AccessibleDescription = "radMenuItemTenantMoveOutUnit";
+            this.radMenuItemTenantMoveOutUnit.AccessibleName = "radMenuItemTenantMoveOutUnit";
+            this.radMenuItemTenantMoveOutUnit.Name = "radMenuItemTenantMoveOutUnit";
+            this.radMenuItemTenantMoveOutUnit.Text = "Tenant Move-Out Unit";
+            this.radMenuItemTenantMoveOutUnit.Click += new System.EventHandler(this.radMenuItemTenantMoveOutUnit_Click);
+            // 
             // radMenuItemParkingContracts
             // 
             this.radMenuItemParkingContracts.AccessibleDescription = "Parking Contract";
@@ -792,6 +760,14 @@
             this.radMenuItemTenantMoveParking.Name = "radMenuItemTenantMoveParking";
             this.radMenuItemTenantMoveParking.Text = "Tenant Move-In Parking";
             this.radMenuItemTenantMoveParking.Click += new System.EventHandler(this.radMenuItemTenantMoveParking_Click);
+            // 
+            // radMenuItemTenantMoveOutParking
+            // 
+            this.radMenuItemTenantMoveOutParking.AccessibleDescription = "radMenuItemTenantMoveOutParking";
+            this.radMenuItemTenantMoveOutParking.AccessibleName = "radMenuItemTenantMoveOutParking";
+            this.radMenuItemTenantMoveOutParking.Name = "radMenuItemTenantMoveOutParking";
+            this.radMenuItemTenantMoveOutParking.Text = "Tenant Move-Out Parking";
+            this.radMenuItemTenantMoveOutParking.Click += new System.EventHandler(this.radMenuItemTenantMoveOutParking_Click);
             // 
             // radMenuItemCloseContract
             // 
@@ -929,21 +905,24 @@
             this.radPanel8.Size = new System.Drawing.Size(790, 536);
             this.radPanel8.TabIndex = 3;
             // 
-            // radMenuItemTenantMoveOutUnit
+            // radMenu1
             // 
-            this.radMenuItemTenantMoveOutUnit.AccessibleDescription = "radMenuItemTenantMoveOutUnit";
-            this.radMenuItemTenantMoveOutUnit.AccessibleName = "radMenuItemTenantMoveOutUnit";
-            this.radMenuItemTenantMoveOutUnit.Name = "radMenuItemTenantMoveOutUnit";
-            this.radMenuItemTenantMoveOutUnit.Text = "Tenant Move-Out Unit";
-            this.radMenuItemTenantMoveOutUnit.Click += new System.EventHandler(this.radMenuItemTenantMoveOutUnit_Click);
+            this.radMenu1.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.radMenuItemNotification});
+            this.radMenu1.Location = new System.Drawing.Point(218, 3);
+            this.radMenu1.Name = "radMenu1";
+            this.radMenu1.Size = new System.Drawing.Size(790, 24);
+            this.radMenu1.TabIndex = 4;
+            this.radMenu1.Text = "radMenu1";
             // 
-            // radMenuItemTenantMoveOutParking
+            // radMenuItemBankName
             // 
-            this.radMenuItemTenantMoveOutParking.AccessibleDescription = "radMenuItemTenantMoveOutParking";
-            this.radMenuItemTenantMoveOutParking.AccessibleName = "radMenuItemTenantMoveOutParking";
-            this.radMenuItemTenantMoveOutParking.Name = "radMenuItemTenantMoveOutParking";
-            this.radMenuItemTenantMoveOutParking.Text = "Tenant Move-Out Parking";
-            this.radMenuItemTenantMoveOutParking.Click += new System.EventHandler(this.radMenuItemTenantMoveOutParking_Click);
+            this.radMenuItemBankName.AccessibleDescription = "radMenuItemBankName";
+            this.radMenuItemBankName.AccessibleName = "radMenuItemBankName";
+            this.radMenuItemBankName.Image = global::LEASING.UI.APP.Properties.Resources.gear_16;
+            this.radMenuItemBankName.Name = "radMenuItemBankName";
+            this.radMenuItemBankName.Text = "Bank Name";
+            this.radMenuItemBankName.Click += new System.EventHandler(this.radMenuItemBankName_Click);
             // 
             // frmMainDashboard
             // 
@@ -957,7 +936,6 @@
             this.Text = "LEASING SYSTEM";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMainDashboard_FormClosing);
             this.Load += new System.EventHandler(this.frmMainDashboard_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblUserInfoPanel)).EndInit();
             this.lblUserInfoPanel.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
@@ -1008,17 +986,14 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
         private Telerik.WinControls.UI.RadDesktopAlert radDesktopAlert1;
-        private Telerik.WinControls.UI.RadMenuItem radMenuItem5;
-        private Telerik.WinControls.UI.RadMenuItem radMenuItemLogsLocation;
-        private Telerik.WinControls.UI.RadMenuItem radMenuItemLogProject;
         private Telerik.WinControls.UI.RadMenuItem radMenuItemNotification;
-        private Telerik.WinControls.UI.RadMenu radMenu1;
         private Telerik.WinControls.UI.RadLabel lblUserInfoPanel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.PictureBox pictureBox1;
@@ -1092,5 +1067,7 @@
         private Telerik.WinControls.UI.RadMenuItem radMenuItemCloseContract;
         private Telerik.WinControls.UI.RadMenuItem radMenuItemTenantMoveOutUnit;
         private Telerik.WinControls.UI.RadMenuItem radMenuItemTenantMoveOutParking;
+        private Telerik.WinControls.UI.RadMenu radMenu1;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemBankName;
     }
 }

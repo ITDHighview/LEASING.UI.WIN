@@ -18,17 +18,16 @@ namespace LEASING.UI.APP.Models
         public string StatDate { get; set; }
         public string FinishDate { get; set; }
         public string TransactionDate { get; set; }
-        public string Applicabledate1 { get; set; }
-        public string Applicabledate2 { get; set; }
         public decimal Rental { get; set; }
         public decimal SecAndMaintenance { get; set; }
         public decimal TotalRent { get; set; }
-        public decimal Advancemonths1 { get; set; }
-        public decimal Advancemonths2 { get; set; }
         public decimal SecDeposit { get; set; }
         public decimal Total { get; set; }
         public bool IsActive { get; set; }
         public string ClientID { get; set; }
+        public string XML { get; set; }
+        public decimal AdvancePaymentAmount { get; set; }
+        
     }
 
 }

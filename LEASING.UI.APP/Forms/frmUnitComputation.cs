@@ -30,7 +30,6 @@ namespace LEASING.UI.APP.Forms
             InitializeComponent();
             printDocument.PrintPage += PrintDocument_PrintPage;
         }
-
         private void PrintDocument_PrintPage(object sender, PrintPageEventArgs e)
         {
             // Calculate the scaling factor to fit the content on the printed page
@@ -56,7 +55,6 @@ namespace LEASING.UI.APP.Forms
                 e.Graphics.DrawImage(bitmap, Point.Empty);
             }
         }
-
         private void printButton_Click(object sender, EventArgs e)
         {
             // Display the print preview dialog
@@ -71,7 +69,6 @@ namespace LEASING.UI.APP.Forms
             btnCompute.Visible = true;
             toolStripAdvancePayment.Visible = true;
         }
-
         private string _strFormMode;
         public string strFormMode
         {
@@ -106,6 +103,9 @@ namespace LEASING.UI.APP.Forms
                         ddlUnitNumber.SelectedIndex = 0;
                         DisableFields();
                         dgvpostdatedcheck.DataSource = null;
+                        dgvAdvancePayment.DataSource = null;
+                        dataTable.Clear();
+                      
                         btnCompute.Enabled = false;
                         toolStripAdvancePayment.Enabled = false;
                         dgvAdvancePayment.Enabled = false;
@@ -118,7 +118,6 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-
         private bool IsComputationValid()
         {
             if (ddlProject.SelectedText == "--SELECT--")
@@ -136,7 +135,6 @@ namespace LEASING.UI.APP.Forms
 
             return true;
         }
-
         private void ClearFields()
         {
             txtProjectAddress.Text = string.Empty;
@@ -149,8 +147,8 @@ namespace LEASING.UI.APP.Forms
 
             txtMonthsSecurityDeposit.Text = string.Empty;
             txtTotal.Text = string.Empty;
+            txtSecurityPaymentMonthCount.Text = string.Empty;
         }
-
         private void EnableFields()
         {
             txtProjectAddress.Enabled = true;
@@ -174,7 +172,6 @@ namespace LEASING.UI.APP.Forms
             ddlUnitNumber.Enabled = true;
             btnCheckunits.Enabled = true;
         }
-
         private void DisableFields()
         {
             txtProjectAddress.Enabled = false;
@@ -224,7 +221,6 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-
         private void M_SelectProject()
         {
             ddlProject.DataSource = null;
@@ -251,7 +247,6 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-
         private void M_GetProjecAddress()
         {
             txtProjectAddress.Text = string.Empty;
@@ -265,7 +260,6 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-
         private void M_GetUnitAvaibleById()
         {
             txtFloorType.Text = string.Empty;
@@ -290,7 +284,6 @@ namespace LEASING.UI.APP.Forms
             var rentalfinal = (rental * (dgvAdvancePayment.Rows.Count()));
             txtTotal.Text = Convert.ToString(rentalfinal + rental2);
         }
-
         #region XML
         private static string SetXMLTable(ref ArrayList xml)
         {
@@ -373,7 +366,6 @@ namespace LEASING.UI.APP.Forms
             //    dateColumn.FormatString = "MM/dd/yyyy";
             //}
         }
-
         private void ddlProject_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
         {
             if (ddlProject.SelectedIndex >= 0)
@@ -394,7 +386,6 @@ namespace LEASING.UI.APP.Forms
                 ddlUnitNumber.DataSource = null;
             }
         }
-
         private void ddlUnitNumber_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
         {
             if (ddlUnitNumber.SelectedIndex >= 0)
@@ -408,135 +399,49 @@ namespace LEASING.UI.APP.Forms
                 txtRental.Text = string.Empty;
             }
         }
-
         private void txtRental_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
         }
-
         private void txtSecAndMaintenance_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
         }
-
         private void txtTotalRental_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
         }
-
         private void txtMonthsAdvance1_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
         }
-
         private void txtMonthsAdvance2_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
         }
-
         private void txtMonthsSecurityDeposit_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
-        }
-
+        }    
         private void txtTotal_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
         }
-
         private void btnNewComputation_Click(object sender, EventArgs e)
         {
             strFormMode = "NEW";
         }
-
         private void btnUndo_Click(object sender, EventArgs e)
         {
             strFormMode = "READ";
         }
-
-        //private void M_Save()
-        //{
-        //    ComputationModel dto = new ComputationModel();
-        //    dto.ProjectId = Convert.ToInt32(ddlProject.SelectedValue);
-        //    //dto.TransactionDate = dtpTransactionDate.Text;
-        //    //dto.InquiringClient = txtClient.Text;
-        //    //dto.ClientMobile = txtContactNumber.Text;
-        //    dto.UnitId = Convert.ToInt32(ddlUnitNumber.SelectedValue);
-        //    dto.UnitNo = ddlUnitNumber.Text;
-        //    dto.StatDate = dtpStartDate.Text;
-        //    dto.FinishDate = dtpFinishDate.Text;
-        //    dto.Rental = Convert.ToInt32(decimal.Parse(txtRental.Text));
-        //    dto.SecAndMaintenance = Convert.ToInt32(decimal.Parse(txtSecAndMaintenance.Text));
-        //    dto.TotalRent = Convert.ToInt32(decimal.Parse(txtTotalRental.Text));
-        //    dto.Advancemonths1 = Convert.ToInt32(decimal.Parse(txtMonthsAdvance1.Text));
-        //    dto.Advancemonths2 = Convert.ToInt32(decimal.Parse(txtMonthsAdvance2.Text));
-        //    dto.SecDeposit = Convert.ToInt32(decimal.Parse(txtMonthsSecurityDeposit.Text));
-        //    dto.Total = Convert.ToInt32(decimal.Parse(txtTotal.Text));
-        //    dto.EncodedBy = 1;
-        //    dto.Message_Code = ComputationContext.SaveComputation(dto);
-        //    if (dto.Message_Code.Equals("SUCCESS"))
-        //    {
-        //        MessageBox.Show("New Reference has been generated successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        //        strFormMode = "READ";
-
-
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show(dto.Message_Code, "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        //        strFormMode = "READ";
-        //    }
-        //}
-        //private void btnSaveComputation_Click(object sender, EventArgs e)
-        //{
-        //    if (strFormMode == "NEW")
-        //    {
-        //        if (IsComputationValid())
-        //        {
-        //            if (MessageBox.Show("Are you sure you want to generate this Reference ?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
-        //            {
-        //                M_Save();
-        //            }
-        //        }
-        //    }
-        //}
-
-        //private void dgvList_CellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
-        //{
-
-        //    if (e.RowIndex >= 0)
-        //    {
-        //        if (this.dgvList.Columns[e.ColumnIndex].Name == "ColEdit")
-        //        {
-        //            frmEditUnitComputation forms = new frmEditUnitComputation();
-        //            forms.Recid = Convert.ToInt32(dgvList.CurrentRow.Cells["RecId"].Value);
-        //            forms.Text = Convert.ToString(dgvList.CurrentRow.Cells["ProjectName"].Value) + " - "+" UNIT";
-        //            forms.ShowDialog();             
-        //        }
-        //        else if (this.dgvList.Columns[e.ColumnIndex].Name == "ColRemoved")
-        //        {
-
-        //            if (MessageBox.Show("Are you sure you want to Delete this computation?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
-        //            {
-
-        //                var result = ComputationContext.DeleteComputation(Convert.ToInt32(dgvList.CurrentRow.Cells["RecId"].Value), Convert.ToInt32(dgvList.CurrentRow.Cells["UnitId"].Value));
-        //                if (result.Equals("SUCCESS"))
-        //                {
-        //                    MessageBox.Show("Reference has been deleted successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        //                    M_GetComputationList();
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
-
         private void btnCheckunits_Click(object sender, EventArgs e)
         {
             if (ddlProject.SelectedIndex >= 0)

@@ -24,8 +24,7 @@ namespace LEASING.UI.APP.Forms
         public int TotalRental { get; set; }
         public int ComputationRecid { get; set; }
 
-        public string MonthsAdvance1 { get; set; }
-        public string MonthsAdvance2 { get; set; }
+        public string AdvancePaymentAmount { get; set; }
         public string RefId { get; set; }
 
         public string ClientId { get; set; }
@@ -172,8 +171,8 @@ namespace LEASING.UI.APP.Forms
                     //txtRental.Text = Convert.ToString(dt.Tables[0].Rows[0]["Rental"]);
                     //txtSecAndMaintenance.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecAndMaintenance"]);
                     TotalRental = Convert.ToInt32(dt.Tables[0].Rows[0]["TotalRent"]);
-                    MonthsAdvance1 = Convert.ToString(dt.Tables[0].Rows[0]["Applicabledate1"]);
-                    MonthsAdvance2 = Convert.ToString(dt.Tables[0].Rows[0]["Applicabledate2"]);
+                    AdvancePaymentAmount = Convert.ToString(dt.Tables[0].Rows[0]["AdvancePaymentAmount"]);
+
                     //txtTwoMonAdv.Text = Convert.ToString(dt.Tables[0].Rows[0]["TwoMonAdvance"]);
                     //txtThreeMonSecDep.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecDeposit"]);
                     //txtTotal.Text = Convert.ToString(dt.Tables[0].Rows[0]["Total"]);

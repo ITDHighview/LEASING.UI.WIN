@@ -253,21 +253,21 @@
             // 
             this.radLabel1.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.radLabel1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel1.Location = new System.Drawing.Point(50, 3);
+            this.radLabel1.Location = new System.Drawing.Point(60, 3);
             this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(98, 19);
+            this.radLabel1.Size = new System.Drawing.Size(88, 19);
             this.radLabel1.TabIndex = 2;
-            this.radLabel1.Text = "2 Months Adv. :";
+            this.radLabel1.Text = "Months Adv. :";
             // 
             // radLabel7
             // 
             this.radLabel7.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.radLabel7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel7.Location = new System.Drawing.Point(3, 28);
+            this.radLabel7.Location = new System.Drawing.Point(12, 28);
             this.radLabel7.Name = "radLabel7";
-            this.radLabel7.Size = new System.Drawing.Size(145, 19);
+            this.radLabel7.Size = new System.Drawing.Size(136, 19);
             this.radLabel7.TabIndex = 2;
-            this.radLabel7.Text = "3 Months Sec. Deposit : ";
+            this.radLabel7.Text = "Months Sec. Deposit : ";
             // 
             // txtTwoMonAdv
             // 

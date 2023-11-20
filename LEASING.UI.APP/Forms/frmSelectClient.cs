@@ -22,8 +22,6 @@ namespace LEASING.UI.APP.Forms
 
         public int TotalRental { get; set; }
         public int ComputationRecid { get; set; }
-        public string MonthsAdvance1 { get; set; }
-        public string MonthsAdvance2 { get; set; }
         public string RefId { get; set; }
 
         public string ClientId { get; set; }
@@ -69,7 +67,7 @@ namespace LEASING.UI.APP.Forms
         {
 
             dgvLedgerList.DataSource = null;
-            using (DataSet dt = ComputationContext.GetMonthLedgerByRefIdAndClientId(ComputationRecid, ClientId, MonthsAdvance1, MonthsAdvance2))
+            using (DataSet dt = ComputationContext.GetMonthLedgerByRefIdAndClientId(ComputationRecid, ClientId))
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                 {
@@ -77,9 +75,7 @@ namespace LEASING.UI.APP.Forms
                     dgvLedgerList.DataSource = dt.Tables[0];
                 }
             }
-        }
-
-     
+        }   
         private void frmSelectClient_Load(object sender, EventArgs e)
         {         
             M_GetComputationById();       
@@ -87,40 +83,22 @@ namespace LEASING.UI.APP.Forms
         }
         private void M_GetComputationById()
         {
-
             using (DataSet dt = ComputationContext.GetComputationById(ComputationRecid))
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                 {
                     RefId = Convert.ToString(dt.Tables[0].Rows[0]["RefId"]);
-                    txtClientName.Text = Convert.ToString(dt.Tables[0].Rows[0]["InquiringClient"]);
-                    //txtReferenceId.Text = Convert.ToString(dt.Tables[0].Rows[0]["RefId"]);
-                    ////ddlProject.SelectedValue = Convert.ToInt32(dt.Tables[0].Rows[0]["ProjectId"]);
-                    ClientId = Convert.ToString(dt.Tables[0].Rows[0]["ClientID"]);
-                    //txtProjectType.Text = Convert.ToString(dt.Tables[0].Rows[0]["ProjectType"]);
-                    //txtProjectAddress.Text = Convert.ToString(dt.Tables[0].Rows[0]["ProjectAddress"]);
-                    //dtpTransactionDate.Text = Convert.ToString(dt.Tables[0].Rows[0]["TransactionDate"]);
-                    //txtClient.Text = Convert.ToString(dt.Tables[0].Rows[0]["InquiringClient"]);
-                    //txtContactNumber.Text = Convert.ToString(dt.Tables[0].Rows[0]["ClientMobile"]);
-                    //txtUnitNumber.Text = Convert.ToString(dt.Tables[0].Rows[0]["UnitNo"]);
-                    //txtFloorType.Text = Convert.ToString(dt.Tables[0].Rows[0]["FloorType"]);
+                    txtClientName.Text = Convert.ToString(dt.Tables[0].Rows[0]["InquiringClient"]);                
+                    ClientId = Convert.ToString(dt.Tables[0].Rows[0]["ClientID"]);                   
                     dtpFrom.Text = Convert.ToString(dt.Tables[0].Rows[0]["StatDate"]);
-                    dtpTo.Text = Convert.ToString(dt.Tables[0].Rows[0]["FinishDate"]);
-                    //txtRental.Text = Convert.ToString(dt.Tables[0].Rows[0]["Rental"]);
-                    //txtSecAndMaintenance.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecAndMaintenance"]);
-                    TotalRental = Convert.ToInt32(dt.Tables[0].Rows[0]["TotalRent"]);
-                    MonthsAdvance1 = Convert.ToString(dt.Tables[0].Rows[0]["Applicabledate1"]);
-                    MonthsAdvance2 = Convert.ToString(dt.Tables[0].Rows[0]["Applicabledate2"]);
+                    dtpTo.Text = Convert.ToString(dt.Tables[0].Rows[0]["FinishDate"]);                   
+                    TotalRental = Convert.ToInt32(dt.Tables[0].Rows[0]["TotalRent"]);               
                     txtTwoMonAdv.Text = Convert.ToString(dt.Tables[0].Rows[0]["TwoMonAdvance"]);
-                    txtThreeMonSecDep.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecDeposit"]);
-                    //txtTotal.Text = Convert.ToString(dt.Tables[0].Rows[0]["Total"]);
+                    txtThreeMonSecDep.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecDeposit"]);                 
                     txtTotalForPayment.Text = Convert.ToString(dt.Tables[0].Rows[0]["TotalForPayment"]);
                 }
             }
         }
-
-
-
         private void M_sp_GenerateFirstPayment()
         {
             var result = PaymentContext.GenerateFirstPayment(RefId, txtTotalForPayment.Text == string.Empty ? 0 : decimal.Parse(txtTotalForPayment.Text), ReceiveAmount, ChangeAmount, txtThreeMonSecDep.Text == string.Empty ? 0 : decimal.Parse(txtThreeMonSecDep.Text),CompanyORNo,BankAccountName,BankAccountNumber,BankName,SerialNo,PaymentRemarks,REF,ModeType);

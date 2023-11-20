@@ -24,8 +24,7 @@ namespace LEASING.UI.APP.Forms
         public int TotalRental { get; set; }
         public int ComputationRecid { get; set; }
 
-        public string MonthsAdvance1 { get; set; }
-        public string MonthsAdvance2 { get; set; }
+        public string AdvancePaymentAmount { get; set; }
         public string RefId { get; set; }
 
         public string ClientId { get; set; }
@@ -216,28 +215,11 @@ namespace LEASING.UI.APP.Forms
                 {
                     RefId = Convert.ToString(dt.Tables[0].Rows[0]["RefId"]);
                     txtClientName.Text = Convert.ToString(dt.Tables[0].Rows[0]["InquiringClient"]);
-                    IsMoveOut = Convert.ToBoolean(dt.Tables[0].Rows[0]["IsUnitMoveOut"]);
-
-                    ////ddlProject.SelectedValue = Convert.ToInt32(dt.Tables[0].Rows[0]["ProjectId"]);
-                    //ClientId = Convert.ToString(dt.Tables[0].Rows[0]["ClientID"]);
-                    //txtProjectType.Text = Convert.ToString(dt.Tables[0].Rows[0]["ProjectType"]);
-                    //txtProjectAddress.Text = Convert.ToString(dt.Tables[0].Rows[0]["ProjectAddress"]);
-                    //dtpTransactionDate.Text = Convert.ToString(dt.Tables[0].Rows[0]["TransactionDate"]);
-                    //txtClient.Text = Convert.ToString(dt.Tables[0].Rows[0]["InquiringClient"]);
-                    //txtContactNumber.Text = Convert.ToString(dt.Tables[0].Rows[0]["ClientMobile"]);
-                    //txtUnitNumber.Text = Convert.ToString(dt.Tables[0].Rows[0]["UnitNo"]);
-                    //txtFloorType.Text = Convert.ToString(dt.Tables[0].Rows[0]["FloorType"]);
+                    IsMoveOut = Convert.ToBoolean(dt.Tables[0].Rows[0]["IsUnitMoveOut"]);                  
                     dtpFrom.Text = Convert.ToString(dt.Tables[0].Rows[0]["StatDate"]);
-                    dtpTo.Text = Convert.ToString(dt.Tables[0].Rows[0]["FinishDate"]);
-                    //txtRental.Text = Convert.ToString(dt.Tables[0].Rows[0]["Rental"]);
-                    //txtSecAndMaintenance.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecAndMaintenance"]);
+                    dtpTo.Text = Convert.ToString(dt.Tables[0].Rows[0]["FinishDate"]);               
                     TotalRental = Convert.ToInt32(dt.Tables[0].Rows[0]["TotalRent"]);
-                    MonthsAdvance1 = Convert.ToString(dt.Tables[0].Rows[0]["Applicabledate1"]);
-                    MonthsAdvance2 = Convert.ToString(dt.Tables[0].Rows[0]["Applicabledate2"]);
-                    //txtTwoMonAdv.Text = Convert.ToString(dt.Tables[0].Rows[0]["TwoMonAdvance"]);
-                    //txtThreeMonSecDep.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecDeposit"]);
-                    //txtTotal.Text = Convert.ToString(dt.Tables[0].Rows[0]["Total"]);
-                    //txtTotalForPayment.Text = Convert.ToString(dt.Tables[0].Rows[0]["TotalForPayment"]);
+                    AdvancePaymentAmount = Convert.ToString(dt.Tables[0].Rows[0]["AdvancePaymentAmount"]);                  
                 }
             }
         }

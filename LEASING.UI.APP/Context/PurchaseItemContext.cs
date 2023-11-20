@@ -226,7 +226,7 @@ namespace LEASING.UI.APP.Context
             _sqlpara = new SqlParameter("@UnitID", model.UnitID);
             _sqlcmd.Parameters.Add(_sqlpara);
 
-            _sqlpara = new SqlParameter("@EncodedBy", Config.EncodedBy);
+            _sqlpara = new SqlParameter("@EncodedBy", Variables.UserID);
             _sqlcmd.Parameters.Add(_sqlpara);
 
             _sqlpara = new SqlParameter("@ComputerName", Environment.MachineName);
@@ -312,7 +312,7 @@ namespace LEASING.UI.APP.Context
             _sqlpara = new SqlParameter("@UnitID", model.UnitID);
             _sqlcmd.Parameters.Add(_sqlpara);
 
-            _sqlpara = new SqlParameter("@LastChangedBy", Config.EncodedBy);
+            _sqlpara = new SqlParameter("@LastChangedBy", Variables.UserID);
             _sqlcmd.Parameters.Add(_sqlpara);
 
             _sqlpara = new SqlParameter("@ComputerName", Environment.MachineName);

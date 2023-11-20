@@ -35,31 +35,24 @@ namespace LEASING.UI.APP.Context
             _sqlpara = new SqlParameter("@StatDate", model.StatDate);
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@FinishDate", model.FinishDate);
-            _sqlcmd.Parameters.Add(_sqlpara);
-            _sqlpara = new SqlParameter("@Applicabledate1", model.Applicabledate1);
-            _sqlcmd.Parameters.Add(_sqlpara);
-            _sqlpara = new SqlParameter("@Applicabledate2", model.Applicabledate2);
-            _sqlcmd.Parameters.Add(_sqlpara);
-            //_sqlpara = new SqlParameter("@TransactionDate", model.TransactionDate);
-            //_sqlcmd.Parameters.Add(_sqlpara);
+            _sqlcmd.Parameters.Add(_sqlpara);  
             _sqlpara = new SqlParameter("@Rental", model.Rental);
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@SecAndMaintenance", model.SecAndMaintenance);
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@TotalRent", model.TotalRent);
             _sqlcmd.Parameters.Add(_sqlpara);
-            _sqlpara = new SqlParameter("@Advancemonths1", model.Advancemonths1);
-            _sqlcmd.Parameters.Add(_sqlpara);
-            _sqlpara = new SqlParameter("@Advancemonths2", model.Advancemonths2);
-            _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@SecDeposit", model.SecDeposit);
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@Total", model.Total);
-            _sqlcmd.Parameters.Add(_sqlpara);
-       
+            _sqlcmd.Parameters.Add(_sqlpara);   
             _sqlpara = new SqlParameter("@EncodedBy", model.EncodedBy);
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@ComputerName", Environment.MachineName);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@XML", model.XML);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@AdvancePaymentAmount", model.AdvancePaymentAmount);
             _sqlcmd.Parameters.Add(_sqlpara);
 
             try
@@ -518,7 +511,7 @@ namespace LEASING.UI.APP.Context
                 return dsRec;
             }
         }
-        public DataSet GetMonthLedgerByRefIdAndClientId(int refid,string cliendId,string Advancemonths1,string Advancemonths2)
+        public DataSet GetMonthLedgerByRefIdAndClientId(int refid,string cliendId)
         {
 
             SqlCommand _SqlCommand = null;
@@ -535,16 +528,7 @@ namespace LEASING.UI.APP.Context
                 _SqlCommand.Parameters.Add(_SqlParameter);
 
                 _SqlParameter = new SqlParameter("@ClientID", cliendId);
-                _SqlCommand.Parameters.Add(_SqlParameter);
-
-                _SqlParameter = new SqlParameter("@Advancemonths1", Advancemonths1);
-                _SqlCommand.Parameters.Add(_SqlParameter);
-
-                _SqlParameter = new SqlParameter("@Advancemonths2", Advancemonths2);
-                _SqlCommand.Parameters.Add(_SqlParameter);
-
-         
-
+                _SqlCommand.Parameters.Add(_SqlParameter);       
                 try
                 {
                     _SqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());

@@ -34,8 +34,7 @@ BEGIN
            Rental,
            SecAndMaintenance,
            TotalRent,
-           Advancemonths1,
-           Advancemonths2,
+           AdvancePaymentAmount,
            SecDeposit,
            Total,
            EncodedBy,
@@ -45,8 +44,6 @@ BEGIN
            IsActive,
            ComputerName,
            ClientID,
-           Applicabledate1,
-           Applicabledate2,
            IsPaid,
            IsDone,
            HeaderRefId,
@@ -62,8 +59,7 @@ BEGIN
                    'ON-GOING'
            END AS CLientReferenceStatus,
            IIF(
-               ISNULL(Advancemonths1, 0) = 0
-               and ISNULL(Advancemonths2, 0) = 0
+               ISNULL(AdvancePaymentAmount, 0) = 0          
                and ISNULL(SecDeposit, 0) = 0,
                'TYPE OF PARKING',
                'TYPE OF UNIT') AS TypeOf

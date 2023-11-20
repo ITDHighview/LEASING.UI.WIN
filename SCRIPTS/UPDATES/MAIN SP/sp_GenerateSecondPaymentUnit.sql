@@ -57,16 +57,16 @@ BEGIN TRY
 
     SET @TranRecId = @@IDENTITY
     SELECT @TranID = TranID
-    FROM tblTransaction
+    FROM tblTransaction WITH(NOLOCK)
     WHERE RecId = @TranRecId
 
     SELECT @LedgeMonth = LedgMonth
-    FROM tblMonthLedger
+    FROM tblMonthLedger WITH(NOLOCK)
     WHERE ISNULL(IsPaid, 0) = 0
           and ISNULL(TransactionID, '') = ''
           and ReferenceID =
           (
-              SELECT Recid FROM tblUnitReference WHERE RefId = @RefId
+              SELECT Recid FROM tblUnitReference WITH(NOLOCK)  WHERE RefId = @RefId
           )
           and Recid = @ledgerRecId
     INSERT INTO tblPayment
@@ -90,13 +90,13 @@ BEGIN TRY
            GETDATE(), --Dated payed
            @ComputerName,
            1
-    FROM tblMonthLedger
+    FROM tblMonthLedger WITH(NOLOCK)
     WHERE LedgMonth = @LedgeMonth
           and ISNULL(IsPaid, 0) = 0
           and ISNULL(TransactionID, '') = ''
           and ReferenceID =
           (
-              SELECT Recid FROM tblUnitReference WHERE RefId = @RefId
+              SELECT Recid FROM tblUnitReference WITH(NOLOCK) WHERE RefId = @RefId
           )
           and Recid = @ledgerRecId
 
@@ -110,7 +110,7 @@ BEGIN TRY
           and ISNULL(TransactionID, '') = ''
           and ReferenceID =
           (
-              SELECT Recid FROM tblUnitReference WHERE RefId = @RefId
+              SELECT Recid FROM tblUnitReference WITH(NOLOCK) WHERE RefId = @RefId
           )
           and Recid = @ledgerRecId
 
@@ -153,7 +153,7 @@ BEGIN TRY
 
     SET @RcptRecId = @@IDENTITY
     SELECT @RcptID = RcptID
-    FROM tblReceipt
+    FROM tblReceipt WITH(NOLOCK)
     WHERE RecId = @RcptRecId
 
     INSERT INTO tblPaymentMode

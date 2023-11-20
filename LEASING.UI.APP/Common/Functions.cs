@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -383,6 +384,37 @@ namespace LEASING.UI.APP.Common
             {
                 MessageBox.Show(ex.ToString(), "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        public static void GetNotification(string CaptionText, string CaptionText2)
+        {
+
+            RadDesktopAlert radDesktopAlert1 = new RadDesktopAlert();
+            //radDesktopAlert1.ContentImage = Properties.Resources.download24x24;
+            radDesktopAlert1.CaptionText = CaptionText;
+            radDesktopAlert1.ContentText = CaptionText2;
+            //+ "ARAMCO : JUNE 2018\n"
+            //+ "COMPANY : \n"
+            //+ "GENERAL : ";
+            radDesktopAlert1.AutoClose = true;
+            radDesktopAlert1.AutoCloseDelay = 3;
+            radDesktopAlert1.ShowOptionsButton = false;
+            radDesktopAlert1.ShowPinButton = false;
+            radDesktopAlert1.ShowCloseButton = true;
+            //radDesktopAlert1.FixedSize = new Size(radDesktopAlert1.FixedSize.Width, 50);
+
+            radDesktopAlert1.Popup.AlertElement.CaptionElement.CaptionGrip.BackColor = Color.Green;
+            radDesktopAlert1.Popup.AlertElement.BorderColor = Color.Green;
+            radDesktopAlert1.Popup.AlertElement.CaptionElement.TextAndButtonsElement.TextElement.ForeColor = Color.White;
+            radDesktopAlert1.Popup.AlertElement.CaptionElement.CaptionGrip.GradientStyle = GradientStyles.Solid;
+            radDesktopAlert1.Popup.AlertElement.ContentElement.Font = new Font("Tahoma", 8f, FontStyle.Italic);
+            radDesktopAlert1.Popup.AlertElement.ContentElement.TextImageRelation = TextImageRelation.ImageBeforeText;
+            //radDesktopAlert1.Popup.AlertElement.CaptionElement.TextAndButtonsElement.ForeColor = Color.White;
+            radDesktopAlert1.Popup.AlertElement.ContentElement.ForeColor = Color.White;
+            radDesktopAlert1.Popup.AlertElement.BackColor = Color.FromArgb(64, 64, 64);
+            radDesktopAlert1.Popup.AlertElement.GradientStyle = GradientStyles.Solid;
+
+            radDesktopAlert1.Show();
         }
 
     }

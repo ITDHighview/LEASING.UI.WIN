@@ -61,12 +61,12 @@
             this.radGroupBox2.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
             this.radGroupBox2.Controls.Add(this.dgvList);
             this.radGroupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radGroupBox2.HeaderText = "REFERENCE LIST";
+            this.radGroupBox2.HeaderText = "CONTRACT LIST";
             this.radGroupBox2.Location = new System.Drawing.Point(0, 0);
             this.radGroupBox2.Name = "radGroupBox2";
             this.radGroupBox2.Size = new System.Drawing.Size(821, 449);
             this.radGroupBox2.TabIndex = 6;
-            this.radGroupBox2.Text = "REFERENCE LIST";
+            this.radGroupBox2.Text = "CONTRACT LIST";
             // 
             // dgvList
             // 

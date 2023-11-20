@@ -1,4 +1,5 @@
-﻿using LEASING.UI.APP.Context;
+﻿using LEASING.UI.APP.Common;
+using LEASING.UI.APP.Context;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,29 +16,22 @@ using Telerik.WinControls.UI;
 namespace LEASING.UI.APP.Forms
 {
     public partial class frmClientTransaction : Form
-    {
-        //private DataTable data = new DataTable();
+    {       
         ClientContext ClientContext = new ClientContext();
         ComputationContext ComputationContext = new ComputationContext();
         PaymentContext PaymentContext = new PaymentContext();
         UnitContext UnitContext = new UnitContext();
-
         public int TotalRental { get; set; }
         public int ComputationRecid { get; set; }
-
         public string AdvancePaymentAmount { get; set; }
         public string RefId { get; set; }
-
         public string ClientId { get; set; }
         public bool IsProceed { get; set; }
         public string FromDate { get; set; }
         public string Todate { get; set; }
         public int TotalAmount { get; set; }
-
-
         public decimal ReceiveAmount { get; set; }
         public decimal ChangeAmount { get; set; }
-
         public string CompanyORNo { get; set; }
         public string BankAccountName { get; set; }
         public string BankAccountNumber { get; set; }
@@ -51,37 +45,6 @@ namespace LEASING.UI.APP.Forms
         {
             InitializeComponent();
 
-        }
-
-        private void GetNotification(string CaptionText, string CaptionText2)
-        {
-
-            RadDesktopAlert radDesktopAlert1 = new RadDesktopAlert();
-            //radDesktopAlert1.ContentImage = Properties.Resources.download24x24;
-            radDesktopAlert1.CaptionText = CaptionText;
-            radDesktopAlert1.ContentText = CaptionText2;
-            //+ "ARAMCO : JUNE 2018\n"
-            //+ "COMPANY : \n"
-            //+ "GENERAL : ";
-            radDesktopAlert1.AutoClose = true;
-            radDesktopAlert1.AutoCloseDelay = 3;
-            radDesktopAlert1.ShowOptionsButton = false;
-            radDesktopAlert1.ShowPinButton = false;
-            radDesktopAlert1.ShowCloseButton = true;
-            //radDesktopAlert1.FixedSize = new Size(radDesktopAlert1.FixedSize.Width, 50);
-
-            radDesktopAlert1.Popup.AlertElement.CaptionElement.CaptionGrip.BackColor = Color.Green;
-            radDesktopAlert1.Popup.AlertElement.BorderColor = Color.Green;
-            radDesktopAlert1.Popup.AlertElement.CaptionElement.TextAndButtonsElement.TextElement.ForeColor = Color.White;
-            radDesktopAlert1.Popup.AlertElement.CaptionElement.CaptionGrip.GradientStyle = GradientStyles.Solid;
-            radDesktopAlert1.Popup.AlertElement.ContentElement.Font = new Font("Tahoma", 8f, FontStyle.Italic);
-            radDesktopAlert1.Popup.AlertElement.ContentElement.TextImageRelation = TextImageRelation.ImageBeforeText;
-            //radDesktopAlert1.Popup.AlertElement.CaptionElement.TextAndButtonsElement.ForeColor = Color.White;
-            radDesktopAlert1.Popup.AlertElement.ContentElement.ForeColor = Color.White;
-            radDesktopAlert1.Popup.AlertElement.BackColor = Color.FromArgb(64, 64, 64);
-            radDesktopAlert1.Popup.AlertElement.GradientStyle = GradientStyles.Solid;
-
-            radDesktopAlert1.Show();
         }
         private void M_sp_GenerateFirstPayment()
         {
@@ -128,7 +91,6 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-
         private bool IsComputationValid()
         {
             if (ClientId == string.Empty)
@@ -146,7 +108,6 @@ namespace LEASING.UI.APP.Forms
 
             return true;
         }
-
         private void M_GetLedgerList()
         {
             dgvLedgerList.DataSource = null;
@@ -158,7 +119,6 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-
         private void M_GetReferenceByClientID()
         {
 
@@ -172,7 +132,6 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-
         private void M_GetPaymentListByReferenceId()
         {
 
@@ -186,7 +145,6 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-
         private void M_GetClientTypeAndID()
         {
 
@@ -242,7 +200,7 @@ namespace LEASING.UI.APP.Forms
                     }
                     else if (Convert.ToString(dt.Tables[0].Rows[0]["PAYMENT_STATUS"]) == "PAYMENT DONE")
                     {
-                        GetNotification("Payment Status", txtPaymentStatus.Text);
+                        Functions.GetNotification("Payment Status", txtPaymentStatus.Text);
                         btnCloseContract.Enabled = true;
                         btnTerminateContract.Visible = false;
                     }
@@ -250,34 +208,11 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-
-
         private void radTextBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
-        }
-        //private int CountMonths(DateTime startDate, DateTime endDate)
-        //{
-        //    // The rest of the code remains the same as in the previous example
-        //    if (endDate < startDate)
-        //    {
-        //        DateTime temp = startDate;
-        //        startDate = endDate;
-        //        endDate = temp;
-        //    }
-
-        //    int months = ((endDate.Year - startDate.Year) * 12) + endDate.Month - startDate.Month;
-
-        //    if (endDate.Day >= startDate.Day)
-        //    {
-        //        months++;
-        //    }
-
-        //    return months;
-        //}
-
-
+        }     
         private void radDateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
             //DateTime startDate = DateTime.ParseExact(dtpFrom.Value.ToString("MM/dd/yyyy"), "MM/dd/yyyy", null);
@@ -287,7 +222,6 @@ namespace LEASING.UI.APP.Forms
             //lblPostDatedCheck.Text = "(" + Convert.ToString(numberOfMonths) + ")" + " POST-DATED CHECKS:";
             //txtTotal.Text = Convert.ToString(TotalRental * numberOfMonths);
         }
-
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (IsComputationValid())
@@ -298,27 +232,19 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-
         private void btnCheckUnits_Click(object sender, EventArgs e)
         {
-            //data.Clear(); // Clear existing data
-
-            //DateTime startDate = dtpFrom.Value;
-            //DateTime endDate = dtpTo.Value;
-
-            //if (startDate > endDate)
-            //{
-            //    MessageBox.Show("Start date cannot be after end date.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    return;
-            //}
-
-            //GenerateDataForMonths(startDate, endDate);
-
-            frmCheckClientUnits forms = new frmCheckClientUnits();
-            forms.ClientId = ClientId;
-            forms.ShowDialog();
+            if (!string.IsNullOrEmpty(txtClientName.Text))
+            {
+                frmCheckClientUnits forms = new frmCheckClientUnits();
+                forms.ClientId = ClientId;
+                forms.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Please Select Client", "System Message", MessageBoxButtons.OK);
+            }           
         }
-
         private void dgvLedgerList_CellFormatting(object sender, Telerik.WinControls.UI.CellFormattingEventArgs e)
         {
             if (!string.IsNullOrEmpty(Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value)))
@@ -551,7 +477,6 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-
         private void radButton1_Click(object sender, EventArgs e)
         {
             dgvTransactionList.DataSource = null;
@@ -573,7 +498,6 @@ namespace LEASING.UI.APP.Forms
             M_GetCheckPaymentStatus();
             M_GetPaymentListByReferenceId();
         }
-
         private void dgvTransactionList_SelectionChanged(object sender, EventArgs e)
         {
             if (dgvTransactionList.Rows.Count > 0)
@@ -586,7 +510,6 @@ namespace LEASING.UI.APP.Forms
 
             }
         }
-
         private void dgvPaymentList_CellFormatting(object sender, Telerik.WinControls.UI.CellFormattingEventArgs e)
         {
             e.CellElement.ForeColor = Color.White;
@@ -596,7 +519,6 @@ namespace LEASING.UI.APP.Forms
             e.CellElement.GradientStyle = GradientStyles.Solid;
             e.CellElement.BackColor = Color.Green;
         }
-
         private void dgvLedgerList_CellClick(object sender, GridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -662,7 +584,6 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-
         private void btnCloseContract_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Are you sure you want to Move-Out this CLient? ?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
@@ -685,7 +606,6 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-
         private void btnTerminateContract_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Are you sure you want to Terminate the contract and Move-Out the Client?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)

@@ -775,7 +775,7 @@
             this.radMenuItemTenantMoveOutParking.AccessibleDescription = "radMenuItemTenantMoveOutParking";
             this.radMenuItemTenantMoveOutParking.AccessibleName = "radMenuItemTenantMoveOutParking";
             this.radMenuItemTenantMoveOutParking.Name = "radMenuItemTenantMoveOutParking";
-            this.radMenuItemTenantMoveOutParking.Text = "Tenant Move-Out Parking";
+            this.radMenuItemTenantMoveOutParking.Text = "For Contract Closing Parking";
             this.radMenuItemTenantMoveOutParking.Click += new System.EventHandler(this.radMenuItemTenantMoveOutParking_Click);
             // 
             // radMenuItemCloseContract

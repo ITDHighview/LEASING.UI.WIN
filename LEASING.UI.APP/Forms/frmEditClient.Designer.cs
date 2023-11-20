@@ -631,13 +631,13 @@
             this.tableLayoutPanel6.SetColumnSpan(this.radGroupBox1, 2);
             this.radGroupBox1.Controls.Add(this.dgvList);
             this.radGroupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radGroupBox1.HeaderText = "Reference List";
+            this.radGroupBox1.HeaderText = "Contract List";
             this.radGroupBox1.Location = new System.Drawing.Point(532, 153);
             this.radGroupBox1.Name = "radGroupBox1";
             this.tableLayoutPanel6.SetRowSpan(this.radGroupBox1, 10);
             this.radGroupBox1.Size = new System.Drawing.Size(393, 246);
             this.radGroupBox1.TabIndex = 5;
-            this.radGroupBox1.Text = "Reference List";
+            this.radGroupBox1.Text = "Contract List";
             // 
             // dgvList
             // 

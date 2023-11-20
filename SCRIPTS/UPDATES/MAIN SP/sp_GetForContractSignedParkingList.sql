@@ -18,7 +18,7 @@ GO
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-ALTER PROCEDURE sp_GetClosedContracts
+ALTER PROCEDURE sp_GetForContractSignedParkingList
 -- Add the parameters for the stored procedure here
 
 AS
@@ -41,7 +41,7 @@ BEGIN
            tblUnitReference.Rental,
            tblUnitReference.SecAndMaintenance,
            tblUnitReference.TotalRent,
-           tblUnitReference.AdvancePaymentAmount,
+           tblUnitReference.AdvancePaymentAmount,        
            tblUnitReference.SecDeposit,
            tblUnitReference.Total,
            tblUnitReference.EncodedBy,
@@ -56,26 +56,15 @@ BEGIN
            tblUnitReference.HeaderRefId,
            tblUnitReference.IsSignedContract,
            tblUnitReference.IsUnitMove,
-           IIF(ISNULL(tblUnitReference.IsTerminated, 0) = 1, 'EARLY TERMINATION', 'CONTRACT DONE') as Contract_Status
+           tblUnitReference.IsTerminated
     FROM tblUnitReference WITH (NOLOCK)
         INNER JOIN tblUnitMstr WITH (NOLOCK)
             ON tblUnitReference.UnitId = tblUnitMstr.RecId
     where ISNULL(tblUnitReference.IsPaid, 0) = 1
-          and ISNULL(tblUnitReference.IsDone, 0) = 1
-          and ISNULL(tblUnitReference.IsSignedContract, 0) = 1
-          and ISNULL(tblUnitReference.IsUnitMove, 0) = 1
-          and ISNULL(tblUnitReference.IsUnitMoveOut, 0) = 1
-          and ISNULL(tblUnitReference.IsPaid, 0) = 1
+          and ISNULL(tblUnitReference.IsDone, 0) = 0
+          and ISNULL(tblUnitReference.IsSignedContract, 0) = 0
+          and ISNULL(tblUnitReference.IsUnitMove, 0) = 0
           and ISNULL(tblUnitReference.IsTerminated, 0) = 0
-          or ISNULL(tblUnitReference.IsTerminated, 0) = 1
-             and ISNULL(tblUnitReference.IsPaid, 0) = 1
-             and ISNULL(tblUnitReference.IsDone, 0) = 1
-             and ISNULL(tblUnitReference.IsSignedContract, 0) = 1
-             and ISNULL(tblUnitReference.IsUnitMove, 0) = 1
-             and ISNULL(tblUnitReference.IsUnitMoveOut, 0) = 1
-
-
-
---and ISNULL(tblUnitMstr.IsParking, 0) = 0
+          and ISNULL(tblUnitMstr.IsParking, 0) = 1
 END
 GO

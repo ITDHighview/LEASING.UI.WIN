@@ -1,14 +1,6 @@
--- ================================================
--- Template generated from Template Explorer using:
--- Create Procedure (New Menu).SQL
---
--- Use the Specify Values for Template Parameters 
--- command (Ctrl-Shift-M) to fill in the parameter 
--- values below.
---
--- This block of comments will not be included in
--- the definition of the procedure.
--- ================================================
+USE [LEASINGDB]
+GO
+/****** Object:  StoredProcedure [dbo].[sp_GetForMoveOutUnitList]    Script Date: 11/17/2023 10:34:08 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -18,7 +10,7 @@ GO
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-ALTER PROCEDURE sp_GetClosedContracts
+ALTER PROCEDURE [dbo].[sp_GetForMoveOutParkingList]
 -- Add the parameters for the stored procedure here
 
 AS
@@ -26,6 +18,8 @@ BEGIN
     -- SET NOCOUNT ON added to prevent extra result sets from
     -- interfering with SELECT statements.
     SET NOCOUNT ON;
+
+    DECLARE @IsForMoveOut BIT = 0
 
     -- Insert statements for procedure here
     SELECT tblUnitReference.RecId,
@@ -56,26 +50,30 @@ BEGIN
            tblUnitReference.HeaderRefId,
            tblUnitReference.IsSignedContract,
            tblUnitReference.IsUnitMove,
-           IIF(ISNULL(tblUnitReference.IsTerminated, 0) = 1, 'EARLY TERMINATION', 'CONTRACT DONE') as Contract_Status
+           tblUnitReference.IsUnitMoveOut,
+           tblUnitReference.IsTerminated
     FROM tblUnitReference WITH (NOLOCK)
         INNER JOIN tblUnitMstr WITH (NOLOCK)
             ON tblUnitReference.UnitId = tblUnitMstr.RecId
     where ISNULL(tblUnitReference.IsPaid, 0) = 1
-          and ISNULL(tblUnitReference.IsDone, 0) = 1
           and ISNULL(tblUnitReference.IsSignedContract, 0) = 1
           and ISNULL(tblUnitReference.IsUnitMove, 0) = 1
-          and ISNULL(tblUnitReference.IsUnitMoveOut, 0) = 1
-          and ISNULL(tblUnitReference.IsPaid, 0) = 1
-          and ISNULL(tblUnitReference.IsTerminated, 0) = 0
-          or ISNULL(tblUnitReference.IsTerminated, 0) = 1
-             and ISNULL(tblUnitReference.IsPaid, 0) = 1
-             and ISNULL(tblUnitReference.IsDone, 0) = 1
-             and ISNULL(tblUnitReference.IsSignedContract, 0) = 1
-             and ISNULL(tblUnitReference.IsUnitMove, 0) = 1
-             and ISNULL(tblUnitReference.IsUnitMoveOut, 0) = 1
-
-
-
---and ISNULL(tblUnitMstr.IsParking, 0) = 0
+          and ISNULL(tblUnitReference.IsUnitMoveOut, 0) = 1        
+          and ISNULL(tblUnitMstr.IsParking, 0) = 1
+		  and ISNULL(tblUnitReference.IsDone, 0) = 0
+		  and ISNULL(tblUnitReference.IsTerminated, 0) = 0
+			or ISNULL(tblUnitReference.IsTerminated, 0) = 1
+			  and ISNULL(tblUnitReference.IsSignedContract, 0) = 1
+			  and ISNULL(tblUnitReference.IsUnitMove, 0) = 1
+			  and ISNULL(tblUnitReference.IsUnitMoveOut, 0) = 1        
+			  and ISNULL(tblUnitMstr.IsParking, 0) = 1
+			  and ISNULL(tblUnitReference.IsDone, 0) = 0
+              
+          --and
+          --(
+          --    SELECT COUNT(*)
+          --    from tblMonthLedger WITH (NOLOCK)
+          --    where ReferenceID = tblUnitReference.RecId
+          --          and ISNULL(IsPaid, 0) = 1
+          --) > 0
 END
-GO

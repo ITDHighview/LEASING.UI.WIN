@@ -68,6 +68,7 @@ namespace LEASING.UI.APP.Forms
                             forms.ComputationRecid = Convert.ToInt32(dgvList.CurrentRow.Cells["RecId"].Value);
                             forms.ClientId = Convert.ToString(dgvList.CurrentRow.Cells["ClientID"].Value);
                             forms.ShowDialog();
+                            M_GetComputationList();
                         }
                         else
                         {

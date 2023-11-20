@@ -664,6 +664,49 @@ namespace LEASING.UI.APP.Context
                 return dsRec;
             }
         }
+        public DataSet GetForContractSignedParkingList()
+        {
+
+            SqlCommand _SqlCommand = null;
+            // SqlParameter _SqlParameter;
+            SqlConnection _SqlConnection = null;
+
+
+            using (DataSet dsRec = new DataSet())
+            {
+                _SqlCommand = new SqlCommand();
+                _SqlCommand.CommandText = "sp_GetForContractSignedParkingList";
+
+                //_SqlParameter = new SqlParameter("@ApproverEmpNno", _AssignTo);
+                //_SqlCommand.Parameters.Add(_SqlParameter);
+
+                try
+                {
+                    _SqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
+                    _SqlCommand.Connection = _SqlConnection;
+                    _SqlCommand.CommandType = CommandType.StoredProcedure;
+                    using (SqlDataAdapter dataAdaptor = new SqlDataAdapter(_SqlCommand))
+                    {
+                        dataAdaptor.Fill(dsRec);
+                    }
+                }
+                catch (Exception expCommon)
+                {
+                    return null;
+                }
+                finally
+                {
+                    if (_SqlConnection.State != ConnectionState.Closed)
+                    {
+                        _SqlConnection.Close();
+                    }
+                    //_SqlParameter = null;
+                    _SqlCommand = null;
+                    _SqlConnection = null;
+                }
+                return dsRec;
+            }
+        }
 
         public DataSet GetForMoveInUnitList()
         {
@@ -708,6 +751,49 @@ namespace LEASING.UI.APP.Context
                 return dsRec;
             }
         }
+        public DataSet GetForMoveInParkingList()
+        {
+
+            SqlCommand _SqlCommand = null;
+            // SqlParameter _SqlParameter;
+            SqlConnection _SqlConnection = null;
+
+
+            using (DataSet dsRec = new DataSet())
+            {
+                _SqlCommand = new SqlCommand();
+                _SqlCommand.CommandText = "sp_GetForMoveInParkingList";
+
+                //_SqlParameter = new SqlParameter("@ApproverEmpNno", _AssignTo);
+                //_SqlCommand.Parameters.Add(_SqlParameter);
+
+                try
+                {
+                    _SqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
+                    _SqlCommand.Connection = _SqlConnection;
+                    _SqlCommand.CommandType = CommandType.StoredProcedure;
+                    using (SqlDataAdapter dataAdaptor = new SqlDataAdapter(_SqlCommand))
+                    {
+                        dataAdaptor.Fill(dsRec);
+                    }
+                }
+                catch (Exception expCommon)
+                {
+                    return null;
+                }
+                finally
+                {
+                    if (_SqlConnection.State != ConnectionState.Closed)
+                    {
+                        _SqlConnection.Close();
+                    }
+                    //_SqlParameter = null;
+                    _SqlCommand = null;
+                    _SqlConnection = null;
+                }
+                return dsRec;
+            }
+        }
         public DataSet GetForMoveOutUnitList()
         {
 
@@ -720,6 +806,49 @@ namespace LEASING.UI.APP.Context
             {
                 _SqlCommand = new SqlCommand();
                 _SqlCommand.CommandText = "sp_GetForMoveOutUnitList";
+
+                //_SqlParameter = new SqlParameter("@ApproverEmpNno", _AssignTo);
+                //_SqlCommand.Parameters.Add(_SqlParameter);
+
+                try
+                {
+                    _SqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
+                    _SqlCommand.Connection = _SqlConnection;
+                    _SqlCommand.CommandType = CommandType.StoredProcedure;
+                    using (SqlDataAdapter dataAdaptor = new SqlDataAdapter(_SqlCommand))
+                    {
+                        dataAdaptor.Fill(dsRec);
+                    }
+                }
+                catch (Exception expCommon)
+                {
+                    return null;
+                }
+                finally
+                {
+                    if (_SqlConnection.State != ConnectionState.Closed)
+                    {
+                        _SqlConnection.Close();
+                    }
+                    //_SqlParameter = null;
+                    _SqlCommand = null;
+                    _SqlConnection = null;
+                }
+                return dsRec;
+            }
+        }
+        public DataSet GetForMoveOutParkingList()
+        {
+
+            SqlCommand _SqlCommand = null;
+            // SqlParameter _SqlParameter;
+            SqlConnection _SqlConnection = null;
+
+
+            using (DataSet dsRec = new DataSet())
+            {
+                _SqlCommand = new SqlCommand();
+                _SqlCommand.CommandText = "sp_GetForMoveOutParkingList";
 
                 //_SqlParameter = new SqlParameter("@ApproverEmpNno", _AssignTo);
                 //_SqlCommand.Parameters.Add(_SqlParameter);

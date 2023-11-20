@@ -504,6 +504,9 @@
     <EmbeddedResource Include="Forms\frmCommercialRateSettings.resx">
       <DependentUpon>frmCommercialRateSettings.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmContractSignedParking.resx">
+      <DependentUpon>frmContractSignedParking.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmContractSignedUnit.resx">
       <DependentUpon>frmContractSignedUnit.cs</DependentUpon>
     </EmbeddedResource>
@@ -531,8 +534,14 @@
     <EmbeddedResource Include="Forms\frmSelectClientReferencePaid.resx">
       <DependentUpon>frmSelectClientReferencePaid.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmTenantMoveOutParking.resx">
+      <DependentUpon>frmTenantMoveOutParking.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmTenantMoveOutUnit.resx">
       <DependentUpon>frmTenantMoveOutUnit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmTenantMoveParking.resx">
+      <DependentUpon>frmTenantMoveParking.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmTenantMoveUnit.resx">
       <DependentUpon>frmTenantMoveUnit.cs</DependentUpon>

@@ -42,26 +42,26 @@ namespace LEASING.UI.APP.Forms
                 {
                     try
                     {
-                        if (MessageBox.Show("Are you sure you want tag this as Move-Out?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                        if (MessageBox.Show("Are you sure you want Close this Contract?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                         {
-                            string result = UnitContext.MovedOut(Convert.ToString(dgvList.CurrentRow.Cells["RefId"].Value));
+                            string result = PaymentContext.CloseContract(Convert.ToString(dgvList.CurrentRow.Cells["RefId"].Value));
                             if (result.Equals("SUCCESS"))
                             {
-                                MessageBox.Show("Move-Out Successfully! ", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageBox.Show("Close Contract Successfully! ", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 M_GetForMoveOutUnitList();
                             }
                             else
                             {
                                 MessageBox.Show(result, "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                                Functions.LogErrorIntoStoredProcedure("sp_MovedOut: ", "Move Out Unit", result, DateTime.Now, this);
+                                Functions.LogErrorIntoStoredProcedure("sp_CloseContract: ", "Close Contract", result, DateTime.Now, this);
                             }
                         }
 
                     }
                     catch (Exception ex)
                     {
-                        Functions.LogErrorIntoStoredProcedure("sp_MovedOut: ", "Move Out Unit", ex.Message, DateTime.Now, this);
+                        Functions.LogErrorIntoStoredProcedure("sp_CloseContract: ", "Close Contract", ex.Message, DateTime.Now, this);
                         MessageBox.Show("An error occurred : " + ex.ToString() + "Please Contact IT Administrator", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
 

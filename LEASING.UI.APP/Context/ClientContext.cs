@@ -362,7 +362,7 @@ namespace LEASING.UI.APP.Context
         //    }
         //}
 
-        public string SaveFileInDatabase(string clientName, string filePath,string FileNames,string files,string Notes,string ReferenceId)
+        public string SaveFileInDatabase(string clientName, string filePath,string FileNames,string files,string Notes,string ReferenceId,bool IsContractSinged)
         {
             SqlCommand _sqlcmd = null;
             SqlParameter _sqlpara;
@@ -387,7 +387,9 @@ namespace LEASING.UI.APP.Context
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@ReferenceId", ReferenceId);
             _sqlcmd.Parameters.Add(_sqlpara);
-            
+            _sqlpara = new SqlParameter("@IsSignedContract", IsContractSinged);
+            _sqlcmd.Parameters.Add(_sqlpara);
+
             try
             {
                 _sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());

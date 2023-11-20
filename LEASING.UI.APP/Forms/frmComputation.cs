@@ -16,7 +16,7 @@ using System.Windows.Forms;
 namespace LEASING.UI.APP.Forms
 {
     public partial class frmComputation : Form
-    {       
+    {
         RateSettingsContext RateSettingsContext = new RateSettingsContext();
         ProjectContext ProjectContext = new ProjectContext();
         UnitContext UnitContext = new UnitContext();
@@ -87,6 +87,9 @@ namespace LEASING.UI.APP.Forms
                         //data.Clear();
                         txtTotalPostDatedAmount.Text = string.Empty;
                         dgvpostdatedcheck.DataSource = null;
+                        dgvAdvancePayment.DataSource = null;
+                        txtSecurityPaymentMonthCount.Text = string.Empty;
+
                         break;
 
                     default:
@@ -126,12 +129,13 @@ namespace LEASING.UI.APP.Forms
             txtRental.Text = string.Empty;
             txtSecAndMaintenance.Text = string.Empty;
             txtTotalRental.Text = string.Empty;
-          
+
             txtMonthsSecurityDeposit.Text = string.Empty;
             txtTotal.Text = string.Empty;
             ClientId = string.Empty;
             txtTotalPostDatedAmount.Text = string.Empty;
-            //data.Clear();
+            txtSecurityPaymentMonthCount.Text = string.Empty;
+            dataTable.Clear();
         }
         private void EnableFields()
         {
@@ -143,7 +147,7 @@ namespace LEASING.UI.APP.Forms
             txtRental.Enabled = true;
             txtSecAndMaintenance.Enabled = true;
             txtTotalRental.Enabled = true;
-            
+
             txtMonthsSecurityDeposit.Enabled = true;
             txtTotal.Enabled = true;
             ddlProject.Enabled = true;
@@ -151,7 +155,7 @@ namespace LEASING.UI.APP.Forms
 
             dtpStartDate.Enabled = true;
             dtpFinishDate.Enabled = true;
-           
+
 
             ddlProject.Enabled = true;
             ddlUnitNumber.Enabled = true;
@@ -162,6 +166,12 @@ namespace LEASING.UI.APP.Forms
 
             btnSelectClient.Enabled = true;
             txtTotalPostDatedAmount.Enabled = true;
+
+            toolStripAdvancePayment.Enabled = true;
+            dgvAdvancePayment.Enabled = true;
+            txtSecurityPaymentMonthCount.Enabled = true;
+            btnGeneratePostdatedCountMonth.Enabled = true;
+            dtpSelectedDate.Enabled = true;
         }
         private void DisableFields()
         {
@@ -173,13 +183,13 @@ namespace LEASING.UI.APP.Forms
             txtRental.Enabled = false;
             txtSecAndMaintenance.Enabled = false;
             txtTotalRental.Enabled = false;
-           
+
             txtMonthsSecurityDeposit.Enabled = false;
             txtTotal.Enabled = false;
 
             dtpStartDate.Enabled = false;
             dtpFinishDate.Enabled = false;
-           
+
 
             ddlProject.Enabled = false;
             ddlUnitNumber.Enabled = false;
@@ -190,6 +200,12 @@ namespace LEASING.UI.APP.Forms
 
             btnSelectClient.Enabled = false;
             txtTotalPostDatedAmount.Enabled = false;
+
+            toolStripAdvancePayment.Enabled = false;
+            dgvAdvancePayment.Enabled = false;
+            txtSecurityPaymentMonthCount.Enabled = false;
+            btnGeneratePostdatedCountMonth.Enabled = false;
+            dtpSelectedDate.Enabled = false;
 
         }
         private void M_GetRateSettings()
@@ -252,7 +268,7 @@ namespace LEASING.UI.APP.Forms
         private void M_GetPostDatedCountMonth()
         {
             dgvpostdatedcheck.DataSource = null;
-            using (DataSet dt = ComputationContext.GetPostDatedCountMonth(dtpStartDate.Text, dtpFinishDate.Text, txtTotalRental.Text,M_getXMLData()))
+            using (DataSet dt = ComputationContext.GetPostDatedCountMonth(dtpStartDate.Text, dtpFinishDate.Text, txtTotalRental.Text, M_getXMLData()))
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                 {
@@ -295,7 +311,7 @@ namespace LEASING.UI.APP.Forms
         private void M_GetTotalRental()
         {
             var rental = ((txtRental.Text == "" ? 0 : Convert.ToDecimal(txtRental.Text)) + (txtSecAndMaintenance.Text == "" ? 0 : Convert.ToDecimal(txtSecAndMaintenance.Text)));
-            txtTotalRental.Text = Convert.ToString(rental);          
+            txtTotalRental.Text = Convert.ToString(rental);
             var rental2 = (rental * (txtSecurityPaymentMonthCount.Text == "" ? 0 : Convert.ToDecimal(txtSecurityPaymentMonthCount.Text)));
             txtMonthsSecurityDeposit.Text = Convert.ToString(rental2);
             var rentalfinal = (rental * dgvAdvancePayment.Rows.Count());
@@ -318,17 +334,17 @@ namespace LEASING.UI.APP.Forms
         private void M_Save()
         {
             ComputationModel dto = new ComputationModel();
-            dto.ProjectId = Convert.ToInt32(ddlProject.SelectedValue);           
+            dto.ProjectId = Convert.ToInt32(ddlProject.SelectedValue);
             dto.InquiringClient = txtClient.Text;
             dto.ClientMobile = txtContactNumber.Text;
             dto.ClientID = ClientId;
             dto.UnitId = Convert.ToInt32(ddlUnitNumber.SelectedValue);
             dto.UnitNo = ddlUnitNumber.Text;
             dto.StatDate = dtpStartDate.Text;
-            dto.FinishDate = dtpFinishDate.Text;      
+            dto.FinishDate = dtpFinishDate.Text;
             dto.Rental = txtRental.Text == string.Empty ? 0 : decimal.Parse(txtRental.Text);
             dto.SecAndMaintenance = txtSecAndMaintenance.Text == string.Empty ? 0 : decimal.Parse(txtSecAndMaintenance.Text);
-            dto.TotalRent = txtTotalRental.Text == string.Empty ? 0 : decimal.Parse(txtTotalRental.Text);           
+            dto.TotalRent = txtTotalRental.Text == string.Empty ? 0 : decimal.Parse(txtTotalRental.Text);
             dto.SecDeposit = txtMonthsSecurityDeposit.Text == string.Empty ? 0 : decimal.Parse(txtMonthsSecurityDeposit.Text);
             dto.Total = txtTotal.Text == string.Empty ? 0 : decimal.Parse(txtTotal.Text);
             dto.EncodedBy = Variables.UserID;
@@ -406,7 +422,7 @@ namespace LEASING.UI.APP.Forms
                 //if (Convert.ToBoolean(this.dgvAdvancePayment.Rows[iRow].Cells["colCheck"].Value))
                 //{
                 //alDoctorSchedule.Add(Convert.ToString(vMasterRecordID));
-                alAdvancePayment.Add(Convert.ToString(this.dgvAdvancePayment.Rows[iRow].Cells["Months"].Value));               
+                alAdvancePayment.Add(Convert.ToString(this.dgvAdvancePayment.Rows[iRow].Cells["Months"].Value));
                 sbDoctorSchedule.Append(SetXMLTable(ref alAdvancePayment));
                 //}
             }
@@ -512,7 +528,7 @@ namespace LEASING.UI.APP.Forms
         private void btnUndo_Click(object sender, EventArgs e)
         {
             strFormMode = "READ";
-        }  
+        }
         private void btnSaveComputation_Click(object sender, EventArgs e)
         {
             if (strFormMode == "NEW")
@@ -602,14 +618,14 @@ namespace LEASING.UI.APP.Forms
             if (!string.IsNullOrEmpty(ClientId))
             {
                 seq = 0;
-                txtTotalPostDatedAmount.Text = string.Empty;              
+                txtTotalPostDatedAmount.Text = string.Empty;
                 M_GetPostDatedCountMonth();
                 var TotalPostDatedAmount = (dgvpostdatedcheck.Rows.Count() < 0) ? 0 : (Convert.ToDecimal(dgvpostdatedcheck.Rows.Count().ToString()) * ((txtTotalRental.Text == "") ? 0 : Convert.ToDecimal(txtTotalRental.Text)));
                 txtTotalPostDatedAmount.Text = TotalPostDatedAmount.ToString();
             }
             else
             {
-                MessageBox.Show("please select client", "System Message",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                MessageBox.Show("please select client", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
         private void btnAddAdvancePayment_Click(object sender, EventArgs e)
@@ -633,7 +649,7 @@ namespace LEASING.UI.APP.Forms
             M_GetPostDatedCountMonth();
             var TotalPostDatedAmount = (dgvpostdatedcheck.Rows.Count() < 0) ? 0 : (Convert.ToDecimal(dgvpostdatedcheck.Rows.Count().ToString()) * ((txtTotalRental.Text == "") ? 0 : Convert.ToDecimal(txtTotalRental.Text)));
             txtTotalPostDatedAmount.Text = TotalPostDatedAmount.ToString();
-            
+
         }
         private void btnRemovedAdvancePayment_Click(object sender, EventArgs e)
         {

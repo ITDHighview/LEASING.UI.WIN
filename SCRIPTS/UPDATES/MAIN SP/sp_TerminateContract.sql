@@ -32,9 +32,9 @@ BEGIN
     -- Insert statements for procedure here
     update tblUnitReference
     set IsTerminated = 1,
-        IsDone = 1,
-        LastCHangedBy = @EncodedBy,
-        ContactDoneDate = GETDATE(),
+        IsUnitMoveOut = 1,
+        LastCHangedBy = @EncodedBy,   
+		UnitMoveOutDate = GETDATE(),
         TerminationDate = GETDATE()
     where RefId = @ReferenceID
 

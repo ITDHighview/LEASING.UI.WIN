@@ -239,7 +239,7 @@
             this.txtProjectAddress.Location = new System.Drawing.Point(103, 128);
             this.txtProjectAddress.Name = "txtProjectAddress";
             this.txtProjectAddress.NullText = "Type Here....";
-            this.txtProjectAddress.Size = new System.Drawing.Size(241, 19);
+            this.txtProjectAddress.Size = new System.Drawing.Size(344, 20);
             this.txtProjectAddress.TabIndex = 1;
             this.txtProjectAddress.ThemeName = "Office2013Light";
             // 
@@ -248,7 +248,7 @@
             this.txtDescription.Location = new System.Drawing.Point(103, 103);
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.NullText = "Type Here....";
-            this.txtDescription.Size = new System.Drawing.Size(241, 19);
+            this.txtDescription.Size = new System.Drawing.Size(344, 20);
             this.txtDescription.TabIndex = 1;
             this.txtDescription.ThemeName = "Office2013Light";
             // 
@@ -267,7 +267,7 @@
             this.txtProjectName.Location = new System.Drawing.Point(103, 78);
             this.txtProjectName.Name = "txtProjectName";
             this.txtProjectName.NullText = "Type here....";
-            this.txtProjectName.Size = new System.Drawing.Size(241, 19);
+            this.txtProjectName.Size = new System.Drawing.Size(344, 20);
             this.txtProjectName.TabIndex = 1;
             this.txtProjectName.ThemeName = "Office2013Light";
             // 

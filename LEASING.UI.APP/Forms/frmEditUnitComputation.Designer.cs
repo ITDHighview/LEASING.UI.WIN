@@ -60,14 +60,14 @@
             this.lblVat = new Telerik.WinControls.UI.RadLabel();
             this.radLabel15 = new Telerik.WinControls.UI.RadLabel();
             this.txtTotalRental = new Telerik.WinControls.UI.RadTextBox();
-            this.radLabel20 = new Telerik.WinControls.UI.RadLabel();
-            this.txtMonthsSecurityDeposit = new Telerik.WinControls.UI.RadTextBox();
-            this.radLabel21 = new Telerik.WinControls.UI.RadLabel();
-            this.txtTotal = new Telerik.WinControls.UI.RadTextBox();
             this.txtUnitNumber = new Telerik.WinControls.UI.RadTextBox();
             this.txtProjectName = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.txtReferenceId = new Telerik.WinControls.UI.RadTextBox();
+            this.radLabel20 = new Telerik.WinControls.UI.RadLabel();
+            this.txtMonthsSecurityDeposit = new Telerik.WinControls.UI.RadTextBox();
+            this.radLabel21 = new Telerik.WinControls.UI.RadLabel();
+            this.txtTotal = new Telerik.WinControls.UI.RadTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
             this.radGroupBox1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -99,14 +99,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.lblVat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotalRental)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel20)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMonthsSecurityDeposit)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel21)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTotal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUnitNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtProjectName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtReferenceId)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel20)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMonthsSecurityDeposit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel21)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTotal)).BeginInit();
             this.SuspendLayout();
             // 
             // radGroupBox1
@@ -239,7 +239,7 @@
             this.radLabel3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radLabel3.Location = new System.Drawing.Point(724, 78);
             this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(136, 19);
+            this.radLabel3.Size = new System.Drawing.Size(132, 19);
             this.radLabel3.TabIndex = 1;
             this.radLabel3.Text = "TRANSACTION DATE :";
             // 
@@ -478,42 +478,6 @@
             this.txtTotalRental.TabIndex = 4;
             this.txtTotalRental.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTotalRental_KeyPress);
             // 
-            // radLabel20
-            // 
-            this.radLabel20.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.radLabel20.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel20.Location = new System.Drawing.Point(531, 400);
-            this.radLabel20.Name = "radLabel20";
-            this.radLabel20.Size = new System.Drawing.Size(193, 19);
-            this.radLabel20.TabIndex = 1;
-            this.radLabel20.Text = "3 MONTHS SECURITY DEPOSIT :";
-            // 
-            // txtMonthsSecurityDeposit
-            // 
-            this.txtMonthsSecurityDeposit.Location = new System.Drawing.Point(724, 400);
-            this.txtMonthsSecurityDeposit.Name = "txtMonthsSecurityDeposit";
-            this.txtMonthsSecurityDeposit.Size = new System.Drawing.Size(132, 20);
-            this.txtMonthsSecurityDeposit.TabIndex = 4;
-            this.txtMonthsSecurityDeposit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMonthsSecurityDeposit_KeyPress);
-            // 
-            // radLabel21
-            // 
-            this.radLabel21.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.radLabel21.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel21.Location = new System.Drawing.Point(666, 425);
-            this.radLabel21.Name = "radLabel21";
-            this.radLabel21.Size = new System.Drawing.Size(52, 19);
-            this.radLabel21.TabIndex = 1;
-            this.radLabel21.Text = "TOTAL :";
-            // 
-            // txtTotal
-            // 
-            this.txtTotal.Location = new System.Drawing.Point(724, 425);
-            this.txtTotal.Name = "txtTotal";
-            this.txtTotal.Size = new System.Drawing.Size(132, 20);
-            this.txtTotal.TabIndex = 4;
-            this.txtTotal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTotal_KeyPress);
-            // 
             // txtUnitNumber
             // 
             this.txtUnitNumber.Location = new System.Drawing.Point(201, 128);
@@ -536,7 +500,7 @@
             this.radLabel1.Name = "radLabel1";
             this.radLabel1.Size = new System.Drawing.Size(96, 19);
             this.radLabel1.TabIndex = 1;
-            this.radLabel1.Text = "REFERENCE ID :";
+            this.radLabel1.Text = "CONTRACT ID :";
             // 
             // txtReferenceId
             // 
@@ -544,6 +508,42 @@
             this.txtReferenceId.Name = "txtReferenceId";
             this.txtReferenceId.Size = new System.Drawing.Size(194, 19);
             this.txtReferenceId.TabIndex = 4;
+            // 
+            // radLabel20
+            // 
+            this.radLabel20.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.radLabel20.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel20.Location = new System.Drawing.Point(531, 400);
+            this.radLabel20.Name = "radLabel20";
+            this.radLabel20.Size = new System.Drawing.Size(187, 19);
+            this.radLabel20.TabIndex = 1;
+            this.radLabel20.Text = "3 MONTHS SECURITY DEPOSIT :";
+            // 
+            // txtMonthsSecurityDeposit
+            // 
+            this.txtMonthsSecurityDeposit.Location = new System.Drawing.Point(724, 400);
+            this.txtMonthsSecurityDeposit.Name = "txtMonthsSecurityDeposit";
+            this.txtMonthsSecurityDeposit.Size = new System.Drawing.Size(132, 19);
+            this.txtMonthsSecurityDeposit.TabIndex = 4;
+            this.txtMonthsSecurityDeposit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMonthsSecurityDeposit_KeyPress);
+            // 
+            // radLabel21
+            // 
+            this.radLabel21.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.radLabel21.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel21.Location = new System.Drawing.Point(666, 425);
+            this.radLabel21.Name = "radLabel21";
+            this.radLabel21.Size = new System.Drawing.Size(52, 19);
+            this.radLabel21.TabIndex = 1;
+            this.radLabel21.Text = "TOTAL :";
+            // 
+            // txtTotal
+            // 
+            this.txtTotal.Location = new System.Drawing.Point(724, 425);
+            this.txtTotal.Name = "txtTotal";
+            this.txtTotal.Size = new System.Drawing.Size(132, 19);
+            this.txtTotal.TabIndex = 4;
+            this.txtTotal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTotal_KeyPress);
             // 
             // frmEditUnitComputation
             // 
@@ -590,14 +590,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.lblVat)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotalRental)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel20)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMonthsSecurityDeposit)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel21)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTotal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUnitNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtProjectName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtReferenceId)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel20)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMonthsSecurityDeposit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel21)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTotal)).EndInit();
             this.ResumeLayout(false);
 
         }

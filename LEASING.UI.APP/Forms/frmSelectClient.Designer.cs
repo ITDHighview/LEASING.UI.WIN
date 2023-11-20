@@ -376,7 +376,7 @@
             this.Name = "frmSelectClient";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Client";
+            this.Text = "First Payment";
             this.Load += new System.EventHandler(this.frmSelectClient_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).EndInit();

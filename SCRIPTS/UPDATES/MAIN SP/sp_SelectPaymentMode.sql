@@ -27,8 +27,8 @@ BEGIN
 	SET NOCOUNT ON;
 
 
-		SELECT -1 AS ModeType,'--SELECT--' AS Mode
-		UNION
+		--SELECT -1 AS ModeType,'--SELECT--' AS Mode
+		--UNION
 		SELECT 1 AS ModeType,'CASH' AS Mode
 		UNION
 		SELECT 2 AS ModeType,'BANK' AS Mode

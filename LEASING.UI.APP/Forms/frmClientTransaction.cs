@@ -20,6 +20,7 @@ namespace LEASING.UI.APP.Forms
         ClientContext ClientContext = new ClientContext();
         ComputationContext ComputationContext = new ComputationContext();
         PaymentContext PaymentContext = new PaymentContext();
+        UnitContext UnitContext = new UnitContext();
 
         public int TotalRental { get; set; }
         public int ComputationRecid { get; set; }
@@ -204,7 +205,8 @@ namespace LEASING.UI.APP.Forms
         {
             M_GetComputationById();
             M_GetClientTypeAndID();
-            btnCloseContract.Enabled = IsMoveOut;
+            btnCloseContract.Enabled = false;
+            btnTerminateContract.Enabled = false;
         }
         private void M_GetComputationById()
         {
@@ -233,13 +235,15 @@ namespace LEASING.UI.APP.Forms
                     txtPaymentStatus.Text = Convert.ToString(dt.Tables[0].Rows[0]["PAYMENT_STATUS"]);
                     if (Convert.ToString(dt.Tables[0].Rows[0]["PAYMENT_STATUS"]) == "IN-PROGRESS")
                     {
-
+                        btnCloseContract.Enabled = false;
                         btnTerminateContract.Visible = true;
+                        btnTerminateContract.Enabled = true;
+
                     }
                     else if (Convert.ToString(dt.Tables[0].Rows[0]["PAYMENT_STATUS"]) == "PAYMENT DONE")
                     {
                         GetNotification("Payment Status", txtPaymentStatus.Text);
-                        btnCloseContract.Enabled = IsMoveOut;
+                        btnCloseContract.Enabled = true;
                         btnTerminateContract.Visible = false;
                     }
 
@@ -661,14 +665,14 @@ namespace LEASING.UI.APP.Forms
 
         private void btnCloseContract_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to Close the contract ?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+            if (MessageBox.Show("Are you sure you want to Move-Out this CLient? ?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
             {
-                string result = PaymentContext.CloseContract(RefId);
+                string result = UnitContext.MovedOut(RefId);
                 if (!string.IsNullOrEmpty(result))
                 {
                     if (result.Equals("SUCCESS"))
                     {
-                        MessageBox.Show("CLOSE CONTRACT SUCCESS", "System Message", MessageBoxButtons.OK);
+                        MessageBox.Show("MOVE-OUT SUCCESS", "System Message", MessageBoxButtons.OK);
                         M_GetPaymentListByReferenceId();
                         M_GetComputationById();
                         M_GetCheckPaymentStatus();
@@ -684,14 +688,14 @@ namespace LEASING.UI.APP.Forms
 
         private void btnTerminateContract_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to Terminate the contract ?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+            if (MessageBox.Show("Are you sure you want to Terminate the contract and Move-Out the Client?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
             {
                 string result = PaymentContext.TerminateContract(RefId);
                 if (!string.IsNullOrEmpty(result))
                 {
                     if (result.Equals("SUCCESS"))
                     {
-                        MessageBox.Show("CLOSE CONTRACT SUCCESS", "System Message", MessageBoxButtons.OK);
+                        MessageBox.Show("TERMINATE CONTRACT SUCCESS", "System Message", MessageBoxButtons.OK);
                         M_GetComputationById();
                         M_GetCheckPaymentStatus();
                         M_GetPaymentListByReferenceId();

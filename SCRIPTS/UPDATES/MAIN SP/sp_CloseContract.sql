@@ -74,7 +74,7 @@ BEGIN
         --LastChangedDate = GETDATE()
     where RecId =
     (
-        select UnitId from tblUnitReference where RefId = @ReferenceID
+        select UnitId from tblUnitReference WITH(NOLOCK) where RefId = @ReferenceID
     )
       IF (@@ROWCOUNT > 0)
     BEGIN

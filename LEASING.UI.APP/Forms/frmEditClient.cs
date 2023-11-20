@@ -214,7 +214,7 @@ namespace LEASING.UI.APP.Forms
                                     string destinationFilePath = Path.Combine(folderPath, fileName);
                                     File.Copy(filePath, destinationFilePath);
 
-                                    string result = ClientContext.SaveFileInDatabase(sClientID, destinationFilePath, frmUploadFile.txtfilename.Text, fileName, frmUploadFile.txtnotes.Text, ReferenceId);
+                                    string result = ClientContext.SaveFileInDatabase(sClientID, destinationFilePath, frmUploadFile.txtfilename.Text, fileName, frmUploadFile.txtnotes.Text, ReferenceId, IsContractSigned);
                                     if (result.Equals("SUCCESS"))
                                     {
 
@@ -243,7 +243,7 @@ namespace LEASING.UI.APP.Forms
 
                                     File.Copy(filePath, destinationFilePath);
 
-                                    string result = ClientContext.SaveFileInDatabase(sClientID, destinationFilePath, frmUploadFile.txtfilename.Text, fileName, frmUploadFile.txtnotes.Text, ReferenceId);
+                                    string result = ClientContext.SaveFileInDatabase(sClientID, destinationFilePath, frmUploadFile.txtfilename.Text, fileName, frmUploadFile.txtnotes.Text, ReferenceId, IsContractSigned);
                                     if (result.Equals("SUCCESS"))
                                     {
                                         MessageBox.Show("Files attached successfully!", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);

@@ -107,7 +107,7 @@
             gridViewCommandColumn3.PinPosition = Telerik.WinControls.UI.PinnedColumnPosition.Left;
             gridViewCommandColumn3.Width = 30;
             gridViewTextBoxColumn1.FieldName = "RefId";
-            gridViewTextBoxColumn1.HeaderText = "ID";
+            gridViewTextBoxColumn1.HeaderText = "Contract ID";
             gridViewTextBoxColumn1.Name = "RefId";
             gridViewTextBoxColumn1.Width = 100;
             gridViewTextBoxColumn2.FieldName = "TransactionDate";

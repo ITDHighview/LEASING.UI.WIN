@@ -85,12 +85,12 @@
             this.radGroupBox1.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
             this.radGroupBox1.Controls.Add(this.dgvList);
             this.radGroupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radGroupBox1.HeaderText = "FOR MOVE-OUT UNIT ";
+            this.radGroupBox1.HeaderText = "FOR CLOSE CONTRACT UNIT LIST ";
             this.radGroupBox1.Location = new System.Drawing.Point(3, 28);
             this.radGroupBox1.Name = "radGroupBox1";
             this.radGroupBox1.Size = new System.Drawing.Size(590, 307);
             this.radGroupBox1.TabIndex = 1;
-            this.radGroupBox1.Text = "FOR MOVE-OUT UNIT ";
+            this.radGroupBox1.Text = "FOR CLOSE CONTRACT UNIT LIST ";
             // 
             // dgvList
             // 
@@ -119,7 +119,7 @@
             gridViewCommandColumn2.Name = "ColView";
             gridViewCommandColumn2.Width = 30;
             gridViewTextBoxColumn1.FieldName = "RefId";
-            gridViewTextBoxColumn1.HeaderText = "Referrence ID";
+            gridViewTextBoxColumn1.HeaderText = "Contract ID";
             gridViewTextBoxColumn1.Name = "RefId";
             gridViewTextBoxColumn1.Width = 150;
             gridViewTextBoxColumn2.FieldName = "ClientID";

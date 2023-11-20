@@ -55,13 +55,13 @@
             this.dtpFinishDate = new Telerik.WinControls.UI.RadDateTimePicker();
             this.radLabel13 = new Telerik.WinControls.UI.RadLabel();
             this.txtRental = new Telerik.WinControls.UI.RadTextBox();
-            this.lblVat = new Telerik.WinControls.UI.RadLabel();
             this.radLabel15 = new Telerik.WinControls.UI.RadLabel();
             this.txtTotalRental = new Telerik.WinControls.UI.RadTextBox();
             this.txtUnitNumber = new Telerik.WinControls.UI.RadTextBox();
             this.txtProjectName = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.txtReferenceId = new Telerik.WinControls.UI.RadTextBox();
+            this.lblVat = new Telerik.WinControls.UI.RadLabel();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
             this.radGroupBox1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -88,13 +88,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtpFinishDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRental)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblVat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotalRental)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUnitNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtProjectName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtReferenceId)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblVat)).BeginInit();
             this.SuspendLayout();
             // 
             // radGroupBox1
@@ -413,17 +413,6 @@
             this.txtRental.TabIndex = 4;
             this.txtRental.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRental_KeyPress);
             // 
-            // lblVat
-            // 
-            this.lblVat.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lblVat.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.lblVat.Location = new System.Drawing.Point(401, 250);
-            this.lblVat.Name = "lblVat";
-            this.lblVat.Size = new System.Drawing.Size(116, 19);
-            this.lblVat.TabIndex = 1;
-            this.lblVat.Text = "INCLUSIVE OF VAT";
-            // 
             // radLabel15
             // 
             this.radLabel15.Anchor = System.Windows.Forms.AnchorStyles.Right;
@@ -464,7 +453,7 @@
             this.radLabel1.Name = "radLabel1";
             this.radLabel1.Size = new System.Drawing.Size(96, 19);
             this.radLabel1.TabIndex = 1;
-            this.radLabel1.Text = "REFERENCE ID :";
+            this.radLabel1.Text = "CONTRACT ID :";
             // 
             // txtReferenceId
             // 
@@ -472,6 +461,17 @@
             this.txtReferenceId.Name = "txtReferenceId";
             this.txtReferenceId.Size = new System.Drawing.Size(194, 19);
             this.txtReferenceId.TabIndex = 4;
+            // 
+            // lblVat
+            // 
+            this.lblVat.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lblVat.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.lblVat.Location = new System.Drawing.Point(401, 250);
+            this.lblVat.Name = "lblVat";
+            this.lblVat.Size = new System.Drawing.Size(116, 19);
+            this.lblVat.TabIndex = 1;
+            this.lblVat.Text = "INCLUSIVE OF VAT";
             // 
             // frmEditParkingComputation
             // 
@@ -513,13 +513,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtpFinishDate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRental)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblVat)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotalRental)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUnitNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtProjectName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtReferenceId)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblVat)).EndInit();
             this.ResumeLayout(false);
 
         }

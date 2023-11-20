@@ -42,12 +42,12 @@
             this.radGroupBox1.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
             this.radGroupBox1.Controls.Add(this.dgvList);
             this.radGroupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radGroupBox1.HeaderText = "Reference List";
+            this.radGroupBox1.HeaderText = "Contract List";
             this.radGroupBox1.Location = new System.Drawing.Point(0, 0);
             this.radGroupBox1.Name = "radGroupBox1";
             this.radGroupBox1.Size = new System.Drawing.Size(228, 280);
             this.radGroupBox1.TabIndex = 0;
-            this.radGroupBox1.Text = "Reference List";
+            this.radGroupBox1.Text = "Contract List";
             // 
             // dgvList
             // 
@@ -64,7 +64,7 @@
             this.dgvList.MasterTemplate.AllowAddNewRow = false;
             this.dgvList.MasterTemplate.AllowColumnReorder = false;
             gridViewTextBoxColumn1.FieldName = "RefId";
-            gridViewTextBoxColumn1.HeaderText = "Ref Id";
+            gridViewTextBoxColumn1.HeaderText = "Contract ID";
             gridViewTextBoxColumn1.Name = "RefId";
             gridViewTextBoxColumn1.Width = 200;
             this.dgvList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {

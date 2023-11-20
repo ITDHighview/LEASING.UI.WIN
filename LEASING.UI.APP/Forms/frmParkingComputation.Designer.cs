@@ -49,18 +49,19 @@
             this.dtpStartDate = new Telerik.WinControls.UI.RadDateTimePicker();
             this.radLabel12 = new Telerik.WinControls.UI.RadLabel();
             this.dtpFinishDate = new Telerik.WinControls.UI.RadDateTimePicker();
-            this.radLabel13 = new Telerik.WinControls.UI.RadLabel();
-            this.txtRental = new Telerik.WinControls.UI.RadTextBox();
             this.btnCheckunits = new Telerik.WinControls.UI.RadButton();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.txtProjectType = new Telerik.WinControls.UI.RadTextBox();
             this.radGroupBox2 = new Telerik.WinControls.UI.RadGroupBox();
             this.dgvpostdatedcheck = new Telerik.WinControls.UI.RadGridView();
-            this.lblVat = new Telerik.WinControls.UI.RadLabel();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.txtTotalCheck = new Telerik.WinControls.UI.RadTextBox();
+            this.radLabel13 = new Telerik.WinControls.UI.RadLabel();
+            this.txtRental = new Telerik.WinControls.UI.RadTextBox();
+            this.lblVat = new Telerik.WinControls.UI.RadLabel();
             this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
+            this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
             this.tableLayoutPanel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ddlProject)).BeginInit();
@@ -75,8 +76,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtpStartDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFinishDate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRental)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCheckunits)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtProjectType)).BeginInit();
@@ -84,10 +83,12 @@
             this.radGroupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvpostdatedcheck)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvpostdatedcheck.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblVat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotalCheck)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRental)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblVat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
             this.radGroupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -318,25 +319,6 @@
             this.dtpFinishDate.Text = "7/31/2023";
             this.dtpFinishDate.Value = new System.DateTime(2023, 7, 31, 9, 8, 50, 186);
             // 
-            // radLabel13
-            // 
-            this.radLabel13.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.radLabel13.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel13.Location = new System.Drawing.Point(129, 275);
-            this.radLabel13.Name = "radLabel13";
-            this.radLabel13.Size = new System.Drawing.Size(50, 19);
-            this.radLabel13.TabIndex = 1;
-            this.radLabel13.Text = "Rental :";
-            // 
-            // txtRental
-            // 
-            this.txtRental.Location = new System.Drawing.Point(185, 275);
-            this.txtRental.Name = "txtRental";
-            this.txtRental.NullText = "0";
-            this.txtRental.Size = new System.Drawing.Size(94, 20);
-            this.txtRental.TabIndex = 4;
-            this.txtRental.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRental_KeyPress);
-            // 
             // btnCheckunits
             // 
             this.btnCheckunits.Image = global::LEASING.UI.APP.Properties.Resources.magnifier;
@@ -412,22 +394,13 @@
             gridViewTextBoxColumn3});
             this.dgvpostdatedcheck.MasterTemplate.ShowRowHeaderColumn = false;
             this.dgvpostdatedcheck.Name = "dgvpostdatedcheck";
+            this.dgvpostdatedcheck.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.dgvpostdatedcheck.ReadOnly = true;
             this.dgvpostdatedcheck.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgvpostdatedcheck.ShowGroupPanel = false;
             this.dgvpostdatedcheck.Size = new System.Drawing.Size(663, 420);
             this.dgvpostdatedcheck.TabIndex = 1;
-            // 
-            // lblVat
-            // 
-            this.lblVat.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lblVat.Font = new System.Drawing.Font("Segoe UI", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.lblVat.Location = new System.Drawing.Point(301, 275);
-            this.lblVat.Name = "lblVat";
-            this.lblVat.Size = new System.Drawing.Size(106, 18);
-            this.lblVat.TabIndex = 1;
-            this.lblVat.Text = "INCLUSIVE OF VAT";
+            this.dgvpostdatedcheck.ThemeName = "Office2007Silver";
             // 
             // radLabel4
             // 
@@ -457,6 +430,36 @@
             this.txtTotalCheck.Size = new System.Drawing.Size(94, 19);
             this.txtTotalCheck.TabIndex = 4;
             this.txtTotalCheck.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTotalCheck_KeyPress);
+            // 
+            // radLabel13
+            // 
+            this.radLabel13.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.radLabel13.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel13.Location = new System.Drawing.Point(129, 275);
+            this.radLabel13.Name = "radLabel13";
+            this.radLabel13.Size = new System.Drawing.Size(50, 19);
+            this.radLabel13.TabIndex = 1;
+            this.radLabel13.Text = "Rental :";
+            // 
+            // txtRental
+            // 
+            this.txtRental.Location = new System.Drawing.Point(185, 275);
+            this.txtRental.Name = "txtRental";
+            this.txtRental.NullText = "0";
+            this.txtRental.Size = new System.Drawing.Size(94, 19);
+            this.txtRental.TabIndex = 4;
+            this.txtRental.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRental_KeyPress);
+            // 
+            // lblVat
+            // 
+            this.lblVat.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lblVat.Font = new System.Drawing.Font("Segoe UI", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.lblVat.Location = new System.Drawing.Point(301, 275);
+            this.lblVat.Name = "lblVat";
+            this.lblVat.Size = new System.Drawing.Size(106, 18);
+            this.lblVat.TabIndex = 1;
+            this.lblVat.Text = "INCLUSIVE OF VAT";
             // 
             // radGroupBox1
             // 
@@ -498,8 +501,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtpStartDate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFinishDate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRental)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCheckunits)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtProjectType)).EndInit();
@@ -507,10 +508,12 @@
             this.radGroupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvpostdatedcheck.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvpostdatedcheck)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblVat)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotalCheck)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRental)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblVat)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).EndInit();
             this.radGroupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -549,5 +552,6 @@
         private System.Windows.Forms.ToolStripButton btnCompute;
         private Telerik.WinControls.UI.RadLabel radLabel3;
         private Telerik.WinControls.UI.RadTextBox txtTotalCheck;
+        private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme1;
     }
 }

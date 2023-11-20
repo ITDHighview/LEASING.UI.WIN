@@ -106,6 +106,8 @@
             this.dgvList = new Telerik.WinControls.UI.RadGridView();
             this.radLabel21 = new Telerik.WinControls.UI.RadLabel();
             this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
+            this.office2010BlueTheme1 = new Telerik.WinControls.Themes.Office2010BlueTheme();
+            this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox5)).BeginInit();
             this.radGroupBox5.SuspendLayout();
@@ -362,7 +364,7 @@
             gridViewTextBoxColumn3.FieldName = "Amount";
             gridViewTextBoxColumn3.HeaderText = "Amount";
             gridViewTextBoxColumn3.Name = "Amount";
-            gridViewTextBoxColumn3.Width = 144;
+            gridViewTextBoxColumn3.Width = 143;
             this.dgvAdvancePayment.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
@@ -375,6 +377,7 @@
             this.dgvAdvancePayment.Size = new System.Drawing.Size(288, 99);
             this.dgvAdvancePayment.TabIndex = 1;
             this.dgvAdvancePayment.Text = "radGridView1";
+            this.dgvAdvancePayment.ThemeName = "Office2010Blue";
             // 
             // toolStripAdvancePayment
             // 
@@ -767,6 +770,7 @@
             this.dgvpostdatedcheck.ShowGroupPanel = false;
             this.dgvpostdatedcheck.Size = new System.Drawing.Size(380, 321);
             this.dgvpostdatedcheck.TabIndex = 0;
+            this.dgvpostdatedcheck.ThemeName = "Office2010Blue";
             // 
             // radLabel1
             // 
@@ -931,12 +935,14 @@
             this.dgvList.MasterTemplate.EnableFiltering = true;
             this.dgvList.MasterTemplate.ShowRowHeaderColumn = false;
             this.dgvList.Name = "dgvList";
+            this.dgvList.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.dgvList.ReadOnly = true;
             this.dgvList.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgvList.ShowGroupPanel = false;
             this.dgvList.Size = new System.Drawing.Size(1001, 179);
             this.dgvList.TabIndex = 0;
             this.dgvList.Text = "radGridView1";
+            this.dgvList.ThemeName = "Office2007Silver";
             this.dgvList.CellClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.dgvList_CellClick);
             // 
             // radLabel21
@@ -1097,5 +1103,7 @@
         private Telerik.WinControls.UI.RadTextBox txtSecurityPaymentMonthCount;
         private Telerik.WinControls.UI.RadLabel radLabel3;
         private Telerik.WinControls.UI.RadLabel radLabel16;
+        private Telerik.WinControls.Themes.Office2010BlueTheme office2010BlueTheme1;
+        private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme1;
     }
 }

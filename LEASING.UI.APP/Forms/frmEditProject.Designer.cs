@@ -69,6 +69,7 @@
             this.dgvUnitList = new Telerik.WinControls.UI.RadGridView();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.btnAddUnits = new System.Windows.Forms.ToolStripButton();
+            this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
             this.radGroupBox1.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
@@ -239,7 +240,7 @@
             this.txtProjectAddress.Location = new System.Drawing.Point(103, 128);
             this.txtProjectAddress.Name = "txtProjectAddress";
             this.txtProjectAddress.NullText = "Type Here....";
-            this.txtProjectAddress.Size = new System.Drawing.Size(344, 20);
+            this.txtProjectAddress.Size = new System.Drawing.Size(344, 19);
             this.txtProjectAddress.TabIndex = 1;
             this.txtProjectAddress.ThemeName = "Office2013Light";
             // 
@@ -248,7 +249,7 @@
             this.txtDescription.Location = new System.Drawing.Point(103, 103);
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.NullText = "Type Here....";
-            this.txtDescription.Size = new System.Drawing.Size(344, 20);
+            this.txtDescription.Size = new System.Drawing.Size(344, 19);
             this.txtDescription.TabIndex = 1;
             this.txtDescription.ThemeName = "Office2013Light";
             // 
@@ -267,7 +268,7 @@
             this.txtProjectName.Location = new System.Drawing.Point(103, 78);
             this.txtProjectName.Name = "txtProjectName";
             this.txtProjectName.NullText = "Type here....";
-            this.txtProjectName.Size = new System.Drawing.Size(344, 20);
+            this.txtProjectName.Size = new System.Drawing.Size(344, 19);
             this.txtProjectName.TabIndex = 1;
             this.txtProjectName.ThemeName = "Office2013Light";
             // 
@@ -429,12 +430,14 @@
             gridViewTextBoxColumn13});
             this.dgvUnitList.MasterTemplate.EnableFiltering = true;
             this.dgvUnitList.Name = "dgvUnitList";
+            this.dgvUnitList.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.dgvUnitList.ReadOnly = true;
             this.dgvUnitList.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgvUnitList.ShowGroupPanel = false;
             this.dgvUnitList.Size = new System.Drawing.Size(750, 282);
             this.dgvUnitList.TabIndex = 1;
             this.dgvUnitList.Text = "radGridView1";
+            this.dgvUnitList.ThemeName = "Office2007Silver";
             this.dgvUnitList.CellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.dgvUnitList_CellFormatting);
             this.dgvUnitList.CellClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.dgvUnitList_CellClick);
             // 
@@ -524,5 +527,6 @@
         private System.Windows.Forms.ToolStripButton btnAddUnits;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripButton btnNewPurchaseItems;
+        private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme1;
     }
 }

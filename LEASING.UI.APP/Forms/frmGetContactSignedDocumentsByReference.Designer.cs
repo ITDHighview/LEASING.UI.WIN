@@ -37,6 +37,7 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             this.radGroupBox4 = new Telerik.WinControls.UI.RadGroupBox();
             this.dgvFileList = new Telerik.WinControls.UI.RadGridView();
+            this.office2013DarkTheme1 = new Telerik.WinControls.Themes.Office2013DarkTheme();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox4)).BeginInit();
             this.radGroupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFileList)).BeginInit();
@@ -125,6 +126,7 @@
             this.dgvFileList.Size = new System.Drawing.Size(917, 300);
             this.dgvFileList.TabIndex = 0;
             this.dgvFileList.Text = "radGridView2";
+            this.dgvFileList.ThemeName = "Office2013Dark";
             this.dgvFileList.CellClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.dgvFileList_CellClick);
             // 
             // frmGetContactSignedDocumentsByReference
@@ -151,5 +153,6 @@
 
         private Telerik.WinControls.UI.RadGroupBox radGroupBox4;
         private Telerik.WinControls.UI.RadGridView dgvFileList;
+        private Telerik.WinControls.Themes.Office2013DarkTheme office2013DarkTheme1;
     }
 }

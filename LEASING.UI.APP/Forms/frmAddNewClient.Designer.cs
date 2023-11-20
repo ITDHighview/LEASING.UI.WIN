@@ -107,6 +107,7 @@
             this.lblFoot = new Telerik.WinControls.UI.RadLabel();
             this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
+            this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).BeginInit();
             this.radGroupBox3.SuspendLayout();
@@ -782,12 +783,14 @@
             gridViewTextBoxColumn23});
             this.dgvClientList.MasterTemplate.EnableFiltering = true;
             this.dgvClientList.Name = "dgvClientList";
+            this.dgvClientList.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.dgvClientList.ReadOnly = true;
             this.dgvClientList.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgvClientList.ShowGroupPanel = false;
             this.dgvClientList.Size = new System.Drawing.Size(1001, 243);
             this.dgvClientList.TabIndex = 0;
             this.dgvClientList.Text = "radGridView2";
+            this.dgvClientList.ThemeName = "Office2007Silver";
             this.dgvClientList.CellClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.dgvClientList_CellClick);
             // 
             // toolStrip2
@@ -1017,5 +1020,6 @@
         private Telerik.WinControls.UI.RadTextBox txtage;
         private Telerik.WinControls.UI.RadLabel radLabel20;
         private Telerik.WinControls.UI.RadDropDownList ddlClientType;
+        private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme1;
     }
 }

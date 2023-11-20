@@ -98,6 +98,8 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnUndo = new System.Windows.Forms.ToolStripButton();
             this.lblFoot = new Telerik.WinControls.UI.RadLabel();
+            this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
+            this.office2010BlueTheme1 = new Telerik.WinControls.Themes.Office2010BlueTheme();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).BeginInit();
             this.radGroupBox3.SuspendLayout();
@@ -333,12 +335,14 @@
             this.dgvList.MasterTemplate.EnableFiltering = true;
             this.dgvList.MasterTemplate.ShowRowHeaderColumn = false;
             this.dgvList.Name = "dgvList";
+            this.dgvList.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.dgvList.ReadOnly = true;
             this.dgvList.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgvList.ShowGroupPanel = false;
             this.dgvList.Size = new System.Drawing.Size(389, 201);
             this.dgvList.TabIndex = 1;
             this.dgvList.Text = "radGridView1";
+            this.dgvList.ThemeName = "Office2010Blue";
             this.dgvList.CellClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.dgvList_CellClick);
             // 
             // radLabel2
@@ -732,7 +736,7 @@
             this.radGroupBox4.Size = new System.Drawing.Size(932, 252);
             this.radGroupBox4.TabIndex = 1;
             this.radGroupBox4.Text = "ATTACHMENT LIST";
-            this.radGroupBox4.ThemeName = "Office2007Black";
+            this.radGroupBox4.ThemeName = "ControlDefault";
             // 
             // dgvFileList
             // 
@@ -797,12 +801,14 @@
             gridViewTextBoxColumn9});
             this.dgvFileList.MasterTemplate.EnableFiltering = true;
             this.dgvFileList.Name = "dgvFileList";
+            this.dgvFileList.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.dgvFileList.ReadOnly = true;
             this.dgvFileList.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgvFileList.ShowGroupPanel = false;
             this.dgvFileList.Size = new System.Drawing.Size(928, 232);
             this.dgvFileList.TabIndex = 0;
             this.dgvFileList.Text = "radGridView2";
+            this.dgvFileList.ThemeName = "Office2007Silver";
             this.dgvFileList.CellClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.dgvFileList_CellClick);
             // 
             // toolStrip2
@@ -981,5 +987,7 @@
         private System.Windows.Forms.ToolStripButton btnEnableView;
         private Telerik.WinControls.UI.RadGroupBox radGroupBox1;
         private Telerik.WinControls.UI.RadGridView dgvList;
+        private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme1;
+        private Telerik.WinControls.Themes.Office2010BlueTheme office2010BlueTheme1;
     }
 }

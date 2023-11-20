@@ -83,6 +83,8 @@
             this.radLabel21 = new Telerik.WinControls.UI.RadLabel();
             this.txtTotal = new Telerik.WinControls.UI.RadTextBox();
             this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
+            this.office2010BlueTheme1 = new Telerik.WinControls.Themes.Office2010BlueTheme();
+            this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox4)).BeginInit();
             this.radGroupBox4.SuspendLayout();
@@ -350,11 +352,13 @@
             gridViewTextBoxColumn3});
             this.dgvpostdatedcheck.MasterTemplate.ShowRowHeaderColumn = false;
             this.dgvpostdatedcheck.Name = "dgvpostdatedcheck";
+            this.dgvpostdatedcheck.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.dgvpostdatedcheck.ReadOnly = true;
             this.dgvpostdatedcheck.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgvpostdatedcheck.ShowGroupPanel = false;
             this.dgvpostdatedcheck.Size = new System.Drawing.Size(663, 295);
             this.dgvpostdatedcheck.TabIndex = 1;
+            this.dgvpostdatedcheck.ThemeName = "Office2007Silver";
             // 
             // txtTotalCheck
             // 
@@ -657,7 +661,7 @@
             gridViewTextBoxColumn6.FieldName = "Amount";
             gridViewTextBoxColumn6.HeaderText = "Amount";
             gridViewTextBoxColumn6.Name = "Amount";
-            gridViewTextBoxColumn6.Width = 144;
+            gridViewTextBoxColumn6.Width = 143;
             this.dgvAdvancePayment.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn4,
             gridViewTextBoxColumn5,
@@ -670,6 +674,7 @@
             this.dgvAdvancePayment.Size = new System.Drawing.Size(288, 99);
             this.dgvAdvancePayment.TabIndex = 1;
             this.dgvAdvancePayment.Text = "radGridView1";
+            this.dgvAdvancePayment.ThemeName = "Office2010Blue";
             // 
             // toolStripAdvancePayment
             // 
@@ -863,5 +868,7 @@
         private Telerik.WinControls.UI.RadLabel radLabel7;
         private Telerik.WinControls.UI.RadDateTimePicker dtpSelectedDate;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private Telerik.WinControls.Themes.Office2010BlueTheme office2010BlueTheme1;
+        private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme1;
     }
 }

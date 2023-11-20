@@ -74,6 +74,7 @@
             this.lblFoot = new Telerik.WinControls.UI.RadLabel();
             this.lblLastChangedBy = new Telerik.WinControls.UI.RadLabel();
             this.lblEncodedBy = new Telerik.WinControls.UI.RadLabel();
+            this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).BeginInit();
             this.radGroupBox3.SuspendLayout();
@@ -486,13 +487,14 @@
             this.dgvPurchaseItemList.MasterTemplate.EnableFiltering = true;
             this.dgvPurchaseItemList.MasterTemplate.ShowRowHeaderColumn = false;
             this.dgvPurchaseItemList.Name = "dgvPurchaseItemList";
+            this.dgvPurchaseItemList.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.dgvPurchaseItemList.ReadOnly = true;
             this.dgvPurchaseItemList.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgvPurchaseItemList.ShowGroupPanel = false;
             this.dgvPurchaseItemList.Size = new System.Drawing.Size(1001, 411);
             this.dgvPurchaseItemList.TabIndex = 3;
             this.dgvPurchaseItemList.Text = "radGridView1";
-            this.dgvPurchaseItemList.ThemeName = "ControlDefault";
+            this.dgvPurchaseItemList.ThemeName = "Office2007Silver";
             this.dgvPurchaseItemList.SelectionChanged += new System.EventHandler(this.dgvPurchaseItemList_SelectionChanged);
             this.dgvPurchaseItemList.CellClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.dgvPurchaseItemList_CellClick);
             // 
@@ -693,5 +695,6 @@
         private Telerik.WinControls.UI.RadTextBox txtUnitNumber;
         private Telerik.WinControls.UI.RadButton btnSelectUnits;
         public Telerik.WinControls.UI.RadDropDownList ddlProjectList;
+        private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme1;
     }
 }

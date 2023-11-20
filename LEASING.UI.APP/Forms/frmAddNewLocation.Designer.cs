@@ -53,6 +53,7 @@
             this.btnUndo = new System.Windows.Forms.ToolStripButton();
             this.btnLogs = new System.Windows.Forms.ToolStripButton();
             this.btnCheckInactiveList = new System.Windows.Forms.ToolStripButton();
+            this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lblFoot)).BeginInit();
             this.lblFoot.SuspendLayout();
@@ -272,13 +273,14 @@
             this.dgvLocationList.MasterTemplate.EnableFiltering = true;
             this.dgvLocationList.MasterTemplate.ShowRowHeaderColumn = false;
             this.dgvLocationList.Name = "dgvLocationList";
+            this.dgvLocationList.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.dgvLocationList.ReadOnly = true;
             this.dgvLocationList.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgvLocationList.ShowGroupPanel = false;
             this.dgvLocationList.Size = new System.Drawing.Size(737, 363);
             this.dgvLocationList.TabIndex = 0;
             this.dgvLocationList.Text = "radGridView1";
-            this.dgvLocationList.ThemeName = "ControlDefault";
+            this.dgvLocationList.ThemeName = "Office2007Silver";
             this.dgvLocationList.CellClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.dgvLocationList_CellClick);
             // 
             // toolStrip1
@@ -406,5 +408,6 @@
         private Telerik.WinControls.UI.RadLabel radLabel7;
         private System.Windows.Forms.ToolStripButton btnLogs;
         private System.Windows.Forms.ToolStripButton btnCheckInactiveList;
+        private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme1;
     }
 }

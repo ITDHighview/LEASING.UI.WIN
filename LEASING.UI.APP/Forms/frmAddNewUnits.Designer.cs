@@ -103,6 +103,7 @@
             this.txtSecAndMainVatAmount = new Telerik.WinControls.UI.RadTextBox();
             this.txtSecAndMainVatPercentage = new Telerik.WinControls.UI.RadTextBox();
             this.txtSecAndMainAmount = new Telerik.WinControls.UI.RadTextBox();
+            this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
             this.radGroupBox1.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
@@ -436,12 +437,14 @@
             gridViewTextBoxColumn13});
             this.dgvUnitList.MasterTemplate.EnableFiltering = true;
             this.dgvUnitList.Name = "dgvUnitList";
+            this.dgvUnitList.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.dgvUnitList.ReadOnly = true;
             this.dgvUnitList.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgvUnitList.ShowGroupPanel = false;
             this.dgvUnitList.Size = new System.Drawing.Size(1111, 362);
             this.dgvUnitList.TabIndex = 0;
             this.dgvUnitList.Text = "radGridView1";
+            this.dgvUnitList.ThemeName = "Office2007Silver";
             this.dgvUnitList.CellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.dgvUnitList_CellFormatting);
             this.dgvUnitList.CellClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.dgvUnitList_CellClick);
             // 
@@ -1042,5 +1045,6 @@
         private Telerik.WinControls.UI.RadLabel lblBaseRentalTax;
         private Telerik.WinControls.UI.RadLabel lblSecAndMainTax;
         private Telerik.WinControls.UI.RadTextBox txtSecAndMainTax;
+        private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme1;
     }
 }

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -18,7 +19,10 @@ namespace LEASING.UI.APP.Forms
         public frmMainDashboard()
         {
             InitializeComponent();
-            //Functions.SecurityControls(this);
+            if (Convert.ToBoolean(ConfigurationManager.AppSettings["IsPermission"].ToString()))
+            {
+                Functions.SecurityControls(this);
+            }
         }
 
         private void frmMainDashboard_Load(object sender, EventArgs e)
@@ -318,6 +322,13 @@ namespace LEASING.UI.APP.Forms
         {
             frmAddBankName forms = new frmAddBankName();
             forms.ShowDialog();
+        }
+
+        private void radMenuItemFormControls_Click(object sender, EventArgs e)
+        {
+            frmFormControls forms = new frmFormControls();
+            forms.ShowDialog();
+            
         }
     }
 }

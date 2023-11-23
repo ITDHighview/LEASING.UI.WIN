@@ -12,7 +12,109 @@ namespace LEASING.UI.APP.Context
 {
     public class SecurityControlContext : IDisposable
     {
-        public DataSet GetControls()
+        public string SaveFormControls(int FormId, int MenuId, string ControlName, string ControlDescription, bool IsBackRoundControl, bool IsHeaderControl)
+        {
+            SqlCommand _sqlcmd = null;
+            SqlParameter _sqlpara;
+            SqlConnection _sqlcon = null;
+            SqlDataReader _sqlreader = null;
+
+            _sqlcmd = new SqlCommand();
+            _sqlcmd.CommandText = "sp_SaveFormControls";
+            _sqlpara = new SqlParameter("@FormId", FormId);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@MenuId", MenuId);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@ControlName", ControlName);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@ControlDescription", ControlDescription);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@IsBackRoundControl", IsBackRoundControl);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@IsHeaderControl", IsHeaderControl);
+            _sqlcmd.Parameters.Add(_sqlpara);
+
+            try
+            {
+                _sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
+                _sqlcmd.Connection = _sqlcon;
+                _sqlcmd.CommandType = CommandType.StoredProcedure;
+
+                //_sqlreader = SqlDataReader(_sqlcmd, false);
+
+                _sqlcmd.Connection.Open();
+                _sqlreader = _sqlcmd.ExecuteReader();
+                _sqlreader.Read();
+
+                int index;
+                if (_sqlreader.HasRows)
+                {
+                    index = _sqlreader.GetOrdinal("Message_Code");
+                    if (!_sqlreader.IsDBNull(index))
+                        return Convert.ToString(_sqlreader.GetString(index));
+                }
+            }
+            catch (Exception expCommon)
+            {
+                //vErrorMessage = Convert.ToString(expCommon.Message);
+                return "FAILED|" + Convert.ToString(expCommon.Message);
+            }
+            finally
+            {
+                if (_sqlcon.State != ConnectionState.Closed)
+                {
+                    _sqlcon.Close();
+                }
+                _sqlpara = null;
+                _sqlcmd = null;
+                _sqlreader = null;
+            }
+            return "";
+        }
+        public DataSet GetControls(int groupid)
+        {
+
+            SqlCommand _SqlCommand = null;
+            SqlParameter _SqlParameter;
+            SqlConnection _SqlConnection = null;
+
+
+            using (DataSet dsRec = new DataSet())
+            {
+                _SqlCommand = new SqlCommand();
+                _SqlCommand.CommandText = "sp_getControlPermission";
+
+                _SqlParameter = new SqlParameter("@GroupId", groupid);
+                _SqlCommand.Parameters.Add(_SqlParameter);
+
+                try
+                {
+                    _SqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
+                    _SqlCommand.Connection = _SqlConnection;
+                    _SqlCommand.CommandType = CommandType.StoredProcedure;
+                    using (SqlDataAdapter dataAdaptor = new SqlDataAdapter(_SqlCommand))
+                    {
+                        dataAdaptor.Fill(dsRec);
+                    }
+                }
+                catch (Exception expCommon)
+                {
+                    return null;
+                }
+                finally
+                {
+                    if (_SqlConnection.State != ConnectionState.Closed)
+                    {
+                        _SqlConnection.Close();
+                    }
+                    _SqlParameter = null;
+                    _SqlCommand = null;
+                    _SqlConnection = null;
+                }
+                return dsRec;
+            }
+        }
+        public DataSet GetFormList()
         {
 
             SqlCommand _SqlCommand = null;
@@ -23,7 +125,7 @@ namespace LEASING.UI.APP.Context
             using (DataSet dsRec = new DataSet())
             {
                 _SqlCommand = new SqlCommand();
-                _SqlCommand.CommandText = "sp_getControlPermission_Debug";
+                _SqlCommand.CommandText = "sp_GetFormList";
 
                 //_SqlParameter = new SqlParameter("@ApproverEmpNno", _AssignTo);
                 //_SqlCommand.Parameters.Add(_SqlParameter);
@@ -55,6 +157,375 @@ namespace LEASING.UI.APP.Context
                 return dsRec;
             }
         }
+        public DataSet GetMenuList()
+        {
+
+            SqlCommand _SqlCommand = null;
+            // SqlParameter _SqlParameter;
+            SqlConnection _SqlConnection = null;
+
+
+            using (DataSet dsRec = new DataSet())
+            {
+                _SqlCommand = new SqlCommand();
+                _SqlCommand.CommandText = "sp_GetMenuList";
+
+                //_SqlParameter = new SqlParameter("@ApproverEmpNno", _AssignTo);
+                //_SqlCommand.Parameters.Add(_SqlParameter);
+
+                try
+                {
+                    _SqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
+                    _SqlCommand.Connection = _SqlConnection;
+                    _SqlCommand.CommandType = CommandType.StoredProcedure;
+                    using (SqlDataAdapter dataAdaptor = new SqlDataAdapter(_SqlCommand))
+                    {
+                        dataAdaptor.Fill(dsRec);
+                    }
+                }
+                catch (Exception expCommon)
+                {
+                    return null;
+                }
+                finally
+                {
+                    if (_SqlConnection.State != ConnectionState.Closed)
+                    {
+                        _SqlConnection.Close();
+                    }
+                    //_SqlParameter = null;
+                    _SqlCommand = null;
+                    _SqlConnection = null;
+                }
+                return dsRec;
+            }
+        }
+        public DataSet GetControlList()
+        {
+
+            SqlCommand _SqlCommand = null;
+            // SqlParameter _SqlParameter;
+            SqlConnection _SqlConnection = null;
+
+
+            using (DataSet dsRec = new DataSet())
+            {
+                _SqlCommand = new SqlCommand();
+                _SqlCommand.CommandText = "sp_GetControlList";
+
+                //_SqlParameter = new SqlParameter("@ApproverEmpNno", _AssignTo);
+                //_SqlCommand.Parameters.Add(_SqlParameter);
+
+                try
+                {
+                    _SqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
+                    _SqlCommand.Connection = _SqlConnection;
+                    _SqlCommand.CommandType = CommandType.StoredProcedure;
+                    using (SqlDataAdapter dataAdaptor = new SqlDataAdapter(_SqlCommand))
+                    {
+                        dataAdaptor.Fill(dsRec);
+                    }
+                }
+                catch (Exception expCommon)
+                {
+                    return null;
+                }
+                finally
+                {
+                    if (_SqlConnection.State != ConnectionState.Closed)
+                    {
+                        _SqlConnection.Close();
+                    }
+                    //_SqlParameter = null;
+                    _SqlCommand = null;
+                    _SqlConnection = null;
+                }
+                return dsRec;
+            }
+        }
+
+        public DataSet GetGroupList()
+        {
+
+            SqlCommand _SqlCommand = null;
+            // SqlParameter _SqlParameter;
+            SqlConnection _SqlConnection = null;
+
+
+            using (DataSet dsRec = new DataSet())
+            {
+                _SqlCommand = new SqlCommand();
+                _SqlCommand.CommandText = "sp_GetGroupList";
+
+                //_SqlParameter = new SqlParameter("@ApproverEmpNno", _AssignTo);
+                //_SqlCommand.Parameters.Add(_SqlParameter);
+
+                try
+                {
+                    _SqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
+                    _SqlCommand.Connection = _SqlConnection;
+                    _SqlCommand.CommandType = CommandType.StoredProcedure;
+                    using (SqlDataAdapter dataAdaptor = new SqlDataAdapter(_SqlCommand))
+                    {
+                        dataAdaptor.Fill(dsRec);
+                    }
+                }
+                catch (Exception expCommon)
+                {
+                    return null;
+                }
+                finally
+                {
+                    if (_SqlConnection.State != ConnectionState.Closed)
+                    {
+                        _SqlConnection.Close();
+                    }
+                    //_SqlParameter = null;
+                    _SqlCommand = null;
+                    _SqlConnection = null;
+                }
+                return dsRec;
+            }
+        }
+
+        public DataSet GetFormListByGroupId(int groupid)
+        {
+
+            SqlCommand _SqlCommand = null;
+            SqlParameter _SqlParameter;
+            SqlConnection _SqlConnection = null;
+
+
+            using (DataSet dsRec = new DataSet())
+            {
+                _SqlCommand = new SqlCommand();
+                _SqlCommand.CommandText = "sp_GetFormListByGroupId";
+
+                _SqlParameter = new SqlParameter("@GroupId", groupid);
+                _SqlCommand.Parameters.Add(_SqlParameter);
+
+                try
+                {
+                    _SqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
+                    _SqlCommand.Connection = _SqlConnection;
+                    _SqlCommand.CommandType = CommandType.StoredProcedure;
+                    using (SqlDataAdapter dataAdaptor = new SqlDataAdapter(_SqlCommand))
+                    {
+                        dataAdaptor.Fill(dsRec);
+                    }
+                }
+                catch (Exception expCommon)
+                {
+                    return null;
+                }
+                finally
+                {
+                    if (_SqlConnection.State != ConnectionState.Closed)
+                    {
+                        _SqlConnection.Close();
+                    }
+                    _SqlParameter = null;
+                    _SqlCommand = null;
+                    _SqlConnection = null;
+                }
+                return dsRec;
+            }
+        }
+        public DataSet GetGetMenuListByFormId(int FormId)
+        {
+
+            SqlCommand _SqlCommand = null;
+            SqlParameter _SqlParameter;
+            SqlConnection _SqlConnection = null;
+
+
+            using (DataSet dsRec = new DataSet())
+            {
+                _SqlCommand = new SqlCommand();
+                _SqlCommand.CommandText = "sp_GetMenuListByFormId";
+
+                _SqlParameter = new SqlParameter("@FormId", FormId);
+                _SqlCommand.Parameters.Add(_SqlParameter);
+
+                try
+                {
+                    _SqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
+                    _SqlCommand.Connection = _SqlConnection;
+                    _SqlCommand.CommandType = CommandType.StoredProcedure;
+                    using (SqlDataAdapter dataAdaptor = new SqlDataAdapter(_SqlCommand))
+                    {
+                        dataAdaptor.Fill(dsRec);
+                    }
+                }
+                catch (Exception expCommon)
+                {
+                    return null;
+                }
+                finally
+                {
+                    if (_SqlConnection.State != ConnectionState.Closed)
+                    {
+                        _SqlConnection.Close();
+                    }
+                    _SqlParameter = null;
+                    _SqlCommand = null;
+                    _SqlConnection = null;
+                }
+                return dsRec;
+            }
+        }
+        public DataSet GetControlListByGroupIdAndMenuId(int groupid, int menuid)
+        {
+
+            SqlCommand _SqlCommand = null;
+            SqlParameter _SqlParameter;
+            SqlConnection _SqlConnection = null;
+
+
+            using (DataSet dsRec = new DataSet())
+            {
+                _SqlCommand = new SqlCommand();
+                _SqlCommand.CommandText = "sp_GetControlListByGroupIdAndMenuId";
+
+                _SqlParameter = new SqlParameter("@GroupId", groupid);
+                _SqlCommand.Parameters.Add(_SqlParameter);
+                _SqlParameter = new SqlParameter("@MenuId", menuid);
+                _SqlCommand.Parameters.Add(_SqlParameter);
+
+                try
+                {
+                    _SqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
+                    _SqlCommand.Connection = _SqlConnection;
+                    _SqlCommand.CommandType = CommandType.StoredProcedure;
+                    using (SqlDataAdapter dataAdaptor = new SqlDataAdapter(_SqlCommand))
+                    {
+                        dataAdaptor.Fill(dsRec);
+                    }
+                }
+                catch (Exception expCommon)
+                {
+                    return null;
+                }
+                finally
+                {
+                    if (_SqlConnection.State != ConnectionState.Closed)
+                    {
+                        _SqlConnection.Close();
+                    }
+                    _SqlParameter = null;
+                    _SqlCommand = null;
+                    _SqlConnection = null;
+                }
+                return dsRec;
+            }
+        }
+
+        public DataSet GetGroupControlInfo(int ControlId, int GroupId, int FormId)
+        {
+
+            SqlCommand _SqlCommand = null;
+            SqlParameter _SqlParameter;
+            SqlConnection _SqlConnection = null;
+
+
+            using (DataSet dsRec = new DataSet())
+            {
+                _SqlCommand = new SqlCommand();
+                _SqlCommand.CommandText = "sp_GetGroupControlInfo";
+
+                _SqlParameter = new SqlParameter("@ControlId", ControlId);
+                _SqlCommand.Parameters.Add(_SqlParameter);
+                _SqlParameter = new SqlParameter("@GroupId", GroupId);
+                _SqlCommand.Parameters.Add(_SqlParameter);
+                _SqlParameter = new SqlParameter("@FormId", FormId);
+                _SqlCommand.Parameters.Add(_SqlParameter);
+
+
+                try
+                {
+                    _SqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
+                    _SqlCommand.Connection = _SqlConnection;
+                    _SqlCommand.CommandType = CommandType.StoredProcedure;
+                    using (SqlDataAdapter dataAdaptor = new SqlDataAdapter(_SqlCommand))
+                    {
+                        dataAdaptor.Fill(dsRec);
+                    }
+                }
+                catch (Exception expCommon)
+                {
+                    return null;
+                }
+                finally
+                {
+                    if (_SqlConnection.State != ConnectionState.Closed)
+                    {
+                        _SqlConnection.Close();
+                    }
+                    _SqlParameter = null;
+                    _SqlCommand = null;
+                    _SqlConnection = null;
+                }
+                return dsRec;
+            }
+        }
+
+        public string UpdateGroupFormControls(int FormId, int ControlId, int GroupId, bool IsVisible)
+        {
+            SqlCommand _sqlcmd = null;
+            SqlParameter _sqlpara;
+            SqlConnection _sqlcon = null;
+            SqlDataReader _sqlreader = null;
+
+            _sqlcmd = new SqlCommand();
+            _sqlcmd.CommandText = "sp_UpdateGroupFormControls";
+            _sqlpara = new SqlParameter("@FormId", FormId);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@ControlId", ControlId);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@GroupId", GroupId);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@IsVisible", IsVisible);
+            _sqlcmd.Parameters.Add(_sqlpara);
+
+
+            try
+            {
+                _sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
+                _sqlcmd.Connection = _sqlcon;
+                _sqlcmd.CommandType = CommandType.StoredProcedure;
+
+                //_sqlreader = SqlDataReader(_sqlcmd, false);
+
+                _sqlcmd.Connection.Open();
+                _sqlreader = _sqlcmd.ExecuteReader();
+                _sqlreader.Read();
+
+                int index;
+                if (_sqlreader.HasRows)
+                {
+                    index = _sqlreader.GetOrdinal("Message_Code");
+                    if (!_sqlreader.IsDBNull(index))
+                        return Convert.ToString(_sqlreader.GetString(index));
+                }
+            }
+            catch (Exception expCommon)
+            {
+                //vErrorMessage = Convert.ToString(expCommon.Message);
+                return "FAILED|" + Convert.ToString(expCommon.Message);
+            }
+            finally
+            {
+                if (_sqlcon.State != ConnectionState.Closed)
+                {
+                    _sqlcon.Close();
+                }
+                _sqlpara = null;
+                _sqlcmd = null;
+                _sqlreader = null;
+            }
+            return "";
+        }
+
         #region Disposable Implementation
         private bool disposed = false;
         private Component component = new Component();

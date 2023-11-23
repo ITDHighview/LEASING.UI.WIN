@@ -11,6 +11,7 @@ using System.Text.RegularExpressions;
 using System.Configuration;
 using Telerik.WinControls.UI;
 using Telerik.WinControls;
+using LEASING.UI.APP.Common;
 
 namespace LEASING.UI.APP.Forms
 {
@@ -303,6 +304,7 @@ namespace LEASING.UI.APP.Forms
             {
                 this.Hide();
                 LoginUserID = this.txtUserName.Text;
+                Variables.UserGroupCode = 1;
                 if (_MDIMain != null)
                     _MDIMain.Close();
 

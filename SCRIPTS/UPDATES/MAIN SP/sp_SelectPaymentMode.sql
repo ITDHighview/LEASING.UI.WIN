@@ -9,30 +9,35 @@
 -- This block of comments will not be included in
 -- the definition of the procedure.
 -- ================================================
-SET ANSI_NULLS ON
+SET ANSI_NULLS ON;
 GO
-SET QUOTED_IDENTIFIER ON
+SET QUOTED_IDENTIFIER ON;
 GO
 -- =============================================
 -- Author:		<Author,,Name>
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-ALTER PROCEDURE sp_SelectPaymentMode
-	
+ALTER PROCEDURE [dbo].[sp_SelectPaymentMode]
 AS
-BEGIN
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
-	SET NOCOUNT ON;
+    BEGIN
+        -- SET NOCOUNT ON added to prevent extra result sets from
+        -- interfering with SELECT statements.
+        SET NOCOUNT ON;
 
 
-		--SELECT -1 AS ModeType,'--SELECT--' AS Mode
-		--UNION
-		SELECT 1 AS ModeType,'CASH' AS Mode
-		UNION
-		SELECT 2 AS ModeType,'BANK' AS Mode
-		UNION
-		SELECT 3 AS ModeType,'PDC' AS Mode
-END
+        --SELECT -1 AS ModeType,'--SELECT--' AS Mode
+        --UNION
+        SELECT
+            1      AS [ModeType],
+            'CASH' AS [Mode]
+        UNION
+        SELECT
+            2      AS [ModeType],
+            'BANK' AS [Mode]
+        UNION
+        SELECT
+            3     AS [ModeType],
+            'PDC' AS [Mode];
+    END;
 GO

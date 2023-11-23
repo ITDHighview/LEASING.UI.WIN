@@ -281,7 +281,6 @@ namespace LEASING.UI.APP.Context
                 return dsRec;
             }
         }
-
         public void GetViewFileById(string clientid,string baseFolderPath,int Id)
         {
 
@@ -337,31 +336,6 @@ namespace LEASING.UI.APP.Context
                 MessageBox.Show("Please enter a client name.");
             }
         }
-
-
-
-        //public void SaveFileInDatabase(string clientName, string filePath)
-        //{
-        //    using (SqlConnection connection = new SqlConnection(connectionString))
-        //    {
-        //        try
-        //        {
-        //            connection.Open();
-        //            byte[] fileData = File.ReadAllBytes(filePath);
-        //            SqlCommand command = new SqlCommand("sp_SaveFile", connection);
-        //            command.CommandType = CommandType.StoredProcedure;
-        //            command.Parameters.AddWithValue("@ClientName", clientName);
-        //            command.Parameters.AddWithValue("@FilePath", filePath);
-        //            command.Parameters.AddWithValue("@FileData", fileData);
-        //            command.ExecuteNonQuery();
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            MessageBox.Show("Error saving file: " + ex.Message);
-        //        }
-        //    }
-        //}
-
         public string SaveFileInDatabase(string clientName, string filePath,string FileNames,string files,string Notes,string ReferenceId,bool IsContractSinged)
         {
             SqlCommand _sqlcmd = null;
@@ -427,8 +401,6 @@ namespace LEASING.UI.APP.Context
             }
             return "";
         }
-
-
         public void DeleteFileFromDatabase(string filePath)
         {
             using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString()))
@@ -447,7 +419,6 @@ namespace LEASING.UI.APP.Context
                 }
             }
         }
-
         public DataSet GetSelecClient()
         {
 
@@ -534,7 +505,6 @@ namespace LEASING.UI.APP.Context
                 return dsRec;
             }
         }
-
         public DataSet GetClientID(string ClientID)
         {
 
@@ -621,7 +591,6 @@ namespace LEASING.UI.APP.Context
                 return dsRec;
             }
         }
-
         public DataSet GetReferenceByClientID(string ClientID)
         {
 
@@ -665,9 +634,6 @@ namespace LEASING.UI.APP.Context
                 return dsRec;
             }
         }
-
-
-
 
         //       <connectionStrings>
         //	<add name = "TESTCONNECTION" connectionString="Data Source=DESKTOP-BTI8OA8;Initial Catalog=BiometrikDb;connect timeout=200;Integrated Security=false;Connection Timeout=60;User Id=histestuser;Password=histestuser"/>

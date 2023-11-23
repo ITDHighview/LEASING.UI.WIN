@@ -22,7 +22,7 @@ namespace LEASING.UI.APP.Common
             DataView dvView;
             using (SecurityControlContext mngrSecurityManager = new SecurityControlContext())
             {
-                using (DataSet ds = mngrSecurityManager.GetControls())
+                using (DataSet ds = mngrSecurityManager.GetControls(Variables.UserGroupCode))
                 {
                     if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
                         dtTable = ds.Tables[0];
@@ -66,6 +66,8 @@ namespace LEASING.UI.APP.Common
                                                             RadPanel RadPanel = (RadPanel)controls;
                                                             switch (RadPanel.Name)
                                                             {
+
+                                                                #region CLIENT
                                                                 case "radPanel2":
                                                                     if (Convert.ToString(dvView[iAllPages]["ControlName"]) == RadPanel.Name)
                                                                     {
@@ -96,7 +98,7 @@ namespace LEASING.UI.APP.Common
 
                                                                                         for (int targetMenuItems = 0; targetMenuItems < targetMenuItem.Items.Count; targetMenuItems++)
                                                                                         {
-                                                                                            string sadas = Convert.ToString(dvView[iAllPages]["ControlName"]);                                                                                   
+                                                                                            string sadas = Convert.ToString(dvView[iAllPages]["ControlName"]);
                                                                                             if (Convert.ToString(dvView[iAllPages]["ControlName"]) == targetMenuItem.Items[targetMenuItems].Name)
                                                                                             {
                                                                                                 if (Convert.ToBoolean(dvView[iAllPages]["Permission"]))
@@ -108,15 +110,451 @@ namespace LEASING.UI.APP.Common
                                                                                                     targetMenuItem.Items[targetMenuItems].Visibility = ElementVisibility.Collapsed;
                                                                                                 }
                                                                                             }
-                                                                                        }                                                                                   
+                                                                                        }
                                                                                     }
                                                                                     break;
                                                                             }
                                                                         }
                                                                     }
                                                                     break;
+                                                                #endregion
 
-                                                                    /*ADD here the rest of the menu*/
+                                                                #region CONTRACTS
+                                                                case "radPanel3":
+                                                                    if (Convert.ToString(dvView[iAllPages]["ControlName"]) == RadPanel.Name)
+                                                                    {
+                                                                        RadPanel.Visible = Convert.ToBoolean(dvView[iAllPages]["Permission"]);
+                                                                    }
+                                                                    foreach (Control controlss in RadPanel.Controls)
+                                                                    {
+                                                                        if (controlss is RadMenu)
+                                                                        {
+                                                                            RadMenu RadMenu = (RadMenu)controlss;
+                                                                            switch (RadMenu.Name)
+                                                                            {
+                                                                                case "radMenu3":
+                                                                                    for (int iControls = 0; iControls < RadMenu.Items.Count; iControls++)
+                                                                                    {
+                                                                                        if (Convert.ToString(dvView[iAllPages]["ControlName"]) == RadMenu.Items[iControls].Name)
+                                                                                        {
+                                                                                            if (Convert.ToBoolean(dvView[iAllPages]["Permission"]))
+                                                                                            {
+                                                                                                RadMenu.Items[iControls].Visibility = ElementVisibility.Visible;
+                                                                                            }
+                                                                                            else
+                                                                                            {
+                                                                                                RadMenu.Items[iControls].Visibility = ElementVisibility.Collapsed;
+                                                                                            }
+                                                                                        }
+                                                                                        RadMenuItem radMenuItemContracts = RadMenu.Items["radMenuItemContracts"] as RadMenuItem;
+
+                                                                                        for (int targetMenuItems = 0; targetMenuItems < radMenuItemContracts.Items.Count; targetMenuItems++)
+                                                                                        {
+
+                                                                                            if (Convert.ToString(dvView[iAllPages]["ControlName"]) == radMenuItemContracts.Items[targetMenuItems].Name)
+                                                                                            {
+                                                                                                if (Convert.ToBoolean(dvView[iAllPages]["Permission"]))
+                                                                                                {
+                                                                                                    radMenuItemContracts.Items[targetMenuItems].Visibility = ElementVisibility.Visible;
+                                                                                                }
+                                                                                                else
+                                                                                                {
+                                                                                                    radMenuItemContracts.Items[targetMenuItems].Visibility = ElementVisibility.Collapsed;
+                                                                                                }
+                                                                                            }
+
+
+                                                                                            RadMenuItem radMenuItemUnitContracts = radMenuItemContracts.Items["radMenuItemUnitContracts"] as RadMenuItem;
+
+                                                                                            for (int targetMenuItems2 = 0; targetMenuItems2 < radMenuItemUnitContracts.Items.Count; targetMenuItems2++)
+                                                                                            {
+
+                                                                                                if (Convert.ToString(dvView[iAllPages]["ControlName"]) == radMenuItemUnitContracts.Items[targetMenuItems2].Name)
+                                                                                                {
+                                                                                                    if (Convert.ToBoolean(dvView[iAllPages]["Permission"]))
+                                                                                                    {
+                                                                                                        radMenuItemUnitContracts.Items[targetMenuItems2].Visibility = ElementVisibility.Visible;
+                                                                                                    }
+                                                                                                    else
+                                                                                                    {
+                                                                                                        radMenuItemUnitContracts.Items[targetMenuItems2].Visibility = ElementVisibility.Collapsed;
+                                                                                                    }
+                                                                                                }
+
+
+                                                                                            }
+                                                                                            RadMenuItem radMenuItemParkingContracts = radMenuItemContracts.Items["radMenuItemParkingContracts"] as RadMenuItem;
+                                                                                            for (int targetMenuItems3 = 0; targetMenuItems3 < radMenuItemParkingContracts.Items.Count; targetMenuItems3++)
+                                                                                            {
+
+                                                                                                if (Convert.ToString(dvView[iAllPages]["ControlName"]) == radMenuItemParkingContracts.Items[targetMenuItems3].Name)
+                                                                                                {
+                                                                                                    if (Convert.ToBoolean(dvView[iAllPages]["Permission"]))
+                                                                                                    {
+                                                                                                        radMenuItemParkingContracts.Items[targetMenuItems3].Visibility = ElementVisibility.Visible;
+                                                                                                    }
+                                                                                                    else
+                                                                                                    {
+                                                                                                        radMenuItemParkingContracts.Items[targetMenuItems3].Visibility = ElementVisibility.Collapsed;
+                                                                                                    }
+                                                                                                }
+
+
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                    break;
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                    break;
+                                                                #endregion
+
+                                                                #region REPORTS
+                                                                case "radPanel4":
+                                                                    if (Convert.ToString(dvView[iAllPages]["ControlName"]) == RadPanel.Name)
+                                                                    {
+                                                                        RadPanel.Visible = Convert.ToBoolean(dvView[iAllPages]["Permission"]);
+                                                                    }
+                                                                    foreach (Control controlss in RadPanel.Controls)
+                                                                    {
+                                                                        if (controlss is RadMenu)
+                                                                        {
+                                                                            RadMenu RadMenu = (RadMenu)controlss;
+                                                                            switch (RadMenu.Name)
+                                                                            {
+                                                                                case "radMenu4":
+                                                                                    for (int iControls = 0; iControls < RadMenu.Items.Count; iControls++)
+                                                                                    {
+                                                                                        if (Convert.ToString(dvView[iAllPages]["ControlName"]) == RadMenu.Items[iControls].Name)
+                                                                                        {
+                                                                                            if (Convert.ToBoolean(dvView[iAllPages]["Permission"]))
+                                                                                            {
+                                                                                                RadMenu.Items[iControls].Visibility = ElementVisibility.Visible;
+                                                                                            }
+                                                                                            else
+                                                                                            {
+                                                                                                RadMenu.Items[iControls].Visibility = ElementVisibility.Collapsed;
+                                                                                            }
+                                                                                        }
+                                                                                        RadMenuItem targetMenuItem = RadMenu.Items["radMenuItemReports"] as RadMenuItem;
+
+                                                                                        for (int targetMenuItems = 0; targetMenuItems < targetMenuItem.Items.Count; targetMenuItems++)
+                                                                                        {
+                                                                                            string sadas = Convert.ToString(dvView[iAllPages]["ControlName"]);
+                                                                                            if (Convert.ToString(dvView[iAllPages]["ControlName"]) == targetMenuItem.Items[targetMenuItems].Name)
+                                                                                            {
+                                                                                                if (Convert.ToBoolean(dvView[iAllPages]["Permission"]))
+                                                                                                {
+                                                                                                    targetMenuItem.Items[targetMenuItems].Visibility = ElementVisibility.Visible;
+                                                                                                }
+                                                                                                else
+                                                                                                {
+                                                                                                    targetMenuItem.Items[targetMenuItems].Visibility = ElementVisibility.Collapsed;
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                    break;
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                    break;
+                                                                #endregion
+
+                                                                #region PAYMENTS
+                                                                case "radPanel5":
+                                                                    if (Convert.ToString(dvView[iAllPages]["ControlName"]) == RadPanel.Name)
+                                                                    {
+                                                                        RadPanel.Visible = Convert.ToBoolean(dvView[iAllPages]["Permission"]);
+                                                                    }
+                                                                    foreach (Control controlss in RadPanel.Controls)
+                                                                    {
+                                                                        if (controlss is RadMenu)
+                                                                        {
+                                                                            RadMenu RadMenu = (RadMenu)controlss;
+                                                                            switch (RadMenu.Name)
+                                                                            {
+                                                                                case "radMenu5":
+                                                                                    for (int iControls = 0; iControls < RadMenu.Items.Count; iControls++)
+                                                                                    {
+                                                                                        if (Convert.ToString(dvView[iAllPages]["ControlName"]) == RadMenu.Items[iControls].Name)
+                                                                                        {
+                                                                                            if (Convert.ToBoolean(dvView[iAllPages]["Permission"]))
+                                                                                            {
+                                                                                                RadMenu.Items[iControls].Visibility = ElementVisibility.Visible;
+                                                                                            }
+                                                                                            else
+                                                                                            {
+                                                                                                RadMenu.Items[iControls].Visibility = ElementVisibility.Collapsed;
+                                                                                            }
+                                                                                        }
+                                                                                        RadMenuItem targetMenuItem = RadMenu.Items["radMenuItemPayments"] as RadMenuItem;
+
+                                                                                        for (int targetMenuItems = 0; targetMenuItems < targetMenuItem.Items.Count; targetMenuItems++)
+                                                                                        {
+                                                                                            string sadas = Convert.ToString(dvView[iAllPages]["ControlName"]);
+                                                                                            if (Convert.ToString(dvView[iAllPages]["ControlName"]) == targetMenuItem.Items[targetMenuItems].Name)
+                                                                                            {
+                                                                                                if (Convert.ToBoolean(dvView[iAllPages]["Permission"]))
+                                                                                                {
+                                                                                                    targetMenuItem.Items[targetMenuItems].Visibility = ElementVisibility.Visible;
+                                                                                                }
+                                                                                                else
+                                                                                                {
+                                                                                                    targetMenuItem.Items[targetMenuItems].Visibility = ElementVisibility.Collapsed;
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                    break;
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                    break;
+                                                                #endregion
+
+                                                                #region COMPUTATION
+                                                                case "radPanel6":
+                                                                    if (Convert.ToString(dvView[iAllPages]["ControlName"]) == RadPanel.Name)
+                                                                    {
+                                                                        RadPanel.Visible = Convert.ToBoolean(dvView[iAllPages]["Permission"]);
+                                                                    }
+                                                                    foreach (Control controlss in RadPanel.Controls)
+                                                                    {
+                                                                        if (controlss is RadMenu)
+                                                                        {
+                                                                            RadMenu RadMenu = (RadMenu)controlss;
+                                                                            switch (RadMenu.Name)
+                                                                            {
+                                                                                case "radMenu6":
+                                                                                    for (int iControls = 0; iControls < RadMenu.Items.Count; iControls++)
+                                                                                    {
+                                                                                        if (Convert.ToString(dvView[iAllPages]["ControlName"]) == RadMenu.Items[iControls].Name)
+                                                                                        {
+                                                                                            if (Convert.ToBoolean(dvView[iAllPages]["Permission"]))
+                                                                                            {
+                                                                                                RadMenu.Items[iControls].Visibility = ElementVisibility.Visible;
+                                                                                            }
+                                                                                            else
+                                                                                            {
+                                                                                                RadMenu.Items[iControls].Visibility = ElementVisibility.Collapsed;
+                                                                                            }
+                                                                                        }
+                                                                                        RadMenuItem radMenuItemContracts = RadMenu.Items["radMenuItemComputation"] as RadMenuItem;
+
+                                                                                        for (int targetMenuItems = 0; targetMenuItems < radMenuItemContracts.Items.Count; targetMenuItems++)
+                                                                                        {
+                                                                                            if (Convert.ToString(dvView[iAllPages]["ControlName"]) == radMenuItemContracts.Items[targetMenuItems].Name)
+                                                                                            {
+                                                                                                if (Convert.ToBoolean(dvView[iAllPages]["Permission"]))
+                                                                                                {
+                                                                                                    radMenuItemContracts.Items[targetMenuItems].Visibility = ElementVisibility.Visible;
+                                                                                                }
+                                                                                                else
+                                                                                                {
+                                                                                                    radMenuItemContracts.Items[targetMenuItems].Visibility = ElementVisibility.Collapsed;
+                                                                                                }
+                                                                                            }
+
+                                                                                            RadMenuItem radMenuItemUnitContracts = radMenuItemContracts.Items["radMenuGenerateComputation"] as RadMenuItem;
+
+                                                                                            for (int targetMenuItems2 = 0; targetMenuItems2 < radMenuItemUnitContracts.Items.Count; targetMenuItems2++)
+                                                                                            {
+
+                                                                                                if (Convert.ToString(dvView[iAllPages]["ControlName"]) == radMenuItemUnitContracts.Items[targetMenuItems2].Name)
+                                                                                                {
+                                                                                                    if (Convert.ToBoolean(dvView[iAllPages]["Permission"]))
+                                                                                                    {
+                                                                                                        radMenuItemUnitContracts.Items[targetMenuItems2].Visibility = ElementVisibility.Visible;
+                                                                                                    }
+                                                                                                    else
+                                                                                                    {
+                                                                                                        radMenuItemUnitContracts.Items[targetMenuItems2].Visibility = ElementVisibility.Collapsed;
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                    break;
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                    break;
+                                                                #endregion
+
+                                                                #region ADMINISTRATIVE
+                                                                case "radPanel7":
+                                                                    if (Convert.ToString(dvView[iAllPages]["ControlName"]) == RadPanel.Name)
+                                                                    {
+                                                                        RadPanel.Visible = Convert.ToBoolean(dvView[iAllPages]["Permission"]);
+                                                                    }
+                                                                    foreach (Control controlss in RadPanel.Controls)
+                                                                    {
+                                                                        if (controlss is RadMenu)
+                                                                        {
+                                                                            RadMenu RadMenu = (RadMenu)controlss;
+                                                                            switch (RadMenu.Name)
+                                                                            {
+                                                                                case "radMenu7":
+                                                                                    for (int iControls = 0; iControls < RadMenu.Items.Count; iControls++)
+                                                                                    {
+                                                                                        if (Convert.ToString(dvView[iAllPages]["ControlName"]) == RadMenu.Items[iControls].Name)
+                                                                                        {
+                                                                                            if (Convert.ToBoolean(dvView[iAllPages]["Permission"]))
+                                                                                            {
+                                                                                                RadMenu.Items[iControls].Visibility = ElementVisibility.Visible;
+                                                                                            }
+                                                                                            else
+                                                                                            {
+                                                                                                RadMenu.Items[iControls].Visibility = ElementVisibility.Collapsed;
+                                                                                            }
+                                                                                        }
+                                                                                        RadMenuItem radMenuItemContracts = RadMenu.Items["radMenuItemAdministrative"] as RadMenuItem;
+
+                                                                                        for (int targetMenuItems = 0; targetMenuItems < radMenuItemContracts.Items.Count; targetMenuItems++)
+                                                                                        {
+                                                                                            if (Convert.ToString(dvView[iAllPages]["ControlName"]) == radMenuItemContracts.Items[targetMenuItems].Name)
+                                                                                            {
+                                                                                                if (Convert.ToBoolean(dvView[iAllPages]["Permission"]))
+                                                                                                {
+                                                                                                    radMenuItemContracts.Items[targetMenuItems].Visibility = ElementVisibility.Visible;
+                                                                                                }
+                                                                                                else
+                                                                                                {
+                                                                                                    radMenuItemContracts.Items[targetMenuItems].Visibility = ElementVisibility.Collapsed;
+                                                                                                }
+                                                                                            }
+
+                                                                                            RadMenuItem radMenuItemRates2 = radMenuItemContracts.Items["radMenuItemRates2"] as RadMenuItem;
+
+                                                                                            for (int targetMenuItems2 = 0; targetMenuItems2 < radMenuItemRates2.Items.Count; targetMenuItems2++)
+                                                                                            {
+
+                                                                                                if (Convert.ToString(dvView[iAllPages]["ControlName"]) == radMenuItemRates2.Items[targetMenuItems2].Name)
+                                                                                                {
+                                                                                                    if (Convert.ToBoolean(dvView[iAllPages]["Permission"]))
+                                                                                                    {
+                                                                                                        radMenuItemRates2.Items[targetMenuItems2].Visibility = ElementVisibility.Visible;
+                                                                                                    }
+                                                                                                    else
+                                                                                                    {
+                                                                                                        radMenuItemRates2.Items[targetMenuItems2].Visibility = ElementVisibility.Collapsed;
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                    break;
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                    break;
+                                                                #endregion
+
+                                                                #region SECURITY
+                                                                case "radPanel9":
+                                                                    if (Convert.ToString(dvView[iAllPages]["ControlName"]) == RadPanel.Name)
+                                                                    {
+                                                                        RadPanel.Visible = Convert.ToBoolean(dvView[iAllPages]["Permission"]);
+                                                                    }
+                                                                    foreach (Control controlss in RadPanel.Controls)
+                                                                    {
+                                                                        if (controlss is RadMenu)
+                                                                        {
+                                                                            RadMenu RadMenu = (RadMenu)controlss;
+                                                                            switch (RadMenu.Name)
+                                                                            {
+                                                                                case "radMenu8":
+                                                                                    for (int iControls = 0; iControls < RadMenu.Items.Count; iControls++)
+                                                                                    {
+                                                                                        if (Convert.ToString(dvView[iAllPages]["ControlName"]) == RadMenu.Items[iControls].Name)
+                                                                                        {
+                                                                                            if (Convert.ToBoolean(dvView[iAllPages]["Permission"]))
+                                                                                            {
+                                                                                                RadMenu.Items[iControls].Visibility = ElementVisibility.Visible;
+                                                                                            }
+                                                                                            else
+                                                                                            {
+                                                                                                RadMenu.Items[iControls].Visibility = ElementVisibility.Collapsed;
+                                                                                            }
+                                                                                        }
+                                                                                        RadMenuItem targetMenuItem = RadMenu.Items["radMenuItemSecurity"] as RadMenuItem;
+
+                                                                                        for (int targetMenuItems = 0; targetMenuItems < targetMenuItem.Items.Count; targetMenuItems++)
+                                                                                        {
+                                                                                            string sadas = Convert.ToString(dvView[iAllPages]["ControlName"]);
+                                                                                            if (Convert.ToString(dvView[iAllPages]["ControlName"]) == targetMenuItem.Items[targetMenuItems].Name)
+                                                                                            {
+                                                                                                if (Convert.ToBoolean(dvView[iAllPages]["Permission"]))
+                                                                                                {
+                                                                                                    targetMenuItem.Items[targetMenuItems].Visibility = ElementVisibility.Visible;
+                                                                                                }
+                                                                                                else
+                                                                                                {
+                                                                                                    targetMenuItem.Items[targetMenuItems].Visibility = ElementVisibility.Collapsed;
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                    break;
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                    break;
+                                                                #endregion
+
+                                                                #region DIRECTORIES
+                                                                case "radPanel10":
+                                                                    if (Convert.ToString(dvView[iAllPages]["ControlName"]) == RadPanel.Name)
+                                                                    {
+                                                                        RadPanel.Visible = Convert.ToBoolean(dvView[iAllPages]["Permission"]);
+                                                                    }
+                                                                    foreach (Control controlss in RadPanel.Controls)
+                                                                    {
+                                                                        if (controlss is RadMenu)
+                                                                        {
+                                                                            RadMenu RadMenu = (RadMenu)controlss;
+                                                                            switch (RadMenu.Name)
+                                                                            {
+                                                                                case "radMenu9":
+                                                                                    for (int iControls = 0; iControls < RadMenu.Items.Count; iControls++)
+                                                                                    {
+                                                                                        if (Convert.ToString(dvView[iAllPages]["ControlName"]) == RadMenu.Items[iControls].Name)
+                                                                                        {
+                                                                                            if (Convert.ToBoolean(dvView[iAllPages]["Permission"]))
+                                                                                            {
+                                                                                                RadMenu.Items[iControls].Visibility = ElementVisibility.Visible;
+                                                                                            }
+                                                                                            else
+                                                                                            {
+                                                                                                RadMenu.Items[iControls].Visibility = ElementVisibility.Collapsed;
+                                                                                            }
+                                                                                        }
+                                                                                        RadMenuItem targetMenuItem = RadMenu.Items["radMenuItemDirectories"] as RadMenuItem;
+
+                                                                                        for (int targetMenuItems = 0; targetMenuItems < targetMenuItem.Items.Count; targetMenuItems++)
+                                                                                        {
+                                                                                            string sadas = Convert.ToString(dvView[iAllPages]["ControlName"]);
+                                                                                            if (Convert.ToString(dvView[iAllPages]["ControlName"]) == targetMenuItem.Items[targetMenuItems].Name)
+                                                                                            {
+                                                                                                if (Convert.ToBoolean(dvView[iAllPages]["Permission"]))
+                                                                                                {
+                                                                                                    targetMenuItem.Items[targetMenuItems].Visibility = ElementVisibility.Visible;
+                                                                                                }
+                                                                                                else
+                                                                                                {
+                                                                                                    targetMenuItem.Items[targetMenuItems].Visibility = ElementVisibility.Collapsed;
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                    break;
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                    break;
+                                                                    #endregion
                                                             }
                                                         }
                                                     }
@@ -124,38 +562,9 @@ namespace LEASING.UI.APP.Common
                                             }
                                         }
                                     }
-                                    //for (int iPages = 0; iPages < pvw.Pages.Count; iPages++)
-                                    //{
-                                    //    if (Convert.ToString(dvView[iAllPages]["ControlName"]) == Convert.ToString(pvw.Pages[iPages].Name))
-                                    //    {
-                                    //        if (Convert.ToBoolean(dvView[iAllPages]["Permission"]))
-                                    //            pvw.Pages[iPages].Item.Visibility = ElementVisibility.Visible;
-                                    //        else
-                                    //            pvw.Pages[iPages].Item.Visibility = ElementVisibility.Collapsed;
-                                    //    }
-                                    //}
                                 }
                                 break;
                         }
-                        //switch (ctrl.Name)
-                        //{
-                        //    case "radPageView1":
-                        //        Telerik.WinControls.UI.RadPageView pvw = (Telerik.WinControls.UI.RadPageView)ctrl;
-                        //        for (int iAllPages = 0; iAllPages < dvView.Count; iAllPages++)
-                        //        {
-                        //            for (int iPages = 0; iPages < pvw.Pages.Count; iPages++)
-                        //            {
-                        //                if (Convert.ToString(dvView[iAllPages]["ControlName"]) == Convert.ToString(pvw.Pages[iPages].Name))
-                        //                {
-                        //                    if (Convert.ToBoolean(dvView[iAllPages]["Permission"]))
-                        //                        pvw.Pages[iPages].Item.Visibility = ElementVisibility.Visible;
-                        //                    else
-                        //                        pvw.Pages[iPages].Item.Visibility = ElementVisibility.Collapsed;
-                        //                }
-                        //            }
-                        //        }
-                        //        break;
-                        //}
                     }
                 }
                 #endregion
@@ -353,7 +762,7 @@ namespace LEASING.UI.APP.Common
             dvView = null;
         }
 
-        public static void LogErrorIntoStoredProcedure(string procedureName, string FormName, string errorMessage, DateTime logDateTime , Control _ctrl)
+        public static void LogErrorIntoStoredProcedure(string procedureName, string FormName, string errorMessage, DateTime logDateTime, Control _ctrl)
         {
             int len = _ctrl.GetType().ToString().Length - _ctrl.GetType().ToString().LastIndexOf('.');
             string vName = _ctrl.GetType().ToString().Substring(_ctrl.GetType().ToString().LastIndexOf('.') + 1, len - 1);
@@ -372,7 +781,7 @@ namespace LEASING.UI.APP.Common
                         command.Parameters.AddWithValue("@frmName", vName);
                         command.Parameters.AddWithValue("@FormName", FormName);
                         command.Parameters.AddWithValue("@UserId", Variables.UserID);
-                        command.Parameters.AddWithValue("@ErrorMessage", errorMessage);                
+                        command.Parameters.AddWithValue("@ErrorMessage", errorMessage);
                         command.Parameters.AddWithValue("@LogDateTime", logDateTime);
 
                         // Execute the stored procedure

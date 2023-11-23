@@ -230,6 +230,12 @@
     <Compile Include="Forms\frmEditParkingComputation.Designer.cs">
       <DependentUpon>frmEditParkingComputation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmFormControls.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmFormControls.Designer.cs">
+      <DependentUpon>frmFormControls.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmGetContactSignedDocumentsByReference.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -513,8 +519,14 @@
     <EmbeddedResource Include="Forms\frmEditParkingComputation.resx">
       <DependentUpon>frmEditParkingComputation.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmFormControls.resx">
+      <DependentUpon>frmFormControls.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmGetContactSignedDocumentsByReference.resx">
       <DependentUpon>frmGetContactSignedDocumentsByReference.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmGroupSecurity.resx">
+      <DependentUpon>frmGroupSecurity.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmParkComputation.resx">
       <DependentUpon>frmParkComputation.cs</DependentUpon>

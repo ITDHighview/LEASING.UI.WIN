@@ -9,24 +9,27 @@
 -- This block of comments will not be included in
 -- the definition of the procedure.
 -- ================================================
-SET ANSI_NULLS ON
+SET ANSI_NULLS ON;
 GO
-SET QUOTED_IDENTIFIER ON
+SET QUOTED_IDENTIFIER ON;
 GO
 -- =============================================
 -- Author:		<Author,,Name>
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE PROCEDURE sp_SelectBankName
-	
+ALTER PROCEDURE [sp_SelectBankName]
 AS
-BEGIN
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
-	SET NOCOUNT ON;
+    BEGIN
+        -- SET NOCOUNT ON added to prevent extra result sets from
+        -- interfering with SELECT statements.
+        SET NOCOUNT ON;
 
-    -- Insert statements for procedure here
-	SELECT * FROM tblBankName WITH(NOLOCK)
-END
+        -- Insert statements for procedure here
+        SELECT
+            [tblBankName].[RecId],
+            [tblBankName].[BankName]
+        FROM
+            [dbo].[tblBankName] WITH (NOLOCK);
+    END;
 GO

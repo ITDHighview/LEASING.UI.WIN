@@ -1,9 +1,9 @@
-USE [LEASINGDB]
+USE [LEASINGDB];
 GO
 /****** Object:  StoredProcedure [dbo].[sp_GetReferenceByClientID]    Script Date: 11/17/2023 8:34:23 PM ******/
-SET ANSI_NULLS ON
+SET ANSI_NULLS ON;
 GO
-SET QUOTED_IDENTIFIER ON
+SET QUOTED_IDENTIFIER ON;
 GO
 -- =============================================
 -- Author:		<Author,,Name>
@@ -15,61 +15,64 @@ ALTER PROCEDURE [dbo].[sp_GetReferenceByClientIDpaid]
     -- Add the parameters for the stored procedure here
     @ClientID VARCHAR(50) = NULL
 AS
-BEGIN
-    -- SET NOCOUNT ON added to prevent extra result sets from
-    -- interfering with SELECT statements.
-    SET NOCOUNT ON;
+    BEGIN
+        -- SET NOCOUNT ON added to prevent extra result sets from
+        -- interfering with SELECT statements.
+        SET NOCOUNT ON;
 
-    -- Insert statements for procedure here
-    SELECT RecId,
-           RefId,
-           ProjectId,
-           InquiringClient,
-           ClientMobile,
-           UnitId,
-           UnitNo,
-           StatDate,
-           FinishDate,
-           TransactionDate,
-           Rental,
-           SecAndMaintenance,
-           TotalRent,
-           AdvancePaymentAmount,
-           SecDeposit,
-           Total,
-           EncodedBy,
-           EncodedDate,
-           LastCHangedBy,
-           LastChangedDate,
-           IsActive,
-           ComputerName,
-           ClientID,
-           IsPaid,
-           IsDone,
-           HeaderRefId,
-           IsSignedContract,
-           IsUnitMove,
-		   IsUnitMoveOut,
-           case             
-               when ISNULL(IsDone, 0) = 1  and ISNULL(IsTerminated, 0) = 0 then
-                   'CONTRACT DONE'
-               when ISNULL(IsTerminated, 0) = 1 and ISNULL(IsDone, 0) = 1 then
-                   'CONTRACT TERMINATED'
-               else
-                   'ON-GOING'
-           END AS CLientReferenceStatus,
-           IIF(
-               ISNULL(AdvancePaymentAmount, 0) = 0          
-               and ISNULL(SecDeposit, 0) = 0,
-               'TYPE OF PARKING',
-               'TYPE OF UNIT') AS TypeOf
-    FROM tblUnitReference
-    WHERE ClientID = @ClientID
-          and ISNULL(IsSignedContract, 0) = 1
-		  and ISNULL(IsUnitMove, 0) = 1
-          and ISNULL(IsTerminated, 0) = 0
-          and ISNULL(IsDone, 0) = 0
-		  and ISNULL(IsUnitMoveOut, 0) = 0 
-		  and ISNULL(IsPaid, 0) = 1
+        -- Insert statements for procedure here
+        SELECT
+            [tblUnitReference].[RecId],
+            [tblUnitReference].[RefId],
+            [tblUnitReference].[ProjectId],
+            [tblUnitReference].[InquiringClient],
+            [tblUnitReference].[ClientMobile],
+            [tblUnitReference].[UnitId],
+            [tblUnitReference].[UnitNo],
+            [tblUnitReference].[StatDate],
+            [tblUnitReference].[FinishDate],
+            [tblUnitReference].[TransactionDate],
+            [tblUnitReference].[Rental],
+            [tblUnitReference].[SecAndMaintenance],
+            [tblUnitReference].[TotalRent],
+            [tblUnitReference].[AdvancePaymentAmount],
+            [tblUnitReference].[SecDeposit],
+            [tblUnitReference].[Total],
+            [tblUnitReference].[EncodedBy],
+            [tblUnitReference].[EncodedDate],
+            [tblUnitReference].[LastCHangedBy],
+            [tblUnitReference].[LastChangedDate],
+            [tblUnitReference].[IsActive],
+            [tblUnitReference].[ComputerName],
+            [tblUnitReference].[ClientID],
+            [tblUnitReference].[IsPaid],
+            [tblUnitReference].[IsDone],
+            [tblUnitReference].[HeaderRefId],
+            [tblUnitReference].[IsSignedContract],
+            [tblUnitReference].[IsUnitMove],
+            [tblUnitReference].[IsUnitMoveOut],
+            CASE
+                WHEN ISNULL([tblUnitReference].[IsDone], 0) = 1
+                     AND ISNULL([tblUnitReference].[IsTerminated], 0) = 0
+                    THEN
+                    'CONTRACT DONE'
+                WHEN ISNULL([tblUnitReference].[IsTerminated], 0) = 1
+                     AND ISNULL([tblUnitReference].[IsDone], 0) = 1
+                    THEN
+                    'CONTRACT TERMINATED'
+                ELSE
+                    'ON-GOING'
+            END                                                                                                       AS [CLientReferenceStatus],
+            IIF(ISNULL([tblUnitReference].[AdvancePaymentAmount], 0) = 0 AND ISNULL([tblUnitReference].[SecDeposit], 0) = 0, 'TYPE OF PARKING', 'TYPE OF UNIT') AS [TypeOf]
+        FROM
+            [dbo].[tblUnitReference]
+        WHERE
+            [tblUnitReference].[ClientID] = @ClientID
+            AND ISNULL([tblUnitReference].[IsSignedContract], 0) = 1
+            AND ISNULL([tblUnitReference].[IsUnitMove], 0) = 1
+            AND ISNULL([tblUnitReference].[IsTerminated], 0) = 0
+            AND ISNULL([tblUnitReference].[IsDone], 0) = 0
+            AND ISNULL([tblUnitReference].[IsUnitMoveOut], 0) = 0
+            AND ISNULL([tblUnitReference].[IsPaid], 0) = 1;
 
-END
+    END;

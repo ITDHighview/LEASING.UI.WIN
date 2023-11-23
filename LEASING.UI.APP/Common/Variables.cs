@@ -20,7 +20,7 @@ namespace LEASING.UI.APP.Common
         public static int UserID = 0;
         public static string UserName;
 
-        public static string UserGroupCode;
+        public static int UserGroupCode;
         public static string UserGroupName;
         public static string UserPassword;
 

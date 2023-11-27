@@ -570,7 +570,9 @@ namespace LEASING.UI.APP.Forms
                             {
                                 if (result.Equals("SUCCESS"))
                                 {
-                                    MessageBox.Show("PAYMENT HOLD SUCCESS", "System Message", MessageBoxButtons.OK);
+                                    MessageBox.Show("PAYMENT HOLD SUCCESS", "System Message", MessageBoxButtons.OK);                                   
+                                    M_GetCheckPaymentStatus();
+                                    M_GetLedgerList();
                                     M_GetPaymentListByReferenceId();
                                 }
                                 else
@@ -619,6 +621,7 @@ namespace LEASING.UI.APP.Forms
                         M_GetComputationById();
                         M_GetCheckPaymentStatus();
                         M_GetPaymentListByReferenceId();
+                        this.btnTerminateContract.Enabled = false;
                     }
                     else
                     {

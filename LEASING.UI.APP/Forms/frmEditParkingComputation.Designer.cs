@@ -209,10 +209,11 @@
             this.dtpTransactionDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpTransactionDate.Location = new System.Drawing.Point(862, 78);
             this.dtpTransactionDate.Name = "dtpTransactionDate";
-            this.dtpTransactionDate.Size = new System.Drawing.Size(84, 19);
+            this.dtpTransactionDate.Size = new System.Drawing.Size(84, 20);
             this.dtpTransactionDate.TabIndex = 3;
             this.dtpTransactionDate.TabStop = false;
             this.dtpTransactionDate.Text = "7/31/2023";
+            this.dtpTransactionDate.ThemeName = "ControlDefault";
             this.dtpTransactionDate.Value = new System.DateTime(2023, 7, 31, 9, 8, 50, 186);
             // 
             // radLabel3
@@ -250,8 +251,9 @@
             this.tableLayoutPanel1.SetColumnSpan(this.txtProjectAddress, 2);
             this.txtProjectAddress.Location = new System.Drawing.Point(201, 78);
             this.txtProjectAddress.Name = "txtProjectAddress";
-            this.txtProjectAddress.Size = new System.Drawing.Size(324, 19);
+            this.txtProjectAddress.Size = new System.Drawing.Size(324, 20);
             this.txtProjectAddress.TabIndex = 4;
+            this.txtProjectAddress.ThemeName = "ControlDefault";
             // 
             // radLabel2
             // 
@@ -267,8 +269,9 @@
             // 
             this.txtProjectType.Location = new System.Drawing.Point(862, 53);
             this.txtProjectType.Name = "txtProjectType";
-            this.txtProjectType.Size = new System.Drawing.Size(133, 19);
+            this.txtProjectType.Size = new System.Drawing.Size(133, 20);
             this.txtProjectType.TabIndex = 4;
+            this.txtProjectType.ThemeName = "ControlDefault";
             // 
             // radLabel7
             // 
@@ -284,8 +287,9 @@
             // 
             this.txtClient.Location = new System.Drawing.Point(201, 103);
             this.txtClient.Name = "txtClient";
-            this.txtClient.Size = new System.Drawing.Size(194, 19);
+            this.txtClient.Size = new System.Drawing.Size(194, 20);
             this.txtClient.TabIndex = 4;
+            this.txtClient.ThemeName = "ControlDefault";
             // 
             // radLabel8
             // 
@@ -301,8 +305,9 @@
             // 
             this.txtContactNumber.Location = new System.Drawing.Point(862, 103);
             this.txtContactNumber.Name = "txtContactNumber";
-            this.txtContactNumber.Size = new System.Drawing.Size(133, 19);
+            this.txtContactNumber.Size = new System.Drawing.Size(133, 20);
             this.txtContactNumber.TabIndex = 4;
+            this.txtContactNumber.ThemeName = "ControlDefault";
             // 
             // radLabel9
             // 
@@ -339,8 +344,9 @@
             // 
             this.txtFloorType.Location = new System.Drawing.Point(201, 153);
             this.txtFloorType.Name = "txtFloorType";
-            this.txtFloorType.Size = new System.Drawing.Size(194, 16);
+            this.txtFloorType.Size = new System.Drawing.Size(194, 20);
             this.txtFloorType.TabIndex = 4;
+            this.txtFloorType.ThemeName = "ControlDefault";
             // 
             // radLabel11
             // 
@@ -368,10 +374,11 @@
             this.dtpStartDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpStartDate.Location = new System.Drawing.Point(201, 200);
             this.dtpStartDate.Name = "dtpStartDate";
-            this.dtpStartDate.Size = new System.Drawing.Size(93, 19);
+            this.dtpStartDate.Size = new System.Drawing.Size(93, 20);
             this.dtpStartDate.TabIndex = 3;
             this.dtpStartDate.TabStop = false;
             this.dtpStartDate.Text = "7/31/2023";
+            this.dtpStartDate.ThemeName = "ControlDefault";
             this.dtpStartDate.Value = new System.DateTime(2023, 7, 31, 9, 8, 50, 186);
             // 
             // radLabel12
@@ -389,10 +396,11 @@
             this.dtpFinishDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpFinishDate.Location = new System.Drawing.Point(201, 225);
             this.dtpFinishDate.Name = "dtpFinishDate";
-            this.dtpFinishDate.Size = new System.Drawing.Size(93, 19);
+            this.dtpFinishDate.Size = new System.Drawing.Size(93, 20);
             this.dtpFinishDate.TabIndex = 3;
             this.dtpFinishDate.TabStop = false;
             this.dtpFinishDate.Text = "7/31/2023";
+            this.dtpFinishDate.ThemeName = "ControlDefault";
             this.dtpFinishDate.Value = new System.DateTime(2023, 7, 31, 9, 8, 50, 186);
             // 
             // radLabel13
@@ -409,8 +417,9 @@
             // 
             this.txtRental.Location = new System.Drawing.Point(201, 250);
             this.txtRental.Name = "txtRental";
-            this.txtRental.Size = new System.Drawing.Size(194, 19);
+            this.txtRental.Size = new System.Drawing.Size(194, 20);
             this.txtRental.TabIndex = 4;
+            this.txtRental.ThemeName = "ControlDefault";
             this.txtRental.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRental_KeyPress);
             // 
             // radLabel15
@@ -427,23 +436,26 @@
             // 
             this.txtTotalRental.Location = new System.Drawing.Point(201, 300);
             this.txtTotalRental.Name = "txtTotalRental";
-            this.txtTotalRental.Size = new System.Drawing.Size(194, 19);
+            this.txtTotalRental.Size = new System.Drawing.Size(194, 20);
             this.txtTotalRental.TabIndex = 4;
+            this.txtTotalRental.ThemeName = "ControlDefault";
             this.txtTotalRental.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTotalRental_KeyPress);
             // 
             // txtUnitNumber
             // 
             this.txtUnitNumber.Location = new System.Drawing.Point(201, 128);
             this.txtUnitNumber.Name = "txtUnitNumber";
-            this.txtUnitNumber.Size = new System.Drawing.Size(104, 19);
+            this.txtUnitNumber.Size = new System.Drawing.Size(104, 20);
             this.txtUnitNumber.TabIndex = 4;
+            this.txtUnitNumber.ThemeName = "ControlDefault";
             // 
             // txtProjectName
             // 
             this.txtProjectName.Location = new System.Drawing.Point(201, 53);
             this.txtProjectName.Name = "txtProjectName";
-            this.txtProjectName.Size = new System.Drawing.Size(194, 19);
+            this.txtProjectName.Size = new System.Drawing.Size(194, 20);
             this.txtProjectName.TabIndex = 4;
+            this.txtProjectName.ThemeName = "ControlDefault";
             // 
             // radLabel1
             // 
@@ -459,8 +471,9 @@
             // 
             this.txtReferenceId.Location = new System.Drawing.Point(201, 28);
             this.txtReferenceId.Name = "txtReferenceId";
-            this.txtReferenceId.Size = new System.Drawing.Size(194, 19);
+            this.txtReferenceId.Size = new System.Drawing.Size(194, 20);
             this.txtReferenceId.TabIndex = 4;
+            this.txtReferenceId.ThemeName = "ControlDefault";
             // 
             // lblVat
             // 

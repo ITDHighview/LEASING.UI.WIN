@@ -35,11 +35,11 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
+            this.lblGroupName = new Telerik.WinControls.UI.RadLabel();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
-            this.linkSwitchUser = new System.Windows.Forms.LinkLabel();
+            this.lblStaffName = new Telerik.WinControls.UI.RadLabel();
             this.lblMenus = new Telerik.WinControls.UI.RadLabel();
+            this.btnSwitchUser = new Telerik.WinControls.UI.RadButton();
             this.radPanel7 = new Telerik.WinControls.UI.RadPanel();
             this.radMenu7 = new Telerik.WinControls.UI.RadMenu();
             this.radMenuItemAdministrative = new Telerik.WinControls.UI.RadMenuItem();
@@ -98,7 +98,7 @@
             this.radMenuItemAddNewClient = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItemClientInformation = new Telerik.WinControls.UI.RadMenuItem();
             this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
-            this.btnMainMenu = new Telerik.WinControls.UI.RadButton();
+            this.btnMyDashboard = new Telerik.WinControls.UI.RadButton();
             this.radMenuItemResidentialSettings = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItemWareHouseSettings = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItemCommercialSettings = new Telerik.WinControls.UI.RadMenuItem();
@@ -110,11 +110,12 @@
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblGroupName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblStaffName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblMenus)).BeginInit();
             this.lblMenus.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSwitchUser)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel7)).BeginInit();
             this.radPanel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radMenu7)).BeginInit();
@@ -142,7 +143,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radMenu2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
             this.radPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnMainMenu)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnMyDashboard)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
@@ -165,7 +166,7 @@
             this.lblUserInfoPanel.Location = new System.Drawing.Point(3, 3);
             this.lblUserInfoPanel.Name = "lblUserInfoPanel";
             this.tableLayoutPanel1.SetRowSpan(this.lblUserInfoPanel, 2);
-            this.lblUserInfoPanel.Size = new System.Drawing.Size(209, 199);
+            this.lblUserInfoPanel.Size = new System.Drawing.Size(236, 199);
             this.lblUserInfoPanel.TabIndex = 2;
             // 
             // tableLayoutPanel2
@@ -175,10 +176,9 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Controls.Add(this.pictureBox1, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.radLabel1, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.radLabel5, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.lblGroupName, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.radLabel2, 0, 2);
-            this.tableLayoutPanel2.Controls.Add(this.radLabel3, 1, 2);
-            this.tableLayoutPanel2.Controls.Add(this.linkSwitchUser, 1, 3);
+            this.tableLayoutPanel2.Controls.Add(this.lblStaffName, 1, 2);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -187,7 +187,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 21F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(209, 199);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(236, 199);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // pictureBox1
@@ -198,7 +198,7 @@
             this.pictureBox1.Image = global::LEASING.UI.APP.Properties.Resources.uv_change_user_100;
             this.pictureBox1.Location = new System.Drawing.Point(3, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(203, 120);
+            this.pictureBox1.Size = new System.Drawing.Size(230, 120);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
@@ -213,15 +213,15 @@
             this.radLabel1.TabIndex = 0;
             this.radLabel1.Text = "LOGIN AS";
             // 
-            // radLabel5
+            // lblGroupName
             // 
-            this.radLabel5.BackColor = System.Drawing.Color.DarkSlateBlue;
-            this.radLabel5.ForeColor = System.Drawing.Color.White;
-            this.radLabel5.Location = new System.Drawing.Point(68, 129);
-            this.radLabel5.Name = "radLabel5";
-            this.radLabel5.Size = new System.Drawing.Size(93, 18);
-            this.radLabel5.TabIndex = 0;
-            this.radLabel5.Text = "ADMINISTRATOR";
+            this.lblGroupName.BackColor = System.Drawing.Color.DarkSlateBlue;
+            this.lblGroupName.ForeColor = System.Drawing.Color.White;
+            this.lblGroupName.Location = new System.Drawing.Point(68, 129);
+            this.lblGroupName.Name = "lblGroupName";
+            this.lblGroupName.Size = new System.Drawing.Size(93, 18);
+            this.lblGroupName.TabIndex = 0;
+            this.lblGroupName.Text = "ADMINISTRATOR";
             // 
             // radLabel2
             // 
@@ -233,35 +233,22 @@
             this.radLabel2.TabIndex = 0;
             this.radLabel2.Text = "NAME";
             // 
-            // radLabel3
+            // lblStaffName
             // 
-            this.radLabel3.BackColor = System.Drawing.Color.DarkSlateBlue;
-            this.radLabel3.ForeColor = System.Drawing.Color.White;
-            this.radLabel3.Location = new System.Drawing.Point(68, 157);
-            this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(74, 18);
-            this.radLabel3.TabIndex = 0;
-            this.radLabel3.Text = "MARK JASON";
-            // 
-            // linkSwitchUser
-            // 
-            this.linkSwitchUser.AutoSize = true;
-            this.linkSwitchUser.BackColor = System.Drawing.Color.Black;
-            this.linkSwitchUser.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.linkSwitchUser.LinkColor = System.Drawing.Color.White;
-            this.linkSwitchUser.Location = new System.Drawing.Point(68, 178);
-            this.linkSwitchUser.Name = "linkSwitchUser";
-            this.linkSwitchUser.Size = new System.Drawing.Size(67, 13);
-            this.linkSwitchUser.TabIndex = 2;
-            this.linkSwitchUser.TabStop = true;
-            this.linkSwitchUser.Text = "Switch User";
-            this.linkSwitchUser.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkSwitchUser_LinkClicked);
+            this.lblStaffName.BackColor = System.Drawing.Color.DarkSlateBlue;
+            this.lblStaffName.ForeColor = System.Drawing.Color.White;
+            this.lblStaffName.Location = new System.Drawing.Point(68, 157);
+            this.lblStaffName.Name = "lblStaffName";
+            this.lblStaffName.Size = new System.Drawing.Size(74, 18);
+            this.lblStaffName.TabIndex = 0;
+            this.lblStaffName.Text = "MARK JASON";
             // 
             // lblMenus
             // 
             this.lblMenus.AutoSize = false;
             this.lblMenus.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.lblMenus.BackgroundImage = global::LEASING.UI.APP.Properties.Resources.DarkBackground1;
+            this.lblMenus.Controls.Add(this.btnSwitchUser);
             this.lblMenus.Controls.Add(this.radPanel7);
             this.lblMenus.Controls.Add(this.radPanel10);
             this.lblMenus.Controls.Add(this.radPanel9);
@@ -275,8 +262,20 @@
             this.lblMenus.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblMenus.Location = new System.Drawing.Point(3, 208);
             this.lblMenus.Name = "lblMenus";
-            this.lblMenus.Size = new System.Drawing.Size(209, 536);
+            this.lblMenus.Size = new System.Drawing.Size(236, 536);
             this.lblMenus.TabIndex = 1;
+            // 
+            // btnSwitchUser
+            // 
+            this.btnSwitchUser.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnSwitchUser.Image = global::LEASING.UI.APP.Properties.Resources.export32;
+            this.btnSwitchUser.Location = new System.Drawing.Point(0, 472);
+            this.btnSwitchUser.Name = "btnSwitchUser";
+            this.btnSwitchUser.Size = new System.Drawing.Size(236, 32);
+            this.btnSwitchUser.TabIndex = 13;
+            this.btnSwitchUser.Text = "SWITCH USER";
+            this.btnSwitchUser.ThemeName = "ControlDefault";
+            this.btnSwitchUser.Click += new System.EventHandler(this.btnSwitchUser_Click);
             // 
             // radPanel7
             // 
@@ -286,7 +285,7 @@
             this.radPanel7.Dock = System.Windows.Forms.DockStyle.Top;
             this.radPanel7.Location = new System.Drawing.Point(0, 416);
             this.radPanel7.Name = "radPanel7";
-            this.radPanel7.Size = new System.Drawing.Size(209, 52);
+            this.radPanel7.Size = new System.Drawing.Size(236, 52);
             this.radPanel7.TabIndex = 9;
             // 
             // radMenu7
@@ -295,7 +294,7 @@
             this.radMenuItemAdministrative});
             this.radMenu7.Location = new System.Drawing.Point(0, 0);
             this.radMenu7.Name = "radMenu7";
-            this.radMenu7.Size = new System.Drawing.Size(209, 56);
+            this.radMenu7.Size = new System.Drawing.Size(236, 36);
             this.radMenu7.TabIndex = 0;
             this.radMenu7.Text = "radMenu7";
             // 
@@ -404,7 +403,7 @@
             this.radPanel10.Dock = System.Windows.Forms.DockStyle.Top;
             this.radPanel10.Location = new System.Drawing.Point(0, 364);
             this.radPanel10.Name = "radPanel10";
-            this.radPanel10.Size = new System.Drawing.Size(209, 52);
+            this.radPanel10.Size = new System.Drawing.Size(236, 52);
             this.radPanel10.TabIndex = 12;
             // 
             // radMenu9
@@ -413,7 +412,7 @@
             this.radMenuItemDirectories});
             this.radMenu9.Location = new System.Drawing.Point(0, 0);
             this.radMenu9.Name = "radMenu9";
-            this.radMenu9.Size = new System.Drawing.Size(209, 36);
+            this.radMenu9.Size = new System.Drawing.Size(236, 36);
             this.radMenu9.TabIndex = 0;
             this.radMenu9.Text = "radMenu9";
             // 
@@ -454,7 +453,7 @@
             this.radPanel9.Dock = System.Windows.Forms.DockStyle.Top;
             this.radPanel9.Location = new System.Drawing.Point(0, 312);
             this.radPanel9.Name = "radPanel9";
-            this.radPanel9.Size = new System.Drawing.Size(209, 52);
+            this.radPanel9.Size = new System.Drawing.Size(236, 52);
             this.radPanel9.TabIndex = 11;
             // 
             // radMenu8
@@ -463,7 +462,7 @@
             this.radMenuItemSecurity});
             this.radMenu8.Location = new System.Drawing.Point(0, 0);
             this.radMenu8.Name = "radMenu8";
-            this.radMenu8.Size = new System.Drawing.Size(209, 36);
+            this.radMenu8.Size = new System.Drawing.Size(236, 36);
             this.radMenu8.TabIndex = 0;
             this.radMenu8.Text = "radMenu8";
             // 
@@ -515,7 +514,7 @@
             this.btnLogout.Image = global::LEASING.UI.APP.Properties.Resources.export32;
             this.btnLogout.Location = new System.Drawing.Point(0, 504);
             this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(209, 32);
+            this.btnLogout.Size = new System.Drawing.Size(236, 32);
             this.btnLogout.TabIndex = 10;
             this.btnLogout.Text = "LOG OUT";
             this.btnLogout.ThemeName = "ControlDefault";
@@ -529,7 +528,7 @@
             this.radPanel6.Dock = System.Windows.Forms.DockStyle.Top;
             this.radPanel6.Location = new System.Drawing.Point(0, 260);
             this.radPanel6.Name = "radPanel6";
-            this.radPanel6.Size = new System.Drawing.Size(209, 52);
+            this.radPanel6.Size = new System.Drawing.Size(236, 52);
             this.radPanel6.TabIndex = 8;
             // 
             // radMenu6
@@ -538,7 +537,7 @@
             this.radMenuItemComputation});
             this.radMenu6.Location = new System.Drawing.Point(0, 0);
             this.radMenu6.Name = "radMenu6";
-            this.radMenu6.Size = new System.Drawing.Size(209, 36);
+            this.radMenu6.Size = new System.Drawing.Size(236, 36);
             this.radMenu6.TabIndex = 0;
             this.radMenu6.Text = "radMenu6";
             // 
@@ -599,7 +598,7 @@
             this.radPanel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.radPanel5.Location = new System.Drawing.Point(0, 208);
             this.radPanel5.Name = "radPanel5";
-            this.radPanel5.Size = new System.Drawing.Size(209, 52);
+            this.radPanel5.Size = new System.Drawing.Size(236, 52);
             this.radPanel5.TabIndex = 7;
             // 
             // radMenu5
@@ -608,7 +607,7 @@
             this.radMenuItemPayments});
             this.radMenu5.Location = new System.Drawing.Point(0, 0);
             this.radMenu5.Name = "radMenu5";
-            this.radMenu5.Size = new System.Drawing.Size(209, 36);
+            this.radMenu5.Size = new System.Drawing.Size(236, 36);
             this.radMenu5.TabIndex = 0;
             this.radMenu5.Text = "radMenu5";
             // 
@@ -660,7 +659,7 @@
             this.radPanel4.Dock = System.Windows.Forms.DockStyle.Top;
             this.radPanel4.Location = new System.Drawing.Point(0, 156);
             this.radPanel4.Name = "radPanel4";
-            this.radPanel4.Size = new System.Drawing.Size(209, 52);
+            this.radPanel4.Size = new System.Drawing.Size(236, 52);
             this.radPanel4.TabIndex = 6;
             // 
             // radMenu4
@@ -669,7 +668,7 @@
             this.radMenuItemReports});
             this.radMenu4.Location = new System.Drawing.Point(0, 0);
             this.radMenu4.Name = "radMenu4";
-            this.radMenu4.Size = new System.Drawing.Size(209, 36);
+            this.radMenu4.Size = new System.Drawing.Size(236, 36);
             this.radMenu4.TabIndex = 0;
             this.radMenu4.Text = "radMenu4";
             // 
@@ -689,7 +688,7 @@
             this.radPanel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.radPanel3.Location = new System.Drawing.Point(0, 104);
             this.radPanel3.Name = "radPanel3";
-            this.radPanel3.Size = new System.Drawing.Size(209, 52);
+            this.radPanel3.Size = new System.Drawing.Size(236, 52);
             this.radPanel3.TabIndex = 5;
             // 
             // radMenu3
@@ -698,7 +697,7 @@
             this.radMenuItemContracts});
             this.radMenu3.Location = new System.Drawing.Point(0, 0);
             this.radMenu3.Name = "radMenu3";
-            this.radMenu3.Size = new System.Drawing.Size(209, 36);
+            this.radMenu3.Size = new System.Drawing.Size(236, 36);
             this.radMenu3.TabIndex = 0;
             this.radMenu3.Text = "radMenu3";
             // 
@@ -806,7 +805,7 @@
             this.radPanel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.radPanel2.Location = new System.Drawing.Point(0, 52);
             this.radPanel2.Name = "radPanel2";
-            this.radPanel2.Size = new System.Drawing.Size(209, 52);
+            this.radPanel2.Size = new System.Drawing.Size(236, 52);
             this.radPanel2.TabIndex = 4;
             // 
             // radMenu2
@@ -815,7 +814,7 @@
             this.radMenuItemClient});
             this.radMenu2.Location = new System.Drawing.Point(0, 0);
             this.radMenu2.Name = "radMenu2";
-            this.radMenu2.Size = new System.Drawing.Size(209, 36);
+            this.radMenu2.Size = new System.Drawing.Size(236, 36);
             this.radMenu2.TabIndex = 0;
             this.radMenu2.Text = "radMenu2";
             // 
@@ -851,22 +850,23 @@
             // radPanel1
             // 
             this.radPanel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.radPanel1.Controls.Add(this.btnMainMenu);
+            this.radPanel1.Controls.Add(this.btnMyDashboard);
             this.radPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.radPanel1.Location = new System.Drawing.Point(0, 0);
             this.radPanel1.Name = "radPanel1";
-            this.radPanel1.Size = new System.Drawing.Size(209, 52);
+            this.radPanel1.Size = new System.Drawing.Size(236, 52);
             this.radPanel1.TabIndex = 3;
             // 
-            // btnMainMenu
+            // btnMyDashboard
             // 
-            this.btnMainMenu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnMainMenu.Location = new System.Drawing.Point(0, 0);
-            this.btnMainMenu.Name = "btnMainMenu";
-            this.btnMainMenu.Size = new System.Drawing.Size(209, 52);
-            this.btnMainMenu.TabIndex = 0;
-            this.btnMainMenu.Text = "MAIN MENU";
-            this.btnMainMenu.ThemeName = "Office2013Light";
+            this.btnMyDashboard.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnMyDashboard.Location = new System.Drawing.Point(0, 0);
+            this.btnMyDashboard.Name = "btnMyDashboard";
+            this.btnMyDashboard.Size = new System.Drawing.Size(236, 52);
+            this.btnMyDashboard.TabIndex = 0;
+            this.btnMyDashboard.Text = "MY DASHBOARD";
+            this.btnMyDashboard.ThemeName = "Office2013Light";
+            this.btnMyDashboard.Click += new System.EventHandler(this.btnMyDashboard_Click);
             // 
             // radMenuItemResidentialSettings
             // 
@@ -900,7 +900,7 @@
             this.tableLayoutPanel1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.tableLayoutPanel1.BackgroundImage = global::LEASING.UI.APP.Properties.Resources.DarkBackground1;
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 215F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 242F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.lblMenus, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.lblUserInfoPanel, 0, 0);
@@ -920,18 +920,18 @@
             // 
             this.radPanel8.BackColor = System.Drawing.Color.White;
             this.radPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radPanel8.Location = new System.Drawing.Point(218, 208);
+            this.radPanel8.Location = new System.Drawing.Point(245, 208);
             this.radPanel8.Name = "radPanel8";
-            this.radPanel8.Size = new System.Drawing.Size(790, 536);
+            this.radPanel8.Size = new System.Drawing.Size(763, 536);
             this.radPanel8.TabIndex = 3;
             // 
             // radMenu1
             // 
             this.radMenu1.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.radMenuItemNotification});
-            this.radMenu1.Location = new System.Drawing.Point(218, 3);
+            this.radMenu1.Location = new System.Drawing.Point(245, 3);
             this.radMenu1.Name = "radMenu1";
-            this.radMenu1.Size = new System.Drawing.Size(790, 24);
+            this.radMenu1.Size = new System.Drawing.Size(763, 24);
             this.radMenu1.TabIndex = 4;
             this.radMenu1.Text = "radMenu1";
             // 
@@ -953,11 +953,12 @@
             this.tableLayoutPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblGroupName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblStaffName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblMenus)).EndInit();
             this.lblMenus.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.btnSwitchUser)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel7)).EndInit();
             this.radPanel7.ResumeLayout(false);
             this.radPanel7.PerformLayout();
@@ -993,7 +994,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radMenu2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
             this.radPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.btnMainMenu)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnMyDashboard)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel8)).EndInit();
@@ -1009,10 +1010,9 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private Telerik.WinControls.UI.RadLabel radLabel1;
-        private Telerik.WinControls.UI.RadLabel radLabel5;
+        private Telerik.WinControls.UI.RadLabel lblGroupName;
         private Telerik.WinControls.UI.RadLabel radLabel2;
-        private Telerik.WinControls.UI.RadLabel radLabel3;
-        private System.Windows.Forms.LinkLabel linkSwitchUser;
+        private Telerik.WinControls.UI.RadLabel lblStaffName;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private Telerik.WinControls.UI.RadLabel lblMenus;
         private Telerik.WinControls.UI.RadPanel radPanel7;
@@ -1058,7 +1058,7 @@
         private Telerik.WinControls.UI.RadMenuItem radMenuItemAddNewClient;
         private Telerik.WinControls.UI.RadMenuItem radMenuItemClientInformation;
         private Telerik.WinControls.UI.RadPanel radPanel1;
-        private Telerik.WinControls.UI.RadButton btnMainMenu;
+        private Telerik.WinControls.UI.RadButton btnMyDashboard;
 
        
         private Telerik.WinControls.UI.RadMenuItem radMenuItemResidentialSettings;
@@ -1081,5 +1081,6 @@
         private Telerik.WinControls.UI.RadMenu radMenu1;
         private Telerik.WinControls.UI.RadMenuItem radMenuItemBankName;
         private Telerik.WinControls.UI.RadMenuItem radMenuItemFormControls;
+        private Telerik.WinControls.UI.RadButton btnSwitchUser;
     }
 }

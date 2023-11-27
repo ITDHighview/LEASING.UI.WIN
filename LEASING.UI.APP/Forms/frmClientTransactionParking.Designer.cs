@@ -220,10 +220,11 @@
             this.dtpTo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpTo.Location = new System.Drawing.Point(116, 128);
             this.dtpTo.Name = "dtpTo";
-            this.dtpTo.Size = new System.Drawing.Size(107, 18);
+            this.dtpTo.Size = new System.Drawing.Size(107, 20);
             this.dtpTo.TabIndex = 5;
             this.dtpTo.TabStop = false;
             this.dtpTo.Text = "8/1/2023";
+            this.dtpTo.ThemeName = "Office2007Silver";
             this.dtpTo.Value = new System.DateTime(2023, 8, 1, 19, 31, 26, 6);
             this.dtpTo.ValueChanged += new System.EventHandler(this.radDateTimePicker2_ValueChanged);
             // 
@@ -232,10 +233,11 @@
             this.dtpFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpFrom.Location = new System.Drawing.Point(116, 103);
             this.dtpFrom.Name = "dtpFrom";
-            this.dtpFrom.Size = new System.Drawing.Size(107, 19);
+            this.dtpFrom.Size = new System.Drawing.Size(107, 20);
             this.dtpFrom.TabIndex = 5;
             this.dtpFrom.TabStop = false;
             this.dtpFrom.Text = "8/1/2023";
+            this.dtpFrom.ThemeName = "Office2007Silver";
             this.dtpFrom.Value = new System.DateTime(2023, 8, 1, 19, 31, 26, 6);
             // 
             // radLabel2
@@ -272,8 +274,9 @@
             // 
             this.txtClientId.Location = new System.Drawing.Point(116, 28);
             this.txtClientId.Name = "txtClientId";
-            this.txtClientId.Size = new System.Drawing.Size(143, 19);
+            this.txtClientId.Size = new System.Drawing.Size(143, 20);
             this.txtClientId.TabIndex = 4;
+            this.txtClientId.ThemeName = "Office2007Silver";
             // 
             // radLabel4
             // 
@@ -299,24 +302,27 @@
             // 
             this.txtClientType.Location = new System.Drawing.Point(116, 53);
             this.txtClientType.Name = "txtClientType";
-            this.txtClientType.Size = new System.Drawing.Size(143, 19);
+            this.txtClientType.Size = new System.Drawing.Size(143, 20);
             this.txtClientType.TabIndex = 4;
+            this.txtClientType.ThemeName = "Office2007Silver";
             // 
             // txtClientName
             // 
             this.txtClientName.Location = new System.Drawing.Point(116, 3);
             this.txtClientName.Name = "txtClientName";
-            this.txtClientName.Size = new System.Drawing.Size(143, 19);
+            this.txtClientName.Size = new System.Drawing.Size(143, 20);
             this.txtClientName.TabIndex = 8;
+            this.txtClientName.ThemeName = "Office2007Silver";
             // 
             // btnCheckUnits
             // 
             this.btnCheckUnits.Image = global::LEASING.UI.APP.Properties.Resources.magnifier;
             this.btnCheckUnits.Location = new System.Drawing.Point(265, 3);
             this.btnCheckUnits.Name = "btnCheckUnits";
-            this.btnCheckUnits.Size = new System.Drawing.Size(91, 19);
+            this.btnCheckUnits.Size = new System.Drawing.Size(96, 19);
             this.btnCheckUnits.TabIndex = 7;
             this.btnCheckUnits.Text = "Check Unit";
+            this.btnCheckUnits.ThemeName = "Office2010Blue";
             this.btnCheckUnits.Click += new System.EventHandler(this.btnCheckUnits_Click);
             // 
             // radGroupBox1

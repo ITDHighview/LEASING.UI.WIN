@@ -536,6 +536,7 @@
             this.btnUploadFile.Size = new System.Drawing.Size(94, 21);
             this.btnUploadFile.TabIndex = 4;
             this.btnUploadFile.Text = "UPLOAD";
+            this.btnUploadFile.ThemeName = "Office2010Blue";
             this.btnUploadFile.Click += new System.EventHandler(this.btnUploadFile_Click);
             // 
             // radLabel6
@@ -698,13 +699,14 @@
             this.dgvList.MasterTemplate.EnableFiltering = true;
             this.dgvList.MasterTemplate.ShowRowHeaderColumn = false;
             this.dgvList.Name = "dgvList";
+            this.dgvList.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.dgvList.ReadOnly = true;
             this.dgvList.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgvList.ShowGroupPanel = false;
             this.dgvList.Size = new System.Drawing.Size(389, 226);
             this.dgvList.TabIndex = 1;
             this.dgvList.Text = "radGridView1";
-            this.dgvList.ThemeName = "Office2010Blue";
+            this.dgvList.ThemeName = "Office2007Silver";
             this.dgvList.CellClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.dgvList_CellClick);
             // 
             // ddlgender

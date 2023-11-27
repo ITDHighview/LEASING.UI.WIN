@@ -356,6 +356,7 @@
             this.btnSelectUnits.Size = new System.Drawing.Size(110, 19);
             this.btnSelectUnits.TabIndex = 4;
             this.btnSelectUnits.Text = "Select Units";
+            this.btnSelectUnits.ThemeName = "Office2010Blue";
             this.btnSelectUnits.Click += new System.EventHandler(this.btnSelectUnits_Click);
             // 
             // radGroupBox4

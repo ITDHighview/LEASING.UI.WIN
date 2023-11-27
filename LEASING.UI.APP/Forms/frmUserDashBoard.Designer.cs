@@ -1,6 +1,6 @@
 ﻿namespace LEASING.UI.APP.Forms
 {
-    partial class frmUserSecurity
+    partial class frmUserDashBoard
     {
         /// <summary>
         /// Required designer variable.
@@ -28,14 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn12 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn13 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn14 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn15 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn16 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnNewUser = new System.Windows.Forms.ToolStripButton();
@@ -61,9 +53,6 @@
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.txtEmailAddress = new Telerik.WinControls.UI.RadTextBox();
             this.btnShowPassword = new Telerik.WinControls.UI.RadButton();
-            this.radGroupBox2 = new Telerik.WinControls.UI.RadGroupBox();
-            this.dgvControlList = new Telerik.WinControls.UI.RadGridView();
-            this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
             this.tableLayoutPanel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
@@ -84,10 +73,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmailAddress)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnShowPassword)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).BeginInit();
-            this.radGroupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvControlList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvControlList.MasterTemplate)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -96,16 +81,15 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.toolStrip1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.radGroupBox1, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.radGroupBox2, 0, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 125F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 128F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(911, 611);
-            this.tableLayoutPanel1.TabIndex = 2;
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(723, 493);
+            this.tableLayoutPanel1.TabIndex = 3;
             // 
             // toolStrip1
             // 
@@ -118,7 +102,7 @@
             this.btnRefresh});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(911, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(723, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -129,7 +113,6 @@
             this.btnNewUser.Name = "btnNewUser";
             this.btnNewUser.Size = new System.Drawing.Size(51, 22);
             this.btnNewUser.Text = "New";
-            this.btnNewUser.Click += new System.EventHandler(this.btnNewUser_Click);
             // 
             // btnEditUser
             // 
@@ -138,7 +121,6 @@
             this.btnEditUser.Name = "btnEditUser";
             this.btnEditUser.Size = new System.Drawing.Size(47, 22);
             this.btnEditUser.Text = "Edit";
-            this.btnEditUser.Click += new System.EventHandler(this.btnEditUser_Click);
             // 
             // btnSave
             // 
@@ -147,7 +129,6 @@
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(51, 22);
             this.btnSave.Text = "Save";
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnUndo
             // 
@@ -156,7 +137,6 @@
             this.btnUndo.Name = "btnUndo";
             this.btnUndo.Size = new System.Drawing.Size(56, 22);
             this.btnUndo.Text = "Undo";
-            this.btnUndo.Click += new System.EventHandler(this.btnUndo_Click);
             // 
             // toolStripSeparator1
             // 
@@ -170,7 +150,6 @@
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(66, 22);
             this.btnRefresh.Text = "Refresh";
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // radGroupBox1
             // 
@@ -180,7 +159,7 @@
             this.radGroupBox1.HeaderText = "User Details";
             this.radGroupBox1.Location = new System.Drawing.Point(3, 31);
             this.radGroupBox1.Name = "radGroupBox1";
-            this.radGroupBox1.Size = new System.Drawing.Size(905, 119);
+            this.radGroupBox1.Size = new System.Drawing.Size(717, 122);
             this.radGroupBox1.TabIndex = 1;
             this.radGroupBox1.Text = "User Details";
             // 
@@ -216,7 +195,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(901, 99);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(713, 102);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // radLabel1
@@ -274,9 +253,9 @@
             // 
             this.radLabel6.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.radLabel6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel6.Location = new System.Drawing.Point(28, 78);
+            this.radLabel6.Location = new System.Drawing.Point(28, 79);
             this.radLabel6.Name = "radLabel6";
-            this.radLabel6.Size = new System.Drawing.Size(74, 18);
+            this.radLabel6.Size = new System.Drawing.Size(74, 19);
             this.radLabel6.TabIndex = 0;
             this.radLabel6.Text = "Last Name :";
             // 
@@ -284,16 +263,16 @@
             // 
             this.txtLastname.Location = new System.Drawing.Point(108, 78);
             this.txtLastname.Name = "txtLastname";
-            this.txtLastname.Size = new System.Drawing.Size(184, 18);
+            this.txtLastname.Size = new System.Drawing.Size(184, 20);
             this.txtLastname.TabIndex = 2;
             // 
             // radLabel7
             // 
             this.radLabel7.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.radLabel7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel7.Location = new System.Drawing.Point(298, 78);
+            this.radLabel7.Location = new System.Drawing.Point(298, 79);
             this.radLabel7.Name = "radLabel7";
-            this.radLabel7.Size = new System.Drawing.Size(116, 18);
+            this.radLabel7.Size = new System.Drawing.Size(119, 19);
             this.radLabel7.TabIndex = 0;
             this.radLabel7.Text = "Security Password :";
             // 
@@ -302,7 +281,7 @@
             this.txtUserPassword.Location = new System.Drawing.Point(420, 78);
             this.txtUserPassword.Name = "txtUserPassword";
             this.txtUserPassword.PasswordChar = '*';
-            this.txtUserPassword.Size = new System.Drawing.Size(184, 18);
+            this.txtUserPassword.Size = new System.Drawing.Size(184, 20);
             this.txtUserPassword.TabIndex = 2;
             // 
             // radLabel5
@@ -348,98 +327,17 @@
             this.btnShowPassword.TabIndex = 3;
             this.btnShowPassword.Click += new System.EventHandler(this.btnShowPassword_Click);
             // 
-            // radGroupBox2
-            // 
-            this.radGroupBox2.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.radGroupBox2.Controls.Add(this.dgvControlList);
-            this.radGroupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radGroupBox2.HeaderText = "User List";
-            this.radGroupBox2.Location = new System.Drawing.Point(3, 156);
-            this.radGroupBox2.Name = "radGroupBox2";
-            this.radGroupBox2.Size = new System.Drawing.Size(905, 452);
-            this.radGroupBox2.TabIndex = 2;
-            this.radGroupBox2.Text = "User List";
-            // 
-            // dgvControlList
-            // 
-            this.dgvControlList.BackColor = System.Drawing.SystemColors.Control;
-            this.dgvControlList.Cursor = System.Windows.Forms.Cursors.Default;
-            this.dgvControlList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvControlList.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.dgvControlList.ForeColor = System.Drawing.Color.Black;
-            this.dgvControlList.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.dgvControlList.Location = new System.Drawing.Point(2, 18);
-            // 
-            // dgvControlList
-            // 
-            this.dgvControlList.MasterTemplate.AllowAddNewRow = false;
-            this.dgvControlList.MasterTemplate.AllowColumnReorder = false;
-            gridViewTextBoxColumn9.FieldName = "UserId";
-            gridViewTextBoxColumn9.HeaderText = "User ID";
-            gridViewTextBoxColumn9.Name = "UserId";
-            gridViewTextBoxColumn9.Width = 100;
-            gridViewTextBoxColumn10.FieldName = "StaffName";
-            gridViewTextBoxColumn10.HeaderText = "Name";
-            gridViewTextBoxColumn10.Name = "StaffName";
-            gridViewTextBoxColumn10.Width = 200;
-            gridViewTextBoxColumn11.FieldName = "Middlename";
-            gridViewTextBoxColumn11.HeaderText = "Middle Name";
-            gridViewTextBoxColumn11.Name = "Middlename";
-            gridViewTextBoxColumn11.Width = 200;
-            gridViewTextBoxColumn12.FieldName = "Lastname";
-            gridViewTextBoxColumn12.HeaderText = "Last Name";
-            gridViewTextBoxColumn12.Name = "Lastname";
-            gridViewTextBoxColumn12.Width = 200;
-            gridViewTextBoxColumn13.FieldName = "EmailAddress";
-            gridViewTextBoxColumn13.HeaderText = "Email Address";
-            gridViewTextBoxColumn13.Name = "EmailAddress";
-            gridViewTextBoxColumn13.Width = 200;
-            gridViewTextBoxColumn14.FieldName = "Phone";
-            gridViewTextBoxColumn14.HeaderText = "Phone";
-            gridViewTextBoxColumn14.Name = "Phone";
-            gridViewTextBoxColumn14.Width = 200;
-            gridViewTextBoxColumn15.FieldName = "UserPassword";
-            gridViewTextBoxColumn15.HeaderText = "UserPassword";
-            gridViewTextBoxColumn15.IsVisible = false;
-            gridViewTextBoxColumn15.Name = "UserPassword";
-            gridViewTextBoxColumn16.FieldName = "GroupId";
-            gridViewTextBoxColumn16.HeaderText = "GroupId";
-            gridViewTextBoxColumn16.IsVisible = false;
-            gridViewTextBoxColumn16.Name = "GroupId";
-            this.dgvControlList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn9,
-            gridViewTextBoxColumn10,
-            gridViewTextBoxColumn11,
-            gridViewTextBoxColumn12,
-            gridViewTextBoxColumn13,
-            gridViewTextBoxColumn14,
-            gridViewTextBoxColumn15,
-            gridViewTextBoxColumn16});
-            this.dgvControlList.MasterTemplate.EnableFiltering = true;
-            this.dgvControlList.MasterTemplate.ShowRowHeaderColumn = false;
-            this.dgvControlList.Name = "dgvControlList";
-            this.dgvControlList.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.dgvControlList.ReadOnly = true;
-            this.dgvControlList.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.dgvControlList.ShowGroupPanel = false;
-            this.dgvControlList.Size = new System.Drawing.Size(901, 432);
-            this.dgvControlList.TabIndex = 0;
-            this.dgvControlList.Text = "radGridView1";
-            this.dgvControlList.ThemeName = "Office2007Silver";
-            this.dgvControlList.SelectionChanged += new System.EventHandler(this.dgvControlList_SelectionChanged);
-            // 
-            // frmUserSecurity
+            // frmUserDashBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(911, 611);
+            this.ClientSize = new System.Drawing.Size(723, 493);
             this.Controls.Add(this.tableLayoutPanel1);
             this.DoubleBuffered = true;
-            this.Name = "frmUserSecurity";
+            this.Name = "frmUserDashBoard";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "User";
-            this.Load += new System.EventHandler(this.frmUserSecurity_Load);
+            this.Text = "MY DASHBOARD";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
@@ -463,10 +361,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmailAddress)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnShowPassword)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).EndInit();
-            this.radGroupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvControlList.MasterTemplate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvControlList)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -478,6 +372,7 @@
         private System.Windows.Forms.ToolStripButton btnNewUser;
         private System.Windows.Forms.ToolStripButton btnEditUser;
         private System.Windows.Forms.ToolStripButton btnSave;
+        private System.Windows.Forms.ToolStripButton btnUndo;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton btnRefresh;
         private Telerik.WinControls.UI.RadGroupBox radGroupBox1;
@@ -490,10 +385,6 @@
         private Telerik.WinControls.UI.RadTextBox txtStaffName;
         private Telerik.WinControls.UI.RadLabel radLabel6;
         private Telerik.WinControls.UI.RadTextBox txtLastname;
-        private Telerik.WinControls.UI.RadGroupBox radGroupBox2;
-        private Telerik.WinControls.UI.RadGridView dgvControlList;
-        private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme1;
-        private System.Windows.Forms.ToolStripButton btnUndo;
         private Telerik.WinControls.UI.RadLabel radLabel7;
         private Telerik.WinControls.UI.RadTextBox txtUserPassword;
         private Telerik.WinControls.UI.RadLabel radLabel5;

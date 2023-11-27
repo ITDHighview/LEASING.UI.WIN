@@ -37,7 +37,7 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             this.radGroupBox4 = new Telerik.WinControls.UI.RadGroupBox();
             this.dgvFileList = new Telerik.WinControls.UI.RadGridView();
-            this.office2013DarkTheme1 = new Telerik.WinControls.Themes.Office2013DarkTheme();
+            this.visualStudio2012DarkTheme1 = new Telerik.WinControls.Themes.VisualStudio2012DarkTheme();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox4)).BeginInit();
             this.radGroupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFileList)).BeginInit();
@@ -52,7 +52,7 @@
             this.radGroupBox4.HeaderText = "ATTACHMENT LIST";
             this.radGroupBox4.Location = new System.Drawing.Point(0, 0);
             this.radGroupBox4.Name = "radGroupBox4";
-            this.radGroupBox4.Size = new System.Drawing.Size(921, 320);
+            this.radGroupBox4.Size = new System.Drawing.Size(899, 239);
             this.radGroupBox4.TabIndex = 2;
             this.radGroupBox4.Text = "ATTACHMENT LIST";
             this.radGroupBox4.ThemeName = "Office2007Black";
@@ -123,17 +123,17 @@
             this.dgvFileList.ReadOnly = true;
             this.dgvFileList.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgvFileList.ShowGroupPanel = false;
-            this.dgvFileList.Size = new System.Drawing.Size(917, 300);
+            this.dgvFileList.Size = new System.Drawing.Size(895, 219);
             this.dgvFileList.TabIndex = 0;
             this.dgvFileList.Text = "radGridView2";
-            this.dgvFileList.ThemeName = "Office2013Dark";
+            this.dgvFileList.ThemeName = "VisualStudio2012Dark";
             this.dgvFileList.CellClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.dgvFileList_CellClick);
             // 
             // frmGetContactSignedDocumentsByReference
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(921, 320);
+            this.ClientSize = new System.Drawing.Size(899, 239);
             this.Controls.Add(this.radGroupBox4);
             this.DoubleBuffered = true;
             this.Name = "frmGetContactSignedDocumentsByReference";
@@ -153,6 +153,6 @@
 
         private Telerik.WinControls.UI.RadGroupBox radGroupBox4;
         private Telerik.WinControls.UI.RadGridView dgvFileList;
-        private Telerik.WinControls.Themes.Office2013DarkTheme office2013DarkTheme1;
+        private Telerik.WinControls.Themes.VisualStudio2012DarkTheme visualStudio2012DarkTheme1;
     }
 }

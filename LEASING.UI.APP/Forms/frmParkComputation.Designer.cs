@@ -507,6 +507,7 @@
             this.btnCheckunits.Size = new System.Drawing.Size(124, 19);
             this.btnCheckunits.TabIndex = 6;
             this.btnCheckunits.Text = "Check Units";
+            this.btnCheckunits.ThemeName = "Office2007Silver";
             this.btnCheckunits.Click += new System.EventHandler(this.btnCheckunits_Click);
             // 
             // btnSelectClient
@@ -517,6 +518,7 @@
             this.btnSelectClient.Size = new System.Drawing.Size(124, 19);
             this.btnSelectClient.TabIndex = 6;
             this.btnSelectClient.Text = "Select Client";
+            this.btnSelectClient.ThemeName = "Office2010Blue";
             this.btnSelectClient.Click += new System.EventHandler(this.btnSelectClient_Click);
             // 
             // radLabel4
@@ -609,12 +611,13 @@
             gridViewTextBoxColumn18});
             this.dgvpostdatedcheck.MasterTemplate.ShowRowHeaderColumn = false;
             this.dgvpostdatedcheck.Name = "dgvpostdatedcheck";
+            this.dgvpostdatedcheck.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.dgvpostdatedcheck.ReadOnly = true;
             this.dgvpostdatedcheck.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgvpostdatedcheck.ShowGroupPanel = false;
             this.dgvpostdatedcheck.Size = new System.Drawing.Size(380, 321);
             this.dgvpostdatedcheck.TabIndex = 0;
-            this.dgvpostdatedcheck.ThemeName = "Office2010Blue";
+            this.dgvpostdatedcheck.ThemeName = "Office2007Silver";
             // 
             // radLabel1
             // 
@@ -643,6 +646,7 @@
             this.btnGeneratePostdatedCountMonth.Size = new System.Drawing.Size(124, 19);
             this.btnGeneratePostdatedCountMonth.TabIndex = 6;
             this.btnGeneratePostdatedCountMonth.Text = "Compute";
+            this.btnGeneratePostdatedCountMonth.ThemeName = "Office2010Blue";
             this.btnGeneratePostdatedCountMonth.Click += new System.EventHandler(this.btnGeneratePostdatedCountMonth_Click);
             // 
             // radLabel13

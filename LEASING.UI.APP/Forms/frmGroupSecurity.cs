@@ -80,7 +80,8 @@ namespace LEASING.UI.APP.Forms
                 string result = SecurityControlContext.UpdateGroupFormControls(Convert.ToInt32(ddlFormName.SelectedValue), Convert.ToInt32(dgvControlList.CurrentRow.Cells["ControlId"].Value), Convert.ToInt32(ddlUserGroup.SelectedValue), chkControlPermission.Checked);
                 if (result.Equals("SUCCESS"))
                 {
-                    MessageBox.Show("Save Successfully", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    //MessageBox.Show("Save Successfully", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    M_GetControlListByGroupIdAndMenuId(Convert.ToInt32(ddlUserGroup.SelectedValue),Convert.ToInt32(ddlMenuName.SelectedValue));
                 }
                 else
                 {

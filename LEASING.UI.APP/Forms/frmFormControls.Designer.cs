@@ -45,8 +45,9 @@
             this.newToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.openToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.btnSave = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnRefresh = new System.Windows.Forms.ToolStripButton();
             this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
-            this.radGroupBox2 = new Telerik.WinControls.UI.RadGroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
@@ -56,17 +57,16 @@
             this.ddlMenuName = new Telerik.WinControls.UI.RadDropDownList();
             this.txtControlName = new Telerik.WinControls.UI.RadTextBox();
             this.txtControlDesc = new Telerik.WinControls.UI.RadTextBox();
-            this.dgvControlList = new Telerik.WinControls.UI.RadGridView();
             this.chkHeaderControl = new Telerik.WinControls.UI.RadCheckBox();
             this.chkBackroundControl = new Telerik.WinControls.UI.RadCheckBox();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.btnRefresh = new System.Windows.Forms.ToolStripButton();
+            this.radGroupBox2 = new Telerik.WinControls.UI.RadGroupBox();
+            this.dgvControlList = new Telerik.WinControls.UI.RadGridView();
+            this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
+            this.office2010BlueTheme1 = new Telerik.WinControls.Themes.Office2010BlueTheme();
             this.tableLayoutPanel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
             this.radGroupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).BeginInit();
-            this.radGroupBox2.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
@@ -76,10 +76,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.ddlMenuName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtControlName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtControlDesc)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvControlList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvControlList.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkHeaderControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkBackroundControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).BeginInit();
+            this.radGroupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvControlList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvControlList.MasterTemplate)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -140,6 +142,20 @@
             this.btnSave.Text = "Save";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Image = global::LEASING.UI.APP.Properties.Resources._16_RefreshArrowGreen;
+            this.btnRefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(66, 22);
+            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
             // radGroupBox1
             // 
             this.radGroupBox1.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
@@ -152,25 +168,13 @@
             this.radGroupBox1.TabIndex = 1;
             this.radGroupBox1.Text = "Control Details";
             // 
-            // radGroupBox2
-            // 
-            this.radGroupBox2.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.radGroupBox2.Controls.Add(this.dgvControlList);
-            this.radGroupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radGroupBox2.HeaderText = "Control List";
-            this.radGroupBox2.Location = new System.Drawing.Point(3, 176);
-            this.radGroupBox2.Name = "radGroupBox2";
-            this.radGroupBox2.Size = new System.Drawing.Size(842, 511);
-            this.radGroupBox2.TabIndex = 2;
-            this.radGroupBox2.Text = "Control List";
-            // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 4;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 145F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 105F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 210F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 388F));
             this.tableLayoutPanel2.Controls.Add(this.radLabel1, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.radLabel2, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.radLabel3, 0, 1);
@@ -236,29 +240,57 @@
             // 
             this.ddlFormName.Location = new System.Drawing.Point(148, 3);
             this.ddlFormName.Name = "ddlFormName";
-            this.ddlFormName.Size = new System.Drawing.Size(125, 20);
+            this.ddlFormName.Size = new System.Drawing.Size(125, 19);
             this.ddlFormName.TabIndex = 1;
             // 
             // ddlMenuName
             // 
             this.ddlMenuName.Location = new System.Drawing.Point(453, 3);
             this.ddlMenuName.Name = "ddlMenuName";
-            this.ddlMenuName.Size = new System.Drawing.Size(125, 20);
+            this.ddlMenuName.Size = new System.Drawing.Size(125, 19);
             this.ddlMenuName.TabIndex = 1;
             // 
             // txtControlName
             // 
             this.txtControlName.Location = new System.Drawing.Point(148, 28);
             this.txtControlName.Name = "txtControlName";
-            this.txtControlName.Size = new System.Drawing.Size(194, 20);
+            this.txtControlName.Size = new System.Drawing.Size(194, 19);
             this.txtControlName.TabIndex = 2;
             // 
             // txtControlDesc
             // 
             this.txtControlDesc.Location = new System.Drawing.Point(453, 28);
             this.txtControlDesc.Name = "txtControlDesc";
-            this.txtControlDesc.Size = new System.Drawing.Size(239, 20);
+            this.txtControlDesc.Size = new System.Drawing.Size(239, 19);
             this.txtControlDesc.TabIndex = 2;
+            // 
+            // chkHeaderControl
+            // 
+            this.chkHeaderControl.Location = new System.Drawing.Point(148, 53);
+            this.chkHeaderControl.Name = "chkHeaderControl";
+            this.chkHeaderControl.Size = new System.Drawing.Size(110, 18);
+            this.chkHeaderControl.TabIndex = 3;
+            this.chkHeaderControl.Text = "as Header Control";
+            // 
+            // chkBackroundControl
+            // 
+            this.chkBackroundControl.Location = new System.Drawing.Point(453, 53);
+            this.chkBackroundControl.Name = "chkBackroundControl";
+            this.chkBackroundControl.Size = new System.Drawing.Size(127, 18);
+            this.chkBackroundControl.TabIndex = 3;
+            this.chkBackroundControl.Text = "as Backround Control";
+            // 
+            // radGroupBox2
+            // 
+            this.radGroupBox2.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this.radGroupBox2.Controls.Add(this.dgvControlList);
+            this.radGroupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radGroupBox2.HeaderText = "Control List";
+            this.radGroupBox2.Location = new System.Drawing.Point(3, 176);
+            this.radGroupBox2.Name = "radGroupBox2";
+            this.radGroupBox2.Size = new System.Drawing.Size(842, 511);
+            this.radGroupBox2.TabIndex = 2;
+            this.radGroupBox2.Text = "Control List";
             // 
             // dgvControlList
             // 
@@ -339,42 +371,14 @@
             this.dgvControlList.MasterTemplate.EnableFiltering = true;
             this.dgvControlList.MasterTemplate.ShowRowHeaderColumn = false;
             this.dgvControlList.Name = "dgvControlList";
+            this.dgvControlList.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.dgvControlList.ReadOnly = true;
             this.dgvControlList.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgvControlList.ShowGroupPanel = false;
             this.dgvControlList.Size = new System.Drawing.Size(838, 491);
             this.dgvControlList.TabIndex = 0;
             this.dgvControlList.Text = "radGridView1";
-            // 
-            // chkHeaderControl
-            // 
-            this.chkHeaderControl.Location = new System.Drawing.Point(148, 53);
-            this.chkHeaderControl.Name = "chkHeaderControl";
-            this.chkHeaderControl.Size = new System.Drawing.Size(110, 18);
-            this.chkHeaderControl.TabIndex = 3;
-            this.chkHeaderControl.Text = "as Header Control";
-            // 
-            // chkBackroundControl
-            // 
-            this.chkBackroundControl.Location = new System.Drawing.Point(453, 53);
-            this.chkBackroundControl.Name = "chkBackroundControl";
-            this.chkBackroundControl.Size = new System.Drawing.Size(127, 18);
-            this.chkBackroundControl.TabIndex = 3;
-            this.chkBackroundControl.Text = "as Backround Control";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // btnRefresh
-            // 
-            this.btnRefresh.Image = ((System.Drawing.Image)(resources.GetObject("btnRefresh.Image")));
-            this.btnRefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(66, 22);
-            this.btnRefresh.Text = "Refresh";
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            this.dgvControlList.ThemeName = "Office2007Silver";
             // 
             // frmFormControls
             // 
@@ -394,8 +398,6 @@
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).EndInit();
             this.radGroupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).EndInit();
-            this.radGroupBox2.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
@@ -406,10 +408,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.ddlMenuName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtControlName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtControlDesc)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvControlList.MasterTemplate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvControlList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkHeaderControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkBackroundControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).EndInit();
+            this.radGroupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvControlList.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvControlList)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -437,5 +441,7 @@
         private Telerik.WinControls.UI.RadCheckBox chkBackroundControl;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton btnRefresh;
+        private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme1;
+        private Telerik.WinControls.Themes.Office2010BlueTheme office2010BlueTheme1;
     }
 }

@@ -342,7 +342,7 @@
             this.dgvList.Size = new System.Drawing.Size(389, 201);
             this.dgvList.TabIndex = 1;
             this.dgvList.Text = "radGridView1";
-            this.dgvList.ThemeName = "Office2010Blue";
+            this.dgvList.ThemeName = "Office2007Silver";
             this.dgvList.CellClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.dgvList_CellClick);
             // 
             // radLabel2
@@ -603,6 +603,7 @@
             this.btnSelectClient.Size = new System.Drawing.Size(110, 19);
             this.btnSelectClient.TabIndex = 4;
             this.btnSelectClient.Text = "Client List";
+            this.btnSelectClient.ThemeName = "Office2010Blue";
             this.btnSelectClient.Click += new System.EventHandler(this.btnSelectClient_Click);
             // 
             // radLabel20

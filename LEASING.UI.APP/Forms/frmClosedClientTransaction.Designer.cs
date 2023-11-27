@@ -220,18 +220,20 @@
             // 
             this.txtTotalPay.Location = new System.Drawing.Point(122, 53);
             this.txtTotalPay.Name = "txtTotalPay";
-            this.txtTotalPay.Size = new System.Drawing.Size(149, 19);
+            this.txtTotalPay.Size = new System.Drawing.Size(149, 20);
             this.txtTotalPay.TabIndex = 4;
+            this.txtTotalPay.ThemeName = "Office2007Silver";
             // 
             // dtpTo
             // 
             this.dtpTo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpTo.Location = new System.Drawing.Point(122, 128);
             this.dtpTo.Name = "dtpTo";
-            this.dtpTo.Size = new System.Drawing.Size(107, 18);
+            this.dtpTo.Size = new System.Drawing.Size(107, 20);
             this.dtpTo.TabIndex = 5;
             this.dtpTo.TabStop = false;
             this.dtpTo.Text = "8/1/2023";
+            this.dtpTo.ThemeName = "Office2007Silver";
             this.dtpTo.Value = new System.DateTime(2023, 8, 1, 19, 31, 26, 6);
             this.dtpTo.ValueChanged += new System.EventHandler(this.radDateTimePicker2_ValueChanged);
             // 
@@ -250,10 +252,11 @@
             this.dtpFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpFrom.Location = new System.Drawing.Point(122, 103);
             this.dtpFrom.Name = "dtpFrom";
-            this.dtpFrom.Size = new System.Drawing.Size(107, 19);
+            this.dtpFrom.Size = new System.Drawing.Size(107, 20);
             this.dtpFrom.TabIndex = 5;
             this.dtpFrom.TabStop = false;
             this.dtpFrom.Text = "8/1/2023";
+            this.dtpFrom.ThemeName = "Office2007Silver";
             this.dtpFrom.Value = new System.DateTime(2023, 8, 1, 19, 31, 26, 6);
             // 
             // radLabel2
@@ -290,8 +293,9 @@
             // 
             this.txtPaymentStatus.Location = new System.Drawing.Point(122, 28);
             this.txtPaymentStatus.Name = "txtPaymentStatus";
-            this.txtPaymentStatus.Size = new System.Drawing.Size(149, 19);
+            this.txtPaymentStatus.Size = new System.Drawing.Size(149, 20);
             this.txtPaymentStatus.TabIndex = 4;
+            this.txtPaymentStatus.ThemeName = "Office2007Silver";
             // 
             // radLabel4
             // 
@@ -307,8 +311,9 @@
             // 
             this.txtClientName.Location = new System.Drawing.Point(122, 3);
             this.txtClientName.Name = "txtClientName";
-            this.txtClientName.Size = new System.Drawing.Size(149, 19);
+            this.txtClientName.Size = new System.Drawing.Size(149, 20);
             this.txtClientName.TabIndex = 8;
+            this.txtClientName.ThemeName = "Office2007Silver";
             // 
             // radGroupBox3
             // 

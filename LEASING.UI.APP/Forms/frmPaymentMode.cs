@@ -80,6 +80,7 @@ namespace LEASING.UI.APP.Forms
             txtCompanyORNo.Text = string.Empty;
             txtReferrence.Text = string.Empty;
             ddlbankName.Text = string.Empty;
+            ddlbankName.SelectedIndex = 0;
             txtBankAccountName.Text = string.Empty;
             txtBankAccountNo.Text = string.Empty;
             txtSerialNo.Text = string.Empty;

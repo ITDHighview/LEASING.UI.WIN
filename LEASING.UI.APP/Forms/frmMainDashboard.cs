@@ -32,9 +32,18 @@ namespace LEASING.UI.APP.Forms
             this.radMenuItemNotification.Text = "NOTIFICATION (1)";
 
             radPanel10.Visible = false;//Purchase Items button
-            
+
             //radMenu7.Visible = false;
             //radPanel7.Visible = false;
+
+            //Variables.FirstName = FirstName;
+            //Variables.UserID = Convert.ToInt32(this.txtUserName.Text);
+            //Variables.UserGroupCode = Convert.ToInt32(cboGroup.SelectedValue);
+            //Variables.UserGroupName = this.cboGroup.Text;
+            //Variables.UserPassword = UserPassword;
+
+            lblGroupName.Text =Variables.UserGroupName;
+            lblStaffName.Text = Variables.FirstName;
         }
 
         private void btnSettings_Click(object sender, EventArgs e)
@@ -329,6 +338,21 @@ namespace LEASING.UI.APP.Forms
             frmFormControls forms = new frmFormControls();
             forms.ShowDialog();
             
+        }
+
+        private void btnSwitchUser_Click(object sender, EventArgs e)
+        {
+            IsSwithUserLogOut = true;
+            _frmPreEmp_Login = new frmPreEmp_Login(frmPreEmp_Login.LoginMethod.Switch, this);
+            _frmPreEmp_Login.StartPosition = FormStartPosition.CenterScreen;
+            _frmPreEmp_Login.ShowDialog();
+            IsSwithUserLogOut = false;
+        }
+
+        private void btnMyDashboard_Click(object sender, EventArgs e)
+        {
+            frmUserDashBoard frmUserDashBoard = new frmUserDashBoard();
+            frmUserDashBoard.ShowDialog();
         }
     }
 }

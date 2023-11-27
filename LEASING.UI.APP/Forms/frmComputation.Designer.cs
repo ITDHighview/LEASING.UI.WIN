@@ -359,7 +359,7 @@
             gridViewTextBoxColumn2.FieldName = "Months";
             gridViewTextBoxColumn2.HeaderText = "Month";
             gridViewTextBoxColumn2.Name = "Months";
-            gridViewTextBoxColumn2.Width = 144;
+            gridViewTextBoxColumn2.Width = 145;
             gridViewTextBoxColumn3.EnableExpressionEditor = false;
             gridViewTextBoxColumn3.FieldName = "Amount";
             gridViewTextBoxColumn3.HeaderText = "Amount";
@@ -371,13 +371,14 @@
             gridViewTextBoxColumn3});
             this.dgvAdvancePayment.MasterTemplate.ShowRowHeaderColumn = false;
             this.dgvAdvancePayment.Name = "dgvAdvancePayment";
+            this.dgvAdvancePayment.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.dgvAdvancePayment.ReadOnly = true;
             this.dgvAdvancePayment.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgvAdvancePayment.ShowGroupPanel = false;
             this.dgvAdvancePayment.Size = new System.Drawing.Size(288, 99);
             this.dgvAdvancePayment.TabIndex = 1;
             this.dgvAdvancePayment.Text = "radGridView1";
-            this.dgvAdvancePayment.ThemeName = "Office2010Blue";
+            this.dgvAdvancePayment.ThemeName = "Office2007Silver";
             // 
             // toolStripAdvancePayment
             // 
@@ -653,6 +654,7 @@
             this.btnCheckunits.Size = new System.Drawing.Size(124, 19);
             this.btnCheckunits.TabIndex = 6;
             this.btnCheckunits.Text = "Check Units";
+            this.btnCheckunits.ThemeName = "Office2007Silver";
             this.btnCheckunits.Click += new System.EventHandler(this.btnCheckunits_Click);
             // 
             // btnSelectClient
@@ -663,6 +665,7 @@
             this.btnSelectClient.Size = new System.Drawing.Size(124, 19);
             this.btnSelectClient.TabIndex = 6;
             this.btnSelectClient.Text = "Select Client";
+            this.btnSelectClient.ThemeName = "Office2010Blue";
             this.btnSelectClient.Click += new System.EventHandler(this.btnSelectClient_Click);
             // 
             // radLabel4
@@ -765,12 +768,13 @@
             gridViewTextBoxColumn6});
             this.dgvpostdatedcheck.MasterTemplate.ShowRowHeaderColumn = false;
             this.dgvpostdatedcheck.Name = "dgvpostdatedcheck";
+            this.dgvpostdatedcheck.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.dgvpostdatedcheck.ReadOnly = true;
             this.dgvpostdatedcheck.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgvpostdatedcheck.ShowGroupPanel = false;
             this.dgvpostdatedcheck.Size = new System.Drawing.Size(380, 321);
             this.dgvpostdatedcheck.TabIndex = 0;
-            this.dgvpostdatedcheck.ThemeName = "Office2010Blue";
+            this.dgvpostdatedcheck.ThemeName = "Office2007Silver";
             // 
             // radLabel1
             // 
@@ -787,7 +791,7 @@
             this.txtTotalPostDatedAmount.Location = new System.Drawing.Point(775, 400);
             this.txtTotalPostDatedAmount.Name = "txtTotalPostDatedAmount";
             this.txtTotalPostDatedAmount.NullText = "0";
-            this.txtTotalPostDatedAmount.Size = new System.Drawing.Size(194, 19);
+            this.txtTotalPostDatedAmount.Size = new System.Drawing.Size(124, 20);
             this.txtTotalPostDatedAmount.TabIndex = 4;
             this.txtTotalPostDatedAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTotal_KeyPress);
             // 
@@ -799,6 +803,7 @@
             this.btnGeneratePostdatedCountMonth.Size = new System.Drawing.Size(124, 19);
             this.btnGeneratePostdatedCountMonth.TabIndex = 6;
             this.btnGeneratePostdatedCountMonth.Text = "Compute";
+            this.btnGeneratePostdatedCountMonth.ThemeName = "Office2010Blue";
             this.btnGeneratePostdatedCountMonth.Click += new System.EventHandler(this.btnGeneratePostdatedCountMonth_Click);
             // 
             // lblVat

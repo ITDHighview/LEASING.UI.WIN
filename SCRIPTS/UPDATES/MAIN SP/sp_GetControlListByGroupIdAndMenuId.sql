@@ -23,7 +23,8 @@ AS
                 [tblFormControlsMaster].[ControlId],
                 [tblMenu].[MenuName],
                 [tblFormControlsMaster].[ControlName],
-                [tblFormControlsMaster].[ControlDescription]
+                [tblFormControlsMaster].[ControlDescription],
+                IIF(ISNULL([tblGroupFormControls].[IsVisible], 0) = 1, 'YES', 'NO') AS [IsVisible]
         FROM
                 [dbo].[tblGroupFormControls]
             INNER JOIN

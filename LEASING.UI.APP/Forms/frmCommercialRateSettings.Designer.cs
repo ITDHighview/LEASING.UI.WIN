@@ -119,6 +119,7 @@
             this.radGroupBox1.Size = new System.Drawing.Size(767, 179);
             this.radGroupBox1.TabIndex = 2;
             this.radGroupBox1.Text = "COMMERCIAL RATE SETTINGS";
+            this.radGroupBox1.ThemeName = "Office2007Silver";
             // 
             // tableLayoutPanel1
             // 
@@ -179,9 +180,10 @@
             this.txtGenVat.Location = new System.Drawing.Point(269, 3);
             this.txtGenVat.MaxLength = 10;
             this.txtGenVat.Name = "txtGenVat";
-            this.txtGenVat.Size = new System.Drawing.Size(74, 19);
+            this.txtGenVat.Size = new System.Drawing.Size(74, 20);
             this.txtGenVat.TabIndex = 0;
             this.txtGenVat.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtGenVat.ThemeName = "Office2007Silver";
             this.txtGenVat.TextChanged += new System.EventHandler(this.txtGenVat_TextChanged);
             this.txtGenVat.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtGenVat_KeyPress);
             // 
@@ -222,9 +224,10 @@
             this.txtWithHoldingTax.Location = new System.Drawing.Point(609, 3);
             this.txtWithHoldingTax.MaxLength = 10;
             this.txtWithHoldingTax.Name = "txtWithHoldingTax";
-            this.txtWithHoldingTax.Size = new System.Drawing.Size(74, 19);
+            this.txtWithHoldingTax.Size = new System.Drawing.Size(74, 20);
             this.txtWithHoldingTax.TabIndex = 0;
             this.txtWithHoldingTax.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtWithHoldingTax.ThemeName = "Office2007Silver";
             this.txtWithHoldingTax.TextChanged += new System.EventHandler(this.txtWithHoldingTax_TextChanged);
             this.txtWithHoldingTax.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtWithHoldingTax_KeyPress);
             // 
@@ -242,9 +245,10 @@
             // 
             this.txtSecAndMaintenance.Location = new System.Drawing.Point(269, 28);
             this.txtSecAndMaintenance.Name = "txtSecAndMaintenance";
-            this.txtSecAndMaintenance.Size = new System.Drawing.Size(74, 19);
+            this.txtSecAndMaintenance.Size = new System.Drawing.Size(74, 20);
             this.txtSecAndMaintenance.TabIndex = 0;
             this.txtSecAndMaintenance.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtSecAndMaintenance.ThemeName = "Office2007Silver";
             this.txtSecAndMaintenance.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSecAndMaintenance_KeyPress);
             // 
             // radLabel9
@@ -304,18 +308,20 @@
             // 
             this.txtVatAmount.Location = new System.Drawing.Point(269, 53);
             this.txtVatAmount.Name = "txtVatAmount";
-            this.txtVatAmount.Size = new System.Drawing.Size(74, 19);
+            this.txtVatAmount.Size = new System.Drawing.Size(74, 20);
             this.txtVatAmount.TabIndex = 0;
             this.txtVatAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtVatAmount.ThemeName = "Office2007Silver";
             this.txtVatAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtVatAmount_KeyPress);
             // 
             // txtSecAndMaintenanceWithVat
             // 
             this.txtSecAndMaintenanceWithVat.Location = new System.Drawing.Point(269, 78);
             this.txtSecAndMaintenanceWithVat.Name = "txtSecAndMaintenanceWithVat";
-            this.txtSecAndMaintenanceWithVat.Size = new System.Drawing.Size(74, 19);
+            this.txtSecAndMaintenanceWithVat.Size = new System.Drawing.Size(74, 20);
             this.txtSecAndMaintenanceWithVat.TabIndex = 0;
             this.txtSecAndMaintenanceWithVat.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtSecAndMaintenanceWithVat.ThemeName = "Office2007Silver";
             this.txtSecAndMaintenanceWithVat.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSecAndMaintenanceWithVat_KeyPress);
             // 
             // lblFoot
@@ -402,17 +408,19 @@
             this.txtWithHoldingTaxAmount.Location = new System.Drawing.Point(609, 28);
             this.txtWithHoldingTaxAmount.MaxLength = 2;
             this.txtWithHoldingTaxAmount.Name = "txtWithHoldingTaxAmount";
-            this.txtWithHoldingTaxAmount.Size = new System.Drawing.Size(74, 19);
+            this.txtWithHoldingTaxAmount.Size = new System.Drawing.Size(74, 20);
             this.txtWithHoldingTaxAmount.TabIndex = 0;
             this.txtWithHoldingTaxAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtWithHoldingTaxAmount.ThemeName = "Office2007Silver";
             // 
             // txtSecAndMaintenanceWithVatLessTAX
             // 
             this.txtSecAndMaintenanceWithVatLessTAX.Location = new System.Drawing.Point(269, 103);
             this.txtSecAndMaintenanceWithVatLessTAX.Name = "txtSecAndMaintenanceWithVatLessTAX";
-            this.txtSecAndMaintenanceWithVatLessTAX.Size = new System.Drawing.Size(74, 19);
+            this.txtSecAndMaintenanceWithVatLessTAX.Size = new System.Drawing.Size(74, 20);
             this.txtSecAndMaintenanceWithVatLessTAX.TabIndex = 0;
             this.txtSecAndMaintenanceWithVatLessTAX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtSecAndMaintenanceWithVatLessTAX.ThemeName = "Office2007Silver";
             // 
             // toolStrip1
             // 

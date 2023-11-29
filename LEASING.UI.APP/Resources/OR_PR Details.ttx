@@ -1,0 +1,14 @@
+ttx_particulars	String	100
+ttx_partdesc	String	10	
+ttx_bank	String	100	
+ttx_branch	String	100	
+ttx_acct_no	String	25	
+ttx_check_no	String	25	
+ttx_check_date	Date		
+ttx_amount	Currency		
+tin	String	20
+addr	String	100
+phase	String	5
+block	String	5
+lot	String	5
+lot_area	Number

@@ -1,0 +1,22 @@
+project	String		50
+block	String		10
+lot	String		10
+client_no	String		12
+lot_area	Currency		
+Res_pay	Currency		
+Cash_sale	Currency		
+DP_Pay	Currency		
+MA_Pay	Currency	
+VAT	Currency	
+Others	Currency		
+Tot_Cash	Currency		
+Tot_Chk	Currency		
+Tot_Pay	Currency		
+PR_No	String		6
+Penalty	Currency		
+phase	String	10	
+tran_date	Date	
+interest	Currency
+tcost	Currency
+tcp	Currency
+tin	String	20

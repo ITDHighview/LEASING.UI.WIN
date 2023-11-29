@@ -43,7 +43,7 @@ namespace LEASING.UI.APP.Forms
                     case "EDIT":
                         btnUndo.Enabled = true;
                         //btnSave.Enabled = true;
-                        btnEdit.Enabled = false;                 
+                        btnEdit.Enabled = false;
                         EnableFields();
 
                         break;
@@ -52,7 +52,7 @@ namespace LEASING.UI.APP.Forms
                         //btnSave.Enabled = false;
                         btnEdit.Enabled = true;
 
-                       
+
                         //ddlUnitNumber.SelectedIndex = 0;
                         DisableFields();
                         break;
@@ -91,9 +91,16 @@ namespace LEASING.UI.APP.Forms
             txtRental.Text = string.Empty;
             txtSecAndMaintenance.Text = string.Empty;
             txtTotalRental.Text = string.Empty;
-           
+
             txtMonthsSecurityDeposit.Text = string.Empty;
             txtTotal.Text = string.Empty;
+            txtPaymentStatus.Text = string.Empty;
+            txtContractSignStatus.Text = string.Empty;
+            txtMoveinStatus.Text = string.Empty;
+            txtMoveOutStatus.Text = string.Empty;
+            txtTerminationStatus.Text = string.Empty;
+            txtContractStatus.Text = string.Empty;
+
         }
 
         private void EnableFields()
@@ -106,7 +113,7 @@ namespace LEASING.UI.APP.Forms
             txtRental.Enabled = true;
             txtSecAndMaintenance.Enabled = true;
             txtTotalRental.Enabled = true;
-          
+
             txtMonthsSecurityDeposit.Enabled = true;
             txtTotal.Enabled = true;
             txtProjectName.Enabled = true;
@@ -114,9 +121,23 @@ namespace LEASING.UI.APP.Forms
             dtpTransactionDate.Enabled = true;
             dtpStartDate.Enabled = true;
             dtpFinishDate.Enabled = true;
-           
+
             txtReferenceId.Enabled = true;
-                   
+
+            txtPaymentStatus.Enabled = true;
+            dtpLastPaymentDate.Enabled = true;
+            txtContractSignStatus.Enabled = true;
+            dtpContractSignedDate.Enabled = true;
+            txtMoveinStatus.Enabled = true;
+            dtpMoveInDate.Enabled = true;
+            txtMoveOutStatus.Enabled = true;
+            dtpMoveOutDate.Enabled = true;
+            txtTerminationStatus.Enabled = true;
+            dtpTerminationDate.Enabled = true;
+            txtContractStatus.Enabled = true;
+            dtpContractCloseDate.Enabled = true;
+
+
         }
 
         private void DisableFields()
@@ -129,15 +150,28 @@ namespace LEASING.UI.APP.Forms
             txtRental.Enabled = false;
             txtSecAndMaintenance.Enabled = false;
             txtTotalRental.Enabled = false;
-           
+
             txtMonthsSecurityDeposit.Enabled = false;
             txtTotal.Enabled = false;
             dtpTransactionDate.Enabled = false;
             dtpStartDate.Enabled = false;
-            dtpFinishDate.Enabled = false;          
+            dtpFinishDate.Enabled = false;
             txtProjectName.Enabled = false;
             txtUnitNumber.Enabled = false;
             txtReferenceId.Enabled = false;
+
+            txtPaymentStatus.Enabled = false;
+            dtpLastPaymentDate.Enabled = false;
+            txtContractSignStatus.Enabled = false;
+            dtpContractSignedDate.Enabled = false;
+            txtMoveinStatus.Enabled = false;
+            dtpMoveInDate.Enabled = false;
+            txtMoveOutStatus.Enabled = false;
+            dtpMoveOutDate.Enabled = false;
+            txtTerminationStatus.Enabled = false;
+            dtpTerminationDate.Enabled = false;
+            txtContractStatus.Enabled = false;
+            dtpContractCloseDate.Enabled = false;
 
         }
         private void M_GetRateSettings()
@@ -149,13 +183,12 @@ namespace LEASING.UI.APP.Forms
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                 {
                     //txtGenVat.Text = Convert.ToString(dt.Tables[0].Rows[0]["GenVat"]);
-                    txtSecAndMaintenance.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecurityAndMaintenance"]);               
+                    txtSecAndMaintenance.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecurityAndMaintenance"]);
                     lblVat.Text = Convert.ToString(dt.Tables[0].Rows[0]["labelVat"]);
                 }
             }
         }
 
-     
         private void M_GetTotalRental()
         {
             //var rental = (txtRental.Text == "") ? 0 : (Convert.ToDecimal(txtRental.Text) + ((txtSecAndMaintenance.Text == "") ? 0 : Convert.ToDecimal(txtSecAndMaintenance.Text)));
@@ -185,13 +218,45 @@ namespace LEASING.UI.APP.Forms
                     txtFloorType.Text = Convert.ToString(dt.Tables[0].Rows[0]["FloorType"]);
                     dtpStartDate.Text = Convert.ToString(dt.Tables[0].Rows[0]["StatDate"]);
                     dtpFinishDate.Text = Convert.ToString(dt.Tables[0].Rows[0]["FinishDate"]);
-   
+
                     txtRental.Text = Convert.ToString(dt.Tables[0].Rows[0]["Rental"]);
                     txtSecAndMaintenance.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecAndMaintenance"]);
                     txtTotalRental.Text = Convert.ToString(dt.Tables[0].Rows[0]["TotalRent"]);
- 
+
                     txtMonthsSecurityDeposit.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecDeposit"]);
                     txtTotal.Text = Convert.ToString(dt.Tables[0].Rows[0]["Total"]);
+
+                    dtpLastPaymentDate.Visible = false;
+                    txtPaymentStatus.Text = Convert.ToString(dt.Tables[0].Rows[0]["PaymentStatus"]);
+                    dtpLastPaymentDate.Visible = string.IsNullOrEmpty(txtPaymentStatus.Text) ? false : true;
+                    dtpLastPaymentDate.Text = Convert.ToString(dt.Tables[0].Rows[0]["LastPaymentDate"]);
+
+                    dtpContractSignedDate.Visible = false;
+                    txtContractSignStatus.Text = Convert.ToString(dt.Tables[0].Rows[0]["ContractSignStatus"]);
+                    dtpContractSignedDate.Visible = string.IsNullOrEmpty(txtContractSignStatus.Text) ? false : true;
+                    dtpContractSignedDate.Text = Convert.ToString(dt.Tables[0].Rows[0]["ContractSignedDate"]);
+
+                    dtpMoveInDate.Visible = false;
+                    txtMoveinStatus.Text = Convert.ToString(dt.Tables[0].Rows[0]["MoveinStatus"]);
+                    dtpMoveInDate.Visible = string.IsNullOrEmpty(txtMoveinStatus.Text) ? false : true;
+                    dtpMoveInDate.Text = Convert.ToString(dt.Tables[0].Rows[0]["MoveInDate"]);
+
+                    dtpMoveOutDate.Visible = false;
+                    txtMoveOutStatus.Text = Convert.ToString(dt.Tables[0].Rows[0]["MoveOutStatus"]);
+                    dtpMoveOutDate.Visible = string.IsNullOrEmpty(txtMoveOutStatus.Text) ? false : true;
+                    dtpMoveOutDate.Text = Convert.ToString(dt.Tables[0].Rows[0]["MoveOutDate"]);
+
+                    dtpTerminationDate.Visible = false;
+                    txtTerminationStatus.Text = Convert.ToString(dt.Tables[0].Rows[0]["TerminationStatus"]);
+                    dtpTerminationDate.Visible = string.IsNullOrEmpty(txtTerminationStatus.Text) ? false : true;
+                    dtpTerminationDate.Text = Convert.ToString(dt.Tables[0].Rows[0]["TerminationDate"]);
+
+                    dtpContractCloseDate.Visible = false;
+                    txtContractStatus.Text = Convert.ToString(dt.Tables[0].Rows[0]["ContractStatus"]);
+                    dtpContractCloseDate.Visible = txtContractStatus.Text=="CLOSED" ? true : false;
+                    dtpContractCloseDate.Text = Convert.ToString(dt.Tables[0].Rows[0]["ContractCloseDate"]);
+
+                    txtPaymentStatus.Text = Convert.ToString(dt.Tables[0].Rows[0]["TerminationStatus"]) == "YES" ? "TERMINATION" : Convert.ToString(dt.Tables[0].Rows[0]["PaymentStatus"]); 
                 }
             }
         }

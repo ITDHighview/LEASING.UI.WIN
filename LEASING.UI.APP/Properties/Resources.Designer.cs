@@ -3051,6 +3051,26 @@ namespace LEASING.UI.APP.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] OR_PR_Details {
+            get {
+                object obj = ResourceManager.GetObject("OR_PR_Details", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] OR_Receipt {
+            get {
+                object obj = ResourceManager.GetObject("OR_Receipt", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap orangebullet {

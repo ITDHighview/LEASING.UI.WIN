@@ -119,6 +119,7 @@
             gridViewTextBoxColumn4,
             gridViewTextBoxColumn5});
             this.dgvList.MasterTemplate.EnableFiltering = true;
+            this.dgvList.MasterTemplate.ShowRowHeaderColumn = false;
             this.dgvList.Name = "dgvList";
             this.dgvList.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.dgvList.ReadOnly = true;

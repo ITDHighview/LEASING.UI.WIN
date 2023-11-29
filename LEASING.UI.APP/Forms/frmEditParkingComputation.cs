@@ -175,6 +175,37 @@ namespace LEASING.UI.APP.Forms
                     //txtMonthsAdvance2.Text = Convert.ToString(dt.Tables[0].Rows[0]["Advancemonths2"]);
                     //txtMonthsSecurityDeposit.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecDeposit"]);
                     //txtTotal.Text = Convert.ToString(dt.Tables[0].Rows[0]["Total"]);
+                    dtpLastPaymentDate.Visible = false;
+                    txtPaymentStatus.Text = Convert.ToString(dt.Tables[0].Rows[0]["PaymentStatus"]);
+                    dtpLastPaymentDate.Visible = string.IsNullOrEmpty(txtPaymentStatus.Text) ? false : true;
+                    dtpLastPaymentDate.Text = Convert.ToString(dt.Tables[0].Rows[0]["LastPaymentDate"]);
+
+                    dtpContractSignedDate.Visible = false;
+                    txtContractSignStatus.Text = Convert.ToString(dt.Tables[0].Rows[0]["ContractSignStatus"]);
+                    dtpContractSignedDate.Visible = string.IsNullOrEmpty(txtContractSignStatus.Text) ? false : true;
+                    dtpContractSignedDate.Text = Convert.ToString(dt.Tables[0].Rows[0]["ContractSignedDate"]);
+
+                    dtpMoveInDate.Visible = false;
+                    txtMoveinStatus.Text = Convert.ToString(dt.Tables[0].Rows[0]["MoveinStatus"]);
+                    dtpMoveInDate.Visible = string.IsNullOrEmpty(txtMoveinStatus.Text) ? false : true;
+                    dtpMoveInDate.Text = Convert.ToString(dt.Tables[0].Rows[0]["MoveInDate"]);
+
+                    dtpMoveOutDate.Visible = false;
+                    txtMoveOutStatus.Text = Convert.ToString(dt.Tables[0].Rows[0]["MoveOutStatus"]);
+                    dtpMoveOutDate.Visible = string.IsNullOrEmpty(txtMoveOutStatus.Text) ? false : true;
+                    dtpMoveOutDate.Text = Convert.ToString(dt.Tables[0].Rows[0]["MoveOutDate"]);
+
+                    dtpTerminationDate.Visible = false;
+                    txtTerminationStatus.Text = Convert.ToString(dt.Tables[0].Rows[0]["TerminationStatus"]);
+                    dtpTerminationDate.Visible = string.IsNullOrEmpty(txtTerminationStatus.Text) ? false : true;
+                    dtpTerminationDate.Text = Convert.ToString(dt.Tables[0].Rows[0]["TerminationDate"]);
+
+                    dtpContractCloseDate.Visible = false;
+                    txtContractStatus.Text = Convert.ToString(dt.Tables[0].Rows[0]["ContractStatus"]);
+                    dtpContractCloseDate.Visible = txtContractStatus.Text == "CLOSED" ? true : false;
+                    dtpContractCloseDate.Text = Convert.ToString(dt.Tables[0].Rows[0]["ContractCloseDate"]);
+
+                    txtPaymentStatus.Text = Convert.ToString(dt.Tables[0].Rows[0]["TerminationStatus"]) == "YES" ? "TERMINATION" : Convert.ToString(dt.Tables[0].Rows[0]["PaymentStatus"]);
                 }
             }
         }

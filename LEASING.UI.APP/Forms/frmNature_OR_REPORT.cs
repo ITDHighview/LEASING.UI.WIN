@@ -24,7 +24,7 @@ namespace LEASING.UI.APP.Forms
 
         private void frmNature_OR_REPORT_Load(object sender, EventArgs e)
         {
-            Functions.GetReceiptReport(Config.Nature_OR_REPORT,this);           
+            Functions.GetReceiptReport(Config.Nature_OR_REPORT,this, Config.RecieptReportOption);           
         }
     }
 }

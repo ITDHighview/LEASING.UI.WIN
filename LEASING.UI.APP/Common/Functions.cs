@@ -829,15 +829,15 @@ namespace LEASING.UI.APP.Common
             radDesktopAlert1.Show();
         }
 
-        public static void GetReceiptReport(string report, Form frm)
+        public static void GetReceiptReport(string report, Form frm, bool IsPreview)
         {
 
             try
             {
-                Cursor.Current = Cursors.AppStarting;
-                //string report = Config.Nature_OR_REPORT;
+                Cursor.Current = Cursors.AppStarting;        
                 CrystalDecisions.CrystalReports.Engine.ReportDocument locRptDocument = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                 locRptDocument.Load(report);
+                locRptDocument.PrintOptions.PaperSize = CrystalDecisions.Shared.PaperSize.DefaultPaperSize;
                 //locRptDocument.SetParameterValue("@BookingNo", "1");
                 //locRptDocument.SetParameterValue("@Encounter_No", "");
                 ConnectionInfo crConnectionInfo = new ConnectionInfo();
@@ -855,12 +855,26 @@ namespace LEASING.UI.APP.Common
                     CrTable.ApplyLogOnInfo(crtableLogoninfo);
                 }
                 CrystalReportViewer crv = new CrystalReportViewer();
-                crv.Dock = DockStyle.Fill;
-                crv.ReportSource = locRptDocument;
-                crv.Refresh();               
-                frm.Controls.Add(crv);
-                frm.WindowState = FormWindowState.Maximized;
-                frm.Show();
+                if (IsPreview)
+                {
+                    crv.Dock = DockStyle.Fill;
+                    crv.ReportSource = locRptDocument;
+                    crv.Refresh();
+                    frm.Controls.Add(crv);
+                    frm.WindowState = FormWindowState.Maximized;
+                    frm.Show();
+                }
+                else
+                {
+
+                    crv.ReportSource = locRptDocument;
+                    frm.Opacity = 0;
+                    frm.Show();
+                    locRptDocument.PrintToPrinter(1, false, 1, 1);
+                    frm.Close();
+                }
+
+
                 Cursor.Current = Cursors.Default;
             }
             catch (Exception ex)

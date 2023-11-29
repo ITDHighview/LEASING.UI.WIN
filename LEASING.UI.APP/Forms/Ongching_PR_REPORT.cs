@@ -20,7 +20,7 @@ namespace LEASING.UI.APP.Forms
 
         private void Ongching_PR_REPORT_Load(object sender, EventArgs e)
         {
-            Functions.GetReceiptReport(Config.Ongching_OR_REPORT, this);
+            Functions.GetReceiptReport(Config.Ongching_OR_REPORT, this, Config.RecieptReportOption);
         }
     }
 }

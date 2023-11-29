@@ -22,7 +22,7 @@ namespace LEASING.UI.APP
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new frmPreEmp_Login(frmPreEmp_Login.LoginMethod.Login));
-                //Application.Run(new frmNature_OR_REPORT());
+                //Application.Run(new frmClientRecieptTransaction());
             }
 
             catch (Exception vValue)

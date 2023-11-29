@@ -24,5 +24,7 @@ namespace LEASING.UI.APP.Common
         public static string Nature_PR_REPORT = ConfigurationManager.AppSettings["ReportPath"].ToString() + NATURE_PR;
         public static string Ongching_OR_REPORT = ConfigurationManager.AppSettings["ReportPath"].ToString() + ONGCHING_OR;
 
+        public static bool RecieptReportOption = Convert.ToBoolean(ConfigurationManager.AppSettings["RecieptReportOption"]);
+
     }
 }

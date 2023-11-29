@@ -1,4 +1,7 @@
-﻿using LEASING.UI.APP.Context;
+﻿using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Shared;
+using CrystalDecisions.Windows.Forms;
+using LEASING.UI.APP.Context;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -824,6 +827,46 @@ namespace LEASING.UI.APP.Common
             radDesktopAlert1.Popup.AlertElement.GradientStyle = GradientStyles.Solid;
 
             radDesktopAlert1.Show();
+        }
+
+        public static void GetReceiptReport(string report, Form frm)
+        {
+
+            try
+            {
+                Cursor.Current = Cursors.AppStarting;
+                //string report = Config.Nature_OR_REPORT;
+                CrystalDecisions.CrystalReports.Engine.ReportDocument locRptDocument = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                locRptDocument.Load(report);
+                //locRptDocument.SetParameterValue("@BookingNo", "1");
+                //locRptDocument.SetParameterValue("@Encounter_No", "");
+                ConnectionInfo crConnectionInfo = new ConnectionInfo();
+                crConnectionInfo.ServerName = Config.SqlServerName;
+                crConnectionInfo.DatabaseName = Config.SqlDatabaseName;
+                crConnectionInfo.UserID = Config.SqlUserID;
+                crConnectionInfo.Password = Config.SqlPassword;
+                Tables CrTables = locRptDocument.Database.Tables;
+                CrTables = locRptDocument.Database.Tables;
+                foreach (CrystalDecisions.CrystalReports.Engine.Table CrTable in CrTables)
+                {
+                    TableLogOnInfo crtableLogoninfo = CrTable.LogOnInfo;
+                    crtableLogoninfo = CrTable.LogOnInfo;
+                    crtableLogoninfo.ConnectionInfo = crConnectionInfo;
+                    CrTable.ApplyLogOnInfo(crtableLogoninfo);
+                }
+                CrystalReportViewer crv = new CrystalReportViewer();
+                crv.Dock = DockStyle.Fill;
+                crv.ReportSource = locRptDocument;
+                crv.Refresh();               
+                frm.Controls.Add(crv);
+                frm.WindowState = FormWindowState.Maximized;
+                frm.Show();
+                Cursor.Current = Cursors.Default;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
         }
 
     }

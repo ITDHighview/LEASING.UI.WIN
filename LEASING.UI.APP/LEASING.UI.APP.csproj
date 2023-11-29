@@ -148,12 +148,6 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\debuform.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\debuform.Designer.cs">
-      <DependentUpon>debuform.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\frmAddBankName.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -285,6 +279,18 @@
     </Compile>
     <Compile Include="Forms\frmGroupSecurity.Designer.cs">
       <DependentUpon>frmGroupSecurity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmNature_OR_REPORT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmNature_OR_REPORT.Designer.cs">
+      <DependentUpon>frmNature_OR_REPORT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmNature_PR_REPORT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmNature_PR_REPORT.Designer.cs">
+      <DependentUpon>frmNature_PR_REPORT.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmParkComputation.cs">
       <SubType>Form</SubType>
@@ -490,6 +496,12 @@
     <Compile Include="Forms\frmWarehouseRateSettings.Designer.cs">
       <DependentUpon>frmWarehouseRateSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Ongching_PR_REPORT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Ongching_PR_REPORT.Designer.cs">
+      <DependentUpon>Ongching_PR_REPORT.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ReportViewer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -514,9 +526,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\debuform.resx">
-      <DependentUpon>debuform.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmAddBankName.resx">
       <DependentUpon>frmAddBankName.cs</DependentUpon>
@@ -580,6 +589,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmGroupSecurity.resx">
       <DependentUpon>frmGroupSecurity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmNature_OR_REPORT.resx">
+      <DependentUpon>frmNature_OR_REPORT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmNature_PR_REPORT.resx">
+      <DependentUpon>frmNature_PR_REPORT.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmParkComputation.resx">
       <DependentUpon>frmParkComputation.cs</DependentUpon>
@@ -682,6 +697,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmWarehouseRateSettings.resx">
       <DependentUpon>frmWarehouseRateSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Ongching_PR_REPORT.resx">
+      <DependentUpon>Ongching_PR_REPORT.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ReportViewer.resx">
       <DependentUpon>ReportViewer.cs</DependentUpon>

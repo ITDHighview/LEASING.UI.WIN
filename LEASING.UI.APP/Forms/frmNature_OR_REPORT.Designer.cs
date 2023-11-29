@@ -1,6 +1,6 @@
 ﻿namespace LEASING.UI.APP.Forms
 {
-    partial class debuform
+    partial class frmNature_OR_REPORT
     {
         /// <summary>
         /// Required designer variable.
@@ -30,14 +30,17 @@
         {
             this.SuspendLayout();
             // 
-            // debuform
+            // frmNature_OR_REPORT
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Name = "debuform";
-            this.Text = "debuform";
-            this.Load += new System.EventHandler(this.debuform_Load);
+            this.DoubleBuffered = true;
+            this.Name = "frmNature_OR_REPORT";
+            this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Nature OR REPORT";
+            this.Load += new System.EventHandler(this.frmNature_OR_REPORT_Load);
             this.ResumeLayout(false);
 
         }

@@ -130,11 +130,11 @@
             this.radLabel2.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.radLabel2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radLabel2.ForeColor = System.Drawing.Color.DarkRed;
-            this.radLabel2.Location = new System.Drawing.Point(27, 53);
+            this.radLabel2.Location = new System.Drawing.Point(85, 53);
             this.radLabel2.Name = "radLabel2";
-            this.radLabel2.Size = new System.Drawing.Size(113, 19);
+            this.radLabel2.Size = new System.Drawing.Size(55, 19);
             this.radLabel2.TabIndex = 0;
-            this.radLabel2.Text = "Company OR No. :";
+            this.radLabel2.Text = "OR No. :";
             // 
             // radLabel3
             // 
@@ -263,7 +263,7 @@
             // 
             this.ddlbankName.Location = new System.Drawing.Point(146, 103);
             this.ddlbankName.Name = "ddlbankName";
-            this.ddlbankName.Size = new System.Drawing.Size(155, 20);
+            this.ddlbankName.Size = new System.Drawing.Size(155, 19);
             this.ddlbankName.TabIndex = 4;
             // 
             // frmPaymentMode

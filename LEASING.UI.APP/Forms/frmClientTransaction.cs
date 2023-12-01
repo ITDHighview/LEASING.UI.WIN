@@ -553,6 +553,9 @@ namespace LEASING.UI.APP.Forms
                                     M_GetCheckPaymentStatus();
                                     M_GetLedgerList();
                                     M_GetPaymentListByReferenceId();
+
+                                    frmRecieptSelection frmRecieptSelection = new frmRecieptSelection();
+                                    frmRecieptSelection.ShowDialog();
                                 }
                             }
                         }

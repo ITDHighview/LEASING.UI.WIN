@@ -11,7 +11,7 @@ AS
                 [tblTransaction].[TranID],
                 [tblReceipt].[RcptID],
                 [tblPayment].[PayID],
-                [tblTransaction].[PaidAmount],
+                [tblPayment].[Amount]                                 AS PaidAmount,
                 CONVERT(VARCHAR(10), [tblPayment].[ForMonth], 101)    AS [ForMonth],
                 CONVERT(VARCHAR(10), [tblPayment].[EncodedDate], 101) AS [PayDate],
                 [tblReceipt].[CompanyORNo],

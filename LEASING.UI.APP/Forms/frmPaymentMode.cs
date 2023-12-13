@@ -48,6 +48,7 @@ namespace LEASING.UI.APP.Forms
                         txtBankAccountNo.Enabled = false;
                         txtSerialNo.Enabled = false;
                         ddlbankName.Text = string.Empty;
+                        ddlbankName.SelectedIndex = -1;
 
                         break;
                     case "BANK":
@@ -114,11 +115,29 @@ namespace LEASING.UI.APP.Forms
             }
         }
 
+
+        private bool M_CheckOrNumber()
+        {
+            txtCompanyORNo.Text = string.Empty;
+            bool IsExist = false;
+            using (DataSet dt = PaymentContext.GetCheckOrNumber(txtCompanyORNo.Text.Trim()))
+            {
+                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                {
+
+                    IsExist = Convert.ToBoolean(dt.Tables[0].Rows[0]["IsExist"]);
+                }
+            }
+            return IsExist;
+        }
+
         private void frmPaymentMode_Load(object sender, EventArgs e)
         {
             ClearFields();
             M_GetSelectPaymentMode();
             M_GetSelectBanknName();
+            ddlbankName.Text = string.Empty;
+            ddlbankName.SelectedIndex = -1;
         }
 
         private void ddlSelectMode_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
@@ -139,19 +158,27 @@ namespace LEASING.UI.APP.Forms
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            IsProceed = true;
-            if (ddlSelectMode.SelectedIndex > 0)
+            if (M_CheckOrNumber())
             {
-                ModeType = Convert.ToInt32(ddlSelectMode.SelectedValue);
+                MessageBox.Show("This OR Number: "+txtCompanyORNo.Text.Trim()+" is already exist!", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-                 CompanyORNo = txtCompanyORNo.Text;
+            else
+            {
+                IsProceed = true;
+                if (ddlSelectMode.SelectedIndex > 0)
+                {
+                    ModeType = Convert.ToInt32(ddlSelectMode.SelectedValue);
+                }
+                CompanyORNo = txtCompanyORNo.Text;
                 BankAccountName = txtBankAccountName.Text;
                 BankAccountNumber = txtBankAccountNo.Text;
                 BankName = ddlbankName.Text;
                 SerialNo = txtSerialNo.Text;
                 PaymentRemarks = txtRemarks.Text;
                 REF = txtReferrence.Text;
-            this.Close();
+                this.Close();
+            }
+           
         }
     }
 }

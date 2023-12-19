@@ -46,6 +46,8 @@
             this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
             this.txtRemarks = new Telerik.WinControls.UI.RadTextBox();
             this.ddlbankName = new Telerik.WinControls.UI.RadDropDownList();
+            this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
+            this.txtPRNo = new Telerik.WinControls.UI.RadTextBox();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlSelectMode)).BeginInit();
@@ -64,6 +66,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRemarks)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlbankName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPRNo)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -75,24 +79,26 @@
             this.tableLayoutPanel1.Controls.Add(this.radLabel1, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.ddlSelectMode, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.radLabel2, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.radLabel3, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.radLabel4, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.radLabel5, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this.radLabel6, 0, 6);
             this.tableLayoutPanel1.Controls.Add(this.txtCompanyORNo, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.txtReferrence, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.txtBankAccountName, 1, 5);
-            this.tableLayoutPanel1.Controls.Add(this.txtBankAccountNo, 1, 6);
-            this.tableLayoutPanel1.Controls.Add(this.radLabel7, 0, 7);
-            this.tableLayoutPanel1.Controls.Add(this.txtSerialNo, 1, 7);
-            this.tableLayoutPanel1.Controls.Add(this.btnOk, 1, 9);
-            this.tableLayoutPanel1.Controls.Add(this.radLabel8, 0, 8);
-            this.tableLayoutPanel1.Controls.Add(this.txtRemarks, 1, 8);
-            this.tableLayoutPanel1.Controls.Add(this.ddlbankName, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.btnOk, 1, 10);
+            this.tableLayoutPanel1.Controls.Add(this.radLabel8, 0, 9);
+            this.tableLayoutPanel1.Controls.Add(this.txtRemarks, 1, 9);
+            this.tableLayoutPanel1.Controls.Add(this.radLabel7, 0, 8);
+            this.tableLayoutPanel1.Controls.Add(this.txtSerialNo, 1, 8);
+            this.tableLayoutPanel1.Controls.Add(this.radLabel6, 0, 7);
+            this.tableLayoutPanel1.Controls.Add(this.txtBankAccountNo, 1, 7);
+            this.tableLayoutPanel1.Controls.Add(this.radLabel5, 0, 6);
+            this.tableLayoutPanel1.Controls.Add(this.txtBankAccountName, 1, 6);
+            this.tableLayoutPanel1.Controls.Add(this.radLabel4, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.ddlbankName, 1, 5);
+            this.tableLayoutPanel1.Controls.Add(this.radLabel3, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.txtReferrence, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.radLabel9, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.txtPRNo, 1, 3);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 10;
+            this.tableLayoutPanel1.RowCount = 11;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
@@ -101,9 +107,10 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(374, 262);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(374, 278);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // radLabel1
@@ -141,7 +148,7 @@
             this.radLabel3.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.radLabel3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radLabel3.ForeColor = System.Drawing.Color.DarkRed;
-            this.radLabel3.Location = new System.Drawing.Point(61, 78);
+            this.radLabel3.Location = new System.Drawing.Point(61, 103);
             this.radLabel3.Name = "radLabel3";
             this.radLabel3.Size = new System.Drawing.Size(79, 19);
             this.radLabel3.TabIndex = 0;
@@ -152,7 +159,7 @@
             this.radLabel4.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.radLabel4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radLabel4.ForeColor = System.Drawing.Color.DarkRed;
-            this.radLabel4.Location = new System.Drawing.Point(53, 103);
+            this.radLabel4.Location = new System.Drawing.Point(53, 128);
             this.radLabel4.Name = "radLabel4";
             this.radLabel4.Size = new System.Drawing.Size(87, 19);
             this.radLabel4.TabIndex = 0;
@@ -163,9 +170,9 @@
             this.radLabel5.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.radLabel5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radLabel5.ForeColor = System.Drawing.Color.DarkRed;
-            this.radLabel5.Location = new System.Drawing.Point(3, 128);
+            this.radLabel5.Location = new System.Drawing.Point(3, 153);
             this.radLabel5.Name = "radLabel5";
-            this.radLabel5.Size = new System.Drawing.Size(137, 19);
+            this.radLabel5.Size = new System.Drawing.Size(138, 19);
             this.radLabel5.TabIndex = 0;
             this.radLabel5.Text = "Bank Account Name.  :";
             // 
@@ -174,7 +181,7 @@
             this.radLabel6.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.radLabel6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radLabel6.ForeColor = System.Drawing.Color.DarkRed;
-            this.radLabel6.Location = new System.Drawing.Point(19, 153);
+            this.radLabel6.Location = new System.Drawing.Point(19, 178);
             this.radLabel6.Name = "radLabel6";
             this.radLabel6.Size = new System.Drawing.Size(121, 19);
             this.radLabel6.TabIndex = 0;
@@ -190,26 +197,26 @@
             // 
             // txtReferrence
             // 
-            this.txtReferrence.Location = new System.Drawing.Point(146, 78);
+            this.txtReferrence.Location = new System.Drawing.Point(146, 103);
             this.txtReferrence.Name = "txtReferrence";
             this.txtReferrence.NullText = "Type here...";
-            this.txtReferrence.Size = new System.Drawing.Size(155, 19);
+            this.txtReferrence.Size = new System.Drawing.Size(155, 20);
             this.txtReferrence.TabIndex = 2;
             // 
             // txtBankAccountName
             // 
-            this.txtBankAccountName.Location = new System.Drawing.Point(146, 128);
+            this.txtBankAccountName.Location = new System.Drawing.Point(146, 153);
             this.txtBankAccountName.Name = "txtBankAccountName";
             this.txtBankAccountName.NullText = "Type here...";
-            this.txtBankAccountName.Size = new System.Drawing.Size(155, 19);
+            this.txtBankAccountName.Size = new System.Drawing.Size(155, 20);
             this.txtBankAccountName.TabIndex = 2;
             // 
             // txtBankAccountNo
             // 
-            this.txtBankAccountNo.Location = new System.Drawing.Point(146, 153);
+            this.txtBankAccountNo.Location = new System.Drawing.Point(146, 178);
             this.txtBankAccountNo.Name = "txtBankAccountNo";
             this.txtBankAccountNo.NullText = "Type here...";
-            this.txtBankAccountNo.Size = new System.Drawing.Size(155, 19);
+            this.txtBankAccountNo.Size = new System.Drawing.Size(155, 20);
             this.txtBankAccountNo.TabIndex = 2;
             // 
             // radLabel7
@@ -217,7 +224,7 @@
             this.radLabel7.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.radLabel7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radLabel7.ForeColor = System.Drawing.Color.DarkRed;
-            this.radLabel7.Location = new System.Drawing.Point(67, 178);
+            this.radLabel7.Location = new System.Drawing.Point(67, 203);
             this.radLabel7.Name = "radLabel7";
             this.radLabel7.Size = new System.Drawing.Size(73, 19);
             this.radLabel7.TabIndex = 0;
@@ -225,17 +232,17 @@
             // 
             // txtSerialNo
             // 
-            this.txtSerialNo.Location = new System.Drawing.Point(146, 178);
+            this.txtSerialNo.Location = new System.Drawing.Point(146, 203);
             this.txtSerialNo.Name = "txtSerialNo";
             this.txtSerialNo.NullText = "Type here...";
-            this.txtSerialNo.Size = new System.Drawing.Size(155, 19);
+            this.txtSerialNo.Size = new System.Drawing.Size(155, 20);
             this.txtSerialNo.TabIndex = 2;
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(146, 231);
+            this.btnOk.Location = new System.Drawing.Point(146, 253);
             this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(110, 24);
+            this.btnOk.Size = new System.Drawing.Size(110, 22);
             this.btnOk.TabIndex = 3;
             this.btnOk.Text = "Ok.";
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
@@ -245,15 +252,15 @@
             this.radLabel8.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.radLabel8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radLabel8.ForeColor = System.Drawing.Color.DarkRed;
-            this.radLabel8.Location = new System.Drawing.Point(67, 204);
+            this.radLabel8.Location = new System.Drawing.Point(70, 228);
             this.radLabel8.Name = "radLabel8";
-            this.radLabel8.Size = new System.Drawing.Size(73, 19);
+            this.radLabel8.Size = new System.Drawing.Size(70, 19);
             this.radLabel8.TabIndex = 0;
             this.radLabel8.Text = "Remarks.  :";
             // 
             // txtRemarks
             // 
-            this.txtRemarks.Location = new System.Drawing.Point(146, 203);
+            this.txtRemarks.Location = new System.Drawing.Point(146, 228);
             this.txtRemarks.Name = "txtRemarks";
             this.txtRemarks.NullText = "Type here...";
             this.txtRemarks.Size = new System.Drawing.Size(216, 20);
@@ -261,16 +268,35 @@
             // 
             // ddlbankName
             // 
-            this.ddlbankName.Location = new System.Drawing.Point(146, 103);
+            this.ddlbankName.Location = new System.Drawing.Point(146, 128);
             this.ddlbankName.Name = "ddlbankName";
-            this.ddlbankName.Size = new System.Drawing.Size(155, 19);
+            this.ddlbankName.Size = new System.Drawing.Size(155, 20);
             this.ddlbankName.TabIndex = 4;
+            // 
+            // radLabel9
+            // 
+            this.radLabel9.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.radLabel9.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel9.ForeColor = System.Drawing.Color.DarkRed;
+            this.radLabel9.Location = new System.Drawing.Point(87, 78);
+            this.radLabel9.Name = "radLabel9";
+            this.radLabel9.Size = new System.Drawing.Size(53, 19);
+            this.radLabel9.TabIndex = 0;
+            this.radLabel9.Text = "PR No. :";
+            // 
+            // txtPRNo
+            // 
+            this.txtPRNo.Location = new System.Drawing.Point(146, 78);
+            this.txtPRNo.Name = "txtPRNo";
+            this.txtPRNo.NullText = "Type here...";
+            this.txtPRNo.Size = new System.Drawing.Size(155, 20);
+            this.txtPRNo.TabIndex = 2;
             // 
             // frmPaymentMode
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(374, 262);
+            this.ClientSize = new System.Drawing.Size(374, 278);
             this.Controls.Add(this.tableLayoutPanel1);
             this.DoubleBuffered = true;
             this.Name = "frmPaymentMode";
@@ -297,6 +323,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRemarks)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlbankName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPRNo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -321,5 +349,7 @@
         private Telerik.WinControls.UI.RadLabel radLabel8;
         private Telerik.WinControls.UI.RadTextBox txtRemarks;
         private Telerik.WinControls.UI.RadDropDownList ddlbankName;
+        private Telerik.WinControls.UI.RadLabel radLabel9;
+        private Telerik.WinControls.UI.RadTextBox txtPRNo;
     }
 }

@@ -11,6 +11,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Telerik.WinControls;
+using Telerik.WinControls.UI;
 
 namespace LEASING.UI.APP.Forms
 {
@@ -584,17 +585,19 @@ namespace LEASING.UI.APP.Forms
                 }
                 else if (this.dgvUnitList.Columns[e.ColumnIndex].Name == "ColDeactivate")
                 {
-
-                    if (MessageBox.Show("Are you sure you want to Deactivated the Unit?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                    if (Convert.ToString(this.dgvUnitList.Rows[e.RowIndex].Cells["UnitStat"].Value) == "VACANT")
                     {
+                        if (MessageBox.Show("Are you sure you want to Deactivated the Unit?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                        {
 
-                        //var result = ProjectContext.DeActivateProject(Convert.ToInt32(dgvProjectList.CurrentRow.Cells["RecId"].Value));
-                        //if (result.Equals("SUCCESS"))
-                        //{
-                        //    MessageBox.Show("Project has been Deactivated successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        //    M_GetProjectList();
-                        //}
-                    }
+                            //var result = ProjectContext.DeActivateProject(Convert.ToInt32(dgvProjectList.CurrentRow.Cells["RecId"].Value));
+                            //if (result.Equals("SUCCESS"))
+                            //{
+                            //    MessageBox.Show("Project has been Deactivated successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            //    M_GetProjectList();
+                            //}
+                        }
+                    }      
                 }
             }
         }
@@ -641,6 +644,45 @@ namespace LEASING.UI.APP.Forms
                     e.CellElement.GradientStyle = GradientStyles.Solid;
                     e.CellElement.ForeColor = Color.White;
                     e.CellElement.BackColor = Color.Red;
+
+                }
+                if (e.CellElement.ColumnInfo is GridViewCommandColumn && !(e.CellElement.RowElement is GridTableHeaderRowElement))
+                {
+                    GridViewCommandColumn column = (GridViewCommandColumn)e.CellElement.ColumnInfo;
+                    RadButtonElement element = (RadButtonElement)e.CellElement.Children[0];
+
+                    (element.Children[2] as Telerik.WinControls.Primitives.BorderPrimitive).Visibility =
+                    Telerik.WinControls.ElementVisibility.Collapsed;
+                    element.DisplayStyle = DisplayStyle.Image;
+                    element.ImageAlignment = ContentAlignment.MiddleCenter;
+                    element.Enabled = true;
+                    element.Alignment = ContentAlignment.MiddleCenter;
+                    element.Visibility = ElementVisibility.Visible;
+
+                    if (column.Name == "ColDeactivate")
+                    {
+                        if (Convert.ToString(this.dgvUnitList.Rows[e.RowIndex].Cells["UnitStat"].Value) != "VACANT")
+                        {
+                            //element.ImageAlignment = ContentAlignment.MiddleCenter;
+                            //element.TextImageRelation = TextImageRelation.TextBeforeImage;
+                            //element.Text = "Un-Map";
+                            //element.Image = Properties.Resources.cancel16;
+                            //element.ToolTipText = "This button is disabled";
+
+                            element.Enabled = false;
+                        }
+                        //else
+                        //{
+                        //    element.ImageAlignment = ContentAlignment.MiddleCenter;
+                        //    element.TextImageRelation = TextImageRelation.TextBeforeImage;
+                        //    //element.Text = "Un-Map";
+                        //    element.Image = Properties.Resources.ico_remove_item;
+                        //    element.ToolTipText = "";
+                        //    element.Enabled = false;
+                        //}
+                    }
+                    
+
 
                 }
             }

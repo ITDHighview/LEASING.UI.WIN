@@ -38,6 +38,7 @@ namespace LEASING.UI.APP.Forms
         public decimal ChangeAmount { get; set; }
 
         public string CompanyORNo { get; set; }
+        public string CompanyPRNo { get; set; }
         public string BankAccountName { get; set; }
         public string BankAccountNumber { get; set; }
         public string BankName { get; set; }
@@ -68,6 +69,7 @@ namespace LEASING.UI.APP.Forms
                 ReceiveAmount,
                 ChangeAmount,
                 CompanyORNo,
+                CompanyPRNo,
                 BankAccountName,
                 BankAccountNumber,
                 BankName,
@@ -393,6 +395,7 @@ namespace LEASING.UI.APP.Forms
                         if (frmPaymentMode.IsProceed)
                         {
                             CompanyORNo = frmPaymentMode.CompanyORNo;
+                            CompanyPRNo = frmPaymentMode.CompanyPRNo;
                             BankAccountName = frmPaymentMode.BankAccountName;
                             BankAccountNumber = frmPaymentMode.BankAccountNumber;
                             BankName = frmPaymentMode.BankName;

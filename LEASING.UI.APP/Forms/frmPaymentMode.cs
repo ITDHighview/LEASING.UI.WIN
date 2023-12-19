@@ -16,6 +16,7 @@ namespace LEASING.UI.APP.Forms
         PaymentContext PaymentContext = new PaymentContext();
         public bool IsProceed = false;
         public string CompanyORNo { get; set; }
+        public string CompanyPRNo { get; set; }
         public string BankAccountName { get; set; }
         public string BankAccountNumber { get; set; }
         public string BankName { get; set; }
@@ -42,6 +43,7 @@ namespace LEASING.UI.APP.Forms
                     case "CASH":
 
                         txtCompanyORNo.Enabled = true;
+                        txtPRNo.Enabled = true;
                         txtReferrence.Enabled = false;
                         ddlbankName.Enabled = false;
                         txtBankAccountName.Enabled = false;
@@ -53,6 +55,7 @@ namespace LEASING.UI.APP.Forms
                         break;
                     case "BANK":
                         txtCompanyORNo.Enabled = true;
+                        txtPRNo.Enabled = true;
                         txtReferrence.Enabled = true;
                         ddlbankName.Enabled = true;
                         txtBankAccountName.Enabled = true;
@@ -62,6 +65,7 @@ namespace LEASING.UI.APP.Forms
                         break;
                     case "PDC":
                         txtCompanyORNo.Enabled = true;
+                        txtPRNo.Enabled = true;
                         txtReferrence.Enabled = false;
                         ddlbankName.Enabled = true;
                         txtBankAccountName.Enabled = true;
@@ -79,6 +83,7 @@ namespace LEASING.UI.APP.Forms
         private void ClearFields()
         {
             txtCompanyORNo.Text = string.Empty;
+            txtPRNo.Text = string.Empty;
             txtReferrence.Text = string.Empty;
             ddlbankName.Text = string.Empty;
             ddlbankName.SelectedIndex = 0;
@@ -115,12 +120,51 @@ namespace LEASING.UI.APP.Forms
             }
         }
 
+        private bool IsValid()
+        {
+            if (string.IsNullOrEmpty(txtCompanyORNo.Text.Trim()) || string.IsNullOrEmpty(txtPRNo.Text.Trim()))
+            {
+                MessageBox.Show("Please Provide OR Number or PR Number", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
+            }
+            if (!string.IsNullOrEmpty(txtCompanyORNo.Text.Trim()))
+            {
+                if (M_CheckOrNumber())
+                {
+                    MessageBox.Show("This OR Number: " + txtCompanyORNo.Text.Trim() + " is already exist!", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return false;
+                }          
+            }
+            if (!string.IsNullOrEmpty(txtPRNo.Text.Trim()))
+            {
+                if (M_CheckPRNumber())
+                {
+                    MessageBox.Show("This PR Number: " + txtPRNo.Text.Trim() + " is already exist!", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return false;
+                }
+            }
 
+            return true;
+        }
         private bool M_CheckOrNumber()
         {
             txtCompanyORNo.Text = string.Empty;
             bool IsExist = false;
             using (DataSet dt = PaymentContext.GetCheckOrNumber(txtCompanyORNo.Text.Trim()))
+            {
+                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                {
+
+                    IsExist = Convert.ToBoolean(dt.Tables[0].Rows[0]["IsExist"]);
+                }
+            }
+            return IsExist;
+        }
+        private bool M_CheckPRNumber()
+        {
+            txtPRNo.Text = string.Empty;
+            bool IsExist = false;
+            using (DataSet dt = PaymentContext.GetCheckPRNumber(txtPRNo.Text.Trim()))
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                 {
@@ -158,11 +202,8 @@ namespace LEASING.UI.APP.Forms
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            if (M_CheckOrNumber())
-            {
-                MessageBox.Show("This OR Number: "+txtCompanyORNo.Text.Trim()+" is already exist!", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
+
+            if (IsValid())
             {
                 IsProceed = true;
                 if (ddlSelectMode.SelectedIndex > 0)
@@ -170,6 +211,7 @@ namespace LEASING.UI.APP.Forms
                     ModeType = Convert.ToInt32(ddlSelectMode.SelectedValue);
                 }
                 CompanyORNo = txtCompanyORNo.Text;
+                CompanyPRNo = txtPRNo.Text;
                 BankAccountName = txtBankAccountName.Text;
                 BankAccountNumber = txtBankAccountNo.Text;
                 BankName = ddlbankName.Text;
@@ -178,7 +220,6 @@ namespace LEASING.UI.APP.Forms
                 REF = txtReferrence.Text;
                 this.Close();
             }
-           
         }
     }
 }

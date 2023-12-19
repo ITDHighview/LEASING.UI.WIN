@@ -1,9 +1,5 @@
-USE [LEASINGDB];
-GO
-/****** Object:  StoredProcedure [dbo].[sp_GenerateFirstPayment]    Script Date: 11/9/2023 9:56:03 PM ******/
-SET ANSI_NULLS ON;
-GO
 SET QUOTED_IDENTIFIER ON;
+SET ANSI_NULLS ON;
 GO
 -- =============================================
 -- Author:		<Author,,Name>
@@ -19,6 +15,7 @@ ALTER PROCEDURE [dbo].[sp_GenerateSecondPaymentUnit]
     @EncodedBy         INT            = NULL,
     @ComputerName      VARCHAR(30)    = NULL,
     @CompanyORNo       VARCHAR(30)    = NULL,
+    @CompanyPRNo       VARCHAR(30)    = NULL,
     @BankAccountName   VARCHAR(30)    = NULL,
     @BankAccountNumber VARCHAR(30)    = NULL,
     @BankName          VARCHAR(30)    = NULL,
@@ -157,6 +154,7 @@ AS
                 [IsActive],
                 [PaymentMethod],
                 [CompanyORNo],
+                [CompanyPRNo],
                 [BankAccountName],
                 [BankAccountNumber],
                 [BankName],
@@ -166,7 +164,7 @@ AS
         VALUES
             (
                 @TranID, @PaidAmount, 'FOLLOW-UP PAYMENT', @PaymentRemarks, @EncodedBy, GETDATE(), @ComputerName, 1,
-                @ModeType, @CompanyORNo, @BankAccountName, @BankAccountNumber, @BankName, @SerialNo, @REF
+                @ModeType, @CompanyORNo, @CompanyPRNo, @BankAccountName, @BankAccountNumber, @BankName, @SerialNo, @REF
             );
 
         SET @RcptRecId = @@IDENTITY;
@@ -181,6 +179,7 @@ AS
             (
                 [RcptID],
                 [CompanyORNo],
+                [CompanyPRNo],
                 [REF],
                 [BNK_ACCT_NAME],
                 [BNK_ACCT_NUMBER],
@@ -190,7 +189,8 @@ AS
             )
         VALUES
             (
-                @RcptID, @CompanyORNo, @REF, @BankAccountName, @BankAccountNumber, @BankName, @SerialNo, @ModeType
+                @RcptID, @CompanyORNo, @CompanyPRNo, @REF, @BankAccountName, @BankAccountNumber, @BankName, @SerialNo,
+                @ModeType
             );
 
 
@@ -218,3 +218,5 @@ AS
         SELECT
             @ReturnMessage AS [ReturnMessage];
     END CATCH;
+GO
+

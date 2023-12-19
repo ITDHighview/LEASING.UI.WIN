@@ -327,6 +327,7 @@ namespace LEASING.UI.APP.Forms
 
         private void dgvList_CellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
+            
             if (e.RowIndex >= 0)
             {
                 if (this.dgvList.Columns[e.ColumnIndex].Name == "ColViewFile")
@@ -348,6 +349,10 @@ namespace LEASING.UI.APP.Forms
                     forms.ComputationRecid = Convert.ToInt32(dgvList.CurrentRow.Cells["RecId"].Value);
                     forms.ClientId = Convert.ToString(dgvList.CurrentRow.Cells["ClientID"].Value);
                     forms.ShowDialog();
+                }
+                else if (this.dgvList.Columns[e.ColumnIndex].Name == "ColReprintAuthorization")
+                {
+
                 }
             }
         }

@@ -35,6 +35,7 @@ namespace LEASING.UI.APP.Forms
         public decimal ChangeAmount { get; set; }
 
         public string CompanyORNo { get; set; }
+        public string CompanyPRNo { get; set; }
         public string BankAccountName { get; set; }
         public string BankAccountNumber { get; set; }
         public string BankName { get; set; }
@@ -79,7 +80,8 @@ namespace LEASING.UI.APP.Forms
         private void frmSelectClient_Load(object sender, EventArgs e)
         {         
             M_GetComputationById();       
-            M_GetMonthLedgerByRefIdAndClientId();        
+            M_GetMonthLedgerByRefIdAndClientId();
+            btnPrintReciept.Enabled = false;
         }
         private void M_GetComputationById()
         {
@@ -101,12 +103,13 @@ namespace LEASING.UI.APP.Forms
         }
         private void M_sp_GenerateFirstPayment()
         {
-            var result = PaymentContext.GenerateFirstPayment(RefId, txtTotalForPayment.Text == string.Empty ? 0 : decimal.Parse(txtTotalForPayment.Text), ReceiveAmount, ChangeAmount, txtThreeMonSecDep.Text == string.Empty ? 0 : decimal.Parse(txtThreeMonSecDep.Text),CompanyORNo,BankAccountName,BankAccountNumber,BankName,SerialNo,PaymentRemarks,REF,ModeType);
+            var result = PaymentContext.GenerateFirstPayment(RefId, txtTotalForPayment.Text == string.Empty ? 0 : decimal.Parse(txtTotalForPayment.Text), ReceiveAmount, ChangeAmount, txtThreeMonSecDep.Text == string.Empty ? 0 : decimal.Parse(txtThreeMonSecDep.Text),CompanyORNo, CompanyPRNo,BankAccountName, BankAccountNumber,BankName,SerialNo,PaymentRemarks,REF,ModeType);
             if (result.Equals("SUCCESS"))
             {
                 MessageBox.Show("PAYMENT SUCCESS", "System Message", MessageBoxButtons.OK);
                 IsProceed = true;
-                this.Close();
+                btnGenerate.Enabled = false;
+                btnPrintReciept.Enabled = true;
             }
             else
             {
@@ -179,6 +182,7 @@ namespace LEASING.UI.APP.Forms
                 if (frmPaymentMode.IsProceed)
                 {
                     CompanyORNo = frmPaymentMode.CompanyORNo;
+                    CompanyPRNo = frmPaymentMode.CompanyPRNo;
                     BankAccountName = frmPaymentMode.BankAccountName;
                     BankAccountNumber = frmPaymentMode.BankAccountNumber;
                     BankName = frmPaymentMode.BankName;
@@ -192,6 +196,7 @@ namespace LEASING.UI.APP.Forms
                     frmReceivePayment.ShowDialog();
                     if (frmReceivePayment.IsProceed)
                     {
+                       
                         ReceiveAmount = frmReceivePayment.txtReceiveAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtReceiveAmount.Text);
                         ChangeAmount = frmReceivePayment.txtChangeAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtChangeAmount.Text);
                         M_sp_GenerateFirstPayment();
@@ -200,6 +205,12 @@ namespace LEASING.UI.APP.Forms
                     }
                 }
             }
+        }
+
+        private void btnPrintReciept_Click(object sender, EventArgs e)
+        {
+            frmRecieptSelection frmRecieptSelection = new frmRecieptSelection();
+            frmRecieptSelection.ShowDialog();
         }
     }
 }

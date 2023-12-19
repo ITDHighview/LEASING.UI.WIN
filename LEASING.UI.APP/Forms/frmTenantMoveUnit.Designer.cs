@@ -40,6 +40,7 @@
             this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
             this.dgvList = new Telerik.WinControls.UI.RadGridView();
             this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
+            this.btnPrintAuthorization = new System.Windows.Forms.ToolStripButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
@@ -66,7 +67,8 @@
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnRefresh});
+            this.btnRefresh,
+            this.btnPrintAuthorization});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(596, 25);
@@ -155,6 +157,15 @@
             this.dgvList.ThemeName = "Office2007Silver";
             this.dgvList.CellClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.dgvList_CellClick);
             // 
+            // btnPrintAuthorization
+            // 
+            this.btnPrintAuthorization.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.btnPrintAuthorization.Image = global::LEASING.UI.APP.Properties.Resources.bookmark_32;
+            this.btnPrintAuthorization.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnPrintAuthorization.Name = "btnPrintAuthorization";
+            this.btnPrintAuthorization.Size = new System.Drawing.Size(127, 22);
+            this.btnPrintAuthorization.Text = "Print Authorization";
+            // 
             // frmTenantMoveUnit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -187,5 +198,6 @@
         private Telerik.WinControls.UI.RadGridView dgvList;
         private System.Windows.Forms.ToolStripButton btnRefresh;
         private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme1;
+        private System.Windows.Forms.ToolStripButton btnPrintAuthorization;
     }
 }

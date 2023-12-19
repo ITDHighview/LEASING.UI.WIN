@@ -31,6 +31,7 @@
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn2 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn3 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn4 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
@@ -39,8 +40,8 @@
             Telerik.WinControls.UI.RadListDataItem radListDataItem2 = new Telerik.WinControls.UI.RadListDataItem();
             Telerik.WinControls.UI.RadListDataItem radListDataItem3 = new Telerik.WinControls.UI.RadListDataItem();
             Telerik.WinControls.UI.RadListDataItem radListDataItem4 = new Telerik.WinControls.UI.RadListDataItem();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn4 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn5 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn6 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
@@ -97,6 +98,7 @@
             this.btnEnableView = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnUndo = new System.Windows.Forms.ToolStripButton();
+            this.btnPrintContract = new System.Windows.Forms.ToolStripButton();
             this.lblFoot = new Telerik.WinControls.UI.RadLabel();
             this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
             this.office2010BlueTheme1 = new Telerik.WinControls.Themes.Office2010BlueTheme();
@@ -308,6 +310,12 @@
             gridViewCommandColumn3.Image = global::LEASING.UI.APP.Properties.Resources.magnifier;
             gridViewCommandColumn3.Name = "ColView";
             gridViewCommandColumn3.Width = 30;
+            gridViewCommandColumn4.FieldName = "ColReprintAuthorization";
+            gridViewCommandColumn4.HeaderImage = global::LEASING.UI.APP.Properties.Resources.print_16;
+            gridViewCommandColumn4.HeaderText = "";
+            gridViewCommandColumn4.Image = global::LEASING.UI.APP.Properties.Resources.print_16;
+            gridViewCommandColumn4.Name = "ColReprintAuthorization";
+            gridViewCommandColumn4.Width = 30;
             gridViewTextBoxColumn1.FieldName = "RefId";
             gridViewTextBoxColumn1.HeaderText = "Contract ID";
             gridViewTextBoxColumn1.Name = "RefId";
@@ -315,7 +323,7 @@
             gridViewTextBoxColumn2.FieldName = "CLientReferenceStatus";
             gridViewTextBoxColumn2.HeaderText = "Status";
             gridViewTextBoxColumn2.Name = "CLientReferenceStatus";
-            gridViewTextBoxColumn2.Width = 150;
+            gridViewTextBoxColumn2.Width = 130;
             gridViewTextBoxColumn3.FieldName = "RecId";
             gridViewTextBoxColumn3.HeaderText = "RecId";
             gridViewTextBoxColumn3.IsVisible = false;
@@ -328,6 +336,7 @@
             gridViewCommandColumn1,
             gridViewCommandColumn2,
             gridViewCommandColumn3,
+            gridViewCommandColumn4,
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
             gridViewTextBoxColumn3,
@@ -753,23 +762,23 @@
             // 
             this.dgvFileList.MasterTemplate.AllowAddNewRow = false;
             this.dgvFileList.MasterTemplate.AllowColumnReorder = false;
-            gridViewCommandColumn4.FieldName = "ColView";
-            gridViewCommandColumn4.HeaderImage = global::LEASING.UI.APP.Properties.Resources.magnifier;
-            gridViewCommandColumn4.HeaderText = "";
-            gridViewCommandColumn4.Image = global::LEASING.UI.APP.Properties.Resources.magnifier;
-            gridViewCommandColumn4.IsPinned = true;
-            gridViewCommandColumn4.Name = "ColView";
-            gridViewCommandColumn4.PinPosition = Telerik.WinControls.UI.PinnedColumnPosition.Left;
-            gridViewCommandColumn4.Width = 30;
-            gridViewCommandColumn5.FieldName = "ColDelete";
-            gridViewCommandColumn5.HeaderImage = global::LEASING.UI.APP.Properties.Resources._16_DeleteRed;
+            gridViewCommandColumn5.FieldName = "ColView";
+            gridViewCommandColumn5.HeaderImage = global::LEASING.UI.APP.Properties.Resources.magnifier;
             gridViewCommandColumn5.HeaderText = "";
-            gridViewCommandColumn5.Image = global::LEASING.UI.APP.Properties.Resources._16_DeleteRed;
+            gridViewCommandColumn5.Image = global::LEASING.UI.APP.Properties.Resources.magnifier;
             gridViewCommandColumn5.IsPinned = true;
-            gridViewCommandColumn5.IsVisible = false;
-            gridViewCommandColumn5.Name = "ColDelete";
+            gridViewCommandColumn5.Name = "ColView";
             gridViewCommandColumn5.PinPosition = Telerik.WinControls.UI.PinnedColumnPosition.Left;
             gridViewCommandColumn5.Width = 30;
+            gridViewCommandColumn6.FieldName = "ColDelete";
+            gridViewCommandColumn6.HeaderImage = global::LEASING.UI.APP.Properties.Resources._16_DeleteRed;
+            gridViewCommandColumn6.HeaderText = "";
+            gridViewCommandColumn6.Image = global::LEASING.UI.APP.Properties.Resources._16_DeleteRed;
+            gridViewCommandColumn6.IsPinned = true;
+            gridViewCommandColumn6.IsVisible = false;
+            gridViewCommandColumn6.Name = "ColDelete";
+            gridViewCommandColumn6.PinPosition = Telerik.WinControls.UI.PinnedColumnPosition.Left;
+            gridViewCommandColumn6.Width = 30;
             gridViewTextBoxColumn5.FieldName = "Id";
             gridViewTextBoxColumn5.HeaderText = "File ID";
             gridViewTextBoxColumn5.IsPinned = true;
@@ -793,8 +802,8 @@
             gridViewTextBoxColumn9.Name = "Notes";
             gridViewTextBoxColumn9.Width = 450;
             this.dgvFileList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewCommandColumn4,
             gridViewCommandColumn5,
+            gridViewCommandColumn6,
             gridViewTextBoxColumn5,
             gridViewTextBoxColumn6,
             gridViewTextBoxColumn7,
@@ -819,7 +828,8 @@
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnEnableView,
             this.toolStripSeparator2,
-            this.btnUndo});
+            this.btnUndo,
+            this.btnPrintContract});
             this.toolStrip2.Location = new System.Drawing.Point(0, 0);
             this.toolStrip2.Name = "toolStrip2";
             this.toolStrip2.Size = new System.Drawing.Size(938, 25);
@@ -850,6 +860,15 @@
             this.btnUndo.Size = new System.Drawing.Size(56, 22);
             this.btnUndo.Text = "Undo";
             this.btnUndo.Click += new System.EventHandler(this.btnUndo_Click);
+            // 
+            // btnPrintContract
+            // 
+            this.btnPrintContract.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.btnPrintContract.Image = global::LEASING.UI.APP.Properties.Resources.bookmark_32;
+            this.btnPrintContract.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnPrintContract.Name = "btnPrintContract";
+            this.btnPrintContract.Size = new System.Drawing.Size(101, 22);
+            this.btnPrintContract.Text = "Print Contract";
             // 
             // lblFoot
             // 
@@ -990,5 +1009,6 @@
         private Telerik.WinControls.UI.RadGridView dgvList;
         private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme1;
         private Telerik.WinControls.Themes.Office2010BlueTheme office2010BlueTheme1;
+        private System.Windows.Forms.ToolStripButton btnPrintContract;
     }
 }

@@ -19,6 +19,7 @@ namespace LEASING.UI.APP.Context
             decimal ChangeAmount,
             decimal SecAmount,
             string CompanyORNo,
+            string CompanyPRNo,
             string BankAccountName,
             string BankAccountNumber,
             string BankName,
@@ -46,6 +47,8 @@ namespace LEASING.UI.APP.Context
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@CompanyORNo", CompanyORNo);
             _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@CompanyPRNo", CompanyPRNo);
+            _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@BankAccountName", BankAccountName);
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@BankAccountNumber", BankAccountNumber);
@@ -60,7 +63,7 @@ namespace LEASING.UI.APP.Context
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@ModeType", ModeType);
             _sqlcmd.Parameters.Add(_sqlpara);
-         
+
             _sqlpara = new SqlParameter("@EncodedBy", Variables.UserID);
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@ComputerName", Environment.MachineName);
@@ -106,8 +109,9 @@ namespace LEASING.UI.APP.Context
         public string GenerateSecondPayment(string RefId,
            decimal PaidAmount,
            decimal ReceiveAmount,
-           decimal ChangeAmount,        
+           decimal ChangeAmount,
            string CompanyORNo,
+           string CompanyPRNo,
            string BankAccountName,
            string BankAccountNumber,
            string BankName,
@@ -131,8 +135,10 @@ namespace LEASING.UI.APP.Context
             _sqlpara = new SqlParameter("@ReceiveAmount", ReceiveAmount);
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@ChangeAmount", ChangeAmount);
-            _sqlcmd.Parameters.Add(_sqlpara);  
+            _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@CompanyORNo", CompanyORNo);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@CompanyPRNo", CompanyPRNo);
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@BankAccountName", BankAccountName);
             _sqlcmd.Parameters.Add(_sqlpara);
@@ -199,6 +205,7 @@ namespace LEASING.UI.APP.Context
      decimal ReceiveAmount,
      decimal ChangeAmount,
      string CompanyORNo,
+     string CompanyPRNo,
      string BankAccountName,
      string BankAccountNumber,
      string BankName,
@@ -224,6 +231,8 @@ namespace LEASING.UI.APP.Context
             _sqlpara = new SqlParameter("@ChangeAmount", ChangeAmount);
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@CompanyORNo", CompanyORNo);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@CompanyPRNo", CompanyPRNo);
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@BankAccountName", BankAccountName);
             _sqlcmd.Parameters.Add(_sqlpara);
@@ -469,7 +478,7 @@ namespace LEASING.UI.APP.Context
             _sqlcmd = new SqlCommand();
             _sqlcmd.CommandText = "sp_CloseContract";
             _sqlpara = new SqlParameter("@ReferenceID", RefId);
-            _sqlcmd.Parameters.Add(_sqlpara); 
+            _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@EncodedBy", Variables.UserID);
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@ComputerName", Environment.MachineName);
@@ -566,7 +575,7 @@ namespace LEASING.UI.APP.Context
             return "";
         }
 
-        public string HoldPayment(string RefId,int ledgerRecId)
+        public string HoldPayment(string RefId, int ledgerRecId)
         {
             SqlCommand _sqlcmd = null;
             SqlParameter _sqlpara;
@@ -968,6 +977,49 @@ namespace LEASING.UI.APP.Context
                 return dsRec;
             }
         }
+        public DataSet GetCheckPRNumber(string CompanyPRNo)
+        {
+
+            SqlCommand _SqlCommand = null;
+            SqlParameter _SqlParameter;
+            SqlConnection _SqlConnection = null;
+
+
+            using (DataSet dsRec = new DataSet())
+            {
+                _SqlCommand = new SqlCommand();
+                _SqlCommand.CommandText = "sp_CheckPRNumber";
+
+                _SqlParameter = new SqlParameter("@CompanyORNo", CompanyPRNo);
+                _SqlCommand.Parameters.Add(_SqlParameter);
+
+                try
+                {
+                    _SqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
+                    _SqlCommand.Connection = _SqlConnection;
+                    _SqlCommand.CommandType = CommandType.StoredProcedure;
+                    using (SqlDataAdapter dataAdaptor = new SqlDataAdapter(_SqlCommand))
+                    {
+                        dataAdaptor.Fill(dsRec);
+                    }
+                }
+                catch (Exception expCommon)
+                {
+                    return null;
+                }
+                finally
+                {
+                    if (_SqlConnection.State != ConnectionState.Closed)
+                    {
+                        _SqlConnection.Close();
+                    }
+                    _SqlParameter = null;
+                    _SqlCommand = null;
+                    _SqlConnection = null;
+                }
+                return dsRec;
+            }
+        }
 
         public string SaveNewBankName(string bankName)
         {
@@ -979,7 +1031,7 @@ namespace LEASING.UI.APP.Context
             _sqlcmd.CommandText = "sp_SaveBankName";
             _sqlpara = new SqlParameter("@BankName", bankName);
             _sqlcmd.Parameters.Add(_sqlpara);
-       
+
 
             try
             {

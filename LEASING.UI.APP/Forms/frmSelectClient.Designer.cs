@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.radGroupBox2 = new Telerik.WinControls.UI.RadGroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -54,6 +54,7 @@
             this.dgvLedgerList = new Telerik.WinControls.UI.RadGridView();
             this.btnGenerate = new Telerik.WinControls.UI.RadButton();
             this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
+            this.btnPrintReciept = new Telerik.WinControls.UI.RadButton();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).BeginInit();
             this.radGroupBox2.SuspendLayout();
@@ -79,6 +80,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvLedgerList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLedgerList.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnGenerate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnPrintReciept)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -131,6 +133,7 @@
             this.tableLayoutPanel2.Controls.Add(this.btnCheckUnits, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.txtClientName, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.radGroupBox3, 2, 1);
+            this.tableLayoutPanel2.Controls.Add(this.btnPrintReciept, 3, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(2, 18);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -327,27 +330,27 @@
             // 
             this.dgvLedgerList.MasterTemplate.AllowAddNewRow = false;
             this.dgvLedgerList.MasterTemplate.AllowColumnReorder = false;
-            gridViewTextBoxColumn1.FieldName = "seq";
-            gridViewTextBoxColumn1.HeaderText = "seq";
-            gridViewTextBoxColumn1.Name = "seq";
-            gridViewTextBoxColumn1.Width = 80;
-            gridViewTextBoxColumn2.FieldName = "LedgMonth";
-            gridViewTextBoxColumn2.HeaderText = "Month";
-            gridViewTextBoxColumn2.Name = "LedgMonth";
-            gridViewTextBoxColumn2.Width = 150;
-            gridViewTextBoxColumn3.FieldName = "LedgAmount";
-            gridViewTextBoxColumn3.HeaderText = "Amount";
-            gridViewTextBoxColumn3.Name = "LedgAmount";
-            gridViewTextBoxColumn3.Width = 150;
-            gridViewTextBoxColumn4.FieldName = "Remarks";
-            gridViewTextBoxColumn4.HeaderText = "Remarks";
-            gridViewTextBoxColumn4.Name = "Remarks";
-            gridViewTextBoxColumn4.Width = 200;
+            gridViewTextBoxColumn5.FieldName = "seq";
+            gridViewTextBoxColumn5.HeaderText = "seq";
+            gridViewTextBoxColumn5.Name = "seq";
+            gridViewTextBoxColumn5.Width = 80;
+            gridViewTextBoxColumn6.FieldName = "LedgMonth";
+            gridViewTextBoxColumn6.HeaderText = "Month";
+            gridViewTextBoxColumn6.Name = "LedgMonth";
+            gridViewTextBoxColumn6.Width = 150;
+            gridViewTextBoxColumn7.FieldName = "LedgAmount";
+            gridViewTextBoxColumn7.HeaderText = "Amount";
+            gridViewTextBoxColumn7.Name = "LedgAmount";
+            gridViewTextBoxColumn7.Width = 150;
+            gridViewTextBoxColumn8.FieldName = "Remarks";
+            gridViewTextBoxColumn8.HeaderText = "Remarks";
+            gridViewTextBoxColumn8.Name = "Remarks";
+            gridViewTextBoxColumn8.Width = 200;
             this.dgvLedgerList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn1,
-            gridViewTextBoxColumn2,
-            gridViewTextBoxColumn3,
-            gridViewTextBoxColumn4});
+            gridViewTextBoxColumn5,
+            gridViewTextBoxColumn6,
+            gridViewTextBoxColumn7,
+            gridViewTextBoxColumn8});
             this.dgvLedgerList.Name = "dgvLedgerList";
             this.dgvLedgerList.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.dgvLedgerList.ReadOnly = true;
@@ -368,6 +371,17 @@
             this.btnGenerate.TabIndex = 9;
             this.btnGenerate.Text = "GENERATE";
             this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
+            // 
+            // btnPrintReciept
+            // 
+            this.btnPrintReciept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPrintReciept.Image = global::LEASING.UI.APP.Properties.Resources.magnifier;
+            this.btnPrintReciept.Location = new System.Drawing.Point(491, 3);
+            this.btnPrintReciept.Name = "btnPrintReciept";
+            this.btnPrintReciept.Size = new System.Drawing.Size(101, 19);
+            this.btnPrintReciept.TabIndex = 7;
+            this.btnPrintReciept.Text = "Print Receipt";
+            this.btnPrintReciept.Click += new System.EventHandler(this.btnPrintReciept_Click);
             // 
             // frmSelectClient
             // 
@@ -408,6 +422,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvLedgerList.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLedgerList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnGenerate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnPrintReciept)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -436,5 +451,6 @@
         private Telerik.WinControls.UI.RadTextBox txtTotalForPayment;
         private Telerik.WinControls.UI.RadButton btnGenerate;
         private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme1;
+        private Telerik.WinControls.UI.RadButton btnPrintReciept;
     }
 }

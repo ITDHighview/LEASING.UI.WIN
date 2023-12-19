@@ -32,40 +32,40 @@
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.ddlSelectMode = new Telerik.WinControls.UI.RadDropDownList();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
             this.txtCompanyORNo = new Telerik.WinControls.UI.RadTextBox();
-            this.txtReferrence = new Telerik.WinControls.UI.RadTextBox();
-            this.txtBankAccountName = new Telerik.WinControls.UI.RadTextBox();
-            this.txtBankAccountNo = new Telerik.WinControls.UI.RadTextBox();
-            this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
-            this.txtSerialNo = new Telerik.WinControls.UI.RadTextBox();
             this.btnOk = new Telerik.WinControls.UI.RadButton();
             this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
             this.txtRemarks = new Telerik.WinControls.UI.RadTextBox();
+            this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
+            this.txtSerialNo = new Telerik.WinControls.UI.RadTextBox();
+            this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
+            this.txtBankAccountNo = new Telerik.WinControls.UI.RadTextBox();
+            this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
+            this.txtBankAccountName = new Telerik.WinControls.UI.RadTextBox();
+            this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.ddlbankName = new Telerik.WinControls.UI.RadDropDownList();
+            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
+            this.txtReferrence = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
             this.txtPRNo = new Telerik.WinControls.UI.RadTextBox();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlSelectMode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCompanyORNo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtReferrence)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtBankAccountName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtBankAccountNo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSerialNo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnOk)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRemarks)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSerialNo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtBankAccountNo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtBankAccountName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlbankName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtReferrence)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPRNo)).BeginInit();
             this.SuspendLayout();
@@ -143,50 +143,6 @@
             this.radLabel2.TabIndex = 0;
             this.radLabel2.Text = "OR No. :";
             // 
-            // radLabel3
-            // 
-            this.radLabel3.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.radLabel3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel3.ForeColor = System.Drawing.Color.DarkRed;
-            this.radLabel3.Location = new System.Drawing.Point(61, 103);
-            this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(79, 19);
-            this.radLabel3.TabIndex = 0;
-            this.radLabel3.Text = "Referrence. :";
-            // 
-            // radLabel4
-            // 
-            this.radLabel4.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.radLabel4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel4.ForeColor = System.Drawing.Color.DarkRed;
-            this.radLabel4.Location = new System.Drawing.Point(53, 128);
-            this.radLabel4.Name = "radLabel4";
-            this.radLabel4.Size = new System.Drawing.Size(87, 19);
-            this.radLabel4.TabIndex = 0;
-            this.radLabel4.Text = "Bank Name.  :";
-            // 
-            // radLabel5
-            // 
-            this.radLabel5.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.radLabel5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel5.ForeColor = System.Drawing.Color.DarkRed;
-            this.radLabel5.Location = new System.Drawing.Point(3, 153);
-            this.radLabel5.Name = "radLabel5";
-            this.radLabel5.Size = new System.Drawing.Size(138, 19);
-            this.radLabel5.TabIndex = 0;
-            this.radLabel5.Text = "Bank Account Name.  :";
-            // 
-            // radLabel6
-            // 
-            this.radLabel6.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.radLabel6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel6.ForeColor = System.Drawing.Color.DarkRed;
-            this.radLabel6.Location = new System.Drawing.Point(19, 178);
-            this.radLabel6.Name = "radLabel6";
-            this.radLabel6.Size = new System.Drawing.Size(121, 19);
-            this.radLabel6.TabIndex = 0;
-            this.radLabel6.Text = "Bank Account No.  :";
-            // 
             // txtCompanyORNo
             // 
             this.txtCompanyORNo.Location = new System.Drawing.Point(146, 53);
@@ -194,49 +150,6 @@
             this.txtCompanyORNo.NullText = "Type here...";
             this.txtCompanyORNo.Size = new System.Drawing.Size(155, 19);
             this.txtCompanyORNo.TabIndex = 2;
-            // 
-            // txtReferrence
-            // 
-            this.txtReferrence.Location = new System.Drawing.Point(146, 103);
-            this.txtReferrence.Name = "txtReferrence";
-            this.txtReferrence.NullText = "Type here...";
-            this.txtReferrence.Size = new System.Drawing.Size(155, 20);
-            this.txtReferrence.TabIndex = 2;
-            // 
-            // txtBankAccountName
-            // 
-            this.txtBankAccountName.Location = new System.Drawing.Point(146, 153);
-            this.txtBankAccountName.Name = "txtBankAccountName";
-            this.txtBankAccountName.NullText = "Type here...";
-            this.txtBankAccountName.Size = new System.Drawing.Size(155, 20);
-            this.txtBankAccountName.TabIndex = 2;
-            // 
-            // txtBankAccountNo
-            // 
-            this.txtBankAccountNo.Location = new System.Drawing.Point(146, 178);
-            this.txtBankAccountNo.Name = "txtBankAccountNo";
-            this.txtBankAccountNo.NullText = "Type here...";
-            this.txtBankAccountNo.Size = new System.Drawing.Size(155, 20);
-            this.txtBankAccountNo.TabIndex = 2;
-            // 
-            // radLabel7
-            // 
-            this.radLabel7.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.radLabel7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel7.ForeColor = System.Drawing.Color.DarkRed;
-            this.radLabel7.Location = new System.Drawing.Point(67, 203);
-            this.radLabel7.Name = "radLabel7";
-            this.radLabel7.Size = new System.Drawing.Size(73, 19);
-            this.radLabel7.TabIndex = 0;
-            this.radLabel7.Text = "Serial No.  :";
-            // 
-            // txtSerialNo
-            // 
-            this.txtSerialNo.Location = new System.Drawing.Point(146, 203);
-            this.txtSerialNo.Name = "txtSerialNo";
-            this.txtSerialNo.NullText = "Type here...";
-            this.txtSerialNo.Size = new System.Drawing.Size(155, 20);
-            this.txtSerialNo.TabIndex = 2;
             // 
             // btnOk
             // 
@@ -263,15 +176,102 @@
             this.txtRemarks.Location = new System.Drawing.Point(146, 228);
             this.txtRemarks.Name = "txtRemarks";
             this.txtRemarks.NullText = "Type here...";
-            this.txtRemarks.Size = new System.Drawing.Size(216, 20);
+            this.txtRemarks.Size = new System.Drawing.Size(216, 19);
             this.txtRemarks.TabIndex = 2;
+            // 
+            // radLabel7
+            // 
+            this.radLabel7.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.radLabel7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel7.ForeColor = System.Drawing.Color.DarkRed;
+            this.radLabel7.Location = new System.Drawing.Point(67, 203);
+            this.radLabel7.Name = "radLabel7";
+            this.radLabel7.Size = new System.Drawing.Size(73, 19);
+            this.radLabel7.TabIndex = 0;
+            this.radLabel7.Text = "Serial No.  :";
+            // 
+            // txtSerialNo
+            // 
+            this.txtSerialNo.Location = new System.Drawing.Point(146, 203);
+            this.txtSerialNo.Name = "txtSerialNo";
+            this.txtSerialNo.NullText = "Type here...";
+            this.txtSerialNo.Size = new System.Drawing.Size(155, 19);
+            this.txtSerialNo.TabIndex = 2;
+            // 
+            // radLabel6
+            // 
+            this.radLabel6.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.radLabel6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel6.ForeColor = System.Drawing.Color.DarkRed;
+            this.radLabel6.Location = new System.Drawing.Point(19, 178);
+            this.radLabel6.Name = "radLabel6";
+            this.radLabel6.Size = new System.Drawing.Size(121, 19);
+            this.radLabel6.TabIndex = 0;
+            this.radLabel6.Text = "Bank Account No.  :";
+            // 
+            // txtBankAccountNo
+            // 
+            this.txtBankAccountNo.Location = new System.Drawing.Point(146, 178);
+            this.txtBankAccountNo.Name = "txtBankAccountNo";
+            this.txtBankAccountNo.NullText = "Type here...";
+            this.txtBankAccountNo.Size = new System.Drawing.Size(155, 19);
+            this.txtBankAccountNo.TabIndex = 2;
+            // 
+            // radLabel5
+            // 
+            this.radLabel5.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.radLabel5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel5.ForeColor = System.Drawing.Color.DarkRed;
+            this.radLabel5.Location = new System.Drawing.Point(3, 153);
+            this.radLabel5.Name = "radLabel5";
+            this.radLabel5.Size = new System.Drawing.Size(137, 19);
+            this.radLabel5.TabIndex = 0;
+            this.radLabel5.Text = "Bank Account Name.  :";
+            // 
+            // txtBankAccountName
+            // 
+            this.txtBankAccountName.Location = new System.Drawing.Point(146, 153);
+            this.txtBankAccountName.Name = "txtBankAccountName";
+            this.txtBankAccountName.NullText = "Type here...";
+            this.txtBankAccountName.Size = new System.Drawing.Size(155, 19);
+            this.txtBankAccountName.TabIndex = 2;
+            // 
+            // radLabel4
+            // 
+            this.radLabel4.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.radLabel4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel4.ForeColor = System.Drawing.Color.DarkRed;
+            this.radLabel4.Location = new System.Drawing.Point(53, 128);
+            this.radLabel4.Name = "radLabel4";
+            this.radLabel4.Size = new System.Drawing.Size(87, 19);
+            this.radLabel4.TabIndex = 0;
+            this.radLabel4.Text = "Bank Name.  :";
             // 
             // ddlbankName
             // 
             this.ddlbankName.Location = new System.Drawing.Point(146, 128);
             this.ddlbankName.Name = "ddlbankName";
-            this.ddlbankName.Size = new System.Drawing.Size(155, 20);
+            this.ddlbankName.Size = new System.Drawing.Size(155, 19);
             this.ddlbankName.TabIndex = 4;
+            // 
+            // radLabel3
+            // 
+            this.radLabel3.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.radLabel3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel3.ForeColor = System.Drawing.Color.DarkRed;
+            this.radLabel3.Location = new System.Drawing.Point(61, 103);
+            this.radLabel3.Name = "radLabel3";
+            this.radLabel3.Size = new System.Drawing.Size(79, 19);
+            this.radLabel3.TabIndex = 0;
+            this.radLabel3.Text = "Referrence. :";
+            // 
+            // txtReferrence
+            // 
+            this.txtReferrence.Location = new System.Drawing.Point(146, 103);
+            this.txtReferrence.Name = "txtReferrence";
+            this.txtReferrence.NullText = "Type here...";
+            this.txtReferrence.Size = new System.Drawing.Size(155, 19);
+            this.txtReferrence.TabIndex = 2;
             // 
             // radLabel9
             // 
@@ -289,8 +289,9 @@
             this.txtPRNo.Location = new System.Drawing.Point(146, 78);
             this.txtPRNo.Name = "txtPRNo";
             this.txtPRNo.NullText = "Type here...";
-            this.txtPRNo.Size = new System.Drawing.Size(155, 20);
+            this.txtPRNo.Size = new System.Drawing.Size(155, 19);
             this.txtPRNo.TabIndex = 2;
+            this.txtPRNo.TextChanged += new System.EventHandler(this.txtPRNo_TextChanged);
             // 
             // frmPaymentMode
             // 
@@ -309,20 +310,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlSelectMode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCompanyORNo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtReferrence)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtBankAccountName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtBankAccountNo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSerialNo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnOk)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRemarks)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSerialNo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtBankAccountNo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtBankAccountName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlbankName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtReferrence)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPRNo)).EndInit();
             this.ResumeLayout(false);

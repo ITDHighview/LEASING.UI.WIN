@@ -24,6 +24,8 @@ namespace LEASING.UI.APP.Forms
         public string PaymentRemarks { get; set; }
         public string REF { get; set; }
         public int ModeType { get; set; }
+
+        public bool IsOR { get; set; } = false;
         public frmPaymentMode()
         {
             InitializeComponent();
@@ -122,7 +124,7 @@ namespace LEASING.UI.APP.Forms
 
         private bool IsValid()
         {
-            if (string.IsNullOrEmpty(txtCompanyORNo.Text.Trim()) || string.IsNullOrEmpty(txtPRNo.Text.Trim()))
+            if (string.IsNullOrEmpty(txtCompanyORNo.Text.Trim()) && IsOR == false)
             {
                 MessageBox.Show("Please Provide OR Number or PR Number", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return false;
@@ -148,7 +150,7 @@ namespace LEASING.UI.APP.Forms
         }
         private bool M_CheckOrNumber()
         {
-            txtCompanyORNo.Text = string.Empty;
+           
             bool IsExist = false;
             using (DataSet dt = PaymentContext.GetCheckOrNumber(txtCompanyORNo.Text.Trim()))
             {
@@ -157,12 +159,16 @@ namespace LEASING.UI.APP.Forms
 
                     IsExist = Convert.ToBoolean(dt.Tables[0].Rows[0]["IsExist"]);
                 }
+                else
+                {
+                    IsExist = false;
+                }
             }
             return IsExist;
         }
         private bool M_CheckPRNumber()
         {
-            txtPRNo.Text = string.Empty;
+           
             bool IsExist = false;
             using (DataSet dt = PaymentContext.GetCheckPRNumber(txtPRNo.Text.Trim()))
             {
@@ -170,6 +176,10 @@ namespace LEASING.UI.APP.Forms
                 {
 
                     IsExist = Convert.ToBoolean(dt.Tables[0].Rows[0]["IsExist"]);
+                }
+                else
+                {
+                    IsExist = false;
                 }
             }
             return IsExist;
@@ -219,6 +229,18 @@ namespace LEASING.UI.APP.Forms
                 PaymentRemarks = txtRemarks.Text;
                 REF = txtReferrence.Text;
                 this.Close();
+            }
+        }
+
+        private void txtPRNo_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtPRNo.Text))
+            {
+                IsOR = true;
+            }
+            else
+            {
+                IsOR = false;
             }
         }
     }

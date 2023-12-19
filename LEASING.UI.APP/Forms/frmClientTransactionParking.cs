@@ -20,23 +20,16 @@ namespace LEASING.UI.APP.Forms
         ClientContext ClientContext = new ClientContext();
         ComputationContext ComputationContext = new ComputationContext();
         PaymentContext PaymentContext = new PaymentContext();
-
         public int TotalRental { get; set; }
         public int ComputationRecid { get; set; }
-
-    
         public string RefId { get; set; }
-
         public string ClientId { get; set; }
         public bool IsProceed { get; set; }
         public string FromDate { get; set; }
         public string Todate { get; set; }
         public int TotalAmount { get; set; }
-
-
         public decimal ReceiveAmount { get; set; }
         public decimal ChangeAmount { get; set; }
-
         public string CompanyORNo { get; set; }
         public string CompanyPRNo { get; set; }
         public string BankAccountName { get; set; }
@@ -46,7 +39,6 @@ namespace LEASING.UI.APP.Forms
         public string PaymentRemarks { get; set; }
         public string REF { get; set; }
         public int ModeType { get; set; }
-
         public frmClientTransactionParking()
         {
             InitializeComponent();        
@@ -59,9 +51,7 @@ namespace LEASING.UI.APP.Forms
                 return false;
             }      
             return true;
-        }
-       
-
+        }     
         private void M_sp_GenerateFirstPayment()
         {
             var result = PaymentContext.GeneratePaymentParking(RefId,
@@ -149,13 +139,11 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-  
         private void radTextBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
         }     
-
         private void radDateTimePicker2_ValueChanged(object sender, EventArgs e)
         {        
         }
@@ -165,7 +153,6 @@ namespace LEASING.UI.APP.Forms
             forms.ClientId = ClientId;
             forms.ShowDialog();
         }
-
         private void dgvLedgerList_CellFormatting(object sender, Telerik.WinControls.UI.CellFormattingEventArgs e)
         {
             if (!string.IsNullOrEmpty(Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value)))
@@ -358,7 +345,6 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-
         private void radButton1_Click(object sender, EventArgs e)
         {          
             dgvLedgerList.DataSource = null;
@@ -369,8 +355,7 @@ namespace LEASING.UI.APP.Forms
             txtClientName.Text = string.Empty;          
             M_GetComputationById();
             M_GetPaymentListByReferenceId();
-        }
-      
+        }    
         private void dgvPaymentList_CellFormatting(object sender, Telerik.WinControls.UI.CellFormattingEventArgs e)
         {
             e.CellElement.ForeColor = Color.White;
@@ -380,7 +365,6 @@ namespace LEASING.UI.APP.Forms
             e.CellElement.GradientStyle = GradientStyles.Solid;
             e.CellElement.BackColor = Color.Green;
         }
-
         private void dgvLedgerList_CellClick(object sender, GridViewCellEventArgs e)
         {
 
@@ -414,6 +398,9 @@ namespace LEASING.UI.APP.Forms
                                 M_sp_GenerateFirstPayment();
                                 M_GetLedgerList();
                                 M_GetPaymentListByReferenceId();
+
+                                frmRecieptSelection frmRecieptSelection = new frmRecieptSelection();
+                                frmRecieptSelection.ShowDialog();
                             }
                         }
                     }

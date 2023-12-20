@@ -414,6 +414,11 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-      
+
+        private void btnPrintReciept_Click(object sender, EventArgs e)
+        {
+            frmRecieptSelection frmRecieptSelection = new frmRecieptSelection();
+            frmRecieptSelection.ShowDialog();
+        }
     }
 }

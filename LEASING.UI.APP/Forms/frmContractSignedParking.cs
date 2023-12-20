@@ -14,6 +14,7 @@ namespace LEASING.UI.APP.Forms
     public partial class frmContractSignedParking : Form
     {
         PaymentContext PaymentContext = new PaymentContext();
+        ClientContext ClientContext = new ClientContext();
         public bool IsContractSigned { get; set; } = true;
         public string ReferenceId { get; set; } = string.Empty;
         public frmContractSignedParking()
@@ -31,7 +32,6 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-
         private void dgvList_CellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -45,6 +45,23 @@ namespace LEASING.UI.APP.Forms
                     forms.ShowDialog();
                     M_GetForContractSignedParkingList();
                 }
+                else if (this.dgvList.Columns[e.ColumnIndex].Name == "ColByPass")
+                {
+                    if (MessageBox.Show("Are you sure you want to approved?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                    {
+                        var result = ClientContext.ConrtactSignedByPass(Convert.ToString(dgvList.CurrentRow.Cells["RefId"].Value));
+                        if (result.Equals("SUCCESS"))
+                        {
+                            MessageBox.Show("Approved Successfully!", "System Message");
+                            M_GetForContractSignedParkingList();
+                        }
+                        else
+                        {
+                            MessageBox.Show(result, "System Message");
+                        }
+                    }
+
+                }
                 else if (this.dgvList.Columns[e.ColumnIndex].Name == "ColView")
                 {
                     frmEditUnitComputation forms = new frmEditUnitComputation();
@@ -53,12 +70,10 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             M_GetForContractSignedParkingList();
         }
-
         private void frmContractSignedParking_Load(object sender, EventArgs e)
         {
             M_GetForContractSignedParkingList();

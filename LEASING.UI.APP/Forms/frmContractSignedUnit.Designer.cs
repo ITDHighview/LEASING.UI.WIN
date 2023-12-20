@@ -30,6 +30,7 @@
         {
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn2 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn3 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
@@ -108,18 +109,24 @@
             // 
             this.dgvList.MasterTemplate.AllowAddNewRow = false;
             this.dgvList.MasterTemplate.AllowColumnReorder = false;
-            gridViewCommandColumn1.FieldName = "ColApproved";
-            gridViewCommandColumn1.HeaderImage = global::LEASING.UI.APP.Properties.Resources.attach;
+            gridViewCommandColumn1.FieldName = "ColByPass";
+            gridViewCommandColumn1.HeaderImage = global::LEASING.UI.APP.Properties.Resources.accept;
             gridViewCommandColumn1.HeaderText = "";
-            gridViewCommandColumn1.Image = global::LEASING.UI.APP.Properties.Resources.attach;
-            gridViewCommandColumn1.Name = "ColApproved";
+            gridViewCommandColumn1.Image = global::LEASING.UI.APP.Properties.Resources.accept;
+            gridViewCommandColumn1.Name = "ColByPass";
             gridViewCommandColumn1.Width = 30;
-            gridViewCommandColumn2.FieldName = "ColView";
-            gridViewCommandColumn2.HeaderImage = global::LEASING.UI.APP.Properties.Resources.magnifier;
+            gridViewCommandColumn2.FieldName = "ColApproved";
+            gridViewCommandColumn2.HeaderImage = global::LEASING.UI.APP.Properties.Resources.attach;
             gridViewCommandColumn2.HeaderText = "";
-            gridViewCommandColumn2.Image = global::LEASING.UI.APP.Properties.Resources.magnifier;
-            gridViewCommandColumn2.Name = "ColView";
+            gridViewCommandColumn2.Image = global::LEASING.UI.APP.Properties.Resources.attach;
+            gridViewCommandColumn2.Name = "ColApproved";
             gridViewCommandColumn2.Width = 30;
+            gridViewCommandColumn3.FieldName = "ColView";
+            gridViewCommandColumn3.HeaderImage = global::LEASING.UI.APP.Properties.Resources.magnifier;
+            gridViewCommandColumn3.HeaderText = "";
+            gridViewCommandColumn3.Image = global::LEASING.UI.APP.Properties.Resources.magnifier;
+            gridViewCommandColumn3.Name = "ColView";
+            gridViewCommandColumn3.Width = 30;
             gridViewTextBoxColumn1.FieldName = "RefId";
             gridViewTextBoxColumn1.HeaderText = "Contract ID";
             gridViewTextBoxColumn1.Name = "RefId";
@@ -139,6 +146,7 @@
             this.dgvList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewCommandColumn1,
             gridViewCommandColumn2,
+            gridViewCommandColumn3,
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
             gridViewTextBoxColumn3,

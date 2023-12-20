@@ -1,7 +1,7 @@
 --SET QUOTED_IDENTIFIER ON|OFF
 --SET ANSI_NULLS ON|OFF
 --GO
-CREATE PROCEDURE [sp_Nature_PR_Report]
+ALTER PROCEDURE [sp_Nature_PR_Report]
 AS
     BEGIN
         SET NOCOUNT ON;
@@ -9,25 +9,26 @@ AS
 
         CREATE TABLE [#TMP]
             (
-                [client_no] VARCHAR(50),
-                [lot_area]  DECIMAL(18, 2),
-                [Res_pay]   DECIMAL(18, 2),
-                [Cash_sale] DECIMAL(18, 2),
-                [DP_Pay]    DECIMAL(18, 2),
-                [MA_Pay]    DECIMAL(18, 2),
-                [VAT]       DECIMAL(18, 2),
-                [Others]    DECIMAL(18, 2),
-                [Tot_Cash]  DECIMAL(18, 2),
-                [Tot_Chk]   DECIMAL(18, 2),
-                [Tot_Pay]   DECIMAL(18, 2),
-                [PR_No]     VARCHAR(50),
-                [Penalty]   DECIMAL(18, 2),
-                [phase]     VARCHAR(50),
-                [tran_date] DATE,
-                [interest]  DECIMAL(18, 2),
-                [tcost]     DECIMAL(18, 2),
-                [tcp]       DECIMAL(18, 2),
-                [tin]       VARCHAR(50),
+                [client_no]     VARCHAR(50),
+                [lot_area]      DECIMAL(18, 2),
+                [Res_pay]       DECIMAL(18, 2),
+                [Cash_sale]     DECIMAL(18, 2),
+                [DP_Pay]        DECIMAL(18, 2),
+                [MA_Pay]        DECIMAL(18, 2),
+                [VAT]           DECIMAL(18, 2),
+                [Others]        DECIMAL(18, 2),
+                [Tot_Cash]      DECIMAL(18, 2),
+                [Tot_Chk]       DECIMAL(18, 2),
+                [Tot_Pay]       DECIMAL(18, 2),
+                [PR_No]         VARCHAR(50),
+                [Penalty]       DECIMAL(18, 2),
+                [phase]         VARCHAR(50),
+                [tran_date]     DATE,
+                [interest]      DECIMAL(18, 2),
+                [tcost]         DECIMAL(18, 2),
+                [tcp]           DECIMAL(18, 2),
+                [tin]           VARCHAR(50),
+                [AmountInWords] VARCHAR(MAX),
             );
 
 
@@ -51,29 +52,30 @@ AS
                 [interest],
                 [tcost],
                 [tcp],
-                [tin]
+                [tin],
+                [AmountInWords]
             )
         VALUES
             (
-                'INV10000010', -- client_no - varchar(50)
-                3.75, -- lot_area - decimal(18, 2)
-                100, -- Res_pay - decimal(18, 2)
-                50, -- Cash_sale - decimal(18, 2)
-                100, -- DP_Pay - decimal(18, 2)
-                100, -- MA_Pay - decimal(18, 2)
-                10, -- VAT - decimal(18, 2)
-                100, -- Others - decimal(18, 2)
-                100, -- Tot_Cash - decimal(18, 2)
-                100, -- Tot_Chk - decimal(18, 2)
-                100, -- Tot_Pay - decimal(18, 2)
-                '12345689', -- PR_No - varchar(50)
-                100, -- Penalty - decimal(18, 2)
-                'DEMO PHASE', -- phase - varchar(50)
-                CONVERT(DATE,GETDATE()), -- tran_date - date
-                100, -- interest - decimal(18, 2)
-                100, -- tcost - decimal(18, 2)
-                100, -- tcp - decimal(18, 2)
-                '12312123'  -- tin - varchar(50)
+                'INV10000010',            -- client_no - varchar(50)
+                3.75,                     -- lot_area - decimal(18, 2)
+                100,                      -- Res_pay - decimal(18, 2)
+                50,                       -- Cash_sale - decimal(18, 2)
+                100,                      -- DP_Pay - decimal(18, 2)
+                100,                      -- MA_Pay - decimal(18, 2)
+                10,                       -- VAT - decimal(18, 2)
+                100,                      -- Others - decimal(18, 2)
+                100,                      -- Tot_Cash - decimal(18, 2)
+                100,                      -- Tot_Chk - decimal(18, 2)
+                100,                      -- Tot_Pay - decimal(18, 2)
+                '12345689',               -- PR_No - varchar(50)
+                100,                      -- Penalty - decimal(18, 2)
+                'DEMO PHASE',             -- phase - varchar(50)
+                CONVERT(DATE, GETDATE()), -- tran_date - date
+                100,                      -- interest - decimal(18, 2)
+                100,                      -- tcost - decimal(18, 2)
+                100,                      -- tcp - decimal(18, 2)
+                '12312123', 8662.50       -- tin - varchar(50)
             );
 
         SELECT
@@ -95,7 +97,8 @@ AS
             [#TMP].[interest],
             [#TMP].[tcost],
             [#TMP].[tcp],
-            [#TMP].[tin]
+            [#TMP].[tin],
+            [#TMP].[AmountInWords]
         FROM
             [#TMP];
 

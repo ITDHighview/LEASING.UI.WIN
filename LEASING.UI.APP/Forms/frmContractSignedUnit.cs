@@ -14,6 +14,7 @@ namespace LEASING.UI.APP.Forms
     public partial class frmContractSignedUnit : Form
     {
         PaymentContext PaymentContext = new PaymentContext();
+        ClientContext ClientContext = new ClientContext();
         public bool IsContractSigned { get; set; } = true;
         public string ReferenceId { get; set; } = string.Empty;
         public frmContractSignedUnit()
@@ -55,6 +56,23 @@ namespace LEASING.UI.APP.Forms
                     forms.ReferenceId = Convert.ToString(dgvList.CurrentRow.Cells["RefId"].Value);
                     forms.ShowDialog();
                     M_GetForContractSignedUnitList();                                    
+                }
+                else if (this.dgvList.Columns[e.ColumnIndex].Name == "ColByPass")
+                {
+                    if (MessageBox.Show("Are you sure you want to approved?", "System Message",MessageBoxButtons.YesNo,MessageBoxIcon.Question,MessageBoxDefaultButton.Button2)== DialogResult.Yes)
+                    {
+                        var result = ClientContext.ConrtactSignedByPass(Convert.ToString(dgvList.CurrentRow.Cells["RefId"].Value));
+                        if (result.Equals("SUCCESS"))
+                        {
+                            MessageBox.Show("Approved Successfully!","System Message");
+                            M_GetForContractSignedUnitList();
+                        }
+                        else
+                        {
+                            MessageBox.Show(result, "System Message");
+                        }
+                    }              
+                    
                 }
                 else if (this.dgvList.Columns[e.ColumnIndex].Name == "ColView")
                 {

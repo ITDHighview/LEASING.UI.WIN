@@ -2,6 +2,7 @@
 --SET ANSI_NULLS ON|OFF
 --GO
 ALTER PROCEDURE [sp_Nature_PR_Report]
+	@TranID VARCHAR(20)=NULL
 AS
     BEGIN
         SET NOCOUNT ON;

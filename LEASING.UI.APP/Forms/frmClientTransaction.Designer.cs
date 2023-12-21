@@ -70,6 +70,7 @@
             this.dgvLedgerList = new Telerik.WinControls.UI.RadGridView();
             this.office2010BlueTheme1 = new Telerik.WinControls.Themes.Office2010BlueTheme();
             this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
+            this.btnPrintReceipt = new Telerik.WinControls.UI.RadButton();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox4)).BeginInit();
             this.radGroupBox4.SuspendLayout();
@@ -100,6 +101,7 @@
             this.radGroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLedgerList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLedgerList.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnPrintReceipt)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -205,11 +207,12 @@
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.tableLayoutPanel2.ColumnCount = 4;
+            this.tableLayoutPanel2.ColumnCount = 5;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 119F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 155F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 108F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 107F));
             this.tableLayoutPanel2.Controls.Add(this.dtpTo, 1, 5);
             this.tableLayoutPanel2.Controls.Add(this.dtpFrom, 1, 4);
             this.tableLayoutPanel2.Controls.Add(this.radLabel2, 0, 4);
@@ -225,6 +228,7 @@
             this.tableLayoutPanel2.Controls.Add(this.radButton1, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnCloseContract, 0, 6);
             this.tableLayoutPanel2.Controls.Add(this.btnTerminateContract, 1, 6);
+            this.tableLayoutPanel2.Controls.Add(this.btnPrintReceipt, 4, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(2, 18);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -244,7 +248,7 @@
             this.dtpTo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpTo.Location = new System.Drawing.Point(122, 128);
             this.dtpTo.Name = "dtpTo";
-            this.dtpTo.Size = new System.Drawing.Size(107, 20);
+            this.dtpTo.Size = new System.Drawing.Size(107, 18);
             this.dtpTo.TabIndex = 5;
             this.dtpTo.TabStop = false;
             this.dtpTo.Text = "8/1/2023";
@@ -257,7 +261,7 @@
             this.dtpFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpFrom.Location = new System.Drawing.Point(122, 103);
             this.dtpFrom.Name = "dtpFrom";
-            this.dtpFrom.Size = new System.Drawing.Size(107, 20);
+            this.dtpFrom.Size = new System.Drawing.Size(107, 19);
             this.dtpFrom.TabIndex = 5;
             this.dtpFrom.TabStop = false;
             this.dtpFrom.Text = "8/1/2023";
@@ -298,7 +302,7 @@
             // 
             this.txtPaymentStatus.Location = new System.Drawing.Point(122, 28);
             this.txtPaymentStatus.Name = "txtPaymentStatus";
-            this.txtPaymentStatus.Size = new System.Drawing.Size(149, 20);
+            this.txtPaymentStatus.Size = new System.Drawing.Size(149, 19);
             this.txtPaymentStatus.TabIndex = 4;
             this.txtPaymentStatus.ThemeName = "Office2007Silver";
             // 
@@ -326,7 +330,7 @@
             // 
             this.txtTotalPay.Location = new System.Drawing.Point(122, 53);
             this.txtTotalPay.Name = "txtTotalPay";
-            this.txtTotalPay.Size = new System.Drawing.Size(149, 20);
+            this.txtTotalPay.Size = new System.Drawing.Size(149, 19);
             this.txtTotalPay.TabIndex = 4;
             this.txtTotalPay.ThemeName = "Office2007Silver";
             // 
@@ -334,14 +338,14 @@
             // 
             this.txtClientName.Location = new System.Drawing.Point(122, 3);
             this.txtClientName.Name = "txtClientName";
-            this.txtClientName.Size = new System.Drawing.Size(149, 20);
+            this.txtClientName.Size = new System.Drawing.Size(149, 19);
             this.txtClientName.TabIndex = 8;
             this.txtClientName.ThemeName = "Office2007Silver";
             // 
             // radGroupBox3
             // 
             this.radGroupBox3.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.tableLayoutPanel2.SetColumnSpan(this.radGroupBox3, 2);
+            this.tableLayoutPanel2.SetColumnSpan(this.radGroupBox3, 3);
             this.radGroupBox3.Controls.Add(this.dgvTransactionList);
             this.radGroupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radGroupBox3.HeaderText = "Contract List";
@@ -532,6 +536,17 @@
             this.dgvLedgerList.CellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.dgvLedgerList_CellFormatting);
             this.dgvLedgerList.CellClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.dgvLedgerList_CellClick);
             // 
+            // btnPrintReceipt
+            // 
+            this.btnPrintReceipt.Image = global::LEASING.UI.APP.Properties.Resources.print_16;
+            this.btnPrintReceipt.Location = new System.Drawing.Point(485, 3);
+            this.btnPrintReceipt.Name = "btnPrintReceipt";
+            this.btnPrintReceipt.Size = new System.Drawing.Size(101, 19);
+            this.btnPrintReceipt.TabIndex = 7;
+            this.btnPrintReceipt.Text = "Print Reciept";
+            this.btnPrintReceipt.ThemeName = "Office2010Blue";
+            this.btnPrintReceipt.Click += new System.EventHandler(this.radButton1_Click);
+            // 
             // frmClientTransaction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -575,6 +590,7 @@
             this.radGroupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvLedgerList.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLedgerList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnPrintReceipt)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -606,5 +622,6 @@
         private Telerik.WinControls.UI.RadButton btnTerminateContract;
         private Telerik.WinControls.Themes.Office2010BlueTheme office2010BlueTheme1;
         private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme1;
+        private Telerik.WinControls.UI.RadButton btnPrintReceipt;
     }
 }

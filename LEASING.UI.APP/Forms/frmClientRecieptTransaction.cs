@@ -66,7 +66,7 @@ namespace LEASING.UI.APP.Forms
                 {
                     frmRecieptSelection forms = new frmRecieptSelection();
                     forms.RefId = Convert.ToString(dgvReceiptList.CurrentRow.Cells["RefId"].Value);
-                    forms.TransacID = Convert.ToString(dgvReceiptList.CurrentRow.Cells["TranID"].Value);
+                    forms.TranID = Convert.ToString(dgvReceiptList.CurrentRow.Cells["TranID"].Value);
                     forms.ShowDialog();
                 }
                 //else if (this.dgvList.Columns[e.ColumnIndex].Name == "ColView")

@@ -1,10 +1,24 @@
 --SET QUOTED_IDENTIFIER ON|OFF
 --SET ANSI_NULLS ON|OFF
 --GO
-ALTER PROCEDURE [dbo].[sp_Nature_OR_Report]
+ALTER PROCEDURE [dbo].[sp_Nature_OR_Report] @TranID VARCHAR(20) = NULL
 AS
     BEGIN
         SET NOCOUNT ON;
+        DECLARE @combinedString VARCHAR(MAX);
+
+        SELECT
+            @combinedString
+            = COALESCE(@combinedString + '- ', '') + UPPER(DATENAME(MONTH, [tblPayment].[ForMonth])) + ' '
+              + CAST(YEAR(GETDATE()) AS VARCHAR(4))
+        FROM
+            [dbo].[tblPayment]
+        WHERE
+            [tblPayment].[TranId] = @TranID
+            AND [tblPayment].[Remarks] NOT IN (
+                                                  'SECURITY DEPOSIT'
+                                              );
+
 
 
         CREATE TABLE [#TMP]
@@ -13,6 +27,7 @@ AS
                 [client_Name]        VARCHAR(50),
                 [client_Address]     VARCHAR(MAX),
                 [PR_No]              VARCHAR(50),
+                [OR_No]              VARCHAR(50),
                 [TIN_No]             VARCHAR(50),
                 [TransactionDate]    VARCHAR(50),
                 [AmountInWords]      VARCHAR(MAX),
@@ -35,6 +50,7 @@ AS
                 [client_Name],
                 [client_Address],
                 [PR_No],
+                [OR_No],
                 [TIN_No],
                 [TransactionDate],
                 [AmountInWords],
@@ -49,30 +65,96 @@ AS
                 [PDCCHECKSERIALNO],
                 [USER]
             )
-        VALUES
-            (
-                'INV10000010', 'MARK JASON GELISANGA',
-                'Cecilia Chapman 711-2880 Nulla St. Mankato Mississippi 96522 (257) 563-7401', 'PR-12345689',
-                '1231-121-2154', '12/20/2023', UPPER([dbo].[fnNumberToWordsWithDecimal](16658.3)),
-                'RENTAL FOR JULY-AGUST 2023', '12535.32', '00.0', '00.0', '00.0', '00.0', '00.0', 'BDO',
-                '1231-1321-123-6', 'MARK JASON'
-            );
+                    SELECT
+                        [CLIENT].[client_no],
+                        [CLIENT].[client_Name],
+                        [CLIENT].[client_Address],
+                        [RECEIPT].[PR_No],
+                        [RECEIPT].[OR_No],
+                        [CLIENT].[TIN_No],
+                        [TRANSACTION].[TransactionDate],
+                        [dbo].[fnNumberToWordsWithDecimal]([tblUnitReference].[Total]) AS [AmountInWords],
+                        [PAYMENT].[PAYMENT_FOR],
+                        [RECEIPT].[TotalAmountInDigit],
+                        [tblUnitReference].[TotalRent]                                 AS [RENTAL_SECMAIN],
+                        [tblUnitReference].[GenVat]                                    AS [VAT_AMOUNT],
+                        [RECEIPT].[TOTAL],
+                        [tblUnitReference].[WithHoldingTax]                            AS [WithHoldingTax_AMOUNT],
+                        [tblUnitReference].[Total]                                     AS [TOTAL_AMOUNT_DUE],
+                        [RECEIPT].[BankName],
+                        [RECEIPT].[PDC_CHECK_SERIAL],
+                        [TRANSACTION].[USER]
+
+                    --[tblUnitReference].[GenVat]         AS [LBL_VAT],                   
+                    --[tblUnitReference].[WithHoldingTax] AS [WithHoldingTax],   
+                    --[TRANSACTION].[TranID]
+
+                    FROM
+                        [dbo].[tblUnitReference]
+                        CROSS APPLY
+                        (
+                            SELECT
+                                [tblClientMstr].[ClientID]      AS [client_no],
+                                [tblClientMstr].[ClientName]    AS [client_Name],
+                                [tblClientMstr].[PostalAddress] AS [client_Address],
+                                [tblClientMstr].[TIN_No]        AS [TIN_No]
+                            FROM
+                                [dbo].[tblClientMstr]
+                            WHERE
+                                [tblClientMstr].[ClientID] = [tblUnitReference].[ClientID]
+                        ) [CLIENT]
+                        OUTER APPLY
+                        (
+                            SELECT
+                                [tblTransaction].[EncodedDate]                                   AS [TransactionDate],
+                                [tblTransaction].[TranID],
+                                ISNULL([dbo].[fn_GetUserName]([tblTransaction].[EncodedBy]), '') AS [USER]
+                            FROM
+                                [dbo].[tblTransaction]
+                            WHERE
+                                [tblUnitReference].[RefId] = [tblTransaction].[RefId]
+                        ) [TRANSACTION]
+                        OUTER APPLY
+                        (
+                            SELECT
+                                [tblReceipt].[CompanyPRNo] AS [PR_No],
+                                [tblReceipt].[CompanyORNo] AS [OR_No],
+                                [tblReceipt].[Amount]      AS [TOTAL],
+                                --[dbo].[fnNumberToWordsWithDecimal]([tblReceipt].[Amount]) AS [AmountInWords],
+                                [tblReceipt].[Amount]      AS [TotalAmountInDigit],
+                                [tblReceipt].[BankName]    AS [BankName],
+                                [tblReceipt].[REF]         AS [PDC_CHECK_SERIAL],
+                                [tblReceipt].[TranId]
+                            FROM
+                                [dbo].[tblReceipt]
+                            WHERE
+                                [TRANSACTION].[TranID] = [tblReceipt].[TranId]
+                        ) [RECEIPT]
+                        OUTER APPLY
+                        (
+                            SELECT
+                                'RENTAL FOR ' + +@combinedString AS [PAYMENT_FOR]
+                        ) [PAYMENT]
+                    WHERE
+                        [TRANSACTION].[TranID] = @TranID;
+
 
         SELECT
             [#TMP].[client_no],
             [#TMP].[client_Name],
             [#TMP].[client_Address],
             [#TMP].[PR_No],
+            [#TMP].[OR_No],
             [#TMP].[TIN_No],
             [#TMP].[TransactionDate],
             [#TMP].[AmountInWords],
             [#TMP].[PaymentFor],
-            FORMAT(CAST([#TMP].[TotalAmountInDigit] AS DECIMAL), 'C', 'en-PH') AS [TotalAmountInDigit],
-            FORMAT(CAST([#TMP].[RENTAL] AS DECIMAL), 'C', 'en-PH')             AS [RENTAL],
+            FORMAT(CAST([#TMP].[TotalAmountInDigit] AS DECIMAL(18,2)), 'C', 'en-PH') AS [TotalAmountInDigit],
+            FORMAT(CAST([#TMP].[RENTAL] AS DECIMAL(18,2)), 'C', 'en-PH')             AS [RENTAL],
             [#TMP].[VAT],
-            FORMAT(CAST([#TMP].[TOTAL] AS DECIMAL), 'C', 'en-PH')              AS [TOTAL],
-            FORMAT(CAST([#TMP].[LESSWITHHOLDING] AS DECIMAL), 'C', 'en-PH')    AS [LESSWITHHOLDING],
-            FORMAT(CAST([#TMP].[TOTALAMOUNTDUE] AS DECIMAL), 'C', 'en-PH')     AS [TOTALAMOUNTDUE],
+            FORMAT(CAST([#TMP].[TOTAL] AS DECIMAL(18,2)), 'C', 'en-PH')              AS [TOTAL],
+            FORMAT(CAST([#TMP].[LESSWITHHOLDING] AS DECIMAL(18,2)), 'C', 'en-PH')    AS [LESSWITHHOLDING],
+            FORMAT(CAST([#TMP].[TOTALAMOUNTDUE] AS DECIMAL(18,2)), 'C', 'en-PH')     AS [TOTALAMOUNTDUE],
             [#TMP].[BANKNAME],
             [#TMP].[PDCCHECKSERIALNO],
             [#TMP].[USER]

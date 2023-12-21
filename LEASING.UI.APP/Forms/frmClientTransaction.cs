@@ -21,6 +21,7 @@ namespace LEASING.UI.APP.Forms
         ComputationContext ComputationContext = new ComputationContext();
         PaymentContext PaymentContext = new PaymentContext();
         UnitContext UnitContext = new UnitContext();
+        public string TranID { get; set; }
         public int TotalRental { get; set; }
         public int ComputationRecid { get; set; }
         public string AdvancePaymentAmount { get; set; }
@@ -559,6 +560,7 @@ namespace LEASING.UI.APP.Forms
                                     M_GetPaymentListByReferenceId();
 
                                     frmRecieptSelection frmRecieptSelection = new frmRecieptSelection();
+                                    frmRecieptSelection.TranID = TranID;
                                     frmRecieptSelection.ShowDialog();
                                 }
                             }

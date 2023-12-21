@@ -1,7 +1,7 @@
 --SET QUOTED_IDENTIFIER ON|OFF
 --SET ANSI_NULLS ON|OFF
 --GO
-ALTER PROCEDURE [sp_GetReceiptByRefId] @RefId AS VARCHAR(50) = NULL
+ALTER PROCEDURE [dbo].[sp_GetReceiptByRefId] @RefId AS VARCHAR(50) = NULL
 AS
     BEGIN
         SET NOCOUNT ON;
@@ -10,10 +10,9 @@ AS
                 [tblTransaction].[RefId],
                 [tblTransaction].[TranID],
                 [tblReceipt].[RcptID],
-                [tblPayment].[PayID],
-                [tblPayment].[Amount]                                 AS PaidAmount,
-                CONVERT(VARCHAR(10), [tblPayment].[ForMonth], 101)    AS [ForMonth],
-                CONVERT(VARCHAR(10), [tblPayment].[EncodedDate], 101) AS [PayDate],
+                --[tblPayment].[PayID],
+                [PAYMENT].[Amount]                                        AS [PaidAmount],
+                CONVERT(VARCHAR(10), [tblTransaction].[EncodedDate], 101) AS [PayDate],
                 [tblReceipt].[CompanyORNo],
                 [tblReceipt].[BankAccountName],
                 [tblReceipt].[BankAccountNumber],
@@ -22,17 +21,27 @@ AS
                 [tblReceipt].[REF]
         FROM
                 [dbo].[tblTransaction]
-            INNER JOIN
-                [dbo].[tblPayment]
-                    ON [tblPayment].[RefId] = [tblTransaction].[RefId]
-                       AND [tblTransaction].[TranID] = [tblPayment].[TranId]
+            OUTER APPLY
+                (
+                    SELECT
+                        SUM([tblPayment].[Amount]) AS [Amount],
+                        [tblPayment].[TranId],
+                        [tblPayment].[EncodedDate]
+                    FROM
+                        [dbo].[tblPayment]
+                    WHERE
+                        [tblTransaction].[TranID] = [tblPayment].[TranId]
+                    GROUP BY
+                        [tblPayment].[TranId],
+                        [tblPayment].[EncodedDate]
+                ) [PAYMENT]
             INNER JOIN
                 [dbo].[tblReceipt]
-                    ON [tblPayment].[TranId] = [tblReceipt].[TranId]
+                    ON [PAYMENT].[TranId] = [tblReceipt].[TranId]
         WHERE
                 [tblTransaction].[RefId] = @RefId
         ORDER BY
-                [tblPayment].[EncodedDate],
-                [tblPayment].[ForMonth];
+                [PAYMENT].[EncodedDate];
+
     END;
 GO

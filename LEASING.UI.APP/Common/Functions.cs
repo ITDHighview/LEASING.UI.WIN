@@ -829,7 +829,7 @@ namespace LEASING.UI.APP.Common
             radDesktopAlert1.Show();
         }
 
-        public static void GetReceiptReport(string report, Form frm, bool IsPreview)
+        public static void GetReceiptReport(string report, Form frm, bool IsPreview,string TranID)
         {
 
             try
@@ -838,7 +838,7 @@ namespace LEASING.UI.APP.Common
                 CrystalDecisions.CrystalReports.Engine.ReportDocument locRptDocument = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                 locRptDocument.Load(report);
                 locRptDocument.PrintOptions.PaperSize = CrystalDecisions.Shared.PaperSize.DefaultPaperSize;
-                //locRptDocument.SetParameterValue("@BookingNo", "1");
+                locRptDocument.SetParameterValue("@TranID", TranID);
                 //locRptDocument.SetParameterValue("@Encounter_No", "");
                 ConnectionInfo crConnectionInfo = new ConnectionInfo();
                 crConnectionInfo.ServerName = Config.SqlServerName;

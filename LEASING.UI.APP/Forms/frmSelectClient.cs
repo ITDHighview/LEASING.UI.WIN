@@ -22,6 +22,7 @@ namespace LEASING.UI.APP.Forms
 
         public int TotalRental { get; set; }
         public int ComputationRecid { get; set; }
+        public string TranID { get; set; }
         public string RefId { get; set; }
 
         public string ClientId { get; set; }
@@ -200,7 +201,7 @@ namespace LEASING.UI.APP.Forms
                         ReceiveAmount = frmReceivePayment.txtReceiveAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtReceiveAmount.Text);
                         ChangeAmount = frmReceivePayment.txtChangeAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtChangeAmount.Text);
                         M_sp_GenerateFirstPayment();
-                        frmRecieptSelection frmRecieptSelection = new frmRecieptSelection();
+                        frmRecieptSelection frmRecieptSelection = new frmRecieptSelection(TranID,RefId);
                         frmRecieptSelection.ShowDialog();
                     }
                 }
@@ -209,7 +210,7 @@ namespace LEASING.UI.APP.Forms
 
         private void btnPrintReciept_Click(object sender, EventArgs e)
         {
-            frmRecieptSelection frmRecieptSelection = new frmRecieptSelection();
+            frmRecieptSelection frmRecieptSelection = new frmRecieptSelection(TranID, RefId);
             frmRecieptSelection.ShowDialog();
         }
     }

@@ -22,6 +22,7 @@ namespace LEASING.UI.APP.Forms
         PaymentContext PaymentContext = new PaymentContext();
         public int TotalRental { get; set; }
         public int ComputationRecid { get; set; }
+        public string TranID { get; set; }
         public string RefId { get; set; }
         public string ClientId { get; set; }
         public bool IsProceed { get; set; }
@@ -399,7 +400,7 @@ namespace LEASING.UI.APP.Forms
                                 M_GetLedgerList();
                                 M_GetPaymentListByReferenceId();
 
-                                frmRecieptSelection frmRecieptSelection = new frmRecieptSelection();
+                                frmRecieptSelection frmRecieptSelection = new frmRecieptSelection(TranID,RefId);
                                 frmRecieptSelection.ShowDialog();
                             }
                         }
@@ -417,7 +418,7 @@ namespace LEASING.UI.APP.Forms
 
         private void btnPrintReciept_Click(object sender, EventArgs e)
         {
-            frmRecieptSelection frmRecieptSelection = new frmRecieptSelection();
+            frmRecieptSelection frmRecieptSelection = new frmRecieptSelection(TranID, RefId);
             frmRecieptSelection.ShowDialog();
         }
     }

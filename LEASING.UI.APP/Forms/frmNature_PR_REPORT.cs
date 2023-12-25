@@ -13,15 +13,16 @@ namespace LEASING.UI.APP.Forms
 {
     public partial class frmNature_PR_REPORT : Form
     {
-        public string TranID { get; set; } = string.Empty;
-        public frmNature_PR_REPORT()
+        public string sTranID { get; set; } = string.Empty;
+        public frmNature_PR_REPORT(string TranID)
         {
             InitializeComponent();
+            sTranID = TranID.Trim();
         }
 
         private void frmNature_PR_REPORT_Load(object sender, EventArgs e)
         {
-            Functions.GetReceiptReport(Config.Nature_PR_REPORT, this, Config.RecieptReportOption, TranID);
+            Functions.GetReceiptReport(Config.Nature_PR_REPORT, this, Config.RecieptReportOption, sTranID);
         }
     }
 }

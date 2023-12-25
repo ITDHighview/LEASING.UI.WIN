@@ -559,8 +559,7 @@ namespace LEASING.UI.APP.Forms
                                     M_GetLedgerList();
                                     M_GetPaymentListByReferenceId();
 
-                                    frmRecieptSelection frmRecieptSelection = new frmRecieptSelection();
-                                    frmRecieptSelection.TranID = TranID;
+                                    frmRecieptSelection frmRecieptSelection = new frmRecieptSelection(TranID,"");                                   
                                     frmRecieptSelection.ShowDialog();
                                 }
                             }

@@ -73,7 +73,7 @@ AS
                         [RECEIPT].[OR_No],
                         [CLIENT].[TIN_No],
                         [TRANSACTION].[TransactionDate],
-                        [dbo].[fnNumberToWordsWithDecimal]([tblUnitReference].[Total]) AS [AmountInWords],
+                        UPPER([dbo].[fnNumberToWordsWithDecimal]([tblUnitReference].[Total])) AS [AmountInWords],
                         [PAYMENT].[PAYMENT_FOR],
                         [RECEIPT].[TotalAmountInDigit],
                         [tblUnitReference].[TotalRent]                                 AS [RENTAL_SECMAIN],

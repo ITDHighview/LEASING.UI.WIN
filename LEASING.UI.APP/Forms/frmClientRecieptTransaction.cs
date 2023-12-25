@@ -64,9 +64,7 @@ namespace LEASING.UI.APP.Forms
             {
                 if (this.dgvReceiptList.Columns[e.ColumnIndex].Name == "ColPrint")
                 {
-                    frmRecieptSelection forms = new frmRecieptSelection();
-                    forms.RefId = Convert.ToString(dgvReceiptList.CurrentRow.Cells["RefId"].Value);
-                    forms.TranID = Convert.ToString(dgvReceiptList.CurrentRow.Cells["TranID"].Value);
+                    frmRecieptSelection forms = new frmRecieptSelection(Convert.ToString(dgvReceiptList.CurrentRow.Cells["TranID"].Value), Convert.ToString(dgvReceiptList.CurrentRow.Cells["RefId"].Value));
                     forms.ShowDialog();
                 }
                 //else if (this.dgvList.Columns[e.ColumnIndex].Name == "ColView")

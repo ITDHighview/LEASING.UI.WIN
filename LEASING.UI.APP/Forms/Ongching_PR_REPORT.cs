@@ -13,15 +13,16 @@ namespace LEASING.UI.APP.Forms
 {
     public partial class Ongching_PR_REPORT : Form
     {
-        public string TranID { get; set; } = string.Empty;
-        public Ongching_PR_REPORT()
+        public string sTranID { get; set; } = string.Empty;
+        public Ongching_PR_REPORT(string TranID)
         {
             InitializeComponent();
+            sTranID = TranID.Trim();
         }
 
         private void Ongching_PR_REPORT_Load(object sender, EventArgs e)
         {
-            Functions.GetReceiptReport(Config.Ongching_OR_REPORT, this, Config.RecieptReportOption, TranID);
+            Functions.GetReceiptReport(Config.Ongching_OR_REPORT, this, Config.RecieptReportOption, sTranID);
         }
     }
 }

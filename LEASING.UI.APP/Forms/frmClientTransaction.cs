@@ -1,6 +1,7 @@
 ﻿using LEASING.UI.APP.Common;
 using LEASING.UI.APP.Context;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,12 +17,15 @@ using Telerik.WinControls.UI;
 namespace LEASING.UI.APP.Forms
 {
     public partial class frmClientTransaction : Form
-    {       
+    {
         ClientContext ClientContext = new ClientContext();
         ComputationContext ComputationContext = new ComputationContext();
         PaymentContext PaymentContext = new PaymentContext();
         UnitContext UnitContext = new UnitContext();
-        public string TranID { get; set; }
+
+        public bool IsPayAsSelected = false;
+
+        public string TranID = string.Empty;
         public int TotalRental { get; set; }
         public int ComputationRecid { get; set; }
         public string AdvancePaymentAmount { get; set; }
@@ -41,14 +45,14 @@ namespace LEASING.UI.APP.Forms
         public string SerialNo { get; set; }
         public string PaymentRemarks { get; set; }
         public string REF { get; set; }
-        public int ModeType { get; set; }
+        public string ModeType { get; set; }
         public bool IsMoveOut { get; set; } = false;
         public frmClientTransaction()
         {
             InitializeComponent();
 
         }
-        private void M_sp_GenerateFirstPayment()
+        private void M_GenerateSecondPayment()
         {
             if (Convert.ToString(dgvTransactionList.CurrentRow.Cells["TypeOf"].Value) == "TYPE OF UNIT")
             {
@@ -65,7 +69,8 @@ namespace LEASING.UI.APP.Forms
               PaymentRemarks,
               REF,
               ModeType,
-              Convert.ToInt32(dgvLedgerList.CurrentRow.Cells["Recid"].Value));
+              Convert.ToInt32(dgvLedgerList.CurrentRow.Cells["Recid"].Value),
+              out TranID);
                 if (result.Equals("SUCCESS"))
                 {
                     MessageBox.Show("PAYMENT SUCCESS", "System Message", MessageBoxButtons.OK);
@@ -93,6 +98,57 @@ namespace LEASING.UI.APP.Forms
                     MessageBox.Show("PAYMENT SUCCESS", "System Message", MessageBoxButtons.OK);
                     IsProceed = true;
                 }
+            }
+        }
+        private void M_GenerateBulkPayment()
+        {
+            if (Convert.ToString(dgvTransactionList.CurrentRow.Cells["TypeOf"].Value) == "TYPE OF UNIT")
+            {
+                var result = PaymentContext.GenerateBulkPayment(RefId,
+                Convert.ToDecimal(dgvLedgerList.CurrentRow.Cells["LedgAmount"].Value) * M_GetTotalSelectedMonth(),
+              ReceiveAmount,
+              ChangeAmount,
+              CompanyORNo,
+              CompanyPRNo,
+              BankAccountName,
+              BankAccountNumber,
+              BankName,
+              SerialNo,
+              PaymentRemarks,
+              REF,
+              ModeType,
+              Convert.ToInt32(dgvLedgerList.CurrentRow.Cells["Recid"].Value),
+               M_getXMLData(),
+              out TranID
+              );
+
+                if (result.Equals("SUCCESS"))
+                {
+                    MessageBox.Show("PAYMENT SUCCESS", "System Message", MessageBoxButtons.OK);
+                    IsProceed = true;
+                }
+            }
+            else
+            {
+                // var result = PaymentContext.GeneratePaymentParking(RefId,
+                //Convert.ToString(dgvLedgerList.CurrentRow.Cells["LedgAmount"].Value) == string.Empty ? 0 : decimal.Parse(Convert.ToString(dgvLedgerList.CurrentRow.Cells["LedgAmount"].Value)),
+                //ReceiveAmount,
+                //ChangeAmount,
+                //CompanyORNo,
+                //CompanyPRNo,
+                //BankAccountName,
+                //BankAccountNumber,
+                //BankName,
+                //SerialNo,
+                //PaymentRemarks,
+                //REF,
+                //ModeType,
+                //Convert.ToInt32(dgvLedgerList.CurrentRow.Cells["Recid"].Value));
+                // if (result.Equals("SUCCESS"))
+                // {
+                //     MessageBox.Show("PAYMENT SUCCESS", "System Message", MessageBoxButtons.OK);
+                //     IsProceed = true;
+                // }
             }
         }
         private bool IsComputationValid()
@@ -153,25 +209,19 @@ namespace LEASING.UI.APP.Forms
         {
 
             txtTotalPay.Text = string.Empty;
-            txtPaymentStatus.Text = string.Empty;
+            //txtPaymentStatus.Text = string.Empty;
             using (DataSet dt = ClientContext.GetGetClientTypeAndID(ClientId))
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                 {
                     txtTotalPay.Text = Convert.ToString(dt.Tables[0].Rows[0]["ClientType"]);
-                    txtPaymentStatus.Text = Convert.ToString(dt.Tables[0].Rows[0]["ClientID"]);
+                    //txtPaymentStatus.Text = Convert.ToString(dt.Tables[0].Rows[0]["ClientID"]);
                 }
             }
         }
-        private void frmSelectClient_Load(object sender, EventArgs e)
-        {
-            M_GetComputationById();
-            M_GetClientTypeAndID();
-            btnCloseContract.Enabled = false;
-            btnTerminateContract.Enabled = false;
-        }
         private void M_GetComputationById()
         {
+            txtTotalPay.Text = string.Empty;
 
             using (DataSet dt = ComputationContext.GetComputationById(ComputationRecid))
             {
@@ -179,17 +229,17 @@ namespace LEASING.UI.APP.Forms
                 {
                     RefId = Convert.ToString(dt.Tables[0].Rows[0]["RefId"]);
                     txtClientName.Text = Convert.ToString(dt.Tables[0].Rows[0]["InquiringClient"]);
-                    IsMoveOut = Convert.ToBoolean(dt.Tables[0].Rows[0]["IsUnitMoveOut"]);                  
+                    IsMoveOut = Convert.ToBoolean(dt.Tables[0].Rows[0]["IsUnitMoveOut"]);
                     dtpFrom.Text = Convert.ToString(dt.Tables[0].Rows[0]["StatDate"]);
-                    dtpTo.Text = Convert.ToString(dt.Tables[0].Rows[0]["FinishDate"]);               
+                    dtpTo.Text = Convert.ToString(dt.Tables[0].Rows[0]["FinishDate"]);
                     TotalRental = Convert.ToInt32(dt.Tables[0].Rows[0]["TotalRent"]);
-                    AdvancePaymentAmount = Convert.ToString(dt.Tables[0].Rows[0]["AdvancePaymentAmount"]);                  
+                    AdvancePaymentAmount = Convert.ToString(dt.Tables[0].Rows[0]["AdvancePaymentAmount"]);
+                    txtTotalPay.Text = Convert.ToString(dt.Tables[0].Rows[0]["TotalPayAMount"]);
                 }
             }
         }
         private void M_GetCheckPaymentStatus()
         {
-
             using (DataSet dt = PaymentContext.GetCheckPaymentStatus(RefId))
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
@@ -200,23 +250,146 @@ namespace LEASING.UI.APP.Forms
                         btnCloseContract.Enabled = false;
                         btnTerminateContract.Visible = true;
                         btnTerminateContract.Enabled = true;
-
+                        btnPayAll.Visible = true;
                     }
                     else if (Convert.ToString(dt.Tables[0].Rows[0]["PAYMENT_STATUS"]) == "PAYMENT DONE")
                     {
                         Functions.GetNotification("Payment Status", txtPaymentStatus.Text);
                         btnCloseContract.Enabled = true;
                         btnTerminateContract.Visible = false;
+                        btnPayAll.Visible = false;
                     }
-
                 }
             }
+        }
+        #region XML
+        private static string SetXMLTable(ref ArrayList xml)
+        {
+            StringBuilder strXML = new StringBuilder();
+            try
+            {
+                if (xml.Count > 0)
+                {
+                    strXML.Append("<Table1>");
+                    for (int iIndex = 0; iIndex < xml.Count; iIndex++)
+                    {
+                        strXML.Append("<c" + (iIndex + 1).ToString() + ">");
+                        strXML.Append(parseXML(xml[iIndex]));
+                        strXML.Append("</c" + (iIndex + 1).ToString() + ">");
+                    }
+                    strXML.Append("</Table1>");
+                    xml = new ArrayList();
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+            return strXML.ToString();
+        }
+        private static string parseXML(object strValue)
+        {
+            string retValue = string.Empty;
+            retValue = strValue.ToString();
+            try
+            {
+                if (retValue.Trim().Length > 0)
+                {
+                    retValue = retValue.Replace("&", "&amp;");
+                    retValue = retValue.Replace("<", "&lt;");
+                    retValue = retValue.Replace(">", "&gt;");
+                    retValue = retValue.Replace("\"", "&quot;");
+                    retValue = retValue.Replace("'", "&apos;");
+
+                    retValue = retValue.Trim();
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+            return retValue;
+        }
+        private string M_getXMLData()
+        {
+            StringBuilder sbPayment = new StringBuilder();
+            ArrayList alAdvancePayment = new ArrayList();
+            this.dgvLedgerList.BeginEdit();
+            if (IsPayAsSelected)
+            {
+                for (int iRow = 0; iRow < dgvLedgerList.Rows.Count; iRow++)
+                {
+                    if (Convert.ToBoolean(this.dgvLedgerList.Rows[iRow].Cells["ColCheck"].Value) && Convert.ToString(this.dgvLedgerList.Rows[iRow].Cells["PaymentStatus"].Value) == "PENDING")
+                    {
+                        //alDoctorSchedule.Add(Convert.ToString(vMasterRecordID));
+                        alAdvancePayment.Add(Convert.ToString(this.dgvLedgerList.Rows[iRow].Cells["Recid"].Value));
+                        sbPayment.Append(SetXMLTable(ref alAdvancePayment));
+                    }
+                }
+            }
+            else
+            {
+                for (int iRow = 0; iRow < dgvLedgerList.Rows.Count; iRow++)
+                {
+                    if (Convert.ToString(this.dgvLedgerList.Rows[iRow].Cells["PaymentStatus"].Value) == "PENDING")
+                    {
+                        //alDoctorSchedule.Add(Convert.ToString(vMasterRecordID));
+                        alAdvancePayment.Add(Convert.ToString(this.dgvLedgerList.Rows[iRow].Cells["Recid"].Value));
+                        sbPayment.Append(SetXMLTable(ref alAdvancePayment));
+                    }
+                }
+            }
+
+            return sbPayment.ToString();
+        }
+        #endregion
+        private int M_GetTotalSelectedMonth()
+        {
+            int idx = 0;
+            if (IsPayAsSelected)
+            {
+                for (int iRow = 0; iRow < dgvLedgerList.Rows.Count; iRow++)
+                {
+                    if (Convert.ToBoolean(this.dgvLedgerList.Rows[iRow].Cells["ColCheck"].Value) && Convert.ToString(this.dgvLedgerList.Rows[iRow].Cells["PaymentStatus"].Value) == "PENDING")
+                    {
+                        //alDoctorSchedule.Add(Convert.ToString(vMasterRecordID));
+                        idx++;
+                    }
+                }
+            }
+            else
+            {
+                for (int iRow = 0; iRow < dgvLedgerList.Rows.Count; iRow++)
+                {
+                    if (Convert.ToString(this.dgvLedgerList.Rows[iRow].Cells["PaymentStatus"].Value) == "PENDING")
+                    {
+                        //alDoctorSchedule.Add(Convert.ToString(vMasterRecordID));
+                        idx++;
+                    }
+                }
+            }
+
+            return idx;
+        }
+        private void frmSelectClient_Load(object sender, EventArgs e)
+        {
+            dtpFrom.Enabled = false;
+            dtpTo.Enabled = false;
+
+            txtClientName.ReadOnly = true;
+            txtPaymentStatus.ReadOnly = true;
+            txtTotalPay.ReadOnly = true;
+
+            M_GetComputationById();
+            M_GetClientTypeAndID();
+            btnCloseContract.Enabled = false;
+            btnTerminateContract.Enabled = false;
         }
         private void radTextBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
-        }     
+        }
         private void radDateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
             //DateTime startDate = DateTime.ParseExact(dtpFrom.Value.ToString("MM/dd/yyyy"), "MM/dd/yyyy", null);
@@ -247,7 +420,7 @@ namespace LEASING.UI.APP.Forms
             else
             {
                 MessageBox.Show("Please Select Client", "System Message", MessageBoxButtons.OK);
-            }           
+            }
         }
         private void dgvLedgerList_CellFormatting(object sender, Telerik.WinControls.UI.CellFormattingEventArgs e)
         {
@@ -257,16 +430,13 @@ namespace LEASING.UI.APP.Forms
                 {
                     e.CellElement.ForeColor = Color.White;
                     //e.CellElement.Font = new Font("Tahoma", 7f, FontStyle.Bold);
-
                     e.CellElement.DrawFill = true;
                     e.CellElement.GradientStyle = GradientStyles.Solid;
                     e.CellElement.BackColor = Color.Green;
-
                 }
                 else if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "PENDING")
                 {
                     e.CellElement.ForeColor = Color.Black;
-
                     e.CellElement.DrawFill = true;
                     e.CellElement.GradientStyle = GradientStyles.Solid;
                     e.CellElement.BackColor = Color.Yellow;
@@ -274,7 +444,6 @@ namespace LEASING.UI.APP.Forms
                 else if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "FOR PAYMENT")
                 {
                     e.CellElement.ForeColor = Color.White;
-
                     e.CellElement.DrawFill = true;
                     e.CellElement.GradientStyle = GradientStyles.Solid;
                     e.CellElement.BackColor = Color.Red;
@@ -282,25 +451,11 @@ namespace LEASING.UI.APP.Forms
                 else if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "HOLD")
                 {
                     e.CellElement.ForeColor = Color.White;
-
                     e.CellElement.DrawFill = true;
                     e.CellElement.GradientStyle = GradientStyles.Solid;
                     e.CellElement.BackColor = Color.Red;
                 }
-                //else if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["UnitStatus"].Value) == "OCCUPIED")
-                //{
-                //    e.CellElement.DrawFill = true;
-                //    e.CellElement.GradientStyle = GradientStyles.Solid;
-                //    e.CellElement.BackColor = Color.LightGreen;
 
-                //}
-                //else if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["UnitStatus"].Value) == "NOT AVAILABLE")
-                //{
-                //    e.CellElement.DrawFill = true;
-                //    e.CellElement.GradientStyle = GradientStyles.Solid;
-                //    e.CellElement.BackColor = Color.LightSalmon;
-
-                //}
                 if (e.CellElement.ColumnInfo is GridViewCommandColumn && !(e.CellElement.RowElement is GridTableHeaderRowElement))
                 {
                     GridViewCommandColumn column = (GridViewCommandColumn)e.CellElement.ColumnInfo;
@@ -467,17 +622,31 @@ namespace LEASING.UI.APP.Forms
 
                             element.Enabled = true;
                         }
-                        //else
-                        //{
-                        //    element.ImageAlignment = ContentAlignment.MiddleCenter;
-                        //    element.TextImageRelation = TextImageRelation.TextBeforeImage;
-                        //    element.Image = Properties.Resources.apply_icon;
-                        //    element.ToolTipText = "Done";
-                        //   element.Enabled = false;
-                        //}
                     }
+                    //if (column.Name == "ColCheck" && e.RowIndex >= 0)
+                    //{
+                    //    if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "PAID")
+                    //    {
+                    //        //element.ImageAlignment = ContentAlignment.MiddleCenter;
+                    //        //element.TextImageRelation = TextImageRelation.TextBeforeImage;
+                    //        //element.Image = Properties.Resources.bookmark_16;
+                    //        //element.ToolTipText = "Click to Hold";
 
+                    //        e.CellElement.Visibility = ElementVisibility.Hidden;
+                    //    }
+                    //}
+                    //if (column.Name == "ColCheck" && e.RowIndex >= 0)
+                    //{
+                    //    if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "HOLD")
+                    //    {
+                    //        //element.ImageAlignment = ContentAlignment.MiddleCenter;
+                    //        //element.TextImageRelation = TextImageRelation.TextBeforeImage;
+                    //        //element.Image = Properties.Resources.bookmark_16;
+                    //        //element.ToolTipText = "Click to Hold";
 
+                    //        e.CellElement.Visibility = ElementVisibility.Hidden;
+                    //    }
+                    //}
                 }
             }
         }
@@ -554,12 +723,12 @@ namespace LEASING.UI.APP.Forms
                                 {
                                     ReceiveAmount = frmReceivePayment.txtReceiveAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtReceiveAmount.Text);
                                     ChangeAmount = frmReceivePayment.txtChangeAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtChangeAmount.Text);
-                                    M_sp_GenerateFirstPayment();
+                                    M_GenerateSecondPayment();
                                     M_GetCheckPaymentStatus();
                                     M_GetLedgerList();
                                     M_GetPaymentListByReferenceId();
 
-                                    frmRecieptSelection frmRecieptSelection = new frmRecieptSelection(TranID,"");                                   
+                                    frmRecieptSelection frmRecieptSelection = new frmRecieptSelection(TranID, "");
                                     frmRecieptSelection.ShowDialog();
                                 }
                             }
@@ -578,7 +747,7 @@ namespace LEASING.UI.APP.Forms
                             {
                                 if (result.Equals("SUCCESS"))
                                 {
-                                    MessageBox.Show("PAYMENT HOLD SUCCESS", "System Message", MessageBoxButtons.OK);                                   
+                                    MessageBox.Show("PAYMENT HOLD SUCCESS", "System Message", MessageBoxButtons.OK);
                                     M_GetCheckPaymentStatus();
                                     M_GetLedgerList();
                                     M_GetPaymentListByReferenceId();
@@ -592,7 +761,14 @@ namespace LEASING.UI.APP.Forms
                     }
 
                 }
+                else if (this.dgvLedgerList.Columns[e.ColumnIndex].Name == "ColPrint")
+                {
+
+                    frmRecieptSelection frmRecieptSelection = new frmRecieptSelection(Convert.ToString(dgvLedgerList.CurrentRow.Cells["TransactionID"].Value), "");
+                    frmRecieptSelection.ShowDialog();
+                }
             }
+          
         }
         private void btnCloseContract_Click(object sender, EventArgs e)
         {
@@ -634,6 +810,99 @@ namespace LEASING.UI.APP.Forms
                     else
                     {
                         MessageBox.Show(result, "System Message", MessageBoxButtons.OK);
+                    }
+                }
+            }
+        }
+        private void btnPayAll_Click(object sender, EventArgs e)
+        {
+            foreach (GridViewRowInfo row in dgvLedgerList.Rows)
+            {
+                GridViewCellInfo cell = row.Cells["ColCheck"] as GridViewCellInfo;
+                if (Convert.ToBoolean(cell.Value))
+                {
+                    IsPayAsSelected = true;
+                    break;
+                }
+                else
+                {
+                    IsPayAsSelected = false;
+                }
+            }
+            if (IsPayAsSelected)
+            {
+                if (MessageBox.Show("Are you sure you want to pay the selected month?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                {
+                    //if (Convert.ToString(this.dgvLedgerList.Rows.Cells["PaymentStatus"].Value) == "PENDING" || Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "HOLD" || Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "FOR PAYMENT")
+                    //{
+
+                    frmPaymentMode frmPaymentMode = new frmPaymentMode();
+                    frmPaymentMode.ShowDialog();
+                    if (frmPaymentMode.IsProceed)
+                    {
+                        CompanyORNo = frmPaymentMode.CompanyORNo;
+                        CompanyPRNo = frmPaymentMode.CompanyPRNo;
+                        BankAccountName = frmPaymentMode.BankAccountName;
+                        BankAccountNumber = frmPaymentMode.BankAccountNumber;
+                        BankName = frmPaymentMode.BankName;
+                        SerialNo = frmPaymentMode.SerialNo;
+                        PaymentRemarks = frmPaymentMode.PaymentRemarks;
+                        REF = frmPaymentMode.REF;
+                        ModeType = frmPaymentMode.ModeType;
+
+                        frmReceivePayment frmReceivePayment = new frmReceivePayment();
+                        frmReceivePayment.Amount = Convert.ToString(Convert.ToDecimal(dgvLedgerList.CurrentRow.Cells["LedgAmount"].Value) * M_GetTotalSelectedMonth());
+                        frmReceivePayment.ShowDialog();
+                        if (frmReceivePayment.IsProceed)
+                        {
+                            ReceiveAmount = frmReceivePayment.txtReceiveAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtReceiveAmount.Text);
+                            ChangeAmount = frmReceivePayment.txtChangeAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtChangeAmount.Text);
+                            M_GenerateBulkPayment();
+                            M_GetCheckPaymentStatus();
+                            M_GetLedgerList();
+                            M_GetPaymentListByReferenceId();
+
+                            frmRecieptSelection frmRecieptSelection = new frmRecieptSelection(TranID, "");
+                            frmRecieptSelection.ShowDialog();
+                        }
+                    }
+
+                    //}
+                }
+            }
+            else
+            {
+                if (MessageBox.Show("Are you sure you want to pay it all?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                {
+                    frmPaymentMode frmPaymentMode = new frmPaymentMode();
+                    frmPaymentMode.ShowDialog();
+                    if (frmPaymentMode.IsProceed)
+                    {
+                        CompanyORNo = frmPaymentMode.CompanyORNo;
+                        CompanyPRNo = frmPaymentMode.CompanyPRNo;
+                        BankAccountName = frmPaymentMode.BankAccountName;
+                        BankAccountNumber = frmPaymentMode.BankAccountNumber;
+                        BankName = frmPaymentMode.BankName;
+                        SerialNo = frmPaymentMode.SerialNo;
+                        PaymentRemarks = frmPaymentMode.PaymentRemarks;
+                        REF = frmPaymentMode.REF;
+                        ModeType = frmPaymentMode.ModeType;
+
+                        frmReceivePayment frmReceivePayment = new frmReceivePayment();
+                        frmReceivePayment.Amount = Convert.ToString(Convert.ToDecimal(dgvLedgerList.CurrentRow.Cells["LedgAmount"].Value) * M_GetTotalSelectedMonth());
+                        frmReceivePayment.ShowDialog();
+                        if (frmReceivePayment.IsProceed)
+                        {
+                            ReceiveAmount = frmReceivePayment.txtReceiveAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtReceiveAmount.Text);
+                            ChangeAmount = frmReceivePayment.txtChangeAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtChangeAmount.Text);
+                            M_GenerateBulkPayment();
+                            M_GetCheckPaymentStatus();
+                            M_GetLedgerList();
+                            M_GetPaymentListByReferenceId();
+
+                            frmRecieptSelection frmRecieptSelection = new frmRecieptSelection(TranID, "");
+                            frmRecieptSelection.ShowDialog();
+                        }
                     }
                 }
             }

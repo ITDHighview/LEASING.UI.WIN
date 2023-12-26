@@ -45,6 +45,8 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn12 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn13 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn14 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn3 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn15 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.radGroupBox4 = new Telerik.WinControls.UI.RadGroupBox();
             this.dgvPaymentList = new Telerik.WinControls.UI.RadGridView();
@@ -66,11 +68,11 @@
             this.radButton1 = new Telerik.WinControls.UI.RadButton();
             this.btnCloseContract = new Telerik.WinControls.UI.RadButton();
             this.btnTerminateContract = new Telerik.WinControls.UI.RadButton();
+            this.btnPayAll = new Telerik.WinControls.UI.RadButton();
             this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
             this.dgvLedgerList = new Telerik.WinControls.UI.RadGridView();
             this.office2010BlueTheme1 = new Telerik.WinControls.Themes.Office2010BlueTheme();
             this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
-            this.btnPrintReceipt = new Telerik.WinControls.UI.RadButton();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox4)).BeginInit();
             this.radGroupBox4.SuspendLayout();
@@ -97,11 +99,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCloseContract)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnTerminateContract)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnPayAll)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
             this.radGroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLedgerList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLedgerList.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnPrintReceipt)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -124,7 +126,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(599, 788);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(633, 788);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // radGroupBox4
@@ -135,7 +137,7 @@
             this.radGroupBox4.HeaderText = "PAYMENT";
             this.radGroupBox4.Location = new System.Drawing.Point(3, 545);
             this.radGroupBox4.Name = "radGroupBox4";
-            this.radGroupBox4.Size = new System.Drawing.Size(593, 240);
+            this.radGroupBox4.Size = new System.Drawing.Size(627, 240);
             this.radGroupBox4.TabIndex = 9;
             this.radGroupBox4.Text = "PAYMENT";
             // 
@@ -186,7 +188,7 @@
             this.dgvPaymentList.ReadOnly = true;
             this.dgvPaymentList.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgvPaymentList.ShowGroupPanel = false;
-            this.dgvPaymentList.Size = new System.Drawing.Size(589, 220);
+            this.dgvPaymentList.Size = new System.Drawing.Size(623, 220);
             this.dgvPaymentList.TabIndex = 0;
             this.dgvPaymentList.Text = "radGridView1";
             this.dgvPaymentList.ThemeName = "Office2007Silver";
@@ -200,7 +202,7 @@
             this.radGroupBox2.HeaderText = "DETAILS";
             this.radGroupBox2.Location = new System.Drawing.Point(3, 3);
             this.radGroupBox2.Name = "radGroupBox2";
-            this.radGroupBox2.Size = new System.Drawing.Size(593, 196);
+            this.radGroupBox2.Size = new System.Drawing.Size(627, 196);
             this.radGroupBox2.TabIndex = 1;
             this.radGroupBox2.Text = "DETAILS";
             // 
@@ -228,7 +230,7 @@
             this.tableLayoutPanel2.Controls.Add(this.radButton1, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnCloseContract, 0, 6);
             this.tableLayoutPanel2.Controls.Add(this.btnTerminateContract, 1, 6);
-            this.tableLayoutPanel2.Controls.Add(this.btnPrintReceipt, 4, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnPayAll, 4, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(2, 18);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -240,7 +242,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 21F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(589, 176);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(623, 176);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // dtpTo
@@ -352,7 +354,7 @@
             this.radGroupBox3.Location = new System.Drawing.Point(277, 28);
             this.radGroupBox3.Name = "radGroupBox3";
             this.tableLayoutPanel2.SetRowSpan(this.radGroupBox3, 6);
-            this.radGroupBox3.Size = new System.Drawing.Size(309, 145);
+            this.radGroupBox3.Size = new System.Drawing.Size(343, 145);
             this.radGroupBox3.TabIndex = 9;
             this.radGroupBox3.Text = "Contract List";
             this.radGroupBox3.ThemeName = "ControlDefault";
@@ -399,7 +401,7 @@
             this.dgvTransactionList.ReadOnly = true;
             this.dgvTransactionList.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgvTransactionList.ShowGroupPanel = false;
-            this.dgvTransactionList.Size = new System.Drawing.Size(305, 125);
+            this.dgvTransactionList.Size = new System.Drawing.Size(339, 125);
             this.dgvTransactionList.TabIndex = 0;
             this.dgvTransactionList.Text = "radGridView1";
             this.dgvTransactionList.ThemeName = "Office2007Silver";
@@ -449,6 +451,17 @@
             this.btnTerminateContract.ThemeName = "Office2007Silver";
             this.btnTerminateContract.Click += new System.EventHandler(this.btnTerminateContract_Click);
             // 
+            // btnPayAll
+            // 
+            this.btnPayAll.Image = global::LEASING.UI.APP.Properties.Resources.accept;
+            this.btnPayAll.Location = new System.Drawing.Point(519, 3);
+            this.btnPayAll.Name = "btnPayAll";
+            this.btnPayAll.Size = new System.Drawing.Size(101, 19);
+            this.btnPayAll.TabIndex = 7;
+            this.btnPayAll.Text = "Pay All";
+            this.btnPayAll.ThemeName = "Office2010Blue";
+            this.btnPayAll.Click += new System.EventHandler(this.btnPayAll_Click);
+            // 
             // radGroupBox1
             // 
             this.radGroupBox1.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
@@ -457,7 +470,7 @@
             this.radGroupBox1.HeaderText = "LEDGER";
             this.radGroupBox1.Location = new System.Drawing.Point(3, 205);
             this.radGroupBox1.Name = "radGroupBox1";
-            this.radGroupBox1.Size = new System.Drawing.Size(593, 334);
+            this.radGroupBox1.Size = new System.Drawing.Size(627, 334);
             this.radGroupBox1.TabIndex = 8;
             this.radGroupBox1.Text = "LEDGER";
             // 
@@ -514,6 +527,16 @@
             gridViewTextBoxColumn14.HeaderText = "Recid";
             gridViewTextBoxColumn14.IsVisible = false;
             gridViewTextBoxColumn14.Name = "Recid";
+            gridViewCommandColumn3.FieldName = "ColPrint";
+            gridViewCommandColumn3.HeaderImage = global::LEASING.UI.APP.Properties.Resources.print_16;
+            gridViewCommandColumn3.HeaderText = "";
+            gridViewCommandColumn3.Image = global::LEASING.UI.APP.Properties.Resources.print_16;
+            gridViewCommandColumn3.Name = "ColPrint";
+            gridViewCommandColumn3.Width = 30;
+            gridViewTextBoxColumn15.FieldName = "TransactionID";
+            gridViewTextBoxColumn15.HeaderText = "";
+            gridViewTextBoxColumn15.IsVisible = false;
+            gridViewTextBoxColumn15.Name = "TransactionID";
             this.dgvLedgerList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewCheckBoxColumn1,
             gridViewCommandColumn1,
@@ -522,42 +545,32 @@
             gridViewTextBoxColumn11,
             gridViewTextBoxColumn12,
             gridViewTextBoxColumn13,
-            gridViewTextBoxColumn14});
+            gridViewTextBoxColumn14,
+            gridViewCommandColumn3,
+            gridViewTextBoxColumn15});
             this.dgvLedgerList.MasterTemplate.ShowRowHeaderColumn = false;
             this.dgvLedgerList.Name = "dgvLedgerList";
             this.dgvLedgerList.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.dgvLedgerList.ReadOnly = true;
             this.dgvLedgerList.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgvLedgerList.ShowGroupPanel = false;
-            this.dgvLedgerList.Size = new System.Drawing.Size(589, 314);
+            this.dgvLedgerList.Size = new System.Drawing.Size(623, 314);
             this.dgvLedgerList.TabIndex = 0;
             this.dgvLedgerList.Text = "radGridView1";
             this.dgvLedgerList.ThemeName = "Office2007Silver";
             this.dgvLedgerList.CellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.dgvLedgerList_CellFormatting);
             this.dgvLedgerList.CellClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.dgvLedgerList_CellClick);
             // 
-            // btnPrintReceipt
-            // 
-            this.btnPrintReceipt.Image = global::LEASING.UI.APP.Properties.Resources.print_16;
-            this.btnPrintReceipt.Location = new System.Drawing.Point(485, 3);
-            this.btnPrintReceipt.Name = "btnPrintReceipt";
-            this.btnPrintReceipt.Size = new System.Drawing.Size(101, 19);
-            this.btnPrintReceipt.TabIndex = 7;
-            this.btnPrintReceipt.Text = "Print Reciept";
-            this.btnPrintReceipt.ThemeName = "Office2010Blue";
-            this.btnPrintReceipt.Click += new System.EventHandler(this.radButton1_Click);
-            // 
             // frmClientTransaction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(599, 788);
+            this.ClientSize = new System.Drawing.Size(633, 788);
             this.Controls.Add(this.tableLayoutPanel1);
             this.DoubleBuffered = true;
             this.Name = "frmClientTransaction";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Client";
+            this.Text = "Client Ledger";
             this.Load += new System.EventHandler(this.frmSelectClient_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox4)).EndInit();
@@ -586,11 +599,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.radButton1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCloseContract)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnTerminateContract)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnPayAll)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).EndInit();
             this.radGroupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvLedgerList.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLedgerList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnPrintReceipt)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -622,6 +635,6 @@
         private Telerik.WinControls.UI.RadButton btnTerminateContract;
         private Telerik.WinControls.Themes.Office2010BlueTheme office2010BlueTheme1;
         private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme1;
-        private Telerik.WinControls.UI.RadButton btnPrintReceipt;
+        private Telerik.WinControls.UI.RadButton btnPayAll;
     }
 }

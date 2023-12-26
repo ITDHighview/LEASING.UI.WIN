@@ -20,24 +20,21 @@ GO
 -- =============================================
 ALTER PROCEDURE [dbo].[sp_SelectPaymentMode]
 AS
-    BEGIN
-        -- SET NOCOUNT ON added to prevent extra result sets from
-        -- interfering with SELECT statements.
-        SET NOCOUNT ON;
+BEGIN
+    -- SET NOCOUNT ON added to prevent extra result sets from
+    -- interfering with SELECT statements.
+    SET NOCOUNT ON;
 
 
-        --SELECT -1 AS ModeType,'--SELECT--' AS Mode
-        --UNION
-        SELECT
-            1      AS [ModeType],
-            'CASH' AS [Mode]
-        UNION
-        SELECT
-            2      AS [ModeType],
-            'BANK' AS [Mode]
-        UNION
-        SELECT
-            3     AS [ModeType],
-            'PDC' AS [Mode];
-    END;
+    --SELECT -1 AS ModeType,'--SELECT--' AS Mode
+    --UNION
+    SELECT 'CASH' AS [ModeType],
+           'CASH' AS [Mode]
+    UNION
+    SELECT 'BANK' AS [ModeType],
+           'BANK' AS [Mode]
+    UNION
+    SELECT 'PDC' AS [ModeType],
+           'PDC' AS [Mode];
+END;
 GO

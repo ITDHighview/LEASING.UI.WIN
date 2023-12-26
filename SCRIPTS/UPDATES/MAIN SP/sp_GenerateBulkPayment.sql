@@ -6,12 +6,13 @@ GO
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-ALTER PROCEDURE [dbo].[sp_GenerateSecondPaymentUnit]
+ALTER PROCEDURE [dbo].[sp_GenerateBulkPayment]
     -- Add the parameters for the stored procedure here
     @RefId VARCHAR(50) = NULL,
     @PaidAmount DECIMAL(18, 2) = NULL,
     @ReceiveAmount DECIMAL(18, 2) = NULL,
     @ChangeAmount DECIMAL(18, 2) = NULL,
+    @SecAmountADV DECIMAL(18, 2) = NULL,
     @EncodedBy INT = NULL,
     @ComputerName VARCHAR(30) = NULL,
     @CompanyORNo VARCHAR(30) = NULL,
@@ -22,8 +23,8 @@ ALTER PROCEDURE [dbo].[sp_GenerateSecondPaymentUnit]
     @SerialNo VARCHAR(30) = NULL,
     @PaymentRemarks VARCHAR(100) = NULL,
     @REF VARCHAR(100) = NULL,
-    @ModeType VARCHAR(50) = NULL,
-    @ledgerRecId INT = NULL
+    @ModeType VARCHAR(20) = NULL,
+    @XML XML
 AS
 BEGIN TRY
     -- SET NOCOUNT ON added to prevent extra result sets from
@@ -34,9 +35,27 @@ BEGIN TRY
     DECLARE @TranID VARCHAR(50) = '';
     DECLARE @RcptRecId BIGINT = 0;
     DECLARE @RcptID VARCHAR(50) = '';
-    DECLARE @LedgeMonth DATE = NULL;
+    DECLARE @ApplicableMonth1 DATE = NULL;
+    DECLARE @ApplicableMonth2 DATE = NULL;
+    DECLARE @IsFullPayment BIT = 0;
+    -- Insert statements for procedure here
+
+    CREATE TABLE [#tblBulkPostdatedMonth]
+    (
+        [Recid] VARCHAR(10)
+    );
+    IF (@XML IS NOT NULL)
+    BEGIN
+        INSERT INTO [#tblBulkPostdatedMonth]
+        (
+            [Recid]
+        )
+        SELECT [ParaValues].[data].[value]('c1[1]', 'VARCHAR(10)')
+        FROM @XML.[nodes]('/Table1') AS [ParaValues]([data]);
+    END;
 
     BEGIN TRANSACTION;
+
     INSERT INTO [dbo].[tblTransaction]
     (
         [RefId],
@@ -57,17 +76,7 @@ BEGIN TRY
     FROM [dbo].[tblTransaction] WITH (NOLOCK)
     WHERE [tblTransaction].[RecId] = @TranRecId;
 
-    SELECT @LedgeMonth = [tblMonthLedger].[LedgMonth]
-    FROM [dbo].[tblMonthLedger] WITH (NOLOCK)
-    WHERE ISNULL([tblMonthLedger].[IsPaid], 0) = 0
-          AND ISNULL([tblMonthLedger].[TransactionID], '') = ''
-          AND [tblMonthLedger].[ReferenceID] =
-          (
-              SELECT [tblUnitReference].[RecId]
-              FROM [dbo].[tblUnitReference] WITH (NOLOCK)
-              WHERE [tblUnitReference].[RefId] = @RefId
-          )
-          AND [tblMonthLedger].[Recid] = @ledgerRecId;
+
     INSERT INTO [dbo].[tblPayment]
     (
         [TranId],
@@ -90,32 +99,41 @@ BEGIN TRY
            @ComputerName,
            1
     FROM [dbo].[tblMonthLedger] WITH (NOLOCK)
-    WHERE [tblMonthLedger].[LedgMonth] = @LedgeMonth
+    WHERE [tblMonthLedger].[ReferenceID] =
+    (
+        SELECT [tblUnitReference].[RecId]
+        FROM [dbo].[tblUnitReference] WITH (NOLOCK)
+        WHERE [tblUnitReference].[RefId] = @RefId
+    )
+          AND [tblMonthLedger].[Recid] IN
+              (
+                  SELECT [#tblBulkPostdatedMonth].[Recid]
+                  FROM [#tblBulkPostdatedMonth] WITH (NOLOCK)
+              )
           AND ISNULL([tblMonthLedger].[IsPaid], 0) = 0
-          AND ISNULL([tblMonthLedger].[TransactionID], '') = ''
-          AND [tblMonthLedger].[ReferenceID] =
-          (
-              SELECT [tblUnitReference].[RecId]
-              FROM [dbo].[tblUnitReference] WITH (NOLOCK)
-              WHERE [tblUnitReference].[RefId] = @RefId
-          )
-          AND [tblMonthLedger].[Recid] = @ledgerRecId;
+          AND ISNULL([tblMonthLedger].[TransactionID], '') = '';
 
 
+
+    UPDATE [dbo].[tblUnitReference]
+    SET [tblUnitReference].[IsPaid] = 1
+    WHERE [tblUnitReference].[RefId] = @RefId;
     UPDATE [dbo].[tblMonthLedger]
     SET [tblMonthLedger].[IsPaid] = 1,
-        [tblMonthLedger].[IsHold] = 0,
         [tblMonthLedger].[TransactionID] = @TranID
-    WHERE [tblMonthLedger].[LedgMonth] = @LedgeMonth
+    WHERE [tblMonthLedger].[ReferenceID] =
+    (
+        SELECT [tblUnitReference].[RecId]
+        FROM [dbo].[tblUnitReference] WITH (NOLOCK)
+        WHERE [tblUnitReference].[RefId] = @RefId
+    )
+          AND [tblMonthLedger].[Recid] IN
+              (
+                  SELECT [#tblBulkPostdatedMonth].[Recid]
+                  FROM [#tblBulkPostdatedMonth] WITH (NOLOCK)
+              )
           AND ISNULL([IsPaid], 0) = 0
-          AND ISNULL([tblMonthLedger].[TransactionID], '') = ''
-          AND [tblMonthLedger].[ReferenceID] =
-          (
-              SELECT [tblUnitReference].[RecId]
-              FROM [dbo].[tblUnitReference] WITH (NOLOCK)
-              WHERE [tblUnitReference].[RefId] = @RefId
-          )
-          AND [Recid] = @ledgerRecId;
+          AND ISNULL([tblMonthLedger].[TransactionID], '') = '';
 
 
     INSERT INTO [dbo].[tblReceipt]
@@ -164,6 +182,7 @@ BEGIN TRY
 
     IF (@TranID <> '' AND @@ROWCOUNT > 0)
     BEGIN
+
         SET @ReturnMessage = 'SUCCESS';
     END;
     ELSE
@@ -182,5 +201,6 @@ BEGIN CATCH
     SET @ReturnMessage = ERROR_MESSAGE();
     SELECT @ReturnMessage AS [ReturnMessage];
 END CATCH;
+DROP TABLE [#tblBulkPostdatedMonth];
 GO
 

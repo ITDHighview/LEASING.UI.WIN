@@ -26,18 +26,18 @@ namespace LEASING.UI.APP.Context
             string SerialNo,
             string PaymentRemarks,
             string REF,
-            int ModeType,
+            string ModeType,
             out string TransID)
         {
             SqlCommand _sqlcmd = null;
             SqlParameter _sqlpara;
             SqlConnection _sqlcon = null;
             SqlDataReader _sqlreader = null;
-            
+
             _sqlcmd = new SqlCommand();
             _sqlcmd.CommandText = "sp_GenerateFirstPayment";
 
-           
+
 
             _sqlpara = new SqlParameter("@RefId", RefId);
             _sqlcmd.Parameters.Add(_sqlpara);
@@ -100,7 +100,7 @@ namespace LEASING.UI.APP.Context
                     if (!_sqlreader.IsDBNull(index))
                         return Convert.ToString(_sqlreader.GetString(index));
 
-                   
+
                 }
             }
             catch (Exception expCommon)
@@ -132,8 +132,9 @@ namespace LEASING.UI.APP.Context
            string SerialNo,
            string PaymentRemarks,
            string REF,
-           int ModeType,
-           int ledgerRecId
+           string ModeType,
+           int ledgerRecId,
+           out string TransID
            )
         {
             SqlCommand _sqlcmd = null;
@@ -175,7 +176,7 @@ namespace LEASING.UI.APP.Context
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@ComputerName", Environment.MachineName);
             _sqlcmd.Parameters.Add(_sqlpara);
-
+            TransID = string.Empty;
             try
             {
                 _sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
@@ -188,10 +189,116 @@ namespace LEASING.UI.APP.Context
                 _sqlreader = _sqlcmd.ExecuteReader();
                 _sqlreader.Read();
 
-                int index;
                 if (_sqlreader.HasRows)
                 {
-                    index = _sqlreader.GetOrdinal("Message_Code");
+                    int indexs = _sqlreader.GetOrdinal("TranID");
+                    if (!_sqlreader.IsDBNull(indexs))
+                        TransID = Convert.ToString(_sqlreader.GetString(indexs));
+                }
+                if (_sqlreader.HasRows)
+                {
+                    int index = _sqlreader.GetOrdinal("Message_Code");
+                    if (!_sqlreader.IsDBNull(index))
+                        return Convert.ToString(_sqlreader.GetString(index));
+                }
+            }
+            catch (Exception expCommon)
+            {
+                //vErrorMessage = Convert.ToString(expCommon.Message);
+                return "FAILED|" + Convert.ToString(expCommon.Message);
+            }
+            finally
+            {
+                if (_sqlcon.State != ConnectionState.Closed)
+                {
+                    _sqlcon.Close();
+                }
+                _sqlpara = null;
+                _sqlcmd = null;
+                _sqlreader = null;
+            }
+            return "";
+        }
+        public string GenerateBulkPayment(string RefId,
+           decimal PaidAmount,
+           decimal ReceiveAmount,
+           decimal ChangeAmount,
+           string CompanyORNo,
+           string CompanyPRNo,
+           string BankAccountName,
+           string BankAccountNumber,
+           string BankName,
+           string SerialNo,
+           string PaymentRemarks,
+           string REF,
+           string ModeType,
+           int ledgerRecId,
+          string XML,
+          out string TransID
+
+          )
+        {
+            SqlCommand _sqlcmd = null;
+            SqlParameter _sqlpara;
+            SqlConnection _sqlcon = null;
+            SqlDataReader _sqlreader = null;
+            _sqlcmd = new SqlCommand();
+            _sqlcmd.CommandText = "sp_GenerateBulkPayment";
+            _sqlpara = new SqlParameter("@RefId", RefId);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@PaidAmount", PaidAmount);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@ReceiveAmount", ReceiveAmount);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@ChangeAmount", ChangeAmount);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@CompanyORNo", CompanyORNo);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@CompanyPRNo", CompanyPRNo);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@BankAccountName", BankAccountName);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@BankAccountNumber", BankAccountNumber);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@BankName", BankName);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@SerialNo", SerialNo);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@PaymentRemarks", PaymentRemarks);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@REF", REF);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@ModeType", ModeType);
+            _sqlcmd.Parameters.Add(_sqlpara);
+
+            _sqlpara = new SqlParameter("@EncodedBy", Variables.UserID);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@ComputerName", Environment.MachineName);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@XML", XML);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            TransID = string.Empty;
+            try
+            {
+                _sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
+                _sqlcmd.Connection = _sqlcon;
+                _sqlcmd.CommandType = CommandType.StoredProcedure;
+
+                //_sqlreader = SqlDataReader(_sqlcmd, false);
+
+                _sqlcmd.Connection.Open();
+                _sqlreader = _sqlcmd.ExecuteReader();
+                _sqlreader.Read();
+
+                if (_sqlreader.HasRows)
+                {
+                    int indexs = _sqlreader.GetOrdinal("TranID");
+                    if (!_sqlreader.IsDBNull(indexs))
+                        TransID = Convert.ToString(_sqlreader.GetString(indexs));
+                }
+                if (_sqlreader.HasRows)
+                {
+                    int index = _sqlreader.GetOrdinal("Message_Code");
                     if (!_sqlreader.IsDBNull(index))
                         return Convert.ToString(_sqlreader.GetString(index));
                 }
@@ -226,7 +333,7 @@ namespace LEASING.UI.APP.Context
      string SerialNo,
      string PaymentRemarks,
      string REF,
-     int ModeType,
+     string ModeType,
      int ledgerRecId
      )
         {

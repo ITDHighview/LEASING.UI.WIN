@@ -39,7 +39,7 @@ namespace LEASING.UI.APP.Forms
         public string SerialNo { get; set; }
         public string PaymentRemarks { get; set; }
         public string REF { get; set; }
-        public int ModeType { get; set; }
+        public string ModeType { get; set; }
         public frmSelectClient()
         {
             InitializeComponent();          
@@ -75,7 +75,13 @@ namespace LEASING.UI.APP.Forms
             }
         }   
         private void frmSelectClient_Load(object sender, EventArgs e)
-        {         
+        {
+            dtpFrom.Enabled = false;
+            dtpTo.Enabled = false;
+            txtTwoMonAdv.ReadOnly = true;
+            txtThreeMonSecDep.ReadOnly = true;
+            txtTotalForPayment.ReadOnly = true;
+
             M_GetComputationById();       
             M_GetMonthLedgerByRefIdAndClientId();
             btnPrintReciept.Enabled = false;

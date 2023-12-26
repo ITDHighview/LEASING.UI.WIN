@@ -23,7 +23,7 @@ namespace LEASING.UI.APP.Forms
         public string SerialNo { get; set; }
         public string PaymentRemarks { get; set; }
         public string REF { get; set; }
-        public int ModeType { get; set; }
+        public string ModeType { get; set; }
 
         public bool IsOR { get; set; } = false;
         public frmPaymentMode()
@@ -195,19 +195,8 @@ namespace LEASING.UI.APP.Forms
         }
 
         private void ddlSelectMode_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
-        {
-            if (Convert.ToInt32(ddlSelectMode.SelectedValue) == 1)
-            {
-                strPaymentmMode = "CASH";
-            }
-            else if (Convert.ToInt32(ddlSelectMode.SelectedValue) == 2)
-            {
-                strPaymentmMode = "BANK";
-            }
-            else
-            {
-                strPaymentmMode = "PDC";
-            }
+        {         
+            strPaymentmMode = Convert.ToString(ddlSelectMode.SelectedValue);
         }
 
         private void btnOk_Click(object sender, EventArgs e)
@@ -218,7 +207,7 @@ namespace LEASING.UI.APP.Forms
                 IsProceed = true;
                 if (ddlSelectMode.SelectedIndex > 0)
                 {
-                    ModeType = Convert.ToInt32(ddlSelectMode.SelectedValue);
+                    ModeType = Convert.ToString(ddlSelectMode.SelectedValue);
                 }
                 CompanyORNo = txtCompanyORNo.Text;
                 CompanyPRNo = txtPRNo.Text;

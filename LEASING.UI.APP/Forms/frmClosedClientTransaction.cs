@@ -44,7 +44,7 @@ namespace LEASING.UI.APP.Forms
         public string SerialNo { get; set; }
         public string PaymentRemarks { get; set; }
         public string REF { get; set; }
-        public int ModeType { get; set; }
+        public string ModeType { get; set; }
         public frmClosedClientTransaction()
         {
             InitializeComponent();

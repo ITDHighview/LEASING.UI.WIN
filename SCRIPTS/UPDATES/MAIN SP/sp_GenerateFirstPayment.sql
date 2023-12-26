@@ -23,7 +23,7 @@ ALTER PROCEDURE [dbo].[sp_GenerateFirstPayment]
     @SerialNo VARCHAR(30) = NULL,
     @PaymentRemarks VARCHAR(100) = NULL,
     @REF VARCHAR(100) = NULL,
-    @ModeType INT = 0
+    @ModeType VARCHAR(20) = NULL
 AS
 BEGIN TRY
     -- SET NOCOUNT ON added to prevent extra result sets from
@@ -96,7 +96,20 @@ BEGIN TRY
             WHERE [tblUnitReference].[RefId] = @RefId
         )
               AND ISNULL([tblMonthLedger].[IsPaid], 0) = 0
-              AND ISNULL([tblMonthLedger].[TransactionID], '') = '';
+              AND ISNULL([tblMonthLedger].[TransactionID], '') = ''
+        UNION
+        SELECT @TranID AS [TranId],
+               @RefId AS [RefId],
+               @SecAmountADV AS [Amount],
+               CONVERT(DATE, GETDATE()) AS [ForMonth],
+               'SECURITY DEPOSIT' AS [Remarks],
+               @EncodedBy,
+               GETDATE(),
+               @ComputerName,
+               1
+        FROM [dbo].[tblUnitReference]
+        WHERE [RefId] = @RefId
+              AND ISNULL([tblUnitReference].[SecDeposit], 0) > 0;
 
         UPDATE [dbo].[tblUnitReference]
         SET [tblUnitReference].[IsPaid] = 1

@@ -21,8 +21,10 @@ namespace LEASING.UI.APP.Forms
         ProjectContext ProjectContext = new ProjectContext();
         UnitContext UnitContext = new UnitContext();
         ComputationContext ComputationContext = new ComputationContext();
+        public bool sIsFullPayment = false;
+        public bool IsComputed = false;
         private DataTable dataTable;
-        public frmComputation()
+        public frmComputation(bool IsFullPayment)
         {
             InitializeComponent();
             //data.Columns.Add("Seq", typeof(int));         
@@ -30,7 +32,11 @@ namespace LEASING.UI.APP.Forms
             //data.Columns.Add("Rental", typeof(string));
 
 
-
+            sIsFullPayment = IsFullPayment;
+            if (sIsFullPayment)
+            {
+                radGroupBox4.Enabled = false;
+            }    
             // Bind the DataTable to the DataGridView
             //dgvpostdatedcheck.DataSource = data;
         }
@@ -171,7 +177,7 @@ namespace LEASING.UI.APP.Forms
             dgvAdvancePayment.Enabled = true;
             txtSecurityPaymentMonthCount.Enabled = true;
             btnGeneratePostdatedCountMonth.Enabled = true;
-            dtpSelectedDate.Enabled = true;
+            
         }
         private void DisableFields()
         {
@@ -205,7 +211,7 @@ namespace LEASING.UI.APP.Forms
             dgvAdvancePayment.Enabled = false;
             txtSecurityPaymentMonthCount.Enabled = false;
             btnGeneratePostdatedCountMonth.Enabled = false;
-            dtpSelectedDate.Enabled = false;
+            
 
         }
         private void M_GetRateSettings()
@@ -315,7 +321,14 @@ namespace LEASING.UI.APP.Forms
             var rental2 = (rental * (txtSecurityPaymentMonthCount.Text == "" ? 0 : Convert.ToDecimal(txtSecurityPaymentMonthCount.Text)));
             txtMonthsSecurityDeposit.Text = Convert.ToString(rental2);
             var rentalfinal = (rental * dgvAdvancePayment.Rows.Count());
-            txtTotal.Text = Convert.ToString(rentalfinal + rental2);
+            if (sIsFullPayment)
+            {
+                txtTotal.Text = Convert.ToString((txtTotalPostDatedAmount.Text == "" ? 0 : Convert.ToDecimal(txtTotalPostDatedAmount.Text)) + rental2);
+            }
+            else
+            {
+                txtTotal.Text = Convert.ToString(rentalfinal + rental2);
+            }          
             AdvancePaymentAmount = rentalfinal;
         }
         private bool IsDuplicate(string Months)
@@ -350,6 +363,7 @@ namespace LEASING.UI.APP.Forms
             dto.EncodedBy = Variables.UserID;
             dto.XML = M_getXMLData();
             dto.AdvancePaymentAmount = AdvancePaymentAmount;
+            dto.IsFullPayment = sIsFullPayment;
             dto.Message_Code = ComputationContext.SaveComputation(dto);
             if (dto.Message_Code.Equals("SUCCESS"))
             {
@@ -429,6 +443,15 @@ namespace LEASING.UI.APP.Forms
             return sbDoctorSchedule.ToString();
         }
         #endregion
+
+        private bool IsMoreThanSixMonths(DateTime date1, DateTime date2)
+        {
+            // Calculate the difference in months
+            int monthsDifference = (date2.Year - date1.Year) * 12 + date2.Month - date1.Month;
+
+            // Check if the difference is more than 6 months
+            return monthsDifference > 9;
+        }
         private void frmComputation_Load(object sender, EventArgs e)
         {
             dataTable = new DataTable();
@@ -533,20 +556,28 @@ namespace LEASING.UI.APP.Forms
         {
             if (strFormMode == "NEW")
             {
-                if (IsComputationValid())
+                if (IsComputed)
                 {
-                    if (MessageBox.Show("Are you sure you want to generate this Reference ?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                    if (IsComputationValid())
                     {
-                        try
+                        if (MessageBox.Show("Are you sure you want to generate this Reference ?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                         {
-                            M_Save();
-                        }
-                        catch (Exception ex)
-                        {
-                            throw;
+                            try
+                            {
+                                M_Save();
+                            }
+                            catch (Exception ex)
+                            {
+                                throw;
+                            }
                         }
                     }
                 }
+                else
+                {
+                    MessageBox.Show("Please execute the computation", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+          
             }
         }
         private void dgvList_CellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
@@ -617,11 +648,21 @@ namespace LEASING.UI.APP.Forms
         {
             if (!string.IsNullOrEmpty(ClientId))
             {
-                seq = 0;
-                txtTotalPostDatedAmount.Text = string.Empty;
-                M_GetPostDatedCountMonth();
-                var TotalPostDatedAmount = (dgvpostdatedcheck.Rows.Count() < 0) ? 0 : (Convert.ToDecimal(dgvpostdatedcheck.Rows.Count().ToString()) * ((txtTotalRental.Text == "") ? 0 : Convert.ToDecimal(txtTotalRental.Text)));
-                txtTotalPostDatedAmount.Text = TotalPostDatedAmount.ToString();
+                if (IsMoreThanSixMonths(Convert.ToDateTime(dtpStartDate.Text),Convert.ToDateTime(dtpFinishDate.Text)))
+                {
+                    IsComputed = true;
+                    seq = 0;
+                    txtTotalPostDatedAmount.Text = string.Empty;
+                    M_GetPostDatedCountMonth();
+                    var TotalPostDatedAmount = (dgvpostdatedcheck.Rows.Count() < 0) ? 0 : (Convert.ToDecimal(dgvpostdatedcheck.Rows.Count().ToString()) * ((txtTotalRental.Text == "") ? 0 : Convert.ToDecimal(txtTotalRental.Text)));
+                    txtTotalPostDatedAmount.Text = TotalPostDatedAmount.ToString();
+                    M_GetTotalRental();
+                }
+                else
+                {
+                    MessageBox.Show("Lease period is out of range", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                
             }
             else
             {
@@ -630,26 +671,35 @@ namespace LEASING.UI.APP.Forms
         }
         private void btnAddAdvancePayment_Click(object sender, EventArgs e)
         {
-            string selectedDate = dtpSelectedDate.Text;
-            if (IsDuplicate(selectedDate))
+            string selectedDate = string.Empty;
+            frmPostDatedCheckMonthsList PostDatedCheckMonthsList = new frmPostDatedCheckMonthsList(dtpStartDate.Text, dtpFinishDate.Text, M_getXMLData());
+            PostDatedCheckMonthsList.ShowDialog();
+            if (PostDatedCheckMonthsList.isProceed)
             {
-                MessageBox.Show("Date already exists. Please select another Date.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                selectedDate = Convert.ToDateTime(PostDatedCheckMonthsList.SelectedDate).ToString("MM/dd/yyyy");
             }
-            if (string.IsNullOrEmpty(txtTotalRental.Text) || txtTotalRental.Text == "0")
+            if (!string.IsNullOrEmpty(selectedDate))
             {
-                MessageBox.Show("Please select Unit to generate total rental amount", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                if (IsDuplicate(selectedDate))
+                {
+                    MessageBox.Show("Date already exists. Please select another Date.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (string.IsNullOrEmpty(txtTotalRental.Text) || txtTotalRental.Text == "0")
+                {
+                    MessageBox.Show("Please select Unit to generate total rental amount", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                dataTable.Rows.Add(selectedDate.ToString(), txtTotalRental.Text);
+                dgvAdvancePayment.DataSource = dataTable;
+                M_GetTotalRental();
+                txtTotalPostDatedAmount.Text = string.Empty;
+
+                M_GetPostDatedCountMonth();
+                var TotalPostDatedAmount = (dgvpostdatedcheck.Rows.Count() < 0) ? 0 : (Convert.ToDecimal(dgvpostdatedcheck.Rows.Count().ToString()) * ((txtTotalRental.Text == "") ? 0 : Convert.ToDecimal(txtTotalRental.Text)));
+                txtTotalPostDatedAmount.Text = TotalPostDatedAmount.ToString();
+                IsComputed = true;
             }
-            dataTable.Rows.Add(selectedDate.ToString(), txtTotalRental.Text);
-            dgvAdvancePayment.DataSource = dataTable;
-            M_GetTotalRental();
-            txtTotalPostDatedAmount.Text = string.Empty;
-
-            M_GetPostDatedCountMonth();
-            var TotalPostDatedAmount = (dgvpostdatedcheck.Rows.Count() < 0) ? 0 : (Convert.ToDecimal(dgvpostdatedcheck.Rows.Count().ToString()) * ((txtTotalRental.Text == "") ? 0 : Convert.ToDecimal(txtTotalRental.Text)));
-            txtTotalPostDatedAmount.Text = TotalPostDatedAmount.ToString();
-
         }
         private void btnRemovedAdvancePayment_Click(object sender, EventArgs e)
         {
@@ -670,6 +720,13 @@ namespace LEASING.UI.APP.Forms
         private void txtSecurityPaymentMonthCount_TextChanged(object sender, EventArgs e)
         {
             M_GetTotalRental();
+           
+        }
+
+        private void txtSecurityPaymentMonthCount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9\b]"))
+                e.Handled = true;
         }
     }
 }

@@ -26,15 +26,19 @@ namespace LEASING.UI.APP.Context
             string SerialNo,
             string PaymentRemarks,
             string REF,
-            int ModeType
-            )
+            int ModeType,
+            out string TransID)
         {
             SqlCommand _sqlcmd = null;
             SqlParameter _sqlpara;
             SqlConnection _sqlcon = null;
             SqlDataReader _sqlreader = null;
+            
             _sqlcmd = new SqlCommand();
             _sqlcmd.CommandText = "sp_GenerateFirstPayment";
+
+           
+
             _sqlpara = new SqlParameter("@RefId", RefId);
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@PaidAmount", PaidAmount);
@@ -69,6 +73,9 @@ namespace LEASING.UI.APP.Context
             _sqlpara = new SqlParameter("@ComputerName", Environment.MachineName);
             _sqlcmd.Parameters.Add(_sqlpara);
 
+
+            TransID = string.Empty;
+
             try
             {
                 _sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
@@ -79,14 +86,21 @@ namespace LEASING.UI.APP.Context
 
                 _sqlcmd.Connection.Open();
                 _sqlreader = _sqlcmd.ExecuteReader();
+
                 _sqlreader.Read();
 
-                int index;
                 if (_sqlreader.HasRows)
                 {
-                    index = _sqlreader.GetOrdinal("Message_Code");
+
+                    int sindex = _sqlreader.GetOrdinal("TranID");
+                    if (!_sqlreader.IsDBNull(sindex))
+                        TransID = Convert.ToString(_sqlreader.GetString(sindex));
+
+                    int index = _sqlreader.GetOrdinal("Message_Code");
                     if (!_sqlreader.IsDBNull(index))
                         return Convert.ToString(_sqlreader.GetString(index));
+
+                   
                 }
             }
             catch (Exception expCommon)

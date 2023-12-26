@@ -47,6 +47,7 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn14 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn15 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn16 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn17 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             this.radGroupBox2 = new Telerik.WinControls.UI.RadGroupBox();
             this.dgvList = new Telerik.WinControls.UI.RadGridView();
             this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
@@ -64,7 +65,7 @@
             this.radGroupBox2.HeaderText = "CONTRACT LIST";
             this.radGroupBox2.Location = new System.Drawing.Point(0, 0);
             this.radGroupBox2.Name = "radGroupBox2";
-            this.radGroupBox2.Size = new System.Drawing.Size(821, 449);
+            this.radGroupBox2.Size = new System.Drawing.Size(948, 449);
             this.radGroupBox2.TabIndex = 6;
             this.radGroupBox2.Text = "CONTRACT LIST";
             // 
@@ -140,43 +141,48 @@
             gridViewTextBoxColumn8.HeaderText = "Finish Date";
             gridViewTextBoxColumn8.Name = "FinishDate";
             gridViewTextBoxColumn8.Width = 100;
-            gridViewTextBoxColumn9.FieldName = "Rental";
-            gridViewTextBoxColumn9.HeaderText = "Rental";
-            gridViewTextBoxColumn9.IsVisible = false;
-            gridViewTextBoxColumn9.Name = "Rental";
-            gridViewTextBoxColumn9.Width = 100;
-            gridViewTextBoxColumn10.FieldName = "SecAndMaintenance";
-            gridViewTextBoxColumn10.HeaderText = "Sec And Maintenance";
+            gridViewTextBoxColumn9.FieldName = "PaymentCategory";
+            gridViewTextBoxColumn9.HeaderText = "Payment Category";
+            gridViewTextBoxColumn9.Name = "PaymentCategory";
+            gridViewTextBoxColumn9.Width = 130;
+            gridViewTextBoxColumn9.WrapText = true;
+            gridViewTextBoxColumn10.FieldName = "Rental";
+            gridViewTextBoxColumn10.HeaderText = "Rental";
             gridViewTextBoxColumn10.IsVisible = false;
-            gridViewTextBoxColumn10.Name = "SecAndMaintenance";
-            gridViewTextBoxColumn10.Width = 120;
-            gridViewTextBoxColumn10.WrapText = true;
-            gridViewTextBoxColumn11.FieldName = "TotalRent";
-            gridViewTextBoxColumn11.HeaderText = "Total Rent";
+            gridViewTextBoxColumn10.Name = "Rental";
+            gridViewTextBoxColumn10.Width = 100;
+            gridViewTextBoxColumn11.FieldName = "SecAndMaintenance";
+            gridViewTextBoxColumn11.HeaderText = "Sec And Maintenance";
             gridViewTextBoxColumn11.IsVisible = false;
-            gridViewTextBoxColumn11.Name = "TotalRent";
-            gridViewTextBoxColumn11.Width = 100;
-            gridViewTextBoxColumn12.FieldName = "Total";
-            gridViewTextBoxColumn12.HeaderText = "Total";
+            gridViewTextBoxColumn11.Name = "SecAndMaintenance";
+            gridViewTextBoxColumn11.Width = 120;
+            gridViewTextBoxColumn11.WrapText = true;
+            gridViewTextBoxColumn12.FieldName = "TotalRent";
+            gridViewTextBoxColumn12.HeaderText = "Total Rent";
             gridViewTextBoxColumn12.IsVisible = false;
-            gridViewTextBoxColumn12.Name = "Total";
+            gridViewTextBoxColumn12.Name = "TotalRent";
             gridViewTextBoxColumn12.Width = 100;
-            gridViewTextBoxColumn13.FieldName = "RecId";
-            gridViewTextBoxColumn13.HeaderText = "RecId";
+            gridViewTextBoxColumn13.FieldName = "Total";
+            gridViewTextBoxColumn13.HeaderText = "Total";
             gridViewTextBoxColumn13.IsVisible = false;
-            gridViewTextBoxColumn13.Name = "RecId";
-            gridViewTextBoxColumn14.FieldName = "UnitId";
-            gridViewTextBoxColumn14.HeaderText = "UnitId";
+            gridViewTextBoxColumn13.Name = "Total";
+            gridViewTextBoxColumn13.Width = 100;
+            gridViewTextBoxColumn14.FieldName = "RecId";
+            gridViewTextBoxColumn14.HeaderText = "RecId";
             gridViewTextBoxColumn14.IsVisible = false;
-            gridViewTextBoxColumn14.Name = "UnitId";
-            gridViewTextBoxColumn15.FieldName = "ProjectName";
-            gridViewTextBoxColumn15.HeaderText = "ProjectName";
+            gridViewTextBoxColumn14.Name = "RecId";
+            gridViewTextBoxColumn15.FieldName = "UnitId";
+            gridViewTextBoxColumn15.HeaderText = "UnitId";
             gridViewTextBoxColumn15.IsVisible = false;
-            gridViewTextBoxColumn15.Name = "ProjectName";
-            gridViewTextBoxColumn16.FieldName = "ClientID";
-            gridViewTextBoxColumn16.HeaderText = "";
+            gridViewTextBoxColumn15.Name = "UnitId";
+            gridViewTextBoxColumn16.FieldName = "ProjectName";
+            gridViewTextBoxColumn16.HeaderText = "ProjectName";
             gridViewTextBoxColumn16.IsVisible = false;
-            gridViewTextBoxColumn16.Name = "ClientID";
+            gridViewTextBoxColumn16.Name = "ProjectName";
+            gridViewTextBoxColumn17.FieldName = "ClientID";
+            gridViewTextBoxColumn17.HeaderText = "";
+            gridViewTextBoxColumn17.IsVisible = false;
+            gridViewTextBoxColumn17.Name = "ClientID";
             this.dgvList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewCommandColumn1,
             gridViewCommandColumn2,
@@ -196,7 +202,8 @@
             gridViewTextBoxColumn13,
             gridViewTextBoxColumn14,
             gridViewTextBoxColumn15,
-            gridViewTextBoxColumn16});
+            gridViewTextBoxColumn16,
+            gridViewTextBoxColumn17});
             this.dgvList.MasterTemplate.EnableFiltering = true;
             this.dgvList.MasterTemplate.ShowRowHeaderColumn = false;
             this.dgvList.Name = "dgvList";
@@ -204,7 +211,7 @@
             this.dgvList.ReadOnly = true;
             this.dgvList.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgvList.ShowGroupPanel = false;
-            this.dgvList.Size = new System.Drawing.Size(817, 429);
+            this.dgvList.Size = new System.Drawing.Size(944, 429);
             this.dgvList.TabIndex = 0;
             this.dgvList.Text = "radGridView1";
             this.dgvList.ThemeName = "Office2007Silver";
@@ -214,7 +221,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(821, 449);
+            this.ClientSize = new System.Drawing.Size(948, 449);
             this.Controls.Add(this.radGroupBox2);
             this.DoubleBuffered = true;
             this.Name = "frmGenerateTrasaction";

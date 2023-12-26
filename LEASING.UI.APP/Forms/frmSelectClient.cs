@@ -19,22 +19,18 @@ namespace LEASING.UI.APP.Forms
         ClientContext ClientContext = new ClientContext();
         ComputationContext ComputationContext = new ComputationContext();
         PaymentContext PaymentContext = new PaymentContext();
-
+        public bool IsFullPayment = false;
         public int TotalRental { get; set; }
         public int ComputationRecid { get; set; }
-        public string TranID { get; set; }
+        public string TransID = string.Empty;
         public string RefId { get; set; }
-
         public string ClientId { get; set; }
         public bool IsProceed { get; set; }
         public string FromDate { get; set; }
         public string Todate { get; set; }
         public int TotalAmount { get; set; }
-
-
         public decimal ReceiveAmount { get; set; }
         public decimal ChangeAmount { get; set; }
-
         public string CompanyORNo { get; set; }
         public string CompanyPRNo { get; set; }
         public string BankAccountName { get; set; }
@@ -104,7 +100,7 @@ namespace LEASING.UI.APP.Forms
         }
         private void M_sp_GenerateFirstPayment()
         {
-            var result = PaymentContext.GenerateFirstPayment(RefId, txtTotalForPayment.Text == string.Empty ? 0 : decimal.Parse(txtTotalForPayment.Text), ReceiveAmount, ChangeAmount, txtThreeMonSecDep.Text == string.Empty ? 0 : decimal.Parse(txtThreeMonSecDep.Text),CompanyORNo, CompanyPRNo,BankAccountName, BankAccountNumber,BankName,SerialNo,PaymentRemarks,REF,ModeType);
+            var result = PaymentContext.GenerateFirstPayment(RefId, txtTotalForPayment.Text == string.Empty ? 0 : decimal.Parse(txtTotalForPayment.Text), ReceiveAmount, ChangeAmount, txtThreeMonSecDep.Text == string.Empty ? 0 : decimal.Parse(txtThreeMonSecDep.Text),CompanyORNo, CompanyPRNo,BankAccountName, BankAccountNumber,BankName,SerialNo,PaymentRemarks,REF,ModeType,out TransID);
             if (result.Equals("SUCCESS"))
             {
                 MessageBox.Show("PAYMENT SUCCESS", "System Message", MessageBoxButtons.OK);
@@ -117,25 +113,21 @@ namespace LEASING.UI.APP.Forms
                 MessageBox.Show(result, "System Message", MessageBoxButtons.OK);
             }
         }
-
         private void radTextBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
-        }
-      
+        }     
         private void radDateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
             
         }
-  
         private void btnCheckUnits_Click(object sender, EventArgs e)
         {           
             frmCheckClientUnits forms = new frmCheckClientUnits();
             forms.ClientId = ClientId;
             forms.ShowDialog();
         }
-
         private void dgvLedgerList_CellFormatting(object sender, Telerik.WinControls.UI.CellFormattingEventArgs e)
         {
             if (!string.IsNullOrEmpty(Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["Remarks"].Value)))
@@ -151,11 +143,19 @@ namespace LEASING.UI.APP.Forms
                 }
                 else if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["Remarks"].Value) == "FOR POST DATED CHECK")
                 {
-                    // e.CellElement.ForeColor = Color.White;
+                    e.CellElement.ForeColor = Color.Black;
 
                     e.CellElement.DrawFill = true;
                     e.CellElement.GradientStyle = GradientStyles.Solid;
                     e.CellElement.BackColor = Color.Yellow;
+                }
+                else if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["Remarks"].Value) == "FOR FULL PAYMENT")
+                {
+                    e.CellElement.ForeColor = Color.White;
+
+                    e.CellElement.DrawFill = true;
+                    e.CellElement.GradientStyle = GradientStyles.Solid;
+                    e.CellElement.BackColor = Color.Green;
                 }
                 //else if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["UnitStatus"].Value) == "OCCUPIED")
                 //{
@@ -173,7 +173,6 @@ namespace LEASING.UI.APP.Forms
                 //}
             }
         }
-
         private void btnGenerate_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Are you sure you want to proceed  to this payment?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
@@ -201,16 +200,15 @@ namespace LEASING.UI.APP.Forms
                         ReceiveAmount = frmReceivePayment.txtReceiveAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtReceiveAmount.Text);
                         ChangeAmount = frmReceivePayment.txtChangeAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtChangeAmount.Text);
                         M_sp_GenerateFirstPayment();
-                        frmRecieptSelection frmRecieptSelection = new frmRecieptSelection(TranID,RefId);
+                        frmRecieptSelection frmRecieptSelection = new frmRecieptSelection(TransID, RefId);
                         frmRecieptSelection.ShowDialog();
                     }
                 }
             }
         }
-
         private void btnPrintReciept_Click(object sender, EventArgs e)
         {
-            frmRecieptSelection frmRecieptSelection = new frmRecieptSelection(TranID, RefId);
+            frmRecieptSelection frmRecieptSelection = new frmRecieptSelection(TransID, RefId);
             frmRecieptSelection.ShowDialog();
         }
     }

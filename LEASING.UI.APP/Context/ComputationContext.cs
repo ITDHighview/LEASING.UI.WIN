@@ -54,6 +54,8 @@ namespace LEASING.UI.APP.Context
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@AdvancePaymentAmount", model.AdvancePaymentAmount);
             _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@IsFullPayment", model.IsFullPayment);
+            _sqlcmd.Parameters.Add(_sqlpara);
 
             try
             {
@@ -179,7 +181,6 @@ namespace LEASING.UI.APP.Context
             }
             return "";
         }
-
         public string DeleteComputation( int recid,int unitid)
         {
             SqlCommand _sqlcmd = null;
@@ -317,7 +318,6 @@ namespace LEASING.UI.APP.Context
                 return dsRec;
             }
         }
-
         public DataSet GetParkingComputationList()
         {
 
@@ -361,7 +361,6 @@ namespace LEASING.UI.APP.Context
                 return dsRec;
             }
         }
-
         public DataSet GetPostDatedCountMonth(string FromDate,string EndDate,string rental,string XML)
         {
 
@@ -389,6 +388,49 @@ namespace LEASING.UI.APP.Context
                 _SqlCommand.Parameters.Add(_SqlParameter);
 
                 
+                try
+                {
+                    _SqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
+                    _SqlCommand.Connection = _SqlConnection;
+                    _SqlCommand.CommandType = CommandType.StoredProcedure;
+                    using (SqlDataAdapter dataAdaptor = new SqlDataAdapter(_SqlCommand))
+                    {
+                        dataAdaptor.Fill(dsRec);
+                    }
+                }
+                catch (Exception expCommon)
+                {
+                    return null;
+                }
+                finally
+                {
+                    if (_SqlConnection.State != ConnectionState.Closed)
+                    {
+                        _SqlConnection.Close();
+                    }
+                    _SqlParameter = null;
+                    _SqlCommand = null;
+                    _SqlConnection = null;
+                }
+                return dsRec;
+            }
+        }
+        public DataSet GetPostDatedMonthList(string FromDate, string EndDate, string XML)
+        {
+            SqlCommand _SqlCommand = null;
+            SqlParameter _SqlParameter;
+            SqlConnection _SqlConnection = null;
+            using (DataSet dsRec = new DataSet())
+            {
+                _SqlCommand = new SqlCommand();
+                _SqlCommand.CommandText = "sp_GetPostDatedMonthList";
+                _SqlParameter = new SqlParameter("@FromDate", FromDate);
+                _SqlCommand.Parameters.Add(_SqlParameter);
+                _SqlParameter = new SqlParameter("@EndDate", EndDate);
+                _SqlCommand.Parameters.Add(_SqlParameter);
+                _SqlParameter = new SqlParameter("@XML", XML);
+                _SqlCommand.Parameters.Add(_SqlParameter);
+
                 try
                 {
                     _SqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
@@ -467,7 +509,6 @@ namespace LEASING.UI.APP.Context
                 return dsRec;
             }
         }
-
         public DataSet GetComputationById(int recid)
         {
 
@@ -528,7 +569,8 @@ namespace LEASING.UI.APP.Context
                 _SqlCommand.Parameters.Add(_SqlParameter);
 
                 _SqlParameter = new SqlParameter("@ClientID", cliendId);
-                _SqlCommand.Parameters.Add(_SqlParameter);       
+                _SqlCommand.Parameters.Add(_SqlParameter);
+              
                 try
                 {
                     _SqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
@@ -556,7 +598,6 @@ namespace LEASING.UI.APP.Context
                 return dsRec;
             }
         }
-
         public DataSet GetLedgerList(int recid,string ClientID)
         {
 
@@ -602,8 +643,6 @@ namespace LEASING.UI.APP.Context
                 return dsRec;
             }
         }
-
-
         public DataSet GetReferenceByClientID(string ClientID)
         {
 
@@ -647,7 +686,6 @@ namespace LEASING.UI.APP.Context
                 return dsRec;
             }
         }
-
         public DataSet GetPaymentListByReferenceId(string referenceid)
         {
 
@@ -691,7 +729,6 @@ namespace LEASING.UI.APP.Context
                 return dsRec;
             }
         }
-
         public DataSet GetContractList()
         {
 

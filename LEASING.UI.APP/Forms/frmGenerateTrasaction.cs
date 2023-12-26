@@ -14,7 +14,7 @@ namespace LEASING.UI.APP.Forms
     public partial class frmGenerateTrasaction : Form
     {
         ComputationContext ComputationContext = new ComputationContext();
-      
+
         public frmGenerateTrasaction()
         {
             InitializeComponent();
@@ -56,7 +56,7 @@ namespace LEASING.UI.APP.Forms
                         forms.Recid = Convert.ToInt32(dgvList.CurrentRow.Cells["RecId"].Value);
                         forms.Text = Convert.ToString(dgvList.CurrentRow.Cells["ProjectName"].Value) + " - " + " UNIT";
                         forms.ShowDialog();
-                    }                 
+                    }
                 }
                 else if (this.dgvList.Columns[e.ColumnIndex].Name == "ColGenerate")
                 {
@@ -74,9 +74,10 @@ namespace LEASING.UI.APP.Forms
                         {
                             frmSelectClient forms = new frmSelectClient();
                             forms.ComputationRecid = Convert.ToInt32(dgvList.CurrentRow.Cells["RecId"].Value);
+                            forms.IsFullPayment = Convert.ToString(dgvList.CurrentRow.Cells["PaymentCategory"].Value) == "FULL PAYMENT" ? true : false;
                             forms.ShowDialog();
                             M_GetComputationList();
-                        }                                                             
+                        }
                     }
                 }
             }

@@ -144,8 +144,8 @@ namespace LEASING.UI.APP.Forms
 
         private void radMenuItemUnit_Click(object sender, EventArgs e)
         {
-            frmComputation forms = new frmComputation();
-            forms.ShowDialog();
+            //frmComputation forms = new frmComputation();
+            //forms.ShowDialog();
 
         }
 
@@ -228,8 +228,17 @@ namespace LEASING.UI.APP.Forms
 
         private void radMenuItemGenerateComputationUnit2_Click(object sender, EventArgs e)
         {
-            frmComputation forms = new frmComputation();
-            forms.ShowDialog();
+            if (MessageBox.Show("Would you like to pay it as full?","System Message",MessageBoxButtons.YesNo,MessageBoxIcon.Question,MessageBoxDefaultButton.Button2)== DialogResult.Yes)
+            {
+                frmComputation forms = new frmComputation(true);
+                forms.ShowDialog();
+            }
+            else
+            {
+                frmComputation forms = new frmComputation(false);
+                forms.ShowDialog();
+            }
+            
         }
 
         private void radMenuItemGenerateComputationParking2_Click(object sender, EventArgs e)

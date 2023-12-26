@@ -92,7 +92,7 @@ namespace LEASING.UI.APP.Forms
                         toolStripAdvancePayment.Enabled = true;
                         dgvAdvancePayment.Enabled = true;
                         txtSecurityPaymentMonthCount.Enabled = true;
-                        dtpSelectedDate.Enabled = true;
+                      
                         break;
                     case "READ":
                         btnUndo.Enabled = false;
@@ -110,7 +110,7 @@ namespace LEASING.UI.APP.Forms
                         toolStripAdvancePayment.Enabled = false;
                         dgvAdvancePayment.Enabled = false;
                         txtSecurityPaymentMonthCount.Enabled = false;
-                        dtpSelectedDate.Enabled = false;
+                        
                         break;
 
                     default:
@@ -350,6 +350,14 @@ namespace LEASING.UI.APP.Forms
             return sbDoctorSchedule.ToString();
         }
         #endregion
+        private bool IsMoreThanSixMonths(DateTime date1, DateTime date2)
+        {
+            // Calculate the difference in months
+            int monthsDifference = (date2.Year - date1.Year) * 12 + date2.Month - date1.Month;
+
+            // Check if the difference is more than 6 months
+            return monthsDifference > 9;
+        }
         private void frmComputation_Load(object sender, EventArgs e)
         {
             dataTable = new DataTable();
@@ -481,11 +489,19 @@ namespace LEASING.UI.APP.Forms
 
         private void btnCompute_Click(object sender, EventArgs e)
         {
-            txtTotalCheck.Text = string.Empty;
+            if (IsMoreThanSixMonths(Convert.ToDateTime(dtpStartDate.Text), Convert.ToDateTime(dtpFinishDate.Text)))
+            {
+                txtTotalCheck.Text = string.Empty;
 
-            M_GetPostDatedCountMonth();
-            var TotalPostDatedAmount = (dgvpostdatedcheck.Rows.Count() < 0) ? 0 : (Convert.ToDecimal(dgvpostdatedcheck.Rows.Count().ToString()) * ((txtTotalRental.Text == "") ? 0 : Convert.ToDecimal(txtTotalRental.Text)));
-            txtTotalCheck.Text = TotalPostDatedAmount.ToString();
+                M_GetPostDatedCountMonth();
+                var TotalPostDatedAmount = (dgvpostdatedcheck.Rows.Count() < 0) ? 0 : (Convert.ToDecimal(dgvpostdatedcheck.Rows.Count().ToString()) * ((txtTotalRental.Text == "") ? 0 : Convert.ToDecimal(txtTotalRental.Text)));
+                txtTotalCheck.Text = TotalPostDatedAmount.ToString();
+            }
+            else
+            {
+                MessageBox.Show("Lease period is out of range", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
         }
 
         private void txtTotalCheck_KeyPress(object sender, KeyPressEventArgs e)
@@ -502,28 +518,43 @@ namespace LEASING.UI.APP.Forms
 
         private void btnAddAdvancePayment_Click(object sender, EventArgs e)
         {
-            //dgvAdvancePayment.DataSource = null;
-            string selectedDate = dtpSelectedDate.Text;
+            if (IsMoreThanSixMonths(Convert.ToDateTime(dtpStartDate.Text), Convert.ToDateTime(dtpFinishDate.Text)))
+            {   //dgvAdvancePayment.DataSource = null;
+                string selectedDate = string.Empty;
+                frmPostDatedCheckMonthsList PostDatedCheckMonthsList = new frmPostDatedCheckMonthsList(dtpStartDate.Text, dtpFinishDate.Text, M_getXMLData());
+                PostDatedCheckMonthsList.ShowDialog();
+                if (PostDatedCheckMonthsList.isProceed)
+                {
+                    selectedDate = Convert.ToDateTime(PostDatedCheckMonthsList.SelectedDate).ToString("MM/dd/yyyy");
+                }
+                //string selectedDate = dtpSelectedDate.Text;
+                if (!string.IsNullOrEmpty(selectedDate))
+                {
+                    if (IsDuplicate(selectedDate))
+                    {
+                        MessageBox.Show("Date already exists. Please select another Date.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    if (string.IsNullOrEmpty(txtTotalRental.Text) || txtTotalRental.Text == "0")
+                    {
+                        MessageBox.Show("Please select Unit to generate total rental amount", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    dataTable.Rows.Add(selectedDate.ToString(), txtTotalRental.Text);
+                    dgvAdvancePayment.DataSource = dataTable;
+                    M_GetTotalRental();
+                    txtTotalCheck.Text = string.Empty;
 
-
-            if (IsDuplicate(selectedDate))
-            {
-                MessageBox.Show("Date already exists. Please select another Date.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                    M_GetPostDatedCountMonth();
+                    var TotalPostDatedAmount = (dgvpostdatedcheck.Rows.Count() < 0) ? 0 : (Convert.ToDecimal(dgvpostdatedcheck.Rows.Count().ToString()) * ((txtTotalRental.Text == "") ? 0 : Convert.ToDecimal(txtTotalRental.Text)));
+                    txtTotalCheck.Text = TotalPostDatedAmount.ToString();
+                }
             }
-            if (string.IsNullOrEmpty(txtTotalRental.Text) || txtTotalRental.Text == "0")
+            else
             {
-                MessageBox.Show("Please select Unit to generate total rental amount", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                MessageBox.Show("Lease period is out of range", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            dataTable.Rows.Add(selectedDate.ToString(), txtTotalRental.Text);
-            dgvAdvancePayment.DataSource = dataTable;
-            M_GetTotalRental();
-            txtTotalCheck.Text = string.Empty;
 
-            M_GetPostDatedCountMonth();
-            var TotalPostDatedAmount = (dgvpostdatedcheck.Rows.Count() < 0) ? 0 : (Convert.ToDecimal(dgvpostdatedcheck.Rows.Count().ToString()) * ((txtTotalRental.Text == "") ? 0 : Convert.ToDecimal(txtTotalRental.Text)));
-            txtTotalCheck.Text = TotalPostDatedAmount.ToString();
         }
 
         private void btnRemovedAdvancePayment_Click(object sender, EventArgs e)

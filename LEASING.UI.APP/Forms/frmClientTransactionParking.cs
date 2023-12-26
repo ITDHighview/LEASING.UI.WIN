@@ -20,6 +20,7 @@ namespace LEASING.UI.APP.Forms
         ClientContext ClientContext = new ClientContext();
         ComputationContext ComputationContext = new ComputationContext();
         PaymentContext PaymentContext = new PaymentContext();
+        public bool IsFullPayment = false;
         public int TotalRental { get; set; }
         public int ComputationRecid { get; set; }
         public string TranID { get; set; }

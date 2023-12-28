@@ -307,7 +307,7 @@
             // btnPrintReciept
             // 
             this.btnPrintReciept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPrintReciept.Image = global::LEASING.UI.APP.Properties.Resources.magnifier;
+            this.btnPrintReciept.Image = global::LEASING.UI.APP.Properties.Resources.print_16;
             this.btnPrintReciept.Location = new System.Drawing.Point(491, 3);
             this.btnPrintReciept.Name = "btnPrintReciept";
             this.btnPrintReciept.Size = new System.Drawing.Size(101, 19);

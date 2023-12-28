@@ -27,7 +27,6 @@ namespace LEASING.UI.APP.Forms
             InitializeComponent();
             printDocument.PrintPage += PrintDocument_PrintPage;
         }
-
         private void PrintDocument_PrintPage(object sender, PrintPageEventArgs e)
         {
             // Calculate the scaling factor to fit the content on the printed page
@@ -53,7 +52,6 @@ namespace LEASING.UI.APP.Forms
                 e.Graphics.DrawImage(bitmap, Point.Empty);
             }
         }
-
         private void printButton_Click(object sender, EventArgs e)
         {
             // Display the print preview dialog
@@ -67,7 +65,6 @@ namespace LEASING.UI.APP.Forms
             this.ControlBox = true;
             btnCompute.Visible = true;
         }
-
         private string _strFormMode;
         public string strFormMode
         {
@@ -106,25 +103,15 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-
         private bool IsComputationValid()
         {
-            if (ddlProject.SelectedText == "--SELECT--")
+            if (ddlProject.SelectedIndex == 0)
             {
-                MessageBox.Show("Project  cannot be empty !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Please select Project name.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return false;
             }
-
-            //if (ddlFloorType.SelectedText == "--SELECT--")
-            //{
-            //    MessageBox.Show("Floor Type cannot be empty !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            //    return false;
-            //}
-
-
             return true;
         }
-
         private void ClearFields()
         {
             txtProjectAddress.Text = string.Empty;
@@ -139,7 +126,6 @@ namespace LEASING.UI.APP.Forms
             //txtMonthsSecurityDeposit.Text = string.Empty;
             //txtTotal.Text = string.Empty;
         }
-
         private void EnableFields()
         {
             txtProjectAddress.Enabled = true;
@@ -165,7 +151,6 @@ namespace LEASING.UI.APP.Forms
             ddlUnitNumber.Enabled = true;
             btnCheckunits.Enabled = true;
         }
-
         private void DisableFields()
         {
             txtProjectAddress.Enabled = false;
@@ -194,7 +179,7 @@ namespace LEASING.UI.APP.Forms
         {
 
             dgvpostdatedcheck.DataSource = null;
-            using (DataSet dt = ComputationContext.GetPostDatedCountMonthParking(dtpStartDate.Text,dtpFinishDate.Text,txtRental.Text))
+            using (DataSet dt = ComputationContext.GetPostDatedCountMonthParking(dtpStartDate.Text, dtpFinishDate.Text, txtRental.Text))
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                 {
@@ -205,7 +190,7 @@ namespace LEASING.UI.APP.Forms
         }
         private void M_GetRateSettings()
         {
-            
+
             lblVat.Text = string.Empty;
 
             using (DataSet dt = RateSettingsContext.GetRateSettingsByType(txtProjectType.Text))
@@ -217,7 +202,6 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-
         private void M_SelectProject()
         {
             ddlProject.DataSource = null;
@@ -244,7 +228,6 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-
         private void M_GetProjecAddress()
         {
             txtProjectAddress.Text = string.Empty;
@@ -258,7 +241,6 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-
         private void M_GetUnitAvaibleById()
         {
             txtFloorType.Text = string.Empty;
@@ -283,15 +265,24 @@ namespace LEASING.UI.APP.Forms
         //    var rentalfinal = ((txtMonthsAdvance1.Text == "" ? 0 : Convert.ToDecimal(txtMonthsAdvance1.Text)) + (txtMonthsAdvance2.Text == "" ? 0 : Convert.ToDecimal(txtMonthsAdvance2.Text)));
         //    txtTotal.Text = Convert.ToString(rentalfinal + rental2);
         //}
+        private bool IsMoreThanSixMonths(DateTime date1, DateTime date2)
+        {
+            // Calculate the difference in months
+            int monthsDifference = (date2.Year - date1.Year) * 12 + date2.Month - date1.Month;
 
+            // Check if the difference is more than 6 months
+            return monthsDifference > 9;
+        }
         private void frmComputation_Load(object sender, EventArgs e)
         {
+            txtRental.ReadOnly = true;
+            txtTotalCheck.ReadOnly = true;
+
             strFormMode = "READ";
             txtProjectType.ReadOnly = true;
             txtFloorType.ReadOnly = true;
             M_SelectProject();
         }
-
         private void ddlProject_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
         {
             if (ddlProject.SelectedIndex >= 0)
@@ -312,7 +303,6 @@ namespace LEASING.UI.APP.Forms
                 ddlUnitNumber.DataSource = null;
             }
         }
-
         private void ddlUnitNumber_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
         {
             if (ddlUnitNumber.SelectedIndex >= 0)
@@ -326,58 +316,49 @@ namespace LEASING.UI.APP.Forms
                 txtRental.Text = string.Empty;
             }
         }
-
         private void txtRental_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
         }
-
         private void txtSecAndMaintenance_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
         }
-
         private void txtTotalRental_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
         }
-
         private void txtMonthsAdvance1_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
         }
-
         private void txtMonthsAdvance2_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
         }
-
         private void txtMonthsSecurityDeposit_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
         }
-
         private void txtTotal_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
         }
-
         private void btnNewComputation_Click(object sender, EventArgs e)
         {
             strFormMode = "NEW";
         }
-
         private void btnUndo_Click(object sender, EventArgs e)
         {
             strFormMode = "READ";
-        }      
+        }
         private void btnCheckunits_Click(object sender, EventArgs e)
         {
             if (ddlProject.SelectedIndex >= 0)
@@ -392,7 +373,6 @@ namespace LEASING.UI.APP.Forms
                 MessageBox.Show("Please select project name", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-
         private void btnPrint_Click(object sender, EventArgs e)
         {
             if (strFormMode == "NEW")
@@ -410,16 +390,27 @@ namespace LEASING.UI.APP.Forms
                 MessageBox.Show("Please click compute button", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-
         private void btnCompute_Click(object sender, EventArgs e)
         {
-            txtTotalCheck.Text = string.Empty;
+            if (IsComputationValid())
+            {
+                if (IsMoreThanSixMonths(Convert.ToDateTime(dtpStartDate.Text), Convert.ToDateTime(dtpFinishDate.Text)))
+                {
+                    txtTotalCheck.Text = string.Empty;
 
-            M_GetPostDatedCountMonth();
-            var TotalPostDatedAmount = (dgvpostdatedcheck.Rows.Count() < 0) ? 0 : (Convert.ToDecimal(dgvpostdatedcheck.Rows.Count().ToString()) * ((txtRental.Text == "") ? 0 : Convert.ToDecimal(txtRental.Text)));
-            txtTotalCheck.Text = TotalPostDatedAmount.ToString();
+                    M_GetPostDatedCountMonth();
+                    var TotalPostDatedAmount = (dgvpostdatedcheck.Rows.Count() < 0) ? 0 : (Convert.ToDecimal(dgvpostdatedcheck.Rows.Count().ToString()) * ((txtRental.Text == "") ? 0 : Convert.ToDecimal(txtRental.Text)));
+                    txtTotalCheck.Text = TotalPostDatedAmount.ToString();
+                    txtTotalCheck.Focus();
+                }
+                else
+                {
+                    MessageBox.Show("Lease period is out of range", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+
+
         }
-
         private void txtTotalCheck_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))

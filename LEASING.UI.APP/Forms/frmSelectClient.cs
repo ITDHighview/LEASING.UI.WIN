@@ -19,7 +19,6 @@ namespace LEASING.UI.APP.Forms
         ClientContext ClientContext = new ClientContext();
         ComputationContext ComputationContext = new ComputationContext();
         PaymentContext PaymentContext = new PaymentContext();
-        public bool IsFullPayment = false;
         public int TotalRental { get; set; }
         public int ComputationRecid { get; set; }
         public string TransID = string.Empty;
@@ -138,7 +137,7 @@ namespace LEASING.UI.APP.Forms
         {
             if (!string.IsNullOrEmpty(Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["Remarks"].Value)))
             {
-                if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["Remarks"].Value) == "FOR ADVANCE PAYMENT" || Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["Remarks"].Value) == "FOR 3 MONTHS SECURITY DEPOSIT")
+                if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["Remarks"].Value) == "FOR ADVANCE PAYMENT" || Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["Remarks"].Value) == "FOR SECURITY DEPOSIT")
                 {
                     e.CellElement.ForeColor = Color.White;
                     //e.CellElement.Font = new Font("Tahoma", 7f, FontStyle.Bold);

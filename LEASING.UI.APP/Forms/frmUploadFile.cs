@@ -60,18 +60,18 @@ namespace LEASING.UI.APP.Forms
             if (IsContractSigned)
             {
                 txtReference.Text = ReferenceId;
-                btnReference.Enabled = true;
+                //btnReference.Enabled = true;
                 txtnotes.Text = "Contract Signed";
                 txtReference.Enabled = true;
-                txtFilePath.Text = sFilePath;
-                txtFilePath.ReadOnly = true;
+                //txtFilePath.Text = sFilePath;
+                //txtFilePath.ReadOnly = true;
                 txtClientID.ReadOnly = true;
             }
             else
             {
-                txtFilePath.Text = sFilePath;
-                txtFilePath.ReadOnly = true;
-                btnReference.Enabled = false;
+                //txtFilePath.Text = sFilePath;
+                //txtFilePath.ReadOnly = true;
+                //btnReference.Enabled = false;
                 txtnotes.Text = string.Empty;
                 txtReference.Enabled = false;
                 txtClientID.ReadOnly = true;
@@ -87,6 +87,7 @@ namespace LEASING.UI.APP.Forms
             if (forms.IsProceed)
             {
                 txtReference.Text = forms.ReferenceId;
+                ReferenceId = forms.ReferenceId;
             }
         }
     }

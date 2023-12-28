@@ -1,4 +1,5 @@
-﻿using LEASING.UI.APP.Context;
+﻿using LEASING.UI.APP.Common;
+using LEASING.UI.APP.Context;
 using LEASING.UI.APP.Models;
 using System;
 using System.Collections.Generic;
@@ -20,31 +21,21 @@ namespace LEASING.UI.APP.Forms
         ProjectContext ProjectContext = new ProjectContext();
         UnitContext UnitContext = new UnitContext();
         ComputationContext ComputationContext = new ComputationContext();
-        public frmParkComputation()
+        public bool sIsFullPayment = false;
+        public bool IsComputed = false;
+        public frmParkComputation(bool IsFullPayment)
         {
             InitializeComponent();
             //data.Columns.Add("Seq", typeof(int));         
             //data.Columns.Add("Date", typeof(string));
             //data.Columns.Add("Rental", typeof(string));
 
-
+            sIsFullPayment = IsFullPayment;
 
             // Bind the DataTable to the DataGridView
             //dgvpostdatedcheck.DataSource = data;
         }
-
         public int seq = 0;
-        //private void GenerateDataForMonths(DateTime startDate, DateTime endDate)
-        //{
-        //    DateTime currentDate = startDate;
-
-        //    while (currentDate <= endDate)
-        //    {
-        //        seq++;
-        //        data.Rows.Add(data.Rows.Count + 1, String.Format("{0:MMMM d, yyyy}",currentDate),txtTotalRental.Text);
-        //        currentDate = currentDate.AddMonths(1);
-        //    }
-        //}
         private int CountMonths(DateTime startDate, DateTime endDate)
         {
             // The rest of the code remains the same as in the previous example
@@ -64,7 +55,6 @@ namespace LEASING.UI.APP.Forms
 
             return months;
         }
-
         private string _strFormMode;
         public string strFormMode
         {
@@ -104,25 +94,22 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-
         private bool IsComputationValid()
         {
-            if (ddlProject.SelectedText == "--SELECT--")
+            if (ddlProject.SelectedIndex == 0)
             {
-                MessageBox.Show("Project  cannot be empty !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Please select Project name.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return false;
             }
 
-            //if (ddlFloorType.SelectedText == "--SELECT--")
-            //{
-            //    MessageBox.Show("Floor Type cannot be empty !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            //    return false;
-            //}
-
+            if (string.IsNullOrEmpty(txtClient.Text))
+            {
+                MessageBox.Show("Please select Client", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
+            }
 
             return true;
         }
-
         private void ClearFields()
         {
             txtProjectAddress.Text = string.Empty;
@@ -131,6 +118,7 @@ namespace LEASING.UI.APP.Forms
             txtContactNumber.Text = string.Empty;
             txtFloorType.Text = string.Empty;
             txtRental.Text = string.Empty;
+            txtTotal.Text = string.Empty;
             //txtSecAndMaintenance.Text = string.Empty;
             //txtTotalRental.Text = string.Empty;
             //txtMonthsAdvance1.Text = string.Empty;
@@ -141,7 +129,6 @@ namespace LEASING.UI.APP.Forms
             txtTotalPostDatedAmount.Text = string.Empty;
             //data.Clear();
         }
-
         private void EnableFields()
         {
             txtProjectAddress.Enabled = true;
@@ -150,6 +137,7 @@ namespace LEASING.UI.APP.Forms
             txtContactNumber.Enabled = true;
             txtFloorType.Enabled = true;
             txtRental.Enabled = true;
+            txtTotal.Enabled = true;
             //txtSecAndMaintenance.Enabled = true;
             //txtTotalRental.Enabled = true;
             //txtMonthsAdvance1.Enabled = true;
@@ -174,7 +162,6 @@ namespace LEASING.UI.APP.Forms
             btnSelectClient.Enabled = true;
             txtTotalPostDatedAmount.Enabled = true;
         }
-
         private void DisableFields()
         {
             txtProjectAddress.Enabled = false;
@@ -183,6 +170,7 @@ namespace LEASING.UI.APP.Forms
             txtContactNumber.Enabled = false;
             txtFloorType.Enabled = false;
             txtRental.Enabled = false;
+            txtTotal.Enabled = false;
             //txtSecAndMaintenance.Enabled = false;
             //txtTotalRental.Enabled = false;
             //txtMonthsAdvance1.Enabled = false;
@@ -206,7 +194,6 @@ namespace LEASING.UI.APP.Forms
             txtTotalPostDatedAmount.Enabled = false;
 
         }
-
         private void M_GetRateSettings()
         {
             //txtSecAndMaintenance.Text = string.Empty;
@@ -223,7 +210,6 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-
         private void M_SelectProject()
         {
 
@@ -265,7 +251,6 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-
         private void M_GetPostDatedCountMonth()
         {
 
@@ -295,7 +280,6 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-
         private void M_GetUnitAvaibleById()
         {
 
@@ -312,22 +296,43 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-        //private void M_GetTotalRental()
-        //{
+        private void M_GetTotalRental()
+        {
 
 
-        //    var rental = ((txtRental.Text == "" ? 0 : Convert.ToDecimal(txtRental.Text)) + (txtSecAndMaintenance.Text == "" ? 0 : Convert.ToDecimal(txtSecAndMaintenance.Text)));
-        //    //txtTotalRental.Text = Convert.ToString(rental);
-        //    //txtMonthsAdvance1.Text = Convert.ToString(rental);
-        //    //txtMonthsAdvance2.Text = Convert.ToString(rental);
-        //    var rental2 = (rental * 3);
-        //    txtMonthsSecurityDeposit.Text = Convert.ToString(rental2);
-        //    var rentalfinal = ((txtMonthsAdvance1.Text == "" ? 0 : Convert.ToDecimal(txtMonthsAdvance1.Text)) + (txtMonthsAdvance2.Text == "" ? 0 : Convert.ToDecimal(txtMonthsAdvance2.Text)));
-        //    txtTotal.Text = Convert.ToString(rentalfinal + rental2);
-        //}
+            //var rental = ((txtRental.Text == "" ? 0 : Convert.ToDecimal(txtRental.Text)) + (txtSecAndMaintenance.Text == "" ? 0 : Convert.ToDecimal(txtSecAndMaintenance.Text)));
+            var rental = ((txtRental.Text == "" ? 0 : Convert.ToDecimal(txtRental.Text)));
+            //txtTotalRental.Text = Convert.ToString(rental);
+            //txtMonthsAdvance1.Text = Convert.ToString(rental);
+            //txtMonthsAdvance2.Text = Convert.ToString(rental);
+            //var rental2 = (rental * 3);
+            //txtMonthsSecurityDeposit.Text = Convert.ToString(rental2);
+            //var rentalfinal = ((txtMonthsAdvance1.Text == "" ? 0 : Convert.ToDecimal(txtMonthsAdvance1.Text)) + (txtMonthsAdvance2.Text == "" ? 0 : Convert.ToDecimal(txtMonthsAdvance2.Text)));
+            if (sIsFullPayment)
+            {
+                var rentalfinal = (txtTotalPostDatedAmount.Text == "" ? 0 : Convert.ToDecimal(txtTotalPostDatedAmount.Text));
+                txtTotal.Text = Convert.ToString(rentalfinal);
+            }
+            else
+            {
+                txtTotal.Text = Convert.ToString(rental);
+            }
+                     
+        }
+        private bool IsMoreThanSixMonths(DateTime date1, DateTime date2)
+        {
+            // Calculate the difference in months
+            int monthsDifference = (date2.Year - date1.Year) * 12 + date2.Month - date1.Month;
 
+            // Check if the difference is more than 6 months
+            return monthsDifference > 9;
+        }
         private void frmComputation_Load(object sender, EventArgs e)
         {
+            txtRental.ReadOnly = true;
+            txtTotal.ReadOnly = true;
+            txtTotalPostDatedAmount.ReadOnly = true;
+
             strFormMode = "READ";
             txtProjectType.ReadOnly = true;
             txtFloorType.ReadOnly = true;
@@ -335,7 +340,6 @@ namespace LEASING.UI.APP.Forms
             M_SelectProject();
             M_GetComputationList();
         }
-
         private void ddlProject_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
         {
             if (ddlProject.SelectedIndex >= 0)
@@ -344,7 +348,7 @@ namespace LEASING.UI.APP.Forms
                 M_SelectUnit();
                 M_GetUnitAvaibleById();
                 M_GetRateSettings();
-                //M_GetTotalRental();
+                M_GetTotalRental();
 
 
             }
@@ -360,13 +364,12 @@ namespace LEASING.UI.APP.Forms
             }
 
         }
-
         private void ddlUnitNumber_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
         {
             if (ddlUnitNumber.SelectedIndex >= 0)
             {
                 M_GetUnitAvaibleById();
-                //M_GetTotalRental();
+                M_GetTotalRental();
             }
             else
             {
@@ -374,95 +377,84 @@ namespace LEASING.UI.APP.Forms
                 txtRental.Text = string.Empty;
             }
         }
-
         private void txtRental_KeyPress(object sender, KeyPressEventArgs e)
         {
 
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
         }
-
         private void txtSecAndMaintenance_KeyPress(object sender, KeyPressEventArgs e)
         {
 
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
         }
-
         private void txtTotalRental_KeyPress(object sender, KeyPressEventArgs e)
         {
 
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
         }
-
         private void txtMonthsAdvance1_KeyPress(object sender, KeyPressEventArgs e)
         {
 
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
         }
-
         private void txtMonthsAdvance2_KeyPress(object sender, KeyPressEventArgs e)
         {
 
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
         }
-
         private void txtMonthsSecurityDeposit_KeyPress(object sender, KeyPressEventArgs e)
         {
 
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
         }
-
-        private void txtTotal_KeyPress(object sender, KeyPressEventArgs e)
-        {
-
-            if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
-                e.Handled = true;
-        }
-
         private void btnNewComputation_Click(object sender, EventArgs e)
         {
             strFormMode = "NEW";
         }
-
         private void btnUndo_Click(object sender, EventArgs e)
         {
             strFormMode = "READ";
         }
-
         private void M_Save()
         {
             ComputationModel dto = new ComputationModel();
-            dto.ProjectId = Convert.ToInt32(ddlProject.SelectedValue);
-            //dto.TransactionDate = dtpTransactionDate.Text;
+            dto.ProjectId = Convert.ToInt32(ddlProject.SelectedValue);           
             dto.InquiringClient = txtClient.Text;
             dto.ClientMobile = txtContactNumber.Text;
             dto.ClientID = ClientId;
             dto.UnitId = Convert.ToInt32(ddlUnitNumber.SelectedValue);
             dto.UnitNo = ddlUnitNumber.Text;
             dto.StatDate = dtpStartDate.Text;
-            dto.FinishDate = dtpFinishDate.Text;
-            //dto.Applicabledate1 = dtpApplicableFrom.Text;
-            //dto.Applicabledate2 = dtpApplicableTo.Text;
+            dto.FinishDate = dtpFinishDate.Text;          
             dto.Rental = txtRental.Text == string.Empty ? 0 : decimal.Parse(txtRental.Text);
             //dto.SecAndMaintenance = txtSecAndMaintenance.Text == string.Empty ? 0 : decimal.Parse(txtSecAndMaintenance.Text);
-            dto.TotalRent = txtRental.Text == string.Empty ? 0 : decimal.Parse(txtRental.Text);
-            //dto.Advancemonths1 = txtMonthsAdvance1.Text == string.Empty ? 0 : decimal.Parse(txtMonthsAdvance1.Text);
-            //dto.Advancemonths2 = txtMonthsAdvance2.Text == string.Empty ? 0 : decimal.Parse(txtMonthsAdvance2.Text);
+            dto.TotalRent = txtRental.Text == string.Empty ? 0 : decimal.Parse(txtRental.Text);   
             //dto.SecDeposit = txtMonthsSecurityDeposit.Text == string.Empty ? 0 : decimal.Parse(txtMonthsSecurityDeposit.Text);
-            dto.Total = txtRental.Text == string.Empty ? 0 : decimal.Parse(txtRental.Text);
-            dto.EncodedBy = 1;
+            if (sIsFullPayment)
+            {
+                dto.Total = txtTotal.Text == string.Empty ? 0 : decimal.Parse(txtTotal.Text);
+            }
+            else
+            {
+                dto.Total = txtRental.Text == string.Empty ? 0 : decimal.Parse(txtRental.Text);
+            }
+            
+            dto.EncodedBy = Variables.UserID;
+            //dto.XML = M_getXMLData();
+            //dto.AdvancePaymentAmount = AdvancePaymentAmount;
+            dto.IsFullPayment = sIsFullPayment;
             dto.Message_Code = ComputationContext.SaveComputationParking(dto);
             if (dto.Message_Code.Equals("SUCCESS"))
             {
                 MessageBox.Show("New Reference has been generated successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 strFormMode = "READ";
                 M_GetComputationList();
-
             }
             else
             {
@@ -474,26 +466,33 @@ namespace LEASING.UI.APP.Forms
         {
             if (strFormMode == "NEW")
             {
-                if (IsComputationValid())
+                if (IsComputed)
                 {
-                    if (MessageBox.Show("Are you sure you want to generate this Reference ?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                    if (IsComputationValid())
                     {
-
-
-                        try
-                        {
-                            M_Save();
-                        }
-                        catch (Exception ex)
+                        if (MessageBox.Show("Are you sure you want to generate this Reference ?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                         {
 
-                            throw;
+
+                            try
+                            {
+                                M_Save();
+                            }
+                            catch (Exception ex)
+                            {
+
+                                throw;
+                            }
                         }
                     }
                 }
+                else
+                {
+                    MessageBox.Show("Please execute the computation", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
             }
         }
-
         private void dgvList_CellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -513,7 +512,7 @@ namespace LEASING.UI.APP.Forms
                         forms.Recid = Convert.ToInt32(dgvList.CurrentRow.Cells["RecId"].Value);
                         forms.Text = Convert.ToString(dgvList.CurrentRow.Cells["ProjectName"].Value) + " - " + " UNIT";
                         forms.ShowDialog();
-                    }      
+                    }
                     //if (forms.IsProceed)
                     //{
                     //    //M_GetUnitList();
@@ -535,7 +534,6 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-
         private void btnCheckunits_Click(object sender, EventArgs e)
         {
             if (ddlProject.SelectedIndex >= 0)
@@ -551,7 +549,6 @@ namespace LEASING.UI.APP.Forms
             }
 
         }
-
         public string ClientId { get; set; }
         private void btnSelectClient_Click(object sender, EventArgs e)
         {
@@ -563,47 +560,46 @@ namespace LEASING.UI.APP.Forms
                 ClientId = forms.ClientID;
             }
         }
-
         private void dtpFinishDate_ValueChanged(object sender, EventArgs e)
         {
-
-
-
         }
         private void btnGeneratePostdatedCountMonth_Click(object sender, EventArgs e)
         {
-
-            if (!string.IsNullOrEmpty(ClientId))
+            if (IsComputationValid())
             {
-                seq = 0;
-                txtTotalPostDatedAmount.Text = string.Empty;
-                //data.Clear(); // Clear existing data
-
-                //DateTime startDate = dtpStartDate.Value;
-                //DateTime endDate = dtpFinishDate.Value;
-
-                //if (startDate > endDate)
-                //{
-                //    MessageBox.Show("Start date cannot be after end date.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //    return;
-                //}
-
-                //GenerateDataForMonths(startDate, endDate);
-                // txtTotalPostDatedAmount.Text = Convert.ToString(Convert.ToInt32(decimal.Parse(seq.ToString())) * Convert.ToInt32(decimal.Parse(txtTotalRental.Text)));
-
-                // var rental = (txtRental.Text == "") ? 0 : (Convert.ToDecimal(txtRental.Text) + ((txtSecAndMaintenance.Text == "") ? 0 : Convert.ToDecimal(txtSecAndMaintenance.Text)));
-
-
-                M_GetPostDatedCountMonth();
-
-                var TotalPostDatedAmount = (dgvpostdatedcheck.Rows.Count() < 0) ? 0 : (Convert.ToDecimal(dgvpostdatedcheck.Rows.Count().ToString()) * ((txtRental.Text == "") ? 0 : Convert.ToDecimal(txtRental.Text)));
-                txtTotalPostDatedAmount.Text = TotalPostDatedAmount.ToString();
-
+                if (!string.IsNullOrEmpty(ClientId))
+                {
+                    if (IsMoreThanSixMonths(Convert.ToDateTime(dtpStartDate.Text), Convert.ToDateTime(dtpFinishDate.Text)))
+                    {
+                        IsComputed = true;
+                        seq = 0;
+                        txtTotalPostDatedAmount.Text = string.Empty;
+                        M_GetPostDatedCountMonth();
+                        var TotalPostDatedAmount = (dgvpostdatedcheck.Rows.Count() < 0) ? 0 : (Convert.ToDecimal(dgvpostdatedcheck.Rows.Count().ToString()) * ((txtRental.Text == "") ? 0 : Convert.ToDecimal(txtRental.Text)));
+                        txtTotalPostDatedAmount.Text = TotalPostDatedAmount.ToString();
+                        M_GetTotalRental();
+                        txtRental.Focus();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Lease period is out of range", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("please select client", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
-            else
-            {
-                MessageBox.Show("please select client", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+        }
+        private void txtTotalPostDatedAmount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
+                e.Handled = true;
+        }
+        private void txtTotal_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
+                e.Handled = true;
         }
     }
 }

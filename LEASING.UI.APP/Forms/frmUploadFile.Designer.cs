@@ -34,8 +34,6 @@
             this.txtnotes = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.txtfilename = new Telerik.WinControls.UI.RadTextBox();
-            this.txtFilePath = new Telerik.WinControls.UI.RadTextBox();
-            this.radLabel20 = new Telerik.WinControls.UI.RadLabel();
             this.btnReference = new Telerik.WinControls.UI.RadButton();
             this.txtReference = new Telerik.WinControls.UI.RadTextBox();
             this.txtClientID = new Telerik.WinControls.UI.RadTextBox();
@@ -47,8 +45,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtnotes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtfilename)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtFilePath)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel20)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnReference)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtReference)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtClientID)).BeginInit();
@@ -68,14 +64,12 @@
             this.tableLayoutPanel1.Controls.Add(this.btnOk, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.radLabel2, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.txtnotes, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.radLabel1, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.txtfilename, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.txtFilePath, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.radLabel20, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.btnReference, 3, 0);
-            this.tableLayoutPanel1.Controls.Add(this.txtReference, 3, 2);
             this.tableLayoutPanel1.Controls.Add(this.txtClientID, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.radLabel3, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.radLabel1, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.txtfilename, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.txtReference, 3, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(2, 18);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -121,7 +115,7 @@
             // 
             this.radLabel1.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.radLabel1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel1.Location = new System.Drawing.Point(23, 53);
+            this.radLabel1.Location = new System.Drawing.Point(23, 28);
             this.radLabel1.Name = "radLabel1";
             this.radLabel1.Size = new System.Drawing.Size(71, 19);
             this.radLabel1.TabIndex = 1;
@@ -130,29 +124,11 @@
             // txtfilename
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.txtfilename, 2);
-            this.txtfilename.Location = new System.Drawing.Point(100, 53);
+            this.txtfilename.Location = new System.Drawing.Point(100, 28);
             this.txtfilename.Name = "txtfilename";
             this.txtfilename.NullText = "Type here...";
-            this.txtfilename.Size = new System.Drawing.Size(219, 19);
+            this.txtfilename.Size = new System.Drawing.Size(219, 20);
             this.txtfilename.TabIndex = 2;
-            // 
-            // txtFilePath
-            // 
-            this.tableLayoutPanel1.SetColumnSpan(this.txtFilePath, 3);
-            this.txtFilePath.Location = new System.Drawing.Point(100, 28);
-            this.txtFilePath.Name = "txtFilePath";
-            this.txtFilePath.Size = new System.Drawing.Size(341, 19);
-            this.txtFilePath.TabIndex = 2;
-            // 
-            // radLabel20
-            // 
-            this.radLabel20.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.radLabel20.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel20.Location = new System.Drawing.Point(31, 28);
-            this.radLabel20.Name = "radLabel20";
-            this.radLabel20.Size = new System.Drawing.Size(63, 19);
-            this.radLabel20.TabIndex = 1;
-            this.radLabel20.Text = "File Path :";
             // 
             // btnReference
             // 
@@ -166,10 +142,9 @@
             // 
             // txtReference
             // 
-            this.txtReference.Location = new System.Drawing.Point(325, 53);
+            this.txtReference.Location = new System.Drawing.Point(325, 28);
             this.txtReference.Name = "txtReference";
-            this.txtReference.NullText = "Select Reference in the list";
-            this.txtReference.Size = new System.Drawing.Size(116, 19);
+            this.txtReference.Size = new System.Drawing.Size(116, 20);
             this.txtReference.TabIndex = 2;
             // 
             // txtClientID
@@ -220,8 +195,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtnotes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtfilename)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtFilePath)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel20)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnReference)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtReference)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtClientID)).EndInit();
@@ -235,10 +208,8 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private Telerik.WinControls.UI.RadLabel radLabel20;
         private Telerik.WinControls.UI.RadLabel radLabel1;
         private Telerik.WinControls.UI.RadLabel radLabel2;
-        private Telerik.WinControls.UI.RadTextBox txtFilePath;
         private Telerik.WinControls.UI.RadButton btnOk;
         public Telerik.WinControls.UI.RadTextBox txtnotes;
         public Telerik.WinControls.UI.RadTextBox txtfilename;

@@ -143,6 +143,8 @@ namespace LEASING.UI.APP.Context
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@ComputerName", Environment.MachineName);
             _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@IsFullPayment", model.IsFullPayment);
+            _sqlcmd.Parameters.Add(_sqlpara);
 
             try
             {

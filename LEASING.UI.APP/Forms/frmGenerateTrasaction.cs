@@ -14,7 +14,6 @@ namespace LEASING.UI.APP.Forms
     public partial class frmGenerateTrasaction : Form
     {
         ComputationContext ComputationContext = new ComputationContext();
-
         public frmGenerateTrasaction()
         {
             InitializeComponent();
@@ -31,12 +30,10 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-
         private void frmGenerateTrasaction_Load(object sender, EventArgs e)
         {
             M_GetComputationList();
         }
-
         private void dgvList_CellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -47,7 +44,7 @@ namespace LEASING.UI.APP.Forms
                     {
                         frmEditParkingComputation forms = new frmEditParkingComputation();
                         forms.Recid = Convert.ToInt32(dgvList.CurrentRow.Cells["RecId"].Value);
-                        forms.Text = Convert.ToString(dgvList.CurrentRow.Cells["ProjectName"].Value) + " - " + " UNIT";
+                        forms.Text = Convert.ToString(dgvList.CurrentRow.Cells["ProjectName"].Value) + " - " + " PARKING";
                         forms.ShowDialog();
                     }
                     else
@@ -64,17 +61,23 @@ namespace LEASING.UI.APP.Forms
                     {
                         if (Convert.ToString(dgvList.CurrentRow.Cells["TypeOf"].Value) == "TYPE OF PARKING")
                         {
-                            frmClientTransactionParking forms = new frmClientTransactionParking();
+                            //frmClientTransactionParking forms = new frmClientTransactionParking();
+                            //forms.ComputationRecid = Convert.ToInt32(dgvList.CurrentRow.Cells["RecId"].Value);
+                            //forms.ClientId = Convert.ToString(dgvList.CurrentRow.Cells["ClientID"].Value);
+                            //forms.ShowDialog();
+
+                            frmSelectClient forms = new frmSelectClient();
                             forms.ComputationRecid = Convert.ToInt32(dgvList.CurrentRow.Cells["RecId"].Value);
-                            forms.ClientId = Convert.ToString(dgvList.CurrentRow.Cells["ClientID"].Value);
+                            //forms.IsFullPayment = Convert.ToString(dgvList.CurrentRow.Cells["PaymentCategory"].Value) == "FULL PAYMENT" ? true : false;
                             forms.ShowDialog();
+
                             M_GetComputationList();
                         }
                         else
                         {
                             frmSelectClient forms = new frmSelectClient();
                             forms.ComputationRecid = Convert.ToInt32(dgvList.CurrentRow.Cells["RecId"].Value);
-                            forms.IsFullPayment = Convert.ToString(dgvList.CurrentRow.Cells["PaymentCategory"].Value) == "FULL PAYMENT" ? true : false;
+                            //forms.IsFullPayment = Convert.ToString(dgvList.CurrentRow.Cells["PaymentCategory"].Value) == "FULL PAYMENT" ? true : false;
                             forms.ShowDialog();
                             M_GetComputationList();
                         }

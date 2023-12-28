@@ -180,9 +180,10 @@ namespace LEASING.UI.APP.Forms
 
         private void btnUploadFile_Click(object sender, EventArgs e)
         {
-     
+
             try
             {
+                string folderPath = string.Empty;
                 OpenFileDialog openFileDialog = new OpenFileDialog();
                 openFileDialog.Multiselect = true;
 
@@ -195,18 +196,35 @@ namespace LEASING.UI.APP.Forms
                     {
                         foreach (string filePath in filePaths)
                         {
-                            string fileName = Path.GetFileName(filePath);
-                            //string folderName = Path.GetFileNameWithoutExtension(filePath);
-                            string folderPath = Path.Combine(Config.baseFolderPath, sClientID);
-                            string destFilePath = Path.Combine(folderPath, fileName);
+
                             frmUploadFile frmUploadFile = new frmUploadFile();
-                            frmUploadFile.sFilePath = folderPath;
+
                             frmUploadFile.txtClientID.Text = sClientID;
                             frmUploadFile.IsContractSigned = IsContractSigned;
-                            frmUploadFile.ReferenceId = ReferenceId;
+                            string fileName = Path.GetFileName(filePath);
+                            
+                                                     
+                            //string folderName = Path.GetFileNameWithoutExtension(filePath);                                                
+                           
+                            //frmUploadFile.sFilePath = folderPath;
                             frmUploadFile.ShowDialog();
                             if (frmUploadFile.IsProceed)
                             {
+                                if (!string.IsNullOrEmpty(frmUploadFile.ReferenceId))
+                                {
+                                    folderPath = Path.Combine(Config.baseFolderPath, sClientID, frmUploadFile.ReferenceId);
+                                    ReferenceId = frmUploadFile.ReferenceId;
+                                }
+                                else
+                                {
+                                    folderPath = Path.Combine(Config.baseFolderPath, sClientID);
+                                }
+                                string destFilePath = Path.Combine(folderPath, fileName);
+
+                                if (string.IsNullOrEmpty(ReferenceId))
+                                {
+                                    ReferenceId = frmUploadFile.ReferenceId;
+                                }
                                 if (!Directory.Exists(folderPath))
                                 {
                                     Directory.CreateDirectory(folderPath);
@@ -220,7 +238,7 @@ namespace LEASING.UI.APP.Forms
 
                                         MessageBox.Show("Files attached successfully!", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                         M_GetClientFileList();
-                                       
+
                                     }
 
                                 }
@@ -248,7 +266,7 @@ namespace LEASING.UI.APP.Forms
                                     {
                                         MessageBox.Show("Files attached successfully!", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                         M_GetClientFileList();
-                                        
+
                                     }
 
 
@@ -302,6 +320,7 @@ namespace LEASING.UI.APP.Forms
             {
                 if (this.dgvFileList.Columns[e.ColumnIndex].Name == "ColView")
                 {
+                    /*add dataset to select the file path if reference is empty*/
                     // forms.ClientID = Convert.ToString(dgvFileList.CurrentRow.Cells["ClientID"].Value);
                     ClientContext.GetViewFileById(ClientID.Trim(), Config.baseFolderPath, Convert.ToInt32(dgvFileList.CurrentRow.Cells["Id"].Value));
                 }

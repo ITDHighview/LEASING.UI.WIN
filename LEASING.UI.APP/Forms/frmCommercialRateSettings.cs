@@ -40,6 +40,7 @@ namespace LEASING.UI.APP.Forms
                         txtSecAndMaintenance.Enabled = true;
 
                         txtWithHoldingTax.Enabled = true;
+                        txtPenalty.Enabled = true;
 
                         break;
                     case "READ":
@@ -54,6 +55,7 @@ namespace LEASING.UI.APP.Forms
                         txtSecAndMaintenanceWithVat.Enabled = false;
                         txtSecAndMaintenanceWithVatLessTAX.Enabled = false;
                         txtWithHoldingTaxAmount.Enabled = false;
+                        txtPenalty.Enabled = false;
 
                         break;
 
@@ -73,17 +75,22 @@ namespace LEASING.UI.APP.Forms
                     //chkIsSecAndMaintenenceVat.Checked = Convert.ToBoolean(dt.Tables[0].Rows[0]["IsSecAndMaintVat"]);
                     //txtSecAndMaintenanceVat.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecurityAndMaintenanceVat"]);
                     txtWithHoldingTax.Text = Convert.ToString(dt.Tables[0].Rows[0]["WithHoldingTax"]);
+                    txtPenalty.Text = Convert.ToString(dt.Tables[0].Rows[0]["PenaltyPct"]);
                 }
             }
         }
         private void M_UpdateRates()
         {
-            string results = RateSettingsContext.UpdateCOMMERCIALSettings(txtGenVat.Text == string.Empty ? 0 : decimal.Parse(txtGenVat.Text), txtSecAndMaintenance.Text == string.Empty ? 0 : decimal.Parse(txtSecAndMaintenance.Text), txtWithHoldingTax.Text == string.Empty ? 0 : decimal.Parse(txtWithHoldingTax.Text));
+            string results = RateSettingsContext.UpdateCOMMERCIALSettings(txtGenVat.Text == string.Empty ? 0 : decimal.Parse(txtGenVat.Text), txtSecAndMaintenance.Text == string.Empty ? 0 : decimal.Parse(txtSecAndMaintenance.Text), txtWithHoldingTax.Text == string.Empty ? 0 : decimal.Parse(txtWithHoldingTax.Text), txtPenalty.Text == string.Empty ? 0 : decimal.Parse(txtPenalty.Text));
             if (results.Equals("SUCCESS"))
             {
                 MessageBox.Show("Rate  has been Upated successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 strRateFormMode = "READ";
                 M_GetRateSettings();
+            }
+            else
+            {
+                MessageBox.Show(results, "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -152,7 +159,16 @@ namespace LEASING.UI.APP.Forms
             {
                 if (MessageBox.Show("Are you sure you want to update the following Rate?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                 {
-                    M_UpdateRates();
+                    try
+                    {
+                        M_UpdateRates();
+                    }
+                    catch (Exception ex)
+                    {
+
+                        MessageBox.Show(ex.ToString(), "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                  
                 }
             }
         }
@@ -186,6 +202,12 @@ namespace LEASING.UI.APP.Forms
         {
             M_GetTaxAMount();
             M_GetSecAndMainWithVatandLessTax();
+        }
+
+        private void txtPenalty_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
+                e.Handled = true;
         }
     }
 }

@@ -102,54 +102,33 @@ namespace LEASING.UI.APP.Forms
         }
         private void M_GenerateBulkPayment()
         {
-            if (Convert.ToString(dgvTransactionList.CurrentRow.Cells["TypeOf"].Value) == "TYPE OF UNIT")
-            {
-                var result = PaymentContext.GenerateBulkPayment(RefId,
-                Convert.ToDecimal(dgvLedgerList.CurrentRow.Cells["LedgAmount"].Value) * M_GetTotalSelectedMonth(),
-              ReceiveAmount,
-              ChangeAmount,
-              CompanyORNo,
-              CompanyPRNo,
-              BankAccountName,
-              BankAccountNumber,
-              BankName,
-              SerialNo,
-              PaymentRemarks,
-              REF,
-              ModeType,
-              Convert.ToInt32(dgvLedgerList.CurrentRow.Cells["Recid"].Value),
-               M_getXMLData(),
-              out TranID
-              );
+            //if (Convert.ToString(dgvTransactionList.CurrentRow.Cells["TypeOf"].Value) == "TYPE OF UNIT")
+            //{
+            var result = PaymentContext.GenerateBulkPayment(RefId,
+            Convert.ToDecimal(dgvLedgerList.CurrentRow.Cells["LedgAmount"].Value) * M_GetTotalSelectedMonth(),
+          ReceiveAmount,
+          ChangeAmount,
+          CompanyORNo,
+          CompanyPRNo,
+          BankAccountName,
+          BankAccountNumber,
+          BankName,
+          SerialNo,
+          PaymentRemarks,
+          REF,
+          ModeType,
+          Convert.ToInt32(dgvLedgerList.CurrentRow.Cells["Recid"].Value),
+           M_getXMLData(),
+          out TranID
+          );
 
-                if (result.Equals("SUCCESS"))
-                {
-                    MessageBox.Show("PAYMENT SUCCESS", "System Message", MessageBoxButtons.OK);
-                    IsProceed = true;
-                }
-            }
-            else
+            if (result.Equals("SUCCESS"))
             {
-                // var result = PaymentContext.GeneratePaymentParking(RefId,
-                //Convert.ToString(dgvLedgerList.CurrentRow.Cells["LedgAmount"].Value) == string.Empty ? 0 : decimal.Parse(Convert.ToString(dgvLedgerList.CurrentRow.Cells["LedgAmount"].Value)),
-                //ReceiveAmount,
-                //ChangeAmount,
-                //CompanyORNo,
-                //CompanyPRNo,
-                //BankAccountName,
-                //BankAccountNumber,
-                //BankName,
-                //SerialNo,
-                //PaymentRemarks,
-                //REF,
-                //ModeType,
-                //Convert.ToInt32(dgvLedgerList.CurrentRow.Cells["Recid"].Value));
-                // if (result.Equals("SUCCESS"))
-                // {
-                //     MessageBox.Show("PAYMENT SUCCESS", "System Message", MessageBoxButtons.OK);
-                //     IsProceed = true;
-                // }
+                MessageBox.Show("PAYMENT SUCCESS", "System Message", MessageBoxButtons.OK);
+                IsProceed = true;
             }
+            //}
+
         }
         private bool IsComputationValid()
         {
@@ -768,7 +747,7 @@ namespace LEASING.UI.APP.Forms
                     frmRecieptSelection.ShowDialog();
                 }
             }
-          
+
         }
         private void btnCloseContract_Click(object sender, EventArgs e)
         {

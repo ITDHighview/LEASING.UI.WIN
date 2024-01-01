@@ -38,6 +38,7 @@ namespace LEASING.UI.APP.Forms
 
                         txtGenVat.Enabled = true;
                         txtSecAndMaintenance.Enabled = true;
+                        txtPentalty.Enabled = true;
                         //txtVatAmount.Enabled = true;
                         //txtSecAndMaintenanceWithVat.Enabled = true;
 
@@ -52,6 +53,7 @@ namespace LEASING.UI.APP.Forms
                         txtSecAndMaintenance.Enabled = false;
                         txtVatAmount.Enabled = false;
                         txtSecAndMaintenanceWithVat.Enabled = false;
+                        txtPentalty.Enabled = false;
 
 
                         break;
@@ -69,7 +71,7 @@ namespace LEASING.UI.APP.Forms
                 {
                     txtGenVat.Text = Convert.ToString(dt.Tables[0].Rows[0]["GenVat"]);
                     txtSecAndMaintenance.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecurityAndMaintenance"]);
-                    //chkIsWithVat.Checked = Convert.ToBoolean(dt.Tables[0].Rows[0]["IsSecAndMaintVat"]);
+                    txtPentalty.Text = Convert.ToString(dt.Tables[0].Rows[0]["PenaltyPct"]);
                     //txtSecAndMaintenanceVat.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecurityAndMaintenanceVat"]);
                 }
             }
@@ -79,17 +81,21 @@ namespace LEASING.UI.APP.Forms
 
         private void M_UpdateRates()
         {
-            string results = RateSettingsContext.UpdateRESIDENTIALSettings(txtGenVat.Text == string.Empty ? 0 : decimal.Parse(txtGenVat.Text), txtSecAndMaintenance.Text == string.Empty ? 0 : decimal.Parse(txtSecAndMaintenance.Text));
+            string results = RateSettingsContext.UpdateRESIDENTIALSettings(txtGenVat.Text == string.Empty ? 0 : decimal.Parse(txtGenVat.Text), txtSecAndMaintenance.Text == string.Empty ? 0 : decimal.Parse(txtSecAndMaintenance.Text), txtPentalty.Text == string.Empty ? 0 : decimal.Parse(txtPentalty.Text));
             if (results.Equals("SUCCESS"))
             {
                 MessageBox.Show("Rate  has been Upated successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 strRateFormMode = "READ";
                 M_GetRateSettings();
             }
+            else
+            {
+                MessageBox.Show(results, "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
         private void M_GetVatAMount()
         {
-            var AMount = ((txtSecAndMaintenance.Text == "" ? 0 : Convert.ToDecimal(txtSecAndMaintenance.Text)) * (txtGenVat.Text == "" ? 0 : Convert.ToDecimal(txtGenVat.Text)) / 100 );
+            var AMount = ((txtSecAndMaintenance.Text == "" ? 0 : Convert.ToDecimal(txtSecAndMaintenance.Text)) * (txtGenVat.Text == "" ? 0 : Convert.ToDecimal(txtGenVat.Text)) / 100);
             txtVatAmount.Text = Convert.ToString(AMount);
 
 
@@ -120,7 +126,16 @@ namespace LEASING.UI.APP.Forms
             {
                 if (MessageBox.Show("Are you sure you want to update the following Rate?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                 {
-                    M_UpdateRates();
+                    try
+                    {
+                        M_UpdateRates();
+                    }
+                    catch (Exception ex)
+                    {
+
+                        MessageBox.Show(ex.ToString(), "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
                 }
             }
         }
@@ -161,6 +176,12 @@ namespace LEASING.UI.APP.Forms
         }
 
         private void txtSecAndMaintenanceWithVat_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
+                e.Handled = true;
+        }
+
+        private void txtPentalty_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;

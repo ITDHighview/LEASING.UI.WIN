@@ -451,7 +451,7 @@
             this.txtProjectAddress.Location = new System.Drawing.Point(201, 78);
             this.txtProjectAddress.Name = "txtProjectAddress";
             this.txtProjectAddress.NullText = "Generated";
-            this.txtProjectAddress.Size = new System.Drawing.Size(417, 20);
+            this.txtProjectAddress.Size = new System.Drawing.Size(417, 19);
             this.txtProjectAddress.TabIndex = 4;
             // 
             // radLabel7

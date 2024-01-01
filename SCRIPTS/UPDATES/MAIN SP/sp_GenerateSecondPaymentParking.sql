@@ -162,10 +162,6 @@ BEGIN TRY
     (@RcptID, @CompanyORNo, @CompanyPRNo, @REF, @BankAccountName, @BankAccountNumber, @BankName, @SerialNo, @ModeType);
 
 
-    UPDATE [dbo].[tblUnitReference]
-    SET [tblUnitReference].[IsPaid] = 1
-    WHERE [tblUnitReference].[RefId] = @RefId;
-
     IF (@TranID <> '' AND @@ROWCOUNT > 0)
     BEGIN
         SET @ReturnMessage = 'SUCCESS';

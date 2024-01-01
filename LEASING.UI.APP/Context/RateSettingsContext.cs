@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LEASING.UI.APP.Common;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -184,39 +185,30 @@ namespace LEASING.UI.APP.Context
             }
         }
 
-        public string UpdateRESIDENTIALSettings(decimal vGenVat,decimal vSecurityAndMaintenance)
+        public string UpdateRESIDENTIALSettings(decimal vGenVat,decimal vSecurityAndMaintenance,decimal PenaltyPct)
         {
             SqlCommand _sqlcmd = null;
             SqlParameter _sqlpara;
             SqlConnection _sqlcon = null;
             SqlDataReader _sqlreader = null;
-
             _sqlcmd = new SqlCommand();
             _sqlcmd.CommandText = "sp_UpdateRESIDENTIALSettings";
-
-            //_sqlpara = new SqlParameter("@RecId", recid);
-            //_sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@GenVat", vGenVat);
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@SecurityAndMaintenance", vSecurityAndMaintenance);
             _sqlcmd.Parameters.Add(_sqlpara);
-            //_sqlpara = new SqlParameter("@SecurityAndMaintenanceVat", vSecurityAndMaintenanceVat);
-            //_sqlcmd.Parameters.Add(_sqlpara);
-            //_sqlpara = new SqlParameter("@IsSecAndMaintVat", vIsSecAndMaintVat);
-            //_sqlcmd.Parameters.Add(_sqlpara);
-
+            _sqlpara = new SqlParameter("@PenaltyPct", PenaltyPct);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@LastChangedBy", Variables.UserID);
+            _sqlcmd.Parameters.Add(_sqlpara);
             try
             {
                 _sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
                 _sqlcmd.Connection = _sqlcon;
                 _sqlcmd.CommandType = CommandType.StoredProcedure;
-
-                //_sqlreader = SqlDataReader(_sqlcmd, false);
-
                 _sqlcmd.Connection.Open();
                 _sqlreader = _sqlcmd.ExecuteReader();
                 _sqlreader.Read();
-
                 int index;
                 if (_sqlreader.HasRows)
                 {
@@ -242,37 +234,29 @@ namespace LEASING.UI.APP.Context
             }
             return "";
         }
-        public string UpdateCOMMERCIALSettings(decimal vGenVat, decimal vSecurityAndMaintenance, decimal vWithHoldingTax)
+        public string UpdateCOMMERCIALSettings(decimal vGenVat, decimal vSecurityAndMaintenance, decimal vWithHoldingTax, decimal PenaltyPct)
         {
             SqlCommand _sqlcmd = null;
             SqlParameter _sqlpara;
             SqlConnection _sqlcon = null;
             SqlDataReader _sqlreader = null;
-
             _sqlcmd = new SqlCommand();
             _sqlcmd.CommandText = "sp_UpdateCOMMERCIALSettings";
-
-            //_sqlpara = new SqlParameter("@RecId", recid);
-            //_sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@GenVat", vGenVat);
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@SecurityAndMaintenance", vSecurityAndMaintenance);
-            _sqlcmd.Parameters.Add(_sqlpara);
-            //_sqlpara = new SqlParameter("@SecurityAndMaintenanceVat", vSecurityAndMaintenanceVat);
-            //_sqlcmd.Parameters.Add(_sqlpara);
-            //_sqlpara = new SqlParameter("@IsSecAndMaintVat", vIsSecAndMaintVat);
-            //_sqlcmd.Parameters.Add(_sqlpara);
+            _sqlcmd.Parameters.Add(_sqlpara);           
             _sqlpara = new SqlParameter("@WithHoldingTax", vWithHoldingTax);
             _sqlcmd.Parameters.Add(_sqlpara);
-
+            _sqlpara = new SqlParameter("@PenaltyPct", PenaltyPct);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@LastChangedBy", Variables.UserID);
+            _sqlcmd.Parameters.Add(_sqlpara);
             try
             {
                 _sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
                 _sqlcmd.Connection = _sqlcon;
                 _sqlcmd.CommandType = CommandType.StoredProcedure;
-
-                //_sqlreader = SqlDataReader(_sqlcmd, false);
-
                 _sqlcmd.Connection.Open();
                 _sqlreader = _sqlcmd.ExecuteReader();
                 _sqlreader.Read();
@@ -302,7 +286,7 @@ namespace LEASING.UI.APP.Context
             }
             return "";
         }
-        public string UpdateWAREHOUSESettings(decimal vGenVat, decimal vSecurityAndMaintenance , decimal vWithHoldingTax)
+        public string UpdateWAREHOUSESettings(decimal vGenVat, decimal vSecurityAndMaintenance , decimal vWithHoldingTax, decimal PenaltyPct)
         {
             SqlCommand _sqlcmd = null;
             SqlParameter _sqlpara;
@@ -311,28 +295,21 @@ namespace LEASING.UI.APP.Context
 
             _sqlcmd = new SqlCommand();
             _sqlcmd.CommandText = "sp_UpdateWAREHOUSESettings";
-
-            //_sqlpara = new SqlParameter("@RecId", recid);
-            //_sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@GenVat", vGenVat);
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@SecurityAndMaintenance", vSecurityAndMaintenance);
             _sqlcmd.Parameters.Add(_sqlpara);
-            //_sqlpara = new SqlParameter("@SecurityAndMaintenanceVat", vSecurityAndMaintenanceVat);
-            //_sqlcmd.Parameters.Add(_sqlpara);
-            //_sqlpara = new SqlParameter("@IsSecAndMaintVat", vIsSecAndMaintVat);
-            //_sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@WithHoldingTax", vWithHoldingTax);
             _sqlcmd.Parameters.Add(_sqlpara);
-
+            _sqlpara = new SqlParameter("@PenaltyPct", PenaltyPct);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@LastChangedBy", Variables.UserID);
+            _sqlcmd.Parameters.Add(_sqlpara);
             try
             {
                 _sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
                 _sqlcmd.Connection = _sqlcon;
-                _sqlcmd.CommandType = CommandType.StoredProcedure;
-
-                //_sqlreader = SqlDataReader(_sqlcmd, false);
-
+                _sqlcmd.CommandType = CommandType.StoredProcedure;               
                 _sqlcmd.Connection.Open();
                 _sqlreader = _sqlcmd.ExecuteReader();
                 _sqlreader.Read();

@@ -63,7 +63,7 @@ AS
                 ELSE
                     'ON-GOING'
             END                                                                                                       AS [CLientReferenceStatus],
-            IIF(ISNULL([tblUnitReference].[AdvancePaymentAmount], 0) = 0 AND ISNULL([tblUnitReference].[SecDeposit], 0) = 0, 'TYPE OF PARKING', 'TYPE OF UNIT') AS [TypeOf]
+            IIF(ISNULL([tblUnitReference].[SecDeposit], 0) = 0, 'TYPE OF PARKING', 'TYPE OF UNIT') AS [TypeOf]
         FROM
             [dbo].[tblUnitReference]
         WHERE

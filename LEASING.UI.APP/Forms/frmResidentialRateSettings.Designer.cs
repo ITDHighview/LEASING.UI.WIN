@@ -31,9 +31,6 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.lblFoot = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.txtGenVat = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
@@ -52,14 +49,13 @@
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.btnUndo = new System.Windows.Forms.ToolStripButton();
             this.btnLogs = new System.Windows.Forms.ToolStripButton();
+            this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
+            this.txtPentalty = new Telerik.WinControls.UI.RadTextBox();
+            this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
             this.radGroupBox1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lblFoot)).BeginInit();
-            this.lblFoot.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtGenVat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
@@ -73,6 +69,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).BeginInit();
             this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPentalty)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel2
@@ -109,7 +108,6 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 104F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 74F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 204F));
-            this.tableLayoutPanel1.Controls.Add(this.lblFoot, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.radLabel4, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtGenVat, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.radLabel1, 2, 0);
@@ -122,6 +120,9 @@
             this.tableLayoutPanel1.Controls.Add(this.txtVatAmount, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.radLabel9, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.radLabel10, 2, 2);
+            this.tableLayoutPanel1.Controls.Add(this.radLabel7, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.txtPentalty, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.radLabel8, 2, 4);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(2, 18);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -133,43 +134,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(580, 131);
             this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // lblFoot
-            // 
-            this.lblFoot.AutoSize = false;
-            this.lblFoot.BackColor = System.Drawing.Color.DarkSlateBlue;
-            this.tableLayoutPanel1.SetColumnSpan(this.lblFoot, 4);
-            this.lblFoot.Controls.Add(this.radLabel8);
-            this.lblFoot.Controls.Add(this.radLabel7);
-            this.lblFoot.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblFoot.Location = new System.Drawing.Point(3, 107);
-            this.lblFoot.Name = "lblFoot";
-            this.lblFoot.Size = new System.Drawing.Size(594, 24);
-            this.lblFoot.TabIndex = 5;
-            // 
-            // radLabel8
-            // 
-            this.radLabel8.AutoSize = false;
-            this.radLabel8.Dock = System.Windows.Forms.DockStyle.Right;
-            this.radLabel8.ForeColor = System.Drawing.Color.White;
-            this.radLabel8.Location = new System.Drawing.Point(338, 0);
-            this.radLabel8.Name = "radLabel8";
-            this.radLabel8.Size = new System.Drawing.Size(256, 24);
-            this.radLabel8.TabIndex = 1;
-            this.radLabel8.Text = "Last Changed By : 12345 - ADMINISTRATOR";
-            this.radLabel8.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // radLabel7
-            // 
-            this.radLabel7.AutoSize = false;
-            this.radLabel7.Dock = System.Windows.Forms.DockStyle.Left;
-            this.radLabel7.ForeColor = System.Drawing.Color.White;
-            this.radLabel7.Location = new System.Drawing.Point(0, 0);
-            this.radLabel7.Name = "radLabel7";
-            this.radLabel7.Size = new System.Drawing.Size(271, 24);
-            this.radLabel7.TabIndex = 0;
-            this.radLabel7.Text = "Encoded By : 12345 - ADMINISTRATOR";
-            this.radLabel7.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // radLabel4
             // 
@@ -348,6 +312,36 @@
             this.btnLogs.Size = new System.Drawing.Size(52, 22);
             this.btnLogs.Text = "Logs";
             // 
+            // radLabel7
+            // 
+            this.radLabel7.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.radLabel7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel7.Location = new System.Drawing.Point(165, 109);
+            this.radLabel7.Name = "radLabel7";
+            this.radLabel7.Size = new System.Drawing.Size(50, 19);
+            this.radLabel7.TabIndex = 1;
+            this.radLabel7.Text = "Penalty";
+            // 
+            // txtPentalty
+            // 
+            this.txtPentalty.Location = new System.Drawing.Point(221, 107);
+            this.txtPentalty.Name = "txtPentalty";
+            this.txtPentalty.Size = new System.Drawing.Size(98, 20);
+            this.txtPentalty.TabIndex = 0;
+            this.txtPentalty.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtPentalty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPentalty_KeyPress);
+            // 
+            // radLabel8
+            // 
+            this.radLabel8.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.radLabel8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel8.ForeColor = System.Drawing.Color.DarkRed;
+            this.radLabel8.Location = new System.Drawing.Point(325, 109);
+            this.radLabel8.Name = "radLabel8";
+            this.radLabel8.Size = new System.Drawing.Size(26, 19);
+            this.radLabel8.TabIndex = 1;
+            this.radLabel8.Text = "(%)";
+            // 
             // frmResidentialRateSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -366,10 +360,6 @@
             this.radGroupBox1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lblFoot)).EndInit();
-            this.lblFoot.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtGenVat)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
@@ -384,6 +374,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPentalty)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -393,9 +386,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private Telerik.WinControls.UI.RadGroupBox radGroupBox1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private Telerik.WinControls.UI.RadLabel lblFoot;
-        private Telerik.WinControls.UI.RadLabel radLabel8;
-        private Telerik.WinControls.UI.RadLabel radLabel7;
         private Telerik.WinControls.UI.RadLabel radLabel4;
         private Telerik.WinControls.UI.RadTextBox txtGenVat;
         private Telerik.WinControls.UI.RadLabel radLabel6;
@@ -414,5 +404,8 @@
         private Telerik.WinControls.UI.RadTextBox txtVatAmount;
         private Telerik.WinControls.UI.RadLabel radLabel9;
         private Telerik.WinControls.UI.RadLabel radLabel10;
+        private Telerik.WinControls.UI.RadLabel radLabel7;
+        private Telerik.WinControls.UI.RadTextBox txtPentalty;
+        private Telerik.WinControls.UI.RadLabel radLabel8;
     }
 }

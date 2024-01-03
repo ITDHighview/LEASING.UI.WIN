@@ -15,6 +15,7 @@ namespace LEASING.UI.APP.Forms
 {
     public partial class frmTenantMoveUnit : Form
     {
+        public string sRefId { get; set; } = string.Empty;
         PaymentContext PaymentContext = new PaymentContext();
         UnitContext UnitContext = new UnitContext();
         public frmTenantMoveUnit()
@@ -78,7 +79,7 @@ namespace LEASING.UI.APP.Forms
                 {
                     try
                     {
-                        if (MessageBox.Show("Are you sure you want tag this as Move-in?","",MessageBoxButtons.YesNo,MessageBoxIcon.Question,MessageBoxDefaultButton.Button2)== DialogResult.Yes)
+                        if (MessageBox.Show("Are you sure you want tag this as Move-in?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                         {
                             string result = UnitContext.MovedIn(Convert.ToString(dgvList.CurrentRow.Cells["RefId"].Value));
                             if (result.Equals("SUCCESS"))
@@ -93,21 +94,27 @@ namespace LEASING.UI.APP.Forms
                                 LogErrorIntoStoredProcedure("sp_LogError", "sp_MovedIn: " + "Move-In", result, DateTime.Now);
                             }
                         }
-               
+
                     }
                     catch (Exception ex)
-                    {                    
-                        LogErrorIntoStoredProcedure("sp_LogError", "sp_MovedIn: " + "Move-In", ex.Message, DateTime.Now);                  
+                    {
+                        LogErrorIntoStoredProcedure("sp_LogError", "sp_MovedIn: " + "Move-In", ex.Message, DateTime.Now);
                         MessageBox.Show("An error occurred : " + ex.ToString() + " Please check the log table details.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }                                 
+                    }
                 }
                 else if (this.dgvList.Columns[e.ColumnIndex].Name == "ColView")
-                {                
+                {
                     frmEditUnitComputation forms = new frmEditUnitComputation();
                     forms.Recid = Convert.ToInt32(dgvList.CurrentRow.Cells["RecId"].Value);
                     forms.ShowDialog();
                 }
             }
+        }
+
+        private void btnPrintAuthorization_Click(object sender, EventArgs e)
+        {//RefId
+            frmMoveInAuthorizationReport MoveIn = new frmMoveInAuthorizationReport(Convert.ToString(dgvList.CurrentRow.Cells["RefId"].Value));
+            MoveIn.Show();
         }
     }
 }

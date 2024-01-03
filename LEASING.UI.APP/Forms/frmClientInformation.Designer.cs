@@ -869,6 +869,7 @@
             this.btnPrintContract.Name = "btnPrintContract";
             this.btnPrintContract.Size = new System.Drawing.Size(101, 22);
             this.btnPrintContract.Text = "Print Contract";
+            this.btnPrintContract.Click += new System.EventHandler(this.btnPrintContract_Click);
             // 
             // lblFoot
             // 

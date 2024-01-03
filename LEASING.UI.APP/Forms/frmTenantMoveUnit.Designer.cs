@@ -37,10 +37,10 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnRefresh = new System.Windows.Forms.ToolStripButton();
+            this.btnPrintAuthorization = new System.Windows.Forms.ToolStripButton();
             this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
             this.dgvList = new Telerik.WinControls.UI.RadGridView();
             this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
-            this.btnPrintAuthorization = new System.Windows.Forms.ToolStripButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
@@ -83,6 +83,16 @@
             this.btnRefresh.Size = new System.Drawing.Size(66, 22);
             this.btnRefresh.Text = "Refresh";
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
+            // btnPrintAuthorization
+            // 
+            this.btnPrintAuthorization.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.btnPrintAuthorization.Image = global::LEASING.UI.APP.Properties.Resources.bookmark_32;
+            this.btnPrintAuthorization.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnPrintAuthorization.Name = "btnPrintAuthorization";
+            this.btnPrintAuthorization.Size = new System.Drawing.Size(127, 22);
+            this.btnPrintAuthorization.Text = "Print Authorization";
+            this.btnPrintAuthorization.Click += new System.EventHandler(this.btnPrintAuthorization_Click);
             // 
             // radGroupBox1
             // 
@@ -156,15 +166,6 @@
             this.dgvList.Text = "radGridView1";
             this.dgvList.ThemeName = "Office2007Silver";
             this.dgvList.CellClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.dgvList_CellClick);
-            // 
-            // btnPrintAuthorization
-            // 
-            this.btnPrintAuthorization.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.btnPrintAuthorization.Image = global::LEASING.UI.APP.Properties.Resources.bookmark_32;
-            this.btnPrintAuthorization.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnPrintAuthorization.Name = "btnPrintAuthorization";
-            this.btnPrintAuthorization.Size = new System.Drawing.Size(127, 22);
-            this.btnPrintAuthorization.Text = "Print Authorization";
             // 
             // frmTenantMoveUnit
             // 

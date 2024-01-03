@@ -20,7 +20,7 @@ namespace LEASING.UI.APP.Forms
         public frmClientInformation()
         {
             InitializeComponent();
-          
+
         }
         private string _strClientFormMode;
         public string strClientFormMode
@@ -68,7 +68,7 @@ namespace LEASING.UI.APP.Forms
             txtnameofmaid.Text = string.Empty;
             txtnameofdriver.Text = string.Empty;
             txtnoofvisitorperday.Text = string.Empty;
-           
+
             ddlgender.Text = string.Empty;
             dgvFileList.DataSource = null;
         }
@@ -92,7 +92,7 @@ namespace LEASING.UI.APP.Forms
             txtnameofmaid.Enabled = true;
             txtnameofdriver.Enabled = true;
             txtnoofvisitorperday.Enabled = true;
-           
+
             ReadOnlyFields();
         }
         private void DisabledFields()
@@ -115,7 +115,7 @@ namespace LEASING.UI.APP.Forms
             txtnameofmaid.Enabled = false;
             txtnameofdriver.Enabled = false;
             txtnoofvisitorperday.Enabled = false;
-           
+
 
             ReadOnlyFields();
         }
@@ -140,13 +140,13 @@ namespace LEASING.UI.APP.Forms
             txtnameofmaid.ReadOnly = true;
             txtnameofdriver.ReadOnly = true;
             txtnoofvisitorperday.ReadOnly = true;
-           
+
 
         }
 
         private void M_GetClientID()
         {
-            
+
             using (DataSet dt = ClientContext.GetClientID(txtClienID.Text))
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
@@ -210,6 +210,30 @@ namespace LEASING.UI.APP.Forms
             }
         }
 
+        private void M_GetContractProjectTypeReport(string refid)
+        {
+            using (DataSet dt = ClientContext.GetCheckContractProjectType(refid))
+            {
+                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                {
+                    if (Convert.ToString(dt.Tables[0].Rows[0]["ProjectType"]) == "RESIDENTIAL")
+                    {
+                        frmContractSingedResidentialReport contractResidential = new frmContractSingedResidentialReport(refid);
+                        contractResidential.Show();
+                    }
+                    else if (Convert.ToString(dt.Tables[0].Rows[0]["ProjectType"]) == "COMMERCIAL")
+                    {
+                        frmContractSingedCommercialReport contractCommercial = new frmContractSingedCommercialReport(refid);
+                        contractCommercial.Show();
+                    }
+                    else
+                    {
+                        frmContractSingedWareHouseReport contractWareHouse = new frmContractSingedWareHouseReport(refid);
+                        contractWareHouse.Show();
+                    }
+                }
+            }
+        }
         private void txtClienID_KeyDown(object sender, KeyEventArgs e)
         {
             if (!string.IsNullOrEmpty(txtClienID.Text))
@@ -227,7 +251,7 @@ namespace LEASING.UI.APP.Forms
                 }
                 else
                 {
-                    
+
                     EmptyFields();
                 }
             }
@@ -256,9 +280,9 @@ namespace LEASING.UI.APP.Forms
             }
             else
             {
-                MessageBox.Show("Please provide Client ID !", "System Message",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                MessageBox.Show("Please provide Client ID !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-           
+
         }
 
         private void txtClienID_TextChanged(object sender, EventArgs e)
@@ -327,7 +351,7 @@ namespace LEASING.UI.APP.Forms
 
         private void dgvList_CellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
-            
+
             if (e.RowIndex >= 0)
             {
                 if (this.dgvList.Columns[e.ColumnIndex].Name == "ColViewFile")
@@ -355,6 +379,14 @@ namespace LEASING.UI.APP.Forms
 
                 }
             }
+        }
+
+        private void btnPrintContract_Click(object sender, EventArgs e)
+        {
+
+            //Convert.ToString(dgvFileList.CurrentRow.Cells["RefId"].Value)
+
+            M_GetContractProjectTypeReport(Convert.ToString(dgvList.CurrentRow.Cells["RefId"].Value));
         }
     }
 }

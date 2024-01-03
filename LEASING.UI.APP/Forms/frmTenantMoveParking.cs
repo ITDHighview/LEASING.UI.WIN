@@ -81,5 +81,11 @@ namespace LEASING.UI.APP.Forms
         {
             M_GetForMoveInParkingList();
         }
+
+        private void btnPrintAuthorization_Click(object sender, EventArgs e)
+        {
+            frmMoveInAuthorizationReport MoveIn = new frmMoveInAuthorizationReport(Convert.ToString(dgvList.CurrentRow.Cells["RefId"].Value));
+            MoveIn.Show();
+        }
     }
 }

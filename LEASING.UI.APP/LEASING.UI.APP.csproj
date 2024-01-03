@@ -256,6 +256,24 @@
     <Compile Include="Forms\frmContractSignedUnit.Designer.cs">
       <DependentUpon>frmContractSignedUnit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmContractSingedCommercialReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmContractSingedCommercialReport.Designer.cs">
+      <DependentUpon>frmContractSingedCommercialReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmContractSingedResidentialReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmContractSingedResidentialReport.Designer.cs">
+      <DependentUpon>frmContractSingedResidentialReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmContractSingedWareHouseReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmContractSingedWareHouseReport.Designer.cs">
+      <DependentUpon>frmContractSingedWareHouseReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmEditParkingComputation.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -279,6 +297,12 @@
     </Compile>
     <Compile Include="Forms\frmGroupSecurity.Designer.cs">
       <DependentUpon>frmGroupSecurity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmMoveInAuthorizationReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmMoveInAuthorizationReport.Designer.cs">
+      <DependentUpon>frmMoveInAuthorizationReport.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmNature_OR_REPORT.cs">
       <SubType>Form</SubType>
@@ -593,6 +617,15 @@
     <EmbeddedResource Include="Forms\frmContractSignedUnit.resx">
       <DependentUpon>frmContractSignedUnit.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmContractSingedCommercialReport.resx">
+      <DependentUpon>frmContractSingedCommercialReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmContractSingedResidentialReport.resx">
+      <DependentUpon>frmContractSingedResidentialReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmContractSingedWareHouseReport.resx">
+      <DependentUpon>frmContractSingedWareHouseReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmEditParkingComputation.resx">
       <DependentUpon>frmEditParkingComputation.cs</DependentUpon>
     </EmbeddedResource>
@@ -604,6 +637,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmGroupSecurity.resx">
       <DependentUpon>frmGroupSecurity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmMoveInAuthorizationReport.resx">
+      <DependentUpon>frmMoveInAuthorizationReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmNature_OR_REPORT.resx">
       <DependentUpon>frmNature_OR_REPORT.cs</DependentUpon>

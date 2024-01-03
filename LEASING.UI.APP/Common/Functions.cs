@@ -883,5 +883,219 @@ namespace LEASING.UI.APP.Common
             }
         }
 
+        public static void GetMoveInAthorizationReport(string report, Form frm, bool IsPreview, string RefId)
+        {
+
+            try
+            {
+                Cursor.Current = Cursors.AppStarting;
+                CrystalDecisions.CrystalReports.Engine.ReportDocument locRptDocument = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                locRptDocument.Load(report);
+                locRptDocument.PrintOptions.PaperSize = CrystalDecisions.Shared.PaperSize.DefaultPaperSize;
+                locRptDocument.SetParameterValue("@RefId", RefId);
+                //locRptDocument.SetParameterValue("@Encounter_No", "");
+                ConnectionInfo crConnectionInfo = new ConnectionInfo();
+                crConnectionInfo.ServerName = Config.SqlServerName;
+                crConnectionInfo.DatabaseName = Config.SqlDatabaseName;
+                crConnectionInfo.UserID = Config.SqlUserID;
+                crConnectionInfo.Password = Config.SqlPassword;
+                Tables CrTables = locRptDocument.Database.Tables;
+                CrTables = locRptDocument.Database.Tables;
+                foreach (CrystalDecisions.CrystalReports.Engine.Table CrTable in CrTables)
+                {
+                    TableLogOnInfo crtableLogoninfo = CrTable.LogOnInfo;
+                    crtableLogoninfo = CrTable.LogOnInfo;
+                    crtableLogoninfo.ConnectionInfo = crConnectionInfo;
+                    CrTable.ApplyLogOnInfo(crtableLogoninfo);
+                }
+                CrystalReportViewer crv = new CrystalReportViewer();
+                if (IsPreview)
+                {
+                    crv.Dock = DockStyle.Fill;
+                    crv.ReportSource = locRptDocument;
+                    crv.Refresh();
+                    frm.Controls.Add(crv);
+                    frm.WindowState = FormWindowState.Maximized;
+                    frm.Show();
+                }
+                else
+                {
+
+                    crv.ReportSource = locRptDocument;
+                    frm.Opacity = 0;
+                    frm.Show();
+                    locRptDocument.PrintToPrinter(1, false, 1, 1);
+                    frm.Close();
+                }
+
+
+                Cursor.Current = Cursors.Default;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        public static void GetContractSignedResidentialReport(string report, Form frm, bool IsPreview, string RefId)
+        {
+
+            try
+            {
+                Cursor.Current = Cursors.AppStarting;
+                CrystalDecisions.CrystalReports.Engine.ReportDocument locRptDocument = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                locRptDocument.Load(report);
+                locRptDocument.PrintOptions.PaperSize = CrystalDecisions.Shared.PaperSize.DefaultPaperSize;
+                locRptDocument.SetParameterValue("@RefId", RefId);
+                //locRptDocument.SetParameterValue("@Encounter_No", "");
+                ConnectionInfo crConnectionInfo = new ConnectionInfo();
+                crConnectionInfo.ServerName = Config.SqlServerName;
+                crConnectionInfo.DatabaseName = Config.SqlDatabaseName;
+                crConnectionInfo.UserID = Config.SqlUserID;
+                crConnectionInfo.Password = Config.SqlPassword;
+                Tables CrTables = locRptDocument.Database.Tables;
+                CrTables = locRptDocument.Database.Tables;
+                foreach (CrystalDecisions.CrystalReports.Engine.Table CrTable in CrTables)
+                {
+                    TableLogOnInfo crtableLogoninfo = CrTable.LogOnInfo;
+                    crtableLogoninfo = CrTable.LogOnInfo;
+                    crtableLogoninfo.ConnectionInfo = crConnectionInfo;
+                    CrTable.ApplyLogOnInfo(crtableLogoninfo);
+                }
+                CrystalReportViewer crv = new CrystalReportViewer();
+                if (IsPreview)
+                {
+                    crv.Dock = DockStyle.Fill;
+                    crv.ReportSource = locRptDocument;
+                    crv.Refresh();
+                    frm.Controls.Add(crv);
+                    frm.WindowState = FormWindowState.Maximized;
+                    frm.Show();
+                }
+                else
+                {
+
+                    crv.ReportSource = locRptDocument;
+                    frm.Opacity = 0;
+                    frm.Show();
+                    locRptDocument.PrintToPrinter(1, false, 1, 1);
+                    frm.Close();
+                }
+
+
+                Cursor.Current = Cursors.Default;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+        public static void GetContractSignedWareHouseReport(string report, Form frm, bool IsPreview, string RefId)
+        {
+
+            try
+            {
+                Cursor.Current = Cursors.AppStarting;
+                CrystalDecisions.CrystalReports.Engine.ReportDocument locRptDocument = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                locRptDocument.Load(report);
+                locRptDocument.PrintOptions.PaperSize = CrystalDecisions.Shared.PaperSize.DefaultPaperSize;
+                locRptDocument.SetParameterValue("@RefId", RefId);
+                //locRptDocument.SetParameterValue("@Encounter_No", "");
+                ConnectionInfo crConnectionInfo = new ConnectionInfo();
+                crConnectionInfo.ServerName = Config.SqlServerName;
+                crConnectionInfo.DatabaseName = Config.SqlDatabaseName;
+                crConnectionInfo.UserID = Config.SqlUserID;
+                crConnectionInfo.Password = Config.SqlPassword;
+                Tables CrTables = locRptDocument.Database.Tables;
+                CrTables = locRptDocument.Database.Tables;
+                foreach (CrystalDecisions.CrystalReports.Engine.Table CrTable in CrTables)
+                {
+                    TableLogOnInfo crtableLogoninfo = CrTable.LogOnInfo;
+                    crtableLogoninfo = CrTable.LogOnInfo;
+                    crtableLogoninfo.ConnectionInfo = crConnectionInfo;
+                    CrTable.ApplyLogOnInfo(crtableLogoninfo);
+                }
+                CrystalReportViewer crv = new CrystalReportViewer();
+                if (IsPreview)
+                {
+                    crv.Dock = DockStyle.Fill;
+                    crv.ReportSource = locRptDocument;
+                    crv.Refresh();
+                    frm.Controls.Add(crv);
+                    frm.WindowState = FormWindowState.Maximized;
+                    frm.Show();
+                }
+                else
+                {
+
+                    crv.ReportSource = locRptDocument;
+                    frm.Opacity = 0;
+                    frm.Show();
+                    locRptDocument.PrintToPrinter(1, false, 1, 1);
+                    frm.Close();
+                }
+
+
+                Cursor.Current = Cursors.Default;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+        public static void GetContractSignedCommercialReport(string report, Form frm, bool IsPreview, string RefId)
+        {
+
+            try
+            {
+                Cursor.Current = Cursors.AppStarting;
+                CrystalDecisions.CrystalReports.Engine.ReportDocument locRptDocument = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                locRptDocument.Load(report);
+                locRptDocument.PrintOptions.PaperSize = CrystalDecisions.Shared.PaperSize.DefaultPaperSize;
+                locRptDocument.SetParameterValue("@RefId", RefId);
+                //locRptDocument.SetParameterValue("@Encounter_No", "");
+                ConnectionInfo crConnectionInfo = new ConnectionInfo();
+                crConnectionInfo.ServerName = Config.SqlServerName;
+                crConnectionInfo.DatabaseName = Config.SqlDatabaseName;
+                crConnectionInfo.UserID = Config.SqlUserID;
+                crConnectionInfo.Password = Config.SqlPassword;
+                Tables CrTables = locRptDocument.Database.Tables;
+                CrTables = locRptDocument.Database.Tables;
+                foreach (CrystalDecisions.CrystalReports.Engine.Table CrTable in CrTables)
+                {
+                    TableLogOnInfo crtableLogoninfo = CrTable.LogOnInfo;
+                    crtableLogoninfo = CrTable.LogOnInfo;
+                    crtableLogoninfo.ConnectionInfo = crConnectionInfo;
+                    CrTable.ApplyLogOnInfo(crtableLogoninfo);
+                }
+                CrystalReportViewer crv = new CrystalReportViewer();
+                if (IsPreview)
+                {
+                    crv.Dock = DockStyle.Fill;
+                    crv.ReportSource = locRptDocument;
+                    crv.Refresh();
+                    frm.Controls.Add(crv);
+                    frm.WindowState = FormWindowState.Maximized;
+                    frm.Show();
+                }
+                else
+                {
+
+                    crv.ReportSource = locRptDocument;
+                    frm.Opacity = 0;
+                    frm.Show();
+                    locRptDocument.PrintToPrinter(1, false, 1, 1);
+                    frm.Close();
+                }
+
+
+                Cursor.Current = Cursors.Default;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
     }
 }

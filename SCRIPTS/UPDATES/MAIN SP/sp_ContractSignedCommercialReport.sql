@@ -1,85 +1,128 @@
 --SET QUOTED_IDENTIFIER ON|OFF
 --SET ANSI_NULLS ON|OFF
 --GO
-CREATE PROCEDURE [sp_ContractSignedCommercialReport] @RefId AS VARCHAR(20) = NULL
+ALTER PROCEDURE [dbo].[sp_ContractSignedCommercialReport] @RefId AS VARCHAR(20) = NULL
 -- WITH ENCRYPTION, RECOMPILE, EXECUTE AS CALLER|SELF|OWNER| 'user_name'
 AS
 BEGIN
     SET NOCOUNT ON;
 
 
+
     CREATE TABLE [#temptable]
     (
-        [ThisDay] VARCHAR(10),
-        [OfMonth] VARCHAR(10),
-        [ClientName] VARCHAR(100),
-        [ClientAddress] VARCHAR(500),
-        [UnitNo] VARCHAR(20),
-        [UnitArea] VARCHAR(20),
-        [StartDate] VARCHAR(10),
-        [EndDate] VARCHAR(10),
-        [RentalAmountInWords] VARCHAR(500),
-        [RentalAmountWithCurrency] VARCHAR(50),
-        [SecAndSecurityAmountInWords] VARCHAR(500),
-        [SecAndSecurityAmountWithCurrency] VARCHAR(50),
-        [TotalAmountInWords] VARCHAR(500),
-        [TotalAmountWithCurrency] VARCHAR(50),
-        [VATPCT] VARCHAR(50),
+        [ThisDay] NVARCHAR(20),
+        [OfMonth] NVARCHAR(20),
+        [OfYear] NVARCHAR(20),
+        [ProjectName] NVARCHAR(50),
+        [ProjectAddress] NVARCHAR(500),
+		[CertificateOfTitle] NVARCHAR(500),
+        [ClientName] NVARCHAR(100),
+        [ClientAddress] NVARCHAR(500),
+        [UnitNo] NVARCHAR(20),
+        [UnitArea] NVARCHAR(20),
+        [StartDate] NVARCHAR(20),
+        [EndDate] NVARCHAR(20),
+        [RentalAmountInWords] NVARCHAR(500),
+        [SecAndSecurityAmountInWords] NVARCHAR(500),
+        [TotalAmountInWords] NVARCHAR(500),
+        [VATPCT] NVARCHAR(50),
+        [PeriodCovered] NVARCHAR(50),
+        [MonthlyRentalNetofVatAmount] NVARCHAR(50),
+        [WithHoldingAmount] NVARCHAR(50),
+        [VatAmount] NVARCHAR(50),
+        [RentDueToLessorPerMonth] NVARCHAR(50),
+        [CUSAMonthlyRentalNetofVatAmount] NVARCHAR(50),
+        [CUSAWithHoldingAmount] NVARCHAR(50),
+        [CUSAVatAmount] NVARCHAR(50),
+        [CUSARentDueToLessorPerMonth] NVARCHAR(50),
+        [TotalAmountAll] NVARCHAR(50),
     );
 
-    INSERT INTO [#temptable]
-    (
-        [ThisDay],
-        [OfMonth],
-        [ClientName],
-        [ClientAddress],
-        [UnitNo],
-        [UnitArea],
-        [StartDate],
-        [EndDate],
-        [RentalAmountInWords],
-        [RentalAmountWithCurrency],
-        [SecAndSecurityAmountInWords],
-        [SecAndSecurityAmountWithCurrency],
-        [TotalAmountInWords],
-        [TotalAmountWithCurrency],
-        [VATPCT]
-    )
-    VALUES
-    (   NULL, -- ThisDay - varchar(10)
-        NULL, -- OfMonth - varchar(10)
-        NULL, -- ClientName - varchar(100)
-        NULL, -- ClientAddress - varchar(500)
-        NULL, -- UnitNo - varchar(20)
-        NULL, -- UnitArea - varchar(20)
-        NULL, -- StartDate - varchar(10)
-        NULL, -- EndDate - varchar(10)
-        NULL, -- RentalAmountInWords - varchar(500)
-        NULL, -- RentalAmountWithCurrency - varchar(50)
-        NULL, -- SecAndSecurityAmountInWords - varchar(500)
-        NULL, -- SecAndSecurityAmountWithCurrency - varchar(50)
-        NULL, -- TotalAmountInWords - varchar(500)
-        NULL, -- TotalAmountWithCurrency - varchar(50)
-        NULL  -- VATPCT - varchar(50)
-        );
+  INSERT INTO [#temptable]
+  (
+      [ThisDay],
+      [OfMonth],
+      [OfYear],
+      [ProjectName],
+      [ProjectAddress],
+      [CertificateOfTitle],
+      [ClientName],
+      [ClientAddress],
+      [UnitNo],
+      [UnitArea],
+      [StartDate],
+      [EndDate],
+      [RentalAmountInWords],
+      [SecAndSecurityAmountInWords],
+      [TotalAmountInWords],
+      [VATPCT],
+      [PeriodCovered],
+      [MonthlyRentalNetofVatAmount],
+      [WithHoldingAmount],
+      [VatAmount],
+      [RentDueToLessorPerMonth],
+      [CUSAMonthlyRentalNetofVatAmount],
+      [CUSAWithHoldingAmount],
+      [CUSAVatAmount],
+      [CUSARentDueToLessorPerMonth],
+      [TotalAmountAll]
+  )
+  VALUES
+  (   NULL, -- ThisDay - nvarchar(20)
+      NULL, -- OfMonth - nvarchar(20)
+      NULL, -- OfYear - nvarchar(20)
+      NULL, -- ProjectName - nvarchar(50)
+      NULL, -- ProjectAddress - nvarchar(500)
+      NULL, -- CertificateOfTitle - nvarchar(500)
+      NULL, -- ClientName - nvarchar(100)
+      NULL, -- ClientAddress - nvarchar(500)
+      NULL, -- UnitNo - nvarchar(20)
+      NULL, -- UnitArea - nvarchar(20)
+      NULL, -- StartDate - nvarchar(20)
+      NULL, -- EndDate - nvarchar(20)
+      NULL, -- RentalAmountInWords - nvarchar(500)
+      NULL, -- SecAndSecurityAmountInWords - nvarchar(500)
+      NULL, -- TotalAmountInWords - nvarchar(500)
+      NULL, -- VATPCT - nvarchar(50)
+      NULL, -- PeriodCovered - nvarchar(50)
+      NULL, -- MonthlyRentalNetofVatAmount - nvarchar(50)
+      NULL, -- WithHoldingAmount - nvarchar(50)
+      NULL, -- VatAmount - nvarchar(50)
+      NULL, -- RentDueToLessorPerMonth - nvarchar(50)
+      NULL, -- CUSAMonthlyRentalNetofVatAmount - nvarchar(50)
+      NULL, -- CUSAWithHoldingAmount - nvarchar(50)
+      NULL, -- CUSAVatAmount - nvarchar(50)
+      NULL, -- CUSARentDueToLessorPerMonth - nvarchar(50)
+      NULL  -- TotalAmountAll - nvarchar(50)
+      )
 
-
-    SELECT [#temptable].[ThisDay],
-           [#temptable].[OfMonth],
-           [#temptable].[ClientName],
-           [#temptable].[ClientAddress],
-           [#temptable].[UnitNo],
-           [#temptable].[UnitArea],
-           [#temptable].[StartDate],
-           [#temptable].[EndDate],
-           [#temptable].[RentalAmountInWords],
-           [#temptable].[RentalAmountWithCurrency],
-           [#temptable].[SecAndSecurityAmountInWords],
-           [#temptable].[SecAndSecurityAmountWithCurrency],
-           [#temptable].[TotalAmountInWords],
-           [#temptable].[TotalAmountWithCurrency],
-           [#temptable].[VATPCT]
-    FROM [#temptable];
+ SELECT [#temptable].[ThisDay],
+        [#temptable].[OfMonth],
+        [#temptable].[OfYear],
+        [#temptable].[ProjectName],
+        [#temptable].[ProjectAddress],
+        [#temptable].[ClientName],
+        [#temptable].[ClientAddress],
+        [#temptable].[UnitNo],
+        [#temptable].[UnitArea],
+        [#temptable].[StartDate],
+        [#temptable].[EndDate],
+        [#temptable].[RentalAmountInWords],
+        [#temptable].[SecAndSecurityAmountInWords],
+        [#temptable].[TotalAmountInWords],
+        [#temptable].[VATPCT],
+        [#temptable].[PeriodCovered],
+        [#temptable].[MonthlyRentalNetofVatAmount],
+        [#temptable].[WithHoldingAmount],
+        [#temptable].[VatAmount],
+        [#temptable].[RentDueToLessorPerMonth],
+        [#temptable].[CUSAMonthlyRentalNetofVatAmount],
+        [#temptable].[CUSAWithHoldingAmount],
+        [#temptable].[CUSAVatAmount],
+        [#temptable].[CUSARentDueToLessorPerMonth],
+        [#temptable].[TotalAmountAll]
+FROM [#temptable];
 END;
 GO
 --SET QUOTED_IDENTIFIER ON|OFF

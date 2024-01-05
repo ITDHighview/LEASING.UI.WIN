@@ -110,6 +110,8 @@ namespace LEASING.UI.APP.Forms
 
         private void frmGroupSecurity_Load(object sender, EventArgs e)
         {
+            radLabel4.Visible = false;
+            txtControlName.Visible = false;
             M_GetFormList();
         }
 

@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.Data.SortDescriptor sortDescriptor1 = new Telerik.WinControls.Data.SortDescriptor();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.Data.SortDescriptor sortDescriptor2 = new Telerik.WinControls.Data.SortDescriptor();
             this.label1 = new System.Windows.Forms.Label();
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.txtPass = new System.Windows.Forms.TextBox();
@@ -75,12 +75,12 @@
             this.txtUserName.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUserName.ForeColor = System.Drawing.Color.White;
             this.txtUserName.Location = new System.Drawing.Point(96, 84);
-            this.txtUserName.MaxLength = 10;
-            this.txtUserName.Multiline = true;
+            this.txtUserName.MaxLength = 100;
             this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Size = new System.Drawing.Size(278, 33);
+            this.txtUserName.Size = new System.Drawing.Size(278, 30);
             this.txtUserName.TabIndex = 1;
             this.txtUserName.TextChanged += new System.EventHandler(this.txtUserName_TextChanged);
+            this.txtUserName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUserName_KeyDown);
             this.txtUserName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUserName_KeyPress);
             // 
             // txtPass
@@ -90,10 +90,9 @@
             this.txtPass.ForeColor = System.Drawing.Color.White;
             this.txtPass.Location = new System.Drawing.Point(95, 129);
             this.txtPass.MaxLength = 20;
-            this.txtPass.Multiline = true;
             this.txtPass.Name = "txtPass";
             this.txtPass.PasswordChar = '*';
-            this.txtPass.Size = new System.Drawing.Size(278, 33);
+            this.txtPass.Size = new System.Drawing.Size(278, 30);
             this.txtPass.TabIndex = 2;
             this.txtPass.TextChanged += new System.EventHandler(this.txtPass_TextChanged);
             this.txtPass.Enter += new System.EventHandler(this.txtPass_Enter);
@@ -121,7 +120,7 @@
             this.lblUserName.Name = "lblUserName";
             this.lblUserName.Size = new System.Drawing.Size(257, 25);
             this.lblUserName.TabIndex = 5;
-            this.lblUserName.Text = "UserID";
+            this.lblUserName.Text = "UserName";
             this.lblUserName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblUserName.Click += new System.EventHandler(this.lblUserName_Click);
             // 
@@ -227,27 +226,27 @@
             this.cboGroup.EditorControl.MasterTemplate.AllowAddNewRow = false;
             this.cboGroup.EditorControl.MasterTemplate.AllowCellContextMenu = false;
             this.cboGroup.EditorControl.MasterTemplate.AllowColumnChooser = false;
-            gridViewTextBoxColumn1.EnableExpressionEditor = false;
-            gridViewTextBoxColumn1.FieldName = "Group_Code";
-            gridViewTextBoxColumn1.HeaderText = "Group_Code";
-            gridViewTextBoxColumn1.IsVisible = false;
-            gridViewTextBoxColumn1.Name = "Group_Code";
-            gridViewTextBoxColumn2.EnableExpressionEditor = false;
-            gridViewTextBoxColumn2.FieldName = "Group_Name";
-            gridViewTextBoxColumn2.HeaderText = "Group_Name";
-            gridViewTextBoxColumn2.Name = "Group_Name";
-            gridViewTextBoxColumn2.Width = 219;
+            gridViewTextBoxColumn3.EnableExpressionEditor = false;
+            gridViewTextBoxColumn3.FieldName = "Group_Code";
+            gridViewTextBoxColumn3.HeaderText = "Group_Code";
+            gridViewTextBoxColumn3.IsVisible = false;
+            gridViewTextBoxColumn3.Name = "Group_Code";
+            gridViewTextBoxColumn4.EnableExpressionEditor = false;
+            gridViewTextBoxColumn4.FieldName = "Group_Name";
+            gridViewTextBoxColumn4.HeaderText = "Group_Name";
+            gridViewTextBoxColumn4.Name = "Group_Name";
+            gridViewTextBoxColumn4.Width = 219;
             this.cboGroup.EditorControl.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn1,
-            gridViewTextBoxColumn2});
+            gridViewTextBoxColumn3,
+            gridViewTextBoxColumn4});
             this.cboGroup.EditorControl.MasterTemplate.EnableGrouping = false;
             this.cboGroup.EditorControl.MasterTemplate.ShowColumnHeaders = false;
             this.cboGroup.EditorControl.MasterTemplate.ShowFilteringRow = false;
             this.cboGroup.EditorControl.MasterTemplate.ShowRowHeaderColumn = false;
-            sortDescriptor1.Direction = System.ComponentModel.ListSortDirection.Descending;
-            sortDescriptor1.PropertyName = "column2";
+            sortDescriptor2.Direction = System.ComponentModel.ListSortDirection.Descending;
+            sortDescriptor2.PropertyName = "column2";
             this.cboGroup.EditorControl.MasterTemplate.SortDescriptors.AddRange(new Telerik.WinControls.Data.SortDescriptor[] {
-            sortDescriptor1});
+            sortDescriptor2});
             this.cboGroup.EditorControl.Name = "NestedRadGridView";
             this.cboGroup.EditorControl.ReadOnly = true;
             this.cboGroup.EditorControl.RightToLeft = System.Windows.Forms.RightToLeft.No;

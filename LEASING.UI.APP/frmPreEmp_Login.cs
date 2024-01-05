@@ -116,7 +116,22 @@ namespace LEASING.UI.APP.Forms
             }
             else
             {
-                M_GetGroup(string.IsNullOrEmpty(this.txtUserName.Text) ? "0" : this.txtUserName.Text);
+                using (SecurityControlContext mngrLogInManager = new SecurityControlContext())
+                {
+                    using (DataSet dt = mngrLogInManager.GetUserPassword(Convert.ToString(txtUserName.Text)))
+                    {
+                        if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                        {
+                            Variables.UserID = Convert.ToInt32(dt.Tables[0].Rows[0]["UserId"]);
+                            if (Convert.ToBoolean(dt.Tables[0].Rows[0]["UserStatus"]))
+                            {
+                                MessageBox.Show("The user is in-active please contact system administrator!", "SYSTEM MESSAGE", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                this.txtUserName.Focus();
+                            }
+                        }
+                    }
+                }
+                M_GetGroup(string.IsNullOrEmpty(Convert.ToString(Variables.UserID)) ? "0" : Convert.ToString(Variables.UserID));
                 this.txtPass.Focus();
                 this.txtPass.SelectAll();
 
@@ -144,12 +159,13 @@ namespace LEASING.UI.APP.Forms
 
             using (SecurityControlContext mngrLogInManager = new SecurityControlContext())
             {
-                using (DataSet dt = mngrLogInManager.GetUserPassword(Convert.ToInt32(txtUserName.Text)))
+                using (DataSet dt = mngrLogInManager.GetUserPassword(Convert.ToString(txtUserName.Text)))
                 {
                     if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
                         FirstName = Convert.ToString(dt.Tables[0].Rows[0]["StaffName"]);
                         UserPassword = Convert.ToString(dt.Tables[0].Rows[0]["UserPassword"]);
+                        Variables.UserID = Convert.ToInt32(dt.Tables[0].Rows[0]["UserId"]);
                         if (Convert.ToBoolean(dt.Tables[0].Rows[0]["UserStatus"]))
                         {
                             MessageBox.Show("The user is in-active please contact system administrator!", "SYSTEM MESSAGE", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -196,14 +212,14 @@ namespace LEASING.UI.APP.Forms
                             //}
 
                             Variables.FirstName = FirstName;
-                            Variables.UserID = Convert.ToInt32(this.txtUserName.Text);
+                            Variables.UserName = Convert.ToString(this.txtUserName.Text);
                             Variables.UserGroupCode = Convert.ToInt32(cboGroup.SelectedValue);
                             Variables.UserGroupName = this.cboGroup.Text;
                             Variables.UserPassword = UserPassword;
 
 
                             this.Hide();
-                            LoginUserID = Convert.ToInt32(this.txtUserName.Text);
+                            //LoginUserID = Convert.ToInt32(this.txtUserName.Text);
 
                             if (_MDIMain != null)
                                 _MDIMain.Close();
@@ -237,12 +253,12 @@ namespace LEASING.UI.APP.Forms
             if (IsAllowMe)
             {
                 this.Hide();
-                LoginUserID = Convert.ToInt32(this.txtUserName.Text);
-                Variables.UserGroupCode = 1;
-                Variables.FirstName = "ADMINISTRATOR";
-                Variables.UserID = Convert.ToInt32(this.txtUserName.Text);               
-                Variables.UserGroupName = "SUPER ADMIN";
-                Variables.UserPassword = string.Empty; ;
+                //LoginUserID = Convert.ToInt32(this.txtUserName.Text);
+                Variables.UserGroupCode = 26319;
+                //Variables.FirstName = "ADMINISTRATOR";
+                //Variables.UserID = Convert.ToInt32(this.txtUserName.Text);               
+                //Variables.UserGroupName = "SUPER ADMIN";
+                Variables.UserPassword = string.Empty;
                 if (_MDIMain != null)
                     _MDIMain.Close();
 
@@ -261,32 +277,15 @@ namespace LEASING.UI.APP.Forms
         }
         private void txtUserName_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9\b]"))
-                e.Handled = true;
+
+           
+
+        //if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9\b]"))
+        //    e.Handled = true;
 
             toolTip1.Hide(txtPass);
 
-            if (e.KeyChar == 13)
-            {
-                if (string.IsNullOrEmpty(this.txtUserName.Text))
-                {
-                    this.lblLedger.Text = "Invalid User name and password";
-                    this.txtUserName.Focus();
-                }
-                else
-                {
-                    M_GetGroup(string.IsNullOrEmpty(this.txtUserName.Text) ? "0" : this.txtUserName.Text);
-                    this.txtPass.Focus();
-                    this.txtPass.SelectAll();
-
-                    if (cboGroup.SelectedIndex == -1)
-                    {
-                        this.lblLedger.Text = "There was no Group assigned to your Account. Please contact your System Administrator.";
-                        txtUserName.Focus();
-                        return;
-                    }
-                }
-            }
+   
         }
         private void txtPass_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -318,7 +317,22 @@ namespace LEASING.UI.APP.Forms
                 else if (!string.IsNullOrEmpty(this.txtPass.Text.Trim()) && this.cboGroup.SelectedIndex == -1)
                 {
                     this.lblLedger.Text = "Select group to proceed.";
-                    M_GetGroup(string.IsNullOrEmpty(this.txtUserName.Text) ? "0" : this.txtUserName.Text);
+                    using (SecurityControlContext mngrLogInManager = new SecurityControlContext())
+                    {
+                        using (DataSet dt = mngrLogInManager.GetUserPassword(Convert.ToString(txtUserName.Text)))
+                        {
+                            if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                            {
+                                Variables.UserID = Convert.ToInt32(dt.Tables[0].Rows[0]["UserId"]);
+                                if (Convert.ToBoolean(dt.Tables[0].Rows[0]["UserStatus"]))
+                                {
+                                    MessageBox.Show("The user is in-active please contact system administrator!", "SYSTEM MESSAGE", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    this.txtUserName.Focus();
+                                }
+                            }
+                        }
+                    }
+                    M_GetGroup(string.IsNullOrEmpty(Convert.ToString(Variables.UserID)) ? "0" : Convert.ToString(Variables.UserID));
                 }
                 else
                     this.btnLogIn.PerformClick();
@@ -333,7 +347,22 @@ namespace LEASING.UI.APP.Forms
             }
             else
             {
-                M_GetGroup(string.IsNullOrEmpty(this.txtUserName.Text) ? "0" : this.txtUserName.Text);
+                using (SecurityControlContext mngrLogInManager = new SecurityControlContext())
+                {
+                    using (DataSet dt = mngrLogInManager.GetUserPassword(Convert.ToString(txtUserName.Text)))
+                    {
+                        if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                        {
+                            Variables.UserID = Convert.ToInt32(dt.Tables[0].Rows[0]["UserId"]);
+                            if (Convert.ToBoolean(dt.Tables[0].Rows[0]["UserStatus"]))
+                            {
+                                MessageBox.Show("The user is in-active please contact system administrator!", "SYSTEM MESSAGE", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                this.txtUserName.Focus();
+                            }
+                        }
+                    }
+                }
+                M_GetGroup(string.IsNullOrEmpty(Convert.ToString(Variables.UserID)) ? "0" : Convert.ToString(Variables.UserID));
                 this.txtPass.Focus();
                 this.txtPass.SelectAll();
 
@@ -374,6 +403,50 @@ namespace LEASING.UI.APP.Forms
             static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
             [System.Runtime.InteropServices.DllImport("user32.dll", CharSet = System.Runtime.InteropServices.CharSet.Auto)]
             static extern IntPtr SendMessage(IntPtr hWnd, UInt32 Msg, IntPtr wParam, IntPtr lParam);
+        }
+
+        private void txtUserName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                //if (e.KeyChar == 13)
+                //{
+                    if (string.IsNullOrEmpty(this.txtUserName.Text))
+                    {
+                        this.lblLedger.Text = "Invalid User name and password";
+                        this.txtUserName.Focus();
+                    }
+                    else
+                    {
+                        using (SecurityControlContext mngrLogInManager = new SecurityControlContext())
+                        {
+                            using (DataSet dt = mngrLogInManager.GetUserPassword(Convert.ToString(txtUserName.Text)))
+                            {
+                                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                                {
+                                    Variables.UserID = Convert.ToInt32(dt.Tables[0].Rows[0]["UserId"]);
+                                    if (Convert.ToBoolean(dt.Tables[0].Rows[0]["UserStatus"]))
+                                    {
+                                        MessageBox.Show("The user is in-active please contact system administrator!", "SYSTEM MESSAGE", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        this.txtUserName.Focus();
+                                    }
+                                }
+                            }
+                        }
+
+                        M_GetGroup(string.IsNullOrEmpty(Convert.ToString(Variables.UserID)) ? "0" : Convert.ToString(Variables.UserID));
+                        this.txtPass.Focus();
+                        this.txtPass.SelectAll();
+
+                        if (cboGroup.SelectedIndex == -1)
+                        {
+                            this.lblLedger.Text = "There was no Group assigned to your Account. Please contact your System Administrator.";
+                            txtUserName.Focus();
+                            return;
+                        }
+                    }
+                //}
+            }
         }
     }
 }

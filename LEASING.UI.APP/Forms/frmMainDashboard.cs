@@ -19,10 +19,18 @@ namespace LEASING.UI.APP.Forms
         public frmMainDashboard()
         {
             InitializeComponent();
-            if (Convert.ToBoolean(ConfigurationManager.AppSettings["IsPermission"].ToString()))
+            if (Variables.UserGroupCode == 26319)
             {
-                Functions.SecurityControls(this);
+
             }
+            else
+            {
+                if (Convert.ToBoolean(ConfigurationManager.AppSettings["IsPermission"].ToString()))
+                {
+                    Functions.SecurityControls(this);
+                }
+            }
+           
         }
 
         private void frmMainDashboard_Load(object sender, EventArgs e)
@@ -371,6 +379,12 @@ namespace LEASING.UI.APP.Forms
         {
             frmUserDashBoard frmUserDashBoard = new frmUserDashBoard();
             frmUserDashBoard.ShowDialog();
+        }
+
+        private void radMenuItemGroup_Click(object sender, EventArgs e)
+        {
+            frmUserGroup frmUserGroup = new frmUserGroup();
+            frmUserGroup.ShowDialog();
         }
     }
 }

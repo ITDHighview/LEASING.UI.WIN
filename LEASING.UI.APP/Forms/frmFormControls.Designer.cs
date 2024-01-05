@@ -96,9 +96,9 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 145F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 19F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(848, 690);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(984, 690);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // toolStrip1
@@ -111,7 +111,7 @@
             this.btnRefresh});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(848, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(984, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -164,7 +164,7 @@
             this.radGroupBox1.HeaderText = "Control Details";
             this.radGroupBox1.Location = new System.Drawing.Point(3, 31);
             this.radGroupBox1.Name = "radGroupBox1";
-            this.radGroupBox1.Size = new System.Drawing.Size(842, 139);
+            this.radGroupBox1.Size = new System.Drawing.Size(978, 13);
             this.radGroupBox1.TabIndex = 1;
             this.radGroupBox1.Text = "Control Details";
             // 
@@ -174,7 +174,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 145F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 105F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 388F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 524F));
             this.tableLayoutPanel2.Controls.Add(this.radLabel1, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.radLabel2, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.radLabel3, 0, 1);
@@ -193,7 +193,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(838, 119);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(974, 0);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // radLabel1
@@ -286,9 +286,9 @@
             this.radGroupBox2.Controls.Add(this.dgvControlList);
             this.radGroupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radGroupBox2.HeaderText = "Control List";
-            this.radGroupBox2.Location = new System.Drawing.Point(3, 176);
+            this.radGroupBox2.Location = new System.Drawing.Point(3, 50);
             this.radGroupBox2.Name = "radGroupBox2";
-            this.radGroupBox2.Size = new System.Drawing.Size(842, 511);
+            this.radGroupBox2.Size = new System.Drawing.Size(978, 637);
             this.radGroupBox2.TabIndex = 2;
             this.radGroupBox2.Text = "Control List";
             // 
@@ -310,50 +310,52 @@
             gridViewCommandColumn1.HeaderImage = global::LEASING.UI.APP.Properties.Resources.delete_16;
             gridViewCommandColumn1.HeaderText = "";
             gridViewCommandColumn1.Image = global::LEASING.UI.APP.Properties.Resources.delete_16;
+            gridViewCommandColumn1.IsVisible = false;
             gridViewCommandColumn1.Name = "ColDelete";
             gridViewCommandColumn1.Width = 30;
             gridViewTextBoxColumn1.FieldName = "ControlId";
             gridViewTextBoxColumn1.HeaderText = "Control Id";
             gridViewTextBoxColumn1.Name = "ControlId";
             gridViewTextBoxColumn1.Width = 80;
-            gridViewTextBoxColumn2.FieldName = "FormId";
-            gridViewTextBoxColumn2.HeaderText = "Form Id";
-            gridViewTextBoxColumn2.IsVisible = false;
-            gridViewTextBoxColumn2.Name = "FormId";
-            gridViewTextBoxColumn2.Width = 80;
-            gridViewTextBoxColumn3.FieldName = "FormDescription";
-            gridViewTextBoxColumn3.HeaderText = "Form Name";
-            gridViewTextBoxColumn3.Name = "FormDescription";
-            gridViewTextBoxColumn3.Width = 120;
-            gridViewTextBoxColumn4.FieldName = "MenuId";
-            gridViewTextBoxColumn4.HeaderText = "Menu Id";
-            gridViewTextBoxColumn4.IsVisible = false;
-            gridViewTextBoxColumn4.Name = "MenuId";
-            gridViewTextBoxColumn4.Width = 80;
-            gridViewTextBoxColumn5.FieldName = "MenuName";
-            gridViewTextBoxColumn5.HeaderText = "Menu Name";
-            gridViewTextBoxColumn5.Name = "MenuName";
-            gridViewTextBoxColumn5.Width = 120;
-            gridViewTextBoxColumn6.FieldName = "ControlName";
-            gridViewTextBoxColumn6.HeaderText = "Control Name";
-            gridViewTextBoxColumn6.Name = "ControlName";
+            gridViewTextBoxColumn2.FieldName = "ControlName";
+            gridViewTextBoxColumn2.HeaderText = "Control Name";
+            gridViewTextBoxColumn2.Name = "ControlName";
+            gridViewTextBoxColumn2.Width = 200;
+            gridViewTextBoxColumn3.FieldName = "FormId";
+            gridViewTextBoxColumn3.HeaderText = "Form Id";
+            gridViewTextBoxColumn3.IsVisible = false;
+            gridViewTextBoxColumn3.Name = "FormId";
+            gridViewTextBoxColumn3.Width = 80;
+            gridViewTextBoxColumn4.FieldName = "FormDescription";
+            gridViewTextBoxColumn4.HeaderText = "Form Name";
+            gridViewTextBoxColumn4.Name = "FormDescription";
+            gridViewTextBoxColumn4.Width = 150;
+            gridViewTextBoxColumn5.FieldName = "MenuId";
+            gridViewTextBoxColumn5.HeaderText = "Menu Id";
+            gridViewTextBoxColumn5.IsVisible = false;
+            gridViewTextBoxColumn5.Name = "MenuId";
+            gridViewTextBoxColumn5.Width = 80;
+            gridViewTextBoxColumn6.FieldName = "MenuName";
+            gridViewTextBoxColumn6.HeaderText = "Menu Name";
+            gridViewTextBoxColumn6.Name = "MenuName";
             gridViewTextBoxColumn6.Width = 150;
             gridViewTextBoxColumn7.FieldName = "ControlDescription";
             gridViewTextBoxColumn7.HeaderText = "Control Description";
             gridViewTextBoxColumn7.Name = "ControlDescription";
-            gridViewTextBoxColumn7.Width = 150;
+            gridViewTextBoxColumn7.Width = 200;
             gridViewTextBoxColumn8.FieldName = "IsBackRoundControl";
             gridViewTextBoxColumn8.HeaderText = "Is BackRound Control";
             gridViewTextBoxColumn8.Name = "IsBackRoundControl";
-            gridViewTextBoxColumn8.Width = 70;
+            gridViewTextBoxColumn8.Width = 100;
             gridViewTextBoxColumn8.WrapText = true;
             gridViewTextBoxColumn9.FieldName = "IsHeaderControl";
             gridViewTextBoxColumn9.HeaderText = "Is Header Control";
             gridViewTextBoxColumn9.Name = "IsHeaderControl";
-            gridViewTextBoxColumn9.Width = 70;
+            gridViewTextBoxColumn9.Width = 100;
             gridViewTextBoxColumn9.WrapText = true;
             gridViewTextBoxColumn10.FieldName = "Status";
             gridViewTextBoxColumn10.HeaderText = "Status";
+            gridViewTextBoxColumn10.IsVisible = false;
             gridViewTextBoxColumn10.Name = "Status";
             gridViewTextBoxColumn10.Width = 80;
             this.dgvControlList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
@@ -375,7 +377,7 @@
             this.dgvControlList.ReadOnly = true;
             this.dgvControlList.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgvControlList.ShowGroupPanel = false;
-            this.dgvControlList.Size = new System.Drawing.Size(838, 491);
+            this.dgvControlList.Size = new System.Drawing.Size(974, 617);
             this.dgvControlList.TabIndex = 0;
             this.dgvControlList.Text = "radGridView1";
             this.dgvControlList.ThemeName = "Office2007Silver";
@@ -384,7 +386,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(848, 690);
+            this.ClientSize = new System.Drawing.Size(984, 690);
             this.Controls.Add(this.tableLayoutPanel1);
             this.DoubleBuffered = true;
             this.Name = "frmFormControls";

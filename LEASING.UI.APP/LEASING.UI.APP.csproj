@@ -520,6 +520,12 @@
     <Compile Include="Forms\frmUserDashBoard.Designer.cs">
       <DependentUpon>frmUserDashBoard.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmUserGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmUserGroup.Designer.cs">
+      <DependentUpon>frmUserGroup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmUserSecurity.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -749,6 +755,9 @@
     <EmbeddedResource Include="Forms\frmUserDashBoard.resx">
       <DependentUpon>frmUserDashBoard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmUserGroup.resx">
+      <DependentUpon>frmUserGroup.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmUserSecurity.resx">
       <DependentUpon>frmUserSecurity.cs</DependentUpon>
     </EmbeddedResource>
@@ -787,7 +796,9 @@
     <None Include="Resources\license.docx" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

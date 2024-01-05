@@ -98,6 +98,8 @@ namespace LEASING.UI.APP.Forms
         }
         private void frmFormControls_Load(object sender, EventArgs e)
         {
+            radGroupBox1.Visible = false;
+            toolStrip1.Visible = false;
             ClearFields();
             M_GetFormList();
             M_GetMenuList();

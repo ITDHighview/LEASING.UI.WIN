@@ -63,6 +63,7 @@
             this.radMenuItemUser = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItemGroupSecurity = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItemFormControls = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItemGroup = new Telerik.WinControls.UI.RadMenuItem();
             this.btnLogout = new Telerik.WinControls.UI.RadButton();
             this.radPanel6 = new Telerik.WinControls.UI.RadPanel();
             this.radMenu6 = new Telerik.WinControls.UI.RadMenu();
@@ -306,10 +307,10 @@
             this.radMenuItemAdministrative.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.radMenuItemAddNewLocation,
             this.radMenuItemAddNewProject,
-            this.radMenuItemAddNewPurhcaseItem,
-            this.radMenuItemRates2,
             this.radMenuItemAddNewUnit,
-            this.radMenuItemBankName});
+            this.radMenuItemAddNewPurhcaseItem,
+            this.radMenuItemBankName,
+            this.radMenuItemRates2});
             this.radMenuItemAdministrative.Name = "radMenuItemAdministrative";
             this.radMenuItemAdministrative.Text = "ADMINISTRATIVE";
             this.radMenuItemAdministrative.Click += new System.EventHandler(this.radMenuItemAdministrative_Click);
@@ -472,10 +473,11 @@
             this.radMenuItemSecurity.AccessibleName = "radMenuItemSecurity";
             this.radMenuItemSecurity.Image = global::LEASING.UI.APP.Properties.Resources.key_32;
             this.radMenuItemSecurity.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radMenuUnitComputation,
+            this.radMenuItemGroup,
             this.radMenuItemUser,
             this.radMenuItemGroupSecurity,
-            this.radMenuItemFormControls});
+            this.radMenuItemFormControls,
+            this.radMenuUnitComputation});
             this.radMenuItemSecurity.Name = "radMenuItemSecurity";
             this.radMenuItemSecurity.Text = "SECURITY";
             this.radMenuItemSecurity.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -507,6 +509,15 @@
             this.radMenuItemFormControls.Name = "radMenuItemFormControls";
             this.radMenuItemFormControls.Text = "Form Controls";
             this.radMenuItemFormControls.Click += new System.EventHandler(this.radMenuItemFormControls_Click);
+            // 
+            // radMenuItemGroup
+            // 
+            this.radMenuItemGroup.AccessibleDescription = "radMenuItemGroup";
+            this.radMenuItemGroup.AccessibleName = "radMenuItemGroup";
+            this.radMenuItemGroup.Image = global::LEASING.UI.APP.Properties.Resources.user_green20x20;
+            this.radMenuItemGroup.Name = "radMenuItemGroup";
+            this.radMenuItemGroup.Text = "Group";
+            this.radMenuItemGroup.Click += new System.EventHandler(this.radMenuItemGroup_Click);
             // 
             // btnLogout
             // 
@@ -835,7 +846,7 @@
             this.radMenuItemAddNewClient.AccessibleName = "Add New Client";
             this.radMenuItemAddNewClient.Image = global::LEASING.UI.APP.Properties.Resources.document_16;
             this.radMenuItemAddNewClient.Name = "radMenuItemAddNewClient";
-            this.radMenuItemAddNewClient.Text = "Add New Client";
+            this.radMenuItemAddNewClient.Text = "Add / Edit Client";
             this.radMenuItemAddNewClient.Click += new System.EventHandler(this.radMenuItemAddNewClient_Click);
             // 
             // radMenuItemClientInformation
@@ -1082,5 +1093,6 @@
         private Telerik.WinControls.UI.RadMenuItem radMenuItemBankName;
         private Telerik.WinControls.UI.RadMenuItem radMenuItemFormControls;
         private Telerik.WinControls.UI.RadButton btnSwitchUser;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemGroup;
     }
 }

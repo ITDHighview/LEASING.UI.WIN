@@ -69,6 +69,8 @@ namespace LEASING.UI.APP.Forms
             txtEmailAddress.Text = string.Empty;
             txtPhone.Text = string.Empty;
             txtUserPassword.Text = string.Empty;
+            txtUserName.Text = string.Empty;
+
         }
 
         private void EnableFields()
@@ -80,6 +82,7 @@ namespace LEASING.UI.APP.Forms
             txtEmailAddress.Enabled = true;
             txtPhone.Enabled = true;
             txtUserPassword.Enabled = true;
+            txtUserName.Enabled = true;
         }
         private void DisableFields()
         {
@@ -90,13 +93,14 @@ namespace LEASING.UI.APP.Forms
             txtEmailAddress.Enabled = false;
             txtPhone.Enabled = false;
             txtUserPassword.Enabled = false;
+            txtUserName.Enabled = false;
         }
         bool IsValid()
         {
 
-            if (string.IsNullOrEmpty(txtStaffName.Text))
+            if (string.IsNullOrEmpty(txtUserName.Text))
             {
-                MessageBox.Show("Staff Name Cannot Be empty", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("User Name Cannot Be empty", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return false;
             }
             if (string.IsNullOrEmpty(txtUserPassword.Text))
@@ -141,7 +145,7 @@ namespace LEASING.UI.APP.Forms
             {
                 try
                 {
-                    string result = SecurityControlContext.SaveUser(Convert.ToInt32(ddlUserGroup.SelectedValue),Convert.ToInt32(dgvControlList.CurrentRow.Cells["UserId"].Value), txtUserPassword.Text.Trim(), txtStaffName.Text.Trim(), txtMiddlename.Text.Trim(), txtLastname.Text.Trim(), txtEmailAddress.Text.Trim(), txtPhone.Text.Trim(), FormMode);
+                    string result = SecurityControlContext.SaveUser(Convert.ToInt32(ddlUserGroup.SelectedValue), Convert.ToInt32(dgvControlList.CurrentRow.Cells["UserId"].Value), txtUserPassword.Text.Trim(), txtUserName.Text.Trim(), txtStaffName.Text.Trim(), txtMiddlename.Text.Trim(), txtLastname.Text.Trim(), txtEmailAddress.Text.Trim(), txtPhone.Text.Trim(), FormMode);
                     if (result.Equals("SUCCESS"))
                     {
 
@@ -167,7 +171,7 @@ namespace LEASING.UI.APP.Forms
                 {
                     try
                     {
-                        string result = SecurityControlContext.SaveUser(Convert.ToInt32(ddlUserGroup.SelectedValue), Convert.ToInt32(dgvControlList.CurrentRow.Cells["UserId"].Value), txtUserPassword.Text.Trim(), txtStaffName.Text.Trim(), txtMiddlename.Text.Trim(), txtLastname.Text.Trim(), txtEmailAddress.Text.Trim(), txtPhone.Text.Trim(), FormMode);
+                        string result = SecurityControlContext.SaveUser(Convert.ToInt32(ddlUserGroup.SelectedValue), Convert.ToInt32(dgvControlList.CurrentRow.Cells["UserId"].Value), txtUserPassword.Text.Trim(), txtUserName.Text.Trim(), txtStaffName.Text.Trim(), txtMiddlename.Text.Trim(), txtLastname.Text.Trim(), txtEmailAddress.Text.Trim(), txtPhone.Text.Trim(), FormMode);
                         if (result.Equals("SUCCESS"))
                         {
 
@@ -244,6 +248,7 @@ namespace LEASING.UI.APP.Forms
                 txtEmailAddress.Text = Convert.ToString(dgvControlList.CurrentRow.Cells["EmailAddress"].Value);
                 txtPhone.Text = Convert.ToString(dgvControlList.CurrentRow.Cells["Phone"].Value);
                 txtUserPassword.Text = Convert.ToString(dgvControlList.CurrentRow.Cells["UserPassword"].Value);
+                txtUserName.Text = Convert.ToString(dgvControlList.CurrentRow.Cells["UserName"].Value);
             }
         }
 

@@ -12,15 +12,13 @@ GO
 -- =============================================
 ALTER PROCEDURE [dbo].[sp_GetGroupList]
 AS
-    BEGIN
+BEGIN
 
-        SET NOCOUNT ON;
+    SET NOCOUNT ON;
+    EXEC [sp_RefreshUpdatesGroupControls];
+    SELECT [tblGroup].[GroupId],
+           [tblGroup].[GroupName],
+           [tblGroup].[IsDelete]
+    FROM [dbo].[tblGroup];
 
-        SELECT
-            [tblGroup].[GroupId],
-            [tblGroup].[GroupName],
-            [tblGroup].[IsDelete]
-        FROM
-            [dbo].[tblGroup];
-
-    END;
+END;

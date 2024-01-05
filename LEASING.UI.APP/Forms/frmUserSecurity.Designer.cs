@@ -28,14 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn12 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn13 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn14 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn15 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn16 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnNewUser = new System.Windows.Forms.ToolStripButton();
@@ -56,11 +57,13 @@
             this.txtLastname = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
             this.txtUserPassword = new Telerik.WinControls.UI.RadTextBox();
-            this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
-            this.txtPhone = new Telerik.WinControls.UI.RadTextBox();
+            this.btnShowPassword = new Telerik.WinControls.UI.RadButton();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.txtEmailAddress = new Telerik.WinControls.UI.RadTextBox();
-            this.btnShowPassword = new Telerik.WinControls.UI.RadButton();
+            this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
+            this.txtPhone = new Telerik.WinControls.UI.RadTextBox();
+            this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
+            this.txtUserName = new Telerik.WinControls.UI.RadTextBox();
             this.radGroupBox2 = new Telerik.WinControls.UI.RadGroupBox();
             this.dgvControlList = new Telerik.WinControls.UI.RadGridView();
             this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
@@ -79,11 +82,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtLastname)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUserPassword)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPhone)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnShowPassword)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmailAddress)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnShowPassword)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPhone)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtUserName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).BeginInit();
             this.radGroupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvControlList)).BeginInit();
@@ -203,11 +208,13 @@
             this.tableLayoutPanel2.Controls.Add(this.txtLastname, 1, 3);
             this.tableLayoutPanel2.Controls.Add(this.radLabel7, 2, 3);
             this.tableLayoutPanel2.Controls.Add(this.txtUserPassword, 3, 3);
-            this.tableLayoutPanel2.Controls.Add(this.radLabel5, 2, 2);
-            this.tableLayoutPanel2.Controls.Add(this.txtPhone, 3, 2);
-            this.tableLayoutPanel2.Controls.Add(this.radLabel2, 2, 1);
-            this.tableLayoutPanel2.Controls.Add(this.txtEmailAddress, 3, 1);
             this.tableLayoutPanel2.Controls.Add(this.btnShowPassword, 4, 3);
+            this.tableLayoutPanel2.Controls.Add(this.radLabel2, 2, 0);
+            this.tableLayoutPanel2.Controls.Add(this.txtEmailAddress, 3, 0);
+            this.tableLayoutPanel2.Controls.Add(this.radLabel5, 2, 1);
+            this.tableLayoutPanel2.Controls.Add(this.txtPhone, 3, 1);
+            this.tableLayoutPanel2.Controls.Add(this.radLabel8, 2, 2);
+            this.tableLayoutPanel2.Controls.Add(this.txtUserName, 3, 2);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(2, 18);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -305,40 +312,6 @@
             this.txtUserPassword.Size = new System.Drawing.Size(184, 18);
             this.txtUserPassword.TabIndex = 2;
             // 
-            // radLabel5
-            // 
-            this.radLabel5.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.radLabel5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel5.Location = new System.Drawing.Point(336, 53);
-            this.radLabel5.Name = "radLabel5";
-            this.radLabel5.Size = new System.Drawing.Size(78, 19);
-            this.radLabel5.TabIndex = 0;
-            this.radLabel5.Text = "Mobile No. :";
-            // 
-            // txtPhone
-            // 
-            this.txtPhone.Location = new System.Drawing.Point(420, 53);
-            this.txtPhone.Name = "txtPhone";
-            this.txtPhone.Size = new System.Drawing.Size(184, 19);
-            this.txtPhone.TabIndex = 2;
-            // 
-            // radLabel2
-            // 
-            this.radLabel2.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.radLabel2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel2.Location = new System.Drawing.Point(319, 28);
-            this.radLabel2.Name = "radLabel2";
-            this.radLabel2.Size = new System.Drawing.Size(95, 19);
-            this.radLabel2.TabIndex = 0;
-            this.radLabel2.Text = "Email Address :";
-            // 
-            // txtEmailAddress
-            // 
-            this.txtEmailAddress.Location = new System.Drawing.Point(420, 28);
-            this.txtEmailAddress.Name = "txtEmailAddress";
-            this.txtEmailAddress.Size = new System.Drawing.Size(184, 19);
-            this.txtEmailAddress.TabIndex = 2;
-            // 
             // btnShowPassword
             // 
             this.btnShowPassword.Image = global::LEASING.UI.APP.Properties.Resources.eye1;
@@ -347,6 +320,57 @@
             this.btnShowPassword.Size = new System.Drawing.Size(19, 18);
             this.btnShowPassword.TabIndex = 3;
             this.btnShowPassword.Click += new System.EventHandler(this.btnShowPassword_Click);
+            // 
+            // radLabel2
+            // 
+            this.radLabel2.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.radLabel2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel2.Location = new System.Drawing.Point(319, 3);
+            this.radLabel2.Name = "radLabel2";
+            this.radLabel2.Size = new System.Drawing.Size(95, 19);
+            this.radLabel2.TabIndex = 0;
+            this.radLabel2.Text = "Email Address :";
+            // 
+            // txtEmailAddress
+            // 
+            this.txtEmailAddress.Location = new System.Drawing.Point(420, 3);
+            this.txtEmailAddress.Name = "txtEmailAddress";
+            this.txtEmailAddress.Size = new System.Drawing.Size(184, 19);
+            this.txtEmailAddress.TabIndex = 2;
+            // 
+            // radLabel5
+            // 
+            this.radLabel5.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.radLabel5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel5.Location = new System.Drawing.Point(336, 28);
+            this.radLabel5.Name = "radLabel5";
+            this.radLabel5.Size = new System.Drawing.Size(78, 19);
+            this.radLabel5.TabIndex = 0;
+            this.radLabel5.Text = "Mobile No. :";
+            // 
+            // txtPhone
+            // 
+            this.txtPhone.Location = new System.Drawing.Point(420, 28);
+            this.txtPhone.Name = "txtPhone";
+            this.txtPhone.Size = new System.Drawing.Size(184, 19);
+            this.txtPhone.TabIndex = 2;
+            // 
+            // radLabel8
+            // 
+            this.radLabel8.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.radLabel8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel8.Location = new System.Drawing.Point(337, 53);
+            this.radLabel8.Name = "radLabel8";
+            this.radLabel8.Size = new System.Drawing.Size(77, 19);
+            this.radLabel8.TabIndex = 0;
+            this.radLabel8.Text = "User Name :";
+            // 
+            // txtUserName
+            // 
+            this.txtUserName.Location = new System.Drawing.Point(420, 53);
+            this.txtUserName.Name = "txtUserName";
+            this.txtUserName.Size = new System.Drawing.Size(184, 19);
+            this.txtUserName.TabIndex = 2;
             // 
             // radGroupBox2
             // 
@@ -374,47 +398,52 @@
             // 
             this.dgvControlList.MasterTemplate.AllowAddNewRow = false;
             this.dgvControlList.MasterTemplate.AllowColumnReorder = false;
-            gridViewTextBoxColumn9.FieldName = "UserId";
-            gridViewTextBoxColumn9.HeaderText = "User ID";
-            gridViewTextBoxColumn9.Name = "UserId";
-            gridViewTextBoxColumn9.Width = 100;
-            gridViewTextBoxColumn10.FieldName = "StaffName";
-            gridViewTextBoxColumn10.HeaderText = "Name";
-            gridViewTextBoxColumn10.Name = "StaffName";
-            gridViewTextBoxColumn10.Width = 200;
-            gridViewTextBoxColumn11.FieldName = "Middlename";
-            gridViewTextBoxColumn11.HeaderText = "Middle Name";
-            gridViewTextBoxColumn11.Name = "Middlename";
-            gridViewTextBoxColumn11.Width = 200;
-            gridViewTextBoxColumn12.FieldName = "Lastname";
-            gridViewTextBoxColumn12.HeaderText = "Last Name";
-            gridViewTextBoxColumn12.Name = "Lastname";
-            gridViewTextBoxColumn12.Width = 200;
-            gridViewTextBoxColumn13.FieldName = "EmailAddress";
-            gridViewTextBoxColumn13.HeaderText = "Email Address";
-            gridViewTextBoxColumn13.Name = "EmailAddress";
-            gridViewTextBoxColumn13.Width = 200;
-            gridViewTextBoxColumn14.FieldName = "Phone";
-            gridViewTextBoxColumn14.HeaderText = "Phone";
-            gridViewTextBoxColumn14.Name = "Phone";
-            gridViewTextBoxColumn14.Width = 200;
-            gridViewTextBoxColumn15.FieldName = "UserPassword";
-            gridViewTextBoxColumn15.HeaderText = "UserPassword";
-            gridViewTextBoxColumn15.IsVisible = false;
-            gridViewTextBoxColumn15.Name = "UserPassword";
-            gridViewTextBoxColumn16.FieldName = "GroupId";
-            gridViewTextBoxColumn16.HeaderText = "GroupId";
-            gridViewTextBoxColumn16.IsVisible = false;
-            gridViewTextBoxColumn16.Name = "GroupId";
+            gridViewTextBoxColumn1.FieldName = "UserId";
+            gridViewTextBoxColumn1.HeaderText = "User ID";
+            gridViewTextBoxColumn1.Name = "UserId";
+            gridViewTextBoxColumn1.Width = 100;
+            gridViewTextBoxColumn2.FieldName = "UserName";
+            gridViewTextBoxColumn2.HeaderText = "User Name";
+            gridViewTextBoxColumn2.Name = "UserName";
+            gridViewTextBoxColumn2.Width = 120;
+            gridViewTextBoxColumn3.FieldName = "StaffName";
+            gridViewTextBoxColumn3.HeaderText = "Name";
+            gridViewTextBoxColumn3.Name = "StaffName";
+            gridViewTextBoxColumn3.Width = 200;
+            gridViewTextBoxColumn4.FieldName = "Middlename";
+            gridViewTextBoxColumn4.HeaderText = "Middle Name";
+            gridViewTextBoxColumn4.Name = "Middlename";
+            gridViewTextBoxColumn4.Width = 200;
+            gridViewTextBoxColumn5.FieldName = "Lastname";
+            gridViewTextBoxColumn5.HeaderText = "Last Name";
+            gridViewTextBoxColumn5.Name = "Lastname";
+            gridViewTextBoxColumn5.Width = 200;
+            gridViewTextBoxColumn6.FieldName = "EmailAddress";
+            gridViewTextBoxColumn6.HeaderText = "Email Address";
+            gridViewTextBoxColumn6.Name = "EmailAddress";
+            gridViewTextBoxColumn6.Width = 200;
+            gridViewTextBoxColumn7.FieldName = "Phone";
+            gridViewTextBoxColumn7.HeaderText = "Phone";
+            gridViewTextBoxColumn7.Name = "Phone";
+            gridViewTextBoxColumn7.Width = 200;
+            gridViewTextBoxColumn8.FieldName = "UserPassword";
+            gridViewTextBoxColumn8.HeaderText = "UserPassword";
+            gridViewTextBoxColumn8.IsVisible = false;
+            gridViewTextBoxColumn8.Name = "UserPassword";
+            gridViewTextBoxColumn9.FieldName = "GroupId";
+            gridViewTextBoxColumn9.HeaderText = "GroupId";
+            gridViewTextBoxColumn9.IsVisible = false;
+            gridViewTextBoxColumn9.Name = "GroupId";
             this.dgvControlList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn9,
-            gridViewTextBoxColumn10,
-            gridViewTextBoxColumn11,
-            gridViewTextBoxColumn12,
-            gridViewTextBoxColumn13,
-            gridViewTextBoxColumn14,
-            gridViewTextBoxColumn15,
-            gridViewTextBoxColumn16});
+            gridViewTextBoxColumn1,
+            gridViewTextBoxColumn2,
+            gridViewTextBoxColumn3,
+            gridViewTextBoxColumn4,
+            gridViewTextBoxColumn5,
+            gridViewTextBoxColumn6,
+            gridViewTextBoxColumn7,
+            gridViewTextBoxColumn8,
+            gridViewTextBoxColumn9});
             this.dgvControlList.MasterTemplate.EnableFiltering = true;
             this.dgvControlList.MasterTemplate.ShowRowHeaderColumn = false;
             this.dgvControlList.Name = "dgvControlList";
@@ -458,11 +487,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtLastname)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUserPassword)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPhone)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnShowPassword)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmailAddress)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnShowPassword)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPhone)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtUserName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).EndInit();
             this.radGroupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvControlList.MasterTemplate)).EndInit();
@@ -501,5 +532,7 @@
         private Telerik.WinControls.UI.RadLabel radLabel2;
         private Telerik.WinControls.UI.RadTextBox txtEmailAddress;
         private Telerik.WinControls.UI.RadButton btnShowPassword;
+        private Telerik.WinControls.UI.RadLabel radLabel8;
+        private Telerik.WinControls.UI.RadTextBox txtUserName;
     }
 }

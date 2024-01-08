@@ -4,6 +4,6 @@ INSERT INTO [dbo].[tblGroup]
     [IsDelete]
 )
 VALUES
-(1, 'SUPER ADMIN', 0);
+('SUPER ADMIN', 0);
 
 

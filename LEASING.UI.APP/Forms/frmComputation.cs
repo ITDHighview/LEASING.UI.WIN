@@ -87,7 +87,7 @@ namespace LEASING.UI.APP.Forms
                         btnSaveComputation.Enabled = false;
                         btnNewComputation.Enabled = true;
 
-                        ddlProject.SelectedIndex = 0;
+                        //ddlProject.SelectedIndex = 0;
                         ddlUnitNumber.SelectedIndex = 0;
                         DisableFields();
                         //data.Clear();
@@ -105,7 +105,7 @@ namespace LEASING.UI.APP.Forms
         }
         private bool IsComputationValid()
         {
-            if (ddlProject.SelectedIndex == 0)
+            if (ddlProject.SelectedText == "--SELECT--")
             {
                 MessageBox.Show("Please select Project name.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return false;
@@ -151,7 +151,7 @@ namespace LEASING.UI.APP.Forms
         }
         private bool IsComputationValidForCompute()
         {
-            if (ddlProject.SelectedIndex == 0)
+            if (ddlProject.SelectedText == "--SELECT--")
             {
                 MessageBox.Show("Please select Project name.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return false;
@@ -192,7 +192,7 @@ namespace LEASING.UI.APP.Forms
         }
         private bool IsComputationValidForAdvancePayment()
         {
-            if (ddlProject.SelectedIndex == 0)
+            if (ddlProject.SelectedText == "--SELECT--")
             {
                 MessageBox.Show("Please select Project name.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return false;

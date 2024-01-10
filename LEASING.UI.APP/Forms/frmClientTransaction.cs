@@ -23,7 +23,26 @@ namespace LEASING.UI.APP.Forms
         PaymentContext PaymentContext = new PaymentContext();
         UnitContext UnitContext = new UnitContext();
 
-        public bool IsPayAsSelected = false;
+        //public bool IsPayAsSelected = false;
+        private bool _IsPayAsSelected;
+
+        public bool IsPayAsSelected
+        {
+            get { return _IsPayAsSelected; }
+            set {
+                _IsPayAsSelected = value;
+                switch (_IsPayAsSelected)
+                { case true:
+
+                        btnPayAll.Text = "Pay";
+                        break;
+
+                    case false:
+                        btnPayAll.Text = "Pay All";
+                        break;
+                }
+            }
+        }
 
         public string TranID = string.Empty;
         public int TotalRental { get; set; }
@@ -298,7 +317,7 @@ namespace LEASING.UI.APP.Forms
             {
                 for (int iRow = 0; iRow < dgvLedgerList.Rows.Count; iRow++)
                 {
-                    if (Convert.ToBoolean(this.dgvLedgerList.Rows[iRow].Cells["ColCheck"].Value) && Convert.ToString(this.dgvLedgerList.Rows[iRow].Cells["PaymentStatus"].Value) == "PENDING")
+                    if (Convert.ToBoolean(this.dgvLedgerList.Rows[iRow].Cells["ColCheck"].Value) && (Convert.ToString(this.dgvLedgerList.Rows[iRow].Cells["PaymentStatus"].Value) == "PENDING" || Convert.ToString(this.dgvLedgerList.Rows[iRow].Cells["PaymentStatus"].Value) == "HOLD"))
                     {
                         //alDoctorSchedule.Add(Convert.ToString(vMasterRecordID));
                         alAdvancePayment.Add(Convert.ToString(this.dgvLedgerList.Rows[iRow].Cells["Recid"].Value));
@@ -310,7 +329,7 @@ namespace LEASING.UI.APP.Forms
             {
                 for (int iRow = 0; iRow < dgvLedgerList.Rows.Count; iRow++)
                 {
-                    if (Convert.ToString(this.dgvLedgerList.Rows[iRow].Cells["PaymentStatus"].Value) == "PENDING")
+                    if (Convert.ToString(this.dgvLedgerList.Rows[iRow].Cells["PaymentStatus"].Value) == "PENDING" || Convert.ToString(this.dgvLedgerList.Rows[iRow].Cells["PaymentStatus"].Value) == "HOLD")
                     {
                         //alDoctorSchedule.Add(Convert.ToString(vMasterRecordID));
                         alAdvancePayment.Add(Convert.ToString(this.dgvLedgerList.Rows[iRow].Cells["Recid"].Value));
@@ -746,6 +765,41 @@ namespace LEASING.UI.APP.Forms
                     frmRecieptSelection frmRecieptSelection = new frmRecieptSelection(Convert.ToString(dgvLedgerList.CurrentRow.Cells["TransactionID"].Value), "");
                     frmRecieptSelection.ShowDialog();
                 }
+                else if (this.dgvLedgerList.Columns[e.ColumnIndex].Name == "ColCheck")
+                {
+                   
+
+
+                    foreach (GridViewRowInfo row in dgvLedgerList.Rows)
+                        {
+                            GridViewCellInfo cell = row.Cells["ColCheck"] as GridViewCellInfo;
+                            if (Convert.ToBoolean(cell.Value))
+                            {
+                                IsPayAsSelected = true;
+                                break;
+                            }
+                            else
+                            {
+                                IsPayAsSelected = false;
+                            }
+                        }
+               
+           
+                }
+                //else if (this.dgvLedgerList.Columns[e.ColumnIndex].Name == "ColCheck")
+                //{
+                //    IsPayAsSelected = false; // Assume initially that no checkbox is checked
+
+                //    foreach (GridViewRowInfo row in dgvLedgerList.Rows)
+                //    {
+                //        GridViewCellInfo cell = row.Cells["ColCheck"] as GridViewCellInfo;
+                //        if (Convert.ToBoolean(cell.Value))
+                //        {
+                //            IsPayAsSelected = true; // Set to true if at least one checkbox is checked
+                //            break;
+                //        }
+                //    }
+                //}
             }
 
         }
@@ -795,96 +849,104 @@ namespace LEASING.UI.APP.Forms
         }
         private void btnPayAll_Click(object sender, EventArgs e)
         {
-            foreach (GridViewRowInfo row in dgvLedgerList.Rows)
+            if (dgvLedgerList.Rows.Count > 0)
             {
-                GridViewCellInfo cell = row.Cells["ColCheck"] as GridViewCellInfo;
-                if (Convert.ToBoolean(cell.Value))
+                foreach (GridViewRowInfo row in dgvLedgerList.Rows)
                 {
-                    IsPayAsSelected = true;
-                    break;
+                    GridViewCellInfo cell = row.Cells["ColCheck"] as GridViewCellInfo;
+                    if (Convert.ToBoolean(cell.Value))
+                    {
+                        IsPayAsSelected = true;
+                        break;
+                    }
+                    else
+                    {
+                        IsPayAsSelected = false;
+                    }
+                }
+                if (IsPayAsSelected)
+                {
+                    if (MessageBox.Show("Are you sure you want to pay the selected month?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                    {
+                        //if (Convert.ToString(this.dgvLedgerList.Rows.Cells["PaymentStatus"].Value) == "PENDING" || Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "HOLD" || Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "FOR PAYMENT")
+                        //{
+
+                        frmPaymentMode frmPaymentMode = new frmPaymentMode();
+                        frmPaymentMode.ShowDialog();
+                        if (frmPaymentMode.IsProceed)
+                        {
+                            CompanyORNo = frmPaymentMode.CompanyORNo;
+                            CompanyPRNo = frmPaymentMode.CompanyPRNo;
+                            BankAccountName = frmPaymentMode.BankAccountName;
+                            BankAccountNumber = frmPaymentMode.BankAccountNumber;
+                            BankName = frmPaymentMode.BankName;
+                            SerialNo = frmPaymentMode.SerialNo;
+                            PaymentRemarks = frmPaymentMode.PaymentRemarks;
+                            REF = frmPaymentMode.REF;
+                            ModeType = frmPaymentMode.ModeType;
+
+                            frmReceivePayment frmReceivePayment = new frmReceivePayment();
+                            frmReceivePayment.Amount = Convert.ToString(Convert.ToDecimal(dgvLedgerList.CurrentRow.Cells["LedgAmount"].Value) * M_GetTotalSelectedMonth());
+                            frmReceivePayment.ShowDialog();
+                            if (frmReceivePayment.IsProceed)
+                            {
+                                ReceiveAmount = frmReceivePayment.txtReceiveAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtReceiveAmount.Text);
+                                ChangeAmount = frmReceivePayment.txtChangeAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtChangeAmount.Text);
+                                M_GenerateBulkPayment();
+                                M_GetCheckPaymentStatus();
+                                M_GetLedgerList();
+                                M_GetPaymentListByReferenceId();
+
+                                frmRecieptSelection frmRecieptSelection = new frmRecieptSelection(TranID, "");
+                                frmRecieptSelection.ShowDialog();
+                            }
+                        }
+
+                        //}
+                    }
                 }
                 else
                 {
-                    IsPayAsSelected = false;
-                }
-            }
-            if (IsPayAsSelected)
-            {
-                if (MessageBox.Show("Are you sure you want to pay the selected month?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
-                {
-                    //if (Convert.ToString(this.dgvLedgerList.Rows.Cells["PaymentStatus"].Value) == "PENDING" || Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "HOLD" || Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "FOR PAYMENT")
-                    //{
-
-                    frmPaymentMode frmPaymentMode = new frmPaymentMode();
-                    frmPaymentMode.ShowDialog();
-                    if (frmPaymentMode.IsProceed)
+                    if (MessageBox.Show("Are you sure you want to pay it all?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                     {
-                        CompanyORNo = frmPaymentMode.CompanyORNo;
-                        CompanyPRNo = frmPaymentMode.CompanyPRNo;
-                        BankAccountName = frmPaymentMode.BankAccountName;
-                        BankAccountNumber = frmPaymentMode.BankAccountNumber;
-                        BankName = frmPaymentMode.BankName;
-                        SerialNo = frmPaymentMode.SerialNo;
-                        PaymentRemarks = frmPaymentMode.PaymentRemarks;
-                        REF = frmPaymentMode.REF;
-                        ModeType = frmPaymentMode.ModeType;
-
-                        frmReceivePayment frmReceivePayment = new frmReceivePayment();
-                        frmReceivePayment.Amount = Convert.ToString(Convert.ToDecimal(dgvLedgerList.CurrentRow.Cells["LedgAmount"].Value) * M_GetTotalSelectedMonth());
-                        frmReceivePayment.ShowDialog();
-                        if (frmReceivePayment.IsProceed)
+                        frmPaymentMode frmPaymentMode = new frmPaymentMode();
+                        frmPaymentMode.ShowDialog();
+                        if (frmPaymentMode.IsProceed)
                         {
-                            ReceiveAmount = frmReceivePayment.txtReceiveAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtReceiveAmount.Text);
-                            ChangeAmount = frmReceivePayment.txtChangeAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtChangeAmount.Text);
-                            M_GenerateBulkPayment();
-                            M_GetCheckPaymentStatus();
-                            M_GetLedgerList();
-                            M_GetPaymentListByReferenceId();
+                            CompanyORNo = frmPaymentMode.CompanyORNo;
+                            CompanyPRNo = frmPaymentMode.CompanyPRNo;
+                            BankAccountName = frmPaymentMode.BankAccountName;
+                            BankAccountNumber = frmPaymentMode.BankAccountNumber;
+                            BankName = frmPaymentMode.BankName;
+                            SerialNo = frmPaymentMode.SerialNo;
+                            PaymentRemarks = frmPaymentMode.PaymentRemarks;
+                            REF = frmPaymentMode.REF;
+                            ModeType = frmPaymentMode.ModeType;
 
-                            frmRecieptSelection frmRecieptSelection = new frmRecieptSelection(TranID, "");
-                            frmRecieptSelection.ShowDialog();
+                            frmReceivePayment frmReceivePayment = new frmReceivePayment();
+                            frmReceivePayment.Amount = Convert.ToString(Convert.ToDecimal(dgvLedgerList.CurrentRow.Cells["LedgAmount"].Value) * M_GetTotalSelectedMonth());
+                            frmReceivePayment.ShowDialog();
+                            if (frmReceivePayment.IsProceed)
+                            {
+                                ReceiveAmount = frmReceivePayment.txtReceiveAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtReceiveAmount.Text);
+                                ChangeAmount = frmReceivePayment.txtChangeAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtChangeAmount.Text);
+                                M_GenerateBulkPayment();
+                                M_GetCheckPaymentStatus();
+                                M_GetLedgerList();
+                                M_GetPaymentListByReferenceId();
+
+                                frmRecieptSelection frmRecieptSelection = new frmRecieptSelection(TranID, "");
+                                frmRecieptSelection.ShowDialog();
+                            }
                         }
                     }
-
-                    //}
                 }
             }
             else
             {
-                if (MessageBox.Show("Are you sure you want to pay it all?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
-                {
-                    frmPaymentMode frmPaymentMode = new frmPaymentMode();
-                    frmPaymentMode.ShowDialog();
-                    if (frmPaymentMode.IsProceed)
-                    {
-                        CompanyORNo = frmPaymentMode.CompanyORNo;
-                        CompanyPRNo = frmPaymentMode.CompanyPRNo;
-                        BankAccountName = frmPaymentMode.BankAccountName;
-                        BankAccountNumber = frmPaymentMode.BankAccountNumber;
-                        BankName = frmPaymentMode.BankName;
-                        SerialNo = frmPaymentMode.SerialNo;
-                        PaymentRemarks = frmPaymentMode.PaymentRemarks;
-                        REF = frmPaymentMode.REF;
-                        ModeType = frmPaymentMode.ModeType;
-
-                        frmReceivePayment frmReceivePayment = new frmReceivePayment();
-                        frmReceivePayment.Amount = Convert.ToString(Convert.ToDecimal(dgvLedgerList.CurrentRow.Cells["LedgAmount"].Value) * M_GetTotalSelectedMonth());
-                        frmReceivePayment.ShowDialog();
-                        if (frmReceivePayment.IsProceed)
-                        {
-                            ReceiveAmount = frmReceivePayment.txtReceiveAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtReceiveAmount.Text);
-                            ChangeAmount = frmReceivePayment.txtChangeAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtChangeAmount.Text);
-                            M_GenerateBulkPayment();
-                            M_GetCheckPaymentStatus();
-                            M_GetLedgerList();
-                            M_GetPaymentListByReferenceId();
-
-                            frmRecieptSelection frmRecieptSelection = new frmRecieptSelection(TranID, "");
-                            frmRecieptSelection.ShowDialog();
-                        }
-                    }
-                }
+                MessageBox.Show("No Ledger is Available", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+
         }
     }
 }

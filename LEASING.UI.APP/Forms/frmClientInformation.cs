@@ -71,6 +71,7 @@ namespace LEASING.UI.APP.Forms
 
             ddlgender.Text = string.Empty;
             dgvFileList.DataSource = null;
+            txtTinNo.Text = string.Empty;
         }
         private void EnabledFields()
         {
@@ -92,6 +93,7 @@ namespace LEASING.UI.APP.Forms
             txtnameofmaid.Enabled = true;
             txtnameofdriver.Enabled = true;
             txtnoofvisitorperday.Enabled = true;
+            txtTinNo.Enabled = true;
 
             ReadOnlyFields();
         }
@@ -115,6 +117,7 @@ namespace LEASING.UI.APP.Forms
             txtnameofmaid.Enabled = false;
             txtnameofdriver.Enabled = false;
             txtnoofvisitorperday.Enabled = false;
+            txtTinNo.Enabled = false;
 
 
             ReadOnlyFields();
@@ -140,6 +143,7 @@ namespace LEASING.UI.APP.Forms
             txtnameofmaid.ReadOnly = true;
             txtnameofdriver.ReadOnly = true;
             txtnoofvisitorperday.ReadOnly = true;
+            txtTinNo.ReadOnly = true;
 
 
         }
@@ -195,6 +199,7 @@ namespace LEASING.UI.APP.Forms
                     txtnameofmaid.Text = Convert.ToString(dt.Tables[0].Rows[0]["MaidName"]);
                     txtnoofvisitorperday.Text = Convert.ToString(dt.Tables[0].Rows[0]["VisitorsPerDay"]);
                     txtnameofdriver.Text = Convert.ToString(dt.Tables[0].Rows[0]["DriverName"]);
+                    txtTinNo.Text = Convert.ToString(dt.Tables[0].Rows[0]["TIN_No"]);
                 }
             }
         }

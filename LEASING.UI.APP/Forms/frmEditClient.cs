@@ -90,6 +90,7 @@ namespace LEASING.UI.APP.Forms
 
             txtClienID.Enabled = true;
             txtClienID.ReadOnly = true;
+            txtTinNo.Enabled = true;
         }
         private void DisabledFields()
         {
@@ -115,8 +116,46 @@ namespace LEASING.UI.APP.Forms
 
             txtClienID.Enabled = false;
             txtClienID.ReadOnly = true;
+            txtTinNo.Enabled = false;
         }
 
+        private void IsCorporate()
+        {
+            txtname.Enabled = true;
+            txtpostaladdress.Enabled = true;
+            txtaddresstelephoneno.Enabled = true;
+            txttelno.Enabled = true;
+            txtTinNo.Enabled = true;
+
+            txtage.Enabled = false;
+            dtpdob.Enabled = false;
+            ddlgender.Enabled = false;
+            txttelno.Enabled = false;
+            txtnationality.Enabled = false;
+            txtoccupation.Enabled = false;
+            txtannualincome.Enabled = false;
+            txtnameofemployer.Enabled = false;
+            txtspousename.Enabled = false;
+            txtnameofchildren.Enabled = false;
+            txttotalnoofperson.Enabled = false;
+            txtnameofmaid.Enabled = false;
+            txtnameofdriver.Enabled = false;
+            txtnoofvisitorperday.Enabled = false;
+         
+            txtage.Text = string.Empty;                  
+            txtnationality.Text = string.Empty;
+            txtoccupation.Text = string.Empty;
+            txtannualincome.Text = string.Empty;
+            txtnameofemployer.Text = string.Empty;         
+            txtspousename.Text = string.Empty;
+            txtnameofchildren.Text = string.Empty;
+            txttotalnoofperson.Text = string.Empty;
+            txtnameofmaid.Text = string.Empty;
+            txtnameofdriver.Text = string.Empty;
+            txtnoofvisitorperday.Text = string.Empty;
+           
+
+        }
         public string ClientID { get; set; }
         public bool IsProceed = false;
         public frmEditClient()
@@ -162,6 +201,7 @@ namespace LEASING.UI.APP.Forms
                     txtnameofmaid.Text = Convert.ToString(dt.Tables[0].Rows[0]["MaidName"]);
                     txtnoofvisitorperday.Text = Convert.ToString(dt.Tables[0].Rows[0]["VisitorsPerDay"]);
                     txtnameofdriver.Text = Convert.ToString(dt.Tables[0].Rows[0]["DriverName"]);
+                    txtTinNo.Text = Convert.ToString(dt.Tables[0].Rows[0]["TIN_No"]);
                 }
             }
         }
@@ -306,9 +346,18 @@ namespace LEASING.UI.APP.Forms
             {
                 strClientFormMode = "READ";
             }
+     
 
             txtClienID.Text = ClientID;
             M_GetClientById();
+            if (ddlClientType.Text == "CORPORATE")
+            {
+                IsCorporate();
+            }
+            else
+            {
+                EnabledFields();
+            }
             M_GetClientFileList();
             M_GetReferenceByClientID();
         }
@@ -373,6 +422,7 @@ namespace LEASING.UI.APP.Forms
         private void M_SaveClient()
         {
             ClientModel dto = new ClientModel();
+            dto.ClientID = txtClienID.Text.Trim();
             dto.ClientType = ddlClientType.Text == "INDIVIDUAL" ? "INDV" : "CORP";
             dto.ClientName = txtname.Text;
             dto.Age = txtage.Text == "" ? 0 : Convert.ToInt32(txtage.Text);
@@ -382,7 +432,7 @@ namespace LEASING.UI.APP.Forms
             dto.TelNumber = txttelno.Text;
             dto.Nationality = txtnationality.Text;
             dto.Occupation = txtoccupation.Text;
-            dto.AnnualIncome = txtannualincome.Text == "" ? 0 : Convert.ToInt32(txtannualincome.Text);
+            dto.AnnualIncome = txtannualincome.Text == string.Empty ? 0 : decimal.Parse(txtannualincome.Text);
             dto.EmployerName = txtnameofemployer.Text;
             dto.EmployerAddress = txtaddresstelephoneno.Text;
             dto.SpouseName = txtspousename.Text;
@@ -392,11 +442,12 @@ namespace LEASING.UI.APP.Forms
             dto.DriverName = txtnameofdriver.Text;
             dto.NoVisitorsPerDay = txtnoofvisitorperday.Text == "" ? 0 : Convert.ToInt32(txtnoofvisitorperday.Text);
             dto.BuildingSecretary = 1;
-            dto.EncodedBy = 1;
-            dto.Message_Code = ClientContext.SaveClient(dto);
+            dto.EncodedBy = Variables.UserID; ;
+            dto.TIN_No = txtTinNo.Text.Trim();
+            dto.Message_Code = ClientContext.UpdateClient(dto);
             if (dto.Message_Code.Equals("SUCCESS"))
             {
-                MessageBox.Show("New Client  has been added successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Client  has been updated successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 strClientFormMode = "READ";
 
 
@@ -409,9 +460,10 @@ namespace LEASING.UI.APP.Forms
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
+
             if (IsClientValid())
             {
-                if (MessageBox.Show("Are you sure you want to add this client ?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                if (MessageBox.Show("Are you sure you want to update this client ?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                 {
                     M_SaveClient();
                 }
@@ -451,6 +503,21 @@ namespace LEASING.UI.APP.Forms
                     forms.ComputationRecid = Convert.ToInt32(dgvList.CurrentRow.Cells["RecId"].Value);
                     forms.ClientId = Convert.ToString(dgvList.CurrentRow.Cells["ClientID"].Value);
                     forms.ShowDialog();
+                }
+            }
+        }
+
+        private void ddlClientType_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
+        {
+            if (ddlClientType.SelectedIndex >= 0)
+            {
+                if (ddlClientType.SelectedIndex == 1)
+                {
+                    IsCorporate();
+                }
+                else
+                {
+                    EnabledFields();
                 }
             }
         }

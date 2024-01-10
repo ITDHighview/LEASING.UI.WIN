@@ -1,1 +1,0 @@
-ALTER TABLE tblReceipt ADD REF VARCHAR(50)

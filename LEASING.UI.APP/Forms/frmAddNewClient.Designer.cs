@@ -56,6 +56,7 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn21 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn22 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn23 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn24 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.radGroupBox3 = new Telerik.WinControls.UI.RadGroupBox();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
@@ -95,6 +96,8 @@
             this.txtage = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel20 = new Telerik.WinControls.UI.RadLabel();
             this.ddlClientType = new Telerik.WinControls.UI.RadDropDownList();
+            this.radLabel21 = new Telerik.WinControls.UI.RadLabel();
+            this.txtTinNo = new Telerik.WinControls.UI.RadTextBox();
             this.radGroupBox4 = new Telerik.WinControls.UI.RadGroupBox();
             this.dgvClientList = new Telerik.WinControls.UI.RadGridView();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
@@ -148,6 +151,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel20)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlClientType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel21)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTinNo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox4)).BeginInit();
             this.radGroupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClientList)).BeginInit();
@@ -237,6 +242,8 @@
             this.tableLayoutPanel6.Controls.Add(this.txtage, 3, 1);
             this.tableLayoutPanel6.Controls.Add(this.radLabel20, 0, 0);
             this.tableLayoutPanel6.Controls.Add(this.ddlClientType, 1, 0);
+            this.tableLayoutPanel6.Controls.Add(this.radLabel21, 2, 12);
+            this.tableLayoutPanel6.Controls.Add(this.txtTinNo, 3, 12);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel6.Location = new System.Drawing.Point(2, 18);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
@@ -603,6 +610,25 @@
             this.ddlClientType.NullText = "Select here...";
             this.ddlClientType.Size = new System.Drawing.Size(125, 19);
             this.ddlClientType.TabIndex = 3;
+            this.ddlClientType.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.ddlClientType_SelectedIndexChanged);
+            // 
+            // radLabel21
+            // 
+            this.radLabel21.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.radLabel21.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel21.Location = new System.Drawing.Point(586, 303);
+            this.radLabel21.Name = "radLabel21";
+            this.radLabel21.Size = new System.Drawing.Size(58, 19);
+            this.radLabel21.TabIndex = 0;
+            this.radLabel21.Text = "TIN No. :";
+            // 
+            // txtTinNo
+            // 
+            this.txtTinNo.Location = new System.Drawing.Point(650, 303);
+            this.txtTinNo.Name = "txtTinNo";
+            this.txtTinNo.NullText = "Type here...";
+            this.txtTinNo.Size = new System.Drawing.Size(203, 19);
+            this.txtTinNo.TabIndex = 1;
             // 
             // radGroupBox4
             // 
@@ -699,63 +725,67 @@
             gridViewTextBoxColumn11.HeaderText = "Annual Income";
             gridViewTextBoxColumn11.Name = "AnnualIncome";
             gridViewTextBoxColumn11.Width = 100;
-            gridViewTextBoxColumn12.EnableExpressionEditor = false;
-            gridViewTextBoxColumn12.FieldName = "EmployerName";
-            gridViewTextBoxColumn12.HeaderText = "Employer Name";
-            gridViewTextBoxColumn12.Name = "EmployerName";
+            gridViewTextBoxColumn12.FieldName = "TIN_No";
+            gridViewTextBoxColumn12.HeaderText = "TIN No.";
+            gridViewTextBoxColumn12.Name = "TIN_No";
             gridViewTextBoxColumn12.Width = 200;
             gridViewTextBoxColumn13.EnableExpressionEditor = false;
-            gridViewTextBoxColumn13.FieldName = "EmployerAddress";
-            gridViewTextBoxColumn13.HeaderText = "Employer Address";
-            gridViewTextBoxColumn13.Name = "EmployerAddress";
-            gridViewTextBoxColumn13.Width = 300;
+            gridViewTextBoxColumn13.FieldName = "EmployerName";
+            gridViewTextBoxColumn13.HeaderText = "Employer Name";
+            gridViewTextBoxColumn13.Name = "EmployerName";
+            gridViewTextBoxColumn13.Width = 200;
             gridViewTextBoxColumn14.EnableExpressionEditor = false;
-            gridViewTextBoxColumn14.FieldName = "SpouseName";
-            gridViewTextBoxColumn14.HeaderText = "Spouse Name";
-            gridViewTextBoxColumn14.Name = "SpouseName";
-            gridViewTextBoxColumn14.Width = 250;
+            gridViewTextBoxColumn14.FieldName = "EmployerAddress";
+            gridViewTextBoxColumn14.HeaderText = "Employer Address";
+            gridViewTextBoxColumn14.Name = "EmployerAddress";
+            gridViewTextBoxColumn14.Width = 300;
             gridViewTextBoxColumn15.EnableExpressionEditor = false;
-            gridViewTextBoxColumn15.FieldName = "ChildrenNames";
-            gridViewTextBoxColumn15.HeaderText = "Children Names";
-            gridViewTextBoxColumn15.Name = "ChildrenNames";
-            gridViewTextBoxColumn15.Width = 300;
+            gridViewTextBoxColumn15.FieldName = "SpouseName";
+            gridViewTextBoxColumn15.HeaderText = "Spouse Name";
+            gridViewTextBoxColumn15.Name = "SpouseName";
+            gridViewTextBoxColumn15.Width = 250;
             gridViewTextBoxColumn16.EnableExpressionEditor = false;
-            gridViewTextBoxColumn16.FieldName = "TotalPersons";
-            gridViewTextBoxColumn16.HeaderText = "Total Persons";
-            gridViewTextBoxColumn16.Name = "TotalPersons";
+            gridViewTextBoxColumn16.FieldName = "ChildrenNames";
+            gridViewTextBoxColumn16.HeaderText = "Children Names";
+            gridViewTextBoxColumn16.Name = "ChildrenNames";
+            gridViewTextBoxColumn16.Width = 300;
             gridViewTextBoxColumn17.EnableExpressionEditor = false;
-            gridViewTextBoxColumn17.FieldName = "MaidName";
-            gridViewTextBoxColumn17.HeaderText = "Maid Name";
-            gridViewTextBoxColumn17.Name = "MaidName";
-            gridViewTextBoxColumn17.Width = 200;
+            gridViewTextBoxColumn17.FieldName = "TotalPersons";
+            gridViewTextBoxColumn17.HeaderText = "Total Persons";
+            gridViewTextBoxColumn17.Name = "TotalPersons";
             gridViewTextBoxColumn18.EnableExpressionEditor = false;
-            gridViewTextBoxColumn18.FieldName = "DriverName";
-            gridViewTextBoxColumn18.HeaderText = "Driver Name";
-            gridViewTextBoxColumn18.Name = "DriverName";
+            gridViewTextBoxColumn18.FieldName = "MaidName";
+            gridViewTextBoxColumn18.HeaderText = "Maid Name";
+            gridViewTextBoxColumn18.Name = "MaidName";
             gridViewTextBoxColumn18.Width = 200;
             gridViewTextBoxColumn19.EnableExpressionEditor = false;
-            gridViewTextBoxColumn19.FieldName = "VisitorsPerDay";
-            gridViewTextBoxColumn19.HeaderText = "No. Visitors PerDay";
-            gridViewTextBoxColumn19.Name = "VisitorsPerDay";
+            gridViewTextBoxColumn19.FieldName = "DriverName";
+            gridViewTextBoxColumn19.HeaderText = "Driver Name";
+            gridViewTextBoxColumn19.Name = "DriverName";
+            gridViewTextBoxColumn19.Width = 200;
             gridViewTextBoxColumn20.EnableExpressionEditor = false;
-            gridViewTextBoxColumn20.FieldName = "BuildingSecretary";
-            gridViewTextBoxColumn20.HeaderText = "Building Secretary";
-            gridViewTextBoxColumn20.Name = "BuildingSecretary";
-            gridViewTextBoxColumn20.Width = 150;
+            gridViewTextBoxColumn20.FieldName = "VisitorsPerDay";
+            gridViewTextBoxColumn20.HeaderText = "No. Visitors PerDay";
+            gridViewTextBoxColumn20.Name = "VisitorsPerDay";
             gridViewTextBoxColumn21.EnableExpressionEditor = false;
-            gridViewTextBoxColumn21.FieldName = "EncodedDate";
-            gridViewTextBoxColumn21.HeaderText = "Encoded Date";
-            gridViewTextBoxColumn21.Name = "EncodedDate";
-            gridViewTextBoxColumn21.Width = 100;
+            gridViewTextBoxColumn21.FieldName = "BuildingSecretary";
+            gridViewTextBoxColumn21.HeaderText = "Building Secretary";
+            gridViewTextBoxColumn21.Name = "BuildingSecretary";
+            gridViewTextBoxColumn21.Width = 150;
             gridViewTextBoxColumn22.EnableExpressionEditor = false;
-            gridViewTextBoxColumn22.FieldName = "EncodedBy";
-            gridViewTextBoxColumn22.HeaderText = "Encoded By";
-            gridViewTextBoxColumn22.Name = "EncodedBy";
+            gridViewTextBoxColumn22.FieldName = "EncodedDate";
+            gridViewTextBoxColumn22.HeaderText = "Encoded Date";
+            gridViewTextBoxColumn22.Name = "EncodedDate";
             gridViewTextBoxColumn22.Width = 100;
             gridViewTextBoxColumn23.EnableExpressionEditor = false;
-            gridViewTextBoxColumn23.FieldName = "IsActive";
-            gridViewTextBoxColumn23.HeaderText = "Status";
-            gridViewTextBoxColumn23.Name = "IsActive";
+            gridViewTextBoxColumn23.FieldName = "EncodedBy";
+            gridViewTextBoxColumn23.HeaderText = "Encoded By";
+            gridViewTextBoxColumn23.Name = "EncodedBy";
+            gridViewTextBoxColumn23.Width = 100;
+            gridViewTextBoxColumn24.EnableExpressionEditor = false;
+            gridViewTextBoxColumn24.FieldName = "IsActive";
+            gridViewTextBoxColumn24.HeaderText = "Status";
+            gridViewTextBoxColumn24.Name = "IsActive";
             this.dgvClientList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewCommandColumn1,
             gridViewTextBoxColumn1,
@@ -780,7 +810,8 @@
             gridViewTextBoxColumn20,
             gridViewTextBoxColumn21,
             gridViewTextBoxColumn22,
-            gridViewTextBoxColumn23});
+            gridViewTextBoxColumn23,
+            gridViewTextBoxColumn24});
             this.dgvClientList.MasterTemplate.EnableFiltering = true;
             this.dgvClientList.Name = "dgvClientList";
             this.dgvClientList.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
@@ -953,6 +984,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel20)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlClientType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel21)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTinNo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox4)).EndInit();
             this.radGroupBox4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvClientList.MasterTemplate)).EndInit();
@@ -1021,5 +1054,7 @@
         private Telerik.WinControls.UI.RadLabel radLabel20;
         private Telerik.WinControls.UI.RadDropDownList ddlClientType;
         private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme1;
+        private Telerik.WinControls.UI.RadLabel radLabel21;
+        private Telerik.WinControls.UI.RadTextBox txtTinNo;
     }
 }

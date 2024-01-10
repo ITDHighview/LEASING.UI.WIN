@@ -1,4 +1,5 @@
-﻿using LEASING.UI.APP.Context;
+﻿using LEASING.UI.APP.Common;
+using LEASING.UI.APP.Context;
 using LEASING.UI.APP.Models;
 using System;
 using System.Collections.Generic;
@@ -70,6 +71,7 @@ namespace LEASING.UI.APP.Forms
             txtnameofmaid.Text = string.Empty;
             txtnameofdriver.Text = string.Empty;
             txtnoofvisitorperday.Text = string.Empty;
+            txtTinNo.Text = string.Empty;
         }
         private void EnabledFields()
         {
@@ -91,7 +93,55 @@ namespace LEASING.UI.APP.Forms
             txtnameofmaid.Enabled = true;
             txtnameofdriver.Enabled = true;
             txtnoofvisitorperday.Enabled = true;
+            txtTinNo.Enabled = true;
         }
+
+        private void IsCorporate()
+        {
+            txtname.Enabled = true;
+            txtpostaladdress.Enabled = true;
+            txtaddresstelephoneno.Enabled = true;
+            txttelno.Enabled = true;
+            txtTinNo.Enabled = true;
+      
+            txtage.Enabled = false;        
+            dtpdob.Enabled = false;
+            ddlgender.Enabled = false;
+            txttelno.Enabled = false;
+            txtnationality.Enabled = false;
+            txtoccupation.Enabled = false;
+            txtannualincome.Enabled = false;
+            txtnameofemployer.Enabled = false;    
+            txtspousename.Enabled = false;
+            txtnameofchildren.Enabled = false;
+            txttotalnoofperson.Enabled = false;
+            txtnameofmaid.Enabled = false;
+            txtnameofdriver.Enabled = false;
+            txtnoofvisitorperday.Enabled = false;
+
+
+
+            txtname.Text = string.Empty;
+            txtage.Text = string.Empty;
+            txtpostaladdress.Text = string.Empty;
+            txttelno.Text = string.Empty;
+            txtnationality.Text = string.Empty;
+            txtoccupation.Text = string.Empty;
+            txtannualincome.Text = string.Empty;
+            txtnameofemployer.Text = string.Empty;
+            txtaddresstelephoneno.Text = string.Empty;
+            txtspousename.Text = string.Empty;
+            txtnameofchildren.Text = string.Empty;
+            txttotalnoofperson.Text = string.Empty;
+            txtnameofmaid.Text = string.Empty;
+            txtnameofdriver.Text = string.Empty;
+            txtnoofvisitorperday.Text = string.Empty;
+            txtTinNo.Text = string.Empty;
+
+        }
+
+    
+
         private void DisabledFields()
         {
             ddlClientType.Enabled = false;
@@ -112,8 +162,8 @@ namespace LEASING.UI.APP.Forms
             txtnameofmaid.Enabled = false;
             txtnameofdriver.Enabled = false;
             txtnoofvisitorperday.Enabled = false;
+            txtTinNo.Enabled = false;
         }
-
         private bool IsClientValid()
         {
             if (string.IsNullOrEmpty(ddlClientType.Text))
@@ -129,7 +179,6 @@ namespace LEASING.UI.APP.Forms
 
             return true;
         }
-
         private void M_SaveClient()
         {
             ClientModel dto = new ClientModel();
@@ -152,7 +201,8 @@ namespace LEASING.UI.APP.Forms
             dto.DriverName = txtnameofdriver.Text;
             dto.NoVisitorsPerDay = txtnoofvisitorperday.Text == string.Empty ? 0 : Convert.ToInt32(txtnoofvisitorperday.Text);
             dto.BuildingSecretary = 1;
-            dto.EncodedBy = 1;
+            dto.EncodedBy = Variables.UserID;
+            dto.TIN_No = txtTinNo.Text.Trim();
             dto.Message_Code = ClientContext.SaveClient(dto);
             if (dto.Message_Code.Equals("SUCCESS"))
             {
@@ -171,7 +221,6 @@ namespace LEASING.UI.APP.Forms
         {
             InitializeComponent();
         }
-
         private void M_GetClientList()
         {
             dgvClientList.DataSource = null;
@@ -188,41 +237,34 @@ namespace LEASING.UI.APP.Forms
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9\b]"))
                 e.Handled = true;
         }
-
         private void txtannualincome_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9\b]"))
                 e.Handled = true;
         }
-
         private void txttelno_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9\b]"))
                 e.Handled = true;
         }
-
         private void radLabel16_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9\b]"))
                 e.Handled = true;
         }
-
         private void btnNewProject_Click(object sender, EventArgs e)
         {
             strClientFormMode = "NEW";
         }
-
         private void frmAddNewClient_Load(object sender, EventArgs e)
         {
             strClientFormMode = "READ";
             M_GetClientList();
         }
-
         private void btnUndo_Click(object sender, EventArgs e)
         {
             strClientFormMode = "READ";
         }
-
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (IsClientValid())
@@ -233,19 +275,16 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-
         private void txttotalnoofperson_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9\b]"))
                 e.Handled = true;
         }
-
         private void txtnameofvisitorperday_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9\b]"))
                 e.Handled = true;
         }
-
         private void dgvClientList_CellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -257,7 +296,7 @@ namespace LEASING.UI.APP.Forms
                     forms.ShowDialog();
                     if (forms.IsProceed)
                     {
-                       // M_GetProjectList();
+                        // M_GetProjectList();
                     }
                 }
                 //else if (this.dgvClientList.Columns[e.ColumnIndex].Name == "coldelete")
@@ -274,6 +313,20 @@ namespace LEASING.UI.APP.Forms
                 //        }
                 //    }
                 //}
+            }
+        }
+        private void ddlClientType_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
+        {
+            if (ddlClientType.SelectedIndex >=0)
+            {
+                if (ddlClientType.SelectedIndex == 1)
+                {
+                    IsCorporate();
+                }
+                else
+                {
+                    EnabledFields();
+                }
             }
         }
     }

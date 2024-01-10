@@ -20,7 +20,7 @@ namespace LEASING.UI.APP.Models
         public bool Gender { get; set; }
         public string Nationality { get; set; }
         public string Occupation { get; set; }
-        public int AnnualIncome { get; set; }
+        public decimal AnnualIncome { get; set; }
         public string EmployerName { get; set; }
         public string EmployerAddress { get; set; }
         public string SpouseName { get; set; }
@@ -30,5 +30,7 @@ namespace LEASING.UI.APP.Models
         public string DriverName { get; set; }
         public int NoVisitorsPerDay { get; set; }
         public int BuildingSecretary { get; set; }
+        public string TIN_No { get; set; }
+        public bool IsActive { get; set; }
     }
 }

@@ -102,6 +102,8 @@
             this.lblFoot = new Telerik.WinControls.UI.RadLabel();
             this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
             this.office2010BlueTheme1 = new Telerik.WinControls.Themes.Office2010BlueTheme();
+            this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
+            this.txtTinNo = new Telerik.WinControls.UI.RadTextBox();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).BeginInit();
             this.radGroupBox3.SuspendLayout();
@@ -156,6 +158,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvFileList.MasterTemplate)).BeginInit();
             this.toolStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lblFoot)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTinNo)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel2
@@ -210,12 +214,6 @@
             this.tableLayoutPanel6.Controls.Add(this.txttotalnoofperson, 1, 13);
             this.tableLayoutPanel6.Controls.Add(this.radLabel15, 0, 12);
             this.tableLayoutPanel6.Controls.Add(this.txtnameofchildren, 1, 12);
-            this.tableLayoutPanel6.Controls.Add(this.radLabel5, 0, 10);
-            this.tableLayoutPanel6.Controls.Add(this.txtspousename, 1, 10);
-            this.tableLayoutPanel6.Controls.Add(this.radLabel14, 0, 9);
-            this.tableLayoutPanel6.Controls.Add(this.txtaddresstelephoneno, 1, 9);
-            this.tableLayoutPanel6.Controls.Add(this.txtnameofemployer, 1, 8);
-            this.tableLayoutPanel6.Controls.Add(this.radLabel13, 0, 8);
             this.tableLayoutPanel6.Controls.Add(this.txtoccupation, 1, 7);
             this.tableLayoutPanel6.Controls.Add(this.radLabel11, 0, 7);
             this.tableLayoutPanel6.Controls.Add(this.txttelno, 1, 6);
@@ -240,6 +238,14 @@
             this.tableLayoutPanel6.Controls.Add(this.txtannualincome, 3, 5);
             this.tableLayoutPanel6.Controls.Add(this.radLabel18, 2, 6);
             this.tableLayoutPanel6.Controls.Add(this.txtnameofdriver, 3, 6);
+            this.tableLayoutPanel6.Controls.Add(this.radLabel5, 0, 11);
+            this.tableLayoutPanel6.Controls.Add(this.txtspousename, 1, 11);
+            this.tableLayoutPanel6.Controls.Add(this.radLabel14, 0, 10);
+            this.tableLayoutPanel6.Controls.Add(this.txtaddresstelephoneno, 1, 10);
+            this.tableLayoutPanel6.Controls.Add(this.radLabel13, 0, 9);
+            this.tableLayoutPanel6.Controls.Add(this.txtnameofemployer, 1, 9);
+            this.tableLayoutPanel6.Controls.Add(this.radLabel8, 0, 8);
+            this.tableLayoutPanel6.Controls.Add(this.txtTinNo, 1, 8);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel6.Location = new System.Drawing.Point(2, 18);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
@@ -450,7 +456,7 @@
             // 
             this.radLabel5.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.radLabel5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel5.Location = new System.Drawing.Point(78, 253);
+            this.radLabel5.Location = new System.Drawing.Point(78, 278);
             this.radLabel5.Name = "radLabel5";
             this.radLabel5.Size = new System.Drawing.Size(93, 19);
             this.radLabel5.TabIndex = 0;
@@ -458,17 +464,17 @@
             // 
             // txtspousename
             // 
-            this.txtspousename.Location = new System.Drawing.Point(177, 253);
+            this.txtspousename.Location = new System.Drawing.Point(177, 278);
             this.txtspousename.Name = "txtspousename";
             this.txtspousename.NullText = "Type here...";
-            this.txtspousename.Size = new System.Drawing.Size(343, 19);
+            this.txtspousename.Size = new System.Drawing.Size(343, 20);
             this.txtspousename.TabIndex = 1;
             // 
             // radLabel14
             // 
             this.radLabel14.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.radLabel14.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel14.Location = new System.Drawing.Point(14, 228);
+            this.radLabel14.Location = new System.Drawing.Point(14, 253);
             this.radLabel14.Name = "radLabel14";
             this.radLabel14.Size = new System.Drawing.Size(157, 19);
             this.radLabel14.TabIndex = 0;
@@ -476,25 +482,25 @@
             // 
             // txtaddresstelephoneno
             // 
-            this.txtaddresstelephoneno.Location = new System.Drawing.Point(177, 228);
+            this.txtaddresstelephoneno.Location = new System.Drawing.Point(177, 253);
             this.txtaddresstelephoneno.Name = "txtaddresstelephoneno";
             this.txtaddresstelephoneno.NullText = "Type here...";
-            this.txtaddresstelephoneno.Size = new System.Drawing.Size(343, 19);
+            this.txtaddresstelephoneno.Size = new System.Drawing.Size(343, 20);
             this.txtaddresstelephoneno.TabIndex = 1;
             // 
             // txtnameofemployer
             // 
-            this.txtnameofemployer.Location = new System.Drawing.Point(177, 203);
+            this.txtnameofemployer.Location = new System.Drawing.Point(177, 228);
             this.txtnameofemployer.Name = "txtnameofemployer";
             this.txtnameofemployer.NullText = "Type here...";
-            this.txtnameofemployer.Size = new System.Drawing.Size(343, 19);
+            this.txtnameofemployer.Size = new System.Drawing.Size(343, 20);
             this.txtnameofemployer.TabIndex = 1;
             // 
             // radLabel13
             // 
             this.radLabel13.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.radLabel13.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel13.Location = new System.Drawing.Point(49, 203);
+            this.radLabel13.Location = new System.Drawing.Point(49, 228);
             this.radLabel13.Name = "radLabel13";
             this.radLabel13.Size = new System.Drawing.Size(122, 19);
             this.radLabel13.TabIndex = 0;
@@ -882,6 +888,24 @@
             this.lblFoot.Size = new System.Drawing.Size(932, 30);
             this.lblFoot.TabIndex = 3;
             // 
+            // radLabel8
+            // 
+            this.radLabel8.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.radLabel8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel8.Location = new System.Drawing.Point(113, 203);
+            this.radLabel8.Name = "radLabel8";
+            this.radLabel8.Size = new System.Drawing.Size(58, 19);
+            this.radLabel8.TabIndex = 0;
+            this.radLabel8.Text = "TIN No. :";
+            // 
+            // txtTinNo
+            // 
+            this.txtTinNo.Location = new System.Drawing.Point(177, 203);
+            this.txtTinNo.Name = "txtTinNo";
+            this.txtTinNo.NullText = "Type here...";
+            this.txtTinNo.Size = new System.Drawing.Size(343, 20);
+            this.txtTinNo.TabIndex = 1;
+            // 
             // frmClientInformation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -950,6 +974,8 @@
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lblFoot)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTinNo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1011,5 +1037,7 @@
         private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme1;
         private Telerik.WinControls.Themes.Office2010BlueTheme office2010BlueTheme1;
         private System.Windows.Forms.ToolStripButton btnPrintContract;
+        private Telerik.WinControls.UI.RadLabel radLabel8;
+        private Telerik.WinControls.UI.RadTextBox txtTinNo;
     }
 }

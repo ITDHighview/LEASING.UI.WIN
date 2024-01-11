@@ -29,10 +29,12 @@ namespace LEASING.UI.APP.Forms
         public bool IsPayAsSelected
         {
             get { return _IsPayAsSelected; }
-            set {
+            set
+            {
                 _IsPayAsSelected = value;
                 switch (_IsPayAsSelected)
-                { case true:
+                {
+                    case true:
 
                         btnPayAll.Text = "Pay";
                         break;
@@ -765,27 +767,27 @@ namespace LEASING.UI.APP.Forms
                     frmRecieptSelection frmRecieptSelection = new frmRecieptSelection(Convert.ToString(dgvLedgerList.CurrentRow.Cells["TransactionID"].Value), "");
                     frmRecieptSelection.ShowDialog();
                 }
-                else if (this.dgvLedgerList.Columns[e.ColumnIndex].Name == "ColCheck")
-                {
-                   
+                //else if (this.dgvLedgerList.Columns[e.ColumnIndex].Name == "ColCheck")
+                //{
 
 
-                    foreach (GridViewRowInfo row in dgvLedgerList.Rows)
-                        {
-                            GridViewCellInfo cell = row.Cells["ColCheck"] as GridViewCellInfo;
-                            if (Convert.ToBoolean(cell.Value))
-                            {
-                                IsPayAsSelected = true;
-                                break;
-                            }
-                            else
-                            {
-                                IsPayAsSelected = false;
-                            }
-                        }
-               
-           
-                }
+
+                //    foreach (GridViewRowInfo row in dgvLedgerList.Rows)
+                //        {
+                //            GridViewCellInfo cell = row.Cells["ColCheck"] as GridViewCellInfo;
+                //            if (Convert.ToBoolean(cell.Value))
+                //            {
+                //                IsPayAsSelected = true;
+                //                break;
+                //            }
+                //            else
+                //            {
+                //                IsPayAsSelected = false;
+                //            }
+                //        }
+
+
+                //}
                 //else if (this.dgvLedgerList.Columns[e.ColumnIndex].Name == "ColCheck")
                 //{
                 //    IsPayAsSelected = false; // Assume initially that no checkbox is checked
@@ -947,6 +949,30 @@ namespace LEASING.UI.APP.Forms
                 MessageBox.Show("No Ledger is Available", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
+        }
+
+        private void dgvLedgerList_CellValueChanged(object sender, GridViewCellEventArgs e)
+        {
+            dgvLedgerList.EndEdit();
+            if (this.dgvLedgerList.Columns[e.ColumnIndex].Name == "ColCheck")
+            {
+                IsPayAsSelected = false;
+                foreach (GridViewRowInfo row in dgvLedgerList.Rows)
+                {
+                    GridViewCellInfo cell = row.Cells["ColCheck"] as GridViewCellInfo;
+                    if (Convert.ToBoolean(cell.Value))
+                    {
+                        IsPayAsSelected = true;
+                        break;
+                    }
+                    else
+                    {
+                        IsPayAsSelected = false;
+                    }
+                }
+
+
+            }
         }
     }
 }

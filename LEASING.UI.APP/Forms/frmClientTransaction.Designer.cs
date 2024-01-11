@@ -510,18 +510,22 @@
             gridViewTextBoxColumn10.FieldName = "seq";
             gridViewTextBoxColumn10.HeaderText = "seq";
             gridViewTextBoxColumn10.Name = "seq";
+            gridViewTextBoxColumn10.ReadOnly = true;
             gridViewTextBoxColumn10.Width = 30;
             gridViewTextBoxColumn11.FieldName = "LedgMonth";
             gridViewTextBoxColumn11.HeaderText = "Month";
             gridViewTextBoxColumn11.Name = "LedgMonth";
+            gridViewTextBoxColumn11.ReadOnly = true;
             gridViewTextBoxColumn11.Width = 150;
             gridViewTextBoxColumn12.FieldName = "LedgAmount";
             gridViewTextBoxColumn12.HeaderText = "Amount";
             gridViewTextBoxColumn12.Name = "LedgAmount";
+            gridViewTextBoxColumn12.ReadOnly = true;
             gridViewTextBoxColumn12.Width = 150;
             gridViewTextBoxColumn13.FieldName = "PaymentStatus";
             gridViewTextBoxColumn13.HeaderText = "Status";
             gridViewTextBoxColumn13.Name = "PaymentStatus";
+            gridViewTextBoxColumn13.ReadOnly = true;
             gridViewTextBoxColumn13.Width = 170;
             gridViewTextBoxColumn14.FieldName = "Recid";
             gridViewTextBoxColumn14.HeaderText = "Recid";
@@ -559,6 +563,7 @@
             this.dgvLedgerList.ThemeName = "Office2007Silver";
             this.dgvLedgerList.CellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.dgvLedgerList_CellFormatting);
             this.dgvLedgerList.CellClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.dgvLedgerList_CellClick);
+            this.dgvLedgerList.CellValueChanged += new Telerik.WinControls.UI.GridViewCellEventHandler(this.dgvLedgerList_CellValueChanged);
             // 
             // frmClientTransaction
             // 

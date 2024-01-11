@@ -561,6 +561,12 @@ namespace LEASING.UI.APP.Forms
         }
         private void frmComputation_Load(object sender, EventArgs e)
         {
+            string sad = dtpFinishDate.Text;
+            string fddf = dtpFinishDate.Value.ToString("MM/dd/yyyy");
+            string asd = DateTime.Now.ToString("MM/dd/yyyy");
+            dtpStartDate.Text = DateTime.Now.ToString("MM/dd/yyyy");
+            dtpFinishDate.Text = DateTime.Now.ToString("MM/dd/yyyy");
+
             txtRental.ReadOnly = true;
             txtSecAndMaintenance.ReadOnly = true;
             txtTotalRental.ReadOnly = true;

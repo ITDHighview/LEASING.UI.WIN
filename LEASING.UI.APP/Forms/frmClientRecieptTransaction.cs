@@ -64,15 +64,23 @@ namespace LEASING.UI.APP.Forms
             {
                 if (this.dgvReceiptList.Columns[e.ColumnIndex].Name == "ColPrint")
                 {
+                    bool IsNoOR = false;
+
+                    if (Convert.ToString(dgvReceiptList.CurrentRow.Cells["CompanyORNo"].Value) == string.Empty)
+                    {
+                        IsNoOR = true;
+                    }
+
                     frmRecieptSelection forms = new frmRecieptSelection(Convert.ToString(dgvReceiptList.CurrentRow.Cells["TranID"].Value), Convert.ToString(dgvReceiptList.CurrentRow.Cells["RefId"].Value));
+                    forms.IsNoOR = IsNoOR;
+
                     forms.ShowDialog();
                 }
-                //else if (this.dgvList.Columns[e.ColumnIndex].Name == "ColView")
-                //{
-                //    frmEditUnitComputation forms = new frmEditUnitComputation();
-                //    forms.Recid = Convert.ToInt32(dgvList.CurrentRow.Cells["RecId"].Value);
-                //    forms.ShowDialog();
-                //}
+                else if (this.dgvReceiptList.Columns[e.ColumnIndex].Name == "ColEditOR")
+                {
+                    frmEditORNumber forms = new frmEditORNumber();
+                    forms.ShowDialog();
+                }
                 //else if (this.dgvList.Columns[e.ColumnIndex].Name == "ColLedger")
                 //{
                 //    frmClosedClientTransaction forms = new frmClosedClientTransaction();

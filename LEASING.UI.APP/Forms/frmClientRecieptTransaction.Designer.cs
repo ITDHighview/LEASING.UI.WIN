@@ -35,6 +35,7 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn2 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
@@ -78,7 +79,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 43.28358F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 56.71642F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(814, 695);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(916, 695);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // toolStrip1
@@ -87,7 +88,7 @@
             this.toolStripSeparator});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(814, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(916, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -104,7 +105,7 @@
             this.radGroupBox1.HeaderText = "CONTRACT LIST";
             this.radGroupBox1.Location = new System.Drawing.Point(3, 28);
             this.radGroupBox1.Name = "radGroupBox1";
-            this.radGroupBox1.Size = new System.Drawing.Size(808, 283);
+            this.radGroupBox1.Size = new System.Drawing.Size(910, 283);
             this.radGroupBox1.TabIndex = 1;
             this.radGroupBox1.Text = "CONTRACT LIST";
             // 
@@ -125,15 +126,15 @@
             gridViewTextBoxColumn1.FieldName = "RefId";
             gridViewTextBoxColumn1.HeaderText = "Contract ID";
             gridViewTextBoxColumn1.Name = "RefId";
-            gridViewTextBoxColumn1.Width = 150;
+            gridViewTextBoxColumn1.Width = 180;
             gridViewTextBoxColumn2.FieldName = "InquiringClient";
             gridViewTextBoxColumn2.HeaderText = " Client";
             gridViewTextBoxColumn2.Name = "InquiringClient";
-            gridViewTextBoxColumn2.Width = 200;
+            gridViewTextBoxColumn2.Width = 260;
             gridViewTextBoxColumn3.FieldName = "UnitNo";
             gridViewTextBoxColumn3.HeaderText = "Unit No";
             gridViewTextBoxColumn3.Name = "UnitNo";
-            gridViewTextBoxColumn3.Width = 80;
+            gridViewTextBoxColumn3.Width = 100;
             gridViewTextBoxColumn4.FieldName = "StatDate";
             gridViewTextBoxColumn4.HeaderText = "Start Date";
             gridViewTextBoxColumn4.Name = "StatDate";
@@ -160,7 +161,7 @@
             this.dgvContractList.ReadOnly = true;
             this.dgvContractList.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgvContractList.ShowGroupPanel = false;
-            this.dgvContractList.Size = new System.Drawing.Size(804, 263);
+            this.dgvContractList.Size = new System.Drawing.Size(906, 263);
             this.dgvContractList.TabIndex = 0;
             this.dgvContractList.Text = "radGridView1";
             this.dgvContractList.ThemeName = "Office2007Silver";
@@ -174,7 +175,7 @@
             this.radGroupBox2.HeaderText = "RECEIPT LIST";
             this.radGroupBox2.Location = new System.Drawing.Point(3, 317);
             this.radGroupBox2.Name = "radGroupBox2";
-            this.radGroupBox2.Size = new System.Drawing.Size(808, 375);
+            this.radGroupBox2.Size = new System.Drawing.Size(910, 375);
             this.radGroupBox2.TabIndex = 2;
             this.radGroupBox2.Text = "RECEIPT LIST";
             // 
@@ -198,6 +199,11 @@
             gridViewCommandColumn1.Image = global::LEASING.UI.APP.Properties.Resources.print_16;
             gridViewCommandColumn1.Name = "ColPrint";
             gridViewCommandColumn1.Width = 30;
+            gridViewCommandColumn2.FieldName = "ColEditOR";
+            gridViewCommandColumn2.HeaderText = "";
+            gridViewCommandColumn2.Image = global::LEASING.UI.APP.Properties.Resources.co_folder_20;
+            gridViewCommandColumn2.Name = "ColEditOR";
+            gridViewCommandColumn2.Width = 30;
             gridViewTextBoxColumn7.FieldName = "RefId";
             gridViewTextBoxColumn7.HeaderText = "Contract ID";
             gridViewTextBoxColumn7.Name = "RefId";
@@ -228,6 +234,7 @@
             gridViewTextBoxColumn13.Width = 150;
             this.dgvReceiptList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewCommandColumn1,
+            gridViewCommandColumn2,
             gridViewTextBoxColumn7,
             gridViewTextBoxColumn8,
             gridViewTextBoxColumn9,
@@ -242,7 +249,7 @@
             this.dgvReceiptList.ReadOnly = true;
             this.dgvReceiptList.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgvReceiptList.ShowGroupPanel = false;
-            this.dgvReceiptList.Size = new System.Drawing.Size(804, 355);
+            this.dgvReceiptList.Size = new System.Drawing.Size(906, 355);
             this.dgvReceiptList.TabIndex = 0;
             this.dgvReceiptList.Text = "radGridView1";
             this.dgvReceiptList.ThemeName = "VisualStudio2012Dark";
@@ -253,7 +260,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(814, 695);
+            this.ClientSize = new System.Drawing.Size(916, 695);
             this.Controls.Add(this.tableLayoutPanel1);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

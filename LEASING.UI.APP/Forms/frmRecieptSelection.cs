@@ -14,6 +14,7 @@ namespace LEASING.UI.APP.Forms
     {
         public string sTranID { get; set; } = string.Empty;
         public string sRefId { get; set; }=string.Empty;
+        public bool IsNoOR = false;
         public frmRecieptSelection(string TranID,string RefId)
         {
             InitializeComponent();
@@ -36,6 +37,23 @@ namespace LEASING.UI.APP.Forms
         {        
             frmNature_PR_REPORT Nature_PR_REPORT = new frmNature_PR_REPORT(sTranID);          
             Nature_PR_REPORT.Show();
+        }
+
+        private void frmRecieptSelection_Load(object sender, EventArgs e)
+        {
+            if (IsNoOR)
+            {
+                btnNATURE_OR.Enabled = false;
+                btnNATURE_PR.Enabled = true;
+                btnONGCHING_OR.Enabled = false;
+
+            }
+            else
+            {
+                btnNATURE_OR.Enabled = true;
+                btnNATURE_PR.Enabled = false;
+                btnONGCHING_OR.Enabled = true;
+            }
         }
     }
 }

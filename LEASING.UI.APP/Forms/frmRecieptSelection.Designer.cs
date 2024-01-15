@@ -88,6 +88,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PRINT";
+            this.Load += new System.EventHandler(this.frmRecieptSelection_Load);
             ((System.ComponentModel.ISupportInitialize)(this.btnNATURE_OR)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNATURE_PR)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnONGCHING_OR)).EndInit();

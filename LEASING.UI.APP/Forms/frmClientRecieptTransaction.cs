@@ -66,9 +66,17 @@ namespace LEASING.UI.APP.Forms
                 {
                     bool IsNoOR = false;
 
-                    if (Convert.ToString(dgvReceiptList.CurrentRow.Cells["CompanyORNo"].Value) == string.Empty)
+                    if (string.IsNullOrEmpty(Convert.ToString(dgvReceiptList.CurrentRow.Cells["CompanyORNo"].Value)) && !string.IsNullOrEmpty(Convert.ToString(dgvReceiptList.CurrentRow.Cells["CompanyPRNo"].Value)))
                     {
                         IsNoOR = true;
+                    }
+                    else if (!string.IsNullOrEmpty(Convert.ToString(dgvReceiptList.CurrentRow.Cells["CompanyORNo"].Value)) && string.IsNullOrEmpty(Convert.ToString(dgvReceiptList.CurrentRow.Cells["CompanyPRNo"].Value)))
+                    {
+                        IsNoOR = false;
+                    }
+                    else if (!string.IsNullOrEmpty(Convert.ToString(dgvReceiptList.CurrentRow.Cells["CompanyORNo"].Value)) && !string.IsNullOrEmpty(Convert.ToString(dgvReceiptList.CurrentRow.Cells["CompanyPRNo"].Value)))
+                    {
+                        IsNoOR = false;
                     }
 
                     frmRecieptSelection forms = new frmRecieptSelection(Convert.ToString(dgvReceiptList.CurrentRow.Cells["TranID"].Value), Convert.ToString(dgvReceiptList.CurrentRow.Cells["RefId"].Value));
@@ -79,7 +87,12 @@ namespace LEASING.UI.APP.Forms
                 else if (this.dgvReceiptList.Columns[e.ColumnIndex].Name == "ColEditOR")
                 {
                     frmEditORNumber forms = new frmEditORNumber();
+                    forms.RcptID = Convert.ToString(dgvReceiptList.CurrentRow.Cells["RcptID"].Value);
                     forms.ShowDialog();
+                    if (forms.IsProceed)
+                    {
+                        M_GetContractList();
+                    }
                 }
                 //else if (this.dgvList.Columns[e.ColumnIndex].Name == "ColLedger")
                 //{

@@ -43,6 +43,7 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn12 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn13 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn14 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
@@ -232,6 +233,10 @@
             gridViewTextBoxColumn13.HeaderText = "OR No.";
             gridViewTextBoxColumn13.Name = "CompanyORNo";
             gridViewTextBoxColumn13.Width = 150;
+            gridViewTextBoxColumn14.FieldName = "CompanyPRNo";
+            gridViewTextBoxColumn14.HeaderText = "PR No.";
+            gridViewTextBoxColumn14.Name = "CompanyPRNo";
+            gridViewTextBoxColumn14.Width = 150;
             this.dgvReceiptList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewCommandColumn1,
             gridViewCommandColumn2,
@@ -241,7 +246,8 @@
             gridViewTextBoxColumn10,
             gridViewTextBoxColumn11,
             gridViewTextBoxColumn12,
-            gridViewTextBoxColumn13});
+            gridViewTextBoxColumn13,
+            gridViewTextBoxColumn14});
             this.dgvReceiptList.MasterTemplate.EnableFiltering = true;
             this.dgvReceiptList.MasterTemplate.ShowRowHeaderColumn = false;
             this.dgvReceiptList.Name = "dgvReceiptList";

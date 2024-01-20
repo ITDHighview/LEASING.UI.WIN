@@ -113,8 +113,11 @@ namespace LEASING.UI.APP.Forms
 
         private void btnPrintAuthorization_Click(object sender, EventArgs e)
         {//RefId
-            frmMoveInAuthorizationReport MoveIn = new frmMoveInAuthorizationReport(Convert.ToString(dgvList.CurrentRow.Cells["RefId"].Value));
-            MoveIn.Show();
+            if (!string.IsNullOrEmpty(Convert.ToString(dgvList.CurrentRow.Cells["RefId"].Value)))
+            {
+                frmMoveInAuthorizationReport MoveIn = new frmMoveInAuthorizationReport(Convert.ToString(dgvList.CurrentRow.Cells["RefId"].Value));
+                MoveIn.Show();
+            }        
         }
     }
 }

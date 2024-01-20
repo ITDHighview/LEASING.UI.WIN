@@ -666,21 +666,21 @@
             // 
             this.radLabel3.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.radLabel3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel3.Location = new System.Drawing.Point(72, 153);
+            this.radLabel3.Location = new System.Drawing.Point(74, 153);
             this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(64, 19);
+            this.radLabel3.Size = new System.Drawing.Size(62, 19);
             this.radLabel3.TabIndex = 0;
-            this.radLabel3.Text = "Floor No :";
+            this.radLabel3.Text = "Unit No. :";
             // 
             // radLabel11
             // 
             this.radLabel11.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.radLabel11.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel11.Location = new System.Drawing.Point(74, 178);
+            this.radLabel11.Location = new System.Drawing.Point(69, 178);
             this.radLabel11.Name = "radLabel11";
-            this.radLabel11.Size = new System.Drawing.Size(62, 19);
+            this.radLabel11.Size = new System.Drawing.Size(67, 19);
             this.radLabel11.TabIndex = 0;
-            this.radLabel11.Text = "Unit No. :";
+            this.radLabel11.Text = "Floor No. :";
             // 
             // txtFloorNumber
             // 

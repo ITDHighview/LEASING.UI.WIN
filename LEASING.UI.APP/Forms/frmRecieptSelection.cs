@@ -48,10 +48,16 @@ namespace LEASING.UI.APP.Forms
                 btnONGCHING_OR.Enabled = false;
 
             }
-            else
+            else if(!IsNoOR)
             {
                 btnNATURE_OR.Enabled = true;
                 btnNATURE_PR.Enabled = false;
+                btnONGCHING_OR.Enabled = true;
+            }
+            else
+            {
+                btnNATURE_OR.Enabled = true;
+                btnNATURE_PR.Enabled = true;
                 btnONGCHING_OR.Enabled = true;
             }
         }

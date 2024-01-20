@@ -97,6 +97,10 @@ namespace LEASING.UI.APP.Forms
                     MessageBox.Show("PAYMENT SUCCESS", "System Message", MessageBoxButtons.OK);
                     IsProceed = true;
                 }
+                else
+                {
+                    MessageBox.Show(result, "System Message", MessageBoxButtons.OK);
+                }
             }
             else
             {
@@ -119,12 +123,14 @@ namespace LEASING.UI.APP.Forms
                     MessageBox.Show("PAYMENT SUCCESS", "System Message", MessageBoxButtons.OK);
                     IsProceed = true;
                 }
+                else
+                {
+                    MessageBox.Show(result, "System Message", MessageBoxButtons.OK);
+                }
             }
         }
         private void M_GenerateBulkPayment()
         {
-            //if (Convert.ToString(dgvTransactionList.CurrentRow.Cells["TypeOf"].Value) == "TYPE OF UNIT")
-            //{
             var result = PaymentContext.GenerateBulkPayment(RefId,
             Convert.ToDecimal(dgvLedgerList.CurrentRow.Cells["LedgAmount"].Value) * M_GetTotalSelectedMonth(),
           ReceiveAmount,
@@ -148,8 +154,10 @@ namespace LEASING.UI.APP.Forms
                 MessageBox.Show("PAYMENT SUCCESS", "System Message", MessageBoxButtons.OK);
                 IsProceed = true;
             }
-            //}
-
+            else
+            {
+                MessageBox.Show(result, "System Message", MessageBoxButtons.OK);
+            }
         }
         private bool IsComputationValid()
         {
@@ -205,20 +213,20 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-        private void M_GetClientTypeAndID()
-        {
+        //private void M_GetClientTypeAndID()
+        //{
 
-            txtTotalPay.Text = string.Empty;
-            //txtPaymentStatus.Text = string.Empty;
-            using (DataSet dt = ClientContext.GetGetClientTypeAndID(ClientId))
-            {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
-                {
-                    txtTotalPay.Text = Convert.ToString(dt.Tables[0].Rows[0]["ClientType"]);
-                    //txtPaymentStatus.Text = Convert.ToString(dt.Tables[0].Rows[0]["ClientID"]);
-                }
-            }
-        }
+        //    txtTotalPay.Text = string.Empty;
+        //    //txtPaymentStatus.Text = string.Empty;
+        //    using (DataSet dt = ClientContext.GetGetClientTypeAndID(ClientId))
+        //    {
+        //        if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+        //        {
+        //            txtTotalPay.Text = Convert.ToString(dt.Tables[0].Rows[0]["ClientType"]);
+        //            //txtPaymentStatus.Text = Convert.ToString(dt.Tables[0].Rows[0]["ClientID"]);
+        //        }
+        //    }
+        //}
         private void M_GetComputationById()
         {
             txtTotalPay.Text = string.Empty;
@@ -381,7 +389,7 @@ namespace LEASING.UI.APP.Forms
             txtTotalPay.ReadOnly = true;
 
             M_GetComputationById();
-            M_GetClientTypeAndID();
+            //M_GetClientTypeAndID();
             btnCloseContract.Enabled = false;
             btnTerminateContract.Enabled = false;
         }
@@ -392,12 +400,6 @@ namespace LEASING.UI.APP.Forms
         }
         private void radDateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
-            //DateTime startDate = DateTime.ParseExact(dtpFrom.Value.ToString("MM/dd/yyyy"), "MM/dd/yyyy", null);
-            //DateTime endDate = DateTime.ParseExact(dtpTo.Value.ToString("MM/dd/yyyy"), "MM/dd/yyyy", null);
-
-            //int numberOfMonths = CountMonths(startDate, endDate);
-            //lblPostDatedCheck.Text = "(" + Convert.ToString(numberOfMonths) + ")" + " POST-DATED CHECKS:";
-            //txtTotal.Text = Convert.ToString(TotalRental * numberOfMonths);
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -455,12 +457,10 @@ namespace LEASING.UI.APP.Forms
                     e.CellElement.GradientStyle = GradientStyles.Solid;
                     e.CellElement.BackColor = Color.Red;
                 }
-
                 if (e.CellElement.ColumnInfo is GridViewCommandColumn && !(e.CellElement.RowElement is GridTableHeaderRowElement))
                 {
                     GridViewCommandColumn column = (GridViewCommandColumn)e.CellElement.ColumnInfo;
                     RadButtonElement element = (RadButtonElement)e.CellElement.Children[0];
-
                     (element.Children[2] as Telerik.WinControls.Primitives.BorderPrimitive).Visibility =
                     Telerik.WinControls.ElementVisibility.Collapsed;
                     element.DisplayStyle = DisplayStyle.Image;
@@ -468,7 +468,6 @@ namespace LEASING.UI.APP.Forms
                     element.Enabled = true;
                     element.Alignment = ContentAlignment.MiddleCenter;
                     element.Visibility = ElementVisibility.Visible;
-
                     if (column.Name == "ColPay")
                     {
                         if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "PAID")
@@ -478,7 +477,6 @@ namespace LEASING.UI.APP.Forms
                             //element.Text = "Un-Map";
                             element.Image = Properties.Resources.cancel16;
                             element.ToolTipText = "This button is disabled";
-
                             element.Enabled = false;
                         }
                         //else
@@ -491,6 +489,24 @@ namespace LEASING.UI.APP.Forms
                         //    element.Enabled = false;
                         //}
                     }
+                    if (column.Name == "ColPrint")
+                    {
+                        if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "PAID")
+                        {
+                            //element.ImageAlignment = ContentAlignment.MiddleCenter;
+                            //element.TextImageRelation = TextImageRelation.TextBeforeImage;
+                            //element.Text = "Un-Map";
+                            element.Image = Properties.Resources.print_16;
+                            element.ToolTipText = "Print Reciept";
+                            element.Enabled = true;
+                        }
+                        else
+                        {
+                            element.Image = Properties.Resources.print_16;
+                            element.ToolTipText = "This button is disabled";
+                            element.Enabled = false;
+                        }
+                    }
                     if (column.Name == "ColHold")
                     {
                         if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "PAID")
@@ -502,14 +518,6 @@ namespace LEASING.UI.APP.Forms
 
                             element.Enabled = false;
                         }
-                        //else
-                        //{
-                        //    element.ImageAlignment = ContentAlignment.MiddleCenter;
-                        //    element.TextImageRelation = TextImageRelation.TextBeforeImage;
-                        //    element.Image = Properties.Resources.apply_icon;
-                        //    element.ToolTipText = "Done";
-                        //   element.Enabled = false;
-                        //}
                     }
                     if (column.Name == "ColPay")
                     {
@@ -522,14 +530,6 @@ namespace LEASING.UI.APP.Forms
 
                             element.Enabled = true;
                         }
-                        //else
-                        //{
-                        //    element.ImageAlignment = ContentAlignment.MiddleCenter;
-                        //    element.TextImageRelation = TextImageRelation.TextBeforeImage;
-                        //    element.Image = Properties.Resources.apply_icon;
-                        //    element.ToolTipText = "Done";
-                        //   element.Enabled = false;
-                        //}
                     }
                     if (column.Name == "ColHold")
                     {
@@ -542,14 +542,6 @@ namespace LEASING.UI.APP.Forms
 
                             element.Enabled = true;
                         }
-                        //else
-                        //{
-                        //    element.ImageAlignment = ContentAlignment.MiddleCenter;
-                        //    element.TextImageRelation = TextImageRelation.TextBeforeImage;
-                        //    element.Image = Properties.Resources.apply_icon;
-                        //    element.ToolTipText = "Done";
-                        //   element.Enabled = false;
-                        //}
                     }
                     if (column.Name == "ColPay")
                     {
@@ -562,14 +554,6 @@ namespace LEASING.UI.APP.Forms
 
                             element.Enabled = true;
                         }
-                        //else
-                        //{
-                        //    element.ImageAlignment = ContentAlignment.MiddleCenter;
-                        //    element.TextImageRelation = TextImageRelation.TextBeforeImage;
-                        //    element.Image = Properties.Resources.apply_icon;
-                        //    element.ToolTipText = "Done";
-                        //   element.Enabled = false;
-                        //}
                     }
                     if (column.Name == "ColHold")
                     {
@@ -582,14 +566,6 @@ namespace LEASING.UI.APP.Forms
 
                             element.Enabled = false;
                         }
-                        //else
-                        //{
-                        //    element.ImageAlignment = ContentAlignment.MiddleCenter;
-                        //    element.TextImageRelation = TextImageRelation.TextBeforeImage;
-                        //    element.Image = Properties.Resources.apply_icon;
-                        //    element.ToolTipText = "Done";
-                        //   element.Enabled = false;
-                        //}
                     }
                     if (column.Name == "ColPay")
                     {
@@ -715,7 +691,6 @@ namespace LEASING.UI.APP.Forms
                                 PaymentRemarks = frmPaymentMode.PaymentRemarks;
                                 REF = frmPaymentMode.REF;
                                 ModeType = frmPaymentMode.ModeType;
-
                                 frmReceivePayment frmReceivePayment = new frmReceivePayment();
                                 frmReceivePayment.Amount = Convert.ToString(dgvLedgerList.CurrentRow.Cells["LedgAmount"].Value);
                                 frmReceivePayment.ShowDialog();
@@ -724,17 +699,24 @@ namespace LEASING.UI.APP.Forms
                                     ReceiveAmount = frmReceivePayment.txtReceiveAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtReceiveAmount.Text);
                                     ChangeAmount = frmReceivePayment.txtChangeAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtChangeAmount.Text);
                                     M_GenerateSecondPayment();
+                                    M_GetComputationById();
                                     M_GetCheckPaymentStatus();
                                     M_GetLedgerList();
                                     M_GetPaymentListByReferenceId();
-
                                     frmRecieptSelection frmRecieptSelection = new frmRecieptSelection(TranID, "");
+                                    if (string.IsNullOrEmpty(CompanyORNo) && !string.IsNullOrEmpty(CompanyPRNo))
+                                    {
+                                        frmRecieptSelection.IsNoOR = true;
+                                    }
+                                    else if (!string.IsNullOrEmpty(CompanyORNo) && string.IsNullOrEmpty(CompanyPRNo))
+                                    {
+                                        frmRecieptSelection.IsNoOR = false;
+                                    }
                                     frmRecieptSelection.ShowDialog();
                                 }
                             }
                         }
                     }
-
                 }
                 else if (this.dgvLedgerList.Columns[e.ColumnIndex].Name == "ColHold")
                 {
@@ -759,51 +741,35 @@ namespace LEASING.UI.APP.Forms
                             }
                         }
                     }
-
                 }
                 else if (this.dgvLedgerList.Columns[e.ColumnIndex].Name == "ColPrint")
                 {
-
-                    frmRecieptSelection frmRecieptSelection = new frmRecieptSelection(Convert.ToString(dgvLedgerList.CurrentRow.Cells["TransactionID"].Value), "");
-                    frmRecieptSelection.ShowDialog();
+                    if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "PAID")
+                    {
+                        frmRecieptSelection frmRecieptSelection = new frmRecieptSelection(Convert.ToString(dgvLedgerList.CurrentRow.Cells["TransactionID"].Value), "");
+                        using (DataSet dt = PaymentContext.CheckIfOrIsEmpty(Convert.ToString(dgvLedgerList.CurrentRow.Cells["TransactionID"].Value)))
+                        {
+                            if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                            {
+                                if (string.IsNullOrEmpty(Convert.ToString(dt.Tables[0].Rows[0]["CompanyORNo"])) && !string.IsNullOrEmpty(Convert.ToString(dt.Tables[0].Rows[0]["CompanyPRNo"])))
+                                {
+                                    frmRecieptSelection.IsNoOR = true;
+                                }
+                                else if (!string.IsNullOrEmpty(Convert.ToString(dt.Tables[0].Rows[0]["CompanyORNo"])) && string.IsNullOrEmpty(Convert.ToString(dt.Tables[0].Rows[0]["CompanyPRNo"])))
+                                {
+                                    frmRecieptSelection.IsNoOR = false;
+                                }
+                                else if (!string.IsNullOrEmpty(Convert.ToString(dt.Tables[0].Rows[0]["CompanyORNo"])) && !string.IsNullOrEmpty(Convert.ToString(dt.Tables[0].Rows[0]["CompanyPRNo"])))
+                                {
+                                    frmRecieptSelection.IsNoOR = false;
+                                }
+                            }
+                        }
+                        frmRecieptSelection.ShowDialog();
+                    }
+         
                 }
-                //else if (this.dgvLedgerList.Columns[e.ColumnIndex].Name == "ColCheck")
-                //{
-
-
-
-                //    foreach (GridViewRowInfo row in dgvLedgerList.Rows)
-                //        {
-                //            GridViewCellInfo cell = row.Cells["ColCheck"] as GridViewCellInfo;
-                //            if (Convert.ToBoolean(cell.Value))
-                //            {
-                //                IsPayAsSelected = true;
-                //                break;
-                //            }
-                //            else
-                //            {
-                //                IsPayAsSelected = false;
-                //            }
-                //        }
-
-
-                //}
-                //else if (this.dgvLedgerList.Columns[e.ColumnIndex].Name == "ColCheck")
-                //{
-                //    IsPayAsSelected = false; // Assume initially that no checkbox is checked
-
-                //    foreach (GridViewRowInfo row in dgvLedgerList.Rows)
-                //    {
-                //        GridViewCellInfo cell = row.Cells["ColCheck"] as GridViewCellInfo;
-                //        if (Convert.ToBoolean(cell.Value))
-                //        {
-                //            IsPayAsSelected = true; // Set to true if at least one checkbox is checked
-                //            break;
-                //        }
-                //    }
-                //}
             }
-
         }
         private void btnCloseContract_Click(object sender, EventArgs e)
         {
@@ -870,9 +836,6 @@ namespace LEASING.UI.APP.Forms
                 {
                     if (MessageBox.Show("Are you sure you want to pay the selected month?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                     {
-                        //if (Convert.ToString(this.dgvLedgerList.Rows.Cells["PaymentStatus"].Value) == "PENDING" || Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "HOLD" || Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "FOR PAYMENT")
-                        //{
-
                         frmPaymentMode frmPaymentMode = new frmPaymentMode();
                         frmPaymentMode.ShowDialog();
                         if (frmPaymentMode.IsProceed)
@@ -895,16 +858,23 @@ namespace LEASING.UI.APP.Forms
                                 ReceiveAmount = frmReceivePayment.txtReceiveAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtReceiveAmount.Text);
                                 ChangeAmount = frmReceivePayment.txtChangeAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtChangeAmount.Text);
                                 M_GenerateBulkPayment();
+                                M_GetComputationById();
                                 M_GetCheckPaymentStatus();
                                 M_GetLedgerList();
                                 M_GetPaymentListByReferenceId();
 
                                 frmRecieptSelection frmRecieptSelection = new frmRecieptSelection(TranID, "");
+                                if (string.IsNullOrEmpty(CompanyORNo) && !string.IsNullOrEmpty(CompanyPRNo))
+                                {
+                                    frmRecieptSelection.IsNoOR = true;
+                                }
+                                else if (!string.IsNullOrEmpty(CompanyORNo) && string.IsNullOrEmpty(CompanyPRNo))
+                                {
+                                    frmRecieptSelection.IsNoOR = false;
+                                }
                                 frmRecieptSelection.ShowDialog();
                             }
                         }
-
-                        //}
                     }
                 }
                 else
@@ -938,6 +908,14 @@ namespace LEASING.UI.APP.Forms
                                 M_GetPaymentListByReferenceId();
 
                                 frmRecieptSelection frmRecieptSelection = new frmRecieptSelection(TranID, "");
+                                if (string.IsNullOrEmpty(CompanyORNo) && !string.IsNullOrEmpty(CompanyPRNo))
+                                {
+                                    frmRecieptSelection.IsNoOR = true;
+                                }
+                                else if (!string.IsNullOrEmpty(CompanyORNo) && string.IsNullOrEmpty(CompanyPRNo))
+                                {
+                                    frmRecieptSelection.IsNoOR = false;
+                                }
                                 frmRecieptSelection.ShowDialog();
                             }
                         }
@@ -948,9 +926,7 @@ namespace LEASING.UI.APP.Forms
             {
                 MessageBox.Show("No Ledger is Available", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
         }
-
         private void dgvLedgerList_CellValueChanged(object sender, GridViewCellEventArgs e)
         {
             dgvLedgerList.EndEdit();
@@ -970,8 +946,6 @@ namespace LEASING.UI.APP.Forms
                         IsPayAsSelected = false;
                     }
                 }
-
-
             }
         }
     }

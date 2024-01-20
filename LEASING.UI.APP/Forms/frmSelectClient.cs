@@ -206,6 +206,18 @@ namespace LEASING.UI.APP.Forms
                         ChangeAmount = frmReceivePayment.txtChangeAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtChangeAmount.Text);
                         M_sp_GenerateFirstPayment();
                         frmRecieptSelection frmRecieptSelection = new frmRecieptSelection(TransID, RefId);
+                        if (string.IsNullOrEmpty(CompanyORNo) && !string.IsNullOrEmpty(CompanyPRNo))
+                        {
+                            frmRecieptSelection.IsNoOR = true;
+                        }
+                        else if (!string.IsNullOrEmpty(CompanyORNo) && string.IsNullOrEmpty(CompanyPRNo))
+                        {
+                            frmRecieptSelection.IsNoOR = false;
+                        }
+                        //else
+                        //{
+                        //    frmRecieptSelection.IsNoOR = false;
+                        //}
                         frmRecieptSelection.ShowDialog();
                     }
                 }
@@ -214,6 +226,24 @@ namespace LEASING.UI.APP.Forms
         private void btnPrintReciept_Click(object sender, EventArgs e)
         {
             frmRecieptSelection frmRecieptSelection = new frmRecieptSelection(TransID, RefId);
+            using (DataSet dt = PaymentContext.CheckIfOrIsEmpty(TransID))
+            {
+                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                {
+                    if (string.IsNullOrEmpty(Convert.ToString(dt.Tables[0].Rows[0]["CompanyORNo"])) && !string.IsNullOrEmpty(Convert.ToString(dt.Tables[0].Rows[0]["CompanyPRNo"])))
+                    {
+                        frmRecieptSelection.IsNoOR = true;
+                    }
+                    else if (!string.IsNullOrEmpty(Convert.ToString(dt.Tables[0].Rows[0]["CompanyORNo"])) && string.IsNullOrEmpty(Convert.ToString(dt.Tables[0].Rows[0]["CompanyPRNo"])))
+                    {
+                        frmRecieptSelection.IsNoOR = false;
+                    }
+                    else if (!string.IsNullOrEmpty(Convert.ToString(dt.Tables[0].Rows[0]["CompanyORNo"])) && !string.IsNullOrEmpty(Convert.ToString(dt.Tables[0].Rows[0]["CompanyPRNo"])))
+                    {
+                        frmRecieptSelection.IsNoOR = false;
+                    }
+                }
+            }
             frmRecieptSelection.ShowDialog();
         }
     }

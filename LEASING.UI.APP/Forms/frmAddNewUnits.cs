@@ -357,7 +357,8 @@ namespace LEASING.UI.APP.Forms
                 var tax = ((txtBaseRentalTax.Text == "" ? 0 : Convert.ToDecimal(txtBaseRentalTax.Text)) + (txtSecAndMainTax.Text == "" ? 0 : Convert.ToDecimal(txtSecAndMainTax.Text)));
                 var totalrental = ((txtBaseRentalWithVatAmount.Text == "" ? 0 : Convert.ToDecimal(txtBaseRentalWithVatAmount.Text)) + (txtSecAndMainWithVatAmount.Text == "" ? 0 : Convert.ToDecimal(txtSecAndMainWithVatAmount.Text)));
                 var result = (totalrental - tax);
-                txtTotalRental.Text = Convert.ToString(result);
+                txtTotalRental.Text = String.Format("{0:0.00}", Convert.ToString(result));
+
             }
             else
             {
@@ -368,7 +369,7 @@ namespace LEASING.UI.APP.Forms
                 var tax =(txtBaseRentalTax.Text == "" ? 0 : Convert.ToDecimal(txtBaseRentalTax.Text));
                 var totalrental = (txtBaseRentalWithVatAmount.Text == "" ? 0 : Convert.ToDecimal(txtBaseRentalWithVatAmount.Text));
                 var result = (totalrental - tax);
-                txtTotalRental.Text = Convert.ToString(result);
+                txtTotalRental.Text = String.Format("{0:0.00}", Convert.ToString(result));
             }
       
         }
@@ -387,7 +388,7 @@ namespace LEASING.UI.APP.Forms
             var tax = ((txtBaseRentalTax.Text == "" ? 0 : Convert.ToDecimal(txtBaseRentalTax.Text)) + (txtSecAndMainTax.Text == "" ? 0 : Convert.ToDecimal(txtSecAndMainTax.Text))); ;
             var totalrental = ((txtBaseRentalWithVatAmount.Text == "" ? 0 : Convert.ToDecimal(txtBaseRentalWithVatAmount.Text)) + (txtSecAndMainWithVatAmount.Text == "" ? 0 : Convert.ToDecimal(txtSecAndMainWithVatAmount.Text)));
             var result = (totalrental - tax);
-            txtTotalRental.Text = Convert.ToString(result);
+            txtTotalRental.Text = String.Format("{0:0.00}", Convert.ToString(result));
         }
 
         /*TAX*/
@@ -551,7 +552,7 @@ namespace LEASING.UI.APP.Forms
             else
             {
                 MessageBox.Show(dto.Message_Code, "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                strUnitFormMode = "READ";
+                //strUnitFormMode = "READ";
             }
         }
         private void btnSave_Click(object sender, EventArgs e)

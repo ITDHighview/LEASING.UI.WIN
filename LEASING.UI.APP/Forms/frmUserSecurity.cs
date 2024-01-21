@@ -1,4 +1,5 @@
-﻿using LEASING.UI.APP.Context;
+﻿using LEASING.UI.APP.Common;
+using LEASING.UI.APP.Context;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,13 +15,12 @@ namespace LEASING.UI.APP.Forms
     public partial class frmUserSecurity : Form
     {
         SecurityControlContext SecurityControlContext = new SecurityControlContext();
+        bool IsShowPassword = false;
         public frmUserSecurity()
         {
             InitializeComponent();
         }
-
         private string _FormMode;
-
         public string FormMode
         {
             get
@@ -59,7 +59,6 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-
         private void ClearFields()
         {
 
@@ -72,7 +71,6 @@ namespace LEASING.UI.APP.Forms
             txtUserName.Text = string.Empty;
 
         }
-
         private void EnableFields()
         {
             ddlUserGroup.Enabled = true;
@@ -100,19 +98,15 @@ namespace LEASING.UI.APP.Forms
 
             if (string.IsNullOrEmpty(txtUserName.Text))
             {
-                MessageBox.Show("User Name Cannot Be empty", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Functions.MessageShow("User Name Cannot Be empty");
                 return false;
             }
             if (string.IsNullOrEmpty(txtUserPassword.Text))
             {
-                MessageBox.Show("Password Cannot Be empty", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Functions.MessageShow("Password Cannot Be empty");
                 return false;
             }
             return true;
-        }
-        private DialogResult MessageShow(string message)
-        {
-            return MessageBox.Show(message, "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         private void M_GetFormList()
         {
@@ -148,21 +142,18 @@ namespace LEASING.UI.APP.Forms
                     string result = SecurityControlContext.SaveUser(Convert.ToInt32(ddlUserGroup.SelectedValue), Convert.ToInt32(dgvControlList.CurrentRow.Cells["UserId"].Value), txtUserPassword.Text.Trim(), txtUserName.Text.Trim(), txtStaffName.Text.Trim(), txtMiddlename.Text.Trim(), txtLastname.Text.Trim(), txtEmailAddress.Text.Trim(), txtPhone.Text.Trim(), FormMode);
                     if (result.Equals("SUCCESS"))
                     {
-
-                        //MessageBox.Show("New user Save Successfully", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        MessageShow("New user Save Successfully");
+                        Functions.MessageShow("New user Save Successfully");
                         M_GetUserList();
                         FormMode = "READ";
                     }
                     else
                     {
-                        MessageBox.Show(result, "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Functions.MessageShow(result);
                     }
                 }
                 catch (Exception ex)
                 {
-
-                    MessageBox.Show(ex.ToString(), "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Functions.MessageShow(ex.ToString());
                 }
             }
             else if (FormMode == "EDIT")
@@ -174,31 +165,26 @@ namespace LEASING.UI.APP.Forms
                         string result = SecurityControlContext.SaveUser(Convert.ToInt32(ddlUserGroup.SelectedValue), Convert.ToInt32(dgvControlList.CurrentRow.Cells["UserId"].Value), txtUserPassword.Text.Trim(), txtUserName.Text.Trim(), txtStaffName.Text.Trim(), txtMiddlename.Text.Trim(), txtLastname.Text.Trim(), txtEmailAddress.Text.Trim(), txtPhone.Text.Trim(), FormMode);
                         if (result.Equals("SUCCESS"))
                         {
-
-                            //MessageBox.Show("New user Save Successfully", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            MessageShow("user updated  Successfully");
+                            Functions.MessageShow("user updated  Successfully");
                             M_GetUserList();
                             FormMode = "READ";
                         }
                         else
                         {
-                            MessageBox.Show(result, "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            Functions.MessageShow(result);
                         }
                     }
                     catch (Exception ex)
                     {
-
-                        MessageBox.Show(ex.ToString(), "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Functions.MessageShow(ex.ToString());
                     }
                 }
                 catch (Exception ex)
                 {
-
-                    MessageBox.Show(ex.ToString(), "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Functions.MessageShow(ex.ToString());
                 }
             }
         }
-
         private void frmUserSecurity_Load(object sender, EventArgs e)
         {
             FormMode = "READ";
@@ -206,38 +192,32 @@ namespace LEASING.UI.APP.Forms
             M_GetUserList();
             txtUserPassword.Text = "123456789";
         }
-
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (IsValid())
             {
-                if (MessageBox.Show("Are you sure you want to save this user?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                if (Functions.MessageConfirm("Are you sure you want to save this user?") == DialogResult.Yes)
                 {
                     M_SaveUser();
                 }
             }
         }
-
         private void btnNewUser_Click(object sender, EventArgs e)
         {
             FormMode = "NEW";
         }
-
         private void btnEditUser_Click(object sender, EventArgs e)
         {
             FormMode = "EDIT";
         }
-
         private void btnUndo_Click(object sender, EventArgs e)
         {
             FormMode = "READ";
         }
-
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             M_GetUserList();
         }
-
         private void dgvControlList_SelectionChanged(object sender, EventArgs e)
         {
             if (dgvControlList.Rows.Count > 0)
@@ -251,10 +231,17 @@ namespace LEASING.UI.APP.Forms
                 txtUserName.Text = Convert.ToString(dgvControlList.CurrentRow.Cells["UserName"].Value);
             }
         }
-
         private void btnShowPassword_Click(object sender, EventArgs e)
         {
-            txtUserPassword.PasswordChar = '\0';
+            IsShowPassword = !IsShowPassword;
+            if (IsShowPassword)
+            {
+                txtUserPassword.PasswordChar = '\0';
+            }
+            else
+            {
+                txtUserPassword.PasswordChar = '*';
+            }
         }
     }
 }

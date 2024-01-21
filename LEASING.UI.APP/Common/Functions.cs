@@ -764,7 +764,6 @@ namespace LEASING.UI.APP.Common
             dtTable = null;
             dvView = null;
         }
-
         public static void LogErrorIntoStoredProcedure(string procedureName, string FormName, string errorMessage, DateTime logDateTime, Control _ctrl)
         {
             int len = _ctrl.GetType().ToString().Length - _ctrl.GetType().ToString().LastIndexOf('.');
@@ -797,7 +796,6 @@ namespace LEASING.UI.APP.Common
                 MessageBox.Show(ex.ToString(), "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-
         public static void GetNotification(string CaptionText, string CaptionText2)
         {
 
@@ -828,7 +826,6 @@ namespace LEASING.UI.APP.Common
 
             radDesktopAlert1.Show();
         }
-
         public static void GetReceiptReport(string report, Form frm, bool IsPreview,string TranID)
         {
 
@@ -882,7 +879,6 @@ namespace LEASING.UI.APP.Common
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
-
         public static void GetMoveInAthorizationReport(string report, Form frm, bool IsPreview, string RefId)
         {
 
@@ -936,7 +932,6 @@ namespace LEASING.UI.APP.Common
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
-
         public static void GetContractSignedResidentialReport(string report, Form frm, bool IsPreview, string RefId)
         {
 
@@ -1095,6 +1090,16 @@ namespace LEASING.UI.APP.Common
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
+        }
+
+        public static DialogResult MessageShow(string message)
+        {
+            return MessageBox.Show(message, "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        public static DialogResult MessageConfirm(string message)
+        {
+            return MessageBox.Show(message, "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
         }
 
     }

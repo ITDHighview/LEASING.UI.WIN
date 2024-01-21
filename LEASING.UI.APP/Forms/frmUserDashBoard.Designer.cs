@@ -51,6 +51,8 @@
             this.txtUserPassword = new Telerik.WinControls.UI.RadTextBox();
             this.btnShowPassword = new Telerik.WinControls.UI.RadButton();
             this.txtUserGroup = new Telerik.WinControls.UI.RadTextBox();
+            this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
+            this.txtUserName = new Telerik.WinControls.UI.RadTextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
@@ -71,6 +73,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtUserPassword)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnShowPassword)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUserGroup)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtUserName)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -166,6 +170,8 @@
             this.tableLayoutPanel2.Controls.Add(this.txtUserPassword, 1, 7);
             this.tableLayoutPanel2.Controls.Add(this.btnShowPassword, 2, 7);
             this.tableLayoutPanel2.Controls.Add(this.txtUserGroup, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.radLabel8, 0, 6);
+            this.tableLayoutPanel2.Controls.Add(this.txtUserName, 1, 6);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(2, 18);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -311,6 +317,23 @@
             this.txtUserGroup.Size = new System.Drawing.Size(166, 19);
             this.txtUserGroup.TabIndex = 2;
             // 
+            // radLabel8
+            // 
+            this.radLabel8.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.radLabel8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel8.Location = new System.Drawing.Point(43, 153);
+            this.radLabel8.Name = "radLabel8";
+            this.radLabel8.Size = new System.Drawing.Size(77, 19);
+            this.radLabel8.TabIndex = 0;
+            this.radLabel8.Text = "User Name :";
+            // 
+            // txtUserName
+            // 
+            this.txtUserName.Location = new System.Drawing.Point(126, 153);
+            this.txtUserName.Name = "txtUserName";
+            this.txtUserName.Size = new System.Drawing.Size(166, 20);
+            this.txtUserName.TabIndex = 2;
+            // 
             // frmUserDashBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -346,6 +369,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtUserPassword)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnShowPassword)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUserGroup)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtUserName)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -375,5 +400,7 @@
         private Telerik.WinControls.UI.RadTextBox txtEmailAddress;
         private Telerik.WinControls.UI.RadButton btnShowPassword;
         private Telerik.WinControls.UI.RadTextBox txtUserGroup;
+        private Telerik.WinControls.UI.RadLabel radLabel8;
+        private Telerik.WinControls.UI.RadTextBox txtUserName;
     }
 }

@@ -136,6 +136,7 @@
     <Compile Include="Context\ComputationContext.cs" />
     <Compile Include="Context\FloorTypeContext.cs" />
     <Compile Include="Context\LocationContext.cs" />
+    <Compile Include="Context\OtherContext.cs" />
     <Compile Include="Context\PaymentContext.cs" />
     <Compile Include="Context\ProjectContext.cs" />
     <Compile Include="Context\PurchaseItemContext.cs" />

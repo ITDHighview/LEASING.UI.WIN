@@ -37,9 +37,7 @@ namespace LEASING.UI.APP.Forms
         {
             this.WindowState = FormWindowState.Maximized;
          
-            this.radMenuItemNotification.Text = "NOTIFICATION (1)";
-
-            radPanel10.Visible = false;//Purchase Items button
+            this.radMenuItemNotification.Text = "NOTIFICATION (1)";         
 
             //radMenu7.Visible = false;
             //radPanel7.Visible = false;
@@ -385,6 +383,12 @@ namespace LEASING.UI.APP.Forms
         {
             frmUserGroup frmUserGroup = new frmUserGroup();
             frmUserGroup.ShowDialog();
+        }
+
+        private void radMenuItemInformation_Click(object sender, EventArgs e)
+        {
+            frmAddNewPurchaseItem forms = new frmAddNewPurchaseItem();
+            forms.ShowDialog();
         }
     }
 }

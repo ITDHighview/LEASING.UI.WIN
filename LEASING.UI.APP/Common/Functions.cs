@@ -507,7 +507,7 @@ namespace LEASING.UI.APP.Common
                                                                     break;
                                                                 #endregion
 
-                                                                #region DIRECTORIES
+                                                                #region PURCHASE ITEM
                                                                 case "radPanel10":
                                                                     if (Convert.ToString(dvView[iAllPages]["ControlName"]) == RadPanel.Name)
                                                                     {
@@ -534,7 +534,7 @@ namespace LEASING.UI.APP.Common
                                                                                                 RadMenu.Items[iControls].Visibility = ElementVisibility.Collapsed;
                                                                                             }
                                                                                         }
-                                                                                        RadMenuItem targetMenuItem = RadMenu.Items["radMenuItemDirectories"] as RadMenuItem;
+                                                                                        RadMenuItem targetMenuItem = RadMenu.Items["radMenuItemPurchaseItem"] as RadMenuItem;
 
                                                                                         for (int targetMenuItems = 0; targetMenuItems < targetMenuItem.Items.Count; targetMenuItems++)
                                                                                         {

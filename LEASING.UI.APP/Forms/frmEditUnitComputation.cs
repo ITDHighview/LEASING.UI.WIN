@@ -267,6 +267,11 @@ namespace LEASING.UI.APP.Forms
             txtProjectType.ReadOnly = true;
             txtFloorType.ReadOnly = true;
 
+
+            radLabel20.Visible = false;
+            txtMonthsSecurityDeposit.Visible = false;
+            radLabel21.Visible = false;
+            txtTotal.Visible = false;
             //M_SelectProject();
             M_GetComputationById();
 

@@ -157,7 +157,10 @@ namespace LEASING.UI.APP.Forms
                     RefId = Convert.ToString(dt.Tables[0].Rows[0]["RefId"]);
                     txtClientName.Text = Convert.ToString(dt.Tables[0].Rows[0]["InquiringClient"]);
 
-                    ////ddlProject.SelectedValue = Convert.ToInt32(dt.Tables[0].Rows[0]["ProjectId"]);
+                    lblUnitNo.Text = Convert.ToString(dt.Tables[0].Rows[0]["UnitNo"]);
+                    lblProjectName.Text = Convert.ToString(dt.Tables[0].Rows[0]["ProjectName"]);
+                    lblType.Text = Convert.ToString(dt.Tables[0].Rows[0]["FloorType"]);
+                    lblBaseRental.Text = Convert.ToString(dt.Tables[0].Rows[0]["Rental"]);
                     //ClientId = Convert.ToString(dt.Tables[0].Rows[0]["ClientID"]);
                     //txtProjectType.Text = Convert.ToString(dt.Tables[0].Rows[0]["ProjectType"]);
                     //txtProjectAddress.Text = Convert.ToString(dt.Tables[0].Rows[0]["ProjectAddress"]);
@@ -177,6 +180,7 @@ namespace LEASING.UI.APP.Forms
                     //txtThreeMonSecDep.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecDeposit"]);
                     //txtTotal.Text = Convert.ToString(dt.Tables[0].Rows[0]["Total"]);
                     //txtTotalForPayment.Text = Convert.ToString(dt.Tables[0].Rows[0]["TotalForPayment"]);
+                    txtTotalPay.Text = Convert.ToString(dt.Tables[0].Rows[0]["TotalPayAMount"]);
                 }
             }
         }

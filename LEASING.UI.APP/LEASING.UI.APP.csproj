@@ -215,6 +215,12 @@
     <Compile Include="Forms\frmClientInformation.Designer.cs">
       <DependentUpon>frmClientInformation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmClientRecieptTransactionList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmClientRecieptTransactionList.Designer.cs">
+      <DependentUpon>frmClientRecieptTransactionList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmClientRecieptTransaction.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -244,6 +250,12 @@
     </Compile>
     <Compile Include="Forms\frmCommercialRateSettings.Designer.cs">
       <DependentUpon>frmCommercialRateSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmContractInquiry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmContractInquiry.Designer.cs">
+      <DependentUpon>frmContractInquiry.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmContractSignedParking.cs">
       <SubType>Form</SubType>
@@ -322,6 +334,12 @@
     </Compile>
     <Compile Include="Forms\frmNature_PR_REPORT.Designer.cs">
       <DependentUpon>frmNature_PR_REPORT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmNotification.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmNotification.Designer.cs">
+      <DependentUpon>frmNotification.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmParkComputation.cs">
       <SubType>Form</SubType>
@@ -609,6 +627,9 @@
     <EmbeddedResource Include="Forms\frmClientInformation.resx">
       <DependentUpon>frmClientInformation.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmClientRecieptTransactionList.resx">
+      <DependentUpon>frmClientRecieptTransactionList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmClientRecieptTransaction.resx">
       <DependentUpon>frmClientRecieptTransaction.cs</DependentUpon>
     </EmbeddedResource>
@@ -623,6 +644,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmCommercialRateSettings.resx">
       <DependentUpon>frmCommercialRateSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmContractInquiry.resx">
+      <DependentUpon>frmContractInquiry.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmContractSignedParking.resx">
       <DependentUpon>frmContractSignedParking.cs</DependentUpon>
@@ -662,6 +686,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmNature_PR_REPORT.resx">
       <DependentUpon>frmNature_PR_REPORT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmNotification.resx">
+      <DependentUpon>frmNotification.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmParkComputation.resx">
       <DependentUpon>frmParkComputation.cs</DependentUpon>

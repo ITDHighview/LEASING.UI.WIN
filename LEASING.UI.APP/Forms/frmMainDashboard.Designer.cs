@@ -105,20 +105,21 @@
             this.radMenuItemCommercialSettings = new Telerik.WinControls.UI.RadMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.radPanel8 = new Telerik.WinControls.UI.RadPanel();
-            this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
-            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
-            this.lblTotalLocation = new Telerik.WinControls.UI.RadLabel();
-            this.radGroupBox2 = new Telerik.WinControls.UI.RadGroupBox();
-            this.lblTotalProject = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
-            this.radGroupBox3 = new Telerik.WinControls.UI.RadGroupBox();
-            this.lblTotalClient = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
             this.radGroupBox4 = new Telerik.WinControls.UI.RadGroupBox();
             this.lblTotalActiveContract = new Telerik.WinControls.UI.RadLabel();
             this.radLabel10 = new Telerik.WinControls.UI.RadLabel();
+            this.radGroupBox3 = new Telerik.WinControls.UI.RadGroupBox();
+            this.lblTotalClient = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
+            this.radGroupBox2 = new Telerik.WinControls.UI.RadGroupBox();
+            this.lblTotalProject = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
+            this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
+            this.lblTotalLocation = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
+            this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
+            this.radMenuItemQuickInquiry = new Telerik.WinControls.UI.RadMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.lblUserInfoPanel)).BeginInit();
             this.lblUserInfoPanel.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -161,33 +162,34 @@
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel8)).BeginInit();
             this.radPanel8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
             this.tableLayoutPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
-            this.radGroupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblTotalLocation)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).BeginInit();
-            this.radGroupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lblTotalProject)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).BeginInit();
-            this.radGroupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lblTotalClient)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox4)).BeginInit();
             this.radGroupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lblTotalActiveContract)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).BeginInit();
+            this.radGroupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lblTotalClient)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).BeginInit();
+            this.radGroupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lblTotalProject)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
+            this.radGroupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lblTotalLocation)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
             this.SuspendLayout();
             // 
             // radMenuItemNotification
             // 
-            this.radMenuItemNotification.AccessibleDescription = "NOTIFICATION";
-            this.radMenuItemNotification.AccessibleName = "NOTIFICATION";
+            this.radMenuItemNotification.AccessibleDescription = "radMenuItemNotification";
+            this.radMenuItemNotification.AccessibleName = "radMenuItemNotification";
             this.radMenuItemNotification.Image = global::LEASING.UI.APP.Properties.Resources._20x20RedBell;
             this.radMenuItemNotification.Name = "radMenuItemNotification";
             this.radMenuItemNotification.Text = "NOTIFICATION";
+            this.radMenuItemNotification.Click += new System.EventHandler(this.radMenuItemNotification_Click);
             // 
             // lblUserInfoPanel
             // 
@@ -969,16 +971,6 @@
             this.radPanel8.Size = new System.Drawing.Size(763, 536);
             this.radPanel8.TabIndex = 3;
             // 
-            // radMenu1
-            // 
-            this.radMenu1.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.radMenuItemNotification});
-            this.radMenu1.Location = new System.Drawing.Point(245, 3);
-            this.radMenu1.Name = "radMenu1";
-            this.radMenu1.Size = new System.Drawing.Size(763, 24);
-            this.radMenu1.TabIndex = 4;
-            this.radMenu1.Text = "radMenu1";
-            // 
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.ColumnCount = 2;
@@ -997,89 +989,47 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(763, 536);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
-            // radGroupBox1
+            // radGroupBox4
             // 
-            this.radGroupBox1.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.radGroupBox1.Controls.Add(this.lblTotalLocation);
-            this.radGroupBox1.Controls.Add(this.radLabel3);
-            this.radGroupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radGroupBox1.HeaderText = "Details";
-            this.radGroupBox1.Location = new System.Drawing.Point(3, 3);
-            this.radGroupBox1.Name = "radGroupBox1";
-            this.radGroupBox1.Size = new System.Drawing.Size(375, 262);
-            this.radGroupBox1.TabIndex = 0;
-            this.radGroupBox1.Text = "Details";
+            this.radGroupBox4.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this.radGroupBox4.Controls.Add(this.lblTotalActiveContract);
+            this.radGroupBox4.Controls.Add(this.radLabel10);
+            this.radGroupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radGroupBox4.HeaderText = "Details";
+            this.radGroupBox4.Location = new System.Drawing.Point(384, 271);
+            this.radGroupBox4.Name = "radGroupBox4";
+            this.radGroupBox4.Size = new System.Drawing.Size(376, 262);
+            this.radGroupBox4.TabIndex = 3;
+            this.radGroupBox4.Text = "Details";
             // 
-            // radLabel3
+            // lblTotalActiveContract
             // 
-            this.radLabel3.AutoSize = false;
-            this.radLabel3.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.radLabel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.radLabel3.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel3.ForeColor = System.Drawing.Color.White;
-            this.radLabel3.Location = new System.Drawing.Point(2, 18);
-            this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(371, 47);
-            this.radLabel3.TabIndex = 0;
-            this.radLabel3.Text = "LOCATION";
-            this.radLabel3.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
+            this.lblTotalActiveContract.AutoSize = false;
+            this.lblTotalActiveContract.BackColor = System.Drawing.SystemColors.Menu;
+            this.lblTotalActiveContract.BackgroundImage = global::LEASING.UI.APP.Properties.Resources.DarkBackground1;
+            this.lblTotalActiveContract.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblTotalActiveContract.Font = new System.Drawing.Font("Tahoma", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalActiveContract.ForeColor = System.Drawing.Color.White;
+            this.lblTotalActiveContract.Location = new System.Drawing.Point(2, 65);
+            this.lblTotalActiveContract.Name = "lblTotalActiveContract";
+            this.lblTotalActiveContract.Size = new System.Drawing.Size(372, 195);
+            this.lblTotalActiveContract.TabIndex = 1;
+            this.lblTotalActiveContract.Text = "0";
+            this.lblTotalActiveContract.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblTotalLocation
+            // radLabel10
             // 
-            this.lblTotalLocation.AutoSize = false;
-            this.lblTotalLocation.BackColor = System.Drawing.SystemColors.Menu;
-            this.lblTotalLocation.BackgroundImage = global::LEASING.UI.APP.Properties.Resources.DarkBackground1;
-            this.lblTotalLocation.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblTotalLocation.Font = new System.Drawing.Font("Tahoma", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalLocation.ForeColor = System.Drawing.Color.White;
-            this.lblTotalLocation.Location = new System.Drawing.Point(2, 65);
-            this.lblTotalLocation.Name = "lblTotalLocation";
-            this.lblTotalLocation.Size = new System.Drawing.Size(371, 195);
-            this.lblTotalLocation.TabIndex = 1;
-            this.lblTotalLocation.Text = "0";
-            this.lblTotalLocation.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // radGroupBox2
-            // 
-            this.radGroupBox2.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.radGroupBox2.Controls.Add(this.lblTotalProject);
-            this.radGroupBox2.Controls.Add(this.radLabel6);
-            this.radGroupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radGroupBox2.HeaderText = "Details";
-            this.radGroupBox2.Location = new System.Drawing.Point(384, 3);
-            this.radGroupBox2.Name = "radGroupBox2";
-            this.radGroupBox2.Size = new System.Drawing.Size(376, 262);
-            this.radGroupBox2.TabIndex = 1;
-            this.radGroupBox2.Text = "Details";
-            // 
-            // lblTotalProject
-            // 
-            this.lblTotalProject.AutoSize = false;
-            this.lblTotalProject.BackColor = System.Drawing.SystemColors.Menu;
-            this.lblTotalProject.BackgroundImage = global::LEASING.UI.APP.Properties.Resources.DarkBackground1;
-            this.lblTotalProject.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblTotalProject.Font = new System.Drawing.Font("Tahoma", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalProject.ForeColor = System.Drawing.Color.White;
-            this.lblTotalProject.Location = new System.Drawing.Point(2, 65);
-            this.lblTotalProject.Name = "lblTotalProject";
-            this.lblTotalProject.Size = new System.Drawing.Size(372, 195);
-            this.lblTotalProject.TabIndex = 1;
-            this.lblTotalProject.Text = "0";
-            this.lblTotalProject.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // radLabel6
-            // 
-            this.radLabel6.AutoSize = false;
-            this.radLabel6.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.radLabel6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.radLabel6.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel6.ForeColor = System.Drawing.Color.White;
-            this.radLabel6.Location = new System.Drawing.Point(2, 18);
-            this.radLabel6.Name = "radLabel6";
-            this.radLabel6.Size = new System.Drawing.Size(372, 47);
-            this.radLabel6.TabIndex = 0;
-            this.radLabel6.Text = "PROJECT";
-            this.radLabel6.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
+            this.radLabel10.AutoSize = false;
+            this.radLabel10.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.radLabel10.Dock = System.Windows.Forms.DockStyle.Top;
+            this.radLabel10.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel10.ForeColor = System.Drawing.Color.White;
+            this.radLabel10.Location = new System.Drawing.Point(2, 18);
+            this.radLabel10.Name = "radLabel10";
+            this.radLabel10.Size = new System.Drawing.Size(372, 47);
+            this.radLabel10.TabIndex = 0;
+            this.radLabel10.Text = "ACTIVE CONTRACT";
+            this.radLabel10.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
             // 
             // radGroupBox3
             // 
@@ -1123,47 +1073,109 @@
             this.radLabel8.Text = "CLIENT";
             this.radLabel8.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // radGroupBox4
+            // radGroupBox2
             // 
-            this.radGroupBox4.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.radGroupBox4.Controls.Add(this.lblTotalActiveContract);
-            this.radGroupBox4.Controls.Add(this.radLabel10);
-            this.radGroupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radGroupBox4.HeaderText = "Details";
-            this.radGroupBox4.Location = new System.Drawing.Point(384, 271);
-            this.radGroupBox4.Name = "radGroupBox4";
-            this.radGroupBox4.Size = new System.Drawing.Size(376, 262);
-            this.radGroupBox4.TabIndex = 3;
-            this.radGroupBox4.Text = "Details";
+            this.radGroupBox2.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this.radGroupBox2.Controls.Add(this.lblTotalProject);
+            this.radGroupBox2.Controls.Add(this.radLabel6);
+            this.radGroupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radGroupBox2.HeaderText = "Details";
+            this.radGroupBox2.Location = new System.Drawing.Point(384, 3);
+            this.radGroupBox2.Name = "radGroupBox2";
+            this.radGroupBox2.Size = new System.Drawing.Size(376, 262);
+            this.radGroupBox2.TabIndex = 1;
+            this.radGroupBox2.Text = "Details";
             // 
-            // lblTotalActiveContract
+            // lblTotalProject
             // 
-            this.lblTotalActiveContract.AutoSize = false;
-            this.lblTotalActiveContract.BackColor = System.Drawing.SystemColors.Menu;
-            this.lblTotalActiveContract.BackgroundImage = global::LEASING.UI.APP.Properties.Resources.DarkBackground1;
-            this.lblTotalActiveContract.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblTotalActiveContract.Font = new System.Drawing.Font("Tahoma", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalActiveContract.ForeColor = System.Drawing.Color.White;
-            this.lblTotalActiveContract.Location = new System.Drawing.Point(2, 65);
-            this.lblTotalActiveContract.Name = "lblTotalActiveContract";
-            this.lblTotalActiveContract.Size = new System.Drawing.Size(372, 195);
-            this.lblTotalActiveContract.TabIndex = 1;
-            this.lblTotalActiveContract.Text = "0";
-            this.lblTotalActiveContract.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblTotalProject.AutoSize = false;
+            this.lblTotalProject.BackColor = System.Drawing.SystemColors.Menu;
+            this.lblTotalProject.BackgroundImage = global::LEASING.UI.APP.Properties.Resources.DarkBackground1;
+            this.lblTotalProject.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblTotalProject.Font = new System.Drawing.Font("Tahoma", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalProject.ForeColor = System.Drawing.Color.White;
+            this.lblTotalProject.Location = new System.Drawing.Point(2, 65);
+            this.lblTotalProject.Name = "lblTotalProject";
+            this.lblTotalProject.Size = new System.Drawing.Size(372, 195);
+            this.lblTotalProject.TabIndex = 1;
+            this.lblTotalProject.Text = "0";
+            this.lblTotalProject.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // radLabel10
+            // radLabel6
             // 
-            this.radLabel10.AutoSize = false;
-            this.radLabel10.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.radLabel10.Dock = System.Windows.Forms.DockStyle.Top;
-            this.radLabel10.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel10.ForeColor = System.Drawing.Color.White;
-            this.radLabel10.Location = new System.Drawing.Point(2, 18);
-            this.radLabel10.Name = "radLabel10";
-            this.radLabel10.Size = new System.Drawing.Size(372, 47);
-            this.radLabel10.TabIndex = 0;
-            this.radLabel10.Text = "ACTIVE CONTRACT";
-            this.radLabel10.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
+            this.radLabel6.AutoSize = false;
+            this.radLabel6.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.radLabel6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.radLabel6.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel6.ForeColor = System.Drawing.Color.White;
+            this.radLabel6.Location = new System.Drawing.Point(2, 18);
+            this.radLabel6.Name = "radLabel6";
+            this.radLabel6.Size = new System.Drawing.Size(372, 47);
+            this.radLabel6.TabIndex = 0;
+            this.radLabel6.Text = "PROJECT";
+            this.radLabel6.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // radGroupBox1
+            // 
+            this.radGroupBox1.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this.radGroupBox1.Controls.Add(this.lblTotalLocation);
+            this.radGroupBox1.Controls.Add(this.radLabel3);
+            this.radGroupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radGroupBox1.HeaderText = "Details";
+            this.radGroupBox1.Location = new System.Drawing.Point(3, 3);
+            this.radGroupBox1.Name = "radGroupBox1";
+            this.radGroupBox1.Size = new System.Drawing.Size(375, 262);
+            this.radGroupBox1.TabIndex = 0;
+            this.radGroupBox1.Text = "Details";
+            // 
+            // lblTotalLocation
+            // 
+            this.lblTotalLocation.AutoSize = false;
+            this.lblTotalLocation.BackColor = System.Drawing.SystemColors.Menu;
+            this.lblTotalLocation.BackgroundImage = global::LEASING.UI.APP.Properties.Resources.DarkBackground1;
+            this.lblTotalLocation.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblTotalLocation.Font = new System.Drawing.Font("Tahoma", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalLocation.ForeColor = System.Drawing.Color.White;
+            this.lblTotalLocation.Location = new System.Drawing.Point(2, 65);
+            this.lblTotalLocation.Name = "lblTotalLocation";
+            this.lblTotalLocation.Size = new System.Drawing.Size(371, 195);
+            this.lblTotalLocation.TabIndex = 1;
+            this.lblTotalLocation.Text = "0";
+            this.lblTotalLocation.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // radLabel3
+            // 
+            this.radLabel3.AutoSize = false;
+            this.radLabel3.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.radLabel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.radLabel3.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel3.ForeColor = System.Drawing.Color.White;
+            this.radLabel3.Location = new System.Drawing.Point(2, 18);
+            this.radLabel3.Name = "radLabel3";
+            this.radLabel3.Size = new System.Drawing.Size(371, 47);
+            this.radLabel3.TabIndex = 0;
+            this.radLabel3.Text = "LOCATION";
+            this.radLabel3.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // radMenu1
+            // 
+            this.radMenu1.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.radMenuItemNotification,
+            this.radMenuItemQuickInquiry});
+            this.radMenu1.Location = new System.Drawing.Point(245, 3);
+            this.radMenu1.Name = "radMenu1";
+            this.radMenu1.Size = new System.Drawing.Size(763, 24);
+            this.radMenu1.TabIndex = 4;
+            this.radMenu1.Text = "radMenu1";
+            // 
+            // radMenuItemQuickInquiry
+            // 
+            this.radMenuItemQuickInquiry.AccessibleDescription = "radMenuItemQuickInquiry";
+            this.radMenuItemQuickInquiry.AccessibleName = "radMenuItemQuickInquiry";
+            this.radMenuItemQuickInquiry.Image = global::LEASING.UI.APP.Properties.Resources.info_16;
+            this.radMenuItemQuickInquiry.Name = "radMenuItemQuickInquiry";
+            this.radMenuItemQuickInquiry.Text = "QUICK INQUIRY";
+            this.radMenuItemQuickInquiry.Click += new System.EventHandler(this.radMenuItemQuickInquiry_Click);
             // 
             // frmMainDashboard
             // 
@@ -1229,24 +1241,24 @@
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel8)).EndInit();
             this.radPanel8.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).EndInit();
             this.tableLayoutPanel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).EndInit();
-            this.radGroupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblTotalLocation)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).EndInit();
-            this.radGroupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.lblTotalProject)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).EndInit();
-            this.radGroupBox3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.lblTotalClient)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox4)).EndInit();
             this.radGroupBox4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.lblTotalActiveContract)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).EndInit();
+            this.radGroupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.lblTotalClient)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).EndInit();
+            this.radGroupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.lblTotalProject)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).EndInit();
+            this.radGroupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.lblTotalLocation)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1344,5 +1356,6 @@
         private Telerik.WinControls.UI.RadGroupBox radGroupBox2;
         private Telerik.WinControls.UI.RadLabel lblTotalProject;
         private Telerik.WinControls.UI.RadLabel radLabel6;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemQuickInquiry;
     }
 }

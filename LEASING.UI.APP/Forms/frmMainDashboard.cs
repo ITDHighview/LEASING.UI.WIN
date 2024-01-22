@@ -48,11 +48,22 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
+        private void GetNotificationList()
+        {
+            using (DataSet dt = OtherContext.GetNotificationList())
+            {
+                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                {
+                    this.radMenuItemNotification.Text = "NOTIFICATION (0)";
+                    this.radMenuItemNotification.Text = "NOTIFICATION ("+Convert.ToString(dt.Tables[0].Rows.Count)+")";
+                }
+            }
+        }
         private void frmMainDashboard_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
-
-            this.radMenuItemNotification.Text = "NOTIFICATION (1)";
+            this.radMenuItemNotification.Text = "NOTIFICATION (0)";
+            GetNotificationList();
 
             //radMenu7.Visible = false;
             //radPanel7.Visible = false;
@@ -348,6 +359,19 @@ namespace LEASING.UI.APP.Forms
         private void radMenuItemInformation_Click(object sender, EventArgs e)
         {
             frmAddNewPurchaseItem forms = new frmAddNewPurchaseItem();
+            forms.ShowDialog();
+        }
+
+        private void radMenuItemNotification_Click(object sender, EventArgs e)
+        {
+            GetNotificationList();
+            frmNotification forms = new frmNotification();
+            forms.ShowDialog();
+        }
+
+        private void radMenuItemQuickInquiry_Click(object sender, EventArgs e)
+        {
+            frmContractInquiry forms = new frmContractInquiry();
             forms.ShowDialog();
         }
     }

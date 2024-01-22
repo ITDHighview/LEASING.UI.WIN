@@ -259,6 +259,7 @@
             this.dgvReceiptList.TabIndex = 0;
             this.dgvReceiptList.Text = "radGridView1";
             this.dgvReceiptList.ThemeName = "VisualStudio2012Dark";
+            this.dgvReceiptList.CellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.dgvReceiptList_CellFormatting);
             this.dgvReceiptList.CellClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.dgvReceiptList_CellClick);
             // 
             // frmClientRecieptTransaction

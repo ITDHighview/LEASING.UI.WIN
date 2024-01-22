@@ -379,9 +379,11 @@ namespace LEASING.UI.APP.Forms
                     forms.ClientId = Convert.ToString(dgvList.CurrentRow.Cells["ClientID"].Value);
                     forms.ShowDialog();
                 }
-                else if (this.dgvList.Columns[e.ColumnIndex].Name == "ColReprintAuthorization")
+                else if (this.dgvList.Columns[e.ColumnIndex].Name == "ColShowReceipt")
                 {
-
+                    frmClientRecieptTransactionList forms = new frmClientRecieptTransactionList();
+                    forms.srefid = Convert.ToString(dgvList.CurrentRow.Cells["RefId"].Value);
+                    forms.ShowDialog();
                 }
             }
         }

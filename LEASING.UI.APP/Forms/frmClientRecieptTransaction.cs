@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Telerik.WinControls;
+using Telerik.WinControls.UI;
 
 namespace LEASING.UI.APP.Forms
 {
@@ -86,13 +88,25 @@ namespace LEASING.UI.APP.Forms
                 }
                 else if (this.dgvReceiptList.Columns[e.ColumnIndex].Name == "ColEditOR")
                 {
-                    frmEditORNumber forms = new frmEditORNumber();
-                    forms.RcptID = Convert.ToString(dgvReceiptList.CurrentRow.Cells["RcptID"].Value);
-                    forms.ShowDialog();
-                    if (forms.IsProceed)
+                    if (string.IsNullOrEmpty(Convert.ToString(dgvReceiptList.CurrentRow.Cells["CompanyORNo"].Value)) && !string.IsNullOrEmpty(Convert.ToString(dgvReceiptList.CurrentRow.Cells["CompanyPRNo"].Value)))
                     {
-                        M_GetContractList();
+                        frmEditORNumber forms = new frmEditORNumber();
+                        forms.RcptID = Convert.ToString(dgvReceiptList.CurrentRow.Cells["RcptID"].Value);
+                        forms.ShowDialog();
+                        if (forms.IsProceed)
+                        {
+                            M_GetContractList();
+                        }
                     }
+                    //else if (!string.IsNullOrEmpty(Convert.ToString(dgvReceiptList.CurrentRow.Cells["CompanyORNo"].Value)) && string.IsNullOrEmpty(Convert.ToString(dgvReceiptList.CurrentRow.Cells["CompanyPRNo"].Value)))
+                    //{
+                    //    IsNoOR = false;
+                    //}
+                    //else if (!string.IsNullOrEmpty(Convert.ToString(dgvReceiptList.CurrentRow.Cells["CompanyORNo"].Value)) && !string.IsNullOrEmpty(Convert.ToString(dgvReceiptList.CurrentRow.Cells["CompanyPRNo"].Value)))
+                    //{
+                    //    IsNoOR = false;
+                    //}
+                   
                 }
                 //else if (this.dgvList.Columns[e.ColumnIndex].Name == "ColLedger")
                 //{
@@ -101,6 +115,45 @@ namespace LEASING.UI.APP.Forms
                 //    forms.ClientId = Convert.ToString(dgvList.CurrentRow.Cells["ClientID"].Value);
                 //    forms.ShowDialog();
                 //}
+            }
+        }
+
+        private void dgvReceiptList_CellFormatting(object sender, Telerik.WinControls.UI.CellFormattingEventArgs e)
+        {
+            if (e.CellElement.ColumnInfo is GridViewCommandColumn && !(e.CellElement.RowElement is GridTableHeaderRowElement))
+            {
+                GridViewCommandColumn column = (GridViewCommandColumn)e.CellElement.ColumnInfo;
+                RadButtonElement element = (RadButtonElement)e.CellElement.Children[0];
+                (element.Children[2] as Telerik.WinControls.Primitives.BorderPrimitive).Visibility =
+                Telerik.WinControls.ElementVisibility.Collapsed;
+                element.DisplayStyle = DisplayStyle.Image;
+                element.ImageAlignment = ContentAlignment.MiddleCenter;
+                element.Enabled = true;
+                element.Alignment = ContentAlignment.MiddleCenter;
+                element.Visibility = ElementVisibility.Visible;
+
+                if (column.Name == "ColEditOR")
+                {
+                    if (string.IsNullOrEmpty(Convert.ToString(this.dgvReceiptList.Rows[e.RowIndex].Cells["CompanyORNo"].Value)))
+                    {
+                        //element.ImageAlignment = ContentAlignment.MiddleCenter;
+                        //element.TextImageRelation = TextImageRelation.TextBeforeImage;
+                        //element.Text = "Un-Map";
+                        //element.Image = Properties.Resources.cancel16;
+                        element.ToolTipText = "Update OR NUMBER.";
+                        element.Enabled = true;
+                    }
+                    else
+                    {
+                        element.ImageAlignment = ContentAlignment.MiddleCenter;
+                        element.TextImageRelation = TextImageRelation.TextBeforeImage;
+                        //element.Text = "Un-Map";
+                        element.Image = Properties.Resources.Remove1;
+                        element.ToolTipText = "this button is disable";
+                        element.Enabled = false;
+                    }
+                }
+
             }
         }
     }

@@ -56,6 +56,15 @@
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.txtClientName = new Telerik.WinControls.UI.RadTextBox();
             this.radGroupBox3 = new Telerik.WinControls.UI.RadGroupBox();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
+            this.lblUnitNo = new Telerik.WinControls.UI.RadLabel();
+            this.lblProjectName = new Telerik.WinControls.UI.RadLabel();
+            this.lblType = new Telerik.WinControls.UI.RadLabel();
+            this.lblBaseRental = new Telerik.WinControls.UI.RadLabel();
             this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
             this.dgvLedgerList = new Telerik.WinControls.UI.RadGridView();
             this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
@@ -78,6 +87,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtClientName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).BeginInit();
+            this.radGroupBox3.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblUnitNo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblProjectName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblBaseRental)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
             this.radGroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLedgerList)).BeginInit();
@@ -188,8 +207,8 @@
             // 
             this.tableLayoutPanel2.ColumnCount = 4;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 119F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 187F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 156F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 107F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Controls.Add(this.txtTotalPay, 1, 2);
             this.tableLayoutPanel2.Controls.Add(this.dtpTo, 1, 5);
@@ -220,7 +239,7 @@
             // 
             this.txtTotalPay.Location = new System.Drawing.Point(122, 53);
             this.txtTotalPay.Name = "txtTotalPay";
-            this.txtTotalPay.Size = new System.Drawing.Size(149, 20);
+            this.txtTotalPay.Size = new System.Drawing.Size(149, 19);
             this.txtTotalPay.TabIndex = 4;
             this.txtTotalPay.ThemeName = "Office2007Silver";
             // 
@@ -229,7 +248,7 @@
             this.dtpTo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpTo.Location = new System.Drawing.Point(122, 128);
             this.dtpTo.Name = "dtpTo";
-            this.dtpTo.Size = new System.Drawing.Size(107, 20);
+            this.dtpTo.Size = new System.Drawing.Size(107, 18);
             this.dtpTo.TabIndex = 5;
             this.dtpTo.TabStop = false;
             this.dtpTo.Text = "8/1/2023";
@@ -252,7 +271,7 @@
             this.dtpFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpFrom.Location = new System.Drawing.Point(122, 103);
             this.dtpFrom.Name = "dtpFrom";
-            this.dtpFrom.Size = new System.Drawing.Size(107, 20);
+            this.dtpFrom.Size = new System.Drawing.Size(107, 19);
             this.dtpFrom.TabIndex = 5;
             this.dtpFrom.TabStop = false;
             this.dtpFrom.Text = "8/1/2023";
@@ -293,7 +312,7 @@
             // 
             this.txtPaymentStatus.Location = new System.Drawing.Point(122, 28);
             this.txtPaymentStatus.Name = "txtPaymentStatus";
-            this.txtPaymentStatus.Size = new System.Drawing.Size(149, 20);
+            this.txtPaymentStatus.Size = new System.Drawing.Size(149, 19);
             this.txtPaymentStatus.TabIndex = 4;
             this.txtPaymentStatus.ThemeName = "Office2007Silver";
             // 
@@ -311,7 +330,7 @@
             // 
             this.txtClientName.Location = new System.Drawing.Point(122, 3);
             this.txtClientName.Name = "txtClientName";
-            this.txtClientName.Size = new System.Drawing.Size(149, 20);
+            this.txtClientName.Size = new System.Drawing.Size(149, 19);
             this.txtClientName.TabIndex = 8;
             this.txtClientName.ThemeName = "Office2007Silver";
             // 
@@ -319,14 +338,123 @@
             // 
             this.radGroupBox3.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
             this.tableLayoutPanel2.SetColumnSpan(this.radGroupBox3, 2);
+            this.radGroupBox3.Controls.Add(this.tableLayoutPanel3);
             this.radGroupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radGroupBox3.HeaderText = "Other Details";
-            this.radGroupBox3.Location = new System.Drawing.Point(309, 28);
+            this.radGroupBox3.HeaderText = "Unit Details";
+            this.radGroupBox3.Location = new System.Drawing.Point(278, 28);
             this.radGroupBox3.Name = "radGroupBox3";
             this.tableLayoutPanel2.SetRowSpan(this.radGroupBox3, 6);
-            this.radGroupBox3.Size = new System.Drawing.Size(259, 145);
+            this.radGroupBox3.Size = new System.Drawing.Size(290, 145);
             this.radGroupBox3.TabIndex = 9;
-            this.radGroupBox3.Text = "Other Details";
+            this.radGroupBox3.Text = "Unit Details";
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.ColumnCount = 2;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 36.01398F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 63.98602F));
+            this.tableLayoutPanel3.Controls.Add(this.radLabel1, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.radLabel7, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.radLabel8, 0, 2);
+            this.tableLayoutPanel3.Controls.Add(this.radLabel9, 0, 3);
+            this.tableLayoutPanel3.Controls.Add(this.lblUnitNo, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.lblProjectName, 1, 1);
+            this.tableLayoutPanel3.Controls.Add(this.lblType, 1, 2);
+            this.tableLayoutPanel3.Controls.Add(this.lblBaseRental, 1, 3);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(2, 18);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 4;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(286, 125);
+            this.tableLayoutPanel3.TabIndex = 0;
+            // 
+            // radLabel1
+            // 
+            this.radLabel1.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.radLabel1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel1.Location = new System.Drawing.Point(37, 3);
+            this.radLabel1.Name = "radLabel1";
+            this.radLabel1.Size = new System.Drawing.Size(62, 19);
+            this.radLabel1.TabIndex = 2;
+            this.radLabel1.Text = "Unit No. :";
+            // 
+            // radLabel7
+            // 
+            this.radLabel7.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.radLabel7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel7.Location = new System.Drawing.Point(7, 28);
+            this.radLabel7.Name = "radLabel7";
+            this.radLabel7.Size = new System.Drawing.Size(92, 19);
+            this.radLabel7.TabIndex = 2;
+            this.radLabel7.Text = "Project Name :";
+            // 
+            // radLabel8
+            // 
+            this.radLabel8.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.radLabel8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel8.Location = new System.Drawing.Point(57, 53);
+            this.radLabel8.Name = "radLabel8";
+            this.radLabel8.Size = new System.Drawing.Size(42, 19);
+            this.radLabel8.TabIndex = 2;
+            this.radLabel8.Text = "Type :";
+            // 
+            // radLabel9
+            // 
+            this.radLabel9.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.radLabel9.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel9.Location = new System.Drawing.Point(18, 90);
+            this.radLabel9.Name = "radLabel9";
+            this.radLabel9.Size = new System.Drawing.Size(81, 19);
+            this.radLabel9.TabIndex = 2;
+            this.radLabel9.Text = "Base Rental :";
+            // 
+            // lblUnitNo
+            // 
+            this.lblUnitNo.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lblUnitNo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUnitNo.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lblUnitNo.Location = new System.Drawing.Point(105, 3);
+            this.lblUnitNo.Name = "lblUnitNo";
+            this.lblUnitNo.Size = new System.Drawing.Size(62, 19);
+            this.lblUnitNo.TabIndex = 2;
+            this.lblUnitNo.Text = "02";
+            // 
+            // lblProjectName
+            // 
+            this.lblProjectName.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lblProjectName.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProjectName.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lblProjectName.Location = new System.Drawing.Point(105, 28);
+            this.lblProjectName.Name = "lblProjectName";
+            this.lblProjectName.Size = new System.Drawing.Size(92, 19);
+            this.lblProjectName.TabIndex = 2;
+            this.lblProjectName.Text = "Ohayo Mansion";
+            // 
+            // lblType
+            // 
+            this.lblType.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lblType.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblType.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lblType.Location = new System.Drawing.Point(105, 53);
+            this.lblType.Name = "lblType";
+            this.lblType.Size = new System.Drawing.Size(42, 19);
+            this.lblType.TabIndex = 2;
+            this.lblType.Text = "Unit";
+            // 
+            // lblBaseRental
+            // 
+            this.lblBaseRental.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lblBaseRental.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBaseRental.ForeColor = System.Drawing.Color.DarkRed;
+            this.lblBaseRental.Location = new System.Drawing.Point(105, 90);
+            this.lblBaseRental.Name = "lblBaseRental";
+            this.lblBaseRental.Size = new System.Drawing.Size(81, 19);
+            this.lblBaseRental.TabIndex = 2;
+            this.lblBaseRental.Text = "1500";
             // 
             // radGroupBox1
             // 
@@ -420,7 +548,7 @@
             this.Name = "frmClosedClientTransaction";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Client";
+            this.Text = "Ledger Information";
             this.Load += new System.EventHandler(this.frmSelectClient_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox4)).EndInit();
@@ -442,6 +570,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtClientName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).EndInit();
+            this.radGroupBox3.ResumeLayout(false);
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblUnitNo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblProjectName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblBaseRental)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).EndInit();
             this.radGroupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvLedgerList.MasterTemplate)).EndInit();
@@ -471,5 +610,14 @@
         private Telerik.WinControls.UI.RadGroupBox radGroupBox4;
         private Telerik.WinControls.UI.RadGridView dgvPaymentList;
         private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private Telerik.WinControls.UI.RadLabel radLabel1;
+        private Telerik.WinControls.UI.RadLabel radLabel7;
+        private Telerik.WinControls.UI.RadLabel radLabel8;
+        private Telerik.WinControls.UI.RadLabel radLabel9;
+        private Telerik.WinControls.UI.RadLabel lblUnitNo;
+        private Telerik.WinControls.UI.RadLabel lblProjectName;
+        private Telerik.WinControls.UI.RadLabel lblType;
+        private Telerik.WinControls.UI.RadLabel lblBaseRental;
     }
 }

@@ -351,6 +351,7 @@ namespace LEASING.UI.APP.Forms
             return sbPayment.ToString();
         }
         #endregion
+        bool IsProceedWithHold = false;
         private int M_GetTotalSelectedMonth()
         {
             int idx = 0;
@@ -358,10 +359,30 @@ namespace LEASING.UI.APP.Forms
             {
                 for (int iRow = 0; iRow < dgvLedgerList.Rows.Count; iRow++)
                 {
-                    if (Convert.ToBoolean(this.dgvLedgerList.Rows[iRow].Cells["ColCheck"].Value) && Convert.ToString(this.dgvLedgerList.Rows[iRow].Cells["PaymentStatus"].Value) == "PENDING")
+                    if (Convert.ToBoolean(this.dgvLedgerList.Rows[iRow].Cells["ColCheck"].Value) && Convert.ToString(this.dgvLedgerList.Rows[iRow].Cells["PaymentStatus"].Value) == "HOLD")
                     {
-                        //alDoctorSchedule.Add(Convert.ToString(vMasterRecordID));
-                        idx++;
+                        if (Functions.MessageConfirm("There is a hold payment on your list would you like to proceed?") == DialogResult.Yes)
+                        {
+                            if (Convert.ToBoolean(this.dgvLedgerList.Rows[iRow].Cells["ColCheck"].Value) && (Convert.ToString(this.dgvLedgerList.Rows[iRow].Cells["PaymentStatus"].Value) == "PENDING" || Convert.ToString(this.dgvLedgerList.Rows[iRow].Cells["PaymentStatus"].Value) == "HOLD"))
+                            {
+                                //alDoctorSchedule.Add(Convert.ToString(vMasterRecordID));
+                                idx++;
+                            }
+                            IsProceedWithHold = true;
+                        }
+                        else
+                        {
+                            IsProceedWithHold = false;
+                        }
+                    }
+                    else
+                    {
+                        if (Convert.ToBoolean(this.dgvLedgerList.Rows[iRow].Cells["ColCheck"].Value) && Convert.ToString(this.dgvLedgerList.Rows[iRow].Cells["PaymentStatus"].Value) == "PENDING")
+                        {
+                            //alDoctorSchedule.Add(Convert.ToString(vMasterRecordID));
+                            idx++;
+                        }
+                        IsProceedWithHold = true;
                     }
                 }
             }
@@ -369,14 +390,34 @@ namespace LEASING.UI.APP.Forms
             {
                 for (int iRow = 0; iRow < dgvLedgerList.Rows.Count; iRow++)
                 {
-                    if (Convert.ToString(this.dgvLedgerList.Rows[iRow].Cells["PaymentStatus"].Value) == "PENDING")
+                    if (Convert.ToString(this.dgvLedgerList.Rows[iRow].Cells["PaymentStatus"].Value) == "HOLD")
                     {
-                        //alDoctorSchedule.Add(Convert.ToString(vMasterRecordID));
-                        idx++;
+                        if (Functions.MessageConfirm("There is a hold payment on your list would you like to proceed?") == DialogResult.Yes)
+                        {
+                            if (Convert.ToString(this.dgvLedgerList.Rows[iRow].Cells["PaymentStatus"].Value) == "PENDING" || Convert.ToString(this.dgvLedgerList.Rows[iRow].Cells["PaymentStatus"].Value) == "HOLD")
+                            {
+                                //alDoctorSchedule.Add(Convert.ToString(vMasterRecordID));
+                                idx++;
+                            }
+                            IsProceedWithHold = true;
+                        }
+                        else
+                        {
+                            IsProceedWithHold = false;
+                        }
+
+                    }
+                    else
+                    {
+                        if (Convert.ToString(this.dgvLedgerList.Rows[iRow].Cells["PaymentStatus"].Value) == "PENDING")
+                        {
+                            //alDoctorSchedule.Add(Convert.ToString(vMasterRecordID));
+                            idx++;
+                        }
+                        IsProceedWithHold = true;
                     }
                 }
             }
-
             return idx;
         }
         private void frmSelectClient_Load(object sender, EventArgs e)
@@ -768,7 +809,7 @@ namespace LEASING.UI.APP.Forms
                         }
                         frmRecieptSelection.ShowDialog();
                     }
-         
+
                 }
             }
         }
@@ -850,30 +891,32 @@ namespace LEASING.UI.APP.Forms
                             PaymentRemarks = frmPaymentMode.PaymentRemarks;
                             REF = frmPaymentMode.REF;
                             ModeType = frmPaymentMode.ModeType;
-
                             frmReceivePayment frmReceivePayment = new frmReceivePayment();
                             frmReceivePayment.Amount = Convert.ToString(Convert.ToDecimal(dgvLedgerList.CurrentRow.Cells["LedgAmount"].Value) * M_GetTotalSelectedMonth());
-                            frmReceivePayment.ShowDialog();
-                            if (frmReceivePayment.IsProceed)
+                            if (IsProceedWithHold)
                             {
-                                ReceiveAmount = frmReceivePayment.txtReceiveAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtReceiveAmount.Text);
-                                ChangeAmount = frmReceivePayment.txtChangeAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtChangeAmount.Text);
-                                M_GenerateBulkPayment();
-                                M_GetComputationById();
-                                M_GetCheckPaymentStatus();
-                                M_GetLedgerList();
-                                M_GetPaymentListByReferenceId();
+                                frmReceivePayment.ShowDialog();
+                                if (frmReceivePayment.IsProceed)
+                                {
+                                    ReceiveAmount = frmReceivePayment.txtReceiveAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtReceiveAmount.Text);
+                                    ChangeAmount = frmReceivePayment.txtChangeAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtChangeAmount.Text);
+                                    M_GenerateBulkPayment();
+                                    M_GetComputationById();
+                                    M_GetCheckPaymentStatus();
+                                    M_GetLedgerList();
+                                    M_GetPaymentListByReferenceId();
 
-                                frmRecieptSelection frmRecieptSelection = new frmRecieptSelection(TranID, "");
-                                if (string.IsNullOrEmpty(CompanyORNo) && !string.IsNullOrEmpty(CompanyPRNo))
-                                {
-                                    frmRecieptSelection.IsNoOR = true;
+                                    frmRecieptSelection frmRecieptSelection = new frmRecieptSelection(TranID, "");
+                                    if (string.IsNullOrEmpty(CompanyORNo) && !string.IsNullOrEmpty(CompanyPRNo))
+                                    {
+                                        frmRecieptSelection.IsNoOR = true;
+                                    }
+                                    else if (!string.IsNullOrEmpty(CompanyORNo) && string.IsNullOrEmpty(CompanyPRNo))
+                                    {
+                                        frmRecieptSelection.IsNoOR = false;
+                                    }
+                                    frmRecieptSelection.ShowDialog();
                                 }
-                                else if (!string.IsNullOrEmpty(CompanyORNo) && string.IsNullOrEmpty(CompanyPRNo))
-                                {
-                                    frmRecieptSelection.IsNoOR = false;
-                                }
-                                frmRecieptSelection.ShowDialog();
                             }
                         }
                     }
@@ -898,26 +941,29 @@ namespace LEASING.UI.APP.Forms
 
                             frmReceivePayment frmReceivePayment = new frmReceivePayment();
                             frmReceivePayment.Amount = Convert.ToString(Convert.ToDecimal(dgvLedgerList.CurrentRow.Cells["LedgAmount"].Value) * M_GetTotalSelectedMonth());
-                            frmReceivePayment.ShowDialog();
-                            if (frmReceivePayment.IsProceed)
+                            if (IsProceedWithHold)
                             {
-                                ReceiveAmount = frmReceivePayment.txtReceiveAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtReceiveAmount.Text);
-                                ChangeAmount = frmReceivePayment.txtChangeAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtChangeAmount.Text);
-                                M_GenerateBulkPayment();
-                                M_GetCheckPaymentStatus();
-                                M_GetLedgerList();
-                                M_GetPaymentListByReferenceId();
+                                frmReceivePayment.ShowDialog();
+                                if (frmReceivePayment.IsProceed)
+                                {
+                                    ReceiveAmount = frmReceivePayment.txtReceiveAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtReceiveAmount.Text);
+                                    ChangeAmount = frmReceivePayment.txtChangeAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtChangeAmount.Text);
+                                    M_GenerateBulkPayment();
+                                    M_GetCheckPaymentStatus();
+                                    M_GetLedgerList();
+                                    M_GetPaymentListByReferenceId();
 
-                                frmRecieptSelection frmRecieptSelection = new frmRecieptSelection(TranID, "");
-                                if (string.IsNullOrEmpty(CompanyORNo) && !string.IsNullOrEmpty(CompanyPRNo))
-                                {
-                                    frmRecieptSelection.IsNoOR = true;
+                                    frmRecieptSelection frmRecieptSelection = new frmRecieptSelection(TranID, "");
+                                    if (string.IsNullOrEmpty(CompanyORNo) && !string.IsNullOrEmpty(CompanyPRNo))
+                                    {
+                                        frmRecieptSelection.IsNoOR = true;
+                                    }
+                                    else if (!string.IsNullOrEmpty(CompanyORNo) && string.IsNullOrEmpty(CompanyPRNo))
+                                    {
+                                        frmRecieptSelection.IsNoOR = false;
+                                    }
+                                    frmRecieptSelection.ShowDialog();
                                 }
-                                else if (!string.IsNullOrEmpty(CompanyORNo) && string.IsNullOrEmpty(CompanyPRNo))
-                                {
-                                    frmRecieptSelection.IsNoOR = false;
-                                }
-                                frmRecieptSelection.ShowDialog();
                             }
                         }
                     }

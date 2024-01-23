@@ -28,14 +28,14 @@ namespace LEASING.UI.APP.Forms
 
         private void M_GetPenaltyResult()
         {
-            Amount = string.Empty;
+            txtPaidAmount.Text = "";        
             lblPenaltyStatus.Text = "(No Penalty)";
             DayCount = 0;
             using (DataSet dt = PaymentContext.GetPenaltyResult(recid))
             {
-                if (dt !=null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                 {
-                    Amount = Convert.ToString(dt.Tables[0].Rows[0]["AmountToPay"]);
+                    txtPaidAmount.Text = Convert.ToString(dt.Tables[0].Rows[0]["AmountToPay"]);
                     lblPenaltyStatus.Text = Convert.ToString(dt.Tables[0].Rows[0]["PenaltyStatus"]);
                     DayCount = Convert.ToInt32(dt.Tables[0].Rows[0]["DayCount"]);
                 }
@@ -43,18 +43,23 @@ namespace LEASING.UI.APP.Forms
         }
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (Functions.MessageConfirm("Are you sure you want to proceed the payment?.")== DialogResult.Yes)
+            if (Functions.MessageConfirm("Are you sure you want to proceed the payment?.") == DialogResult.Yes)
             {
                 IsProceed = true;
                 this.Close();
-            }        
+            }
         }
 
         private void frmReceivePayment_Load(object sender, EventArgs e)
         {
-            M_GetPenaltyResult();
             txtPaidAmount.Text = string.Empty;
-            txtPaidAmount.Text = Amount;
+            M_GetPenaltyResult();
+          
+
+            if (!string.IsNullOrEmpty(Amount))
+            {
+                txtPaidAmount.Text = Amount;
+            }
             txtPaidAmount.ReadOnly = true;
         }
 

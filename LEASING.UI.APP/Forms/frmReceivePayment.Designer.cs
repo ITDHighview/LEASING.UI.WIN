@@ -92,7 +92,7 @@
             this.radLabel2.Name = "radLabel2";
             this.radLabel2.Size = new System.Drawing.Size(204, 29);
             this.radLabel2.TabIndex = 1;
-            this.radLabel2.Text = "Paid Amount :";
+            this.radLabel2.Text = "Due Amount :";
             // 
             // radLabel1
             // 
@@ -103,7 +103,7 @@
             this.radLabel1.Name = "radLabel1";
             this.radLabel1.Size = new System.Drawing.Size(204, 29);
             this.radLabel1.TabIndex = 1;
-            this.radLabel1.Text = "Receive Amount :";
+            this.radLabel1.Text = "Received Amount :";
             // 
             // radLabel3
             // 
@@ -114,13 +114,13 @@
             this.radLabel3.Name = "radLabel3";
             this.radLabel3.Size = new System.Drawing.Size(204, 29);
             this.radLabel3.TabIndex = 1;
-            this.radLabel3.Text = "Change Amount :";
+            this.radLabel3.Text = "Changed Amount :";
             // 
             // txtPaidAmount
             // 
             this.txtPaidAmount.AutoSize = false;
             this.txtPaidAmount.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtPaidAmount.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPaidAmount.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPaidAmount.Location = new System.Drawing.Point(213, 3);
             this.txtPaidAmount.Name = "txtPaidAmount";
             this.txtPaidAmount.NullText = "Type here...";
@@ -133,7 +133,7 @@
             // 
             this.txtReceiveAmount.AutoSize = false;
             this.txtReceiveAmount.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtReceiveAmount.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtReceiveAmount.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtReceiveAmount.Location = new System.Drawing.Point(213, 38);
             this.txtReceiveAmount.Name = "txtReceiveAmount";
             this.txtReceiveAmount.NullText = "Optional...";
@@ -146,7 +146,7 @@
             // 
             this.txtChangeAmount.AutoSize = false;
             this.txtChangeAmount.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtChangeAmount.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtChangeAmount.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtChangeAmount.Location = new System.Drawing.Point(213, 73);
             this.txtChangeAmount.Name = "txtChangeAmount";
             this.txtChangeAmount.NullText = "Optional...";

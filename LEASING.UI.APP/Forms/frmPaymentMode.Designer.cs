@@ -74,7 +74,7 @@
             // 
             this.tableLayoutPanel1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 143F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 182F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.radLabel1, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.ddlSelectMode, 1, 1);
@@ -99,197 +99,218 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 11;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(374, 278);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(429, 382);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // radLabel1
             // 
             this.radLabel1.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.radLabel1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel1.Location = new System.Drawing.Point(55, 28);
+            this.radLabel1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel1.Location = new System.Drawing.Point(73, 40);
             this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(85, 19);
+            this.radLabel1.Size = new System.Drawing.Size(106, 24);
             this.radLabel1.TabIndex = 0;
             this.radLabel1.Text = "Select Mode :";
             // 
             // ddlSelectMode
             // 
-            this.ddlSelectMode.Location = new System.Drawing.Point(146, 28);
+            this.ddlSelectMode.AutoSize = false;
+            this.ddlSelectMode.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ddlSelectMode.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ddlSelectMode.Location = new System.Drawing.Point(185, 38);
             this.ddlSelectMode.Name = "ddlSelectMode";
-            this.ddlSelectMode.NullText = "Select Here...";
-            this.ddlSelectMode.Size = new System.Drawing.Size(155, 19);
+            this.ddlSelectMode.Size = new System.Drawing.Size(241, 29);
             this.ddlSelectMode.TabIndex = 1;
             this.ddlSelectMode.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.ddlSelectMode_SelectedIndexChanged);
             // 
             // radLabel2
             // 
             this.radLabel2.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.radLabel2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radLabel2.ForeColor = System.Drawing.Color.DarkRed;
-            this.radLabel2.Location = new System.Drawing.Point(85, 53);
+            this.radLabel2.Location = new System.Drawing.Point(111, 75);
             this.radLabel2.Name = "radLabel2";
-            this.radLabel2.Size = new System.Drawing.Size(55, 19);
+            this.radLabel2.Size = new System.Drawing.Size(68, 24);
             this.radLabel2.TabIndex = 0;
             this.radLabel2.Text = "OR No. :";
             // 
             // txtCompanyORNo
             // 
-            this.txtCompanyORNo.Location = new System.Drawing.Point(146, 53);
+            this.txtCompanyORNo.AutoSize = false;
+            this.txtCompanyORNo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtCompanyORNo.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCompanyORNo.Location = new System.Drawing.Point(185, 73);
             this.txtCompanyORNo.Name = "txtCompanyORNo";
-            this.txtCompanyORNo.NullText = "Type here...";
-            this.txtCompanyORNo.Size = new System.Drawing.Size(155, 19);
+            this.txtCompanyORNo.Size = new System.Drawing.Size(241, 29);
             this.txtCompanyORNo.TabIndex = 2;
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(146, 253);
+            this.btnOk.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnOk.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOk.Location = new System.Drawing.Point(185, 353);
             this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(110, 22);
+            this.btnOk.Size = new System.Drawing.Size(241, 29);
             this.btnOk.TabIndex = 3;
-            this.btnOk.Text = "Ok.";
+            this.btnOk.Text = "PROCEED";
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // radLabel8
             // 
             this.radLabel8.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.radLabel8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel8.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radLabel8.ForeColor = System.Drawing.Color.DarkRed;
-            this.radLabel8.Location = new System.Drawing.Point(70, 228);
+            this.radLabel8.Location = new System.Drawing.Point(92, 320);
             this.radLabel8.Name = "radLabel8";
-            this.radLabel8.Size = new System.Drawing.Size(70, 19);
+            this.radLabel8.Size = new System.Drawing.Size(87, 24);
             this.radLabel8.TabIndex = 0;
             this.radLabel8.Text = "Remarks.  :";
             // 
             // txtRemarks
             // 
-            this.txtRemarks.Location = new System.Drawing.Point(146, 228);
+            this.txtRemarks.AutoSize = false;
+            this.txtRemarks.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtRemarks.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRemarks.Location = new System.Drawing.Point(185, 318);
             this.txtRemarks.Name = "txtRemarks";
-            this.txtRemarks.NullText = "Type here...";
-            this.txtRemarks.Size = new System.Drawing.Size(216, 19);
+            this.txtRemarks.Size = new System.Drawing.Size(241, 29);
             this.txtRemarks.TabIndex = 2;
             // 
             // radLabel7
             // 
             this.radLabel7.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.radLabel7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel7.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radLabel7.ForeColor = System.Drawing.Color.DarkRed;
-            this.radLabel7.Location = new System.Drawing.Point(67, 203);
+            this.radLabel7.Location = new System.Drawing.Point(88, 285);
             this.radLabel7.Name = "radLabel7";
-            this.radLabel7.Size = new System.Drawing.Size(73, 19);
+            this.radLabel7.Size = new System.Drawing.Size(91, 24);
             this.radLabel7.TabIndex = 0;
             this.radLabel7.Text = "Serial No.  :";
             // 
             // txtSerialNo
             // 
-            this.txtSerialNo.Location = new System.Drawing.Point(146, 203);
+            this.txtSerialNo.AutoSize = false;
+            this.txtSerialNo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtSerialNo.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSerialNo.Location = new System.Drawing.Point(185, 283);
             this.txtSerialNo.Name = "txtSerialNo";
-            this.txtSerialNo.NullText = "Type here...";
-            this.txtSerialNo.Size = new System.Drawing.Size(155, 19);
+            this.txtSerialNo.Size = new System.Drawing.Size(241, 29);
             this.txtSerialNo.TabIndex = 2;
             // 
             // radLabel6
             // 
             this.radLabel6.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.radLabel6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel6.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radLabel6.ForeColor = System.Drawing.Color.DarkRed;
-            this.radLabel6.Location = new System.Drawing.Point(19, 178);
+            this.radLabel6.Location = new System.Drawing.Point(28, 250);
             this.radLabel6.Name = "radLabel6";
-            this.radLabel6.Size = new System.Drawing.Size(121, 19);
+            this.radLabel6.Size = new System.Drawing.Size(151, 24);
             this.radLabel6.TabIndex = 0;
             this.radLabel6.Text = "Bank Account No.  :";
             // 
             // txtBankAccountNo
             // 
-            this.txtBankAccountNo.Location = new System.Drawing.Point(146, 178);
+            this.txtBankAccountNo.AutoSize = false;
+            this.txtBankAccountNo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtBankAccountNo.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBankAccountNo.Location = new System.Drawing.Point(185, 248);
             this.txtBankAccountNo.Name = "txtBankAccountNo";
-            this.txtBankAccountNo.NullText = "Type here...";
-            this.txtBankAccountNo.Size = new System.Drawing.Size(155, 19);
+            this.txtBankAccountNo.Size = new System.Drawing.Size(241, 29);
             this.txtBankAccountNo.TabIndex = 2;
             // 
             // radLabel5
             // 
             this.radLabel5.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.radLabel5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel5.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radLabel5.ForeColor = System.Drawing.Color.DarkRed;
-            this.radLabel5.Location = new System.Drawing.Point(3, 153);
+            this.radLabel5.Location = new System.Drawing.Point(7, 215);
             this.radLabel5.Name = "radLabel5";
-            this.radLabel5.Size = new System.Drawing.Size(137, 19);
+            this.radLabel5.Size = new System.Drawing.Size(172, 24);
             this.radLabel5.TabIndex = 0;
             this.radLabel5.Text = "Bank Account Name.  :";
             // 
             // txtBankAccountName
             // 
-            this.txtBankAccountName.Location = new System.Drawing.Point(146, 153);
+            this.txtBankAccountName.AutoSize = false;
+            this.txtBankAccountName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtBankAccountName.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBankAccountName.Location = new System.Drawing.Point(185, 213);
             this.txtBankAccountName.Name = "txtBankAccountName";
-            this.txtBankAccountName.NullText = "Type here...";
-            this.txtBankAccountName.Size = new System.Drawing.Size(155, 19);
+            this.txtBankAccountName.Size = new System.Drawing.Size(241, 29);
             this.txtBankAccountName.TabIndex = 2;
             // 
             // radLabel4
             // 
             this.radLabel4.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.radLabel4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel4.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radLabel4.ForeColor = System.Drawing.Color.DarkRed;
-            this.radLabel4.Location = new System.Drawing.Point(53, 128);
+            this.radLabel4.Location = new System.Drawing.Point(71, 180);
             this.radLabel4.Name = "radLabel4";
-            this.radLabel4.Size = new System.Drawing.Size(87, 19);
+            this.radLabel4.Size = new System.Drawing.Size(108, 24);
             this.radLabel4.TabIndex = 0;
             this.radLabel4.Text = "Bank Name.  :";
             // 
             // ddlbankName
             // 
-            this.ddlbankName.Location = new System.Drawing.Point(146, 128);
+            this.ddlbankName.AutoSize = false;
+            this.ddlbankName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ddlbankName.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ddlbankName.Location = new System.Drawing.Point(185, 178);
             this.ddlbankName.Name = "ddlbankName";
-            this.ddlbankName.Size = new System.Drawing.Size(155, 19);
+            this.ddlbankName.Size = new System.Drawing.Size(241, 29);
             this.ddlbankName.TabIndex = 4;
             // 
             // radLabel3
             // 
             this.radLabel3.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.radLabel3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radLabel3.ForeColor = System.Drawing.Color.DarkRed;
-            this.radLabel3.Location = new System.Drawing.Point(61, 103);
+            this.radLabel3.Location = new System.Drawing.Point(80, 145);
             this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(79, 19);
+            this.radLabel3.Size = new System.Drawing.Size(99, 24);
             this.radLabel3.TabIndex = 0;
             this.radLabel3.Text = "Referrence. :";
             // 
             // txtReferrence
             // 
-            this.txtReferrence.Location = new System.Drawing.Point(146, 103);
+            this.txtReferrence.AutoSize = false;
+            this.txtReferrence.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtReferrence.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtReferrence.Location = new System.Drawing.Point(185, 143);
             this.txtReferrence.Name = "txtReferrence";
-            this.txtReferrence.NullText = "Type here...";
-            this.txtReferrence.Size = new System.Drawing.Size(155, 19);
+            this.txtReferrence.Size = new System.Drawing.Size(241, 29);
             this.txtReferrence.TabIndex = 2;
             // 
             // radLabel9
             // 
             this.radLabel9.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.radLabel9.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel9.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radLabel9.ForeColor = System.Drawing.Color.DarkRed;
-            this.radLabel9.Location = new System.Drawing.Point(87, 78);
+            this.radLabel9.Location = new System.Drawing.Point(113, 110);
             this.radLabel9.Name = "radLabel9";
-            this.radLabel9.Size = new System.Drawing.Size(53, 19);
+            this.radLabel9.Size = new System.Drawing.Size(66, 24);
             this.radLabel9.TabIndex = 0;
             this.radLabel9.Text = "PR No. :";
             // 
             // txtPRNo
             // 
-            this.txtPRNo.Location = new System.Drawing.Point(146, 78);
+            this.txtPRNo.AutoSize = false;
+            this.txtPRNo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtPRNo.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPRNo.Location = new System.Drawing.Point(185, 108);
             this.txtPRNo.Name = "txtPRNo";
-            this.txtPRNo.NullText = "Type here...";
-            this.txtPRNo.Size = new System.Drawing.Size(155, 19);
+            this.txtPRNo.Size = new System.Drawing.Size(241, 29);
             this.txtPRNo.TabIndex = 2;
             this.txtPRNo.TextChanged += new System.EventHandler(this.txtPRNo_TextChanged);
             // 
@@ -297,7 +318,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(374, 278);
+            this.ClientSize = new System.Drawing.Size(429, 382);
             this.Controls.Add(this.tableLayoutPanel1);
             this.DoubleBuffered = true;
             this.Name = "frmPaymentMode";

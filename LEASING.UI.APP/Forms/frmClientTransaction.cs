@@ -73,12 +73,12 @@ namespace LEASING.UI.APP.Forms
             InitializeComponent();
 
         }
-        private void M_GenerateSecondPayment()
+        private void M_GenerateSecondPayment(string LedgAmount)
         {
             if (Convert.ToString(dgvTransactionList.CurrentRow.Cells["TypeOf"].Value) == "TYPE OF UNIT")
             {
                 var result = PaymentContext.GenerateSecondPayment(RefId,
-              Convert.ToString(dgvLedgerList.CurrentRow.Cells["LedgAmount"].Value) == string.Empty ? 0 : decimal.Parse(Convert.ToString(dgvLedgerList.CurrentRow.Cells["LedgAmount"].Value)),
+              LedgAmount == string.Empty ? 0 : decimal.Parse(LedgAmount),
               ReceiveAmount,
               ChangeAmount,
               CompanyORNo,
@@ -105,7 +105,7 @@ namespace LEASING.UI.APP.Forms
             else
             {
                 var result = PaymentContext.GeneratePaymentParking(RefId,
-               Convert.ToString(dgvLedgerList.CurrentRow.Cells["LedgAmount"].Value) == string.Empty ? 0 : decimal.Parse(Convert.ToString(dgvLedgerList.CurrentRow.Cells["LedgAmount"].Value)),
+                LedgAmount == string.Empty ? 0 : decimal.Parse(LedgAmount),
                ReceiveAmount,
                ChangeAmount,
                CompanyORNo,
@@ -692,13 +692,14 @@ namespace LEASING.UI.APP.Forms
                                 REF = frmPaymentMode.REF;
                                 ModeType = frmPaymentMode.ModeType;
                                 frmReceivePayment frmReceivePayment = new frmReceivePayment();
-                                frmReceivePayment.Amount = Convert.ToString(dgvLedgerList.CurrentRow.Cells["LedgAmount"].Value);
+                                //frmReceivePayment.Amount = Convert.ToString(dgvLedgerList.CurrentRow.Cells["LedgAmount"].Value);
+                                frmReceivePayment.recid = Convert.ToInt32(dgvLedgerList.CurrentRow.Cells["Recid"].Value);
                                 frmReceivePayment.ShowDialog();
                                 if (frmReceivePayment.IsProceed)
                                 {
                                     ReceiveAmount = frmReceivePayment.txtReceiveAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtReceiveAmount.Text);
                                     ChangeAmount = frmReceivePayment.txtChangeAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtChangeAmount.Text);
-                                    M_GenerateSecondPayment();
+                                    M_GenerateSecondPayment(frmReceivePayment.Amount);
                                     M_GetComputationById();
                                     M_GetCheckPaymentStatus();
                                     M_GetLedgerList();

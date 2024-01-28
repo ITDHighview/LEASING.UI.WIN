@@ -17,21 +17,18 @@ namespace LEASING.UI.APP.Forms
         OtherContext OtherContext = new OtherContext();
         //RadPanel panels = new RadPanel();
         //RadLabel lables = new RadLabel();
-        FlowLayoutPanel layoutpanels = new FlowLayoutPanel();
+       
         public frmNotification()
         {
             InitializeComponent();
         }
 
         private void GetNotificationList()
-        {
-           
+        {       
             using (DataSet dt = OtherContext.GetNotificationList())
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
-                {
-                   
-
+                {                   
                     for (int i = 0; i < dt.Tables[0].Rows.Count; i++)
                     { 
                         Panel panels = new Panel();
@@ -45,9 +42,7 @@ namespace LEASING.UI.APP.Forms
                         else
                         {
                             picturebox.Image = Properties.Resources.info_48;
-                        }
-                       
-                       
+                        }                                              
                         picturebox.Dock = DockStyle.Right;
                         //panels.Dock = DockStyle.Top;
                         panels.Width = 500;

@@ -24,7 +24,7 @@ namespace LEASING.UI.APP.Forms
         public bool sIsFullPayment = false;
         public bool IsComputed = false;
         private DataTable dataTable;
-        public frmComputation(bool IsFullPayment)
+        public frmComputation()
         {
             InitializeComponent();
             //data.Columns.Add("Seq", typeof(int));         
@@ -32,11 +32,8 @@ namespace LEASING.UI.APP.Forms
             //data.Columns.Add("Rental", typeof(string));
 
 
-            sIsFullPayment = IsFullPayment;
-            if (sIsFullPayment)
-            {
-                radGroupBox4.Enabled = false;
-            }
+
+
             // Bind the DataTable to the DataGridView
             //dgvpostdatedcheck.DataSource = data;
         }
@@ -236,7 +233,7 @@ namespace LEASING.UI.APP.Forms
             txtProjectAddress.Text = string.Empty;
             txtProjectType.Text = string.Empty;
             txtClient.Text = string.Empty;
-            txtContactNumber.Text = string.Empty;
+            //txtContactNumber.Text = string.Empty;
             txtFloorType.Text = string.Empty;
             txtRental.Text = string.Empty;
             txtSecAndMaintenance.Text = string.Empty;
@@ -256,7 +253,7 @@ namespace LEASING.UI.APP.Forms
             txtProjectAddress.Enabled = true;
             txtProjectType.Enabled = true;
             txtClient.Enabled = true;
-            txtContactNumber.Enabled = true;
+            //txtContactNumber.Enabled = true;
             txtFloorType.Enabled = true;
             txtRental.Enabled = true;
             txtSecAndMaintenance.Enabled = true;
@@ -292,7 +289,7 @@ namespace LEASING.UI.APP.Forms
             txtProjectAddress.Enabled = false;
             txtProjectType.Enabled = false;
             txtClient.Enabled = false;
-            txtContactNumber.Enabled = false;
+            //txtContactNumber.Enabled = false;
             txtFloorType.Enabled = false;
             txtRental.Enabled = false;
             txtSecAndMaintenance.Enabled = false;
@@ -522,7 +519,7 @@ namespace LEASING.UI.APP.Forms
             ComputationModel dto = new ComputationModel();
             dto.ProjectId = Convert.ToInt32(ddlProject.SelectedValue);
             dto.InquiringClient = txtClient.Text;
-            dto.ClientMobile = txtContactNumber.Text;
+            dto.ClientMobile = "";
             dto.ClientID = ClientId;
             dto.UnitId = Convert.ToInt32(ddlUnitNumber.SelectedValue);
             dto.UnitNo = ddlUnitNumber.Text;
@@ -550,7 +547,7 @@ namespace LEASING.UI.APP.Forms
                 MessageBox.Show(dto.Message_Code, "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 strFormMode = "READ";
             }
-        }    
+        }
         private bool IsMoreThanSixMonths(DateTime date1, DateTime date2)
         {
             // Calculate the difference in months
@@ -587,10 +584,10 @@ namespace LEASING.UI.APP.Forms
         private void ddlProject_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
         {
             if (ddlProject.SelectedIndex >= 0)
-            {   
+            {
                 /*if selected project is change refresh all*/
-                ClearFields();              
-                
+                ClearFields();
+
 
                 M_GetProjecAddress();
                 M_SelectUnit();
@@ -666,7 +663,21 @@ namespace LEASING.UI.APP.Forms
         }
         private void btnNewComputation_Click(object sender, EventArgs e)
         {
+
+            if (MessageBox.Show("Would you like to pay it as full?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+            {
+                sIsFullPayment = true;
+
+            }
+            else
+            {
+                sIsFullPayment = false;
+            }
             strFormMode = "NEW";
+            if (sIsFullPayment)
+            {
+                radGroupBox4.Enabled = false;
+            }
         }
         private void btnUndo_Click(object sender, EventArgs e)
         {
@@ -722,6 +733,16 @@ namespace LEASING.UI.APP.Forms
                         }
                     }
                 }
+                else if (this.dgvList.Columns[e.ColumnIndex].Name == "ColGenerate")
+                {
+                    if (MessageBox.Show("Are you sure you want to generate transaction to this Contract?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                    {
+                        frmSelectClient forms = new frmSelectClient();
+                        forms.ComputationRecid = Convert.ToInt32(dgvList.CurrentRow.Cells["RecId"].Value);
+                        forms.ShowDialog();
+                        M_GetComputationList();
+                    }
+                }
             }
         }
         private void btnCheckunits_Click(object sender, EventArgs e)
@@ -770,7 +791,7 @@ namespace LEASING.UI.APP.Forms
         private void btnAddAdvancePayment_Click(object sender, EventArgs e)
         {
             string selectedDate = string.Empty;
-  
+
             if (IsComputationValidForAdvancePayment())
             {
                 frmPostDatedCheckMonthsList PostDatedCheckMonthsList = new frmPostDatedCheckMonthsList(dtpStartDate.Text, dtpFinishDate.Text, M_getXMLData());
@@ -822,7 +843,7 @@ namespace LEASING.UI.APP.Forms
             if (IsComputationValid())
             {
                 M_GetTotalRental();
-            }      
+            }
         }
         private void txtSecurityPaymentMonthCount_KeyPress(object sender, KeyPressEventArgs e)
         {

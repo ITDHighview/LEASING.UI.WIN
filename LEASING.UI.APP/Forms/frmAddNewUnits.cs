@@ -429,17 +429,17 @@ namespace LEASING.UI.APP.Forms
                 txtBaseRentalTax.Text = string.Empty;
                 txtSecAndMainTax.Text = string.Empty;
                 M_GetProjectTypeById();
-                if (isResidential)
-                {
+                //if (isResidential)
+                //{
                     ddlFloorType.Visible = true;
                     lblFloorType.Visible = true;
                     M_SelectFloortypes();
-                }
-                else
-                {
-                    ddlFloorType.Visible = false;
-                    lblFloorType.Visible = false;
-                }
+                //}
+                //else
+                //{
+                //    ddlFloorType.Visible = false;
+                //    lblFloorType.Visible = false;
+                //}
                 if (isResidential)
                 {
                     M_GetResendentialRateSettings();

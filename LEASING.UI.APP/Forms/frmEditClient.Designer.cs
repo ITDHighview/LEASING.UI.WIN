@@ -360,11 +360,11 @@
             // 
             this.radLabel9.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.radLabel9.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel9.Location = new System.Drawing.Point(113, 128);
+            this.radLabel9.Location = new System.Drawing.Point(63, 128);
             this.radLabel9.Name = "radLabel9";
-            this.radLabel9.Size = new System.Drawing.Size(58, 19);
+            this.radLabel9.Size = new System.Drawing.Size(108, 19);
             this.radLabel9.TabIndex = 0;
-            this.radLabel9.Text = "Tel. No. :";
+            this.radLabel9.Text = "Tel. No. /Mobile :";
             // 
             // txttelno
             // 

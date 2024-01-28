@@ -237,10 +237,12 @@
             // 
             // txtTotalPay
             // 
+            this.txtTotalPay.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTotalPay.Location = new System.Drawing.Point(122, 53);
             this.txtTotalPay.Name = "txtTotalPay";
             this.txtTotalPay.Size = new System.Drawing.Size(149, 19);
             this.txtTotalPay.TabIndex = 4;
+            this.txtTotalPay.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtTotalPay.ThemeName = "Office2007Silver";
             // 
             // dtpTo
@@ -415,8 +417,8 @@
             // lblUnitNo
             // 
             this.lblUnitNo.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lblUnitNo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUnitNo.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lblUnitNo.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUnitNo.ForeColor = System.Drawing.Color.Black;
             this.lblUnitNo.Location = new System.Drawing.Point(105, 3);
             this.lblUnitNo.Name = "lblUnitNo";
             this.lblUnitNo.Size = new System.Drawing.Size(62, 19);
@@ -426,8 +428,8 @@
             // lblProjectName
             // 
             this.lblProjectName.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lblProjectName.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProjectName.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lblProjectName.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProjectName.ForeColor = System.Drawing.Color.Black;
             this.lblProjectName.Location = new System.Drawing.Point(105, 28);
             this.lblProjectName.Name = "lblProjectName";
             this.lblProjectName.Size = new System.Drawing.Size(92, 19);
@@ -437,8 +439,8 @@
             // lblType
             // 
             this.lblType.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lblType.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblType.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lblType.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblType.ForeColor = System.Drawing.Color.Black;
             this.lblType.Location = new System.Drawing.Point(105, 53);
             this.lblType.Name = "lblType";
             this.lblType.Size = new System.Drawing.Size(42, 19);
@@ -448,7 +450,7 @@
             // lblBaseRental
             // 
             this.lblBaseRental.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lblBaseRental.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBaseRental.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBaseRental.ForeColor = System.Drawing.Color.DarkRed;
             this.lblBaseRental.Location = new System.Drawing.Point(105, 90);
             this.lblBaseRental.Name = "lblBaseRental";

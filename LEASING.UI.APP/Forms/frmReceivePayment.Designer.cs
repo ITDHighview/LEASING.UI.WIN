@@ -75,12 +75,12 @@
             // btnOK
             // 
             this.btnOK.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnOK.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOK.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOK.Location = new System.Drawing.Point(213, 108);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(234, 36);
             this.btnOK.TabIndex = 0;
-            this.btnOK.Text = "PROCEED";
+            this.btnOK.Text = "PROCEED >>>";
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // radLabel2

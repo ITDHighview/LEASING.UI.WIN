@@ -29,6 +29,23 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn13 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn14 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn15 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn16 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn17 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn18 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem6 = new Telerik.WinControls.UI.RadListDataItem();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem7 = new Telerik.WinControls.UI.RadListDataItem();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem8 = new Telerik.WinControls.UI.RadListDataItem();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem9 = new Telerik.WinControls.UI.RadListDataItem();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem10 = new Telerik.WinControls.UI.RadListDataItem();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn19 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn20 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn21 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn22 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn23 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn24 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             this.radDesktopAlert1 = new Telerik.WinControls.UI.RadDesktopAlert(this.components);
             this.radMenuItemNotification = new Telerik.WinControls.UI.RadMenuItem();
             this.lblUserInfoPanel = new Telerik.WinControls.UI.RadLabel();
@@ -104,22 +121,21 @@
             this.radMenuItemWareHouseSettings = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItemCommercialSettings = new Telerik.WinControls.UI.RadMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.radPanel8 = new Telerik.WinControls.UI.RadPanel();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.radGroupBox4 = new Telerik.WinControls.UI.RadGroupBox();
-            this.lblTotalActiveContract = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel10 = new Telerik.WinControls.UI.RadLabel();
-            this.radGroupBox3 = new Telerik.WinControls.UI.RadGroupBox();
-            this.lblTotalClient = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
-            this.radGroupBox2 = new Telerik.WinControls.UI.RadGroupBox();
-            this.lblTotalProject = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
-            this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
-            this.lblTotalLocation = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
             this.radMenuItemQuickInquiry = new Telerik.WinControls.UI.RadMenuItem();
+            this.radPanel8 = new Telerik.WinControls.UI.RadPanel();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
+            this.dgvNotificationList = new Telerik.WinControls.UI.RadGridView();
+            this.radGroupBox2 = new Telerik.WinControls.UI.RadGroupBox();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
+            this.ddlUnitStatus = new Telerik.WinControls.UI.RadDropDownList();
+            this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
+            this.ddlProject = new Telerik.WinControls.UI.RadDropDownList();
+            this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
+            this.dgvUnitList = new Telerik.WinControls.UI.RadGridView();
+            this.telerikMetroTouchTheme1 = new Telerik.WinControls.Themes.TelerikMetroTouchTheme();
             ((System.ComponentModel.ISupportInitialize)(this.lblUserInfoPanel)).BeginInit();
             this.lblUserInfoPanel.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -160,26 +176,25 @@
             this.radPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnMyDashboard)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel8)).BeginInit();
             this.radPanel8.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox4)).BeginInit();
-            this.radGroupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lblTotalActiveContract)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).BeginInit();
-            this.radGroupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lblTotalClient)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).BeginInit();
-            this.radGroupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lblTotalProject)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
             this.radGroupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lblTotalLocation)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvNotificationList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvNotificationList.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).BeginInit();
+            this.radGroupBox2.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
+            this.radLabel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlUnitStatus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlProject)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUnitList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUnitList.MasterTemplate)).BeginInit();
             this.SuspendLayout();
             // 
             // radMenuItemNotification
@@ -200,7 +215,7 @@
             this.lblUserInfoPanel.Location = new System.Drawing.Point(3, 3);
             this.lblUserInfoPanel.Name = "lblUserInfoPanel";
             this.tableLayoutPanel1.SetRowSpan(this.lblUserInfoPanel, 2);
-            this.lblUserInfoPanel.Size = new System.Drawing.Size(236, 199);
+            this.lblUserInfoPanel.Size = new System.Drawing.Size(236, 172);
             this.lblUserInfoPanel.TabIndex = 2;
             // 
             // tableLayoutPanel2
@@ -221,7 +236,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 21F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(236, 199);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(236, 172);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // pictureBox1
@@ -232,7 +247,7 @@
             this.pictureBox1.Image = global::LEASING.UI.APP.Properties.Resources.uv_change_user_100;
             this.pictureBox1.Location = new System.Drawing.Point(3, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(230, 120);
+            this.pictureBox1.Size = new System.Drawing.Size(230, 93);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
@@ -241,7 +256,7 @@
             // 
             this.radLabel1.BackColor = System.Drawing.Color.DarkSlateBlue;
             this.radLabel1.ForeColor = System.Drawing.Color.White;
-            this.radLabel1.Location = new System.Drawing.Point(3, 129);
+            this.radLabel1.Location = new System.Drawing.Point(3, 102);
             this.radLabel1.Name = "radLabel1";
             this.radLabel1.Size = new System.Drawing.Size(56, 18);
             this.radLabel1.TabIndex = 0;
@@ -251,7 +266,7 @@
             // 
             this.lblGroupName.BackColor = System.Drawing.Color.DarkSlateBlue;
             this.lblGroupName.ForeColor = System.Drawing.Color.White;
-            this.lblGroupName.Location = new System.Drawing.Point(68, 129);
+            this.lblGroupName.Location = new System.Drawing.Point(68, 102);
             this.lblGroupName.Name = "lblGroupName";
             this.lblGroupName.Size = new System.Drawing.Size(93, 18);
             this.lblGroupName.TabIndex = 0;
@@ -261,7 +276,7 @@
             // 
             this.radLabel2.BackColor = System.Drawing.Color.DarkSlateBlue;
             this.radLabel2.ForeColor = System.Drawing.Color.White;
-            this.radLabel2.Location = new System.Drawing.Point(3, 157);
+            this.radLabel2.Location = new System.Drawing.Point(3, 130);
             this.radLabel2.Name = "radLabel2";
             this.radLabel2.Size = new System.Drawing.Size(38, 18);
             this.radLabel2.TabIndex = 0;
@@ -271,7 +286,7 @@
             // 
             this.lblStaffName.BackColor = System.Drawing.Color.DarkSlateBlue;
             this.lblStaffName.ForeColor = System.Drawing.Color.White;
-            this.lblStaffName.Location = new System.Drawing.Point(68, 157);
+            this.lblStaffName.Location = new System.Drawing.Point(68, 130);
             this.lblStaffName.Name = "lblStaffName";
             this.lblStaffName.Size = new System.Drawing.Size(74, 18);
             this.lblStaffName.TabIndex = 0;
@@ -294,16 +309,16 @@
             this.lblMenus.Controls.Add(this.radPanel2);
             this.lblMenus.Controls.Add(this.radPanel1);
             this.lblMenus.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblMenus.Location = new System.Drawing.Point(3, 208);
+            this.lblMenus.Location = new System.Drawing.Point(3, 181);
             this.lblMenus.Name = "lblMenus";
-            this.lblMenus.Size = new System.Drawing.Size(236, 536);
+            this.lblMenus.Size = new System.Drawing.Size(236, 563);
             this.lblMenus.TabIndex = 1;
             // 
             // btnSwitchUser
             // 
             this.btnSwitchUser.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btnSwitchUser.Image = global::LEASING.UI.APP.Properties.Resources.export32;
-            this.btnSwitchUser.Location = new System.Drawing.Point(0, 472);
+            this.btnSwitchUser.Location = new System.Drawing.Point(0, 499);
             this.btnSwitchUser.Name = "btnSwitchUser";
             this.btnSwitchUser.Size = new System.Drawing.Size(236, 32);
             this.btnSwitchUser.TabIndex = 13;
@@ -328,9 +343,11 @@
             this.radMenuItemAdministrative});
             this.radMenu7.Location = new System.Drawing.Point(0, 0);
             this.radMenu7.Name = "radMenu7";
-            this.radMenu7.Size = new System.Drawing.Size(236, 36);
+            this.radMenu7.Padding = new System.Windows.Forms.Padding(2, 2, 0, 0);
+            this.radMenu7.Size = new System.Drawing.Size(236, 65);
             this.radMenu7.TabIndex = 0;
             this.radMenu7.Text = "radMenu7";
+            this.radMenu7.ThemeName = "TelerikMetroTouch";
             // 
             // radMenuItemAdministrative
             // 
@@ -446,9 +463,11 @@
             this.radMenuItemPurchaseItem});
             this.radMenu9.Location = new System.Drawing.Point(0, 0);
             this.radMenu9.Name = "radMenu9";
-            this.radMenu9.Size = new System.Drawing.Size(236, 36);
+            this.radMenu9.Padding = new System.Windows.Forms.Padding(2, 2, 0, 0);
+            this.radMenu9.Size = new System.Drawing.Size(236, 65);
             this.radMenu9.TabIndex = 0;
             this.radMenu9.Text = "radMenu9";
+            this.radMenu9.ThemeName = "TelerikMetroTouch";
             // 
             // radMenuItemPurchaseItem
             // 
@@ -497,9 +516,11 @@
             this.radMenuItemSecurity});
             this.radMenu8.Location = new System.Drawing.Point(0, 0);
             this.radMenu8.Name = "radMenu8";
-            this.radMenu8.Size = new System.Drawing.Size(236, 36);
+            this.radMenu8.Padding = new System.Windows.Forms.Padding(2, 2, 0, 0);
+            this.radMenu8.Size = new System.Drawing.Size(236, 40);
             this.radMenu8.TabIndex = 0;
             this.radMenu8.Text = "radMenu8";
+            this.radMenu8.ThemeName = "TelerikMetroTouch";
             // 
             // radMenuItemSecurity
             // 
@@ -557,7 +578,7 @@
             // 
             this.btnLogout.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btnLogout.Image = global::LEASING.UI.APP.Properties.Resources.export32;
-            this.btnLogout.Location = new System.Drawing.Point(0, 504);
+            this.btnLogout.Location = new System.Drawing.Point(0, 531);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(236, 32);
             this.btnLogout.TabIndex = 10;
@@ -582,9 +603,11 @@
             this.radMenuItemComputation});
             this.radMenu6.Location = new System.Drawing.Point(0, 0);
             this.radMenu6.Name = "radMenu6";
-            this.radMenu6.Size = new System.Drawing.Size(236, 36);
+            this.radMenu6.Padding = new System.Windows.Forms.Padding(2, 2, 0, 0);
+            this.radMenu6.Size = new System.Drawing.Size(236, 65);
             this.radMenu6.TabIndex = 0;
             this.radMenu6.Text = "radMenu6";
+            this.radMenu6.ThemeName = "TelerikMetroTouch";
             // 
             // radMenuItemComputation
             // 
@@ -652,9 +675,11 @@
             this.radMenuItemPayments});
             this.radMenu5.Location = new System.Drawing.Point(0, 0);
             this.radMenu5.Name = "radMenu5";
-            this.radMenu5.Size = new System.Drawing.Size(236, 36);
+            this.radMenu5.Padding = new System.Windows.Forms.Padding(2, 2, 0, 0);
+            this.radMenu5.Size = new System.Drawing.Size(236, 40);
             this.radMenu5.TabIndex = 0;
             this.radMenu5.Text = "radMenu5";
+            this.radMenu5.ThemeName = "TelerikMetroTouch";
             // 
             // radMenuItemPayments
             // 
@@ -713,9 +738,11 @@
             this.radMenuItemReports});
             this.radMenu4.Location = new System.Drawing.Point(0, 0);
             this.radMenu4.Name = "radMenu4";
-            this.radMenu4.Size = new System.Drawing.Size(236, 36);
+            this.radMenu4.Padding = new System.Windows.Forms.Padding(2, 2, 0, 0);
+            this.radMenu4.Size = new System.Drawing.Size(236, 40);
             this.radMenu4.TabIndex = 0;
             this.radMenu4.Text = "radMenu4";
+            this.radMenu4.ThemeName = "TelerikMetroTouch";
             // 
             // radMenuItemReports
             // 
@@ -742,9 +769,11 @@
             this.radMenuItemContracts});
             this.radMenu3.Location = new System.Drawing.Point(0, 0);
             this.radMenu3.Name = "radMenu3";
-            this.radMenu3.Size = new System.Drawing.Size(236, 36);
+            this.radMenu3.Padding = new System.Windows.Forms.Padding(2, 2, 0, 0);
+            this.radMenu3.Size = new System.Drawing.Size(236, 40);
             this.radMenu3.TabIndex = 0;
             this.radMenu3.Text = "radMenu3";
+            this.radMenu3.ThemeName = "TelerikMetroTouch";
             // 
             // radMenuItemContracts
             // 
@@ -859,9 +888,11 @@
             this.radMenuItemClient});
             this.radMenu2.Location = new System.Drawing.Point(0, 0);
             this.radMenu2.Name = "radMenu2";
-            this.radMenu2.Size = new System.Drawing.Size(236, 36);
+            this.radMenu2.Padding = new System.Windows.Forms.Padding(2, 2, 0, 0);
+            this.radMenu2.Size = new System.Drawing.Size(236, 40);
             this.radMenu2.TabIndex = 0;
             this.radMenu2.Text = "radMenu2";
+            this.radMenu2.ThemeName = "TelerikMetroTouch";
             // 
             // radMenuItemClient
             // 
@@ -910,7 +941,7 @@
             this.btnMyDashboard.Size = new System.Drawing.Size(236, 52);
             this.btnMyDashboard.TabIndex = 0;
             this.btnMyDashboard.Text = "MY DASHBOARD";
-            this.btnMyDashboard.ThemeName = "Office2013Light";
+            this.btnMyDashboard.ThemeName = "ControlDefault";
             this.btnMyDashboard.Click += new System.EventHandler(this.btnMyDashboard_Click);
             // 
             // radMenuItemResidentialSettings
@@ -949,213 +980,17 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.lblMenus, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.lblUserInfoPanel, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.radPanel8, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.radMenu1, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.radPanel8, 1, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 74F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 131F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 87F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 91F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1011, 747);
             this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // radPanel8
-            // 
-            this.radPanel8.BackColor = System.Drawing.Color.White;
-            this.radPanel8.Controls.Add(this.tableLayoutPanel3);
-            this.radPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radPanel8.Location = new System.Drawing.Point(245, 208);
-            this.radPanel8.Name = "radPanel8";
-            this.radPanel8.Size = new System.Drawing.Size(763, 536);
-            this.radPanel8.TabIndex = 3;
-            // 
-            // tableLayoutPanel3
-            // 
-            this.tableLayoutPanel3.ColumnCount = 2;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Controls.Add(this.radGroupBox4, 1, 1);
-            this.tableLayoutPanel3.Controls.Add(this.radGroupBox3, 0, 1);
-            this.tableLayoutPanel3.Controls.Add(this.radGroupBox2, 1, 0);
-            this.tableLayoutPanel3.Controls.Add(this.radGroupBox1, 0, 0);
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 2;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(763, 536);
-            this.tableLayoutPanel3.TabIndex = 0;
-            // 
-            // radGroupBox4
-            // 
-            this.radGroupBox4.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.radGroupBox4.Controls.Add(this.lblTotalActiveContract);
-            this.radGroupBox4.Controls.Add(this.radLabel10);
-            this.radGroupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radGroupBox4.HeaderText = "Details";
-            this.radGroupBox4.Location = new System.Drawing.Point(384, 271);
-            this.radGroupBox4.Name = "radGroupBox4";
-            this.radGroupBox4.Size = new System.Drawing.Size(376, 262);
-            this.radGroupBox4.TabIndex = 3;
-            this.radGroupBox4.Text = "Details";
-            // 
-            // lblTotalActiveContract
-            // 
-            this.lblTotalActiveContract.AutoSize = false;
-            this.lblTotalActiveContract.BackColor = System.Drawing.SystemColors.Menu;
-            this.lblTotalActiveContract.BackgroundImage = global::LEASING.UI.APP.Properties.Resources.DarkBackground1;
-            this.lblTotalActiveContract.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblTotalActiveContract.Font = new System.Drawing.Font("Tahoma", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalActiveContract.ForeColor = System.Drawing.Color.White;
-            this.lblTotalActiveContract.Location = new System.Drawing.Point(2, 65);
-            this.lblTotalActiveContract.Name = "lblTotalActiveContract";
-            this.lblTotalActiveContract.Size = new System.Drawing.Size(372, 195);
-            this.lblTotalActiveContract.TabIndex = 1;
-            this.lblTotalActiveContract.Text = "0";
-            this.lblTotalActiveContract.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // radLabel10
-            // 
-            this.radLabel10.AutoSize = false;
-            this.radLabel10.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.radLabel10.Dock = System.Windows.Forms.DockStyle.Top;
-            this.radLabel10.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel10.ForeColor = System.Drawing.Color.White;
-            this.radLabel10.Location = new System.Drawing.Point(2, 18);
-            this.radLabel10.Name = "radLabel10";
-            this.radLabel10.Size = new System.Drawing.Size(372, 47);
-            this.radLabel10.TabIndex = 0;
-            this.radLabel10.Text = "ACTIVE CONTRACT";
-            this.radLabel10.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // radGroupBox3
-            // 
-            this.radGroupBox3.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.radGroupBox3.Controls.Add(this.lblTotalClient);
-            this.radGroupBox3.Controls.Add(this.radLabel8);
-            this.radGroupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radGroupBox3.HeaderText = "Details";
-            this.radGroupBox3.Location = new System.Drawing.Point(3, 271);
-            this.radGroupBox3.Name = "radGroupBox3";
-            this.radGroupBox3.Size = new System.Drawing.Size(375, 262);
-            this.radGroupBox3.TabIndex = 2;
-            this.radGroupBox3.Text = "Details";
-            // 
-            // lblTotalClient
-            // 
-            this.lblTotalClient.AutoSize = false;
-            this.lblTotalClient.BackColor = System.Drawing.SystemColors.Menu;
-            this.lblTotalClient.BackgroundImage = global::LEASING.UI.APP.Properties.Resources.DarkBackground1;
-            this.lblTotalClient.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblTotalClient.Font = new System.Drawing.Font("Tahoma", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalClient.ForeColor = System.Drawing.Color.White;
-            this.lblTotalClient.Location = new System.Drawing.Point(2, 65);
-            this.lblTotalClient.Name = "lblTotalClient";
-            this.lblTotalClient.Size = new System.Drawing.Size(371, 195);
-            this.lblTotalClient.TabIndex = 1;
-            this.lblTotalClient.Text = "0";
-            this.lblTotalClient.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // radLabel8
-            // 
-            this.radLabel8.AutoSize = false;
-            this.radLabel8.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.radLabel8.Dock = System.Windows.Forms.DockStyle.Top;
-            this.radLabel8.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel8.ForeColor = System.Drawing.Color.White;
-            this.radLabel8.Location = new System.Drawing.Point(2, 18);
-            this.radLabel8.Name = "radLabel8";
-            this.radLabel8.Size = new System.Drawing.Size(371, 47);
-            this.radLabel8.TabIndex = 0;
-            this.radLabel8.Text = "CLIENT";
-            this.radLabel8.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // radGroupBox2
-            // 
-            this.radGroupBox2.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.radGroupBox2.Controls.Add(this.lblTotalProject);
-            this.radGroupBox2.Controls.Add(this.radLabel6);
-            this.radGroupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radGroupBox2.HeaderText = "Details";
-            this.radGroupBox2.Location = new System.Drawing.Point(384, 3);
-            this.radGroupBox2.Name = "radGroupBox2";
-            this.radGroupBox2.Size = new System.Drawing.Size(376, 262);
-            this.radGroupBox2.TabIndex = 1;
-            this.radGroupBox2.Text = "Details";
-            // 
-            // lblTotalProject
-            // 
-            this.lblTotalProject.AutoSize = false;
-            this.lblTotalProject.BackColor = System.Drawing.SystemColors.Menu;
-            this.lblTotalProject.BackgroundImage = global::LEASING.UI.APP.Properties.Resources.DarkBackground1;
-            this.lblTotalProject.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblTotalProject.Font = new System.Drawing.Font("Tahoma", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalProject.ForeColor = System.Drawing.Color.White;
-            this.lblTotalProject.Location = new System.Drawing.Point(2, 65);
-            this.lblTotalProject.Name = "lblTotalProject";
-            this.lblTotalProject.Size = new System.Drawing.Size(372, 195);
-            this.lblTotalProject.TabIndex = 1;
-            this.lblTotalProject.Text = "0";
-            this.lblTotalProject.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // radLabel6
-            // 
-            this.radLabel6.AutoSize = false;
-            this.radLabel6.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.radLabel6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.radLabel6.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel6.ForeColor = System.Drawing.Color.White;
-            this.radLabel6.Location = new System.Drawing.Point(2, 18);
-            this.radLabel6.Name = "radLabel6";
-            this.radLabel6.Size = new System.Drawing.Size(372, 47);
-            this.radLabel6.TabIndex = 0;
-            this.radLabel6.Text = "PROJECT";
-            this.radLabel6.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // radGroupBox1
-            // 
-            this.radGroupBox1.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.radGroupBox1.Controls.Add(this.lblTotalLocation);
-            this.radGroupBox1.Controls.Add(this.radLabel3);
-            this.radGroupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radGroupBox1.HeaderText = "Details";
-            this.radGroupBox1.Location = new System.Drawing.Point(3, 3);
-            this.radGroupBox1.Name = "radGroupBox1";
-            this.radGroupBox1.Size = new System.Drawing.Size(375, 262);
-            this.radGroupBox1.TabIndex = 0;
-            this.radGroupBox1.Text = "Details";
-            // 
-            // lblTotalLocation
-            // 
-            this.lblTotalLocation.AutoSize = false;
-            this.lblTotalLocation.BackColor = System.Drawing.SystemColors.Menu;
-            this.lblTotalLocation.BackgroundImage = global::LEASING.UI.APP.Properties.Resources.DarkBackground1;
-            this.lblTotalLocation.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblTotalLocation.Font = new System.Drawing.Font("Tahoma", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalLocation.ForeColor = System.Drawing.Color.White;
-            this.lblTotalLocation.Location = new System.Drawing.Point(2, 65);
-            this.lblTotalLocation.Name = "lblTotalLocation";
-            this.lblTotalLocation.Size = new System.Drawing.Size(371, 195);
-            this.lblTotalLocation.TabIndex = 1;
-            this.lblTotalLocation.Text = "0";
-            this.lblTotalLocation.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // radLabel3
-            // 
-            this.radLabel3.AutoSize = false;
-            this.radLabel3.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.radLabel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.radLabel3.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel3.ForeColor = System.Drawing.Color.White;
-            this.radLabel3.Location = new System.Drawing.Point(2, 18);
-            this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(371, 47);
-            this.radLabel3.TabIndex = 0;
-            this.radLabel3.Text = "LOCATION";
-            this.radLabel3.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
             // 
             // radMenu1
             // 
@@ -1164,9 +999,11 @@
             this.radMenuItemQuickInquiry});
             this.radMenu1.Location = new System.Drawing.Point(245, 3);
             this.radMenu1.Name = "radMenu1";
-            this.radMenu1.Size = new System.Drawing.Size(763, 24);
+            this.radMenu1.Padding = new System.Windows.Forms.Padding(2, 2, 0, 0);
+            this.radMenu1.Size = new System.Drawing.Size(763, 29);
             this.radMenu1.TabIndex = 4;
             this.radMenu1.Text = "radMenu1";
+            this.radMenu1.ThemeName = "TelerikMetroTouch";
             // 
             // radMenuItemQuickInquiry
             // 
@@ -1176,6 +1013,264 @@
             this.radMenuItemQuickInquiry.Name = "radMenuItemQuickInquiry";
             this.radMenuItemQuickInquiry.Text = "QUICK INQUIRY";
             this.radMenuItemQuickInquiry.Click += new System.EventHandler(this.radMenuItemQuickInquiry_Click);
+            // 
+            // radPanel8
+            // 
+            this.radPanel8.BackColor = System.Drawing.Color.DarkGray;
+            this.radPanel8.Controls.Add(this.tableLayoutPanel3);
+            this.radPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radPanel8.Location = new System.Drawing.Point(245, 90);
+            this.radPanel8.Name = "radPanel8";
+            this.tableLayoutPanel1.SetRowSpan(this.radPanel8, 2);
+            this.radPanel8.Size = new System.Drawing.Size(763, 654);
+            this.radPanel8.TabIndex = 3;
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.tableLayoutPanel3.ColumnCount = 2;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Controls.Add(this.radGroupBox1, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.radGroupBox2, 1, 0);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(763, 654);
+            this.tableLayoutPanel3.TabIndex = 0;
+            // 
+            // radGroupBox1
+            // 
+            this.radGroupBox1.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this.radGroupBox1.Controls.Add(this.dgvNotificationList);
+            this.radGroupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radGroupBox1.HeaderText = "Notification List";
+            this.radGroupBox1.Location = new System.Drawing.Point(3, 3);
+            this.radGroupBox1.Name = "radGroupBox1";
+            this.radGroupBox1.Size = new System.Drawing.Size(375, 648);
+            this.radGroupBox1.TabIndex = 0;
+            this.radGroupBox1.Text = "Notification List";
+            this.radGroupBox1.ThemeName = "ControlDefault";
+            // 
+            // dgvNotificationList
+            // 
+            this.dgvNotificationList.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dgvNotificationList.Cursor = System.Windows.Forms.Cursors.Default;
+            this.dgvNotificationList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvNotificationList.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.dgvNotificationList.ForeColor = System.Drawing.Color.Black;
+            this.dgvNotificationList.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.dgvNotificationList.Location = new System.Drawing.Point(2, 18);
+            // 
+            // dgvNotificationList
+            // 
+            this.dgvNotificationList.MasterTemplate.AllowAddNewRow = false;
+            this.dgvNotificationList.MasterTemplate.AllowColumnReorder = false;
+            this.dgvNotificationList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
+            gridViewTextBoxColumn13.FieldName = "ClientID";
+            gridViewTextBoxColumn13.HeaderText = "Client ID";
+            gridViewTextBoxColumn13.Name = "ClientID";
+            gridViewTextBoxColumn13.Width = 55;
+            gridViewTextBoxColumn14.FieldName = "Client";
+            gridViewTextBoxColumn14.HeaderText = "Client Name";
+            gridViewTextBoxColumn14.Name = "Client";
+            gridViewTextBoxColumn14.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn14.Width = 110;
+            gridViewTextBoxColumn15.FieldName = "ContractID";
+            gridViewTextBoxColumn15.HeaderText = "Contract ID";
+            gridViewTextBoxColumn15.Name = "ContractID";
+            gridViewTextBoxColumn15.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn15.Width = 55;
+            gridViewTextBoxColumn16.FieldName = "ForMonth";
+            gridViewTextBoxColumn16.HeaderText = "Month";
+            gridViewTextBoxColumn16.Name = "ForMonth";
+            gridViewTextBoxColumn16.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn16.Width = 55;
+            gridViewTextBoxColumn17.FieldName = "Amounth";
+            gridViewTextBoxColumn17.HeaderText = "Amounth";
+            gridViewTextBoxColumn17.Name = "Amounth";
+            gridViewTextBoxColumn17.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn17.Width = 44;
+            gridViewTextBoxColumn18.FieldName = "Status";
+            gridViewTextBoxColumn18.HeaderText = "Status";
+            gridViewTextBoxColumn18.Name = "Status";
+            gridViewTextBoxColumn18.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn18.Width = 56;
+            this.dgvNotificationList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
+            gridViewTextBoxColumn13,
+            gridViewTextBoxColumn14,
+            gridViewTextBoxColumn15,
+            gridViewTextBoxColumn16,
+            gridViewTextBoxColumn17,
+            gridViewTextBoxColumn18});
+            this.dgvNotificationList.MasterTemplate.EnableFiltering = true;
+            this.dgvNotificationList.MasterTemplate.ShowRowHeaderColumn = false;
+            this.dgvNotificationList.Name = "dgvNotificationList";
+            this.dgvNotificationList.ReadOnly = true;
+            this.dgvNotificationList.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.dgvNotificationList.ShowGroupPanel = false;
+            this.dgvNotificationList.Size = new System.Drawing.Size(371, 628);
+            this.dgvNotificationList.TabIndex = 0;
+            this.dgvNotificationList.Text = "radGridView1";
+            this.dgvNotificationList.ThemeName = "TelerikMetroTouch";
+            this.dgvNotificationList.CellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.dgvNotificationList_CellFormatting);
+            // 
+            // radGroupBox2
+            // 
+            this.radGroupBox2.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this.radGroupBox2.Controls.Add(this.tableLayoutPanel4);
+            this.radGroupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radGroupBox2.HeaderText = "Unit List";
+            this.radGroupBox2.Location = new System.Drawing.Point(384, 3);
+            this.radGroupBox2.Name = "radGroupBox2";
+            this.radGroupBox2.Size = new System.Drawing.Size(376, 648);
+            this.radGroupBox2.TabIndex = 1;
+            this.radGroupBox2.Text = "Unit List";
+            // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.ColumnCount = 1;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.Controls.Add(this.radLabel3, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.dgvUnitList, 0, 1);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(2, 18);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 2;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(372, 628);
+            this.tableLayoutPanel4.TabIndex = 0;
+            // 
+            // radLabel3
+            // 
+            this.radLabel3.AutoSize = false;
+            this.radLabel3.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.radLabel3.Controls.Add(this.ddlUnitStatus);
+            this.radLabel3.Controls.Add(this.radLabel5);
+            this.radLabel3.Controls.Add(this.ddlProject);
+            this.radLabel3.Controls.Add(this.radLabel4);
+            this.radLabel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radLabel3.Location = new System.Drawing.Point(3, 3);
+            this.radLabel3.Name = "radLabel3";
+            this.radLabel3.Size = new System.Drawing.Size(366, 22);
+            this.radLabel3.TabIndex = 0;
+            // 
+            // ddlUnitStatus
+            // 
+            this.ddlUnitStatus.Dock = System.Windows.Forms.DockStyle.Left;
+            radListDataItem6.Text = "--ALL--";
+            radListDataItem7.Text = "VACANT";
+            radListDataItem8.Text = "RESERVED";
+            radListDataItem9.Text = "MOVE-IN";
+            radListDataItem10.Text = "HOLD";
+            this.ddlUnitStatus.Items.Add(radListDataItem6);
+            this.ddlUnitStatus.Items.Add(radListDataItem7);
+            this.ddlUnitStatus.Items.Add(radListDataItem8);
+            this.ddlUnitStatus.Items.Add(radListDataItem9);
+            this.ddlUnitStatus.Items.Add(radListDataItem10);
+            this.ddlUnitStatus.Location = new System.Drawing.Point(294, 0);
+            this.ddlUnitStatus.Name = "ddlUnitStatus";
+            this.ddlUnitStatus.Size = new System.Drawing.Size(125, 22);
+            this.ddlUnitStatus.TabIndex = 3;
+            this.ddlUnitStatus.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.ddlUnitStatus_SelectedIndexChanged);
+            // 
+            // radLabel5
+            // 
+            this.radLabel5.AutoSize = false;
+            this.radLabel5.Dock = System.Windows.Forms.DockStyle.Left;
+            this.radLabel5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel5.Location = new System.Drawing.Point(242, 0);
+            this.radLabel5.Name = "radLabel5";
+            this.radLabel5.Size = new System.Drawing.Size(52, 22);
+            this.radLabel5.TabIndex = 2;
+            this.radLabel5.Text = "Status";
+            // 
+            // ddlProject
+            // 
+            this.ddlProject.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ddlProject.Location = new System.Drawing.Point(65, 0);
+            this.ddlProject.Name = "ddlProject";
+            this.ddlProject.Size = new System.Drawing.Size(177, 22);
+            this.ddlProject.TabIndex = 1;
+            this.ddlProject.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.ddlProject_SelectedIndexChanged);
+            // 
+            // radLabel4
+            // 
+            this.radLabel4.AutoSize = false;
+            this.radLabel4.Dock = System.Windows.Forms.DockStyle.Left;
+            this.radLabel4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel4.Location = new System.Drawing.Point(0, 0);
+            this.radLabel4.Name = "radLabel4";
+            this.radLabel4.Size = new System.Drawing.Size(65, 22);
+            this.radLabel4.TabIndex = 0;
+            this.radLabel4.Text = "PROJECT";
+            // 
+            // dgvUnitList
+            // 
+            this.dgvUnitList.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dgvUnitList.Cursor = System.Windows.Forms.Cursors.Default;
+            this.dgvUnitList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvUnitList.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.dgvUnitList.ForeColor = System.Drawing.Color.Black;
+            this.dgvUnitList.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.dgvUnitList.Location = new System.Drawing.Point(3, 31);
+            // 
+            // dgvUnitList
+            // 
+            this.dgvUnitList.MasterTemplate.AllowAddNewRow = false;
+            this.dgvUnitList.MasterTemplate.AllowColumnReorder = false;
+            this.dgvUnitList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
+            gridViewTextBoxColumn19.FieldName = "UnitDescription";
+            gridViewTextBoxColumn19.HeaderText = "Type";
+            gridViewTextBoxColumn19.Name = "UnitDescription";
+            gridViewTextBoxColumn19.Width = 62;
+            gridViewTextBoxColumn20.FieldName = "UnitNo";
+            gridViewTextBoxColumn20.HeaderText = "Unit No";
+            gridViewTextBoxColumn20.Name = "UnitNo";
+            gridViewTextBoxColumn20.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn20.Width = 54;
+            gridViewTextBoxColumn21.FieldName = "FloorNo";
+            gridViewTextBoxColumn21.HeaderText = "Floor No";
+            gridViewTextBoxColumn21.Name = "FloorNo";
+            gridViewTextBoxColumn21.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn21.Width = 46;
+            gridViewTextBoxColumn22.FieldName = "FloorType";
+            gridViewTextBoxColumn22.HeaderText = "Floor Type";
+            gridViewTextBoxColumn22.Name = "FloorType";
+            gridViewTextBoxColumn22.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn22.Width = 54;
+            gridViewTextBoxColumn23.FieldName = "UnitStatus";
+            gridViewTextBoxColumn23.HeaderText = "Status";
+            gridViewTextBoxColumn23.Name = "UnitStatus";
+            gridViewTextBoxColumn23.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn23.Width = 153;
+            gridViewTextBoxColumn24.FieldName = "UnitStat";
+            gridViewTextBoxColumn24.HeaderText = "UnitStat";
+            gridViewTextBoxColumn24.IsVisible = false;
+            gridViewTextBoxColumn24.Name = "UnitStat";
+            gridViewTextBoxColumn24.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.dgvUnitList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
+            gridViewTextBoxColumn19,
+            gridViewTextBoxColumn20,
+            gridViewTextBoxColumn21,
+            gridViewTextBoxColumn22,
+            gridViewTextBoxColumn23,
+            gridViewTextBoxColumn24});
+            this.dgvUnitList.MasterTemplate.EnableFiltering = true;
+            this.dgvUnitList.MasterTemplate.ShowRowHeaderColumn = false;
+            this.dgvUnitList.Name = "dgvUnitList";
+            this.dgvUnitList.ReadOnly = true;
+            this.dgvUnitList.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.dgvUnitList.ShowGroupPanel = false;
+            this.dgvUnitList.Size = new System.Drawing.Size(366, 594);
+            this.dgvUnitList.TabIndex = 1;
+            this.dgvUnitList.Text = "radGridView1";
+            this.dgvUnitList.ThemeName = "TelerikMetroTouch";
+            this.dgvUnitList.CellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.dgvUnitList_CellFormatting);
             // 
             // frmMainDashboard
             // 
@@ -1239,26 +1334,26 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnMyDashboard)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel8)).EndInit();
             this.radPanel8.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox4)).EndInit();
-            this.radGroupBox4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.lblTotalActiveContract)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).EndInit();
-            this.radGroupBox3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.lblTotalClient)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).EndInit();
-            this.radGroupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.lblTotalProject)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).EndInit();
             this.radGroupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.lblTotalLocation)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvNotificationList.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvNotificationList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).EndInit();
+            this.radGroupBox2.ResumeLayout(false);
+            this.tableLayoutPanel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).EndInit();
+            this.radLabel3.ResumeLayout(false);
+            this.radLabel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlUnitStatus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlProject)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUnitList.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUnitList)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1343,19 +1438,18 @@
         private Telerik.WinControls.UI.RadMenuItem radMenuItemFormControls;
         private Telerik.WinControls.UI.RadButton btnSwitchUser;
         private Telerik.WinControls.UI.RadMenuItem radMenuItemGroup;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemQuickInquiry;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private Telerik.WinControls.UI.RadGroupBox radGroupBox1;
-        private Telerik.WinControls.UI.RadLabel lblTotalLocation;
-        private Telerik.WinControls.UI.RadLabel radLabel3;
-        private Telerik.WinControls.UI.RadGroupBox radGroupBox4;
-        private Telerik.WinControls.UI.RadLabel lblTotalActiveContract;
-        private Telerik.WinControls.UI.RadLabel radLabel10;
-        private Telerik.WinControls.UI.RadGroupBox radGroupBox3;
-        private Telerik.WinControls.UI.RadLabel lblTotalClient;
-        private Telerik.WinControls.UI.RadLabel radLabel8;
+        private Telerik.WinControls.UI.RadGridView dgvNotificationList;
+        private Telerik.WinControls.Themes.TelerikMetroTouchTheme telerikMetroTouchTheme1;
         private Telerik.WinControls.UI.RadGroupBox radGroupBox2;
-        private Telerik.WinControls.UI.RadLabel lblTotalProject;
-        private Telerik.WinControls.UI.RadLabel radLabel6;
-        private Telerik.WinControls.UI.RadMenuItem radMenuItemQuickInquiry;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private Telerik.WinControls.UI.RadLabel radLabel3;
+        private Telerik.WinControls.UI.RadDropDownList ddlUnitStatus;
+        private Telerik.WinControls.UI.RadLabel radLabel5;
+        private Telerik.WinControls.UI.RadDropDownList ddlProject;
+        private Telerik.WinControls.UI.RadLabel radLabel4;
+        private Telerik.WinControls.UI.RadGridView dgvUnitList;
     }
 }

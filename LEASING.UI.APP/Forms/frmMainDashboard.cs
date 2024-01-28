@@ -10,12 +10,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Telerik.WinControls;
 
 namespace LEASING.UI.APP.Forms
 {
     public partial class frmMainDashboard : Form
     {
         OtherContext OtherContext = new OtherContext();
+        ProjectContext ProjectContext = new ProjectContext();
         frmPreEmp_Login _frmPreEmp_Login;
         private bool IsSwithUserLogOut = false;
         public frmMainDashboard()
@@ -34,20 +36,20 @@ namespace LEASING.UI.APP.Forms
             }
 
         }
-        private void M_GetTotalCountLabel()
-        {
+        //private void M_GetTotalCountLabel()
+        //{
 
-            using (DataSet dt = OtherContext.GetTotalCountLabel())
-            {
-                if (dt !=null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
-                {
-                    lblTotalLocation.Text = Convert.ToString(dt.Tables[0].Rows[0]["TotalLocation"]);
-                    lblTotalProject.Text = Convert.ToString(dt.Tables[0].Rows[0]["TotalProject"]);
-                    lblTotalClient.Text = Convert.ToString(dt.Tables[0].Rows[0]["TotalClient"]);
-                    lblTotalActiveContract.Text = Convert.ToString(dt.Tables[0].Rows[0]["TotalActiveContract"]);
-                }
-            }
-        }
+        //    using (DataSet dt = OtherContext.GetTotalCountLabel())
+        //    {
+        //        if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+        //        {
+        //            lblTotalLocation.Text = Convert.ToString(dt.Tables[0].Rows[0]["TotalLocation"]);
+        //            lblTotalProject.Text = Convert.ToString(dt.Tables[0].Rows[0]["TotalProject"]);
+        //            lblTotalClient.Text = Convert.ToString(dt.Tables[0].Rows[0]["TotalClient"]);
+        //            lblTotalActiveContract.Text = Convert.ToString(dt.Tables[0].Rows[0]["TotalActiveContract"]);
+        //        }
+        //    }
+        //}
         private void GetNotificationList()
         {
             using (DataSet dt = OtherContext.GetNotificationList())
@@ -55,15 +57,55 @@ namespace LEASING.UI.APP.Forms
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                 {
                     this.radMenuItemNotification.Text = "NOTIFICATION (0)";
-                    this.radMenuItemNotification.Text = "NOTIFICATION ("+Convert.ToString(dt.Tables[0].Rows.Count)+")";
+                    this.radMenuItemNotification.Text = "NOTIFICATION (" + Convert.ToString(dt.Tables[0].Rows.Count) + ")";
                 }
             }
         }
+        private void GetNotificationListDetails()
+        {
+            dgvNotificationList.DataSource = null;
+            using (DataSet dt = OtherContext.GetNotificationList())
+            {
+                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                {
+                    dgvNotificationList.DataSource = dt.Tables[0];
+                }
+            }
+        }
+        private void M_GetUnitListByProjectAndStatus()
+        {
+            dgvUnitList.DataSource = null;
+            using (DataSet dt = OtherContext.GetUnitListByProjectAndStatus(Convert.ToInt32(ddlProject.SelectedValue),ddlUnitStatus.SelectedText))
+            {
+                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                {
+                    dgvUnitList.DataSource = dt.Tables[0];
+                }
+            }
+        }
+
+        private void M_SelectProject()
+        {
+
+            ddlProject.DataSource = null;
+            using (DataSet dt = ProjectContext.GetSelectProject())
+            {
+                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                {
+                    ddlProject.DisplayMember = "ProjectName";
+                    ddlProject.ValueMember = "RecId";
+                    ddlProject.DataSource = dt.Tables[0];
+                }
+            }
+        }
+
         private void frmMainDashboard_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
             this.radMenuItemNotification.Text = "NOTIFICATION (0)";
             GetNotificationList();
+            M_SelectProject();
+           
 
             //radMenu7.Visible = false;
             //radPanel7.Visible = false;
@@ -76,7 +118,7 @@ namespace LEASING.UI.APP.Forms
 
             lblGroupName.Text = Variables.UserGroupName;
             lblStaffName.Text = Variables.FirstName;
-            M_GetTotalCountLabel();
+            //M_GetTotalCountLabel();
         }
         private void btnSettings_Click(object sender, EventArgs e)
         {
@@ -227,30 +269,13 @@ namespace LEASING.UI.APP.Forms
         }
         private void radMenuItemGenerateComputationUnit2_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Would you like to pay it as full?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
-            {
-                frmComputation forms = new frmComputation(true);
-                forms.ShowDialog();
-            }
-            else
-            {
-                frmComputation forms = new frmComputation(false);
-                forms.ShowDialog();
-            }
-
+            frmComputation forms = new frmComputation();
+            forms.ShowDialog();
         }
         private void radMenuItemGenerateComputationParking2_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Would you like to pay it as full?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
-            {
-                frmParkComputation forms = new frmParkComputation(true);
-                forms.ShowDialog();
-            }
-            else
-            {
-                frmParkComputation forms = new frmParkComputation(false);
-                forms.ShowDialog();
-            }
+            frmParkComputation forms = new frmParkComputation();
+            forms.ShowDialog();
 
         }
         private void radMenuItemResidentialSettings2_Click(object sender, EventArgs e)
@@ -364,15 +389,115 @@ namespace LEASING.UI.APP.Forms
 
         private void radMenuItemNotification_Click(object sender, EventArgs e)
         {
-            GetNotificationList();
-            frmNotification forms = new frmNotification();
-            forms.ShowDialog();
+            GetNotificationListDetails();
         }
 
         private void radMenuItemQuickInquiry_Click(object sender, EventArgs e)
         {
             frmContractInquiry forms = new frmContractInquiry();
             forms.ShowDialog();
+        }
+
+        private void dgvNotificationList_CellFormatting(object sender, Telerik.WinControls.UI.CellFormattingEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(Convert.ToString(this.dgvNotificationList.Rows[e.RowIndex].Cells["Status"].Value)))
+            {
+                if (Convert.ToString(this.dgvNotificationList.Rows[e.RowIndex].Cells["Status"].Value) == "DUE")
+                {
+                    e.CellElement.ForeColor = Color.White;
+                    //e.CellElement.Font = new Font("Tahoma", 7f, FontStyle.Bold);
+                    e.CellElement.DrawFill = true;
+                    e.CellElement.GradientStyle = GradientStyles.Solid;
+                    e.CellElement.BackColor = Color.Red;
+                }
+                else if (Convert.ToString(this.dgvNotificationList.Rows[e.RowIndex].Cells["Status"].Value) == "COMMING")
+                {
+                    e.CellElement.ForeColor = Color.Black;
+                    //e.CellElement.Font = new Font("Tahoma", 7f, FontStyle.Bold);
+                    e.CellElement.DrawFill = true;
+                    e.CellElement.GradientStyle = GradientStyles.Solid;
+                    e.CellElement.BackColor = Color.Orange;
+                }
+                else if (Convert.ToString(this.dgvNotificationList.Rows[e.RowIndex].Cells["Status"].Value) == "HOLD")
+                {
+                    e.CellElement.ForeColor = Color.White;
+                    //e.CellElement.Font = new Font("Tahoma", 7f, FontStyle.Bold);
+                    e.CellElement.DrawFill = true;
+                    e.CellElement.GradientStyle = GradientStyles.Solid;
+                    e.CellElement.BackColor = Color.Tomato;
+                }
+                else if (Convert.ToString(this.dgvNotificationList.Rows[e.RowIndex].Cells["Status"].Value) == "PARTIAL")
+                {
+                    e.CellElement.ForeColor = Color.White;
+                    //e.CellElement.Font = new Font("Tahoma", 7f, FontStyle.Bold);
+                    e.CellElement.DrawFill = true;
+                    e.CellElement.GradientStyle = GradientStyles.Solid;
+                    e.CellElement.BackColor = Color.Orange;
+                }
+            }
+        }
+
+        private void dgvUnitList_CellFormatting(object sender, Telerik.WinControls.UI.CellFormattingEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(Convert.ToString(this.dgvUnitList.Rows[e.RowIndex].Cells["UnitStat"].Value)))
+            {
+                if (Convert.ToString(this.dgvUnitList.Rows[e.RowIndex].Cells["UnitStat"].Value) == "VACANT")
+                {
+                    //e.CellElement.ForeColor = Color.Green;
+                    //e.CellElement.Font = new Font("Tahoma", 7f, FontStyle.Bold);
+                    e.CellElement.ForeColor = Color.Black;
+                    e.CellElement.DrawFill = true;
+                    e.CellElement.GradientStyle = GradientStyles.Solid;
+                    e.CellElement.BackColor = Color.Yellow;
+                }
+                else if (Convert.ToString(this.dgvUnitList.Rows[e.RowIndex].Cells["UnitStat"].Value) == "RESERVED")
+                {
+                    e.CellElement.DrawFill = true;
+                    e.CellElement.GradientStyle = GradientStyles.Solid;
+                    e.CellElement.ForeColor = Color.Black;
+                    e.CellElement.BackColor = Color.LightSkyBlue;
+                }
+                else if (Convert.ToString(this.dgvUnitList.Rows[e.RowIndex].Cells["UnitStat"].Value) == "MOVE-IN")
+                {
+                    e.CellElement.DrawFill = true;
+                    e.CellElement.GradientStyle = GradientStyles.Solid;
+                    e.CellElement.ForeColor = Color.White;
+                    e.CellElement.BackColor = Color.Green;
+
+                }
+                else if (Convert.ToString(this.dgvUnitList.Rows[e.RowIndex].Cells["UnitStat"].Value) == "NOT AVAILABLE")
+                {
+                    e.CellElement.DrawFill = true;
+                    e.CellElement.GradientStyle = GradientStyles.Solid;
+                    e.CellElement.ForeColor = Color.Black;
+                    e.CellElement.BackColor = Color.LightSalmon;
+
+                }
+                else if (Convert.ToString(this.dgvUnitList.Rows[e.RowIndex].Cells["UnitStat"].Value) == "HOLD")
+                {
+                    e.CellElement.DrawFill = true;
+                    e.CellElement.GradientStyle = GradientStyles.Solid;
+                    e.CellElement.ForeColor = Color.White;
+                    e.CellElement.BackColor = Color.Red;
+
+                }
+            }
+        }
+
+        private void ddlProject_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
+        {
+            if (ddlProject.SelectedIndex >= 0)
+            {
+                M_GetUnitListByProjectAndStatus();
+            }
+        }
+
+        private void ddlUnitStatus_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
+        {
+            if (ddlProject.SelectedIndex >= 0)
+            {
+                M_GetUnitListByProjectAndStatus();
+            }
         }
     }
 }

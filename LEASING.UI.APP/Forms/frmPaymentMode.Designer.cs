@@ -126,11 +126,10 @@
             // ddlSelectMode
             // 
             this.ddlSelectMode.AutoSize = false;
-            this.ddlSelectMode.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ddlSelectMode.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ddlSelectMode.Location = new System.Drawing.Point(185, 38);
             this.ddlSelectMode.Name = "ddlSelectMode";
-            this.ddlSelectMode.Size = new System.Drawing.Size(241, 29);
+            this.ddlSelectMode.Size = new System.Drawing.Size(121, 29);
             this.ddlSelectMode.TabIndex = 1;
             this.ddlSelectMode.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.ddlSelectMode_SelectedIndexChanged);
             // 
@@ -158,12 +157,12 @@
             // btnOk
             // 
             this.btnOk.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnOk.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOk.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOk.Location = new System.Drawing.Point(185, 353);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(241, 29);
             this.btnOk.TabIndex = 3;
-            this.btnOk.Text = "PROCEED";
+            this.btnOk.Text = "PROCEED >>>";
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // radLabel8

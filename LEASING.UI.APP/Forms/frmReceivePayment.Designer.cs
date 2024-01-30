@@ -35,7 +35,7 @@
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.txtPaidAmount = new Telerik.WinControls.UI.RadTextBox();
             this.txtReceiveAmount = new Telerik.WinControls.UI.RadTextBox();
-            this.txtChangeAmount = new Telerik.WinControls.UI.RadTextBox();
+            this.txtPenaltyAmount = new Telerik.WinControls.UI.RadTextBox();
             this.lblPenaltyStatus = new Telerik.WinControls.UI.RadLabel();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnOK)).BeginInit();
@@ -44,7 +44,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPaidAmount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtReceiveAmount)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtChangeAmount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPenaltyAmount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblPenaltyStatus)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,7 +59,7 @@
             this.tableLayoutPanel1.Controls.Add(this.radLabel3, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.txtPaidAmount, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtReceiveAmount, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.txtChangeAmount, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.txtPenaltyAmount, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.lblPenaltyStatus, 0, 3);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
@@ -114,7 +114,7 @@
             this.radLabel3.Name = "radLabel3";
             this.radLabel3.Size = new System.Drawing.Size(204, 29);
             this.radLabel3.TabIndex = 1;
-            this.radLabel3.Text = "Changed Amount :";
+            this.radLabel3.Text = "Penalty Amount :";
             // 
             // txtPaidAmount
             // 
@@ -142,18 +142,18 @@
             this.txtReceiveAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtReceiveAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtReceiveAmount_KeyPress);
             // 
-            // txtChangeAmount
+            // txtPenaltyAmount
             // 
-            this.txtChangeAmount.AutoSize = false;
-            this.txtChangeAmount.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtChangeAmount.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtChangeAmount.Location = new System.Drawing.Point(213, 73);
-            this.txtChangeAmount.Name = "txtChangeAmount";
-            this.txtChangeAmount.NullText = "Optional...";
-            this.txtChangeAmount.Size = new System.Drawing.Size(234, 29);
-            this.txtChangeAmount.TabIndex = 2;
-            this.txtChangeAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtChangeAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtChangeAmount_KeyPress);
+            this.txtPenaltyAmount.AutoSize = false;
+            this.txtPenaltyAmount.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtPenaltyAmount.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPenaltyAmount.Location = new System.Drawing.Point(213, 73);
+            this.txtPenaltyAmount.Name = "txtPenaltyAmount";
+            this.txtPenaltyAmount.NullText = "Optional...";
+            this.txtPenaltyAmount.Size = new System.Drawing.Size(234, 29);
+            this.txtPenaltyAmount.TabIndex = 2;
+            this.txtPenaltyAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtPenaltyAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtChangeAmount_KeyPress);
             // 
             // lblPenaltyStatus
             // 
@@ -185,7 +185,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPaidAmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtReceiveAmount)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtChangeAmount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPenaltyAmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblPenaltyStatus)).EndInit();
             this.ResumeLayout(false);
 
@@ -200,7 +200,7 @@
         private Telerik.WinControls.UI.RadLabel radLabel3;
         public Telerik.WinControls.UI.RadTextBox txtPaidAmount;
         public Telerik.WinControls.UI.RadTextBox txtReceiveAmount;
-        public Telerik.WinControls.UI.RadTextBox txtChangeAmount;
+        public Telerik.WinControls.UI.RadTextBox txtPenaltyAmount;
         private Telerik.WinControls.UI.RadLabel lblPenaltyStatus;
     }
 }

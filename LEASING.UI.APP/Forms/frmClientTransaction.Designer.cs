@@ -243,7 +243,7 @@
             this.txtTotalPay.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTotalPay.Location = new System.Drawing.Point(122, 53);
             this.txtTotalPay.Name = "txtTotalPay";
-            this.txtTotalPay.Size = new System.Drawing.Size(149, 25);
+            this.txtTotalPay.Size = new System.Drawing.Size(149, 19);
             this.txtTotalPay.TabIndex = 4;
             this.txtTotalPay.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtTotalPay.ThemeName = "TelerikMetroTouch";
@@ -420,7 +420,7 @@
             this.radPageView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radPageView1.Location = new System.Drawing.Point(2, 18);
             this.radPageView1.Name = "radPageView1";
-            this.radPageView1.SelectedPage = this.radPageViewPagePayment;
+            this.radPageView1.SelectedPage = this.radPageViewPagePaymentHistory;
             this.radPageView1.Size = new System.Drawing.Size(641, 560);
             this.radPageView1.TabIndex = 0;
             this.radPageView1.Text = "radPageView1";
@@ -480,7 +480,7 @@
             gridViewTextBoxColumn7.ReadOnly = true;
             gridViewTextBoxColumn7.Width = 150;
             gridViewTextBoxColumn8.FieldName = "LedgAmount";
-            gridViewTextBoxColumn8.HeaderText = "Amount";
+            gridViewTextBoxColumn8.HeaderText = "Due Amount";
             gridViewTextBoxColumn8.Name = "LedgAmount";
             gridViewTextBoxColumn8.ReadOnly = true;
             gridViewTextBoxColumn8.Width = 150;
@@ -547,7 +547,7 @@
             this.dgvPaymentList.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.dgvPaymentList.Location = new System.Drawing.Point(0, 0);
             // 
-            // 
+            // dgvPaymentList
             // 
             this.dgvPaymentList.MasterTemplate.AllowAddNewRow = false;
             this.dgvPaymentList.MasterTemplate.AllowColumnReorder = false;
@@ -562,7 +562,7 @@
             gridViewTextBoxColumn13.Name = "ForMonth";
             gridViewTextBoxColumn13.Width = 95;
             gridViewTextBoxColumn14.FieldName = "Amount";
-            gridViewTextBoxColumn14.HeaderText = "Amount";
+            gridViewTextBoxColumn14.HeaderText = "Due Amount";
             gridViewTextBoxColumn14.Name = "Amount";
             gridViewTextBoxColumn14.Width = 95;
             gridViewTextBoxColumn15.FieldName = "DatePayed";

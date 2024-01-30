@@ -203,7 +203,7 @@ namespace LEASING.UI.APP.Forms
                     {
                        
                         ReceiveAmount = frmReceivePayment.txtReceiveAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtReceiveAmount.Text);
-                        ChangeAmount = frmReceivePayment.txtChangeAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtChangeAmount.Text);
+                        ChangeAmount = frmReceivePayment.txtPenaltyAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtPenaltyAmount.Text);
                         M_sp_GenerateFirstPayment();
                         frmRecieptSelection frmRecieptSelection = new frmRecieptSelection(TransID, RefId);
                         if (string.IsNullOrEmpty(CompanyORNo) && !string.IsNullOrEmpty(CompanyPRNo))

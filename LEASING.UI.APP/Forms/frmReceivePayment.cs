@@ -17,6 +17,7 @@ namespace LEASING.UI.APP.Forms
     {
         PaymentContext PaymentContext = new PaymentContext();
         public bool IsProceed = false;
+        public bool IsPartialPayment = false;
         public string Amount = string.Empty;
         public int recid = 0;
         int DayCount = 0;
@@ -26,9 +27,22 @@ namespace LEASING.UI.APP.Forms
         }
 
 
+        private bool IsValid()
+        {
+            if (string.IsNullOrEmpty(txtReceiveAmount.Text))
+            {
+                Functions.MessageShow("Recieve Amount cannot be empty.");
+                return false;
+            }
+          
+            return true;
+        }
+
+
         private void M_GetPenaltyResult()
         {
-            txtPaidAmount.Text = "";        
+            txtPaidAmount.Text = "";
+            txtPenaltyAmount.Text = "";
             lblPenaltyStatus.Text = "(No Penalty)";
             DayCount = 0;
             using (DataSet dt = PaymentContext.GetPenaltyResult(recid))
@@ -36,6 +50,7 @@ namespace LEASING.UI.APP.Forms
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                 {
                     txtPaidAmount.Text = Convert.ToString(dt.Tables[0].Rows[0]["AmountToPay"]);
+                    txtPenaltyAmount.Text = Convert.ToString(dt.Tables[0].Rows[0]["PenaltyAmount"]);
                     lblPenaltyStatus.Text = Convert.ToString(dt.Tables[0].Rows[0]["PenaltyStatus"]);
                     DayCount = Convert.ToInt32(dt.Tables[0].Rows[0]["DayCount"]);
                 }
@@ -43,18 +58,33 @@ namespace LEASING.UI.APP.Forms
         }
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (Functions.MessageConfirm("Are you sure you want to proceed the payment?.") == DialogResult.Yes)
+            if (IsValid())
             {
-                IsProceed = true;
-                this.Close();
-            }
+                if (decimal.Parse(txtReceiveAmount.Text) != decimal.Parse(txtPaidAmount.Text))
+                {
+                    if (Functions.MessageConfirm("Due amount is not equal to Recieve amount, would you like to pay as Partial payment?.") == DialogResult.Yes)
+                    {
+                        IsPartialPayment = true;
+                        IsProceed = true;
+                        this.Close();
+                    }
+                }
+                else
+                {
+                    if (Functions.MessageConfirm("Are you sure you want to proceed the payment?.") == DialogResult.Yes)
+                    {
+                        IsProceed = true;
+                        this.Close();
+                    }
+                }                                         
+            }           
         }
 
         private void frmReceivePayment_Load(object sender, EventArgs e)
         {
             txtPaidAmount.Text = string.Empty;
             M_GetPenaltyResult();
-          
+
 
             if (!string.IsNullOrEmpty(Amount))
             {

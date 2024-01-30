@@ -110,7 +110,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(429, 382);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(429, 391);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // radLabel1
@@ -160,7 +160,7 @@
             this.btnOk.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOk.Location = new System.Drawing.Point(185, 353);
             this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(241, 29);
+            this.btnOk.Size = new System.Drawing.Size(241, 35);
             this.btnOk.TabIndex = 3;
             this.btnOk.Text = "PROCEED >>>";
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
@@ -317,7 +317,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(429, 382);
+            this.ClientSize = new System.Drawing.Size(429, 391);
             this.Controls.Add(this.tableLayoutPanel1);
             this.DoubleBuffered = true;
             this.Name = "frmPaymentMode";

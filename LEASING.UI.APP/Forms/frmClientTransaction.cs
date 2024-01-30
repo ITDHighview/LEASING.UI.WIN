@@ -739,7 +739,7 @@ namespace LEASING.UI.APP.Forms
                                 if (frmReceivePayment.IsProceed)
                                 {
                                     ReceiveAmount = frmReceivePayment.txtReceiveAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtReceiveAmount.Text);
-                                    ChangeAmount = frmReceivePayment.txtChangeAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtChangeAmount.Text);
+                                    ChangeAmount = frmReceivePayment.txtPenaltyAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtPenaltyAmount.Text);
                                     M_GenerateSecondPayment(frmReceivePayment.Amount);
                                     M_GetComputationById();
                                     M_GetCheckPaymentStatus();
@@ -899,7 +899,7 @@ namespace LEASING.UI.APP.Forms
                                 if (frmReceivePayment.IsProceed)
                                 {
                                     ReceiveAmount = frmReceivePayment.txtReceiveAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtReceiveAmount.Text);
-                                    ChangeAmount = frmReceivePayment.txtChangeAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtChangeAmount.Text);
+                                    ChangeAmount = frmReceivePayment.txtPenaltyAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtPenaltyAmount.Text);
                                     M_GenerateBulkPayment();
                                     M_GetComputationById();
                                     M_GetCheckPaymentStatus();
@@ -947,7 +947,7 @@ namespace LEASING.UI.APP.Forms
                                 if (frmReceivePayment.IsProceed)
                                 {
                                     ReceiveAmount = frmReceivePayment.txtReceiveAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtReceiveAmount.Text);
-                                    ChangeAmount = frmReceivePayment.txtChangeAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtChangeAmount.Text);
+                                    ChangeAmount = frmReceivePayment.txtPenaltyAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtPenaltyAmount.Text);
                                     M_GenerateBulkPayment();
                                     M_GetCheckPaymentStatus();
                                     M_GetLedgerList();

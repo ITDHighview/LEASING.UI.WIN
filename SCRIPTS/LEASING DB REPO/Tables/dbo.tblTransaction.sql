@@ -12,6 +12,7 @@ CREATE TABLE [dbo].[tblTransaction]
 [LastChangedBy] [int] NULL,
 [LastChangedDate] [datetime] NULL,
 [ComputerName] [varchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
-[IsActive] [bit] NULL
+[IsActive] [bit] NULL,
+[ActualAmountPaid] [decimal] (18, 2) NULL
 ) ON [PRIMARY]
 GO

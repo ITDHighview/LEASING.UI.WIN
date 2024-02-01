@@ -10,6 +10,7 @@ CREATE TABLE [dbo].[tblMonthLedger]
 [EncodedDate] [datetime] NULL,
 [ComputerName] [varchar] (30) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
 [TransactionID] [varchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
-[IsHold] [bit] NULL
+[IsHold] [bit] NULL,
+[BalanceAmount] [decimal] (18, 2) NULL
 ) ON [PRIMARY]
 GO

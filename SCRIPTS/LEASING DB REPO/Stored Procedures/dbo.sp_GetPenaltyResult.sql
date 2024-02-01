@@ -40,36 +40,72 @@ BEGIN
         --return total rental plus 3 percent penalty
         SELECT
             (
-                SELECT [tblUnitReference].[TotalRent]
-                       + (([tblUnitReference].[TotalRent] * [tblUnitReference].[PenaltyPct]) / 100)
+                SELECT CAST([tblUnitReference].[TotalRent]
+                            + (([tblUnitReference].[TotalRent] * [tblUnitReference].[PenaltyPct]) / 100) AS DECIMAL(18, 2))
                 FROM [dbo].[tblUnitReference]
                 WHERE [tblUnitReference].[RecId] = @RefRecID
             ) AS [AmountToPay],
             (
-                SELECT (([tblUnitReference].[TotalRent] * [tblUnitReference].[PenaltyPct]) / 100)
+                SELECT CAST((([tblUnitReference].[TotalRent] * [tblUnitReference].[PenaltyPct]) / 100) AS DECIMAL(18, 2))
                 FROM [dbo].[tblUnitReference]
                 WHERE [tblUnitReference].[RecId] = @RefRecID
             ) AS [PenaltyAmount],
             @DayCount AS [DayCount],
-            '(With Penalty:(' + @DayCount + ') days' AS [PenaltyStatus];
+            'With Penalty:(' + CAST(@DayCount AS VARCHAR(5)) + ') days' AS [PenaltyStatus];
     END;
-    ELSE IF @DayCount >= 31
+    ELSE IF @DayCount >= 31 AND @DayCount <= 31
     BEGIN
         --return total rental plus 3 percent x2 penalty
         SELECT
             (
-                SELECT [tblUnitReference].[TotalRent]
-                       + ((([tblUnitReference].[TotalRent] * [tblUnitReference].[PenaltyPct]) / 100) * 2)
+                SELECT CAST([tblUnitReference].[TotalRent]
+                            + ((([tblUnitReference].[TotalRent] * [tblUnitReference].[PenaltyPct]) / 100) * 2) AS DECIMAL(18, 2))
                 FROM [dbo].[tblUnitReference]
                 WHERE [tblUnitReference].[RecId] = @RefRecID
             ) AS [AmountToPay],
             (
-                SELECT ((([tblUnitReference].[TotalRent] * [tblUnitReference].[PenaltyPct]) / 100) * 2)
+                SELECT CAST(((([tblUnitReference].[TotalRent] * [tblUnitReference].[PenaltyPct]) / 100) * 2) AS DECIMAL(18, 2))
                 FROM [dbo].[tblUnitReference]
                 WHERE [tblUnitReference].[RecId] = @RefRecID
             ) AS [PenaltyAmount],
             @DayCount AS [DayCount],
-            '(With Penalty x2:(' + @DayCount + ') days' AS [PenaltyStatus];
-    END;
-END;
+            'With Penalty x2:(' + CAST(@DayCount AS VARCHAR(5)) + ') days' AS [PenaltyStatus];
+    END
+    ELSE IF @DayCount = 60
+    BEGIN
+        --return total rental plus 3 percent x2 penalty
+        SELECT
+            (
+                SELECT CAST([tblUnitReference].[TotalRent]
+                            + ((([tblUnitReference].[TotalRent] * [tblUnitReference].[PenaltyPct]) / 100) * 3) AS DECIMAL(18, 2))
+                FROM [dbo].[tblUnitReference]
+                WHERE [tblUnitReference].[RecId] = @RefRecID
+            ) AS [AmountToPay],
+            (
+                SELECT CAST(((([tblUnitReference].[TotalRent] * [tblUnitReference].[PenaltyPct]) / 100) * 3) AS DECIMAL(18, 2))
+                FROM [dbo].[tblUnitReference]
+                WHERE [tblUnitReference].[RecId] = @RefRecID
+            ) AS [PenaltyAmount],
+            @DayCount AS [DayCount],
+            'With Penalty x3:(' + CAST(@DayCount AS VARCHAR(5)) + ') days' AS [PenaltyStatus];
+    END
+    ELSE IF @DayCount >= 61 
+    BEGIN
+        --return total rental plus 3 percent x2 penalty
+        SELECT
+            (
+                SELECT CAST([tblUnitReference].[TotalRent]
+                            + ((([tblUnitReference].[TotalRent] * [tblUnitReference].[PenaltyPct]) / 100) * 4) AS DECIMAL(18, 2))
+                FROM [dbo].[tblUnitReference]
+                WHERE [tblUnitReference].[RecId] = @RefRecID
+            ) AS [AmountToPay],
+            (
+                SELECT CAST(((([tblUnitReference].[TotalRent] * [tblUnitReference].[PenaltyPct]) / 100) * 4) AS DECIMAL(18, 2))
+                FROM [dbo].[tblUnitReference]
+                WHERE [tblUnitReference].[RecId] = @RefRecID
+            ) AS [PenaltyAmount],
+            @DayCount AS [DayCount],
+            'With Penalty x4:(' + CAST(@DayCount AS VARCHAR(5)) + ') days' AS [PenaltyStatus];
+    END
+END
 GO

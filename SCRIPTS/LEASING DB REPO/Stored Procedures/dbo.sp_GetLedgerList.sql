@@ -50,7 +50,15 @@ BEGIN
                    'FOR PAYMENT'
                ELSE
                    'PENDING'
-           END AS [PaymentStatus]
+           END AS [PaymentStatus],
+           --IIF(
+           --    [tblMonthLedger].[BalanceAmount] <= 0
+           --    AND [tblMonthLedger].[IsPaid] = 0,
+           --    0,
+           --    [tblMonthLedger].[LedgAmount] - [tblMonthLedger].[BalanceAmount]) AS [AmountPaid],
+           ([tblMonthLedger].[LedgAmount] - ISNULL([tblMonthLedger].[BalanceAmount], 0)) AS [AmountPaid],
+           CAST(ABS(ISNULL([tblMonthLedger].[BalanceAmount], 0)) AS DECIMAL(18, 2)) AS [BalanceAmount],
+           '0.00' [PenaltyAmount]
     FROM [dbo].[tblMonthLedger]
     WHERE [tblMonthLedger].[ReferenceID] = @ReferenceID
           AND [tblMonthLedger].[ClientID] = @ClientID

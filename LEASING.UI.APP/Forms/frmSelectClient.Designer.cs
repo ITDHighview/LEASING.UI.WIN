@@ -97,14 +97,14 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 202F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 484F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 517F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(605, 731);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(617, 764);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // radGroupBox2
@@ -115,7 +115,7 @@
             this.radGroupBox2.HeaderText = "DETAILS";
             this.radGroupBox2.Location = new System.Drawing.Point(3, 3);
             this.radGroupBox2.Name = "radGroupBox2";
-            this.radGroupBox2.Size = new System.Drawing.Size(599, 196);
+            this.radGroupBox2.Size = new System.Drawing.Size(611, 196);
             this.radGroupBox2.TabIndex = 1;
             this.radGroupBox2.Text = "DETAILS";
             // 
@@ -146,7 +146,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 21F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(595, 176);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(607, 176);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // radLabel2
@@ -206,7 +206,7 @@
             this.radGroupBox3.Location = new System.Drawing.Point(288, 28);
             this.radGroupBox3.Name = "radGroupBox3";
             this.tableLayoutPanel2.SetRowSpan(this.radGroupBox3, 6);
-            this.radGroupBox3.Size = new System.Drawing.Size(304, 145);
+            this.radGroupBox3.Size = new System.Drawing.Size(316, 145);
             this.radGroupBox3.TabIndex = 9;
             this.radGroupBox3.Text = "Payment Details";
             // 
@@ -229,7 +229,7 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(300, 125);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(312, 125);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
             // radLabel1
@@ -294,7 +294,7 @@
             // 
             this.btnPrintReciept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPrintReciept.Image = global::LEASING.UI.APP.Properties.Resources.print_16;
-            this.btnPrintReciept.Location = new System.Drawing.Point(491, 3);
+            this.btnPrintReciept.Location = new System.Drawing.Point(503, 3);
             this.btnPrintReciept.Name = "btnPrintReciept";
             this.btnPrintReciept.Size = new System.Drawing.Size(101, 19);
             this.btnPrintReciept.TabIndex = 7;
@@ -323,7 +323,7 @@
             this.radGroupBox1.HeaderText = "LEDGER";
             this.radGroupBox1.Location = new System.Drawing.Point(3, 205);
             this.radGroupBox1.Name = "radGroupBox1";
-            this.radGroupBox1.Size = new System.Drawing.Size(599, 478);
+            this.radGroupBox1.Size = new System.Drawing.Size(611, 511);
             this.radGroupBox1.TabIndex = 8;
             this.radGroupBox1.Text = "LEDGER";
             // 
@@ -367,7 +367,7 @@
             this.dgvLedgerList.ReadOnly = true;
             this.dgvLedgerList.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgvLedgerList.ShowGroupPanel = false;
-            this.dgvLedgerList.Size = new System.Drawing.Size(595, 458);
+            this.dgvLedgerList.Size = new System.Drawing.Size(607, 491);
             this.dgvLedgerList.TabIndex = 0;
             this.dgvLedgerList.Text = "radGridView1";
             this.dgvLedgerList.ThemeName = "TelerikMetroTouch";
@@ -377,9 +377,9 @@
             // 
             this.btnGenerate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnGenerate.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenerate.Location = new System.Drawing.Point(3, 689);
+            this.btnGenerate.Location = new System.Drawing.Point(3, 722);
             this.btnGenerate.Name = "btnGenerate";
-            this.btnGenerate.Size = new System.Drawing.Size(599, 39);
+            this.btnGenerate.Size = new System.Drawing.Size(611, 39);
             this.btnGenerate.TabIndex = 9;
             this.btnGenerate.Text = "PROCEED TO PAYMENT >>>";
             this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
@@ -388,7 +388,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(605, 731);
+            this.ClientSize = new System.Drawing.Size(617, 764);
             this.Controls.Add(this.tableLayoutPanel1);
             this.DoubleBuffered = true;
             this.Name = "frmSelectClient";

@@ -44,6 +44,7 @@ BEGIN TRY
     DECLARE @ActualAmount DECIMAL(18, 2) = NULL
     DECLARE @AmountToDeduct DECIMAL(18, 2)
     DECLARE @ForMonth DATE
+    DECLARE @RefRecId BIGINT = NULL
     -- Insert statements for procedure here
 
     CREATE TABLE [#tblBulkPostdatedMonth]
@@ -62,9 +63,49 @@ BEGIN TRY
 
 
     SELECT @TotalRent = [tblUnitReference].[TotalRent],
-           @PenaltyPct = [tblUnitReference].[PenaltyPct]
+           @PenaltyPct = [tblUnitReference].[PenaltyPct],
+           @RefRecId = [tblUnitReference].[RecId]
     FROM [dbo].[tblUnitReference] WITH (NOLOCK)
     WHERE [tblUnitReference].[RefId] = @RefId
+
+
+    UPDATE [dbo].[tblMonthLedger]
+    SET [tblMonthLedger].[PenaltyAmount] = CASE
+                                               WHEN DATEDIFF(DAY, [tblMonthLedger].[LedgMonth], CAST(GETDATE() AS DATE)) < 30 THEN
+                                                   0
+                                               WHEN DATEDIFF(DAY, [tblMonthLedger].[LedgMonth], CAST(GETDATE() AS DATE)) = 30 THEN
+                                                   CAST(((@TotalRent * @PenaltyPct) / 100) AS DECIMAL(18, 2))
+                                               WHEN DATEDIFF(DAY, [tblMonthLedger].[LedgMonth], CAST(GETDATE() AS DATE)) >= 31
+                                                    AND DATEDIFF(
+                                                                    DAY,
+                                                                    [tblMonthLedger].[LedgMonth],
+                                                                    CAST(GETDATE() AS DATE)
+                                                                ) <= 31 THEN
+                                                   CAST((((@TotalRent * @PenaltyPct) / 100) * 2) AS DECIMAL(18, 2))
+                                               WHEN DATEDIFF(DAY, [tblMonthLedger].[LedgMonth], CAST(GETDATE() AS DATE)) = 60 THEN
+                                                   CAST((((@TotalRent * @PenaltyPct) / 100) * 3) AS DECIMAL(18, 2))
+                                               WHEN DATEDIFF(DAY, [tblMonthLedger].[LedgMonth], CAST(GETDATE() AS DATE)) >= 61 THEN
+                                                   CAST((((@TotalRent * @PenaltyPct) / 100) * 4) AS DECIMAL(18, 2))
+                                               ELSE
+                                                   0
+                                           END,
+        [tblMonthLedger].[ActualAmount] = [tblMonthLedger].[LedgAmount] + ISNULL([tblMonthLedger].[PenaltyAmount], 0)
+    WHERE [tblMonthLedger].[ReferenceID] = @RefRecId
+          AND
+          (
+              ISNULL([tblMonthLedger].[IsPaid], 0) = 0
+              OR ISNULL([tblMonthLedger].[IsHold], 0) = 1
+          )
+
+
+    UPDATE [dbo].[tblMonthLedger]
+    SET [tblMonthLedger].[ActualAmount] = [tblMonthLedger].[LedgAmount] + ISNULL([tblMonthLedger].[PenaltyAmount], 0)
+    WHERE [tblMonthLedger].[ReferenceID] = @RefRecId
+          AND
+          (
+              ISNULL([tblMonthLedger].[IsPaid], 0) = 0
+              OR ISNULL([tblMonthLedger].[IsHold], 0) = 1
+          )
 
     BEGIN TRANSACTION
 
@@ -96,21 +137,9 @@ BEGIN TRY
         --IIF([tblMonthLedger].[BalanceAmount] > 0, [tblMonthLedger].[BalanceAmount], [tblMonthLedger].[LedgAmount]) AS [Amount],
         IIF([tblMonthLedger].[BalanceAmount] > 0,
             [tblMonthLedger].[BalanceAmount],
-            CASE
-                WHEN DATEDIFF(DAY, [tblMonthLedger].[LedgMonth], CAST(GETDATE() AS DATE)) < 30 THEN
-                    [tblMonthLedger].[LedgAmount]
-                WHEN DATEDIFF(DAY, [tblMonthLedger].[LedgMonth], CAST(GETDATE() AS DATE)) = 30 THEN
-                    @TotalRent + ((@TotalRent * @PenaltyPct) / 100)
-                WHEN DATEDIFF(DAY, [tblMonthLedger].[LedgMonth], CAST(GETDATE() AS DATE)) >= 31
-                     AND DATEDIFF(DAY, [tblMonthLedger].[LedgMonth], CAST(GETDATE() AS DATE)) <= 31 THEN
-                    @TotalRent + (((@TotalRent * @PenaltyPct) / 100) * 2)
-                WHEN DATEDIFF(DAY, [tblMonthLedger].[LedgMonth], CAST(GETDATE() AS DATE)) = 60 THEN
-                    @TotalRent + (((@TotalRent * @PenaltyPct) / 100) * 3)
-                WHEN DATEDIFF(DAY, [tblMonthLedger].[LedgMonth], CAST(GETDATE() AS DATE)) >= 61 THEN
-                    @TotalRent + (((@TotalRent * @PenaltyPct) / 100) * 4)
-                ELSE
-                    [tblMonthLedger].[LedgAmount]
-            END) AS [Amount],
+            IIF([tblMonthLedger].[ActualAmount] > 0,
+                CAST([tblMonthLedger].[ActualAmount] AS DECIMAL(18, 2)),
+                [tblMonthLedger].[LedgAmount])) AS [Amount],
         [tblMonthLedger].[LedgMonth]
     FROM [dbo].[tblMonthLedger] WITH (NOLOCK)
     WHERE [tblMonthLedger].[ReferenceID] =
@@ -129,7 +158,6 @@ BEGIN TRY
               ISNULL([tblMonthLedger].[IsPaid], 0) = 0
               OR ISNULL([tblMonthLedger].[IsHold], 0) = 1
           )
-         
     ORDER BY [tblMonthLedger].[LedgMonth] ASC
 
     OPEN [CursorName]
@@ -167,7 +195,7 @@ BEGIN TRY
                 UPDATE [dbo].[tblMonthLedger]
                 SET [tblMonthLedger].[IsHold] = 1,
                     [tblMonthLedger].[BalanceAmount] = ABS(@ActualAmount - @AmountToDeduct),
-                    [tblMonthLedger].[TransactionID] = @TranID
+                    [tblMonthLedger].[TransactionID] = @TranID--- TRN WILL CHANGE IF ALWAYS A PAYMENT FOR BALANCE AMOUNT
                 WHERE [tblMonthLedger].[LedgMonth] = @ForMonth
                       AND ISNULL([tblMonthLedger].[IsPaid], 0) = 0
                       OR ISNULL([tblMonthLedger].[IsHold], 0) = 1
@@ -196,21 +224,11 @@ BEGIN TRY
     )
     SELECT @TranID AS [TranId],
            @RefId AS [RefId],
-                      --CASE
-                      --    WHEN DATEDIFF(DAY, [tblMonthLedger].[LedgMonth], CAST(GETDATE() AS DATE)) < 30 THEN
-                      --        [tblMonthLedger].[LedgAmount]
-                      --    WHEN DATEDIFF(DAY, [tblMonthLedger].[LedgMonth], CAST(GETDATE() AS DATE)) = 30 THEN
-                      --        @TotalRent + ((@TotalRent * @PenaltyPct) / 100)
-                      --    WHEN DATEDIFF(DAY, [tblMonthLedger].[LedgMonth], CAST(GETDATE() AS DATE)) >= 31 THEN
-                      --        @TotalRent + (((@TotalRent * @PenaltyPct) / 100) * 2)
-                      --    ELSE
-           [tblMonthLedger].[LedgAmount] AS [Amount],
-                      --END AS [Amount],
-                      --[tblMonthLedger].[LedgAmount] AS [Amount],
+           [tblMonthLedger].[LedgAmount] AS [Amount], ---THIS IS NOT A ACTUAL AMOUNT PAID  FOR FUTURE JOIN TRAN TO PAYMENT TRANID TO GET THE ACTUAL SUM PAYMENT                   
            [tblMonthLedger].[LedgMonth] AS [ForMonth],
            'FOLLOW-UP PAYMENT' AS [Remarks],
            @EncodedBy,
-           GETDATE(), --Dated payed
+           GETDATE(),                                 --Dated payed
            @ComputerName,
            1
     FROM [dbo].[tblMonthLedger] WITH (NOLOCK)

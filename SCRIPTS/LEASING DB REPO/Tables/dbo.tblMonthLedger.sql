@@ -11,6 +11,8 @@ CREATE TABLE [dbo].[tblMonthLedger]
 [ComputerName] [varchar] (30) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
 [TransactionID] [varchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
 [IsHold] [bit] NULL,
-[BalanceAmount] [decimal] (18, 2) NULL
+[BalanceAmount] [decimal] (18, 2) NULL,
+[PenaltyAmount] [decimal] (18, 2) NULL,
+[ActualAmount] [decimal] (18, 2) NULL
 ) ON [PRIMARY]
 GO

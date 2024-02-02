@@ -28,11 +28,58 @@ BEGIN
     --       CONVERT(VARCHAR(20), GETDATE(), 107) as LedgMonth,
     --       'FOR 3 MONTHS SECURITY DEPOSIT' as Remarks
     --UNION
+    DECLARE @TotalRent DECIMAL(18, 2) = NULL
+    DECLARE @PenaltyPct DECIMAL(18, 2) = NULL
+
+
+
+    SELECT @TotalRent = [tblUnitReference].[TotalRent],
+           @PenaltyPct = [tblUnitReference].[PenaltyPct]
+    FROM [dbo].[tblUnitReference] WITH (NOLOCK)
+    WHERE [tblUnitReference].[RecId] = @ReferenceID
+
+
+    UPDATE [dbo].[tblMonthLedger]
+    SET [tblMonthLedger].[PenaltyAmount] = CASE
+                                               WHEN DATEDIFF(DAY, [tblMonthLedger].[LedgMonth], CAST(GETDATE() AS DATE)) < 30 THEN
+                                                   0
+                                               WHEN DATEDIFF(DAY, [tblMonthLedger].[LedgMonth], CAST(GETDATE() AS DATE)) = 30 THEN
+                                                   CAST(((@TotalRent * @PenaltyPct) / 100) AS DECIMAL(18, 2))
+                                               WHEN DATEDIFF(DAY, [tblMonthLedger].[LedgMonth], CAST(GETDATE() AS DATE)) >= 31
+                                                    AND DATEDIFF(
+                                                                    DAY,
+                                                                    [tblMonthLedger].[LedgMonth],
+                                                                    CAST(GETDATE() AS DATE)
+                                                                ) <= 31 THEN
+                                                   CAST((((@TotalRent * @PenaltyPct) / 100) * 2) AS DECIMAL(18, 2))
+                                               WHEN DATEDIFF(DAY, [tblMonthLedger].[LedgMonth], CAST(GETDATE() AS DATE)) = 60 THEN
+                                                   CAST((((@TotalRent * @PenaltyPct) / 100) * 3) AS DECIMAL(18, 2))
+                                               WHEN DATEDIFF(DAY, [tblMonthLedger].[LedgMonth], CAST(GETDATE() AS DATE)) >= 61 THEN
+                                                   CAST((((@TotalRent * @PenaltyPct) / 100) * 4) AS DECIMAL(18, 2))
+                                               ELSE
+                                                   0
+                                           END
+    WHERE [tblMonthLedger].[ReferenceID] = @ReferenceID
+          AND
+          (
+              ISNULL([tblMonthLedger].[IsPaid], 0) = 0
+              OR ISNULL([tblMonthLedger].[IsHold], 0) = 1
+          )
+
+    UPDATE [dbo].[tblMonthLedger]
+    SET [tblMonthLedger].[ActualAmount] = [tblMonthLedger].[LedgAmount] + ISNULL([tblMonthLedger].[PenaltyAmount], 0)
+    WHERE [tblMonthLedger].[ReferenceID] = @ReferenceID
+          AND
+          (
+              ISNULL([tblMonthLedger].[IsPaid], 0) = 0
+              OR ISNULL([tblMonthLedger].[IsHold], 0) = 1
+          )
     SELECT ROW_NUMBER() OVER (ORDER BY [tblMonthLedger].[LedgMonth] ASC) [seq],
            [tblMonthLedger].[Recid],
            [tblMonthLedger].[ReferenceID],
            [tblMonthLedger].[ClientID],
            [tblMonthLedger].[LedgAmount],
+           ISNULL([tblMonthLedger].[PenaltyAmount], 0) AS [PenaltyAmount],
            ISNULL([tblMonthLedger].[TransactionID], '') AS [TransactionID],
            CONVERT(VARCHAR(20), [tblMonthLedger].[LedgMonth], 107) AS [LedgMonth],
            '' AS [Remarks],
@@ -56,7 +103,15 @@ BEGIN
            --    AND [tblMonthLedger].[IsPaid] = 0,
            --    0,
            --    [tblMonthLedger].[LedgAmount] - [tblMonthLedger].[BalanceAmount]) AS [AmountPaid],
-           ([tblMonthLedger].[LedgAmount] - ISNULL([tblMonthLedger].[BalanceAmount], 0)) AS [AmountPaid],
+           IIF(
+               ISNULL([tblMonthLedger].[IsPaid], 0) = 1
+               OR
+               (
+                   ISNULL([tblMonthLedger].[IsHold], 0) = 1
+                   AND [tblMonthLedger].[BalanceAmount] > 0
+               ),
+               ([tblMonthLedger].[LedgAmount] - ISNULL([tblMonthLedger].[BalanceAmount], 0)),
+               0) AS [AmountPaid],
            CAST(ABS(ISNULL([tblMonthLedger].[BalanceAmount], 0)) AS DECIMAL(18, 2)) AS [BalanceAmount],
            '0.00' [PenaltyAmount]
     FROM [dbo].[tblMonthLedger]

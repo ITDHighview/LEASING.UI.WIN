@@ -348,6 +348,12 @@
     <Compile Include="Forms\frmParkComputation.Designer.cs">
       <DependentUpon>frmParkComputation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmPaymentMode1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmPaymentMode1.Designer.cs">
+      <DependentUpon>frmPaymentMode1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmPaymentMode.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -693,6 +699,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmParkComputation.resx">
       <DependentUpon>frmParkComputation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmPaymentMode1.resx">
+      <DependentUpon>frmPaymentMode1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmPaymentMode.resx">
       <DependentUpon>frmPaymentMode.cs</DependentUpon>

@@ -26,36 +26,21 @@ namespace LEASING.UI.APP.Forms
             InitializeComponent();
         }
 
-
         private bool IsValid()
         {
             if (string.IsNullOrEmpty(txtReceiveAmount.Text))
             {
-                Functions.MessageShow("Recieve Amount cannot be empty.");
+                Functions.MessageShow("Receive Amount cannot be empty.");
                 return false;
             }
-          
+            if (decimal.Parse(txtReceiveAmount.Text) > decimal.Parse(txtPaidAmount.Text))
+            {
+                Functions.MessageShow("Receive Amount cannot be greater that Due Amount.");
+                return false;
+            }
             return true;
         }
-
-
-        private void M_GetPenaltyResult()
-        {
-            txtPaidAmount.Text = "";
-            txtPenaltyAmount.Text = "";
-            lblPenaltyStatus.Text = "(No Penalty)";
-            DayCount = 0;
-            using (DataSet dt = PaymentContext.GetPenaltyResult(recid))
-            {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
-                {
-                    txtPaidAmount.Text = Convert.ToString(dt.Tables[0].Rows[0]["AmountToPay"]);
-                    txtPenaltyAmount.Text = Convert.ToString(dt.Tables[0].Rows[0]["PenaltyAmount"]);
-                    lblPenaltyStatus.Text = Convert.ToString(dt.Tables[0].Rows[0]["PenaltyStatus"]);
-                    DayCount = Convert.ToInt32(dt.Tables[0].Rows[0]["DayCount"]);
-                }
-            }
-        }
+    
         private void btnOK_Click(object sender, EventArgs e)
         {
             if (IsValid())
@@ -82,10 +67,7 @@ namespace LEASING.UI.APP.Forms
 
         private void frmReceivePayment_Load(object sender, EventArgs e)
         {
-            txtPaidAmount.Text = string.Empty;
-            M_GetPenaltyResult();
-
-
+            txtPaidAmount.Text = string.Empty;         
             if (!string.IsNullOrEmpty(Amount))
             {
                 txtPaidAmount.Text = Amount;

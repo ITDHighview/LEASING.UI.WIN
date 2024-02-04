@@ -32,20 +32,14 @@
             this.btnOK = new Telerik.WinControls.UI.RadButton();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.txtPaidAmount = new Telerik.WinControls.UI.RadTextBox();
             this.txtReceiveAmount = new Telerik.WinControls.UI.RadTextBox();
-            this.txtPenaltyAmount = new Telerik.WinControls.UI.RadTextBox();
-            this.lblPenaltyStatus = new Telerik.WinControls.UI.RadLabel();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnOK)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPaidAmount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtReceiveAmount)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPenaltyAmount)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblPenaltyStatus)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -56,11 +50,8 @@
             this.tableLayoutPanel1.Controls.Add(this.btnOK, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.radLabel2, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.radLabel1, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.radLabel3, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.txtPaidAmount, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtReceiveAmount, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.txtPenaltyAmount, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.lblPenaltyStatus, 0, 3);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -105,17 +96,6 @@
             this.radLabel1.TabIndex = 1;
             this.radLabel1.Text = "Received Amount :";
             // 
-            // radLabel3
-            // 
-            this.radLabel3.AutoSize = false;
-            this.radLabel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radLabel3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel3.Location = new System.Drawing.Point(3, 73);
-            this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(204, 29);
-            this.radLabel3.TabIndex = 1;
-            this.radLabel3.Text = "Penalty Amount :";
-            // 
             // txtPaidAmount
             // 
             this.txtPaidAmount.AutoSize = false;
@@ -123,7 +103,7 @@
             this.txtPaidAmount.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPaidAmount.Location = new System.Drawing.Point(213, 3);
             this.txtPaidAmount.Name = "txtPaidAmount";
-            this.txtPaidAmount.NullText = "Type here...";
+            this.txtPaidAmount.NullText = "0.00";
             this.txtPaidAmount.Size = new System.Drawing.Size(234, 29);
             this.txtPaidAmount.TabIndex = 2;
             this.txtPaidAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -136,35 +116,11 @@
             this.txtReceiveAmount.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtReceiveAmount.Location = new System.Drawing.Point(213, 38);
             this.txtReceiveAmount.Name = "txtReceiveAmount";
-            this.txtReceiveAmount.NullText = "Optional...";
+            this.txtReceiveAmount.NullText = "Type here...";
             this.txtReceiveAmount.Size = new System.Drawing.Size(234, 29);
             this.txtReceiveAmount.TabIndex = 2;
             this.txtReceiveAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtReceiveAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtReceiveAmount_KeyPress);
-            // 
-            // txtPenaltyAmount
-            // 
-            this.txtPenaltyAmount.AutoSize = false;
-            this.txtPenaltyAmount.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtPenaltyAmount.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPenaltyAmount.Location = new System.Drawing.Point(213, 73);
-            this.txtPenaltyAmount.Name = "txtPenaltyAmount";
-            this.txtPenaltyAmount.NullText = "Optional...";
-            this.txtPenaltyAmount.Size = new System.Drawing.Size(234, 29);
-            this.txtPenaltyAmount.TabIndex = 2;
-            this.txtPenaltyAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtPenaltyAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtChangeAmount_KeyPress);
-            // 
-            // lblPenaltyStatus
-            // 
-            this.lblPenaltyStatus.AutoSize = false;
-            this.lblPenaltyStatus.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblPenaltyStatus.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPenaltyStatus.Location = new System.Drawing.Point(3, 108);
-            this.lblPenaltyStatus.Name = "lblPenaltyStatus";
-            this.lblPenaltyStatus.Size = new System.Drawing.Size(204, 36);
-            this.lblPenaltyStatus.TabIndex = 1;
-            this.lblPenaltyStatus.Text = "(No Penalty)";
             // 
             // frmReceivePayment
             // 
@@ -182,11 +138,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnOK)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPaidAmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtReceiveAmount)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPenaltyAmount)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblPenaltyStatus)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -197,10 +150,7 @@
         private Telerik.WinControls.UI.RadButton btnOK;
         private Telerik.WinControls.UI.RadLabel radLabel2;
         private Telerik.WinControls.UI.RadLabel radLabel1;
-        private Telerik.WinControls.UI.RadLabel radLabel3;
         public Telerik.WinControls.UI.RadTextBox txtPaidAmount;
         public Telerik.WinControls.UI.RadTextBox txtReceiveAmount;
-        public Telerik.WinControls.UI.RadTextBox txtPenaltyAmount;
-        private Telerik.WinControls.UI.RadLabel lblPenaltyStatus;
     }
 }

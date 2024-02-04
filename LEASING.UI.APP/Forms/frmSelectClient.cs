@@ -182,7 +182,7 @@ namespace LEASING.UI.APP.Forms
         {
             if (MessageBox.Show("Are you sure you want to proceed  to this payment?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
             {
-                frmPaymentMode frmPaymentMode = new frmPaymentMode();
+                frmPaymentMode1 frmPaymentMode = new frmPaymentMode1();
                 frmPaymentMode.ShowDialog();
                 if (frmPaymentMode.IsProceed)
                 {
@@ -203,7 +203,7 @@ namespace LEASING.UI.APP.Forms
                     {
                        
                         ReceiveAmount = frmReceivePayment.txtReceiveAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtReceiveAmount.Text);
-                        ChangeAmount = frmReceivePayment.txtPenaltyAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtPenaltyAmount.Text);
+                        ChangeAmount = 0;
                         M_sp_GenerateFirstPayment();
                         frmRecieptSelection frmRecieptSelection = new frmRecieptSelection(TransID, RefId);
                         if (string.IsNullOrEmpty(CompanyORNo) && !string.IsNullOrEmpty(CompanyPRNo))

@@ -374,38 +374,38 @@ namespace LEASING.UI.APP.Forms
             {
                 if (this.dgvLedgerList.Columns[e.ColumnIndex].Name == "ColPay")
                 {
-                    if (MessageBox.Show("Are you sure you want to proceed  to this payment?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
-                    {
-                        frmPaymentMode frmPaymentMode = new frmPaymentMode();
-                        frmPaymentMode.ShowDialog();
-                        if (frmPaymentMode.IsProceed)
-                        {
-                            CompanyORNo = frmPaymentMode.CompanyORNo;
-                            CompanyPRNo = frmPaymentMode.CompanyPRNo;
-                            BankAccountName = frmPaymentMode.BankAccountName;
-                            BankAccountNumber = frmPaymentMode.BankAccountNumber;
-                            BankName = frmPaymentMode.BankName;
-                            SerialNo = frmPaymentMode.SerialNo;
-                            PaymentRemarks = frmPaymentMode.PaymentRemarks;
-                            REF = frmPaymentMode.REF;
-                            ModeType = frmPaymentMode.ModeType;
+                    //if (MessageBox.Show("Are you sure you want to proceed  to this payment?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                    //{
+                    //    frmPaymentMode frmPaymentMode = new frmPaymentMode();
+                    //    frmPaymentMode.ShowDialog();
+                    //    if (frmPaymentMode.IsProceed)
+                    //    {
+                    //        CompanyORNo = frmPaymentMode.CompanyORNo;
+                    //        CompanyPRNo = frmPaymentMode.CompanyPRNo;
+                    //        BankAccountName = frmPaymentMode.BankAccountName;
+                    //        BankAccountNumber = frmPaymentMode.BankAccountNumber;
+                    //        BankName = frmPaymentMode.BankName;
+                    //        SerialNo = frmPaymentMode.SerialNo;
+                    //        PaymentRemarks = frmPaymentMode.PaymentRemarks;
+                    //        REF = frmPaymentMode.REF;
+                    //        ModeType = frmPaymentMode.ModeType;
 
-                            frmReceivePayment frmReceivePayment = new frmReceivePayment();
-                            frmReceivePayment.Amount = Convert.ToString(dgvLedgerList.CurrentRow.Cells["LedgAmount"].Value);
-                            frmReceivePayment.ShowDialog();
-                            if (frmReceivePayment.IsProceed)
-                            {
-                                ReceiveAmount = frmReceivePayment.txtReceiveAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtReceiveAmount.Text);
-                                ChangeAmount = frmReceivePayment.txtPenaltyAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtPenaltyAmount.Text);
-                                M_sp_GenerateFirstPayment();
-                                M_GetLedgerList();
-                                M_GetPaymentListByReferenceId();
+                    //        frmReceivePayment frmReceivePayment = new frmReceivePayment();
+                    //        frmReceivePayment.Amount = Convert.ToString(dgvLedgerList.CurrentRow.Cells["LedgAmount"].Value);
+                    //        frmReceivePayment.ShowDialog();
+                    //        if (frmReceivePayment.IsProceed)
+                    //        {
+                    //            ReceiveAmount = frmReceivePayment.txtReceiveAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtReceiveAmount.Text);
+                    //            ChangeAmount = frmReceivePayment.txtPenaltyAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtPenaltyAmount.Text);
+                    //            M_sp_GenerateFirstPayment();
+                    //            M_GetLedgerList();
+                    //            M_GetPaymentListByReferenceId();
 
-                                frmRecieptSelection frmRecieptSelection = new frmRecieptSelection(TranID,RefId);
-                                frmRecieptSelection.ShowDialog();
-                            }
-                        }
-                    }
+                    //            frmRecieptSelection frmRecieptSelection = new frmRecieptSelection(TranID,RefId);
+                    //            frmRecieptSelection.ShowDialog();
+                    //        }
+                    //    }
+                    //}
                 }
                 else if (this.dgvLedgerList.Columns[e.ColumnIndex].Name == "ColHold")
                 {

@@ -484,6 +484,7 @@
             // 
             this.dgvLedgerList.MasterTemplate.AllowAddNewRow = false;
             this.dgvLedgerList.MasterTemplate.AllowColumnReorder = false;
+            this.dgvLedgerList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
             gridViewCommandColumn1.DefaultText = "Pay";
             gridViewCommandColumn1.FieldName = "ColPay";
             gridViewCommandColumn1.HeaderImage = global::LEASING.UI.APP.Properties.Resources.Bullet15_Arrow_Blue;
@@ -503,18 +504,19 @@
             gridViewTextBoxColumn6.FieldName = "seq";
             gridViewTextBoxColumn6.HeaderText = "seq";
             gridViewTextBoxColumn6.Name = "seq";
+            gridViewTextBoxColumn6.Width = 54;
             gridViewTextBoxColumn7.FieldName = "LedgMonth";
             gridViewTextBoxColumn7.HeaderText = "Month";
             gridViewTextBoxColumn7.Name = "LedgMonth";
-            gridViewTextBoxColumn7.Width = 150;
+            gridViewTextBoxColumn7.Width = 162;
             gridViewTextBoxColumn8.FieldName = "LedgAmount";
             gridViewTextBoxColumn8.HeaderText = "Amount";
             gridViewTextBoxColumn8.Name = "LedgAmount";
-            gridViewTextBoxColumn8.Width = 150;
+            gridViewTextBoxColumn8.Width = 162;
             gridViewTextBoxColumn9.FieldName = "PaymentStatus";
             gridViewTextBoxColumn9.HeaderText = "Status";
             gridViewTextBoxColumn9.Name = "PaymentStatus";
-            gridViewTextBoxColumn9.Width = 180;
+            gridViewTextBoxColumn9.Width = 195;
             gridViewTextBoxColumn10.FieldName = "Recid";
             gridViewTextBoxColumn10.HeaderText = "Recid";
             gridViewTextBoxColumn10.IsVisible = false;

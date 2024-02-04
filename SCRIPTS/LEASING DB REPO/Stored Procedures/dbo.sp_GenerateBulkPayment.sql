@@ -69,33 +69,33 @@ BEGIN TRY
     WHERE [tblUnitReference].[RefId] = @RefId
 
 
-    UPDATE [dbo].[tblMonthLedger]
-    SET [tblMonthLedger].[PenaltyAmount] = CASE
-                                               WHEN DATEDIFF(DAY, [tblMonthLedger].[LedgMonth], CAST(GETDATE() AS DATE)) < 30 THEN
-                                                   0
-                                               WHEN DATEDIFF(DAY, [tblMonthLedger].[LedgMonth], CAST(GETDATE() AS DATE)) = 30 THEN
-                                                   CAST(((@TotalRent * @PenaltyPct) / 100) AS DECIMAL(18, 2))
-                                               WHEN DATEDIFF(DAY, [tblMonthLedger].[LedgMonth], CAST(GETDATE() AS DATE)) >= 31
-                                                    AND DATEDIFF(
-                                                                    DAY,
-                                                                    [tblMonthLedger].[LedgMonth],
-                                                                    CAST(GETDATE() AS DATE)
-                                                                ) <= 31 THEN
-                                                   CAST((((@TotalRent * @PenaltyPct) / 100) * 2) AS DECIMAL(18, 2))
-                                               WHEN DATEDIFF(DAY, [tblMonthLedger].[LedgMonth], CAST(GETDATE() AS DATE)) = 60 THEN
-                                                   CAST((((@TotalRent * @PenaltyPct) / 100) * 3) AS DECIMAL(18, 2))
-                                               WHEN DATEDIFF(DAY, [tblMonthLedger].[LedgMonth], CAST(GETDATE() AS DATE)) >= 61 THEN
-                                                   CAST((((@TotalRent * @PenaltyPct) / 100) * 4) AS DECIMAL(18, 2))
-                                               ELSE
-                                                   0
-                                           END,
-        [tblMonthLedger].[ActualAmount] = [tblMonthLedger].[LedgAmount] + ISNULL([tblMonthLedger].[PenaltyAmount], 0)
-    WHERE [tblMonthLedger].[ReferenceID] = @RefRecId
-          AND
-          (
-              ISNULL([tblMonthLedger].[IsPaid], 0) = 0
-              OR ISNULL([tblMonthLedger].[IsHold], 0) = 1
-          )
+    --UPDATE [dbo].[tblMonthLedger]
+    --SET [tblMonthLedger].[PenaltyAmount] = CASE
+    --                                           WHEN DATEDIFF(DAY, [tblMonthLedger].[LedgMonth], CAST(GETDATE() AS DATE)) < 30 THEN
+    --                                               0
+    --                                           WHEN DATEDIFF(DAY, [tblMonthLedger].[LedgMonth], CAST(GETDATE() AS DATE)) = 30 THEN
+    --                                               CAST(((@TotalRent * @PenaltyPct) / 100) AS DECIMAL(18, 2))
+    --                                           WHEN DATEDIFF(DAY, [tblMonthLedger].[LedgMonth], CAST(GETDATE() AS DATE)) >= 31
+    --                                                AND DATEDIFF(
+    --                                                                DAY,
+    --                                                                [tblMonthLedger].[LedgMonth],
+    --                                                                CAST(GETDATE() AS DATE)
+    --                                                            ) <= 31 THEN
+    --                                               CAST((((@TotalRent * @PenaltyPct) / 100) * 2) AS DECIMAL(18, 2))
+    --                                           WHEN DATEDIFF(DAY, [tblMonthLedger].[LedgMonth], CAST(GETDATE() AS DATE)) = 60 THEN
+    --                                               CAST((((@TotalRent * @PenaltyPct) / 100) * 3) AS DECIMAL(18, 2))
+    --                                           WHEN DATEDIFF(DAY, [tblMonthLedger].[LedgMonth], CAST(GETDATE() AS DATE)) >= 61 THEN
+    --                                               CAST((((@TotalRent * @PenaltyPct) / 100) * 4) AS DECIMAL(18, 2))
+    --                                           ELSE
+    --                                               0
+    --                                       END,
+    --    [tblMonthLedger].[ActualAmount] = [tblMonthLedger].[LedgAmount] + ISNULL([tblMonthLedger].[PenaltyAmount], 0)
+    --WHERE [tblMonthLedger].[ReferenceID] = @RefRecId
+    --      AND
+    --      (
+    --          ISNULL([tblMonthLedger].[IsPaid], 0) = 0
+    --          OR ISNULL([tblMonthLedger].[IsHold], 0) = 1
+    --      )
 
 
     UPDATE [dbo].[tblMonthLedger]

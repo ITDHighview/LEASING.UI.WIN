@@ -11,7 +11,16 @@ INSERT INTO [dbo].[tblFormControlsMaster]
     [IsDelete]
 )
 VALUES
-(52, 1, 10, 'radMenuItemAddCompany', 'Company', 0, 0, 0);
+(52, 1, 10, 'radMenuItemAddCompany', 'Company', 0, 0, 0),
+(53, 1, 10, 'radMenuItemAnnouncement', 'Announcement', 0, 0, 0);
 
 SET IDENTITY_INSERT [dbo].[tblFormControlsMaster] OFF;
 
+
+INSERT INTO [dbo].[tblAnnouncement]
+(
+    [AnnounceMessage]
+)
+VALUES
+('TEST ANNOUNCEMENT' -- AnnounceMessage - nvarchar(max)
+    )

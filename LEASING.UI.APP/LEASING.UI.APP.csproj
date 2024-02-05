@@ -51,6 +51,7 @@
     <Reference Include="System">
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.configuration">
       <Private>True</Private>
     </Reference>
@@ -93,6 +94,7 @@
     <Reference Include="Telerik.WinControls.GridView, Version=2014.3.1104.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e">
       <Private>True</Private>
     </Reference>
+    <Reference Include="Telerik.WinControls.RichTextBox, Version=2014.3.1104.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="Telerik.WinControls.Themes.Office2007Black, Version=2014.3.1104.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e">
       <Private>True</Private>
     </Reference>
@@ -132,6 +134,7 @@
     <Compile Include="Common\Config.cs" />
     <Compile Include="Common\Functions.cs" />
     <Compile Include="Common\Variables.cs" />
+    <Compile Include="Context\AnnouncementContext.cs" />
     <Compile Include="Context\Class1.cs" />
     <Compile Include="Context\ClientContext.cs" />
     <Compile Include="Context\CompanyContext.cs" />
@@ -162,6 +165,12 @@
     </Compile>
     <Compile Include="Forms\frmAddNewClient.Designer.cs">
       <DependentUpon>frmAddNewClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmEditCompany.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmEditCompany.Designer.cs">
+      <DependentUpon>frmEditCompany.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmAddNewCompany.cs">
       <SubType>Form</SubType>
@@ -204,6 +213,12 @@
     </Compile>
     <Compile Include="Forms\frmAddNewUnits.Designer.cs">
       <DependentUpon>frmAddNewUnits.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmAnnouncement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmAnnouncement.Designer.cs">
+      <DependentUpon>frmAnnouncement.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmCheckClientUnits.cs">
       <SubType>Form</SubType>
@@ -615,6 +630,9 @@
     <EmbeddedResource Include="Forms\frmAddNewClient.resx">
       <DependentUpon>frmAddNewClient.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmEditCompany.resx">
+      <DependentUpon>frmEditCompany.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmAddNewCompany.resx">
       <DependentUpon>frmAddNewCompany.cs</DependentUpon>
     </EmbeddedResource>
@@ -635,6 +653,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmAddNewUnits.resx">
       <DependentUpon>frmAddNewUnits.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmAnnouncement.resx">
+      <DependentUpon>frmAnnouncement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmCheckClientUnits.resx">
       <DependentUpon>frmCheckClientUnits.cs</DependentUpon>

@@ -18,6 +18,7 @@ namespace LEASING.UI.APP.Forms
     {
         OtherContext OtherContext = new OtherContext();
         ProjectContext ProjectContext = new ProjectContext();
+        AnnouncementContext AnnouncementContext = new AnnouncementContext();
         frmPreEmp_Login _frmPreEmp_Login;
         private bool IsSwithUserLogOut = false;
         public frmMainDashboard()
@@ -61,6 +62,19 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
+
+        private void GetAnnouncement()
+        {
+            txtAnnouncementMessage.Text = string.Empty;
+            using (DataSet dt = AnnouncementContext.GetAnnouncement())
+            {
+                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                {
+
+                    txtAnnouncementMessage.Text =  Convert.ToString(dt.Tables[0].Rows[0]["AnnounceMessage"]);
+                }
+            }
+        }
         private void GetNotificationListDetails()
         {
             dgvNotificationList.DataSource = null;
@@ -75,11 +89,31 @@ namespace LEASING.UI.APP.Forms
         private void M_GetUnitListByProjectAndStatus()
         {
             dgvUnitList.DataSource = null;
-            using (DataSet dt = OtherContext.GetUnitListByProjectAndStatus(Convert.ToInt32(ddlProject.SelectedValue),ddlUnitStatus.SelectedText))
+            using (DataSet dt = OtherContext.GetUnitListByProjectAndStatus(Convert.ToInt32(ddlProject.SelectedValue), ddlUnitStatus.SelectedText))
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                 {
                     dgvUnitList.DataSource = dt.Tables[0];
+                }
+            }
+        }
+        private void M_GetUnitListByProjectAndStatusCount()
+        {
+            lblNotAvailableCount.Text = "0";
+            lblOccupiedCount.Text = "0";
+            lblReservedCount.Text = "0";
+            lblVacantCount.Text = "0";
+            lblHoldCount.Text = "0";
+
+            using (DataSet dt = OtherContext.GetProjectStatusCount(Convert.ToInt32(ddlProject.SelectedValue)))
+            {
+                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                {
+                    lblNotAvailableCount.Text = Convert.ToString(dt.Tables[0].Rows[0]["NOT_AVAILABLE_COUNT"]);
+                    lblOccupiedCount.Text = Convert.ToString(dt.Tables[0].Rows[0]["OCCUPIED_COUNT"]);
+                    lblReservedCount.Text = Convert.ToString(dt.Tables[0].Rows[0]["RESERVED_COUNT"]);
+                    lblVacantCount.Text = Convert.ToString(dt.Tables[0].Rows[0]["VACANT_COUNT"]);
+                    lblHoldCount.Text = Convert.ToString(dt.Tables[0].Rows[0]["HOLD_COUNT"]);
                 }
             }
         }
@@ -105,7 +139,7 @@ namespace LEASING.UI.APP.Forms
             this.radMenuItemNotification.Text = "NOTIFICATION (0)";
             GetNotificationList();
             M_SelectProject();
-           
+
 
             //radMenu7.Visible = false;
             //radPanel7.Visible = false;
@@ -118,6 +152,7 @@ namespace LEASING.UI.APP.Forms
 
             lblGroupName.Text = Variables.UserGroupName;
             lblStaffName.Text = Variables.FirstName;
+            GetAnnouncement();
             //M_GetTotalCountLabel();
         }
         private void btnSettings_Click(object sender, EventArgs e)
@@ -486,9 +521,10 @@ namespace LEASING.UI.APP.Forms
 
         private void ddlProject_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
         {
-            if (ddlProject.SelectedIndex >= 0)
+            if (ddlProject.SelectedIndex > 0)
             {
                 M_GetUnitListByProjectAndStatus();
+                M_GetUnitListByProjectAndStatusCount();
             }
         }
 
@@ -504,6 +540,13 @@ namespace LEASING.UI.APP.Forms
         {
             frmAddNewCompany forms = new frmAddNewCompany();
             forms.ShowDialog();
+        }
+
+        private void radMenuItemAnnouncement_Click(object sender, EventArgs e)
+        {
+            frmAnnouncement forms = new frmAnnouncement();
+            forms.ShowDialog();
+            GetAnnouncement();
         }
     }
 }

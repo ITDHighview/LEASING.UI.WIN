@@ -167,7 +167,7 @@ namespace LEASING.UI.APP.Forms
             {
                 if (this.dgvCompanyList.Columns[e.ColumnIndex].Name == "coledit")
                 {
-                    frmEditProject forms = new frmEditProject();
+                    frmEditCompany forms = new frmEditCompany();
                     forms.Recid = Convert.ToInt32(dgvCompanyList.CurrentRow.Cells["RecId"].Value);
                     forms.ShowDialog();
                     if (forms.IsProceed)

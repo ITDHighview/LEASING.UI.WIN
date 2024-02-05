@@ -125,7 +125,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 185F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 97F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 213F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 225F));
             this.tableLayoutPanel2.Controls.Add(this.radLabel2, 0, 4);
             this.tableLayoutPanel2.Controls.Add(this.radLabel3, 0, 5);
             this.tableLayoutPanel2.Controls.Add(this.radLabel4, 0, 0);
@@ -228,7 +228,7 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 47F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(312, 125);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
@@ -274,7 +274,7 @@
             // 
             this.radLabel8.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.radLabel8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel8.Location = new System.Drawing.Point(20, 103);
+            this.radLabel8.Location = new System.Drawing.Point(20, 92);
             this.radLabel8.Name = "radLabel8";
             this.radLabel8.Size = new System.Drawing.Size(128, 19);
             this.radLabel8.TabIndex = 2;
@@ -282,13 +282,15 @@
             // 
             // txtTotalForPayment
             // 
-            this.txtTotalForPayment.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotalForPayment.Location = new System.Drawing.Point(154, 103);
+            this.txtTotalForPayment.AutoSize = false;
+            this.txtTotalForPayment.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtTotalForPayment.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotalForPayment.Location = new System.Drawing.Point(154, 81);
             this.txtTotalForPayment.Name = "txtTotalForPayment";
-            this.txtTotalForPayment.Size = new System.Drawing.Size(143, 19);
+            this.txtTotalForPayment.Size = new System.Drawing.Size(155, 41);
             this.txtTotalForPayment.TabIndex = 4;
             this.txtTotalForPayment.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtTotalForPayment.ThemeName = "TelerikMetroTouch";
+            this.txtTotalForPayment.ThemeName = "ControlDefault";
             // 
             // btnPrintReciept
             // 
@@ -341,22 +343,23 @@
             // 
             this.dgvLedgerList.MasterTemplate.AllowAddNewRow = false;
             this.dgvLedgerList.MasterTemplate.AllowColumnReorder = false;
+            this.dgvLedgerList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
             gridViewTextBoxColumn1.FieldName = "seq";
             gridViewTextBoxColumn1.HeaderText = "seq";
             gridViewTextBoxColumn1.Name = "seq";
-            gridViewTextBoxColumn1.Width = 80;
+            gridViewTextBoxColumn1.Width = 81;
             gridViewTextBoxColumn2.FieldName = "LedgMonth";
             gridViewTextBoxColumn2.HeaderText = "Month";
             gridViewTextBoxColumn2.Name = "LedgMonth";
-            gridViewTextBoxColumn2.Width = 150;
+            gridViewTextBoxColumn2.Width = 153;
             gridViewTextBoxColumn3.FieldName = "LedgAmount";
             gridViewTextBoxColumn3.HeaderText = "Due Amount";
             gridViewTextBoxColumn3.Name = "LedgAmount";
-            gridViewTextBoxColumn3.Width = 150;
+            gridViewTextBoxColumn3.Width = 153;
             gridViewTextBoxColumn4.FieldName = "Remarks";
             gridViewTextBoxColumn4.HeaderText = "Remarks";
             gridViewTextBoxColumn4.Name = "Remarks";
-            gridViewTextBoxColumn4.Width = 200;
+            gridViewTextBoxColumn4.Width = 203;
             this.dgvLedgerList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,

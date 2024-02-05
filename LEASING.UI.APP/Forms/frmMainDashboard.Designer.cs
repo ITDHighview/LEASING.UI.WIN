@@ -136,6 +136,7 @@
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.dgvUnitList = new Telerik.WinControls.UI.RadGridView();
             this.telerikMetroTouchTheme1 = new Telerik.WinControls.Themes.TelerikMetroTouchTheme();
+            this.radMenuItemAddCompany = new Telerik.WinControls.UI.RadMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.lblUserInfoPanel)).BeginInit();
             this.lblUserInfoPanel.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -344,7 +345,7 @@
             this.radMenu7.Location = new System.Drawing.Point(0, 0);
             this.radMenu7.Name = "radMenu7";
             this.radMenu7.Padding = new System.Windows.Forms.Padding(2, 2, 0, 0);
-            this.radMenu7.Size = new System.Drawing.Size(236, 65);
+            this.radMenu7.Size = new System.Drawing.Size(236, 83);
             this.radMenu7.TabIndex = 0;
             this.radMenu7.Text = "radMenu7";
             this.radMenu7.ThemeName = "TelerikMetroTouch";
@@ -355,6 +356,7 @@
             this.radMenuItemAdministrative.AccessibleName = "SETTINGS";
             this.radMenuItemAdministrative.Image = global::LEASING.UI.APP.Properties.Resources.gear_32;
             this.radMenuItemAdministrative.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.radMenuItemAddCompany,
             this.radMenuItemAddNewLocation,
             this.radMenuItemAddNewProject,
             this.radMenuItemAddNewUnit,
@@ -464,7 +466,7 @@
             this.radMenu9.Location = new System.Drawing.Point(0, 0);
             this.radMenu9.Name = "radMenu9";
             this.radMenu9.Padding = new System.Windows.Forms.Padding(2, 2, 0, 0);
-            this.radMenu9.Size = new System.Drawing.Size(236, 65);
+            this.radMenu9.Size = new System.Drawing.Size(236, 50);
             this.radMenu9.TabIndex = 0;
             this.radMenu9.Text = "radMenu9";
             this.radMenu9.ThemeName = "TelerikMetroTouch";
@@ -517,7 +519,7 @@
             this.radMenu8.Location = new System.Drawing.Point(0, 0);
             this.radMenu8.Name = "radMenu8";
             this.radMenu8.Padding = new System.Windows.Forms.Padding(2, 2, 0, 0);
-            this.radMenu8.Size = new System.Drawing.Size(236, 40);
+            this.radMenu8.Size = new System.Drawing.Size(236, 50);
             this.radMenu8.TabIndex = 0;
             this.radMenu8.Text = "radMenu8";
             this.radMenu8.ThemeName = "TelerikMetroTouch";
@@ -604,7 +606,7 @@
             this.radMenu6.Location = new System.Drawing.Point(0, 0);
             this.radMenu6.Name = "radMenu6";
             this.radMenu6.Padding = new System.Windows.Forms.Padding(2, 2, 0, 0);
-            this.radMenu6.Size = new System.Drawing.Size(236, 65);
+            this.radMenu6.Size = new System.Drawing.Size(236, 50);
             this.radMenu6.TabIndex = 0;
             this.radMenu6.Text = "radMenu6";
             this.radMenu6.ThemeName = "TelerikMetroTouch";
@@ -676,7 +678,7 @@
             this.radMenu5.Location = new System.Drawing.Point(0, 0);
             this.radMenu5.Name = "radMenu5";
             this.radMenu5.Padding = new System.Windows.Forms.Padding(2, 2, 0, 0);
-            this.radMenu5.Size = new System.Drawing.Size(236, 40);
+            this.radMenu5.Size = new System.Drawing.Size(236, 50);
             this.radMenu5.TabIndex = 0;
             this.radMenu5.Text = "radMenu5";
             this.radMenu5.ThemeName = "TelerikMetroTouch";
@@ -739,7 +741,7 @@
             this.radMenu4.Location = new System.Drawing.Point(0, 0);
             this.radMenu4.Name = "radMenu4";
             this.radMenu4.Padding = new System.Windows.Forms.Padding(2, 2, 0, 0);
-            this.radMenu4.Size = new System.Drawing.Size(236, 40);
+            this.radMenu4.Size = new System.Drawing.Size(236, 50);
             this.radMenu4.TabIndex = 0;
             this.radMenu4.Text = "radMenu4";
             this.radMenu4.ThemeName = "TelerikMetroTouch";
@@ -770,7 +772,7 @@
             this.radMenu3.Location = new System.Drawing.Point(0, 0);
             this.radMenu3.Name = "radMenu3";
             this.radMenu3.Padding = new System.Windows.Forms.Padding(2, 2, 0, 0);
-            this.radMenu3.Size = new System.Drawing.Size(236, 40);
+            this.radMenu3.Size = new System.Drawing.Size(236, 50);
             this.radMenu3.TabIndex = 0;
             this.radMenu3.Text = "radMenu3";
             this.radMenu3.ThemeName = "TelerikMetroTouch";
@@ -889,7 +891,7 @@
             this.radMenu2.Location = new System.Drawing.Point(0, 0);
             this.radMenu2.Name = "radMenu2";
             this.radMenu2.Padding = new System.Windows.Forms.Padding(2, 2, 0, 0);
-            this.radMenu2.Size = new System.Drawing.Size(236, 40);
+            this.radMenu2.Size = new System.Drawing.Size(236, 50);
             this.radMenu2.TabIndex = 0;
             this.radMenu2.Text = "radMenu2";
             this.radMenu2.ThemeName = "TelerikMetroTouch";
@@ -1000,7 +1002,7 @@
             this.radMenu1.Location = new System.Drawing.Point(245, 3);
             this.radMenu1.Name = "radMenu1";
             this.radMenu1.Padding = new System.Windows.Forms.Padding(2, 2, 0, 0);
-            this.radMenu1.Size = new System.Drawing.Size(763, 29);
+            this.radMenu1.Size = new System.Drawing.Size(763, 39);
             this.radMenu1.TabIndex = 4;
             this.radMenu1.Text = "radMenu1";
             this.radMenu1.ThemeName = "TelerikMetroTouch";
@@ -1272,6 +1274,15 @@
             this.dgvUnitList.ThemeName = "TelerikMetroTouch";
             this.dgvUnitList.CellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.dgvUnitList_CellFormatting);
             // 
+            // radMenuItemAddCompany
+            // 
+            this.radMenuItemAddCompany.AccessibleDescription = "radMenuItemAddCompany";
+            this.radMenuItemAddCompany.AccessibleName = "radMenuItemAddCompany";
+            this.radMenuItemAddCompany.Image = global::LEASING.UI.APP.Properties.Resources.gear_16;
+            this.radMenuItemAddCompany.Name = "radMenuItemAddCompany";
+            this.radMenuItemAddCompany.Text = "Company";
+            this.radMenuItemAddCompany.Click += new System.EventHandler(this.radMenuItemAddCompany_Click);
+            // 
             // frmMainDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1451,5 +1462,6 @@
         private Telerik.WinControls.UI.RadDropDownList ddlProject;
         private Telerik.WinControls.UI.RadLabel radLabel4;
         private Telerik.WinControls.UI.RadGridView dgvUnitList;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemAddCompany;
     }
 }

@@ -63,6 +63,7 @@ namespace LEASING.UI.APP.Forms
 
             ddLocationList.Enabled = true;
             ddlProjectType.Enabled = true;
+            ddlCompanyList.Enabled = true;
         }
         private void DisableFields()
         {
@@ -72,6 +73,7 @@ namespace LEASING.UI.APP.Forms
 
             ddLocationList.Enabled = false;
             ddlProjectType.Enabled = false;
+            ddlCompanyList.Enabled = false;
         }
         private void Emptyfields()
         {
@@ -82,6 +84,16 @@ namespace LEASING.UI.APP.Forms
         }
         private bool IsProjectValid()
         {
+            if (ddlCompanyList.SelectedIndex == -1)
+            {
+                MessageBox.Show("Company  cannot be empty !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
+            }
+            if (ddlCompanyList.SelectedText == "--SELECT--")
+            {
+                MessageBox.Show("Please select Company", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
+            }
             if (ddlProjectType.SelectedIndex == -1)
             {
                 MessageBox.Show("Project Type  cannot be empty !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -139,6 +151,7 @@ namespace LEASING.UI.APP.Forms
             dto.ProjectName = txtProjectName.Text;
             dto.Description = txtProjectDescription.Text;
             dto.ProjectAddress = txtProjectAddress.Text;
+            dto.CompanyId = Convert.ToInt32(ddlCompanyList.SelectedValue);
             dto.Message_Code = ProjectContext.SaveProject(dto);
             if (dto.Message_Code.Equals("SUCCESS"))
             {
@@ -150,6 +163,20 @@ namespace LEASING.UI.APP.Forms
             {
                 MessageBox.Show(dto.Message_Code, "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 strProjectFormMode = "READ";
+            }
+        }
+        private void M_SelectCompany()
+        {
+
+            ddlCompanyList.DataSource = null;
+            using (DataSet dt = ProjectContext.GetSelectCompany())
+            {
+                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                {
+                    ddlCompanyList.DisplayMember = "CompanyName";
+                    ddlCompanyList.ValueMember = "RecId";
+                    ddlCompanyList.DataSource = dt.Tables[0];
+                }
             }
         }
         private void M_SelectLocation()
@@ -184,6 +211,7 @@ namespace LEASING.UI.APP.Forms
         private void frmAddNewProject_Load(object sender, EventArgs e)
         {
             strProjectFormMode = "READ";
+            M_SelectCompany();
             M_SelectProjectType();
             M_SelectLocation();
             M_GetProjectList();

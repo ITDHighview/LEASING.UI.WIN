@@ -15,5 +15,6 @@ namespace LEASING.UI.APP.Models
         public string Description { get; set; }
         public string ProjectAddress { get; set; }
         public bool ProjectStatus { get; set; }
+        public int CompanyId { get; set; }
     }
 }

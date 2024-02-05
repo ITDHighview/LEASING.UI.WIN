@@ -499,5 +499,11 @@ namespace LEASING.UI.APP.Forms
                 M_GetUnitListByProjectAndStatus();
             }
         }
+
+        private void radMenuItemAddCompany_Click(object sender, EventArgs e)
+        {
+            frmAddNewCompany forms = new frmAddNewCompany();
+            forms.ShowDialog();
+        }
     }
 }

@@ -38,6 +38,8 @@ namespace LEASING.UI.APP.Context
 
             _sqlpara = new SqlParameter("@ProjectAddress", model.ProjectAddress);
             _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@CompanyId", model.CompanyId);
+            _sqlcmd.Parameters.Add(_sqlpara);
 
             try
             {
@@ -564,6 +566,49 @@ namespace LEASING.UI.APP.Context
 
                 _SqlParameter = new SqlParameter("@RecId", recid);
                 _SqlCommand.Parameters.Add(_SqlParameter);
+
+                try
+                {
+                    _SqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
+                    _SqlCommand.Connection = _SqlConnection;
+                    _SqlCommand.CommandType = CommandType.StoredProcedure;
+                    using (SqlDataAdapter dataAdaptor = new SqlDataAdapter(_SqlCommand))
+                    {
+                        dataAdaptor.Fill(dsRec);
+                    }
+                }
+                catch (Exception expCommon)
+                {
+                    return null;
+                }
+                finally
+                {
+                    if (_SqlConnection.State != ConnectionState.Closed)
+                    {
+                        _SqlConnection.Close();
+                    }
+                    //_SqlParameter = null;
+                    _SqlCommand = null;
+                    _SqlConnection = null;
+                }
+                return dsRec;
+            }
+        }
+        public DataSet GetSelectCompany()
+        {
+
+            SqlCommand _SqlCommand = null;
+            SqlParameter _SqlParameter;
+            SqlConnection _SqlConnection = null;
+
+
+            using (DataSet dsRec = new DataSet())
+            {
+                _SqlCommand = new SqlCommand();
+                _SqlCommand.CommandText = "sp_GetSelectCompany";
+
+                //_SqlParameter = new SqlParameter("@RecId", recid);
+                //_SqlCommand.Parameters.Add(_SqlParameter);
 
                 try
                 {

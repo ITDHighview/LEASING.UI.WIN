@@ -134,6 +134,7 @@
     <Compile Include="Common\Variables.cs" />
     <Compile Include="Context\Class1.cs" />
     <Compile Include="Context\ClientContext.cs" />
+    <Compile Include="Context\CompanyContext.cs" />
     <Compile Include="Context\ComputationContext.cs" />
     <Compile Include="Context\FloorTypeContext.cs" />
     <Compile Include="Context\LocationContext.cs" />
@@ -161,6 +162,12 @@
     </Compile>
     <Compile Include="Forms\frmAddNewClient.Designer.cs">
       <DependentUpon>frmAddNewClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmAddNewCompany.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmAddNewCompany.Designer.cs">
+      <DependentUpon>frmAddNewCompany.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmAddNewLocation.cs">
       <SubType>Form</SubType>
@@ -590,6 +597,7 @@
     </Compile>
     <Compile Include="Models\ClientModel.cs" />
     <Compile Include="Models\CommonModel.cs" />
+    <Compile Include="Models\CompanyModel.cs" />
     <Compile Include="Models\ComputationModel.cs" />
     <Compile Include="Models\LocationModel.cs" />
     <Compile Include="Models\ProjectModel.cs" />
@@ -606,6 +614,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmAddNewClient.resx">
       <DependentUpon>frmAddNewClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmAddNewCompany.resx">
+      <DependentUpon>frmAddNewCompany.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmAddNewLocation.resx">
       <DependentUpon>frmAddNewLocation.cs</DependentUpon>

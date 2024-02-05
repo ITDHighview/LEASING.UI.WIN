@@ -426,7 +426,7 @@
             this.radPageView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radPageView1.Location = new System.Drawing.Point(2, 18);
             this.radPageView1.Name = "radPageView1";
-            this.radPageView1.SelectedPage = this.radPageViewPagePayment;
+            this.radPageView1.SelectedPage = this.radPageViewPagePaymentHistory;
             this.radPageView1.Size = new System.Drawing.Size(731, 573);
             this.radPageView1.TabIndex = 0;
             this.radPageView1.Text = "radPageView1";
@@ -564,7 +564,7 @@
             this.radPageViewPagePaymentHistory.ItemSize = new System.Drawing.SizeF(130F, 28F);
             this.radPageViewPagePaymentHistory.Location = new System.Drawing.Point(10, 37);
             this.radPageViewPagePaymentHistory.Name = "radPageViewPagePaymentHistory";
-            this.radPageViewPagePaymentHistory.Size = new System.Drawing.Size(857, 512);
+            this.radPageViewPagePaymentHistory.Size = new System.Drawing.Size(710, 525);
             this.radPageViewPagePaymentHistory.Text = "PAYMENT HISTORY";
             // 
             // dgvPaymentList
@@ -577,7 +577,7 @@
             this.dgvPaymentList.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.dgvPaymentList.Location = new System.Drawing.Point(0, 0);
             // 
-            // 
+            // dgvPaymentList
             // 
             this.dgvPaymentList.MasterTemplate.AllowAddNewRow = false;
             this.dgvPaymentList.MasterTemplate.AllowColumnReorder = false;
@@ -586,23 +586,23 @@
             gridViewTextBoxColumn15.FieldName = "TranId";
             gridViewTextBoxColumn15.HeaderText = "Transaction ID";
             gridViewTextBoxColumn15.Name = "TranId";
-            gridViewTextBoxColumn15.Width = 146;
+            gridViewTextBoxColumn15.Width = 121;
             gridViewTextBoxColumn16.FieldName = "ForMonth";
             gridViewTextBoxColumn16.HeaderText = "For Month";
             gridViewTextBoxColumn16.Name = "ForMonth";
-            gridViewTextBoxColumn16.Width = 131;
+            gridViewTextBoxColumn16.Width = 109;
             gridViewTextBoxColumn17.FieldName = "Amount";
-            gridViewTextBoxColumn17.HeaderText = "Due Amount";
+            gridViewTextBoxColumn17.HeaderText = "Amount Pay";
             gridViewTextBoxColumn17.Name = "Amount";
-            gridViewTextBoxColumn17.Width = 131;
+            gridViewTextBoxColumn17.Width = 109;
             gridViewTextBoxColumn18.FieldName = "DatePayed";
             gridViewTextBoxColumn18.HeaderText = "Date Pay";
             gridViewTextBoxColumn18.Name = "DatePayed";
-            gridViewTextBoxColumn18.Width = 131;
+            gridViewTextBoxColumn18.Width = 109;
             gridViewTextBoxColumn19.FieldName = "Remarks";
             gridViewTextBoxColumn19.HeaderText = "Remarks";
             gridViewTextBoxColumn19.Name = "Remarks";
-            gridViewTextBoxColumn19.Width = 321;
+            gridViewTextBoxColumn19.Width = 265;
             this.dgvPaymentList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn15,
             gridViewTextBoxColumn16,
@@ -616,7 +616,7 @@
             this.dgvPaymentList.ReadOnly = true;
             this.dgvPaymentList.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgvPaymentList.ShowGroupPanel = false;
-            this.dgvPaymentList.Size = new System.Drawing.Size(857, 512);
+            this.dgvPaymentList.Size = new System.Drawing.Size(710, 525);
             this.dgvPaymentList.TabIndex = 0;
             this.dgvPaymentList.Text = "radGridView1";
             this.dgvPaymentList.ThemeName = "TelerikMetroTouch";

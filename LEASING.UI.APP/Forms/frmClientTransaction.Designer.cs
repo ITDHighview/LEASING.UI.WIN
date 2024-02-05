@@ -175,8 +175,8 @@
             this.tableLayoutPanel2.RowCount = 7;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 42F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 21F));
@@ -235,7 +235,7 @@
             // 
             this.radLabel5.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.radLabel5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel5.Location = new System.Drawing.Point(37, 53);
+            this.radLabel5.Location = new System.Drawing.Point(37, 61);
             this.radLabel5.Name = "radLabel5";
             this.radLabel5.Size = new System.Drawing.Size(79, 19);
             this.radLabel5.TabIndex = 2;
@@ -243,13 +243,15 @@
             // 
             // txtTotalPay
             // 
-            this.txtTotalPay.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotalPay.AutoSize = false;
+            this.txtTotalPay.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtTotalPay.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTotalPay.Location = new System.Drawing.Point(122, 53);
             this.txtTotalPay.Name = "txtTotalPay";
-            this.txtTotalPay.Size = new System.Drawing.Size(149, 19);
+            this.txtTotalPay.Size = new System.Drawing.Size(221, 36);
             this.txtTotalPay.TabIndex = 4;
             this.txtTotalPay.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtTotalPay.ThemeName = "TelerikMetroTouch";
+            this.txtTotalPay.ThemeName = "ControlDefault";
             // 
             // txtClientName
             // 

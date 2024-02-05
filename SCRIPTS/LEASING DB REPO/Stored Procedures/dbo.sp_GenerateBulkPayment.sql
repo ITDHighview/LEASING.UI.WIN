@@ -28,8 +28,6 @@ CREATE PROCEDURE [dbo].[sp_GenerateBulkPayment]
     @XML XML
 AS
 BEGIN TRY
-    -- SET NOCOUNT ON added to prevent extra result sets from
-    -- interfering with SELECT statements.
     SET NOCOUNT ON;
     DECLARE @ReturnMessage VARCHAR(200)
     DECLARE @TranRecId BIGINT = 0
@@ -45,7 +43,6 @@ BEGIN TRY
     DECLARE @AmountToDeduct DECIMAL(18, 2)
     DECLARE @ForMonth DATE
     DECLARE @RefRecId BIGINT = NULL
-    -- Insert statements for procedure here
 
     CREATE TABLE [#tblBulkPostdatedMonth]
     (
@@ -61,42 +58,11 @@ BEGIN TRY
         FROM @XML.[nodes]('/Table1') AS [ParaValues]([data])
     END
 
-
     SELECT @TotalRent = [tblUnitReference].[TotalRent],
            @PenaltyPct = [tblUnitReference].[PenaltyPct],
            @RefRecId = [tblUnitReference].[RecId]
     FROM [dbo].[tblUnitReference] WITH (NOLOCK)
     WHERE [tblUnitReference].[RefId] = @RefId
-
-
-    --UPDATE [dbo].[tblMonthLedger]
-    --SET [tblMonthLedger].[PenaltyAmount] = CASE
-    --                                           WHEN DATEDIFF(DAY, [tblMonthLedger].[LedgMonth], CAST(GETDATE() AS DATE)) < 30 THEN
-    --                                               0
-    --                                           WHEN DATEDIFF(DAY, [tblMonthLedger].[LedgMonth], CAST(GETDATE() AS DATE)) = 30 THEN
-    --                                               CAST(((@TotalRent * @PenaltyPct) / 100) AS DECIMAL(18, 2))
-    --                                           WHEN DATEDIFF(DAY, [tblMonthLedger].[LedgMonth], CAST(GETDATE() AS DATE)) >= 31
-    --                                                AND DATEDIFF(
-    --                                                                DAY,
-    --                                                                [tblMonthLedger].[LedgMonth],
-    --                                                                CAST(GETDATE() AS DATE)
-    --                                                            ) <= 31 THEN
-    --                                               CAST((((@TotalRent * @PenaltyPct) / 100) * 2) AS DECIMAL(18, 2))
-    --                                           WHEN DATEDIFF(DAY, [tblMonthLedger].[LedgMonth], CAST(GETDATE() AS DATE)) = 60 THEN
-    --                                               CAST((((@TotalRent * @PenaltyPct) / 100) * 3) AS DECIMAL(18, 2))
-    --                                           WHEN DATEDIFF(DAY, [tblMonthLedger].[LedgMonth], CAST(GETDATE() AS DATE)) >= 61 THEN
-    --                                               CAST((((@TotalRent * @PenaltyPct) / 100) * 4) AS DECIMAL(18, 2))
-    --                                           ELSE
-    --                                               0
-    --                                       END,
-    --    [tblMonthLedger].[ActualAmount] = [tblMonthLedger].[LedgAmount] + ISNULL([tblMonthLedger].[PenaltyAmount], 0)
-    --WHERE [tblMonthLedger].[ReferenceID] = @RefRecId
-    --      AND
-    --      (
-    --          ISNULL([tblMonthLedger].[IsPaid], 0) = 0
-    --          OR ISNULL([tblMonthLedger].[IsHold], 0) = 1
-    --      )
-
 
     UPDATE [dbo].[tblMonthLedger]
     SET [tblMonthLedger].[ActualAmount] = [tblMonthLedger].[LedgAmount] + ISNULL([tblMonthLedger].[PenaltyAmount], 0)
@@ -115,7 +81,7 @@ BEGIN TRY
         [PaidAmount],
         [ReceiveAmount],
         [ActualAmountPaid],
-        [ChangeAmount],
+        [ChangeAmount], ---Not Assigned
         [Remarks],
         [EncodedBy],
         [EncodedDate],
@@ -189,16 +155,87 @@ BEGIN TRY
                 WHERE [tblMonthLedger].[LedgMonth] = @ForMonth
                       AND ISNULL([tblMonthLedger].[IsPaid], 0) = 0
                       OR ISNULL([tblMonthLedger].[IsHold], 0) = 1
+
+                INSERT INTO [dbo].[tblPayment]
+                (
+                    [TranId],
+                    [RefId],
+                    [Amount],
+                    [ForMonth],
+                    [Remarks],
+                    [EncodedBy],
+                    [EncodedDate],
+                    [ComputerName],
+                    [IsActive]
+                )
+                SELECT @TranID AS [TranId],
+                       @RefId AS [RefId],
+                       @AmountToDeduct AS [Amount], ---THIS IS NOT A ACTUAL AMOUNT PAID  FOR FUTURE JOIN TRAN TO PAYMENT TRANID TO GET THE ACTUAL SUM PAYMENT                   
+                       [tblMonthLedger].[LedgMonth] AS [ForMonth],
+                       'FOLLOW-UP PAYMENT' AS [Remarks],
+                       @EncodedBy,
+                       GETDATE(),                   --Dated payed
+                       @ComputerName,
+                       1
+                FROM [dbo].[tblMonthLedger] WITH (NOLOCK)
+                WHERE [tblMonthLedger].[ReferenceID] =
+                (
+                    SELECT [tblUnitReference].[RecId]
+                    FROM [dbo].[tblUnitReference] WITH (NOLOCK)
+                    WHERE [tblUnitReference].[RefId] = @RefId
+                )
+                      AND [tblMonthLedger].[Recid] IN
+                          (
+                              SELECT [#tblBulkPostdatedMonth].[Recid]
+                              FROM [#tblBulkPostdatedMonth] WITH (NOLOCK)
+                          )
+                      AND [tblMonthLedger].[LedgMonth] = @ForMonth
             END
             ELSE IF @ActualAmount < @AmountToDeduct
             BEGIN
                 UPDATE [dbo].[tblMonthLedger]
                 SET [tblMonthLedger].[IsHold] = 1,
                     [tblMonthLedger].[BalanceAmount] = ABS(@ActualAmount - @AmountToDeduct),
-                    [tblMonthLedger].[TransactionID] = @TranID--- TRN WILL CHANGE IF ALWAYS A PAYMENT FOR BALANCE AMOUNT
+                    [tblMonthLedger].[TransactionID] = @TranID --- TRN WILL CHANGE IF ALWAYS A PAYMENT FOR BALANCE AMOUNT
                 WHERE [tblMonthLedger].[LedgMonth] = @ForMonth
                       AND ISNULL([tblMonthLedger].[IsPaid], 0) = 0
                       OR ISNULL([tblMonthLedger].[IsHold], 0) = 1
+                INSERT INTO [dbo].[tblPayment]
+                (
+                    [TranId],
+                    [RefId],
+                    [Amount],
+                    [ForMonth],
+                    [Remarks],
+                    [EncodedBy],
+                    [EncodedDate],
+                    [ComputerName],
+                    [IsActive]
+                )
+                SELECT @TranID AS [TranId],
+                       @RefId AS [RefId],
+                       [tblMonthLedger].[LedgAmount] - ABS(@ActualAmount - @AmountToDeduct) AS [Amount], ---THIS IS NOT A ACTUAL AMOUNT PAID  FOR FUTURE JOIN TRAN TO PAYMENT TRANID TO GET THE ACTUAL SUM PAYMENT                   
+                       [tblMonthLedger].[LedgMonth] AS [ForMonth],
+                       'FOLLOW-UP PAYMENT' AS [Remarks],
+                       @EncodedBy,
+                       GETDATE(),                                                                        --Dated payed
+                       @ComputerName,
+                       1
+                FROM [dbo].[tblMonthLedger] WITH (NOLOCK)
+                WHERE [tblMonthLedger].[ReferenceID] =
+                (
+                    SELECT [tblUnitReference].[RecId]
+                    FROM [dbo].[tblUnitReference] WITH (NOLOCK)
+                    WHERE [tblUnitReference].[RefId] = @RefId
+                )
+                      AND [tblMonthLedger].[Recid] IN
+                          (
+                              SELECT [#tblBulkPostdatedMonth].[Recid]
+                              FROM [#tblBulkPostdatedMonth] WITH (NOLOCK)
+                          )
+                      AND [tblMonthLedger].[LedgMonth] = @ForMonth
+
+
             END
         END
 
@@ -210,68 +247,9 @@ BEGIN TRY
     CLOSE [CursorName]
     DEALLOCATE [CursorName]
 
-    INSERT INTO [dbo].[tblPayment]
-    (
-        [TranId],
-        [RefId],
-        [Amount],
-        [ForMonth],
-        [Remarks],
-        [EncodedBy],
-        [EncodedDate],
-        [ComputerName],
-        [IsActive]
-    )
-    SELECT @TranID AS [TranId],
-           @RefId AS [RefId],
-           [tblMonthLedger].[LedgAmount] AS [Amount], ---THIS IS NOT A ACTUAL AMOUNT PAID  FOR FUTURE JOIN TRAN TO PAYMENT TRANID TO GET THE ACTUAL SUM PAYMENT                   
-           [tblMonthLedger].[LedgMonth] AS [ForMonth],
-           'FOLLOW-UP PAYMENT' AS [Remarks],
-           @EncodedBy,
-           GETDATE(),                                 --Dated payed
-           @ComputerName,
-           1
-    FROM [dbo].[tblMonthLedger] WITH (NOLOCK)
-    WHERE [tblMonthLedger].[ReferenceID] =
-    (
-        SELECT [tblUnitReference].[RecId]
-        FROM [dbo].[tblUnitReference] WITH (NOLOCK)
-        WHERE [tblUnitReference].[RefId] = @RefId
-    )
-          AND [tblMonthLedger].[Recid] IN
-              (
-                  SELECT [#tblBulkPostdatedMonth].[Recid]
-                  FROM [#tblBulkPostdatedMonth] WITH (NOLOCK)
-              )
-    --AND ISNULL([tblMonthLedger].[IsPaid], 0) = 0
-    --AND ISNULL([tblMonthLedger].[TransactionID], '') = ''
-
-
-
     UPDATE [dbo].[tblUnitReference]
     SET [tblUnitReference].[IsPaid] = 1
     WHERE [tblUnitReference].[RefId] = @RefId;
-    --UPDATE [dbo].[tblMonthLedger]
-    --SET [tblMonthLedger].[IsPaid] = 1,
-    --    [tblMonthLedger].[IsHold] = 0,
-    --    [tblMonthLedger].[TransactionID] = @TranID
-    --WHERE [tblMonthLedger].[ReferenceID] =
-    --(
-    --    SELECT [tblUnitReference].[RecId]
-    --    FROM [dbo].[tblUnitReference] WITH (NOLOCK)
-    --    WHERE [tblUnitReference].[RefId] = @RefId
-    --)
-    --      AND [tblMonthLedger].[Recid] IN
-    --          (
-    --              SELECT [#tblBulkPostdatedMonth].[Recid]
-    --              FROM [#tblBulkPostdatedMonth] WITH (NOLOCK)
-    --          )
-    --      AND
-    --      (
-    --          ISNULL([IsPaid], 0) = 0
-    --          OR ISNULL([tblMonthLedger].[IsHold], 0) = 1
-    --      )
-    --      AND ISNULL([tblMonthLedger].[TransactionID], '') = ''
 
 
     INSERT INTO [dbo].[tblReceipt]

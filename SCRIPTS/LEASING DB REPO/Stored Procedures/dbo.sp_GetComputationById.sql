@@ -80,7 +80,7 @@ BEGIN
             ON [tblUnitMstr].[RecId] = [tblUnitReference].[UnitId]
         OUTER APPLY
     (
-        SELECT ISNULL(SUM([tblTransaction].[PaidAmount]), 0) AS [TotalPayAMount]
+        SELECT ISNULL(SUM([tblTransaction].[ReceiveAmount]), 0) AS [TotalPayAMount]
         FROM [dbo].[tblTransaction]
         WHERE [tblUnitReference].[RefId] = [tblTransaction].[RefId]
         GROUP BY [tblTransaction].[RefId]

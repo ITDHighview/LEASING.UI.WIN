@@ -140,6 +140,7 @@
     <Compile Include="Context\CompanyContext.cs" />
     <Compile Include="Context\ComputationContext.cs" />
     <Compile Include="Context\FloorTypeContext.cs" />
+    <Compile Include="Context\InquiryContext.cs" />
     <Compile Include="Context\LocationContext.cs" />
     <Compile Include="Context\OtherContext.cs" />
     <Compile Include="Context\PaymentContext.cs" />

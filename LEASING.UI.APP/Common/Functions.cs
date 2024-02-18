@@ -807,7 +807,7 @@ namespace LEASING.UI.APP.Common
             //+ "COMPANY : \n"
             //+ "GENERAL : ";
             radDesktopAlert1.AutoClose = true;
-            radDesktopAlert1.AutoCloseDelay = 3;
+            radDesktopAlert1.AutoCloseDelay = 10;
             radDesktopAlert1.ShowOptionsButton = false;
             radDesktopAlert1.ShowPinButton = false;
             radDesktopAlert1.ShowCloseButton = true;

@@ -11,8 +11,19 @@ using System.Threading.Tasks;
 
 namespace LEASING.UI.APP.Context
 {
+
+
     public class PaymentContext
     {
+        /*Active SP-COMMAND*/
+        const string generateFirstPayment = "sp_GenerateFirstPayment";
+        const string generateBulkPayment = "sp_GenerateBulkPayment";
+
+        /*Active SP-QUERY*/
+
+        /*In-Active SP-COMMAND*/
+        const string generateSecondPaymentUnit = "sp_GenerateSecondPaymentUnit";
+        const string generateSecondPaymentParking = "sp_GenerateSecondPaymentParking";
         public string GenerateFirstPayment(string RefId,
             decimal PaidAmount,
             decimal ReceiveAmount,
@@ -33,12 +44,8 @@ namespace LEASING.UI.APP.Context
             SqlParameter _sqlpara;
             SqlConnection _sqlcon = null;
             SqlDataReader _sqlreader = null;
-
             _sqlcmd = new SqlCommand();
-            _sqlcmd.CommandText = "sp_GenerateFirstPayment";
-
-
-
+            _sqlcmd.CommandText = generateFirstPayment;
             _sqlpara = new SqlParameter("@RefId", RefId);
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@PaidAmount", PaidAmount);
@@ -67,31 +74,21 @@ namespace LEASING.UI.APP.Context
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@ModeType", ModeType);
             _sqlcmd.Parameters.Add(_sqlpara);
-
             _sqlpara = new SqlParameter("@EncodedBy", Variables.UserID);
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@ComputerName", Environment.MachineName);
             _sqlcmd.Parameters.Add(_sqlpara);
-
-
             TransID = string.Empty;
-
             try
             {
                 _sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
                 _sqlcmd.Connection = _sqlcon;
                 _sqlcmd.CommandType = CommandType.StoredProcedure;
-
-                //_sqlreader = SqlDataReader(_sqlcmd, false);
-
                 _sqlcmd.Connection.Open();
                 _sqlreader = _sqlcmd.ExecuteReader();
-
                 _sqlreader.Read();
-
                 if (_sqlreader.HasRows)
                 {
-
                     int sindex = _sqlreader.GetOrdinal("TranID");
                     if (!_sqlreader.IsDBNull(sindex))
                         TransID = Convert.ToString(_sqlreader.GetString(sindex));
@@ -99,13 +96,10 @@ namespace LEASING.UI.APP.Context
                     int index = _sqlreader.GetOrdinal("Message_Code");
                     if (!_sqlreader.IsDBNull(index))
                         return Convert.ToString(_sqlreader.GetString(index));
-
-
                 }
             }
             catch (Exception expCommon)
             {
-                //vErrorMessage = Convert.ToString(expCommon.Message);
                 return "FAILED|" + Convert.ToString(expCommon.Message);
             }
             finally
@@ -142,7 +136,7 @@ namespace LEASING.UI.APP.Context
             SqlConnection _sqlcon = null;
             SqlDataReader _sqlreader = null;
             _sqlcmd = new SqlCommand();
-            _sqlcmd.CommandText = "sp_GenerateSecondPaymentUnit";
+            _sqlcmd.CommandText = generateSecondPaymentUnit;
             _sqlpara = new SqlParameter("@RefId", RefId);
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@PaidAmount", PaidAmount);
@@ -171,7 +165,6 @@ namespace LEASING.UI.APP.Context
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@ledgerRecId", ledgerRecId);
             _sqlcmd.Parameters.Add(_sqlpara);
-
             _sqlpara = new SqlParameter("@EncodedBy", Variables.UserID);
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@ComputerName", Environment.MachineName);
@@ -182,9 +175,6 @@ namespace LEASING.UI.APP.Context
                 _sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
                 _sqlcmd.Connection = _sqlcon;
                 _sqlcmd.CommandType = CommandType.StoredProcedure;
-
-                //_sqlreader = SqlDataReader(_sqlcmd, false);
-
                 _sqlcmd.Connection.Open();
                 _sqlreader = _sqlcmd.ExecuteReader();
                 _sqlreader.Read();
@@ -204,7 +194,6 @@ namespace LEASING.UI.APP.Context
             }
             catch (Exception expCommon)
             {
-                //vErrorMessage = Convert.ToString(expCommon.Message);
                 return "FAILED|" + Convert.ToString(expCommon.Message);
             }
             finally
@@ -235,7 +224,6 @@ namespace LEASING.UI.APP.Context
            int ledgerRecId,
           string XML,
           out string TransID
-
           )
         {
             SqlCommand _sqlcmd = null;
@@ -243,7 +231,7 @@ namespace LEASING.UI.APP.Context
             SqlConnection _sqlcon = null;
             SqlDataReader _sqlreader = null;
             _sqlcmd = new SqlCommand();
-            _sqlcmd.CommandText = "sp_GenerateBulkPayment";
+            _sqlcmd.CommandText = generateBulkPayment;
             _sqlpara = new SqlParameter("@RefId", RefId);
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@PaidAmount", PaidAmount);
@@ -270,7 +258,6 @@ namespace LEASING.UI.APP.Context
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@ModeType", ModeType);
             _sqlcmd.Parameters.Add(_sqlpara);
-
             _sqlpara = new SqlParameter("@EncodedBy", Variables.UserID);
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@ComputerName", Environment.MachineName);
@@ -283,13 +270,9 @@ namespace LEASING.UI.APP.Context
                 _sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
                 _sqlcmd.Connection = _sqlcon;
                 _sqlcmd.CommandType = CommandType.StoredProcedure;
-
-                //_sqlreader = SqlDataReader(_sqlcmd, false);
-
                 _sqlcmd.Connection.Open();
                 _sqlreader = _sqlcmd.ExecuteReader();
                 _sqlreader.Read();
-
                 if (_sqlreader.HasRows)
                 {
                     int indexs = _sqlreader.GetOrdinal("TranID");
@@ -305,7 +288,6 @@ namespace LEASING.UI.APP.Context
             }
             catch (Exception expCommon)
             {
-                //vErrorMessage = Convert.ToString(expCommon.Message);
                 return "FAILED|" + Convert.ToString(expCommon.Message);
             }
             finally
@@ -320,7 +302,6 @@ namespace LEASING.UI.APP.Context
             }
             return "";
         }
-
         public string GeneratePaymentParking(string RefId,
      decimal PaidAmount,
      decimal ReceiveAmount,
@@ -342,7 +323,7 @@ namespace LEASING.UI.APP.Context
             SqlConnection _sqlcon = null;
             SqlDataReader _sqlreader = null;
             _sqlcmd = new SqlCommand();
-            _sqlcmd.CommandText = "sp_GenerateSecondPaymentParking";
+            _sqlcmd.CommandText = generateSecondPaymentParking;
             _sqlpara = new SqlParameter("@RefId", RefId);
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@PaidAmount", PaidAmount);
@@ -414,24 +395,284 @@ namespace LEASING.UI.APP.Context
             }
             return "";
         }
-
-
+        public string CloseContract(string RefId)
+        {
+            SqlCommand _sqlcmd = null;
+            SqlParameter _sqlpara;
+            SqlConnection _sqlcon = null;
+            SqlDataReader _sqlreader = null;
+            _sqlcmd = new SqlCommand();
+            _sqlcmd.CommandText = "sp_CloseContract";
+            _sqlpara = new SqlParameter("@ReferenceID", RefId);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@EncodedBy", Variables.UserID);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@ComputerName", Environment.MachineName);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            try
+            {
+                _sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
+                _sqlcmd.Connection = _sqlcon;
+                _sqlcmd.CommandType = CommandType.StoredProcedure;
+                _sqlcmd.Connection.Open();
+                _sqlreader = _sqlcmd.ExecuteReader();
+                _sqlreader.Read();
+                int index;
+                if (_sqlreader.HasRows)
+                {
+                    index = _sqlreader.GetOrdinal("Message_Code");
+                    if (!_sqlreader.IsDBNull(index))
+                        return Convert.ToString(_sqlreader.GetString(index));
+                }
+            }
+            catch (Exception expCommon)
+            {
+                return "FAILED|" + Convert.ToString(expCommon.Message);
+            }
+            finally
+            {
+                if (_sqlcon.State != ConnectionState.Closed)
+                {
+                    _sqlcon.Close();
+                }
+                _sqlpara = null;
+                _sqlcmd = null;
+                _sqlreader = null;
+            }
+            return "";
+        }
+        public string TerminateContract(string RefId)
+        {
+            SqlCommand _sqlcmd = null;
+            SqlParameter _sqlpara;
+            SqlConnection _sqlcon = null;
+            SqlDataReader _sqlreader = null;
+            _sqlcmd = new SqlCommand();
+            _sqlcmd.CommandText = "sp_TerminateContract";
+            _sqlpara = new SqlParameter("@ReferenceID", RefId);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@EncodedBy", Variables.UserID);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@ComputerName", Environment.MachineName);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            try
+            {
+                _sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
+                _sqlcmd.Connection = _sqlcon;
+                _sqlcmd.CommandType = CommandType.StoredProcedure;
+                _sqlcmd.Connection.Open();
+                _sqlreader = _sqlcmd.ExecuteReader();
+                _sqlreader.Read();
+                int index;
+                if (_sqlreader.HasRows)
+                {
+                    index = _sqlreader.GetOrdinal("Message_Code");
+                    if (!_sqlreader.IsDBNull(index))
+                        return Convert.ToString(_sqlreader.GetString(index));
+                }
+            }
+            catch (Exception expCommon)
+            {
+                return "FAILED|" + Convert.ToString(expCommon.Message);
+            }
+            finally
+            {
+                if (_sqlcon.State != ConnectionState.Closed)
+                {
+                    _sqlcon.Close();
+                }
+                _sqlpara = null;
+                _sqlcmd = null;
+                _sqlreader = null;
+            }
+            return "";
+        }
+        public string HoldPayment(string RefId, int ledgerRecId)
+        {
+            SqlCommand _sqlcmd = null;
+            SqlParameter _sqlpara;
+            SqlConnection _sqlcon = null;
+            SqlDataReader _sqlreader = null;
+            _sqlcmd = new SqlCommand();
+            _sqlcmd.CommandText = "sp_HoldPayment";
+            _sqlpara = new SqlParameter("@ReferenceID", RefId);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@Recid", ledgerRecId);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            try
+            {
+                _sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
+                _sqlcmd.Connection = _sqlcon;
+                _sqlcmd.CommandType = CommandType.StoredProcedure;
+                _sqlcmd.Connection.Open();
+                _sqlreader = _sqlcmd.ExecuteReader();
+                _sqlreader.Read();
+                int index;
+                if (_sqlreader.HasRows)
+                {
+                    index = _sqlreader.GetOrdinal("Message_Code");
+                    if (!_sqlreader.IsDBNull(index))
+                        return Convert.ToString(_sqlreader.GetString(index));
+                }
+            }
+            catch (Exception expCommon)
+            {
+                return "FAILED|" + Convert.ToString(expCommon.Message);
+            }
+            finally
+            {
+                if (_sqlcon.State != ConnectionState.Closed)
+                {
+                    _sqlcon.Close();
+                }
+                _sqlpara = null;
+                _sqlcmd = null;
+                _sqlreader = null;
+            }
+            return "";
+        }
+        public string SaveNewBankName(string bankName)
+        {
+            SqlCommand _sqlcmd = null;
+            SqlParameter _sqlpara;
+            SqlConnection _sqlcon = null;
+            SqlDataReader _sqlreader = null;
+            _sqlcmd = new SqlCommand();
+            _sqlcmd.CommandText = "sp_SaveBankName";
+            _sqlpara = new SqlParameter("@BankName", bankName);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            try
+            {
+                _sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
+                _sqlcmd.Connection = _sqlcon;
+                _sqlcmd.CommandType = CommandType.StoredProcedure;
+                _sqlcmd.Connection.Open();
+                _sqlreader = _sqlcmd.ExecuteReader();
+                _sqlreader.Read();
+                int index;
+                if (_sqlreader.HasRows)
+                {
+                    index = _sqlreader.GetOrdinal("Message_Code");
+                    if (!_sqlreader.IsDBNull(index))
+                        return Convert.ToString(_sqlreader.GetString(index));
+                }
+            }
+            catch (Exception expCommon)
+            {
+                return "FAILED|" + Convert.ToString(expCommon.Message);
+            }
+            finally
+            {
+                if (_sqlcon.State != ConnectionState.Closed)
+                {
+                    _sqlcon.Close();
+                }
+                _sqlpara = null;
+                _sqlcmd = null;
+                _sqlreader = null;
+            }
+            return "";
+        }
+        public string DeleteBankName(string bankName)
+        {
+            SqlCommand _sqlcmd = null;
+            SqlParameter _sqlpara;
+            SqlConnection _sqlcon = null;
+            SqlDataReader _sqlreader = null;
+            _sqlcmd = new SqlCommand();
+            _sqlcmd.CommandText = "sp_DeleteBankName";
+            _sqlpara = new SqlParameter("@BankName", bankName);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            try
+            {
+                _sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
+                _sqlcmd.Connection = _sqlcon;
+                _sqlcmd.CommandType = CommandType.StoredProcedure;
+                _sqlcmd.Connection.Open();
+                _sqlreader = _sqlcmd.ExecuteReader();
+                _sqlreader.Read();
+                int index;
+                if (_sqlreader.HasRows)
+                {
+                    index = _sqlreader.GetOrdinal("Message_Code");
+                    if (!_sqlreader.IsDBNull(index))
+                        return Convert.ToString(_sqlreader.GetString(index));
+                }
+            }
+            catch (Exception expCommon)
+            {
+                return "FAILED|" + Convert.ToString(expCommon.Message);
+            }
+            finally
+            {
+                if (_sqlcon.State != ConnectionState.Closed)
+                {
+                    _sqlcon.Close();
+                }
+                _sqlpara = null;
+                _sqlcmd = null;
+                _sqlreader = null;
+            }
+            return "";
+        }
+        public string UpdateORNumber(string RcptID, string CompanyORNo)
+        {
+            SqlCommand _sqlcmd = null;
+            SqlParameter _sqlpara;
+            SqlConnection _sqlcon = null;
+            SqlDataReader _sqlreader = null;
+            _sqlcmd = new SqlCommand();
+            _sqlcmd.CommandText = "sp_UpdateORNumber";
+            _sqlpara = new SqlParameter("@RcptID", RcptID);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@CompanyORNo", CompanyORNo);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@EncodedBy", Variables.UserID);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            try
+            {
+                _sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
+                _sqlcmd.Connection = _sqlcon;
+                _sqlcmd.CommandType = CommandType.StoredProcedure;
+                _sqlcmd.Connection.Open();
+                _sqlreader = _sqlcmd.ExecuteReader();
+                _sqlreader.Read();
+                int index;
+                if (_sqlreader.HasRows)
+                {
+                    index = _sqlreader.GetOrdinal("Message_Code");
+                    if (!_sqlreader.IsDBNull(index))
+                        return Convert.ToString(_sqlreader.GetString(index));
+                }
+            }
+            catch (Exception expCommon)
+            {
+                return "FAILED|" + Convert.ToString(expCommon.Message);
+            }
+            finally
+            {
+                if (_sqlcon.State != ConnectionState.Closed)
+                {
+                    _sqlcon.Close();
+                }
+                _sqlpara = null;
+                _sqlcmd = null;
+                _sqlreader = null;
+            }
+            return "";
+        }
         public DataSet GetUnitList()
         {
 
             SqlCommand _SqlCommand = null;
             // SqlParameter _SqlParameter;
             SqlConnection _SqlConnection = null;
-
-
             using (DataSet dsRec = new DataSet())
             {
                 _SqlCommand = new SqlCommand();
                 _SqlCommand.CommandText = "sp_GetUnitList";
-
                 //_SqlParameter = new SqlParameter("@ApproverEmpNno", _AssignTo);
                 //_SqlCommand.Parameters.Add(_SqlParameter);
-
                 try
                 {
                     _SqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
@@ -461,20 +702,15 @@ namespace LEASING.UI.APP.Context
         }
         public DataSet GetSelectPaymentMode()
         {
-
             SqlCommand _SqlCommand = null;
             // SqlParameter _SqlParameter;
             SqlConnection _SqlConnection = null;
-
-
             using (DataSet dsRec = new DataSet())
             {
                 _SqlCommand = new SqlCommand();
                 _SqlCommand.CommandText = "sp_SelectPaymentMode";
-
                 //_SqlParameter = new SqlParameter("@ApproverEmpNno", _AssignTo);
                 //_SqlCommand.Parameters.Add(_SqlParameter);
-
                 try
                 {
                     _SqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
@@ -508,16 +744,12 @@ namespace LEASING.UI.APP.Context
             SqlCommand _SqlCommand = null;
             // SqlParameter _SqlParameter;
             SqlConnection _SqlConnection = null;
-
-
             using (DataSet dsRec = new DataSet())
             {
                 _SqlCommand = new SqlCommand();
                 _SqlCommand.CommandText = "sp_SelectBankName";
-
                 //_SqlParameter = new SqlParameter("@ApproverEmpNno", _AssignTo);
                 //_SqlCommand.Parameters.Add(_SqlParameter);
-
                 try
                 {
                     _SqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
@@ -545,20 +777,15 @@ namespace LEASING.UI.APP.Context
                 return dsRec;
             }
         }
-
         public DataSet GetCheckPaymentStatus(string ReferenceID)
         {
-
             SqlCommand _SqlCommand = null;
             SqlParameter _SqlParameter;
             SqlConnection _SqlConnection = null;
-
-
             using (DataSet dsRec = new DataSet())
             {
                 _SqlCommand = new SqlCommand();
                 _SqlCommand.CommandText = "sp_GetCheckPaymentStatus";
-
                 _SqlParameter = new SqlParameter("@ReferenceID", ReferenceID);
                 _SqlCommand.Parameters.Add(_SqlParameter);
 
@@ -589,184 +816,17 @@ namespace LEASING.UI.APP.Context
                 return dsRec;
             }
         }
-
-        public string CloseContract(string RefId)
-        {
-            SqlCommand _sqlcmd = null;
-            SqlParameter _sqlpara;
-            SqlConnection _sqlcon = null;
-            SqlDataReader _sqlreader = null;
-            _sqlcmd = new SqlCommand();
-            _sqlcmd.CommandText = "sp_CloseContract";
-            _sqlpara = new SqlParameter("@ReferenceID", RefId);
-            _sqlcmd.Parameters.Add(_sqlpara);
-            _sqlpara = new SqlParameter("@EncodedBy", Variables.UserID);
-            _sqlcmd.Parameters.Add(_sqlpara);
-            _sqlpara = new SqlParameter("@ComputerName", Environment.MachineName);
-            _sqlcmd.Parameters.Add(_sqlpara);
-
-            try
-            {
-                _sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
-                _sqlcmd.Connection = _sqlcon;
-                _sqlcmd.CommandType = CommandType.StoredProcedure;
-
-                //_sqlreader = SqlDataReader(_sqlcmd, false);
-
-                _sqlcmd.Connection.Open();
-                _sqlreader = _sqlcmd.ExecuteReader();
-                _sqlreader.Read();
-
-                int index;
-                if (_sqlreader.HasRows)
-                {
-                    index = _sqlreader.GetOrdinal("Message_Code");
-                    if (!_sqlreader.IsDBNull(index))
-                        return Convert.ToString(_sqlreader.GetString(index));
-                }
-            }
-            catch (Exception expCommon)
-            {
-                //vErrorMessage = Convert.ToString(expCommon.Message);
-                return "FAILED|" + Convert.ToString(expCommon.Message);
-            }
-            finally
-            {
-                if (_sqlcon.State != ConnectionState.Closed)
-                {
-                    _sqlcon.Close();
-                }
-                _sqlpara = null;
-                _sqlcmd = null;
-                _sqlreader = null;
-            }
-            return "";
-        }
-
-        public string TerminateContract(string RefId)
-        {
-            SqlCommand _sqlcmd = null;
-            SqlParameter _sqlpara;
-            SqlConnection _sqlcon = null;
-            SqlDataReader _sqlreader = null;
-            _sqlcmd = new SqlCommand();
-            _sqlcmd.CommandText = "sp_TerminateContract";
-            _sqlpara = new SqlParameter("@ReferenceID", RefId);
-            _sqlcmd.Parameters.Add(_sqlpara);
-            _sqlpara = new SqlParameter("@EncodedBy", Variables.UserID);
-            _sqlcmd.Parameters.Add(_sqlpara);
-            _sqlpara = new SqlParameter("@ComputerName", Environment.MachineName);
-            _sqlcmd.Parameters.Add(_sqlpara);
-
-            try
-            {
-                _sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
-                _sqlcmd.Connection = _sqlcon;
-                _sqlcmd.CommandType = CommandType.StoredProcedure;
-
-                //_sqlreader = SqlDataReader(_sqlcmd, false);
-
-                _sqlcmd.Connection.Open();
-                _sqlreader = _sqlcmd.ExecuteReader();
-                _sqlreader.Read();
-
-                int index;
-                if (_sqlreader.HasRows)
-                {
-                    index = _sqlreader.GetOrdinal("Message_Code");
-                    if (!_sqlreader.IsDBNull(index))
-                        return Convert.ToString(_sqlreader.GetString(index));
-                }
-            }
-            catch (Exception expCommon)
-            {
-                //vErrorMessage = Convert.ToString(expCommon.Message);
-                return "FAILED|" + Convert.ToString(expCommon.Message);
-            }
-            finally
-            {
-                if (_sqlcon.State != ConnectionState.Closed)
-                {
-                    _sqlcon.Close();
-                }
-                _sqlpara = null;
-                _sqlcmd = null;
-                _sqlreader = null;
-            }
-            return "";
-        }
-
-        public string HoldPayment(string RefId, int ledgerRecId)
-        {
-            SqlCommand _sqlcmd = null;
-            SqlParameter _sqlpara;
-            SqlConnection _sqlcon = null;
-            SqlDataReader _sqlreader = null;
-            _sqlcmd = new SqlCommand();
-            _sqlcmd.CommandText = "sp_HoldPayment";
-            _sqlpara = new SqlParameter("@ReferenceID", RefId);
-            _sqlcmd.Parameters.Add(_sqlpara);
-            _sqlpara = new SqlParameter("@Recid", ledgerRecId);
-            _sqlcmd.Parameters.Add(_sqlpara);
-            //_sqlpara = new SqlParameter("@EncodedBy", Variables.UserID);
-            //_sqlcmd.Parameters.Add(_sqlpara);
-            //_sqlpara = new SqlParameter("@ComputerName", Environment.MachineName);
-            //_sqlcmd.Parameters.Add(_sqlpara);
-
-            try
-            {
-                _sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
-                _sqlcmd.Connection = _sqlcon;
-                _sqlcmd.CommandType = CommandType.StoredProcedure;
-
-                //_sqlreader = SqlDataReader(_sqlcmd, false);
-
-                _sqlcmd.Connection.Open();
-                _sqlreader = _sqlcmd.ExecuteReader();
-                _sqlreader.Read();
-
-                int index;
-                if (_sqlreader.HasRows)
-                {
-                    index = _sqlreader.GetOrdinal("Message_Code");
-                    if (!_sqlreader.IsDBNull(index))
-                        return Convert.ToString(_sqlreader.GetString(index));
-                }
-            }
-            catch (Exception expCommon)
-            {
-                //vErrorMessage = Convert.ToString(expCommon.Message);
-                return "FAILED|" + Convert.ToString(expCommon.Message);
-            }
-            finally
-            {
-                if (_sqlcon.State != ConnectionState.Closed)
-                {
-                    _sqlcon.Close();
-                }
-                _sqlpara = null;
-                _sqlcmd = null;
-                _sqlreader = null;
-            }
-            return "";
-        }
-
         public DataSet GetForContractSignedUnitList()
         {
-
             SqlCommand _SqlCommand = null;
             // SqlParameter _SqlParameter;
             SqlConnection _SqlConnection = null;
-
-
             using (DataSet dsRec = new DataSet())
             {
                 _SqlCommand = new SqlCommand();
                 _SqlCommand.CommandText = "sp_GetForContractSignedUnitList";
-
                 //_SqlParameter = new SqlParameter("@ApproverEmpNno", _AssignTo);
                 //_SqlCommand.Parameters.Add(_SqlParameter);
-
                 try
                 {
                     _SqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
@@ -796,20 +856,15 @@ namespace LEASING.UI.APP.Context
         }
         public DataSet GetForContractSignedParkingList()
         {
-
             SqlCommand _SqlCommand = null;
             // SqlParameter _SqlParameter;
             SqlConnection _SqlConnection = null;
-
-
             using (DataSet dsRec = new DataSet())
             {
                 _SqlCommand = new SqlCommand();
                 _SqlCommand.CommandText = "sp_GetForContractSignedParkingList";
-
                 //_SqlParameter = new SqlParameter("@ApproverEmpNno", _AssignTo);
                 //_SqlCommand.Parameters.Add(_SqlParameter);
-
                 try
                 {
                     _SqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
@@ -837,23 +892,17 @@ namespace LEASING.UI.APP.Context
                 return dsRec;
             }
         }
-
         public DataSet GetForMoveInUnitList()
         {
-
             SqlCommand _SqlCommand = null;
             // SqlParameter _SqlParameter;
             SqlConnection _SqlConnection = null;
-
-
             using (DataSet dsRec = new DataSet())
             {
                 _SqlCommand = new SqlCommand();
                 _SqlCommand.CommandText = "sp_GetForMoveInUnitList";
-
                 //_SqlParameter = new SqlParameter("@ApproverEmpNno", _AssignTo);
                 //_SqlCommand.Parameters.Add(_SqlParameter);
-
                 try
                 {
                     _SqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
@@ -883,20 +932,15 @@ namespace LEASING.UI.APP.Context
         }
         public DataSet GetForMoveInParkingList()
         {
-
             SqlCommand _SqlCommand = null;
             // SqlParameter _SqlParameter;
             SqlConnection _SqlConnection = null;
-
-
             using (DataSet dsRec = new DataSet())
             {
                 _SqlCommand = new SqlCommand();
                 _SqlCommand.CommandText = "sp_GetForMoveInParkingList";
-
                 //_SqlParameter = new SqlParameter("@ApproverEmpNno", _AssignTo);
                 //_SqlCommand.Parameters.Add(_SqlParameter);
-
                 try
                 {
                     _SqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
@@ -926,20 +970,15 @@ namespace LEASING.UI.APP.Context
         }
         public DataSet GetForMoveOutUnitList()
         {
-
             SqlCommand _SqlCommand = null;
             // SqlParameter _SqlParameter;
             SqlConnection _SqlConnection = null;
-
-
             using (DataSet dsRec = new DataSet())
             {
                 _SqlCommand = new SqlCommand();
                 _SqlCommand.CommandText = "sp_GetForMoveOutUnitList";
-
                 //_SqlParameter = new SqlParameter("@ApproverEmpNno", _AssignTo);
                 //_SqlCommand.Parameters.Add(_SqlParameter);
-
                 try
                 {
                     _SqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
@@ -969,20 +1008,15 @@ namespace LEASING.UI.APP.Context
         }
         public DataSet GetForMoveOutParkingList()
         {
-
             SqlCommand _SqlCommand = null;
             // SqlParameter _SqlParameter;
             SqlConnection _SqlConnection = null;
-
-
             using (DataSet dsRec = new DataSet())
             {
                 _SqlCommand = new SqlCommand();
                 _SqlCommand.CommandText = "sp_GetForMoveOutParkingList";
-
                 //_SqlParameter = new SqlParameter("@ApproverEmpNno", _AssignTo);
                 //_SqlCommand.Parameters.Add(_SqlParameter);
-
                 try
                 {
                     _SqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
@@ -1010,23 +1044,17 @@ namespace LEASING.UI.APP.Context
                 return dsRec;
             }
         }
-
         public DataSet GetClosedContracts()
         {
-
             SqlCommand _SqlCommand = null;
             // SqlParameter _SqlParameter;
             SqlConnection _SqlConnection = null;
-
-
             using (DataSet dsRec = new DataSet())
             {
                 _SqlCommand = new SqlCommand();
                 _SqlCommand.CommandText = "sp_GetClosedContracts";
-
                 //_SqlParameter = new SqlParameter("@ApproverEmpNno", _AssignTo);
                 //_SqlCommand.Parameters.Add(_SqlParameter);
-
                 try
                 {
                     _SqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
@@ -1054,23 +1082,17 @@ namespace LEASING.UI.APP.Context
                 return dsRec;
             }
         }
-
         public DataSet GetCheckOrNumber(string CompanyORNo)
         {
-
             SqlCommand _SqlCommand = null;
             SqlParameter _SqlParameter;
             SqlConnection _SqlConnection = null;
-
-
             using (DataSet dsRec = new DataSet())
             {
                 _SqlCommand = new SqlCommand();
                 _SqlCommand.CommandText = "sp_CheckOrNumber";
-
                 _SqlParameter = new SqlParameter("@CompanyORNo", CompanyORNo);
                 _SqlCommand.Parameters.Add(_SqlParameter);
-
                 try
                 {
                     _SqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
@@ -1100,20 +1122,15 @@ namespace LEASING.UI.APP.Context
         }
         public DataSet GetCheckPRNumber(string CompanyPRNo)
         {
-
             SqlCommand _SqlCommand = null;
             SqlParameter _SqlParameter;
             SqlConnection _SqlConnection = null;
-
-
             using (DataSet dsRec = new DataSet())
             {
                 _SqlCommand = new SqlCommand();
                 _SqlCommand.CommandText = "sp_CheckPRNumber";
-
                 _SqlParameter = new SqlParameter("@CompanyORNo", CompanyPRNo);
                 _SqlCommand.Parameters.Add(_SqlParameter);
-
                 try
                 {
                     _SqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
@@ -1143,20 +1160,15 @@ namespace LEASING.UI.APP.Context
         }
         public DataSet CheckIfOrIsEmpty(string TranId)
         {
-
             SqlCommand _SqlCommand = null;
             SqlParameter _SqlParameter;
             SqlConnection _SqlConnection = null;
-
-
             using (DataSet dsRec = new DataSet())
             {
                 _SqlCommand = new SqlCommand();
                 _SqlCommand.CommandText = "sp_CheckIfOrIsEmpty";
-
                 _SqlParameter = new SqlParameter("@TranId", TranId);
                 _SqlCommand.Parameters.Add(_SqlParameter);
-
                 try
                 {
                     _SqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
@@ -1186,20 +1198,15 @@ namespace LEASING.UI.APP.Context
         }
         public DataSet GetPenaltyResult(int LedgerId)
         {
-
             SqlCommand _SqlCommand = null;
             SqlParameter _SqlParameter;
             SqlConnection _SqlConnection = null;
-
-
             using (DataSet dsRec = new DataSet())
             {
                 _SqlCommand = new SqlCommand();
                 _SqlCommand.CommandText = "sp_GetPenaltyResult";
-
                 _SqlParameter = new SqlParameter("@LedgerId", LedgerId);
                 _SqlCommand.Parameters.Add(_SqlParameter);
-
                 try
                 {
                     _SqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
@@ -1229,20 +1236,15 @@ namespace LEASING.UI.APP.Context
         }
         public DataSet GetLedgerListOnQue(string xml)
         {
-
             SqlCommand _SqlCommand = null;
             SqlParameter _SqlParameter;
             SqlConnection _SqlConnection = null;
-
-
             using (DataSet dsRec = new DataSet())
             {
                 _SqlCommand = new SqlCommand();
                 _SqlCommand.CommandText = "sp_GetLedgerListOnQue";
-
                 _SqlParameter = new SqlParameter("@XML", xml);
                 _SqlCommand.Parameters.Add(_SqlParameter);
-
                 try
                 {
                     _SqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
@@ -1272,20 +1274,15 @@ namespace LEASING.UI.APP.Context
         }
         public DataSet GetLedgerListOnQueTotalAMount(string xml)
         {
-
             SqlCommand _SqlCommand = null;
             SqlParameter _SqlParameter;
             SqlConnection _SqlConnection = null;
-
-
             using (DataSet dsRec = new DataSet())
             {
                 _SqlCommand = new SqlCommand();
                 _SqlCommand.CommandText = "sp_GetLedgerListOnQueTotalAMount";
-
                 _SqlParameter = new SqlParameter("@XML", xml);
                 _SqlCommand.Parameters.Add(_SqlParameter);
-
                 try
                 {
                     _SqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
@@ -1312,158 +1309,6 @@ namespace LEASING.UI.APP.Context
                 }
                 return dsRec;
             }
-        }
-
-        public string SaveNewBankName(string bankName)
-        {
-            SqlCommand _sqlcmd = null;
-            SqlParameter _sqlpara;
-            SqlConnection _sqlcon = null;
-            SqlDataReader _sqlreader = null;
-            _sqlcmd = new SqlCommand();
-            _sqlcmd.CommandText = "sp_SaveBankName";
-            _sqlpara = new SqlParameter("@BankName", bankName);
-            _sqlcmd.Parameters.Add(_sqlpara);
-
-
-            try
-            {
-                _sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
-                _sqlcmd.Connection = _sqlcon;
-                _sqlcmd.CommandType = CommandType.StoredProcedure;
-
-                //_sqlreader = SqlDataReader(_sqlcmd, false);
-
-                _sqlcmd.Connection.Open();
-                _sqlreader = _sqlcmd.ExecuteReader();
-                _sqlreader.Read();
-
-                int index;
-                if (_sqlreader.HasRows)
-                {
-                    index = _sqlreader.GetOrdinal("Message_Code");
-                    if (!_sqlreader.IsDBNull(index))
-                        return Convert.ToString(_sqlreader.GetString(index));
-                }
-            }
-            catch (Exception expCommon)
-            {
-                //vErrorMessage = Convert.ToString(expCommon.Message);
-                return "FAILED|" + Convert.ToString(expCommon.Message);
-            }
-            finally
-            {
-                if (_sqlcon.State != ConnectionState.Closed)
-                {
-                    _sqlcon.Close();
-                }
-                _sqlpara = null;
-                _sqlcmd = null;
-                _sqlreader = null;
-            }
-            return "";
-        }
-        public string DeleteBankName(string bankName)
-        {
-            SqlCommand _sqlcmd = null;
-            SqlParameter _sqlpara;
-            SqlConnection _sqlcon = null;
-            SqlDataReader _sqlreader = null;
-            _sqlcmd = new SqlCommand();
-            _sqlcmd.CommandText = "sp_DeleteBankName";
-            _sqlpara = new SqlParameter("@BankName", bankName);
-            _sqlcmd.Parameters.Add(_sqlpara);
-
-
-            try
-            {
-                _sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
-                _sqlcmd.Connection = _sqlcon;
-                _sqlcmd.CommandType = CommandType.StoredProcedure;
-
-                //_sqlreader = SqlDataReader(_sqlcmd, false);
-
-                _sqlcmd.Connection.Open();
-                _sqlreader = _sqlcmd.ExecuteReader();
-                _sqlreader.Read();
-
-                int index;
-                if (_sqlreader.HasRows)
-                {
-                    index = _sqlreader.GetOrdinal("Message_Code");
-                    if (!_sqlreader.IsDBNull(index))
-                        return Convert.ToString(_sqlreader.GetString(index));
-                }
-            }
-            catch (Exception expCommon)
-            {
-                //vErrorMessage = Convert.ToString(expCommon.Message);
-                return "FAILED|" + Convert.ToString(expCommon.Message);
-            }
-            finally
-            {
-                if (_sqlcon.State != ConnectionState.Closed)
-                {
-                    _sqlcon.Close();
-                }
-                _sqlpara = null;
-                _sqlcmd = null;
-                _sqlreader = null;
-            }
-            return "";
-        }
-        public string UpdateORNumber(string RcptID,string CompanyORNo)
-        {
-            SqlCommand _sqlcmd = null;
-            SqlParameter _sqlpara;
-            SqlConnection _sqlcon = null;
-            SqlDataReader _sqlreader = null;
-            _sqlcmd = new SqlCommand();
-            _sqlcmd.CommandText = "sp_UpdateORNumber";
-            _sqlpara = new SqlParameter("@RcptID", RcptID);
-            _sqlcmd.Parameters.Add(_sqlpara);
-            _sqlpara = new SqlParameter("@CompanyORNo", CompanyORNo);
-            _sqlcmd.Parameters.Add(_sqlpara);
-            _sqlpara = new SqlParameter("@EncodedBy", Variables.UserID);
-            _sqlcmd.Parameters.Add(_sqlpara);
-
-
-            try
-            {
-                _sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
-                _sqlcmd.Connection = _sqlcon;
-                _sqlcmd.CommandType = CommandType.StoredProcedure;
-
-                //_sqlreader = SqlDataReader(_sqlcmd, false);
-
-                _sqlcmd.Connection.Open();
-                _sqlreader = _sqlcmd.ExecuteReader();
-                _sqlreader.Read();
-
-                int index;
-                if (_sqlreader.HasRows)
-                {
-                    index = _sqlreader.GetOrdinal("Message_Code");
-                    if (!_sqlreader.IsDBNull(index))
-                        return Convert.ToString(_sqlreader.GetString(index));
-                }
-            }
-            catch (Exception expCommon)
-            {
-                //vErrorMessage = Convert.ToString(expCommon.Message);
-                return "FAILED|" + Convert.ToString(expCommon.Message);
-            }
-            finally
-            {
-                if (_sqlcon.State != ConnectionState.Closed)
-                {
-                    _sqlcon.Close();
-                }
-                _sqlpara = null;
-                _sqlcmd = null;
-                _sqlreader = null;
-            }
-            return "";
         }
     }
 }

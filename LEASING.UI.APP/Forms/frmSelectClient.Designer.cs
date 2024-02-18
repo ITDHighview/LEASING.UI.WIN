@@ -56,6 +56,10 @@
             this.btnGenerate = new Telerik.WinControls.UI.RadButton();
             this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
             this.telerikMetroTouchTheme1 = new Telerik.WinControls.Themes.TelerikMetroTouchTheme();
+            this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
+            this.txtAmountPaid = new Telerik.WinControls.UI.RadTextBox();
+            this.txtBalanceAmount = new Telerik.WinControls.UI.RadTextBox();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).BeginInit();
             this.radGroupBox2.SuspendLayout();
@@ -82,6 +86,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvLedgerList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLedgerList.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnGenerate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAmountPaid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtBalanceAmount)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -129,12 +137,16 @@
             this.tableLayoutPanel2.Controls.Add(this.radLabel2, 0, 4);
             this.tableLayoutPanel2.Controls.Add(this.radLabel3, 0, 5);
             this.tableLayoutPanel2.Controls.Add(this.radLabel4, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.txtAmountPaid, 1, 2);
             this.tableLayoutPanel2.Controls.Add(this.btnCheckUnits, 2, 0);
+            this.tableLayoutPanel2.Controls.Add(this.radLabel5, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.txtClientName, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.radGroupBox3, 2, 1);
             this.tableLayoutPanel2.Controls.Add(this.btnPrintReciept, 3, 0);
             this.tableLayoutPanel2.Controls.Add(this.dtpFrom, 1, 4);
             this.tableLayoutPanel2.Controls.Add(this.dtpTo, 1, 5);
+            this.tableLayoutPanel2.Controls.Add(this.radLabel6, 0, 3);
+            this.tableLayoutPanel2.Controls.Add(this.txtBalanceAmount, 1, 3);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(2, 18);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -274,6 +286,7 @@
             // 
             this.radLabel8.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.radLabel8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel8.ForeColor = System.Drawing.Color.Purple;
             this.radLabel8.Location = new System.Drawing.Point(20, 92);
             this.radLabel8.Name = "radLabel8";
             this.radLabel8.Size = new System.Drawing.Size(128, 19);
@@ -387,6 +400,46 @@
             this.btnGenerate.Text = "PROCEED TO PAYMENT >>>";
             this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
             // 
+            // radLabel5
+            // 
+            this.radLabel5.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.radLabel5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel5.ForeColor = System.Drawing.Color.Green;
+            this.radLabel5.Location = new System.Drawing.Point(14, 53);
+            this.radLabel5.Name = "radLabel5";
+            this.radLabel5.Size = new System.Drawing.Size(83, 19);
+            this.radLabel5.TabIndex = 2;
+            this.radLabel5.Text = "Amount Paid";
+            // 
+            // radLabel6
+            // 
+            this.radLabel6.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.radLabel6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel6.ForeColor = System.Drawing.Color.DarkRed;
+            this.radLabel6.Location = new System.Drawing.Point(46, 78);
+            this.radLabel6.Name = "radLabel6";
+            this.radLabel6.Size = new System.Drawing.Size(51, 19);
+            this.radLabel6.TabIndex = 2;
+            this.radLabel6.Text = "Balance";
+            // 
+            // txtAmountPaid
+            // 
+            this.txtAmountPaid.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAmountPaid.Location = new System.Drawing.Point(103, 53);
+            this.txtAmountPaid.Name = "txtAmountPaid";
+            this.txtAmountPaid.Size = new System.Drawing.Size(149, 20);
+            this.txtAmountPaid.TabIndex = 4;
+            this.txtAmountPaid.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtBalanceAmount
+            // 
+            this.txtBalanceAmount.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBalanceAmount.Location = new System.Drawing.Point(103, 78);
+            this.txtBalanceAmount.Name = "txtBalanceAmount";
+            this.txtBalanceAmount.Size = new System.Drawing.Size(149, 20);
+            this.txtBalanceAmount.TabIndex = 4;
+            this.txtBalanceAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // frmSelectClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -427,6 +480,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvLedgerList.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLedgerList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnGenerate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAmountPaid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtBalanceAmount)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -457,5 +514,9 @@
         private Telerik.WinControls.UI.RadTextBox dtpFrom;
         private Telerik.WinControls.UI.RadTextBox dtpTo;
         private Telerik.WinControls.Themes.TelerikMetroTouchTheme telerikMetroTouchTheme1;
+        private Telerik.WinControls.UI.RadTextBox txtAmountPaid;
+        private Telerik.WinControls.UI.RadLabel radLabel5;
+        private Telerik.WinControls.UI.RadLabel radLabel6;
+        private Telerik.WinControls.UI.RadTextBox txtBalanceAmount;
     }
 }

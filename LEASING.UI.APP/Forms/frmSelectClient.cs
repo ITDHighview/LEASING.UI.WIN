@@ -100,6 +100,8 @@ namespace LEASING.UI.APP.Forms
                     txtTwoMonAdv.Text = Convert.ToString(dt.Tables[0].Rows[0]["TwoMonAdvance"]);
                     txtThreeMonSecDep.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecDeposit"]);                 
                     txtTotalForPayment.Text = Convert.ToString(dt.Tables[0].Rows[0]["TotalForPayment"]);
+                    txtAmountPaid.Text = Convert.ToString(dt.Tables[0].Rows[0]["TotalPayAMount"]);
+                    txtBalanceAmount.Text = Convert.ToString(dt.Tables[0].Rows[0]["FirtsPaymentBalanceAmount"]);
                 }
             }
         }
@@ -219,6 +221,7 @@ namespace LEASING.UI.APP.Forms
                         //    frmRecieptSelection.IsNoOR = false;
                         //}
                         frmRecieptSelection.ShowDialog();
+                        M_GetComputationById();
                     }
                 }
             }

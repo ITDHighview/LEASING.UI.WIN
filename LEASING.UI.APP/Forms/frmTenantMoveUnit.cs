@@ -29,16 +29,13 @@ namespace LEASING.UI.APP.Forms
                 using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString()))
                 {
                     connection.Open();
-
                     using (SqlCommand command = new SqlCommand(storedProcedureName, connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
-
                         // Add parameters
                         command.Parameters.AddWithValue("@ProcedureName", procedureName);
                         command.Parameters.AddWithValue("@ErrorMessage", errorMessage);
                         command.Parameters.AddWithValue("@LogDateTime", logDateTime);
-
                         // Execute the stored procedure
                         command.ExecuteNonQuery();
                     }
@@ -60,17 +57,14 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-
         private void frmTenantMoveUnit_Load(object sender, EventArgs e)
         {
             M_GetForMoveInUnitList();
         }
-
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             M_GetForMoveInUnitList();
         }
-
         private void dgvList_CellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -94,7 +88,6 @@ namespace LEASING.UI.APP.Forms
                                 LogErrorIntoStoredProcedure("sp_LogError", "sp_MovedIn: " + "Move-In", result, DateTime.Now);
                             }
                         }
-
                     }
                     catch (Exception ex)
                     {
@@ -113,11 +106,14 @@ namespace LEASING.UI.APP.Forms
 
         private void btnPrintAuthorization_Click(object sender, EventArgs e)
         {//RefId
-            if (!string.IsNullOrEmpty(Convert.ToString(dgvList.CurrentRow.Cells["RefId"].Value)))
+            if (dgvList.Rows.Count > 0)
             {
-                frmMoveInAuthorizationReport MoveIn = new frmMoveInAuthorizationReport(Convert.ToString(dgvList.CurrentRow.Cells["RefId"].Value));
-                MoveIn.Show();
-            }        
+                if (!string.IsNullOrEmpty(Convert.ToString(dgvList.CurrentRow.Cells["RefId"].Value)))
+                {
+                    frmMoveInAuthorizationReport MoveIn = new frmMoveInAuthorizationReport(Convert.ToString(dgvList.CurrentRow.Cells["RefId"].Value));
+                    MoveIn.Show();
+                }
+            }            
         }
     }
 }

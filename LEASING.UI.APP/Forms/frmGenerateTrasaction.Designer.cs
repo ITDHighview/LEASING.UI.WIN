@@ -48,6 +48,7 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn15 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn16 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn17 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn18 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             this.radGroupBox2 = new Telerik.WinControls.UI.RadGroupBox();
             this.dgvList = new Telerik.WinControls.UI.RadGridView();
             this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
@@ -65,7 +66,7 @@
             this.radGroupBox2.HeaderText = "CONTRACT LIST";
             this.radGroupBox2.Location = new System.Drawing.Point(0, 0);
             this.radGroupBox2.Name = "radGroupBox2";
-            this.radGroupBox2.Size = new System.Drawing.Size(948, 449);
+            this.radGroupBox2.Size = new System.Drawing.Size(1047, 449);
             this.radGroupBox2.TabIndex = 6;
             this.radGroupBox2.Text = "CONTRACT LIST";
             // 
@@ -183,6 +184,10 @@
             gridViewTextBoxColumn17.HeaderText = "";
             gridViewTextBoxColumn17.IsVisible = false;
             gridViewTextBoxColumn17.Name = "ClientID";
+            gridViewTextBoxColumn18.FieldName = "TranStatus";
+            gridViewTextBoxColumn18.HeaderText = "Status";
+            gridViewTextBoxColumn18.Name = "TranStatus";
+            gridViewTextBoxColumn18.Width = 100;
             this.dgvList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewCommandColumn1,
             gridViewCommandColumn2,
@@ -203,7 +208,8 @@
             gridViewTextBoxColumn14,
             gridViewTextBoxColumn15,
             gridViewTextBoxColumn16,
-            gridViewTextBoxColumn17});
+            gridViewTextBoxColumn17,
+            gridViewTextBoxColumn18});
             this.dgvList.MasterTemplate.EnableFiltering = true;
             this.dgvList.MasterTemplate.ShowRowHeaderColumn = false;
             this.dgvList.Name = "dgvList";
@@ -211,7 +217,7 @@
             this.dgvList.ReadOnly = true;
             this.dgvList.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgvList.ShowGroupPanel = false;
-            this.dgvList.Size = new System.Drawing.Size(944, 429);
+            this.dgvList.Size = new System.Drawing.Size(1043, 429);
             this.dgvList.TabIndex = 0;
             this.dgvList.Text = "radGridView1";
             this.dgvList.ThemeName = "Office2007Silver";
@@ -221,7 +227,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(948, 449);
+            this.ClientSize = new System.Drawing.Size(1047, 449);
             this.Controls.Add(this.radGroupBox2);
             this.DoubleBuffered = true;
             this.Name = "frmGenerateTrasaction";

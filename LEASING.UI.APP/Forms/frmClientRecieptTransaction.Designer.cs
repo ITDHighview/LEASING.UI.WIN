@@ -219,6 +219,7 @@
             gridViewTextBoxColumn9.Width = 120;
             gridViewTextBoxColumn10.FieldName = "PayID";
             gridViewTextBoxColumn10.HeaderText = "Payment ID";
+            gridViewTextBoxColumn10.IsVisible = false;
             gridViewTextBoxColumn10.Name = "PayID";
             gridViewTextBoxColumn10.Width = 120;
             gridViewTextBoxColumn11.FieldName = "PaidAmount";

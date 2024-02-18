@@ -39,6 +39,8 @@ CREATE TABLE [dbo].[tblUnitReference]
 [TerminationDate] [datetime] NULL,
 [AdvancePaymentAmount] [decimal] (18, 2) NULL,
 [IsFullPayment] [bit] NULL,
-[PenaltyPct] [decimal] (18, 2) NULL
+[PenaltyPct] [decimal] (18, 2) NULL,
+[IsPartialPayment] [bit] NULL,
+[FirtsPaymentBalanceAmount] [decimal] (18, 2) NULL
 ) ON [PRIMARY]
 GO

@@ -11,6 +11,7 @@ BEGIN
     SET NOCOUNT ON;
     DECLARE @combinedString VARCHAR(MAX);
     DECLARE @IsFullPayment BIT = 0;
+
     SELECT @IsFullPayment = ISNULL([tblUnitReference].[IsFullPayment], 0)
     FROM [dbo].[tblUnitReference]
     WHERE [tblUnitReference].[RefId] =
@@ -20,18 +21,40 @@ BEGIN
         FROM [dbo].[tblTransaction]
         WHERE [tblTransaction].[TranID] = @TranID
     );
+
     IF @IsFullPayment = 0
     BEGIN
-        SELECT @combinedString
-            = COALESCE(@combinedString + '-', '') + UPPER(DATENAME(MONTH, [tblPayment].[ForMonth])) + ' '
-              + CAST(YEAR([tblPayment].[ForMonth]) AS VARCHAR(4))
-        FROM [dbo].[tblPayment]
-        WHERE [tblPayment].[TranId] = @TranID
-              AND [tblPayment].[Remarks] NOT IN ( 'SECURITY DEPOSIT' );
+        IF
+        (
+            SELECT COUNT(*)
+            FROM [dbo].[tblPayment]
+            WHERE [tblPayment].[TranId] = @TranID
+                  AND [tblPayment].[Remarks] NOT IN ( 'SECURITY DEPOSIT' )
+        ) > 5
+        BEGIN
+            SELECT @combinedString
+                = UPPER(DATENAME(MONTH, MIN([tblPayment].[ForMonth]))) + ' '
+                  + CAST(YEAR(MIN([tblPayment].[ForMonth])) AS VARCHAR(4)) + ' TO '
+                  + UPPER(DATENAME(MONTH, MAX([tblPayment].[ForMonth]))) + ' '
+                  + CAST(YEAR(MAX([tblPayment].[ForMonth])) AS VARCHAR(4))
+            FROM [dbo].[tblPayment]
+            WHERE [tblPayment].[TranId] = @TranID
+                  AND [tblPayment].[Remarks] NOT IN ( 'SECURITY DEPOSIT' )
+            GROUP BY [tblPayment].[ForMonth]
+        END
+        ELSE
+        BEGIN
+            SELECT @combinedString
+                = COALESCE(@combinedString + '-', '') + UPPER(DATENAME(MONTH, [tblPayment].[ForMonth])) + ' '
+                  + CAST(YEAR([tblPayment].[ForMonth]) AS VARCHAR(4))
+                  + IIF(ISNULL([tblMonthLedger].[IsHold], 0) = 1, '(PARTIAL)', '')
+            FROM [dbo].[tblPayment]
+                INNER JOIN [dbo].[tblMonthLedger]
+                    ON [tblMonthLedger].[LedgMonth] = [tblPayment].[ForMonth]
+            WHERE [tblPayment].[TranId] = @TranID
+                  AND [tblPayment].[Remarks] NOT IN ( 'SECURITY DEPOSIT' )
+        END
     END;
-
-
-
 
     CREATE TABLE [#TMP]
     (
@@ -86,17 +109,17 @@ BEGIN
            [RECEIPT].[OR_No],
            [CLIENT].[TIN_No],
            [TRANSACTION].[TransactionDate],
-           UPPER([dbo].[fnNumberToWordsWithDecimal]([TRANSACTION].[PaidAmount])) AS [AmountInWords],
+           UPPER([dbo].[fnNumberToWordsWithDecimal]([TRANSACTION].[ReceiveAmount])) AS [AmountInWords],
            [PAYMENT].[PAYMENT_FOR],
            [RECEIPT].[TotalAmountInDigit],
            [tblUnitReference].[TotalRent] AS [RENTAL_SECMAIN],
-           CAST(CAST((([tblUnitReference].[GenVat] * [TRANSACTION].[PaidAmount]) / 100) AS DECIMAL(18, 2)) AS VARCHAR(30)) AS [VAT_AMOUNT],
+           CAST(CAST((([tblUnitReference].[GenVat] * [TRANSACTION].[ReceiveAmount]) / 100) AS DECIMAL(18, 2)) AS VARCHAR(30)) AS [VAT_AMOUNT],
            CAST([tblUnitReference].[GenVat] AS VARCHAR(10)) + '% VAT' AS [VATPct],
            [RECEIPT].[TOTAL],
            IIF([tblUnitReference].[WithHoldingTax] > 0,
-               CAST(CAST((([tblUnitReference].[WithHoldingTax] * [TRANSACTION].[PaidAmount]) / 100) AS DECIMAL(18, 2)) AS VARCHAR(30)),
+               CAST(CAST((([tblUnitReference].[WithHoldingTax] * [TRANSACTION].[ReceiveAmount]) / 100) AS DECIMAL(18, 2)) AS VARCHAR(30)),
                '0.00') AS [WithHoldingTax_AMOUNT],
-           [TRANSACTION].[PaidAmount] AS [TOTAL_AMOUNT_DUE],
+           [TRANSACTION].[ReceiveAmount] AS [TOTAL_AMOUNT_DUE],
            [RECEIPT].[BankName],
            [RECEIPT].[PDC_CHECK_SERIAL],
            [TRANSACTION].[USER]
@@ -120,7 +143,7 @@ BEGIN
         SELECT [tblTransaction].[EncodedDate] AS [TransactionDate],
                [tblTransaction].[TranID],
                ISNULL([dbo].[fn_GetUserName]([tblTransaction].[EncodedBy]), '') AS [USER],
-               [tblTransaction].[PaidAmount]
+               [tblTransaction].[ReceiveAmount]
         FROM [dbo].[tblTransaction]
         WHERE [tblUnitReference].[RefId] = [tblTransaction].[RefId]
     ) [TRANSACTION]

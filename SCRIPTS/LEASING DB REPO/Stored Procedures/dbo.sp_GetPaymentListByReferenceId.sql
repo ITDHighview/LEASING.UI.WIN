@@ -9,28 +9,26 @@ GO
 -- =============================================
 CREATE PROCEDURE [dbo].[sp_GetPaymentListByReferenceId] @RefId VARCHAR(50) = NULL
 AS
-    BEGIN
+BEGIN
 
-        SET NOCOUNT ON;
+    SET NOCOUNT ON;
 
 
-        SELECT
-            [tblPayment].[RecId],
-            [tblPayment].[PayID],
-            [tblPayment].[TranId],
-            [tblPayment].[Amount],
-            ISNULL(CONVERT(VARCHAR(20), [tblPayment].[ForMonth], 107), '')    AS [ForMonth],
-            [tblPayment].[Remarks],
-            [tblPayment].[EncodedBy],
-            ISNULL(CONVERT(VARCHAR(20), [tblPayment].[EncodedDate], 107), '') AS [DatePayed],
-            [tblPayment].[LastChangedBy],
-            [tblPayment].[LastChangedDate],
-            [tblPayment].[ComputerName],
-            [tblPayment].[IsActive],
-            [tblPayment].[RefId]
-        FROM
-            [dbo].[tblPayment]
-        WHERE
-            [tblPayment].[RefId] = @RefId;
-    END;
+    SELECT [tblPayment].[RecId],
+           [tblPayment].[PayID],
+           [tblPayment].[TranId],
+           [tblPayment].[Amount],
+           ISNULL(CONVERT(VARCHAR(20), [tblPayment].[ForMonth], 107), '') AS [ForMonth],
+           [tblPayment].[Remarks],
+           [tblPayment].[EncodedBy],
+           ISNULL(CONVERT(VARCHAR(20), [tblPayment].[EncodedDate], 107), '') AS [DatePayed],
+           [tblPayment].[LastChangedBy],
+           [tblPayment].[LastChangedDate],
+           [tblPayment].[ComputerName],
+           [tblPayment].[IsActive],
+           [tblPayment].[RefId]
+    FROM [dbo].[tblPayment]
+    WHERE [tblPayment].[RefId] = @RefId
+         
+END;
 GO

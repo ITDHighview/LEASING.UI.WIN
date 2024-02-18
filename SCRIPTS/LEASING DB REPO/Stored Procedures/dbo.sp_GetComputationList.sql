@@ -41,7 +41,8 @@ BEGIN
            [tblUnitReference].[IsActive],
            [tblUnitReference].[ComputerName],
            IIF(ISNULL([tblUnitMstr].[IsParking], 0) = 1, 'TYPE OF PARKING', 'TYPE OF UNIT') AS [TypeOf],
-           IIF(ISNULL([tblUnitReference].[IsFullPayment], 0) = 1, 'FULL PAYMENT', 'INSTALLMENT') AS [PaymentCategory]
+           IIF(ISNULL([tblUnitReference].[IsFullPayment], 0) = 1, 'FULL PAYMENT', 'INSTALLMENT') AS [PaymentCategory],
+		   IIF(ISNULL([tblUnitReference].[IsPartialPayment], 0) = 1, 'HOLD - PARTIAL PAYMENT', 'NEW') AS [TranStatus]--this for First Payment Flag AS Partial Payment
     FROM [dbo].[tblUnitReference] WITH (NOLOCK)
         INNER JOIN [dbo].[tblProjectMstr] WITH (NOLOCK)
             ON [tblUnitReference].[ProjectId] = [tblProjectMstr].[RecId]

@@ -11,53 +11,56 @@ CREATE PROCEDURE [dbo].[sp_GetNotificationList]
 AS
 BEGIN
 
-    SELECT 'MARK JASON' AS [Client],
-           'INDV102220221' AS [ClientID],
-           'REF12313215' AS [ContractID],
-           'Jan 01,2024' AS [ForMonth],
-           '1500.00' AS [Amounth],
+    SELECT [tblClientMstr].[ClientName] AS [Client],
+           [tblUnitReference].[ClientID] AS [ClientID],
+           [tblUnitReference].[RefId] AS [ContractID],
+           CONVERT(VARCHAR(15), [tblMonthLedger].[LedgMonth], 107) AS [ForMonth],
+           CAST([tblMonthLedger].[LedgAmount] AS DECIMAL(18, 2)) AS [Amount],
+           'HOLD' AS [Status]
+    FROM [dbo].[tblUnitReference] WITH (NOLOCK)
+        LEFT JOIN [dbo].[tblMonthLedger] WITH (NOLOCK)
+            ON [tblUnitReference].[RecId] = [tblMonthLedger].[ReferenceID]
+        INNER JOIN [dbo].[tblClientMstr] WITH (NOLOCK)
+            ON [tblUnitReference].[ClientID] = [tblClientMstr].[ClientID]
+    WHERE ISNULL([tblMonthLedger].[IsHold], 0) = 1
+          AND CONVERT(VARCHAR(10), [tblMonthLedger].[LedgMonth], 103) > CONVERT(VARCHAR(10), GETDATE(), 103)
+    UNION
+    SELECT [tblClientMstr].[ClientName] AS [Client],
+           [tblUnitReference].[ClientID] AS [ClientID],
+           [tblUnitReference].[RefId] AS [ContractID],
+           CONVERT(VARCHAR(15), [tblMonthLedger].[LedgMonth], 107) AS [ForMonth],
+           CAST([tblMonthLedger].[LedgAmount] AS DECIMAL(18, 2)) AS [Amount],
            'DUE' AS [Status]
+    FROM [dbo].[tblUnitReference] WITH (NOLOCK)
+        LEFT JOIN [dbo].[tblMonthLedger] WITH (NOLOCK)
+            ON [tblUnitReference].[RecId] = [tblMonthLedger].[ReferenceID]
+        INNER JOIN [dbo].[tblClientMstr] WITH (NOLOCK)
+            ON [tblUnitReference].[ClientID] = [tblClientMstr].[ClientID]
+    WHERE (
+              ISNULL([tblMonthLedger].[IsHold], 0) = 1
+              AND ISNULL([tblMonthLedger].[IsPaid], 0) = 0
+              AND CONVERT(VARCHAR(10), GETDATE(), 103) = CONVERT(VARCHAR(10), [tblMonthLedger].[LedgMonth], 103)
+          )
+          OR
+          (
+              ISNULL([tblMonthLedger].[IsHold], 0) = 0
+              AND ISNULL([tblMonthLedger].[IsPaid], 0) = 0
+              AND CONVERT(VARCHAR(10), GETDATE(), 103) = CONVERT(VARCHAR(10), [tblMonthLedger].[LedgMonth], 103)
+          )
     UNION
-    SELECT 'XGENBOY' AS [Client],
-           'INDV102220465' AS [ClientID],
-           'REF12314356' AS [ContractID],
-           'Jan 01,2024' AS [ForMonth],
-           '1800.00' AS [Amounth],
-           'COMMING' AS [Status]
-    UNION
-    SELECT 'VHON' AS [Client],
-           'INDV102220465' AS [ClientID],
-           'REF12314356' AS [ContractID],
-           'Jan 01,2024' AS [ForMonth],
-           '1800.00' AS [Amounth],
-           'COMMING' AS [Status]
-		    UNION
-    SELECT 'VHON12' AS [Client],
-           'INDV102220465' AS [ClientID],
-           'REF12314356' AS [ContractID],
-           'Jan 01,2024' AS [ForMonth],
-           '1800.00' AS [Amounth],
-           'COMMING' AS [Status]
-		   		    UNION
-    SELECT 'VHONasd' AS [Client],
-           'INDV102220465' AS [ClientID],
-           'REF12314356' AS [ContractID],
-           'Jan 01,2024' AS [ForMonth],
-           '1800.00' AS [Amounth],
-           'COMMING' AS [Status]
-		   UNION
-		    SELECT 'VHONaasddfd' AS [Client],
-           'INDV102220465' AS [ClientID],
-           'REF12314356' AS [ContractID],
-           'Jan 01,2024' AS [ForMonth],
-           '1800.00' AS [Amounth],
-           'COMMING' AS [Status]
-		   UNION
-		      SELECT 'VHONerd' AS [Client],
-           'INDV102220465' AS [ClientID],
-           'REF12314356' AS [ContractID],
-           'Jan 01,2024' AS [ForMonth],
-           '1800.00' AS [Amounth],
-           'COMMING' AS [Status]
+    SELECT [tblClientMstr].[ClientName] AS [Client],
+           [tblUnitReference].[ClientID] AS [ClientID],
+           [tblUnitReference].[RefId] AS [ContractID],
+           CONVERT(VARCHAR(15), [tblMonthLedger].[LedgMonth], 107) AS [ForMonth],
+           CAST([tblMonthLedger].[LedgAmount] AS DECIMAL(18, 2)) AS [Amount],
+           'FOR FOLLOW-UP' AS [Status]
+    FROM [dbo].[tblUnitReference] WITH (NOLOCK)
+        LEFT JOIN [dbo].[tblMonthLedger] WITH (NOLOCK)
+            ON [tblUnitReference].[RecId] = [tblMonthLedger].[ReferenceID]
+        INNER JOIN [dbo].[tblClientMstr] WITH (NOLOCK)
+            ON [tblUnitReference].[ClientID] = [tblClientMstr].[ClientID]
+    WHERE ISNULL([tblMonthLedger].[IsHold], 0) = 0
+          AND ISNULL([tblMonthLedger].[IsPaid], 0) = 0
+          AND DATEDIFF(DAY, CONVERT(DATE, GETDATE(), 103), CONVERT(DATE, [tblMonthLedger].[LedgMonth], 103)) < 7
 END;
 GO

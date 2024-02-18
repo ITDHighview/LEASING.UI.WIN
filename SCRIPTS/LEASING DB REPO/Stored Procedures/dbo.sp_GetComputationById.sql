@@ -47,7 +47,10 @@ BEGIN
            ISNULL([tblUnitReference].[AdvancePaymentAmount], 0) AS [TwoMonAdvance],
            IIF(ISNULL([tblUnitReference].[IsFullPayment], 0) = 1,
                @TotalForPayment + ISNULL([tblUnitReference].[SecDeposit], 0),
-               CAST(ISNULL([tblUnitReference].[AdvancePaymentAmount], 0) + ISNULL([tblUnitReference].[SecDeposit], 0) AS DECIMAL(10, 2))) AS [TotalForPayment],
+               CAST((ISNULL([tblUnitReference].[AdvancePaymentAmount], 0) + ISNULL([tblUnitReference].[SecDeposit], 0))
+                    - IIF(ISNULL([dbo].[tblUnitReference].[FirtsPaymentBalanceAmount], 0) > 0,
+                          [PAYMENT].[TotalPayAMount],
+                          0) AS DECIMAL(10, 2))) AS [TotalForPayment],
            ISNULL([tblUnitReference].[IsUnitMoveOut], 0) AS [IsUnitMoveOut],
            (
                SELECT IIF(COUNT(*) > 0, 'IN-PROGRESS', 'CLOSED')
@@ -72,7 +75,8 @@ BEGIN
            ISNULL(CONVERT(VARCHAR(10), [tblUnitReference].[TerminationDate], 1), '') AS [TerminationDate],
            IIF(ISNULL([tblUnitReference].[IsDone], 0) = 1, 'CLOSED', 'IN-PROGRESS') AS [ContractStatus],
            ISNULL(CONVERT(VARCHAR(10), [tblUnitReference].[ContactDoneDate], 1), '') AS [ContractCloseDate],
-           [PAYMENT].[TotalPayAMount] AS [TotalPayAMount]
+           CAST(ISNULL([PAYMENT].[TotalPayAMount], 0) AS DECIMAL(18, 2)) AS [TotalPayAMount],
+           ISNULL([tblUnitReference].[FirtsPaymentBalanceAmount], 0) AS [FirtsPaymentBalanceAmount]
     FROM [dbo].[tblUnitReference] WITH (NOLOCK)
         INNER JOIN [dbo].[tblProjectMstr] WITH (NOLOCK)
             ON [tblUnitReference].[ProjectId] = [tblProjectMstr].[RecId]

@@ -2,87 +2,53 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_NULLS ON
 GO
---SET QUOTED_IDENTIFIER ON|OFF
---SET ANSI_NULLS ON|OFF
---GO
 CREATE PROCEDURE [dbo].[sp_ContractSignedResidentialReport] @RefId AS VARCHAR(20) = NULL
--- WITH ENCRYPTION, RECOMPILE, EXECUTE AS CALLER|SELF|OWNER| 'user_name'
 AS
 BEGIN
     SET NOCOUNT ON;
 
+    SELECT DAY([dbo].[tblUnitReference].[EncodedDate]) AS [ThisDayOf],
+           DATENAME(MONTH, [dbo].[tblUnitReference].[EncodedDate]) AS [InMonth],
+           DATENAME(YEAR, [dbo].[tblUnitReference].[EncodedDate]) AS [OfYear],
+           CONVERT(VARCHAR(10), [tblUnitReference].[StatDate], 103) + ' - '
+           + CONVERT(VARCHAR(10), [tblUnitReference].[FinishDate], 103) AS [ByAndBetween],
+           UPPER([tblCompany].[CompanyName]) + ', a corporation duly '
+           + 'organized and existing under Philippine laws with office address at ' + [tblCompany].[CompanyAddress]
+           + ', represented herein by its Chief ' + 'Operating Officer, ' + UPPER([tblCompany].[CompanyOwnerName])
+           + ' hereinafter referred to as the LESSOR' AS [CompanyInfo],
+           [tblCompany].[CompanyAddress] AS [CompanyAddress],
+           [tblCompany].[CompanyOwnerName] AS [CompanyOwnerName],
+           [tblClientMstr].[ClientName] AS [LesseeName],                     ---CLIENT NAME
+           'Under The Trade Name Of' AS [UnderTheTradeNameOf],               ---CLIENT UNDER OF?
+           [tblClientMstr].[PostalAddress] AS [LesseeAddress],               ---CLIENT ADDRESS
 
-    CREATE TABLE [#temptable]
-    (
-        [ThisDay] NVARCHAR(20),
-        [OfMonth] NVARCHAR(20),
-        [OfYear] NVARCHAR(20),
-        [ProjectName] NVARCHAR(50),
-        [ProjectAddress] NVARCHAR(500),
-        [ClientName] NVARCHAR(100),
-        [ClientAddress] NVARCHAR(500),
-        [UnitNo] NVARCHAR(20),
-        [UnitArea] NVARCHAR(20),
-        [StartDate] NVARCHAR(20),
-        [EndDate] NVARCHAR(20),
-        [RentalAmountInWords] NVARCHAR(500),
-        [SecAndSecurityAmountInWords] NVARCHAR(500),
-        [TotalAmountInWords] NVARCHAR(500),
-        [VATPCT] NVARCHAR(50),
-    );
+           UPPER([tblProjectMstr].[ProjectName]) AS [TheLessorIsTheOwnerOf], ---PROJECT NAME
+           [tblProjectMstr].[ProjectAddress] AS [Situated],                  ---PROJECT ADDRESS
 
-    INSERT INTO [#temptable]
-    (
-        [ThisDay],
-        [OfMonth],
-        [OfYear],
-        [ProjectName],
-        [ProjectAddress],
-        [ClientName],
-        [ClientAddress],
-        [UnitNo],
-        [UnitArea],
-        [StartDate],
-        [EndDate],
-        [RentalAmountInWords],
-        [SecAndSecurityAmountInWords],
-        [TotalAmountInWords],
-        [VATPCT]
-    )
-    VALUES
-    (   '01',                                                                            -- ThisDay - varchar(10)
-        'JANUARY',                                                                       -- OfMonth - varchar(10)
-        '2024',                                                                          -- OfYear - varchar(10)  
-        'OHAYO MANSION',                                                                 -- ProjectName - varchar(10)        
-        'TEST ADDRESS TEST ADDRESS TEST ADDRESS TEST ADDRESS TEST ADDRESS TEST ADDRESS', -- ProjectAddress - varchar(10)        
-        'MARK JASON GELISANGA',                                                          -- ClientName - varchar(100)
-        'TEST ADDRESS',                                                                  -- ClientAddress - varchar(500)
-        'UNIT NO. 1',                                                                    -- UnitNo - varchar(20)
-        '38.6',                                                                          -- UnitArea - varchar(20)
-        'JAN 03, 2024',                                                                  -- StartDate - varchar(10)
-        'JAN 03, 2025',                                                                  -- EndDate - varchar(10)
-        'Eleven Thousand Seven Hundred Sixty Pesos (Php 11,760.00)',                     -- RentalAmountInWords - varchar(500)      
-        'Two Thousand Two Hundred Forty Pesos (Php 2,240.00)',                           -- SecAndSecurityAmountInWords - varchar(500)
-        'Fourteen Thousand Pesos (Php 14,000.00)',                                       -- TotalAmountInWords - varchar(500)      
-        '12%'                                                                            -- VATPCT - varchar(50)
-        );
+           [tblUnitMstr].[UnitNo] AS [LeasedUnit],                           ---UNIT NUMBER
+           [tblUnitMstr].[AreaSqm] AS [AreaOf],                              ---UNIT AREA
+
+           CONVERT(VARCHAR(20), [tblUnitReference].[StatDate], 107) AS [YearStarting],
+           CONVERT(VARCHAR(20), [tblUnitReference].[FinishDate], 107) AS [YearEnding],
+           UPPER([dbo].[fnNumberToWordsWithDecimal]([tblUnitReference].[Rental])) + '('
+           + CAST([tblUnitReference].[Rental] AS VARCHAR(100)) + ')' AS [RentalForLeased_AmountInWords],
+           UPPER([dbo].[fnNumberToWordsWithDecimal]([tblUnitReference].[SecAndMaintenance])) + '('
+           + CAST([tblUnitReference].[SecAndMaintenance] AS VARCHAR(100)) + ')' AS [AsShareInSecAndMaint_AmountInWords],
+           UPPER([dbo].[fnNumberToWordsWithDecimal]([tblUnitReference].[TotalRent])) + '('
+           + CAST([tblUnitReference].[TotalRent] AS VARCHAR(100)) + ')' AS [TotalAmountInYear_AmountInWords],
+           CAST([tblUnitReference].[GenVat] AS VARCHAR(100)) + ' %' AS [VatPercentage_WithWords],
+           [tblClientMstr].[ClientName] AS [Lessee]
+    FROM [dbo].[tblUnitReference] WITH (NOLOCK)
+        INNER JOIN [dbo].[tblProjectMstr] WITH (NOLOCK)
+            ON [dbo].[tblUnitReference].[ProjectId] = [tblProjectMstr].[RecId]
+        INNER JOIN [dbo].[tblCompany] WITH (NOLOCK)
+            ON [tblProjectMstr].[CompanyId] = [tblCompany].[RecId]
+        INNER JOIN [dbo].[tblClientMstr] WITH (NOLOCK)
+            ON [tblUnitReference].[ClientID] = [tblClientMstr].[ClientID]
+        INNER JOIN [dbo].[tblUnitMstr] WITH (NOLOCK)
+            ON [dbo].[tblUnitReference].[UnitId] = [tblUnitMstr].[RecId]
+    WHERE [tblUnitReference].[RefId] = @RefId
 
 
-    SELECT [#temptable].[ThisDay],
-           [#temptable].[OfMonth],
-           [#temptable].[OfYear],
-           [#temptable].[ProjectName],
-           [#temptable].[ProjectAddress],
-           [#temptable].[ClientName],
-           [#temptable].[ClientAddress],
-           [#temptable].[UnitNo],
-           [#temptable].[UnitArea],
-           [#temptable].[StartDate],
-           [#temptable].[EndDate],
-           [#temptable].[RentalAmountInWords],
-           [#temptable].[SecAndSecurityAmountInWords],
-           [#temptable].[TotalAmountInWords],
-           [#temptable].[VATPCT]
-    FROM [#temptable];
 END;
 GO

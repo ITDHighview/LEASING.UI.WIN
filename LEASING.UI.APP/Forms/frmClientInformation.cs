@@ -122,7 +122,6 @@ namespace LEASING.UI.APP.Forms
 
             ReadOnlyFields();
         }
-
         private void ReadOnlyFields()
         {
             //ddlClientType.Enabled = false;
@@ -147,7 +146,6 @@ namespace LEASING.UI.APP.Forms
 
 
         }
-
         private void M_GetClientID()
         {
 
@@ -173,7 +171,6 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-
         private void M_GetClientById()
         {
 
@@ -214,7 +211,6 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-
         private void M_GetContractProjectTypeReport(string refid)
         {
             using (DataSet dt = ClientContext.GetCheckContractProjectType(refid))
@@ -265,18 +261,15 @@ namespace LEASING.UI.APP.Forms
             //    MessageBox.Show("Client ID Cannot be Empty", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
             //}
         }
-
         private void frmClientInformation_Load(object sender, EventArgs e)
         {
             strClientFormMode = "READ";
             //Functions.SecurityControls(this);
         }
-
         private void btnUndo_Click(object sender, EventArgs e)
         {
             strClientFormMode = "READ";
         }
-
         private void btnEnableView_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(txtClienID.Text))
@@ -289,7 +282,6 @@ namespace LEASING.UI.APP.Forms
             }
 
         }
-
         private void txtClienID_TextChanged(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtClienID.Text))
@@ -297,7 +289,6 @@ namespace LEASING.UI.APP.Forms
                 EmptyFields();
             }
         }
-
         private void dgvFileList_CellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -337,7 +328,6 @@ namespace LEASING.UI.APP.Forms
 
             }
         }
-
         private void btnSelectClient_Click(object sender, EventArgs e)
         {
             frmGetSelectClient forms = new frmGetSelectClient();
@@ -348,12 +338,10 @@ namespace LEASING.UI.APP.Forms
                 txtClienID.Focus();
             }
         }
-
         private void btnEnableView_Click_1(object sender, EventArgs e)
         {
 
         }
-
         private void dgvList_CellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
 
@@ -387,13 +375,13 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-
         private void btnPrintContract_Click(object sender, EventArgs e)
         {
-
-            //Convert.ToString(dgvFileList.CurrentRow.Cells["RefId"].Value)
-
-            M_GetContractProjectTypeReport(Convert.ToString(dgvList.CurrentRow.Cells["RefId"].Value));
+            if (dgvList.Rows.Count > 0)
+            {
+                M_GetContractProjectTypeReport(Convert.ToString(dgvList.CurrentRow.Cells["RefId"].Value));
+            }
+            //Convert.ToString(dgvFileList.CurrentRow.Cells["RefId"].Value)          
         }
     }
 }

@@ -36,6 +36,6 @@ namespace LEASING.UI.APP.Common
         public static string CONTRACT_COMMERCIAL_REPORT = ConfigurationManager.AppSettings["ReportPath"].ToString() + CONTRACT_COMMERCIAL;
 
         public static bool RecieptReportOption = Convert.ToBoolean(ConfigurationManager.AppSettings["RecieptReportOption"]);
-
+        public static int NotificationSeconds = Convert.ToInt32(ConfigurationManager.AppSettings["NotificationSeconds"]);
     }
 }

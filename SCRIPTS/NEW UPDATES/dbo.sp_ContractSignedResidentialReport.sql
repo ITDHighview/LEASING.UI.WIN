@@ -37,7 +37,10 @@ BEGIN
            UPPER([dbo].[fnNumberToWordsWithDecimal]([tblUnitReference].[TotalRent])) + '('
            + CAST([tblUnitReference].[TotalRent] AS VARCHAR(100)) + ')' AS [TotalAmountInYear_AmountInWords],
            CAST([tblUnitReference].[GenVat] AS VARCHAR(100)) + ' %' AS [VatPercentage_WithWords],
-           [tblClientMstr].[ClientName] AS [Lessee]
+           [tblClientMstr].[ClientName] AS [Lessee],
+          
+            [dbo].[fnGetClientIsRenewal]([dbo].[tblUnitReference].[ClientID], [dbo].[tblUnitReference].[ProjectId])
+           + '(' + UPPER([dbo].[fnGetProjectTypeByUnitId]([dbo].[tblUnitReference].[UnitId]))+')' AS [ContractTitle]
     FROM [dbo].[tblUnitReference] WITH (NOLOCK)
         INNER JOIN [dbo].[tblProjectMstr] WITH (NOLOCK)
             ON [dbo].[tblUnitReference].[ProjectId] = [tblProjectMstr].[RecId]

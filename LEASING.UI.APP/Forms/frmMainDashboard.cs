@@ -67,26 +67,39 @@ namespace LEASING.UI.APP.Forms
         }
 
         private void GetAnnouncement()
-        {
-            //txtAnnouncementMessage.Text = string.Empty;
+        {           
             using (DataSet dt = AnnouncementContext.GetAnnouncement())
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                 {
-                  
-                    if (txtAnnouncementMessage.Text.Trim() == Convert.ToString(dt.Tables[0].Rows[0]["AnnounceMessage"]).Trim())
-                    {
-                        AnnouncementTimer = 0;
-                    }
-                    else
-                    {
-                        AnnouncementTimer = 15;
-                        txtAnnouncementMessage.Text = Convert.ToString(dt.Tables[0].Rows[0]["AnnounceMessage"]);
-                    }
-                   
+
+                    txtAnnouncementMessage.Text = Convert.ToString(dt.Tables[0].Rows[0]["AnnounceMessage"]);
+
                 }
             }
         }
+        private void M_GetAnnouncementCheck()
+        {
+            if (txtAnnouncementMessage.Text.Trim() != GetAnnouncementCheck())
+            {
+                AnnouncementTimer = Config.NotificationSeconds;
+            }        
+        }
+
+        private string GetAnnouncementCheck()
+        {
+            using (DataSet dt = AnnouncementContext.GetAnnouncementCheck())
+            {
+                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                {
+                    return Convert.ToString(dt.Tables[0].Rows[0]["AnnounceMessage"]).Trim();
+
+                }
+            }
+            return "";
+        }
+
+
         private void GetNotificationListDetails()
         {
             dgvNotificationList.DataSource = null;
@@ -166,13 +179,13 @@ namespace LEASING.UI.APP.Forms
             lblStaffName.Text = Variables.FirstName;
             GetAnnouncement();
 
-            seconds = 15;
+         
             TimerCountDown.Start();
             //M_GetTotalCountLabel();
         }
         private void btnSettings_Click(object sender, EventArgs e)
         {
-            
+
             frmSettings forms = new frmSettings();
             forms.ShowDialog();
         }
@@ -488,7 +501,7 @@ namespace LEASING.UI.APP.Forms
             _frmPreEmp_Login.StartPosition = FormStartPosition.CenterScreen;
             _frmPreEmp_Login.ShowDialog();
             IsSwithUserLogOut = false;
-            TimerCountDown.Start();
+            
         }
         private void btnMyDashboard_Click(object sender, EventArgs e)
         {
@@ -658,15 +671,16 @@ namespace LEASING.UI.APP.Forms
         }
         private void TimerCountDown_Tick(object sender, EventArgs e)
         {
-            GetAnnouncement();
+            M_GetAnnouncementCheck();
+            GetAnnouncement();         
             GetNotificationListDetails();
             M_GetUnitListByProjectAndStatus();
             M_GetUnitListByProjectAndStatusCount();
             if (AnnouncementTimer > 0)
             {
                 Functions.GetNotification("New Announcement", txtAnnouncementMessage.Text);
-                   AnnouncementTimer--;
-                
+                AnnouncementTimer--;
+
             }
             //if (seconds > 0)
             //{

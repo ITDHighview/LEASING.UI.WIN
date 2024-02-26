@@ -30,8 +30,9 @@ BEGIN
            CAST(ISNULL([tblRatesSettings].[SecurityAndMaintenance], 0)
                 + (((ISNULL([tblRatesSettings].[SecurityAndMaintenance], 0) * ISNULL([tblRatesSettings].[GenVat], 0))
                     / 100
-                   ) - ((@BaseWithVatAmount * ISNULL([tblRatesSettings].[WithHoldingTax], 0)) / 100)
+                   )
                   ) AS DECIMAL(18, 2)) AS [SecurityAndMaintenance],
+				  --- ((@BaseWithVatAmount * ISNULL([tblRatesSettings].[WithHoldingTax], 0)) / 100)
            ISNULL([tblRatesSettings].[SecurityAndMaintenanceVat], 0) AS [SecurityAndMaintenanceVat],
            ISNULL([tblRatesSettings].[IsSecAndMaintVat], 0) AS [IsSecAndMaintVat],
            ISNULL([tblRatesSettings].[WithHoldingTax], 0) AS [WithHoldingTax],

@@ -2,7 +2,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_NULLS ON
 GO
-CREATE FUNCTION [dbo].[fnNumberToWordsWithDecimal](@Number AS DECIMAL(18,2))
+CREATE FUNCTION [dbo].[fnNumberToWordsWithDecimalMain](@Number AS DECIMAL(18,2))
     RETURNS VARCHAR(3000)
 AS
 BEGIN
@@ -40,22 +40,22 @@ BEGIN
 
     IF @DecimalPart > 0
     BEGIN
-        --SET @English = @English + ' Point '
-        --              + (CASE
-        --                    WHEN @DecimalPart BETWEEN 1 AND 19
-        --                        THEN (SELECT Word FROM @Below20 WHERE ID = @DecimalPart)
-        --                    WHEN @DecimalPart BETWEEN 20 AND 99
-        --                        THEN (SELECT Word FROM @Below100 WHERE ID = @DecimalPart / 10) + '-' + dbo.fnNumberToWords(@DecimalPart % 10)
-        --                    ELSE dbo.fnNumberToWords(@DecimalPart)
-        --                END)
-		        SET @English = @English + '  '
+        SET @English = @English + ' Point '
                       + (CASE
                             WHEN @DecimalPart BETWEEN 1 AND 19
-                                THEN CAST(@DecimalPart AS VARCHAR(20))
+                                THEN (SELECT Word FROM @Below20 WHERE ID = @DecimalPart)
                             WHEN @DecimalPart BETWEEN 20 AND 99
-                                THEN ('& '+ CASt(@DecimalPart AS VARCHAR(30))+ '/100') 
-                            ELSE ''
+                                THEN (SELECT Word FROM @Below100 WHERE ID = @DecimalPart / 10) + '-' + dbo.fnNumberToWords(@DecimalPart % 10)
+                            ELSE dbo.fnNumberToWords(@DecimalPart)
                         END)
+		        --SET @English = @English + '  '
+          --            + (CASE
+          --                  WHEN @DecimalPart BETWEEN 1 AND 19
+          --                      THEN CAST(@DecimalPart AS VARCHAR(20))
+          --                  WHEN @DecimalPart BETWEEN 20 AND 99
+          --                      THEN ( CASt(@DecimalPart AS VARCHAR(30))+ '/100') 
+          --                  ELSE ''
+          --              END)
 
     END
 

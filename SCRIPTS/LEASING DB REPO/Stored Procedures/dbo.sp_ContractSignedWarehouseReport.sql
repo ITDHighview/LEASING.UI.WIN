@@ -12,77 +12,82 @@ BEGIN
     SET NOCOUNT ON;
 
 
-    CREATE TABLE [#temptable]
-    (
-        [ThisDay] VARCHAR(10),
-        [OfMonth] VARCHAR(10),
-        [ClientName] VARCHAR(100),
-        [ClientAddress] VARCHAR(500),
-        [UnitNo] VARCHAR(20),
-        [UnitArea] VARCHAR(20),
-        [StartDate] VARCHAR(10),
-        [EndDate] VARCHAR(10),
-        [RentalAmountInWords] VARCHAR(500),
-        [RentalAmountWithCurrency] VARCHAR(50),
-        [SecAndSecurityAmountInWords] VARCHAR(500),
-        [SecAndSecurityAmountWithCurrency] VARCHAR(50),
-        [TotalAmountInWords] VARCHAR(500),
-        [TotalAmountWithCurrency] VARCHAR(50),
-        [VATPCT] VARCHAR(50),
-    );
-
-    INSERT INTO [#temptable]
-    (
-        [ThisDay],
-        [OfMonth],
-        [ClientName],
-        [ClientAddress],
-        [UnitNo],
-        [UnitArea],
-        [StartDate],
-        [EndDate],
-        [RentalAmountInWords],
-        [RentalAmountWithCurrency],
-        [SecAndSecurityAmountInWords],
-        [SecAndSecurityAmountWithCurrency],
-        [TotalAmountInWords],
-        [TotalAmountWithCurrency],
-        [VATPCT]
-    )
-    VALUES
-    (   NULL, -- ThisDay - varchar(10)
-        NULL, -- OfMonth - varchar(10)
-        NULL, -- ClientName - varchar(100)
-        NULL, -- ClientAddress - varchar(500)
-        NULL, -- UnitNo - varchar(20)
-        NULL, -- UnitArea - varchar(20)
-        NULL, -- StartDate - varchar(10)
-        NULL, -- EndDate - varchar(10)
-        NULL, -- RentalAmountInWords - varchar(500)
-        NULL, -- RentalAmountWithCurrency - varchar(50)
-        NULL, -- SecAndSecurityAmountInWords - varchar(500)
-        NULL, -- SecAndSecurityAmountWithCurrency - varchar(50)
-        NULL, -- TotalAmountInWords - varchar(500)
-        NULL, -- TotalAmountWithCurrency - varchar(50)
-        NULL  -- VATPCT - varchar(50)
-        );
+    SELECT DAY([dbo].[tblUnitReference].[EncodedDate]) AS [ThisDayOf],
+           DATENAME(MONTH, [dbo].[tblUnitReference].[EncodedDate]) AS [InMonth],
+           DATENAME(YEAR, [dbo].[tblUnitReference].[EncodedDate]) AS [OfYear],
+           CONVERT(VARCHAR(10), [tblUnitReference].[StatDate], 103) + ' - '
+           + CONVERT(VARCHAR(10), [tblUnitReference].[FinishDate], 103) AS [ByAndBetween],
+           UPPER([tblCompany].[CompanyName]) AS [CompanyName],
+           [tblCompany].[CompanyAddress] AS [CompanyAddress],
+           [tblCompany].[CompanyOwnerName] AS [CompanyOwnerName],
+           [tblClientMstr].[ClientName] AS [LesseeName],                                           ---CLIENT NAME
+           'Certificate of Title No. 001-2021003286' AS [CertificateOfTitle],
+           'Under The Trade Name Of' AS [UnderTheTradeNameOf],                                     ---CLIENT UNDER OF?
+           [tblClientMstr].[PostalAddress] AS [LesseeAddress],                                     ---CLIENT ADDRESS
 
 
-    SELECT [#temptable].[ThisDay],
-           [#temptable].[OfMonth],
-           [#temptable].[ClientName],
-           [#temptable].[ClientAddress],
-           [#temptable].[UnitNo],
-           [#temptable].[UnitArea],
-           [#temptable].[StartDate],
-           [#temptable].[EndDate],
-           [#temptable].[RentalAmountInWords],
-           [#temptable].[RentalAmountWithCurrency],
-           [#temptable].[SecAndSecurityAmountInWords],
-           [#temptable].[SecAndSecurityAmountWithCurrency],
-           [#temptable].[TotalAmountInWords],
-           [#temptable].[TotalAmountWithCurrency],
-           [#temptable].[VATPCT]
-    FROM [#temptable];
+           UPPER([tblProjectMstr].[ProjectName]) AS [TheLessorIsTheOwnerOf],                       ---PROJECT NAME
+           [tblProjectMstr].[ProjectAddress] AS [Situated],                                        ---PROJECT ADDRESS
+
+           [tblUnitMstr].[UnitNo] AS [LeasedUnit],                                                 ---UNIT NUMBER
+           [tblUnitMstr].[AreaSqm] AS [AreaOf],                                                    ---UNIT AREA
+
+           UPPER([dbo].[fnNumberToWordsWithDecimalMain]([tblUnitMstr].[AreaSqm])) AS [AreaByWord], ---UNIT AREA
+
+           CONVERT(VARCHAR(20), [tblUnitReference].[StatDate], 107) AS [YearStarting],
+           CONVERT(VARCHAR(20), [tblUnitReference].[FinishDate], 107) AS [YearEnding],
+           CONVERT(VARCHAR(20), [tblUnitReference].[StatDate], 107) + ' - '
+           + CONVERT(VARCHAR(20), [tblUnitReference].[FinishDate], 107) AS [PeriodCover],
+           UPPER([dbo].[fnNumberToWordsWithDecimal]([tblUnitReference].[TotalRent])) + ' PESOS ONLY ('
+           + CAST([tblUnitReference].[TotalRent] AS VARCHAR(100)) + ')' AS [RentalForLeased_AmountInWords],
+           UPPER([dbo].[fnNumberToWordsWithDecimal]([tblUnitReference].[SecAndMaintenance])) + '('
+           + CAST([tblUnitReference].[SecAndMaintenance] AS VARCHAR(100)) + ')' AS [AsShareInSecAndMaint_AmountInWords],
+           UPPER([dbo].[fnNumberToWordsWithDecimal]([tblUnitReference].[TotalRent])) + '('
+           + CAST([tblUnitReference].[TotalRent] AS VARCHAR(100)) + ')' AS [TotalAmountInYear_AmountInWords],
+           CAST([tblUnitReference].[GenVat] AS VARCHAR(100)) + ' %' AS [VatPercentage_WithWords],
+           CAST([tblUnitReference].[PenaltyPct] AS VARCHAR(100)) + ' %' AS [PenaltyPercentage_WithWords],
+           [tblClientMstr].[ClientName] AS [Lessee],
+           [dbo].[fnGetBaseRentalAmount]([tblUnitReference].[UnitId]) AS [MonthlyRentalOfVat],
+           [dbo].[fnGetVatAmountRental]([tblUnitReference].[UnitId]) AS [Vatlessor],
+           [dbo].[fnGetTaxAmountRentalNetVat]([tblUnitReference].[UnitId]) AS [WithHoldingTax],
+           ([dbo].[fnGetBaseRentalAmount]([tblUnitReference].[UnitId])
+            + [dbo].[fnGetVatAmountRental]([tblUnitReference].[UnitId])
+           )
+           - [dbo].[fnGetTaxAmountRentalNetVat]([tblUnitReference].[UnitId]) AS [RentDuePerMonth],
+           [tblUnitReference].[GenVat] AS [VatDisplay],
+           [tblUnitReference].[WithHoldingTax] AS [TaxDisplay],
+           [dbo].[fnGetBaseSecAmount]([tblUnitReference].[UnitId]) AS [SecBaseAmount],
+           [dbo].[fnGetSecVatAmount]([tblUnitReference].[UnitId]) AS [SecVatAmount],
+           [dbo].[fnGetBaseSecAmount]([tblUnitReference].[UnitId])
+           + [dbo].[fnGetSecVatAmount]([tblUnitReference].[UnitId]) AS [SecRentDue],
+           [tblUnitReference].[TotalRent] AS [TotalRentAmount],
+           UPPER([dbo].[fnNumberToWordsWithDecimal]([tblUnitReference].[SecDeposit])) + 'PESOS ONLY ' + ' ('
+           + CAST(ISNULL([tblUnitReference].[SecDeposit], 0) AS VARCHAR(50)) + ') ' AS [SecDepositByWords],
+           UPPER([dbo].[fnNumberToWordsWithDecimal]([dbo].[fnGetTotalMonthAdvanceAmount]([tblUnitReference].[RefId])))
+           + 'PESOS ONLY ' + ' ('
+           + CAST(ISNULL([dbo].[fnGetTotalMonthAdvanceAmount]([tblUnitReference].[RefId]), 0) AS VARCHAR(50)) + ') ' AS [MonthAdvanceByWords],
+           UPPER([dbo].[fnNumberToWordsWithDecimal]([dbo].[fnGetTotalMonthPostDatedAmount]([tblUnitReference].[RecId])))
+           + 'PESOS ONLY ' + ' ('
+           + CAST(ISNULL([dbo].[fnGetTotalMonthPostDatedAmount]([tblUnitReference].[RecId]), 0) AS VARCHAR(50)) + ') ' AS [TotalMonthPostDatedAmountInWords],
+           [dbo].[fnGetAdvancePeriodCover]([tblUnitReference].[RefId]) AS [AdvanceMonthPeriodCover],
+           [dbo].[fnGetPostDatedPeriodCover]([tblUnitReference].[RecId]) AS [PostDatedPeriodCover],
+           CAST([tblUnitReference].[SecDeposit] / [tblUnitReference].[TotalRent] AS INT) AS [SecDepositCount],
+           [dbo].[fnGetAdvanceMonthCount]([dbo].[tblUnitReference].[RefId]) AS [MonthAdvanceCount],
+           [dbo].[fnGetPostDatedMonthCount]([tblUnitReference].[RecId]) AS [PostDatedCheckCount],
+           [dbo].[fnNumberToWordsWithDecimal]([dbo].[fnGetPostDatedMonthCount]([tblUnitReference].[RecId])) AS [PostDatedCheckCountbyWord],
+           CAST(DATENAME(DAY, [tblUnitReference].[StatDate]) AS VARCHAR(50)) AS [PostDatedDay],
+           [dbo].[fnGetClientIsRenewal]([dbo].[tblUnitReference].[ClientID], [dbo].[tblUnitReference].[ProjectId])
+           + '(' + UPPER([dbo].[fnGetProjectTypeByUnitId]([dbo].[tblUnitReference].[UnitId])) + ')' AS [ContractTitle]
+    --[fnGetTotalMonthPostDatedAmount]
+    FROM [dbo].[tblUnitReference] WITH (NOLOCK)
+        INNER JOIN [dbo].[tblProjectMstr] WITH (NOLOCK)
+            ON [dbo].[tblUnitReference].[ProjectId] = [tblProjectMstr].[RecId]
+        INNER JOIN [dbo].[tblCompany] WITH (NOLOCK)
+            ON [tblProjectMstr].[CompanyId] = [tblCompany].[RecId]
+        INNER JOIN [dbo].[tblClientMstr] WITH (NOLOCK)
+            ON [tblUnitReference].[ClientID] = [tblClientMstr].[ClientID]
+        INNER JOIN [dbo].[tblUnitMstr] WITH (NOLOCK)
+            ON [dbo].[tblUnitReference].[UnitId] = [tblUnitMstr].[RecId]
+    WHERE [tblUnitReference].[RefId] = @RefId
 END;
 GO

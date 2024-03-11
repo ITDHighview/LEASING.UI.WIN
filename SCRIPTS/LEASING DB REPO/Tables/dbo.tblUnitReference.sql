@@ -1,7 +1,7 @@
 CREATE TABLE [dbo].[tblUnitReference]
 (
-[RecId] [int] NOT NULL IDENTITY(10000000, 1),
-[RefId] AS ('REF'+CONVERT([varchar](MAX),[RecId],(0))),
+[RecId] [bigint] NOT NULL IDENTITY(10000000, 1),
+[RefId] [varchar] (5000) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
 [ProjectId] [int] NULL,
 [InquiringClient] [varchar] (500) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
 [ClientMobile] [varchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
@@ -43,4 +43,23 @@ CREATE TABLE [dbo].[tblUnitReference]
 [IsPartialPayment] [bit] NULL,
 [FirtsPaymentBalanceAmount] [decimal] (18, 2) NULL
 ) ON [PRIMARY]
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_NULLS ON
+GO
+CREATE TRIGGER [dbo].[tr_tblUnitReference]
+ON [dbo].[tblUnitReference]
+FOR INSERT
+AS
+BEGIN
+
+    UPDATE [dbo].[tblUnitReference]
+    SET [tblUnitReference].[RefId] = 'REF' + CONVERT([VARCHAR](5000), [Inserted].[RecId])
+    FROM [dbo].[tblUnitReference]
+        INNER JOIN [Inserted]
+            ON [Inserted].[RecId] = [tblUnitReference].[RecId]
+    WHERE [Inserted].[RecId] = [tblUnitReference].[RecId]
+
+END
 GO

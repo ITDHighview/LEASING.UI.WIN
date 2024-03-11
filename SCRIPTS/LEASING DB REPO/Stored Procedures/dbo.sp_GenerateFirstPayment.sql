@@ -24,6 +24,7 @@ CREATE PROCEDURE [dbo].[sp_GenerateFirstPayment]
     @SerialNo VARCHAR(30) = NULL,
     @PaymentRemarks VARCHAR(100) = NULL,
     @REF VARCHAR(100) = NULL,
+    @BankBranch VARCHAR(100) = NULL,
     @ModeType VARCHAR(20) = NULL
 AS
 BEGIN TRY
@@ -113,11 +114,13 @@ BEGIN TRY
                 [BankAccountNumber],
                 [BankName],
                 [SerialNo],
-                [REF]
+                [REF],
+                [BankBranch]
             )
             VALUES
             (@TranID, @PaidAmount, 'PARTIAL - FIRST PAYMENT', @PaymentRemarks, @EncodedBy, GETDATE(), @ComputerName, 1,
-             @ModeType, @CompanyORNo, @CompanyPRNo, @BankAccountName, @BankAccountNumber, @BankName, @SerialNo, @REF);
+             @ModeType, @CompanyORNo, @CompanyPRNo, @BankAccountName, @BankAccountNumber, @BankName, @SerialNo, @REF,
+             @BankBranch);
 
             SET @RcptRecId = @@IDENTITY;
             SELECT @RcptID = [tblReceipt].[RcptID]
@@ -134,11 +137,12 @@ BEGIN TRY
                 [BNK_ACCT_NUMBER],
                 [BNK_NAME],
                 [SERIAL_NO],
-                [ModeType]
+                [ModeType],
+                [BankBranch]
             )
             VALUES
             (@RcptID, @CompanyORNo, @CompanyPRNo, @REF, @BankAccountName, @BankAccountNumber, @BankName, @SerialNo,
-             @ModeType);
+             @ModeType, @BankBranch);
 
         END
         ELSE
@@ -223,11 +227,12 @@ BEGIN TRY
                 [BankAccountNumber],
                 [BankName],
                 [SerialNo],
-                [REF]
+                [REF],
+                [BankBranch]
             )
             VALUES
             (@TranID, @PaidAmount, 'FULL PAYMENT', @PaymentRemarks, @EncodedBy, GETDATE(), @ComputerName, 1, @ModeType,
-             @CompanyORNo, @CompanyPRNo, @BankAccountName, @BankAccountNumber, @BankName, @SerialNo, @REF);
+             @CompanyORNo, @CompanyPRNo, @BankAccountName, @BankAccountNumber, @BankName, @SerialNo, @REF, @BankBranch);
 
             SET @RcptRecId = @@IDENTITY;
             SELECT @RcptID = [tblReceipt].[RcptID]
@@ -244,11 +249,12 @@ BEGIN TRY
                 [BNK_ACCT_NUMBER],
                 [BNK_NAME],
                 [SERIAL_NO],
-                [ModeType]
+                [ModeType],
+                [BankBranch]
             )
             VALUES
             (@RcptID, @CompanyORNo, @CompanyPRNo, @REF, @BankAccountName, @BankAccountNumber, @BankName, @SerialNo,
-             @ModeType);
+             @ModeType, @BankBranch);
         END
     END;
 
@@ -281,11 +287,13 @@ BEGIN TRY
                 [BankAccountNumber],
                 [BankName],
                 [SerialNo],
-                [REF]
+                [REF],
+                [BankBranch]
             )
             VALUES
             (@TranID, @PaidAmount, 'PARTIAL - FIRST PAYMENT', @PaymentRemarks, @EncodedBy, GETDATE(), @ComputerName, 1,
-             @ModeType, @CompanyORNo, @CompanyPRNo, @BankAccountName, @BankAccountNumber, @BankName, @SerialNo, @REF);
+             @ModeType, @CompanyORNo, @CompanyPRNo, @BankAccountName, @BankAccountNumber, @BankName, @SerialNo, @REF,
+             @BankBranch);
 
             SET @RcptRecId = @@IDENTITY;
             SELECT @RcptID = [tblReceipt].[RcptID]
@@ -302,11 +310,12 @@ BEGIN TRY
                 [BNK_ACCT_NUMBER],
                 [BNK_NAME],
                 [SERIAL_NO],
-                [ModeType]
+                [ModeType],
+                [BankBranch]
             )
             VALUES
             (@RcptID, @CompanyORNo, @CompanyPRNo, @REF, @BankAccountName, @BankAccountNumber, @BankName, @SerialNo,
-             @ModeType);
+             @ModeType, @BankBranch);
 
         END
         ELSE
@@ -400,11 +409,13 @@ BEGIN TRY
                 [BankAccountNumber],
                 [BankName],
                 [SerialNo],
-                [REF]
+                [REF],
+                [BankBranch]
             )
             VALUES
             (@TranID, @PaidAmount, 'FIRST PAYMENT', @PaymentRemarks, @EncodedBy, GETDATE(), @ComputerName, 1,
-             @ModeType, @CompanyORNo, @CompanyPRNo, @BankAccountName, @BankAccountNumber, @BankName, @SerialNo, @REF);
+             @ModeType, @CompanyORNo, @CompanyPRNo, @BankAccountName, @BankAccountNumber, @BankName, @SerialNo, @REF,
+             @BankBranch);
 
             SET @RcptRecId = @@IDENTITY;
             SELECT @RcptID = [tblReceipt].[RcptID]
@@ -421,11 +432,12 @@ BEGIN TRY
                 [BNK_ACCT_NUMBER],
                 [BNK_NAME],
                 [SERIAL_NO],
-                [ModeType]
+                [ModeType],
+                [BankBranch]
             )
             VALUES
             (@RcptID, @CompanyORNo, @CompanyPRNo, @REF, @BankAccountName, @BankAccountNumber, @BankName, @SerialNo,
-             @ModeType);
+             @ModeType, @BankBranch);
         END
 
 

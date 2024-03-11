@@ -35,7 +35,7 @@ BEGIN
            [tblMonthLedger].[Recid],
            [tblMonthLedger].[ReferenceID],
            [tblMonthLedger].[ClientID],
-           [tblMonthLedger].[LedgAmount],
+           [tblMonthLedger].[LedgRentalAmount] AS [LedgAmount],
            ISNULL([tblMonthLedger].[PenaltyAmount], 0) AS [PenaltyAmount],
            ISNULL([tblMonthLedger].[TransactionID], '') AS [TransactionID],
            CONVERT(VARCHAR(20), [tblMonthLedger].[LedgMonth], 107) AS [LedgMonth],
@@ -59,7 +59,7 @@ BEGIN
                    ISNULL([tblMonthLedger].[IsHold], 0) = 1
                    AND [tblMonthLedger].[BalanceAmount] > 0
                ),
-               ([tblMonthLedger].[LedgAmount] - ISNULL([tblMonthLedger].[BalanceAmount], 0)),
+               ([tblMonthLedger].[LedgRentalAmount] - ISNULL([tblMonthLedger].[BalanceAmount], 0)),
                0) AS [AmountPaid],
            CAST(ABS(ISNULL([tblMonthLedger].[BalanceAmount], 0)) AS DECIMAL(18, 2)) AS [BalanceAmount]
          

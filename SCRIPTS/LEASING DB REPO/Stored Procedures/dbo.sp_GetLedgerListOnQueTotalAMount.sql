@@ -38,7 +38,7 @@ BEGIN
                WHEN ISNULL([tblMonthLedger].[BalanceAmount], 0) > 0 THEN
                    ISNULL([tblMonthLedger].[BalanceAmount], 0)
                ELSE
-        ([tblMonthLedger].[LedgAmount] + ISNULL([tblMonthLedger].[PenaltyAmount], 0))
+        ([tblMonthLedger].[LedgRentalAmount] + ISNULL([tblMonthLedger].[PenaltyAmount], 0))
            END
     FROM [dbo].[tblMonthLedger]
     WHERE [tblMonthLedger].[Recid] IN

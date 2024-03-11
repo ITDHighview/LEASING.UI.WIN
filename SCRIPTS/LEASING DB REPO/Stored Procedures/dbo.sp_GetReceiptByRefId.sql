@@ -40,7 +40,8 @@ BEGIN
            [tblReceipt].[BankName],
            [tblReceipt].[SerialNo],
            [tblReceipt].[REF],
-           ISNULL([tblReceipt].[CompanyPRNo], '') AS [CompanyPRNo]
+           ISNULL([tblReceipt].[CompanyPRNo], '') AS [CompanyPRNo],
+		   [tblReceipt].[BankBranch] AS [BankBranch]
     FROM [dbo].[tblTransaction]
         --    OUTER APPLY
         --(

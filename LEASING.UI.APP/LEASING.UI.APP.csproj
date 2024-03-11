@@ -140,6 +140,7 @@
     <Compile Include="Context\CompanyContext.cs" />
     <Compile Include="Context\ComputationContext.cs" />
     <Compile Include="Context\FloorTypeContext.cs" />
+    <Compile Include="Context\GeneralReportContext.cs" />
     <Compile Include="Context\InquiryContext.cs" />
     <Compile Include="Context\LocationContext.cs" />
     <Compile Include="Context\OtherContext.cs" />
@@ -413,6 +414,12 @@
     <Compile Include="Forms\frmRecieptSelection.Designer.cs">
       <DependentUpon>frmRecieptSelection.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmRecieptSelectionSecondPayment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmRecieptSelectionSecondPayment.Designer.cs">
+      <DependentUpon>frmRecieptSelectionSecondPayment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmSelectClientReferencePaid.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -593,6 +600,12 @@
     <Compile Include="Forms\frmWarehouseRateSettings.Designer.cs">
       <DependentUpon>frmWarehouseRateSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\GeneralReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\GeneralReport.Designer.cs">
+      <DependentUpon>GeneralReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Ongching_PR_REPORT.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -754,6 +767,9 @@
     <EmbeddedResource Include="Forms\frmRecieptSelection.resx">
       <DependentUpon>frmRecieptSelection.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmRecieptSelectionSecondPayment.resx">
+      <DependentUpon>frmRecieptSelectionSecondPayment.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmSelectClientReferencePaid.resx">
       <DependentUpon>frmSelectClientReferencePaid.cs</DependentUpon>
     </EmbeddedResource>
@@ -843,6 +859,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmWarehouseRateSettings.resx">
       <DependentUpon>frmWarehouseRateSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\GeneralReport.resx">
+      <DependentUpon>GeneralReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Ongching_PR_REPORT.resx">
       <DependentUpon>Ongching_PR_REPORT.cs</DependentUpon>

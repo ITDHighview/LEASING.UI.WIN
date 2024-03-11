@@ -1,4 +1,5 @@
-﻿using LEASING.UI.APP.Common;
+﻿
+using LEASING.UI.APP.Common;
 using LEASING.UI.APP.Context;
 using System;
 using System.Collections;
@@ -16,7 +17,7 @@ using Telerik.WinControls.UI;
 
 namespace LEASING.UI.APP.Forms
 {
-    public partial class frmClientTransaction : Form
+    public partial class frmClientTransaction : Form 
     {
         ClientContext ClientContext = new ClientContext();
         ComputationContext ComputationContext = new ComputationContext();
@@ -62,6 +63,7 @@ namespace LEASING.UI.APP.Forms
         public string CompanyPRNo { get; set; }
         public string BankAccountName { get; set; }
         public string BankAccountNumber { get; set; }
+        public string BankBranch { get; set; }
         public string BankName { get; set; }
         public string SerialNo { get; set; }
         public string PaymentRemarks { get; set; }
@@ -146,6 +148,7 @@ namespace LEASING.UI.APP.Forms
           ModeType,
           Convert.ToInt32(dgvLedgerList.CurrentRow.Cells["Recid"].Value),
            M_getXMLData(),
+           BankBranch,
           out TranID
           );
 
@@ -760,7 +763,7 @@ namespace LEASING.UI.APP.Forms
                     //    }
                     //}
                 }
-               
+
                 else if (this.dgvLedgerList.Columns[e.ColumnIndex].Name == "ColCheck")
                 {
 
@@ -796,7 +799,7 @@ namespace LEASING.UI.APP.Forms
                     //    }
                     //}
                 }
-        
+
                 else if (this.dgvLedgerList.Columns[e.ColumnIndex].Name == "ColHold")
                 {
                     if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "PENDING")
@@ -928,6 +931,7 @@ namespace LEASING.UI.APP.Forms
                             SerialNo = frmPaymentMode.SerialNo;
                             PaymentRemarks = frmPaymentMode.PaymentRemarks;
                             REF = frmPaymentMode.REF;
+                            BankBranch = frmPaymentMode.BankBranch;
                             ModeType = frmPaymentMode.ModeType;
                             ReceiveAmount = frmPaymentMode.txtReceiveAmount.Text == string.Empty ? 0 : decimal.Parse(frmPaymentMode.txtReceiveAmount.Text);
                             ChangeAmount = 0;
@@ -936,26 +940,26 @@ namespace LEASING.UI.APP.Forms
                             //if (IsProceedWithHold)
                             //{
                             //    //frmReceivePayment.ShowDialog();
-                                //if (frmReceivePayment.IsProceed)
-                                //{
-                                   
-                                    M_GenerateBulkPayment();
-                                    M_GetComputationById();
-                                    M_GetCheckPaymentStatus();
-                                    M_GetLedgerList();
-                                    M_GetPaymentListByReferenceId();
+                            //if (frmReceivePayment.IsProceed)
+                            //{
 
-                                    frmRecieptSelection frmRecieptSelection = new frmRecieptSelection(TranID, "");
-                                    if (string.IsNullOrEmpty(CompanyORNo) && !string.IsNullOrEmpty(CompanyPRNo))
-                                    {
-                                        frmRecieptSelection.IsNoOR = true;
-                                    }
-                                    else if (!string.IsNullOrEmpty(CompanyORNo) && string.IsNullOrEmpty(CompanyPRNo))
-                                    {
-                                        frmRecieptSelection.IsNoOR = false;
-                                    }
-                                    frmRecieptSelection.ShowDialog();
-                                //}
+                            M_GenerateBulkPayment();
+                            M_GetComputationById();
+                            M_GetCheckPaymentStatus();
+                            M_GetLedgerList();
+                            M_GetPaymentListByReferenceId();
+
+                            frmRecieptSelectionSecondPayment frmRecieptSelection = new frmRecieptSelectionSecondPayment(TranID, "");
+                            if (string.IsNullOrEmpty(CompanyORNo) && !string.IsNullOrEmpty(CompanyPRNo))
+                            {
+                                frmRecieptSelection.IsNoOR = true;
+                            }
+                            else if (!string.IsNullOrEmpty(CompanyORNo) && string.IsNullOrEmpty(CompanyPRNo))
+                            {
+                                frmRecieptSelection.IsNoOR = false;
+                            }
+                            frmRecieptSelection.ShowDialog();
+                            //}
                             //}
                         }
                     }
@@ -977,6 +981,7 @@ namespace LEASING.UI.APP.Forms
                             SerialNo = frmPaymentMode.SerialNo;
                             PaymentRemarks = frmPaymentMode.PaymentRemarks;
                             REF = frmPaymentMode.REF;
+                            BankBranch = frmPaymentMode.BankBranch;
                             ModeType = frmPaymentMode.ModeType;
                             ReceiveAmount = frmPaymentMode.txtReceiveAmount.Text == string.Empty ? 0 : decimal.Parse(frmPaymentMode.txtReceiveAmount.Text);
                             ChangeAmount = 0;
@@ -984,26 +989,26 @@ namespace LEASING.UI.APP.Forms
                             //frmReceivePayment.Amount = Convert.ToString(Convert.ToDecimal(dgvLedgerList.CurrentRow.Cells["LedgAmount"].Value) * M_GetTotalSelectedMonth());
                             //if (IsProceedWithHold)
                             //{
-                                //frmPaymentMode.ShowDialog();
-                                //if (frmPaymentMode.IsProceed)
-                                //{
-                                   
-                                    M_GenerateBulkPayment();
-                                    M_GetCheckPaymentStatus();
-                                    M_GetLedgerList();
-                                    M_GetPaymentListByReferenceId();
+                            //frmPaymentMode.ShowDialog();
+                            //if (frmPaymentMode.IsProceed)
+                            //{
 
-                                    frmRecieptSelection frmRecieptSelection = new frmRecieptSelection(TranID, "");
-                                    if (string.IsNullOrEmpty(CompanyORNo) && !string.IsNullOrEmpty(CompanyPRNo))
-                                    {
-                                        frmRecieptSelection.IsNoOR = true;
-                                    }
-                                    else if (!string.IsNullOrEmpty(CompanyORNo) && string.IsNullOrEmpty(CompanyPRNo))
-                                    {
-                                        frmRecieptSelection.IsNoOR = false;
-                                    }
-                                    frmRecieptSelection.ShowDialog();
-                                //}
+                            M_GenerateBulkPayment();
+                            M_GetCheckPaymentStatus();
+                            M_GetLedgerList();
+                            M_GetPaymentListByReferenceId();
+
+                            frmRecieptSelectionSecondPayment frmRecieptSelection = new frmRecieptSelectionSecondPayment(TranID, "");
+                            if (string.IsNullOrEmpty(CompanyORNo) && !string.IsNullOrEmpty(CompanyPRNo))
+                            {
+                                frmRecieptSelection.IsNoOR = true;
+                            }
+                            else if (!string.IsNullOrEmpty(CompanyORNo) && string.IsNullOrEmpty(CompanyPRNo))
+                            {
+                                frmRecieptSelection.IsNoOR = false;
+                            }
+                            frmRecieptSelection.ShowDialog();
+                            //}
                             //}
                         }
                     }

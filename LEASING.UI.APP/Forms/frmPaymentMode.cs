@@ -23,6 +23,7 @@ namespace LEASING.UI.APP.Forms
         public string BankAccountName { get; set; }
         public string BankAccountNumber { get; set; }
         public string BankName { get; set; }
+        public string BankBranch { get; set; }
         public string SerialNo { get; set; }
         public string PaymentRemarks { get; set; }
         public string REF { get; set; }
@@ -58,6 +59,7 @@ namespace LEASING.UI.APP.Forms
                         txtReferrence.Enabled = false;
                         ddlbankName.Enabled = false;
                         txtBankAccountName.Enabled = false;
+                        txtBankBranch.Enabled = false;
                         txtBankAccountNo.Enabled = false;
                         txtSerialNo.Enabled = false;
                         ddlbankName.Text = string.Empty;
@@ -72,6 +74,7 @@ namespace LEASING.UI.APP.Forms
                         txtBankAccountName.Enabled = true;
                         txtBankAccountNo.Enabled = true;
                         txtSerialNo.Enabled = false;
+                        txtBankBranch.Enabled = true;
 
                         break;
                     case "PDC":
@@ -81,6 +84,7 @@ namespace LEASING.UI.APP.Forms
                         ddlbankName.Enabled = true;
                         txtBankAccountName.Enabled = true;
                         txtBankAccountNo.Enabled = true;
+                        txtBankBranch.Enabled = true;
                         txtSerialNo.Enabled = true;
 
                         break;
@@ -100,6 +104,7 @@ namespace LEASING.UI.APP.Forms
             txtReferrence.Text = string.Empty;
             ddlbankName.Text = string.Empty;
             ddlbankName.SelectedIndex = 0;
+            txtBankBranch.Text = string.Empty;
             txtBankAccountName.Text = string.Empty;
             txtBankAccountNo.Text = string.Empty;
             txtSerialNo.Text = string.Empty;
@@ -271,6 +276,7 @@ namespace LEASING.UI.APP.Forms
                         SerialNo = txtSerialNo.Text;
                         PaymentRemarks = txtRemarks.Text;
                         REF = txtReferrence.Text;
+                        BankBranch = txtBankBranch.Text;
                         this.Close();
 
 
@@ -293,6 +299,7 @@ namespace LEASING.UI.APP.Forms
                         SerialNo = txtSerialNo.Text;
                         PaymentRemarks = txtRemarks.Text;
                         REF = txtReferrence.Text;
+                        BankBranch = txtBankBranch.Text;
                         this.Close();
 
                     }

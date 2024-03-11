@@ -379,7 +379,7 @@ namespace LEASING.UI.APP.Forms
         private void M_GetPostDatedCountMonth()
         {
             dgvpostdatedcheck.DataSource = null;
-            using (DataSet dt = ComputationContext.GetPostDatedCountMonth(dtpStartDate.Text, dtpFinishDate.Text, txtTotalRental.Text, M_getXMLData()))
+            using (DataSet dt = ComputationContext.GetPostDatedCountMonth(dtpStartDate.Text, dtpFinishDate.Text, txtRental.Text, txtSecAndMaintenance.Text, M_getXMLData()))
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                 {
@@ -554,7 +554,7 @@ namespace LEASING.UI.APP.Forms
             int monthsDifference = (date2.Year - date1.Year) * 12 + date2.Month - date1.Month;
 
             // Check if the difference is more than 6 months
-            return monthsDifference > 9;
+            return monthsDifference > 2;
         }
         private void frmComputation_Load(object sender, EventArgs e)
         {

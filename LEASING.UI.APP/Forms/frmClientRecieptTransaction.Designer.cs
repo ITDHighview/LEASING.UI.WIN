@@ -44,6 +44,7 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn12 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn13 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn14 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn15 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
@@ -80,7 +81,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 43.28358F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 56.71642F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(916, 695);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(973, 695);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // toolStrip1
@@ -89,7 +90,7 @@
             this.toolStripSeparator});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(916, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(973, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -106,7 +107,7 @@
             this.radGroupBox1.HeaderText = "CONTRACT LIST";
             this.radGroupBox1.Location = new System.Drawing.Point(3, 28);
             this.radGroupBox1.Name = "radGroupBox1";
-            this.radGroupBox1.Size = new System.Drawing.Size(910, 283);
+            this.radGroupBox1.Size = new System.Drawing.Size(967, 283);
             this.radGroupBox1.TabIndex = 1;
             this.radGroupBox1.Text = "CONTRACT LIST";
             // 
@@ -162,7 +163,7 @@
             this.dgvContractList.ReadOnly = true;
             this.dgvContractList.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgvContractList.ShowGroupPanel = false;
-            this.dgvContractList.Size = new System.Drawing.Size(906, 263);
+            this.dgvContractList.Size = new System.Drawing.Size(963, 263);
             this.dgvContractList.TabIndex = 0;
             this.dgvContractList.Text = "radGridView1";
             this.dgvContractList.ThemeName = "Office2007Silver";
@@ -176,7 +177,7 @@
             this.radGroupBox2.HeaderText = "RECEIPT LIST";
             this.radGroupBox2.Location = new System.Drawing.Point(3, 317);
             this.radGroupBox2.Name = "radGroupBox2";
-            this.radGroupBox2.Size = new System.Drawing.Size(910, 375);
+            this.radGroupBox2.Size = new System.Drawing.Size(967, 375);
             this.radGroupBox2.TabIndex = 2;
             this.radGroupBox2.Text = "RECEIPT LIST";
             // 
@@ -238,6 +239,11 @@
             gridViewTextBoxColumn14.HeaderText = "PR No.";
             gridViewTextBoxColumn14.Name = "CompanyPRNo";
             gridViewTextBoxColumn14.Width = 150;
+            gridViewTextBoxColumn15.FieldName = "BankBranch";
+            gridViewTextBoxColumn15.HeaderText = "BankBranch";
+            gridViewTextBoxColumn15.IsVisible = false;
+            gridViewTextBoxColumn15.Name = "BankBranch";
+            gridViewTextBoxColumn15.Width = 150;
             this.dgvReceiptList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewCommandColumn1,
             gridViewCommandColumn2,
@@ -248,7 +254,8 @@
             gridViewTextBoxColumn11,
             gridViewTextBoxColumn12,
             gridViewTextBoxColumn13,
-            gridViewTextBoxColumn14});
+            gridViewTextBoxColumn14,
+            gridViewTextBoxColumn15});
             this.dgvReceiptList.MasterTemplate.EnableFiltering = true;
             this.dgvReceiptList.MasterTemplate.ShowRowHeaderColumn = false;
             this.dgvReceiptList.Name = "dgvReceiptList";
@@ -256,7 +263,7 @@
             this.dgvReceiptList.ReadOnly = true;
             this.dgvReceiptList.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgvReceiptList.ShowGroupPanel = false;
-            this.dgvReceiptList.Size = new System.Drawing.Size(906, 355);
+            this.dgvReceiptList.Size = new System.Drawing.Size(963, 355);
             this.dgvReceiptList.TabIndex = 0;
             this.dgvReceiptList.Text = "radGridView1";
             this.dgvReceiptList.ThemeName = "VisualStudio2012Dark";
@@ -268,7 +275,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(916, 695);
+            this.ClientSize = new System.Drawing.Size(973, 695);
             this.Controls.Add(this.tableLayoutPanel1);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

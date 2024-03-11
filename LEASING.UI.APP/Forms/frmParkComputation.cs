@@ -376,7 +376,7 @@ namespace LEASING.UI.APP.Forms
         {
 
             dgvpostdatedcheck.DataSource = null;
-            using (DataSet dt = ComputationContext.GetPostDatedCountMonthParking(dtpStartDate.Text, dtpFinishDate.Text, txtRental.Text))
+            using (DataSet dt = ComputationContext.GetPostDatedCountMonthParking(dtpStartDate.Text, dtpFinishDate.Text, txtRental.Text, null))
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                 {
@@ -460,7 +460,7 @@ namespace LEASING.UI.APP.Forms
             int monthsDifference = (date2.Year - date1.Year) * 12 + date2.Month - date1.Month;
 
             // Check if the difference is more than 6 months
-            return monthsDifference > 9;
+            return monthsDifference > 2;
         }
         #region XML
         private static string SetXMLTable(ref ArrayList xml)

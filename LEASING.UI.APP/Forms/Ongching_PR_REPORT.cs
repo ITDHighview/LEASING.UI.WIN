@@ -14,6 +14,7 @@ namespace LEASING.UI.APP.Forms
     public partial class Ongching_PR_REPORT : Form
     {
         public string sTranID { get; set; } = string.Empty;
+        public string sMode { get; set; } = string.Empty;
         public Ongching_PR_REPORT(string TranID)
         {
             InitializeComponent();
@@ -22,7 +23,7 @@ namespace LEASING.UI.APP.Forms
 
         private void Ongching_PR_REPORT_Load(object sender, EventArgs e)
         {
-            Functions.GetReceiptReport(Config.Ongching_OR_REPORT, this, Config.RecieptReportOption, sTranID);
+            Functions.GetReceiptReport(Config.Ongching_OR_REPORT, this, Config.RecieptReportOption, sTranID, sMode);
         }
     }
 }

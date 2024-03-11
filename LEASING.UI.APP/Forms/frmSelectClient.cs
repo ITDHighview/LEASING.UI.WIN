@@ -33,6 +33,7 @@ namespace LEASING.UI.APP.Forms
         public string CompanyORNo { get; set; }
         public string CompanyPRNo { get; set; }
         public string BankAccountName { get; set; }
+        public string BankBranch { get; set; }        
         public string BankAccountNumber { get; set; }
         public string BankName { get; set; }
         public string SerialNo { get; set; }
@@ -107,7 +108,7 @@ namespace LEASING.UI.APP.Forms
         }
         private void M_sp_GenerateFirstPayment()
         {
-            var result = PaymentContext.GenerateFirstPayment(RefId, txtTotalForPayment.Text == string.Empty ? 0 : decimal.Parse(txtTotalForPayment.Text), ReceiveAmount, ChangeAmount, txtThreeMonSecDep.Text == string.Empty ? 0 : decimal.Parse(txtThreeMonSecDep.Text),CompanyORNo, CompanyPRNo,BankAccountName, BankAccountNumber,BankName,SerialNo,PaymentRemarks,REF,ModeType,out TransID);
+            var result = PaymentContext.GenerateFirstPayment(RefId, txtTotalForPayment.Text == string.Empty ? 0 : decimal.Parse(txtTotalForPayment.Text), ReceiveAmount, ChangeAmount, txtThreeMonSecDep.Text == string.Empty ? 0 : decimal.Parse(txtThreeMonSecDep.Text),CompanyORNo, CompanyPRNo,BankAccountName, BankAccountNumber,BankName,SerialNo,PaymentRemarks,REF,ModeType, BankBranch, out TransID);
             if (result.Equals("SUCCESS"))
             {
                 MessageBox.Show("PAYMENT SUCCESS", "System Message", MessageBoxButtons.OK);
@@ -196,6 +197,7 @@ namespace LEASING.UI.APP.Forms
                     SerialNo = frmPaymentMode.SerialNo;
                     PaymentRemarks = frmPaymentMode.PaymentRemarks;
                     REF = frmPaymentMode.REF;
+                    BankBranch = frmPaymentMode.BankBranch;
                     ModeType = frmPaymentMode.ModeType;
 
                     frmReceivePayment frmReceivePayment = new frmReceivePayment();

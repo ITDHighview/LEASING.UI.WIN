@@ -826,7 +826,7 @@ namespace LEASING.UI.APP.Common
 
             radDesktopAlert1.Show();
         }
-        public static void GetReceiptReport(string report, Form frm, bool IsPreview,string TranID)
+        public static void GetReceiptReport(string report, Form frm, bool IsPreview,string TranID,string Mode)
         {
 
             try
@@ -836,7 +836,7 @@ namespace LEASING.UI.APP.Common
                 locRptDocument.Load(report);
                 locRptDocument.PrintOptions.PaperSize = CrystalDecisions.Shared.PaperSize.DefaultPaperSize;
                 locRptDocument.SetParameterValue("@TranID", TranID);
-                //locRptDocument.SetParameterValue("@Encounter_No", "");
+                locRptDocument.SetParameterValue("@Mode", Mode);
                 ConnectionInfo crConnectionInfo = new ConnectionInfo();
                 crConnectionInfo.ServerName = Config.SqlServerName;
                 crConnectionInfo.DatabaseName = Config.SqlDatabaseName;

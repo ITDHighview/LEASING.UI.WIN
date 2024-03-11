@@ -20,6 +20,7 @@ namespace LEASING.UI.APP.Forms
         public string BankAccountName { get; set; }
         public string BankAccountNumber { get; set; }
         public string BankName { get; set; }
+        public string BankBranch { get; set; }
         public string SerialNo { get; set; }
         public string PaymentRemarks { get; set; }
         public string REF { get; set; }
@@ -54,6 +55,7 @@ namespace LEASING.UI.APP.Forms
                         txtSerialNo.Enabled = false;
                         ddlbankName.Text = string.Empty;
                         ddlbankName.SelectedIndex = -1;
+                        txtBankBranch.Enabled = false;
 
                         break;
                     case "BANK":
@@ -64,6 +66,7 @@ namespace LEASING.UI.APP.Forms
                         txtBankAccountName.Enabled = true;
                         txtBankAccountNo.Enabled = true;
                         txtSerialNo.Enabled = false;
+                        txtBankBranch.Enabled = true;
 
                         break;
                     case "PDC":
@@ -74,6 +77,7 @@ namespace LEASING.UI.APP.Forms
                         txtBankAccountName.Enabled = true;
                         txtBankAccountNo.Enabled = true;
                         txtSerialNo.Enabled = true;
+                        txtBankBranch.Enabled = true;
 
                         break;
 
@@ -93,6 +97,7 @@ namespace LEASING.UI.APP.Forms
             txtBankAccountName.Text = string.Empty;
             txtBankAccountNo.Text = string.Empty;
             txtSerialNo.Text = string.Empty;
+            txtBankBranch.Text = string.Empty;
         }
         private void M_GetSelectPaymentMode()
         {
@@ -219,6 +224,7 @@ namespace LEASING.UI.APP.Forms
                 SerialNo = txtSerialNo.Text;
                 PaymentRemarks = txtRemarks.Text;
                 REF = txtReferrence.Text;
+                BankBranch = txtBankBranch.Text;
                 this.Close();
             }
         }

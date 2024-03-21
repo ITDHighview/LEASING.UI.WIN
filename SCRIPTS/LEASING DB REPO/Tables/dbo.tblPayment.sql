@@ -12,7 +12,8 @@ CREATE TABLE [dbo].[tblPayment]
 [LastChangedDate] [datetime] NULL,
 [ComputerName] [varchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
 [IsActive] [bit] NULL,
-[RefId] [varchar] (500) COLLATE SQL_Latin1_General_CP1_CI_AS NULL
+[RefId] [varchar] (500) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[Notes] [varchar] (200) COLLATE SQL_Latin1_General_CP1_CI_AS NULL
 ) ON [PRIMARY]
 GO
 SET QUOTED_IDENTIFIER ON

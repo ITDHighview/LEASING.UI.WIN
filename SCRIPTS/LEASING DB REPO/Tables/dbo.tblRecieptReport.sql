@@ -21,6 +21,7 @@ CREATE TABLE [dbo].[tblRecieptReport]
 [USER] [varchar] (500) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
 [EncodedDate] [datetime] NULL,
 [TRANID] [varchar] (500) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
-[Mode] [varchar] (500) COLLATE SQL_Latin1_General_CP1_CI_AS NULL
+[Mode] [varchar] (500) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[PaymentLevel] [varchar] (100) COLLATE SQL_Latin1_General_CP1_CI_AS NULL
 ) ON [PRIMARY]
 GO

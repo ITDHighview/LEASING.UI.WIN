@@ -561,7 +561,6 @@
             this.dgvLedgerList.ThemeName = "TelerikMetroTouch";
             this.dgvLedgerList.CellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.dgvLedgerList_CellFormatting);
             this.dgvLedgerList.CellClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.dgvLedgerList_CellClick);
-            this.dgvLedgerList.CellValueChanged += new Telerik.WinControls.UI.GridViewCellEventHandler(this.dgvLedgerList_CellValueChanged);
             // 
             // radPageViewPagePaymentHistory
             // 

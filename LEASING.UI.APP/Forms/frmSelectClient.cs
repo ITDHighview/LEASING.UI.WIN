@@ -1,4 +1,5 @@
-﻿using LEASING.UI.APP.Context;
+﻿using LEASING.UI.APP.Common;
+using LEASING.UI.APP.Context;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,10 +16,13 @@ namespace LEASING.UI.APP.Forms
 {
     public partial class frmSelectClient : Form
     {
-        //private DataTable data = new DataTable();
+        #region Context
         ClientContext ClientContext = new ClientContext();
         ComputationContext ComputationContext = new ComputationContext();
         PaymentContext PaymentContext = new PaymentContext();
+        #endregion
+
+        #region Variables
         public int TotalRental { get; set; }
         public int ComputationRecid { get; set; }
         public string TransID = string.Empty;
@@ -33,22 +37,40 @@ namespace LEASING.UI.APP.Forms
         public string CompanyORNo { get; set; }
         public string CompanyPRNo { get; set; }
         public string BankAccountName { get; set; }
-        public string BankBranch { get; set; }        
+        public string BankBranch { get; set; }
         public string BankAccountNumber { get; set; }
         public string BankName { get; set; }
         public string SerialNo { get; set; }
         public string PaymentRemarks { get; set; }
         public string REF { get; set; }
         public string ModeType { get; set; }
-        public frmSelectClient()
+        #endregion
+
+        #region Call Methods
+        private void OnInitialized()
         {
-            InitializeComponent();          
-        }   
+            this.FormLoadDisableControl();
+            this.FormLoadReadOnlyControls();
+            this.M_GetComputationById();
+            this.M_GetMonthLedgerByRefIdAndClientId();
+        }
+        private void FormLoadReadOnlyControls()
+        {
+            txtTwoMonAdv.ReadOnly = true;
+            txtThreeMonSecDep.ReadOnly = true;
+            txtTotalForPayment.ReadOnly = true;
+        }
+        private void FormLoadDisableControl()
+        {
+            dtpFrom.Enabled = false;
+            dtpTo.Enabled = false;
+            btnPrintReciept.Enabled = false;
+        }
         private bool IsComputationValid()
         {
-            if (ClientId == string.Empty)
+            if (string.IsNullOrEmpty(ClientId))
             {
-                MessageBox.Show("Client  cannot be empty !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                Functions.MessageShow("Client  cannot be empty!.");
                 return false;
             }
 
@@ -73,18 +95,6 @@ namespace LEASING.UI.APP.Forms
                     dgvLedgerList.DataSource = dt.Tables[0];
                 }
             }
-        }   
-        private void frmSelectClient_Load(object sender, EventArgs e)
-        {
-            dtpFrom.Enabled = false;
-            dtpTo.Enabled = false;
-            txtTwoMonAdv.ReadOnly = true;
-            txtThreeMonSecDep.ReadOnly = true;
-            txtTotalForPayment.ReadOnly = true;
-
-            M_GetComputationById();       
-            M_GetMonthLedgerByRefIdAndClientId();
-            btnPrintReciept.Enabled = false;
         }
         private void M_GetComputationById()
         {
@@ -93,49 +103,227 @@ namespace LEASING.UI.APP.Forms
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                 {
                     RefId = Convert.ToString(dt.Tables[0].Rows[0]["RefId"]);
-                    txtClientName.Text = Convert.ToString(dt.Tables[0].Rows[0]["InquiringClient"]);                
-                    ClientId = Convert.ToString(dt.Tables[0].Rows[0]["ClientID"]);                   
+                    txtClientName.Text = Convert.ToString(dt.Tables[0].Rows[0]["InquiringClient"]);
+                    ClientId = Convert.ToString(dt.Tables[0].Rows[0]["ClientID"]);
                     dtpFrom.Text = Convert.ToString(dt.Tables[0].Rows[0]["StatDate"]);
-                    dtpTo.Text = Convert.ToString(dt.Tables[0].Rows[0]["FinishDate"]);                   
-                    TotalRental = Convert.ToInt32(dt.Tables[0].Rows[0]["TotalRent"]);               
+                    dtpTo.Text = Convert.ToString(dt.Tables[0].Rows[0]["FinishDate"]);
+                    TotalRental = Convert.ToInt32(dt.Tables[0].Rows[0]["TotalRent"]);
                     txtTwoMonAdv.Text = Convert.ToString(dt.Tables[0].Rows[0]["TwoMonAdvance"]);
-                    txtThreeMonSecDep.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecDeposit"]);                 
+                    txtThreeMonSecDep.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecDeposit"]);
                     txtTotalForPayment.Text = Convert.ToString(dt.Tables[0].Rows[0]["TotalForPayment"]);
                     txtAmountPaid.Text = Convert.ToString(dt.Tables[0].Rows[0]["TotalPayAMount"]);
                     txtBalanceAmount.Text = Convert.ToString(dt.Tables[0].Rows[0]["FirtsPaymentBalanceAmount"]);
                 }
             }
         }
-        private void M_sp_GenerateFirstPayment()
+        private decimal fn_ConvertStringToDecimal(string amountString)
         {
-            var result = PaymentContext.GenerateFirstPayment(RefId, txtTotalForPayment.Text == string.Empty ? 0 : decimal.Parse(txtTotalForPayment.Text), ReceiveAmount, ChangeAmount, txtThreeMonSecDep.Text == string.Empty ? 0 : decimal.Parse(txtThreeMonSecDep.Text),CompanyORNo, CompanyPRNo,BankAccountName, BankAccountNumber,BankName,SerialNo,PaymentRemarks,REF,ModeType, BankBranch, out TransID);
-            if (result.Equals("SUCCESS"))
+            if (string.IsNullOrEmpty(amountString))
             {
-                MessageBox.Show("PAYMENT SUCCESS", "System Message", MessageBoxButtons.OK);
-                IsProceed = true;
-                btnGenerate.Enabled = false;
-                btnPrintReciept.Enabled = true;
+                return 0;
             }
-            else
-            {
-                MessageBox.Show(result, "System Message", MessageBoxButtons.OK);
-            }
+            return decimal.Parse(amountString);
         }
+        private void GeneratePayment()
+        {
+            if (string.IsNullOrEmpty(this.RefId))
+            {
+                return;
+            }
+            var result = PaymentContext.GenerateFirstPayment(
+               this.RefId,
+               this.fn_ConvertStringToDecimal(this.txtTotalForPayment.Text),
+               this.ReceiveAmount,
+               this.ChangeAmount,
+               this.fn_ConvertStringToDecimal(this.txtThreeMonSecDep.Text),
+               this.CompanyORNo,
+               this.CompanyPRNo,
+               this.BankAccountName,
+               this.BankAccountNumber,
+               this.BankName,
+               this.SerialNo,
+               this.PaymentRemarks,
+               this.REF,
+               this.ModeType,
+               this.BankBranch,
+                out TransID);
+
+            if (string.IsNullOrEmpty(result))
+            {
+                Functions.MessageShow("Response Empty.");
+                return;
+            }
+
+            if (!result.Equals("SUCCESS"))
+            {
+                Functions.MessageShow(result);
+                return;
+            }
+
+            Functions.MessageShow($"PAYMENT {result}");
+
+            IsProceed = true;
+            btnGenerate.Enabled = false;
+            btnPrintReciept.Enabled = true;
+        }
+        private void ShowClientUnitsTaken()
+        {
+            if (string.IsNullOrEmpty(this.ClientId))
+            {
+                return;
+            }
+            frmCheckClientUnits CheckClientUnits = new frmCheckClientUnits();
+            CheckClientUnits.ClientId = this.ClientId;
+            CheckClientUnits.ShowDialog();
+        }
+        private string GetPaymentLevel()
+        {
+
+            return "FIRST";
+        }
+        private void ShowPrintRecieptForm()
+        {
+            frmRecieptSelection RecieptSelection = new frmRecieptSelection(this.TransID, this.RefId,this.GetPaymentLevel());
+            using (DataSet dt = PaymentContext.CheckIfOrIsEmpty(this.TransID))
+            {
+                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                {
+                    if (string.IsNullOrEmpty(Convert.ToString(dt.Tables[0].Rows[0]["CompanyORNo"])) && !string.IsNullOrEmpty(Convert.ToString(dt.Tables[0].Rows[0]["CompanyPRNo"])))
+                    {
+                        RecieptSelection.IsNoOR = true;
+                    }
+                    else if (!string.IsNullOrEmpty(Convert.ToString(dt.Tables[0].Rows[0]["CompanyORNo"])) && string.IsNullOrEmpty(Convert.ToString(dt.Tables[0].Rows[0]["CompanyPRNo"])))
+                    {
+                        RecieptSelection.IsNoOR = false;
+                    }
+                    else if (!string.IsNullOrEmpty(Convert.ToString(dt.Tables[0].Rows[0]["CompanyORNo"])) && !string.IsNullOrEmpty(Convert.ToString(dt.Tables[0].Rows[0]["CompanyPRNo"])))
+                    {
+                        RecieptSelection.IsNoOR = false;
+                    }
+                }
+            }
+            RecieptSelection.ShowDialog();
+        }
+        private bool CheckTranIDAndRefIdIsEmpty()
+        {
+            if (string.IsNullOrEmpty(this.TransID) && string.IsNullOrEmpty(this.RefId))
+            {
+                return true;
+            }
+
+            return false;
+        }
+        private void ShowPaymentPrintReciept()
+        {
+            if (this.CheckTranIDAndRefIdIsEmpty())
+            {
+                return;
+            }
+
+            this.ShowPrintRecieptForm();
+        }
+        private bool InitPayment(frmPaymentMode1 pForm)
+        {
+            pForm.ShowDialog();
+            if (!pForm.IsProceed)
+            {
+                return false; ;
+            }
+
+            this.CompanyORNo = pForm.CompanyORNo;
+            this.CompanyPRNo = pForm.CompanyPRNo;
+            this.BankAccountName = pForm.BankAccountName;
+            this.BankAccountNumber = pForm.BankAccountNumber;
+            this.BankName = pForm.BankName;
+            this.SerialNo = pForm.SerialNo;
+            this.PaymentRemarks = pForm.PaymentRemarks;
+            this.REF = pForm.REF;
+            this.BankBranch = pForm.BankBranch;
+            this.ModeType = pForm.ModeType;
+
+            return true;
+        }
+        private void RecievePayment(frmReceivePayment pForm)
+        {
+            pForm.Amount = this.txtTotalForPayment.Text;
+            pForm.ShowDialog();
+
+            if (!pForm.IsProceed)
+            {
+                return;
+            }
+
+            this.ReceiveAmount = fn_ConvertStringToDecimal(pForm.txtReceiveAmount.Text);
+            this.ChangeAmount = 0;
+        }
+        private void InitReciept(frmRecieptSelection pForm)
+        {
+            if (string.IsNullOrEmpty(this.CompanyORNo) && !string.IsNullOrEmpty(this.CompanyPRNo))
+            {
+                pForm.IsNoOR = true;
+            }
+            else if (!string.IsNullOrEmpty(this.CompanyORNo) && string.IsNullOrEmpty(this.CompanyPRNo))
+            {
+                pForm.IsNoOR = false;
+            }
+
+            pForm.ShowDialog();
+            this.M_GetComputationById();
+        }
+        private void SavePayment()
+        {
+            if (Functions.MessageConfirm("Are you sure you want to proceed  to this payment?") == DialogResult.No)
+            {
+                Functions.GetNotification("PAYMENT", "Payment Cancel");
+                return;
+            }
+
+            var fPayment = new frmPaymentMode1();
+            if (!this.InitPayment(fPayment))
+            {
+                return;
+            }
+
+            var fReceivePayment = new frmReceivePayment();
+            this.RecievePayment(fReceivePayment);
+
+            this.GeneratePayment();
+
+            if (CheckTranIDAndRefIdIsEmpty())
+            {
+                Functions.MessageShow("No transaction code is generated, Please contact system administrator");
+                return;
+            }
+
+            var fReciept = new frmRecieptSelection(this.TransID, this.RefId,this.GetPaymentLevel());
+            this.InitReciept(fReciept);
+        }
+        #endregion
+
+        #region Buttons
+        private void btnCheckUnits_Click(object sender, EventArgs e)
+        {            
+            this.ShowClientUnitsTaken();
+        }
+        private void btnGenerate_Click(object sender, EventArgs e)
+        {
+            this.SavePayment();
+        }
+        private void btnPrintReciept_Click(object sender, EventArgs e)
+        {
+            this.ShowPaymentPrintReciept();
+        }
+        #endregion
+
+        #region TextBox
         private void radTextBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
-        }     
-        private void radDateTimePicker2_ValueChanged(object sender, EventArgs e)
-        {
-            
         }
-        private void btnCheckUnits_Click(object sender, EventArgs e)
-        {           
-            frmCheckClientUnits forms = new frmCheckClientUnits();
-            forms.ClientId = ClientId;
-            forms.ShowDialog();
-        }
+        #endregion
+
+        #region GridView
         private void dgvLedgerList_CellFormatting(object sender, Telerik.WinControls.UI.CellFormattingEventArgs e)
         {
             if (!string.IsNullOrEmpty(Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["Remarks"].Value)))
@@ -181,75 +369,15 @@ namespace LEASING.UI.APP.Forms
                 //}
             }
         }
-        private void btnGenerate_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show("Are you sure you want to proceed  to this payment?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
-            {
-                frmPaymentMode1 frmPaymentMode = new frmPaymentMode1();
-                frmPaymentMode.ShowDialog();
-                if (frmPaymentMode.IsProceed)
-                {
-                    CompanyORNo = frmPaymentMode.CompanyORNo;
-                    CompanyPRNo = frmPaymentMode.CompanyPRNo;
-                    BankAccountName = frmPaymentMode.BankAccountName;
-                    BankAccountNumber = frmPaymentMode.BankAccountNumber;
-                    BankName = frmPaymentMode.BankName;
-                    SerialNo = frmPaymentMode.SerialNo;
-                    PaymentRemarks = frmPaymentMode.PaymentRemarks;
-                    REF = frmPaymentMode.REF;
-                    BankBranch = frmPaymentMode.BankBranch;
-                    ModeType = frmPaymentMode.ModeType;
+        #endregion
 
-                    frmReceivePayment frmReceivePayment = new frmReceivePayment();
-                    frmReceivePayment.Amount = txtTotalForPayment.Text;
-                    frmReceivePayment.ShowDialog();
-                    if (frmReceivePayment.IsProceed)
-                    {
-                       
-                        ReceiveAmount = frmReceivePayment.txtReceiveAmount.Text == string.Empty ? 0 : decimal.Parse(frmReceivePayment.txtReceiveAmount.Text);
-                        ChangeAmount = 0;
-                        M_sp_GenerateFirstPayment();
-                        frmRecieptSelection frmRecieptSelection = new frmRecieptSelection(TransID, RefId);
-                        if (string.IsNullOrEmpty(CompanyORNo) && !string.IsNullOrEmpty(CompanyPRNo))
-                        {
-                            frmRecieptSelection.IsNoOR = true;
-                        }
-                        else if (!string.IsNullOrEmpty(CompanyORNo) && string.IsNullOrEmpty(CompanyPRNo))
-                        {
-                            frmRecieptSelection.IsNoOR = false;
-                        }
-                        //else
-                        //{
-                        //    frmRecieptSelection.IsNoOR = false;
-                        //}
-                        frmRecieptSelection.ShowDialog();
-                        M_GetComputationById();
-                    }
-                }
-            }
-        }
-        private void btnPrintReciept_Click(object sender, EventArgs e)
+        public frmSelectClient()
         {
-            frmRecieptSelection frmRecieptSelection = new frmRecieptSelection(TransID, RefId);
-            using (DataSet dt = PaymentContext.CheckIfOrIsEmpty(TransID))
-            {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
-                {
-                    if (string.IsNullOrEmpty(Convert.ToString(dt.Tables[0].Rows[0]["CompanyORNo"])) && !string.IsNullOrEmpty(Convert.ToString(dt.Tables[0].Rows[0]["CompanyPRNo"])))
-                    {
-                        frmRecieptSelection.IsNoOR = true;
-                    }
-                    else if (!string.IsNullOrEmpty(Convert.ToString(dt.Tables[0].Rows[0]["CompanyORNo"])) && string.IsNullOrEmpty(Convert.ToString(dt.Tables[0].Rows[0]["CompanyPRNo"])))
-                    {
-                        frmRecieptSelection.IsNoOR = false;
-                    }
-                    else if (!string.IsNullOrEmpty(Convert.ToString(dt.Tables[0].Rows[0]["CompanyORNo"])) && !string.IsNullOrEmpty(Convert.ToString(dt.Tables[0].Rows[0]["CompanyPRNo"])))
-                    {
-                        frmRecieptSelection.IsNoOR = false;
-                    }
-                }
-            }
-            frmRecieptSelection.ShowDialog();
+            InitializeComponent();
+        }
+        private void frmSelectClient_Load(object sender, EventArgs e)
+        {
+            this.OnInitialized();
         }
     }
 }

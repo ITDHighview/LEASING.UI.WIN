@@ -826,7 +826,7 @@ namespace LEASING.UI.APP.Common
 
             radDesktopAlert1.Show();
         }
-        public static void GetReceiptReport(string report, Form frm, bool IsPreview,string TranID,string Mode)
+        public static void GetReceiptReport(string report, Form frm, bool IsPreview,string TranID,string Mode,string PaymentLevel)
         {
 
             try
@@ -837,6 +837,7 @@ namespace LEASING.UI.APP.Common
                 locRptDocument.PrintOptions.PaperSize = CrystalDecisions.Shared.PaperSize.DefaultPaperSize;
                 locRptDocument.SetParameterValue("@TranID", TranID);
                 locRptDocument.SetParameterValue("@Mode", Mode);
+                locRptDocument.SetParameterValue("@PaymentLevel", PaymentLevel);
                 ConnectionInfo crConnectionInfo = new ConnectionInfo();
                 crConnectionInfo.ServerName = Config.SqlServerName;
                 crConnectionInfo.DatabaseName = Config.SqlDatabaseName;
@@ -1102,5 +1103,13 @@ namespace LEASING.UI.APP.Common
             return MessageBox.Show(message, "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
         }
 
+        public static decimal ConvertStringToDecimal(string amountString)
+        {
+            if (string.IsNullOrEmpty(amountString))
+            {
+                return 0;
+            }
+            return decimal.Parse(amountString);
+        }
     }
 }

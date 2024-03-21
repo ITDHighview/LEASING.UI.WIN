@@ -29,13 +29,14 @@ namespace LEASING.UI.APP.Forms
         public string REF { get; set; }
         public string ModeType { get; set; }
         public string XML { get; set; }
-
+      
         public bool IsOR { get; set; } = false;
 
         public bool IsPartialPayment = false;
         public string Amount = string.Empty;
         public int recid = 0;
         int DayCount = 0;
+
         public frmPaymentMode()
         {
             InitializeComponent();
@@ -166,14 +167,14 @@ namespace LEASING.UI.APP.Forms
         }
 
 
-        private bool IsValid()
+        private bool IsPassValidation()
         {
             if (string.IsNullOrEmpty(txtReceiveAmount.Text))
             {
                 Functions.MessageShow("Recieve Amount cannot be empty.");
                 return false;
             }
-            if (decimal.Parse(txtReceiveAmount.Text) > decimal.Parse(txtPaidAmount.Text))
+            if (Functions.ConvertStringToDecimal(txtReceiveAmount.Text) > Functions.ConvertStringToDecimal(txtPaidAmount.Text))
             {
                 Functions.MessageShow("Recieve Amount cannot be greater then Due Amount.");
                 return false;
@@ -185,7 +186,7 @@ namespace LEASING.UI.APP.Forms
             }
             if (!string.IsNullOrEmpty(txtCompanyORNo.Text.Trim()))
             {
-                if (M_CheckOrNumber())
+                if (this.IsORExist())
                 {
                     MessageBox.Show("This OR Number: " + txtCompanyORNo.Text.Trim() + " is already exist!", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return false;
@@ -193,7 +194,7 @@ namespace LEASING.UI.APP.Forms
             }
             if (!string.IsNullOrEmpty(txtPRNo.Text.Trim()))
             {
-                if (M_CheckPRNumber())
+                if (this.IsPRExist())
                 {
                     MessageBox.Show("This PR Number: " + txtPRNo.Text.Trim() + " is already exist!", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return false;
@@ -202,44 +203,32 @@ namespace LEASING.UI.APP.Forms
 
             return true;
         }
-        private bool M_CheckOrNumber()
+        private bool IsORExist()
         {
-
-            bool IsExist = false;
             using (DataSet dt = PaymentContext.GetCheckOrNumber(txtCompanyORNo.Text.Trim()))
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                 {
 
-                    IsExist = Convert.ToBoolean(dt.Tables[0].Rows[0]["IsExist"]);
-                }
-                else
-                {
-                    IsExist = false;
+                    return Convert.ToBoolean(dt.Tables[0].Rows[0]["IsExist"]);
                 }
             }
-            return IsExist;
+            return false;
         }
-        private bool M_CheckPRNumber()
+        private bool IsPRExist()
         {
-
-            bool IsExist = false;
             using (DataSet dt = PaymentContext.GetCheckPRNumber(txtPRNo.Text.Trim()))
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                 {
 
-                    IsExist = Convert.ToBoolean(dt.Tables[0].Rows[0]["IsExist"]);
+                    return Convert.ToBoolean(dt.Tables[0].Rows[0]["IsExist"]);
                 }
-                else
-                {
-                    IsExist = false;
-                }
-            }
-            return IsExist;
-        }
 
-        private void frmPaymentMode_Load(object sender, EventArgs e)
+            }
+            return false;
+        }
+        private void OnInitialized()
         {
             ClearFields();
             M_GetSelectPaymentMode();
@@ -248,76 +237,113 @@ namespace LEASING.UI.APP.Forms
             M_GetLedgerListOnQueTotalAMount();
             ddlbankName.Text = string.Empty;
             ddlbankName.SelectedIndex = -1;
+            
         }
-
-        private void ddlSelectMode_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
+        private string SelectModeOfPayment()
         {
             strPaymentmMode = Convert.ToString(ddlSelectMode.SelectedValue);
+            return strPaymentmMode;
+        }
+        private void frmPaymentMode_Load(object sender, EventArgs e)
+        {
+            this.OnInitialized();
+        }
+        private void ddlSelectMode_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
+        {
+            this.SelectModeOfPayment();
+        }
+        private void FormClose()
+        {
+            this.Close();
+        }
+        private void BindPaymentInfo()
+        {
+   
+            this.ModeType = this.SelectModeOfPayment();
+            this.CompanyORNo = this.txtCompanyORNo.Text;
+            this.CompanyPRNo = this.txtPRNo.Text;
+            this.BankAccountName = this.txtBankAccountName.Text;
+            this.BankAccountNumber = this.txtBankAccountNo.Text;
+            this.BankName = this.ddlbankName.Text;
+            this.SerialNo = this.txtSerialNo.Text;
+            this.PaymentRemarks = this.txtRemarks.Text;
+            this.REF = this.txtReferrence.Text;
+            this.BankBranch = this.txtBankBranch.Text;
+
+        }
+        private void SavePaymentInfo()
+        {
+            if (!this.IsProceed)
+            {
+                return;
+            }
+
+            this.BindPaymentInfo();
+            this.FormClose();
+
         }
 
+        private bool IsAmountValid()
+        {
+            bool AmountIsValid = false;
+
+            var notEqual = Functions.ConvertStringToDecimal(txtReceiveAmount.Text) != Functions.ConvertStringToDecimal(txtPaidAmount.Text);
+
+            if (!notEqual)
+            {
+                return false;
+            }
+
+            AmountIsValid = Functions.ConvertStringToDecimal(txtReceiveAmount.Text) < Functions.ConvertStringToDecimal(txtPaidAmount.Text) || Functions.ConvertStringToDecimal(txtReceiveAmount.Text) == Functions.ConvertStringToDecimal(txtPaidAmount.Text);
+
+            return AmountIsValid;
+        }
+
+        private bool IsPaymentforPartial()
+        {
+            bool IsValidForPartialPayment = false;
+            if (!this.IsAmountValid())
+            {
+                return false;
+            }
+            IsValidForPartialPayment = Functions.ConvertStringToDecimal(txtReceiveAmount.Text) < Functions.ConvertStringToDecimal(txtPaidAmount.Text);
+            return IsValidForPartialPayment;
+        }
+
+        private string PaymentMessageInfo()
+        {
+            if (this.IsPaymentforPartial())
+            {
+                return "Due amount is greater than  Recieve amount, would you like to pay as Partial payment?.";
+            }
+            else
+            {
+                return "Are you sure you want to proceed the payment?.";
+            }
+            return "";
+        }
+        private void ProceedToPayment()
+        {
+            if (this.IsPassValidation())
+            {
+                if (Functions.MessageConfirm(this.PaymentMessageInfo()) == DialogResult.No)
+                {
+                    Functions.GetNotification("PAYMENT", "Payment Cancel.");
+                    return;
+                }
+
+                this.IsProceed = true;
+                this.SavePaymentInfo();
+            }
+        }
         private void btnOk_Click(object sender, EventArgs e)
         {
-            if (IsValid())
-            {
-                if (decimal.Parse(txtReceiveAmount.Text) != decimal.Parse(txtPaidAmount.Text))
-                {
-                    if (Functions.MessageConfirm("Due amount is not equal to Recieve amount, would you like to pay as Partial payment?.") == DialogResult.Yes)
-                    {
-                        IsProceed = true;
-                        if (ddlSelectMode.SelectedIndex > 0)
-                        {
-                            ModeType = Convert.ToString(ddlSelectMode.SelectedValue);
-                        }
-                        CompanyORNo = txtCompanyORNo.Text;
-                        CompanyPRNo = txtPRNo.Text;
-                        BankAccountName = txtBankAccountName.Text;
-                        BankAccountNumber = txtBankAccountNo.Text;
-                        BankName = ddlbankName.Text;
-                        SerialNo = txtSerialNo.Text;
-                        PaymentRemarks = txtRemarks.Text;
-                        REF = txtReferrence.Text;
-                        BankBranch = txtBankBranch.Text;
-                        this.Close();
-
-
-                    }
-                }
-                else
-                {
-                    if (Functions.MessageConfirm("Are you sure you want to proceed the payment?.") == DialogResult.Yes)
-                    {
-                        IsProceed = true;
-                        if (ddlSelectMode.SelectedIndex > 0)
-                        {
-                            ModeType = Convert.ToString(ddlSelectMode.SelectedValue);
-                        }
-                        CompanyORNo = txtCompanyORNo.Text;
-                        CompanyPRNo = txtPRNo.Text;
-                        BankAccountName = txtBankAccountName.Text;
-                        BankAccountNumber = txtBankAccountNo.Text;
-                        BankName = ddlbankName.Text;
-                        SerialNo = txtSerialNo.Text;
-                        PaymentRemarks = txtRemarks.Text;
-                        REF = txtReferrence.Text;
-                        BankBranch = txtBankBranch.Text;
-                        this.Close();
-
-                    }
-                }
-               
-            }
+            this.ProceedToPayment();
         }
 
         private void txtPRNo_TextChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtPRNo.Text))
-            {
-                IsOR = true;
-            }
-            else
-            {
-                IsOR = false;
-            }
+            this.IsOR = !string.IsNullOrEmpty(txtPRNo.Text) ? true : false;
         }
 
         private void txtPaidAmount_KeyPress(object sender, KeyPressEventArgs e)
@@ -325,25 +351,22 @@ namespace LEASING.UI.APP.Forms
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
         }
-
         private void txtReceiveAmount_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
         }
-
         private void txtPenaltyAmount_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
         }
-
         private void dgvLedgerList_CellFormatting(object sender, Telerik.WinControls.UI.CellFormattingEventArgs e)
         {
             if (!string.IsNullOrEmpty(Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value)))
             {
-      
-                 if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "PENDING")
+
+                if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "PENDING")
                 {
                     e.CellElement.ForeColor = Color.Black;
                     e.CellElement.DrawFill = true;

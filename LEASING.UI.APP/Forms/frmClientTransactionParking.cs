@@ -416,10 +416,14 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
+        private string GetPaymentLevel()
+        {
 
+            return "";
+        }
         private void btnPrintReciept_Click(object sender, EventArgs e)
         {
-            frmRecieptSelection frmRecieptSelection = new frmRecieptSelection(TranID, RefId);
+            frmRecieptSelection frmRecieptSelection = new frmRecieptSelection(TranID, RefId,this.GetPaymentLevel());
             frmRecieptSelection.ShowDialog();
         }
     }

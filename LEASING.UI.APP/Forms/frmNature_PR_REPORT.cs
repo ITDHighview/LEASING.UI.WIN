@@ -15,6 +15,7 @@ namespace LEASING.UI.APP.Forms
     {
         public string sTranID { get; set; } = string.Empty;
         public string sMode { get; set; } = string.Empty;
+        public string sPaymentLevel { get; set; } = string.Empty;
         public frmNature_PR_REPORT(string TranID)
         {
             InitializeComponent();
@@ -23,7 +24,7 @@ namespace LEASING.UI.APP.Forms
 
         private void frmNature_PR_REPORT_Load(object sender, EventArgs e)
         {
-            Functions.GetReceiptReport(Config.Nature_PR_REPORT, this, Config.RecieptReportOption, sTranID, sMode);
+            Functions.GetReceiptReport(Config.Nature_PR_REPORT, this, Config.RecieptReportOption, sTranID, sMode, sPaymentLevel);
         }
     }
 }

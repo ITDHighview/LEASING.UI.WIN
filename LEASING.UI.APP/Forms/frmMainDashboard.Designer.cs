@@ -1534,7 +1534,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "frmMainDashboard";
             this.ShowIcon = false;
-            this.Text = "LEASING SYSTEM";
+            this.Text = "LEASING MANAGEMENT SYSTEM (LMS)";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMainDashboard_FormClosing);
             this.Load += new System.EventHandler(this.frmMainDashboard_Load);
             ((System.ComponentModel.ISupportInitialize)(this.lblUserInfoPanel)).EndInit();

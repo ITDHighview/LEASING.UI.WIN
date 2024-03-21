@@ -50,7 +50,11 @@ namespace LEASING.UI.APP.Forms
         {
             M_GetContractList(srefid);
         }
+        private string GetPaymentLevel()
+        {
 
+            return "";
+        }
         private void dgvReceiptList_CellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -72,7 +76,7 @@ namespace LEASING.UI.APP.Forms
                         IsNoOR = false;
                     }
 
-                    frmRecieptSelection forms = new frmRecieptSelection(Convert.ToString(dgvReceiptList.CurrentRow.Cells["TranID"].Value), Convert.ToString(dgvReceiptList.CurrentRow.Cells["RefId"].Value));
+                    frmRecieptSelection forms = new frmRecieptSelection(Convert.ToString(dgvReceiptList.CurrentRow.Cells["TranID"].Value), Convert.ToString(dgvReceiptList.CurrentRow.Cells["RefId"].Value),this.GetPaymentLevel());
                     forms.IsNoOR = IsNoOR;
 
                     forms.ShowDialog();

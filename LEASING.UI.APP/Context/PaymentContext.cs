@@ -227,7 +227,8 @@ namespace LEASING.UI.APP.Context
            int ledgerRecId,
           string XML,
           string BankBranch,
-          out string TransID
+          out string TransID,
+          out string RecieptID
           )
         {
             SqlCommand _sqlcmd = null;
@@ -272,6 +273,7 @@ namespace LEASING.UI.APP.Context
             _sqlcmd.Parameters.Add(_sqlpara);
 
             TransID = string.Empty;
+            RecieptID = string.Empty;
             try
             {
                 _sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
@@ -285,6 +287,12 @@ namespace LEASING.UI.APP.Context
                     int indexs = _sqlreader.GetOrdinal("TranID");
                     if (!_sqlreader.IsDBNull(indexs))
                         TransID = Convert.ToString(_sqlreader.GetString(indexs));
+                }
+                if (_sqlreader.HasRows)
+                {
+                    int indexs = _sqlreader.GetOrdinal("ReceiptID");
+                    if (!_sqlreader.IsDBNull(indexs))
+                        RecieptID = Convert.ToString(_sqlreader.GetString(indexs));
                 }
                 if (_sqlreader.HasRows)
                 {

@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.Data.SortDescriptor sortDescriptor2 = new Telerik.WinControls.Data.SortDescriptor();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.Data.SortDescriptor sortDescriptor1 = new Telerik.WinControls.Data.SortDescriptor();
             this.label1 = new System.Windows.Forms.Label();
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.txtPass = new System.Windows.Forms.TextBox();
@@ -63,11 +63,11 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(316, 318);
+            this.label1.Location = new System.Drawing.Point(177, 318);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(118, 19);
+            this.label1.Size = new System.Drawing.Size(257, 19);
             this.label1.TabIndex = 1;
-            this.label1.Text = "LEASING SYSTEM";
+            this.label1.Text = "LEASING MANAGEMENT SYSTEM  (LMS)";
             // 
             // txtUserName
             // 
@@ -221,32 +221,32 @@
             this.cboGroup.EditorControl.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.cboGroup.EditorControl.Location = new System.Drawing.Point(0, 0);
             // 
-            // 
+            // cboGroup.NestedRadGridView
             // 
             this.cboGroup.EditorControl.MasterTemplate.AllowAddNewRow = false;
             this.cboGroup.EditorControl.MasterTemplate.AllowCellContextMenu = false;
             this.cboGroup.EditorControl.MasterTemplate.AllowColumnChooser = false;
-            gridViewTextBoxColumn3.EnableExpressionEditor = false;
-            gridViewTextBoxColumn3.FieldName = "Group_Code";
-            gridViewTextBoxColumn3.HeaderText = "Group_Code";
-            gridViewTextBoxColumn3.IsVisible = false;
-            gridViewTextBoxColumn3.Name = "Group_Code";
-            gridViewTextBoxColumn4.EnableExpressionEditor = false;
-            gridViewTextBoxColumn4.FieldName = "Group_Name";
-            gridViewTextBoxColumn4.HeaderText = "Group_Name";
-            gridViewTextBoxColumn4.Name = "Group_Name";
-            gridViewTextBoxColumn4.Width = 219;
+            gridViewTextBoxColumn1.EnableExpressionEditor = false;
+            gridViewTextBoxColumn1.FieldName = "Group_Code";
+            gridViewTextBoxColumn1.HeaderText = "Group_Code";
+            gridViewTextBoxColumn1.IsVisible = false;
+            gridViewTextBoxColumn1.Name = "Group_Code";
+            gridViewTextBoxColumn2.EnableExpressionEditor = false;
+            gridViewTextBoxColumn2.FieldName = "Group_Name";
+            gridViewTextBoxColumn2.HeaderText = "Group_Name";
+            gridViewTextBoxColumn2.Name = "Group_Name";
+            gridViewTextBoxColumn2.Width = 219;
             this.cboGroup.EditorControl.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn3,
-            gridViewTextBoxColumn4});
+            gridViewTextBoxColumn1,
+            gridViewTextBoxColumn2});
             this.cboGroup.EditorControl.MasterTemplate.EnableGrouping = false;
             this.cboGroup.EditorControl.MasterTemplate.ShowColumnHeaders = false;
             this.cboGroup.EditorControl.MasterTemplate.ShowFilteringRow = false;
             this.cboGroup.EditorControl.MasterTemplate.ShowRowHeaderColumn = false;
-            sortDescriptor2.Direction = System.ComponentModel.ListSortDirection.Descending;
-            sortDescriptor2.PropertyName = "column2";
+            sortDescriptor1.Direction = System.ComponentModel.ListSortDirection.Descending;
+            sortDescriptor1.PropertyName = "column2";
             this.cboGroup.EditorControl.MasterTemplate.SortDescriptors.AddRange(new Telerik.WinControls.Data.SortDescriptor[] {
-            sortDescriptor2});
+            sortDescriptor1});
             this.cboGroup.EditorControl.Name = "NestedRadGridView";
             this.cboGroup.EditorControl.ReadOnly = true;
             this.cboGroup.EditorControl.RightToLeft = System.Windows.Forms.RightToLeft.No;

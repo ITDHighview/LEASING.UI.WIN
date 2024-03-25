@@ -126,12 +126,12 @@ namespace LEASING.UI.APP.Forms
         }
         private void btnONGCHING_OR_Click(object sender, EventArgs e)
         {
-            this.ShowReceipt(RecieptType.NT_OR);
+            this.ShowReceipt(RecieptType.ONCH_OR);
         }
 
         private void btnONGCHING_PR_Click(object sender, EventArgs e)
         {
-            this.ShowReceipt(RecieptType.NT_PR);
+            this.ShowReceipt(RecieptType.ONCH_PR);
         }
         private void frmRecieptSelection_Load(object sender, EventArgs e)
         {

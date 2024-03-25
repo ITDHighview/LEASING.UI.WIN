@@ -101,7 +101,7 @@ namespace LEASING.UI.APP.Forms
                     Nature_PR_REPORT.Show();
                     break;
                 case RecieptType.ONCH_OR:
-                    Ongching_PR_REPORT Ongching_OR_REPORT = new Ongching_PR_REPORT(this.sTranID);
+                    Ongching_OR_REPORT Ongching_OR_REPORT = new Ongching_OR_REPORT(this.sTranID);
                     Ongching_OR_REPORT.sMode = this.GetReceiptMode(type);
                     Ongching_OR_REPORT.sPaymentLevel = sPaymentLevel;
                     Ongching_OR_REPORT.Show();
@@ -124,12 +124,12 @@ namespace LEASING.UI.APP.Forms
         }
         private void btnNATURE_PR_Click(object sender, EventArgs e)
         {
-            this.ShowReceipt(RecieptType.ONCH_OR);
+            this.ShowReceipt(RecieptType.NT_PR);
 
         }
         private void btnONGCHING_OR_Click(object sender, EventArgs e)
         {
-            this.ShowReceipt(RecieptType.NT_OR);
+            this.ShowReceipt(RecieptType.ONCH_OR);
 
         }
         private void btnONGCHING_PR_Click(object sender, EventArgs e)

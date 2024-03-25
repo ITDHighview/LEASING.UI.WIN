@@ -77,7 +77,7 @@ BEGIN
            @ComputerName,
            'SECURITY AND MAINTENANCE NET OF VAT'
     FROM [#GeneratedMonths]
-
+    WHERE @SecAndMaintenance IS NOT NULL
     IF (@@ROWCOUNT > 0)
     BEGIN
         UPDATE [dbo].[tblUnitReference]

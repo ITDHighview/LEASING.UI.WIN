@@ -112,6 +112,7 @@ BEGIN
         EXEC [dbo].[sp_GenerateLedger] @FromDate = @StatDate,
                                        @EndDate = @FinishDate,
                                        @LedgAmount = @TotalRent,
+                                       @Rental = @Rental,
                                        @ComputationID = @ComputationID,
                                        @ClientID = @ClientID,
                                        @EncodedBy = @EncodedBy,

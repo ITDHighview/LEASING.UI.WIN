@@ -20,6 +20,7 @@ BEGIN
 
     DECLARE @combinedString VARCHAR(MAX);
     DECLARE @IsFullPayment BIT = 0;
+    DECLARE @RefId VARCHAR(100) = '';
 
 
     IF NOT EXISTS
@@ -31,7 +32,8 @@ BEGIN
               AND [tblRecieptReport].[PaymentLevel] = @PaymentLevel
     )
     BEGIN
-        SELECT @IsFullPayment = ISNULL([tblUnitReference].[IsFullPayment], 0)
+        SELECT @IsFullPayment = ISNULL([tblUnitReference].[IsFullPayment], 0),
+               @RefId = [tblUnitReference].[RefId]
         FROM [dbo].[tblUnitReference]
         WHERE [tblUnitReference].[RefId] =
         (
@@ -51,50 +53,145 @@ BEGIN
                       AND [tblPayment].[Remarks] NOT IN ( 'SECURITY DEPOSIT' )
             ) > 5
             BEGIN
-                SELECT @combinedString
-                    =
-                (
-                    SELECT TOP 1
-                           UPPER(DATENAME(MONTH, MIN([tblPayment].[ForMonth]))) + ' '
-                           + CAST(YEAR(MIN([tblPayment].[ForMonth])) AS VARCHAR(4))
-                    FROM [dbo].[tblPayment]
-                        INNER JOIN [dbo].[tblMonthLedger]
-                            ON [tblMonthLedger].[LedgMonth] = [tblPayment].[ForMonth]
-                    WHERE [tblPayment].[TranId] = @TranID
-                          AND [tblPayment].[Remarks] NOT IN ( 'SECURITY DEPOSIT' )
-                          AND ISNULL([tblMonthLedger].[IsPaid], 0) = 1
-                ) + ' TO '
-                +
-                (
-                    SELECT TOP 1
-                           UPPER(DATENAME(MONTH, MAX([tblPayment].[ForMonth]))) + ' '
-                           + CAST(YEAR(MAX([tblPayment].[ForMonth])) AS VARCHAR(4))
-                    FROM [dbo].[tblPayment]
-                        INNER JOIN [dbo].[tblMonthLedger]
-                            ON [tblMonthLedger].[LedgMonth] = [tblPayment].[ForMonth]
-                    WHERE [tblPayment].[TranId] = @TranID
-                          AND [tblPayment].[Remarks] NOT IN ( 'SECURITY DEPOSIT' )
-                          AND ISNULL([tblMonthLedger].[IsPaid], 0) = 1
-                )
+                IF @Mode = 'REN'
+                   AND @PaymentLevel = 'SECOND'
+                BEGIN
+                    SELECT @combinedString
+                        =
+                    (
+                        SELECT TOP 1
+                               UPPER(DATENAME(MONTH, MIN([tblPayment].[ForMonth]))) + ' '
+                               + CAST(YEAR(MIN([tblPayment].[ForMonth])) AS VARCHAR(4))
+                        FROM [dbo].[tblPayment]
+                            INNER JOIN [dbo].[tblMonthLedger]
+                                ON [tblMonthLedger].[LedgMonth] = [tblPayment].[ForMonth]
+                                   AND [tblMonthLedger].[Remarks] = [tblPayment].[Notes]
+                                   AND [tblMonthLedger].[TransactionID] = [tblPayment].[TranId]
+                        WHERE [tblPayment].[TranId] = @TranID
+                              AND [tblPayment].[Remarks] NOT IN ( 'SECURITY DEPOSIT' )
+                              AND [tblPayment].[Notes] = 'RENTAL NET OF VAT'
+                              AND ISNULL([tblMonthLedger].[IsPaid], 0) = 1
+                    ) + ' TO '
+                    +
+                    (
+                        SELECT TOP 1
+                               UPPER(DATENAME(MONTH, MAX([tblPayment].[ForMonth]))) + ' '
+                               + CAST(YEAR(MAX([tblPayment].[ForMonth])) AS VARCHAR(4))
+                        FROM [dbo].[tblPayment]
+                            INNER JOIN [dbo].[tblMonthLedger]
+                                ON [tblMonthLedger].[LedgMonth] = [tblPayment].[ForMonth]
+                                   AND [tblMonthLedger].[Remarks] = [tblPayment].[Notes]
+                                   AND [tblMonthLedger].[TransactionID] = [tblPayment].[TranId]
+                        WHERE [tblPayment].[TranId] = @TranID
+                              AND [tblPayment].[Remarks] NOT IN ( 'SECURITY DEPOSIT' )
+                              AND [tblPayment].[Notes] = 'RENTAL NET OF VAT'
+                              AND ISNULL([tblMonthLedger].[IsPaid], 0) = 1
+                    )
+                END
+
+                IF @Mode = 'MAIN'
+                   AND @PaymentLevel = 'SECOND'
+                BEGIN
+
+                    SELECT @combinedString
+                        =
+                    (
+                        SELECT TOP 1
+                               UPPER(DATENAME(MONTH, MIN([tblPayment].[ForMonth]))) + ' '
+                               + CAST(YEAR(MIN([tblPayment].[ForMonth])) AS VARCHAR(4))
+                        FROM [dbo].[tblPayment]
+                            INNER JOIN [dbo].[tblMonthLedger]
+                                ON [tblMonthLedger].[LedgMonth] = [tblPayment].[ForMonth]
+                                   AND [tblMonthLedger].[Remarks] = [tblPayment].[Notes]
+                                   AND [tblMonthLedger].[TransactionID] = [tblPayment].[TranId]
+                        WHERE [tblPayment].[TranId] = @TranID
+                              AND [tblPayment].[Remarks] NOT IN ( 'SECURITY DEPOSIT' )
+                              AND [tblPayment].[Notes] = 'SECURITY AND MAINTENANCE NET OF VAT'
+                              AND ISNULL([tblMonthLedger].[IsPaid], 0) = 1
+                    ) + ' TO '
+                    +
+                    (
+                        SELECT TOP 1
+                               UPPER(DATENAME(MONTH, MAX([tblPayment].[ForMonth]))) + ' '
+                               + CAST(YEAR(MAX([tblPayment].[ForMonth])) AS VARCHAR(4))
+                        FROM [dbo].[tblPayment]
+                            INNER JOIN [dbo].[tblMonthLedger]
+                                ON [tblMonthLedger].[LedgMonth] = [tblPayment].[ForMonth]
+                                   AND [tblMonthLedger].[Remarks] = [tblPayment].[Notes]
+                                   AND [tblMonthLedger].[TransactionID] = [tblPayment].[TranId]
+                        WHERE [tblPayment].[TranId] = @TranID
+                              AND [tblPayment].[Remarks] NOT IN ( 'SECURITY DEPOSIT' )
+                              AND [tblPayment].[Notes] = 'SECURITY AND MAINTENANCE NET OF VAT'
+                              AND ISNULL([tblMonthLedger].[IsPaid], 0) = 1
+                    )
+                END
+
             END
             ELSE
             BEGIN
                 IF @Mode = 'SEC'
+                   AND @PaymentLevel = 'FIRST'
                 BEGIN
-                    SELECT @combinedString = 'SECURITY DEPOSIT'
+                    SELECT @combinedString
+                        = '(' + CAST(CAST([dbo].[fnGetTotalSecDepositAmountCount](@RefId) AS INT) AS VARCHAR(50))
+                          + ')MONTH-SECURITY DEPOSIT'
+
+                END
+                ELSE IF @Mode = 'ADV'
+                        AND @PaymentLevel = 'FIRST'
+                BEGIN
+                    --SELECT @combinedString = 'ADVANCE PAYMENT'
+                    BEGIN
+                        SELECT @combinedString
+                            = COALESCE(@combinedString + '-', '') + UPPER(DATENAME(MONTH, [tblPayment].[ForMonth]))
+                              + ' ' + CAST(YEAR([tblPayment].[ForMonth]) AS VARCHAR(4))
+                        FROM [dbo].[tblPayment]
+                        WHERE [tblPayment].[TranId] = @TranID
+                              AND [tblPayment].[Remarks] = 'MONTHS ADVANCE'
+                              AND ISNULL([tblPayment].[Notes], '') = ''
+
+
+                    END
                 END
                 ELSE
                 BEGIN
-                    SELECT @combinedString
-                        = COALESCE(@combinedString + '-', '') + UPPER(DATENAME(MONTH, [tblPayment].[ForMonth])) + ' '
-                          + CAST(YEAR([tblPayment].[ForMonth]) AS VARCHAR(4))
-                          + IIF(ISNULL([tblMonthLedger].[IsHold], 0) = 1, '(PARTIAL)', '')
-                    FROM [dbo].[tblPayment]
-                        INNER JOIN [dbo].[tblMonthLedger]
-                            ON [tblMonthLedger].[LedgMonth] = [tblPayment].[ForMonth]
-                    WHERE [tblPayment].[TranId] = @TranID
-                          AND [tblPayment].[Remarks] NOT IN ( 'SECURITY DEPOSIT' )
-                          AND ISNULL([tblMonthLedger].[IsPaid], 0) = 1
+
+                    IF @Mode = 'REN'
+                       AND @PaymentLevel = 'SECOND'
+                    BEGIN
+                        SELECT @combinedString
+                            = COALESCE(@combinedString + '-', '') + UPPER(DATENAME(MONTH, [tblPayment].[ForMonth]))
+                              + ' ' + CAST(YEAR([tblPayment].[ForMonth]) AS VARCHAR(4))
+                              + IIF(ISNULL([tblMonthLedger].[IsHold], 0) = 1, '(PARTIAL)', '')
+                        FROM [dbo].[tblPayment]
+                            INNER JOIN [dbo].[tblMonthLedger]
+                                ON [tblMonthLedger].[LedgMonth] = [tblPayment].[ForMonth]
+                                   AND [tblMonthLedger].[Remarks] = [tblPayment].[Notes]
+                                   AND [tblMonthLedger].[TransactionID] = [tblPayment].[TranId]
+                        WHERE [tblPayment].[TranId] = @TranID
+                              AND [tblPayment].[Remarks] NOT IN ( 'SECURITY DEPOSIT' )
+                              AND [tblPayment].[Notes] = 'RENTAL NET OF VAT'
+                              AND ISNULL([tblMonthLedger].[IsPaid], 0) = 1
+                    END
+                    IF @Mode = 'MAIN'
+                       AND @PaymentLevel = 'SECOND'
+                    BEGIN
+                        SELECT @combinedString
+                            = COALESCE(@combinedString + '-', '') + UPPER(DATENAME(MONTH, [tblPayment].[ForMonth]))
+                              + ' ' + CAST(YEAR([tblPayment].[ForMonth]) AS VARCHAR(4))
+                              + IIF(ISNULL([tblMonthLedger].[IsHold], 0) = 1, '(PARTIAL)', '')
+                        FROM [dbo].[tblPayment]
+                            INNER JOIN [dbo].[tblMonthLedger]
+                                ON [tblMonthLedger].[LedgMonth] = [tblPayment].[ForMonth]
+                                   AND [tblMonthLedger].[Remarks] = [tblPayment].[Notes]
+                                   AND [tblMonthLedger].[TransactionID] = [tblPayment].[TranId]
+                        WHERE [tblPayment].[TranId] = @TranID
+                              AND [tblPayment].[Remarks] NOT IN ( 'SECURITY DEPOSIT' )
+                              AND [tblPayment].[Notes] = 'SECURITY AND MAINTENANCE NET OF VAT'
+                              AND ISNULL([tblMonthLedger].[IsPaid], 0) = 1
+                    END
+
+
                 END
             END
         END;
@@ -127,7 +224,10 @@ BEGIN
                 [EncodedDate],
                 [TRANID],
                 [Mode],
-                [PaymentLevel]
+                [PaymentLevel],
+                [UnitNo],
+                [ProjectName],
+                [BankBranch]
             )
             SELECT [CLIENT].[client_no],
                    [CLIENT].[client_Name],
@@ -136,10 +236,14 @@ BEGIN
                    [RECEIPT].[OR_No],
                    [CLIENT].[TIN_No],
                    [TRANSACTION].[TransactionDate],
-                   UPPER([dbo].[fnNumberToWordsWithDecimal]([tblUnitReference].[AdvancePaymentAmount])) AS [AmountInWords],
+                   UPPER([dbo].[fnNumberToWordsWithDecimal](IIF(@IsFullPayment = 0,
+                                                                [tblUnitReference].[AdvancePaymentAmount],
+                                                                [tblUnitReference].[Total])
+                                                           )
+                        ) AS [AmountInWords],
                    [PAYMENT].[PAYMENT_FOR],
-                   [tblUnitReference].[AdvancePaymentAmount] AS [TotalAmountInDigit],
-                   [tblUnitReference].[AdvancePaymentAmount] AS [RENTAL_SECMAIN],
+                   IIF(@IsFullPayment = 0, [tblUnitReference].[AdvancePaymentAmount], [tblUnitReference].[Total]) AS [TotalAmountInDigit],
+                   IIF(@IsFullPayment = 0, [tblUnitReference].[AdvancePaymentAmount], [tblUnitReference].[Total]) AS [RENTAL_SECMAIN],
                    --CAST(CAST(((([tblUnitReference].[GenVat] * ([dbo].[fnGetBaseRentalAmount]([dbo].[tblUnitReference].[UnitId]) * [dbo].[fnGetAdvanceMonthCount]([tblUnitReference].[RefId])
                    --               )
                    --            )
@@ -155,7 +259,7 @@ BEGIN
                              )
                              * [dbo].[fnGetAdvanceMonthCount]([dbo].[tblUnitReference].[RefId]) AS DECIMAL(18, 2)) AS VARCHAR(30)) AS [VAT_AMOUNT],
                    CAST([tblUnitReference].[GenVat] AS VARCHAR(10)) + '% VAT' AS [VATPct],
-                   [RECEIPT].[TOTAL],
+                   IIF(@IsFullPayment = 0, [tblUnitReference].[AdvancePaymentAmount], [tblUnitReference].[Total]),
                    --IIF([tblUnitReference].[WithHoldingTax] > 0,
                    --    CAST(CAST((([tblUnitReference].[WithHoldingTax] * [TRANSACTION].[ReceiveAmount]) / 100) AS DECIMAL(18, 2)) AS VARCHAR(30)),
                    --    '0.00') AS [WithHoldingTax_AMOUNT],
@@ -169,7 +273,10 @@ BEGIN
                    GETDATE(),
                    @TranID,
                    @Mode,
-                   @PaymentLevel
+                   @PaymentLevel,
+                   [tblUnitReference].[UnitNo],
+                   [dbo].[fnGetProjectNameById]([tblUnitReference].[ProjectId]) AS [ProjectName],
+                   [RECEIPT].[BankName]
             FROM [dbo].[tblUnitReference]
                 CROSS APPLY
             (
@@ -209,7 +316,7 @@ BEGIN
             WHERE [TRANSACTION].[TranID] = @TranID
 
 
-        END       
+        END
         IF @Mode = 'SEC'
            AND @PaymentLevel = 'FIRST'
         BEGIN
@@ -237,7 +344,10 @@ BEGIN
                 [EncodedDate],
                 [TRANID],
                 [Mode],
-                [PaymentLevel]
+                [PaymentLevel],
+                [UnitNo],
+                [ProjectName],
+                [BankBranch]
             )
             SELECT [CLIENT].[client_no],
                    [CLIENT].[client_Name],
@@ -265,7 +375,7 @@ BEGIN
                              )
                              * [dbo].[fnGetTotalSecDepositAmountCount]([dbo].[tblUnitReference].[RefId]) AS DECIMAL(18, 2)) AS VARCHAR(30)) AS [VAT_AMOUNT],
                    CAST([tblUnitReference].[GenVat] AS VARCHAR(10)) + '% VAT' AS [VATPct],
-                   [RECEIPT].[TOTAL],
+                   [tblUnitReference].[SecDeposit],
                    --IIF([tblUnitReference].[WithHoldingTax] > 0,
                    --    CAST(CAST((([tblUnitReference].[WithHoldingTax] * [TRANSACTION].[ReceiveAmount]) / 100) AS DECIMAL(18, 2)) AS VARCHAR(30)),
                    --    '0.00') AS [WithHoldingTax_AMOUNT],
@@ -279,7 +389,10 @@ BEGIN
                    GETDATE(),
                    @TranID,
                    @Mode,
-                   @PaymentLevel
+                   @PaymentLevel,
+                   [tblUnitReference].[UnitNo],
+                   [dbo].[fnGetProjectNameById]([tblUnitReference].[ProjectId]) AS [ProjectName],
+                   [RECEIPT].[BankName]
             FROM [dbo].[tblUnitReference]
                 CROSS APPLY
             (
@@ -328,7 +441,7 @@ BEGIN
         BEGIN
             INSERT INTO [dbo].[tblRecieptReport]
             (
-                 [client_no],
+                [client_no],
                 [client_Name],
                 [client_Address],
                 [PR_No],
@@ -350,7 +463,10 @@ BEGIN
                 [EncodedDate],
                 [TRANID],
                 [Mode],
-                [PaymentLevel]
+                [PaymentLevel],
+                [UnitNo],
+                [ProjectName],
+                [BankBranch]
             )
             SELECT [CLIENT].[client_no],
                    [CLIENT].[client_Name],
@@ -361,11 +477,11 @@ BEGIN
                    [TRANSACTION].[TransactionDate],
                    UPPER([dbo].[fnNumberToWordsWithDecimal]([TRANSACTION].[ReceiveAmount])) AS [AmountInWords],
                    [PAYMENT].[PAYMENT_FOR],
-                   [RECEIPT].[TotalAmountInDigit],
-                   [tblUnitReference].[TotalRent] AS [RENTAL_SECMAIN],
+                   [TRANSACTION].[ReceiveAmount],
+                   [TRANSACTION].[ReceiveAmount] AS [RENTAL_SECMAIN],
                    CAST(CAST((([tblUnitReference].[GenVat] * [TRANSACTION].[ReceiveAmount]) / 100) AS DECIMAL(18, 2)) AS VARCHAR(30)) AS [VAT_AMOUNT],
                    CAST([tblUnitReference].[GenVat] AS VARCHAR(10)) + '% VAT' AS [VATPct],
-                   [RECEIPT].[TOTAL],
+                   [TRANSACTION].[ReceiveAmount],
                    --IIF([tblUnitReference].[WithHoldingTax] > 0,
                    --    CAST(CAST((([tblUnitReference].[WithHoldingTax] * [TRANSACTION].[ReceiveAmount]) / 100) AS DECIMAL(18, 2)) AS VARCHAR(30)),
                    --    '0.00') AS [WithHoldingTax_AMOUNT],
@@ -379,7 +495,10 @@ BEGIN
                    GETDATE(),
                    @TranID,
                    @Mode,
-                   @PaymentLevel
+                   @PaymentLevel,
+                   [tblUnitReference].[UnitNo],
+                   [dbo].[fnGetProjectNameById]([tblUnitReference].[ProjectId]) AS [ProjectName],
+                   [RECEIPT].[BankName]
 
             --[tblUnitReference].[GenVat]         AS [LBL_VAT],                   
             --[tblUnitReference].[WithHoldingTax] AS [WithHoldingTax],   
@@ -400,9 +519,16 @@ BEGIN
                 SELECT [tblTransaction].[EncodedDate] AS [TransactionDate],
                        [tblTransaction].[TranID],
                        ISNULL([dbo].[fn_GetUserName]([tblTransaction].[EncodedBy]), '') AS [USER],
-                       [tblTransaction].[ReceiveAmount]
+                       SUM([tblPayment].[Amount]) AS [ReceiveAmount]
                 FROM [dbo].[tblTransaction]
+                    INNER JOIN [dbo].[tblPayment]
+                        ON [tblPayment].[TranId] = [tblTransaction].[TranID]
                 WHERE [tblUnitReference].[RefId] = [tblTransaction].[RefId]
+                      AND [tblPayment].[Notes] = 'RENTAL NET OF VAT'
+                GROUP BY [tblTransaction].[EncodedDate],
+                         [tblTransaction].[TranID],
+                         [tblTransaction].[EncodedBy],
+                         [tblPayment].[Amount]
             ) [TRANSACTION]
                 OUTER APPLY
             (
@@ -450,7 +576,10 @@ BEGIN
                 [EncodedDate],
                 [TRANID],
                 [Mode],
-                [PaymentLevel]
+                [PaymentLevel],
+                [UnitNo],
+                [ProjectName],
+                [BankBranch]
             )
             SELECT [CLIENT].[client_no],
                    [CLIENT].[client_Name],
@@ -461,14 +590,14 @@ BEGIN
                    [TRANSACTION].[TransactionDate],
                    UPPER([dbo].[fnNumberToWordsWithDecimal]([TRANSACTION].[ReceiveAmount])) AS [AmountInWords],
                    [PAYMENT].[PAYMENT_FOR],
-                   [RECEIPT].[TotalAmountInDigit],
-                   [tblUnitReference].[TotalRent] AS [RENTAL_SECMAIN],
-                   CAST(CAST((([tblUnitReference].[GenVat] * [TRANSACTION].[ReceiveAmount]) / 100) AS DECIMAL(18, 2)) AS VARCHAR(30)) AS [VAT_AMOUNT],
+                   [TRANSACTION].[ReceiveAmount],
+                   [TRANSACTION].[ReceiveAmount] AS [RENTAL_SECMAIN],
+                   CAST(CAST((([tblUnitReference].[GenVat] * [TRANSACTION].[ReceiveAmount]) / 100) AS DECIMAL(18, 2)) AS VARCHAR(30)) AS [VAT_AMOUNT], --TAX WILL FOLLOW
                    CAST([tblUnitReference].[GenVat] AS VARCHAR(10)) + '% VAT' AS [VATPct],
-                   [RECEIPT].[TOTAL],
-                   --IIF([tblUnitReference].[WithHoldingTax] > 0,
-                   --    CAST(CAST((([tblUnitReference].[WithHoldingTax] * [TRANSACTION].[ReceiveAmount]) / 100) AS DECIMAL(18, 2)) AS VARCHAR(30)),
-                   --    '0.00') AS [WithHoldingTax_AMOUNT],
+                   [TRANSACTION].[ReceiveAmount],
+                                                                                                                                                       --IIF([tblUnitReference].[WithHoldingTax] > 0,
+                                                                                                                                                       --    CAST(CAST((([tblUnitReference].[WithHoldingTax] * [TRANSACTION].[ReceiveAmount]) / 100) AS DECIMAL(18, 2)) AS VARCHAR(30)),
+                                                                                                                                                       --    '0.00') AS [WithHoldingTax_AMOUNT],
                    IIF([tblUnitReference].[WithHoldingTax] > 0,
                        CAST(CAST([tblUnitReference].[WithHoldingTax] AS DECIMAL(18, 2)) AS VARCHAR(30)),
                        '0.00') AS [WithHoldingTax_AMOUNT],
@@ -479,7 +608,10 @@ BEGIN
                    GETDATE(),
                    @TranID,
                    @Mode,
-                   @PaymentLevel
+                   @PaymentLevel,
+                   [tblUnitReference].[UnitNo],
+                   [dbo].[fnGetProjectNameById]([tblUnitReference].[ProjectId]) AS [ProjectName],
+                   [RECEIPT].[BankName]
 
             --[tblUnitReference].[GenVat]         AS [LBL_VAT],                   
             --[tblUnitReference].[WithHoldingTax] AS [WithHoldingTax],   
@@ -500,9 +632,16 @@ BEGIN
                 SELECT [tblTransaction].[EncodedDate] AS [TransactionDate],
                        [tblTransaction].[TranID],
                        ISNULL([dbo].[fn_GetUserName]([tblTransaction].[EncodedBy]), '') AS [USER],
-                       [tblTransaction].[ReceiveAmount]
+                       SUM([tblPayment].[Amount]) AS [ReceiveAmount]
                 FROM [dbo].[tblTransaction]
+                    INNER JOIN [dbo].[tblPayment]
+                        ON [tblPayment].[TranId] = [tblTransaction].[TranID]
                 WHERE [tblUnitReference].[RefId] = [tblTransaction].[RefId]
+                      AND [tblPayment].[Notes] = 'SECURITY AND MAINTENANCE NET OF VAT'
+                GROUP BY [tblTransaction].[EncodedDate],
+                         [tblTransaction].[TranID],
+                         [tblTransaction].[EncodedBy],
+                         [tblPayment].[Amount]
             ) [TRANSACTION]
                 OUTER APPLY
             (
@@ -555,7 +694,12 @@ BEGIN
            [tblRecieptReport].[BANKNAME],
            [tblRecieptReport].[PDCCHECKSERIALNO],
            [tblRecieptReport].[USER],
-           [tblRecieptReport].[Mode]
+           [tblRecieptReport].[Mode],
+           [tblRecieptReport].[UnitNo],
+           [tblRecieptReport].[ProjectName],
+           [tblRecieptReport].[BankBranch],
+           '' AS [BankCheckDate],
+           '' AS [BankCheckAmount]
     FROM [dbo].[tblRecieptReport]
     WHERE [tblRecieptReport].[TRANID] = @TranID
           AND [tblRecieptReport].[Mode] = @Mode

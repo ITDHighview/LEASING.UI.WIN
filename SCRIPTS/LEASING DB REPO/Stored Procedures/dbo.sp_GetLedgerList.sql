@@ -22,7 +22,7 @@ BEGIN
     FROM [dbo].[tblUnitReference] WITH (NOLOCK)
     WHERE [tblUnitReference].[RecId] = @ReferenceID
 
-
+    /*Check if the penalty stop when it reach the specific date to penalty*/
     UPDATE [dbo].[tblMonthLedger]
     SET [tblMonthLedger].[PenaltyAmount] = IIF([tblMonthLedger].[PenaltyAmount] > 0,
                                                [tblMonthLedger].[PenaltyAmount],
@@ -49,7 +49,8 @@ BEGIN
                                                                         DAY,
                                                                         [tblMonthLedger].[LedgMonth],
                                                                         CAST(GETDATE() AS DATE)
-                                                                    ) <= 31 THEN
+                                                                    --) <= 31 THEN
+																	 ) <= 60 THEN
                                                        --CAST((((@TotalRent * @PenaltyPct) / 100) * 2) AS DECIMAL(18, 2))
                                                        CAST(((([tblMonthLedger].[LedgRentalAmount] * @PenaltyPct) / 100)
                                                              * 2

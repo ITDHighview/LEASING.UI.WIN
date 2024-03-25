@@ -169,8 +169,8 @@ BEGIN TRY
                       )
                       AND [tblMonthLedger].[Recid] = @ForMonthRecID
 
-                IF @ActualLedgeAMount = @ReceiveAmount
-                   OR @ReceiveAmount < @ActualLedgeAMount --- to avoid Duplicate 
+                --IF @ActualLedgeAMount = @ReceiveAmount
+                --   OR @ReceiveAmount < @ActualLedgeAMount --- to avoid Duplicate 
                 BEGIN
                     INSERT INTO [dbo].[tblPayment]
                     (
@@ -202,11 +202,8 @@ BEGIN TRY
                         FROM [dbo].[tblUnitReference] WITH (NOLOCK)
                         WHERE [tblUnitReference].[RefId] = @RefId
                     )
-                          AND [tblMonthLedger].[Recid] IN
-                              (
-                                 @ForMonthRecID
-                              )
-                          AND [tblMonthLedger].[LedgMonth] = @ForMonth
+                          AND [tblMonthLedger].[Recid] IN ( @ForMonthRecID )
+                --AND [tblMonthLedger].[LedgMonth] = @ForMonth
                 END
 
             END
@@ -254,12 +251,12 @@ BEGIN TRY
                     FROM [dbo].[tblUnitReference] WITH (NOLOCK)
                     WHERE [tblUnitReference].[RefId] = @RefId
                 )
-                      AND [tblMonthLedger].[Recid] IN
-                          (
-                              SELECT [#tblBulkPostdatedMonth].[Recid]
-                              FROM [#tblBulkPostdatedMonth] WITH (NOLOCK)
-                          )
-                      AND [tblMonthLedger].[LedgMonth] = @ForMonth
+                      AND [tblMonthLedger].[Recid] IN (
+                                                          --SELECT [#tblBulkPostdatedMonth].[Recid]
+                                                          --FROM [#tblBulkPostdatedMonth] WITH (NOLOCK)
+                                                          @ForMonthRecID
+                                                      )
+            --AND [tblMonthLedger].[LedgMonth] = @ForMonth
 
 
             END

@@ -38,8 +38,8 @@ BEGIN
                WHEN ISNULL([tblMonthLedger].[BalanceAmount], 0) > 0 THEN
                    ISNULL([tblMonthLedger].[BalanceAmount], 0)
                ELSE
-        ([tblMonthLedger].[LedgRentalAmount] + ISNULL([tblMonthLedger].[PenaltyAmount], 0))
-           END
+        (ISNULL([tblMonthLedger].[LedgRentalAmount],0) + ISNULL([tblMonthLedger].[PenaltyAmount], 0))
+           END AS [LedgAmount]
     FROM [dbo].[tblMonthLedger]
     WHERE [tblMonthLedger].[Recid] IN
           (
@@ -48,7 +48,7 @@ BEGIN
 
 
     SELECT SUM([#tblBulkAmount].[LedgAmount]) AS [TOTAL_AMOUNT]
-    FROM [#tblBulkAmount]
+    FROM [#tblBulkAmount] 
 
     DROP TABLE [#tblBulkPostdatedMonth]
     DROP TABLE [#tblBulkAmount]

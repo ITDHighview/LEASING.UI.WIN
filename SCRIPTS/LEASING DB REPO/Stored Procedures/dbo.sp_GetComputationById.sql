@@ -16,7 +16,7 @@ BEGIN
     SET NOCOUNT ON;
 
     DECLARE @TotalForPayment AS DECIMAL(18, 2) = 0;
-    SELECT @TotalForPayment = SUM([tblMonthLedger].[LedgAmount])
+    SELECT @TotalForPayment = SUM([tblMonthLedger].[LedgRentalAmount])
     FROM [dbo].[tblMonthLedger]
     WHERE [tblMonthLedger].[ReferenceID] = @RecId;
     SELECT [tblUnitReference].[RecId],

@@ -5,7 +5,7 @@ GO
 --SET QUOTED_IDENTIFIER ON|OFF
 --SET ANSI_NULLS ON|OFF
 --GO
-CREATE PROCEDURE [dbo].[sp_Nature_PR_Report]
+CREATE PROCEDURE [dbo].[sp_Ongching_PR_Report]
     @TranID VARCHAR(20) = NULL,
     @Mode VARCHAR(50) = NULL,
     @PaymentLevel VARCHAR(50) = NULL
@@ -648,8 +648,7 @@ BEGIN
                        [tblReceipt].[Amount] AS [TotalAmountInDigit],
                        [tblReceipt].[BankName] AS [BankName],
                        [tblReceipt].[REF] AS [PDC_CHECK_SERIAL],
-                       [tblReceipt].[TranId],
-                       [tblReceipt].[BankBranch]
+                       [tblReceipt].[TranId]
                 FROM [dbo].[tblReceipt]
                 WHERE [TRANSACTION].[TranID] = [tblReceipt].[TranId]
             ) [RECEIPT]

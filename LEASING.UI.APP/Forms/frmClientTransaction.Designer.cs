@@ -529,6 +529,7 @@
             gridViewCommandColumn3.HeaderImage = global::LEASING.UI.APP.Properties.Resources.print_16;
             gridViewCommandColumn3.HeaderText = "";
             gridViewCommandColumn3.Image = global::LEASING.UI.APP.Properties.Resources.print_16;
+            gridViewCommandColumn3.IsVisible = false;
             gridViewCommandColumn3.Name = "ColPrint";
             gridViewCommandColumn3.Width = 30;
             gridViewTextBoxColumn15.FieldName = "TransactionID";

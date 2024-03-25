@@ -66,6 +66,10 @@ namespace LEASING.UI.APP.Forms
             {
                 return "FIRST";
             }
+            else if (Convert.ToString(dgvReceiptList.CurrentRow.Cells["Description"].Value) == "FULL PAYMENT")
+            {
+                return "FIRST";
+            }
             else
             {
                 return "SECOND";

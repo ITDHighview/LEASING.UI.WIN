@@ -44,6 +44,7 @@ namespace LEASING.UI.APP.Forms
         public string PaymentRemarks { get; set; }
         public string REF { get; set; }
         public string ModeType { get; set; }
+        private bool IsPartialPayment = false;
         #endregion
 
         #region Call Methods
@@ -183,7 +184,7 @@ namespace LEASING.UI.APP.Forms
         }
         private void ShowPrintRecieptForm()
         {
-            frmRecieptSelection RecieptSelection = new frmRecieptSelection(this.TransID, this.RefId,this.GetPaymentLevel());
+            frmRecieptSelection RecieptSelection = new frmRecieptSelection(this.TransID, this.RefId, this.GetPaymentLevel());
             using (DataSet dt = PaymentContext.CheckIfOrIsEmpty(this.TransID))
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
@@ -252,6 +253,12 @@ namespace LEASING.UI.APP.Forms
             {
                 return;
             }
+            if (pForm.IsPartialPayment)
+            {
+                this.btnPrintReciept.Enabled = false;
+                this.IsPartialPayment = true;
+
+            }
 
             this.ReceiveAmount = fn_ConvertStringToDecimal(pForm.txtReceiveAmount.Text);
             this.ChangeAmount = 0;
@@ -295,14 +302,19 @@ namespace LEASING.UI.APP.Forms
                 return;
             }
 
-            var fReciept = new frmRecieptSelection(this.TransID, this.RefId,this.GetPaymentLevel());
-            this.InitReciept(fReciept);
+            if (!this.IsPartialPayment)
+            {
+                /*If Partial Payment Dont show Reciept Printing*/
+                var fReciept = new frmRecieptSelection(this.TransID, this.RefId, this.GetPaymentLevel());
+                this.InitReciept(fReciept);
+            }
+
         }
         #endregion
 
         #region Buttons
         private void btnCheckUnits_Click(object sender, EventArgs e)
-        {            
+        {
             this.ShowClientUnitsTaken();
         }
         private void btnGenerate_Click(object sender, EventArgs e)

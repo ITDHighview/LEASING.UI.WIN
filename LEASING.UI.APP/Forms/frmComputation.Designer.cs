@@ -709,9 +709,9 @@
             gridViewTextBoxColumn5.HeaderText = "Date";
             gridViewTextBoxColumn5.Name = "Dates";
             gridViewTextBoxColumn5.Width = 200;
-            gridViewTextBoxColumn6.FieldName = "Rental";
+            gridViewTextBoxColumn6.FieldName = "TotalRental";
             gridViewTextBoxColumn6.HeaderText = "Rental";
-            gridViewTextBoxColumn6.Name = "Rental";
+            gridViewTextBoxColumn6.Name = "TotalRental";
             gridViewTextBoxColumn6.Width = 100;
             this.dgvpostdatedcheck.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn4,

@@ -25,6 +25,8 @@ CREATE TABLE [dbo].[tblRecieptReport]
 [PaymentLevel] [varchar] (100) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
 [UnitNo] [varchar] (150) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
 [ProjectName] [varchar] (150) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
-[BankBranch] [varchar] (150) COLLATE SQL_Latin1_General_CP1_CI_AS NULL
+[BankBranch] [varchar] (150) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[RENTAL_LESS_VAT] [varchar] (150) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[RENTAL_LESS_TAX] [varchar] (150) COLLATE SQL_Latin1_General_CP1_CI_AS NULL
 ) ON [PRIMARY]
 GO

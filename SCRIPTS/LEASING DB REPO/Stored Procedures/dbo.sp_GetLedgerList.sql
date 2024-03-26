@@ -50,7 +50,7 @@ BEGIN
                                                                         [tblMonthLedger].[LedgMonth],
                                                                         CAST(GETDATE() AS DATE)
                                                                     --) <= 31 THEN
-																	 ) <= 60 THEN
+                                                                    ) <= 60 THEN
                                                        --CAST((((@TotalRent * @PenaltyPct) / 100) * 2) AS DECIMAL(18, 2))
                                                        CAST(((([tblMonthLedger].[LedgRentalAmount] * @PenaltyPct) / 100)
                                                              * 2
@@ -82,6 +82,8 @@ BEGIN
               ISNULL([tblMonthLedger].[IsPaid], 0) = 0
               OR ISNULL([tblMonthLedger].[IsHold], 0) = 1
           )
+		  AND MONTH([tblMonthLedger].[EncodedDate]) > 4
+          AND YEAR([tblMonthLedger].[EncodedDate]) = 2024
 
     UPDATE [dbo].[tblMonthLedger]
     SET [tblMonthLedger].[ActualAmount] = [tblMonthLedger].[LedgRentalAmount]
@@ -92,6 +94,7 @@ BEGIN
               ISNULL([tblMonthLedger].[IsPaid], 0) = 0
               OR ISNULL([tblMonthLedger].[IsHold], 0) = 1
           )
+          
 
     SELECT ROW_NUMBER() OVER (ORDER BY [tblMonthLedger].[LedgMonth] ASC) [seq],
            [tblMonthLedger].[Recid],

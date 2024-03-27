@@ -1,4 +1,5 @@
-﻿using LEASING.UI.APP.Context;
+﻿using LEASING.UI.APP.Common;
+using LEASING.UI.APP.Context;
 using LEASING.UI.APP.Models;
 using System;
 using System.Collections;
@@ -295,11 +296,10 @@ namespace LEASING.UI.APP.Forms
         }
         private void M_GetTotalRental()
         {
-            var rental = ((txtRental.Text == "" ? 0 : Convert.ToDecimal(txtRental.Text)) + (txtSecAndMaintenance.Text == "" ? 0 : Convert.ToDecimal(txtSecAndMaintenance.Text)));
-            txtTotalRental.Text = Convert.ToString(rental);
-            //txtMonthsAdvance1.Text = Convert.ToString(rental);
-            //txtMonthsAdvance2.Text = Convert.ToString(rental);
-            var rental2 = (rental * (txtSecurityPaymentMonthCount.Text == "" ? 0 : Convert.ToDecimal(txtSecurityPaymentMonthCount.Text)));
+
+            var rental = ((txtRental.Text == "" ? 0 : Convert.ToDecimal(txtRental.Text)) + Functions.ConvertStringToDecimal(txtSecAndMaintenance.Text));
+            txtTotalRental.Text = Convert.ToString(rental);          
+            var rental2 = (rental * Functions.ConvertStringToDecimal(txtSecurityPaymentMonthCount.Text));
             txtMonthsSecurityDeposit.Text = Convert.ToString(rental2);
             var rentalfinal = (rental * (dgvAdvancePayment.Rows.Count()));
             txtTotal.Text = Convert.ToString(rentalfinal + rental2);
@@ -518,12 +518,11 @@ namespace LEASING.UI.APP.Forms
             if (strFormMode == "NEW")
             {
                 if (IsComputationValid())
-                {
-                    txtTotalCheck.Text = string.Empty;
+                {                   
                     M_GetPostDatedCountMonth();
-                    var TotalPostDatedAmount = (dgvpostdatedcheck.Rows.Count() < 0) ? 0 : (Convert.ToDecimal(dgvpostdatedcheck.Rows.Count().ToString()) * ((txtTotalRental.Text == "") ? 0 : Convert.ToDecimal(txtTotalRental.Text)));
-                    txtTotalCheck.Text = TotalPostDatedAmount.ToString();
-                    txtTotal.Focus();
+                    //var TotalPostDatedAmount = (dgvpostdatedcheck.Rows.Count() < 0) ? 0 : (Convert.ToDecimal(dgvpostdatedcheck.Rows.Count().ToString()) * Functions.ConvertStringToDecimal(txtTotalRental.Text));
+                    this.TotalPostDatedAmounts(dgvpostdatedcheck.Rows.Count(), Functions.ConvertStringToDecimal(txtTotalRental.Text));
+                    this.txtTotal.Focus();
                 }
             }
         }
@@ -565,28 +564,46 @@ namespace LEASING.UI.APP.Forms
                 dataTable.Rows.Add(selectedDate.ToString(), txtTotalRental.Text);
                 dgvAdvancePayment.DataSource = dataTable;
                 M_GetTotalRental();
-                txtTotalCheck.Text = string.Empty;
 
                 M_GetPostDatedCountMonth();
-                var TotalPostDatedAmount = (dgvpostdatedcheck.Rows.Count() < 0) ? 0 : (Convert.ToDecimal(dgvpostdatedcheck.Rows.Count().ToString()) * ((txtTotalRental.Text == "") ? 0 : Convert.ToDecimal(txtTotalRental.Text)));
-                txtTotalCheck.Text = TotalPostDatedAmount.ToString();
-                txtTotal.Focus();
+                //var TotalPostDatedAmount = (dgvpostdatedcheck.Rows.Count() < 0) ? 0 : (Convert.ToDecimal(dgvpostdatedcheck.Rows.Count().ToString()) * Functions.ConvertStringToDecimal(txtTotalRental.Text));
+                this.TotalPostDatedAmounts(dgvpostdatedcheck.Rows.Count(), Functions.ConvertStringToDecimal(txtTotalRental.Text));
+                this.txtTotal.Focus();
 
 
             }
         }
+
+
+        private void TotalPostDatedAmounts(decimal dgvRowsCount, decimal TotalRental)
+        {
+            txtTotalCheck.Text = string.Empty;
+            if (dgvpostdatedcheck.Rows.Count() < 0)
+            {
+                txtTotalCheck.Text = string.Empty;
+            }
+            else
+            {
+                txtTotalCheck.Text = (Convert.ToDecimal(dgvRowsCount) * (TotalRental)).ToString();
+            }
+        }
+
+
+
         private void btnRemovedAdvancePayment_Click(object sender, EventArgs e)
         {
+
+            //this.TotalPostDatedAmounts(dgvpostdatedcheck.Rows.Count(), Functions.ConvertStringToDecimal(txtTotalRental.Text));
+
             if (dgvAdvancePayment.SelectedRows.Count > 0)
             {
                 // Remove the selected row
                 dgvAdvancePayment.Rows.Remove(dgvAdvancePayment.SelectedRows[0]);
                 M_GetTotalRental();
-                txtTotalCheck.Text = string.Empty;
 
                 M_GetPostDatedCountMonth();
-                var TotalPostDatedAmount = (dgvpostdatedcheck.Rows.Count() < 0) ? 0 : (Convert.ToDecimal(dgvpostdatedcheck.Rows.Count().ToString()) * ((txtTotalRental.Text == "") ? 0 : Convert.ToDecimal(txtTotalRental.Text)));
-                txtTotalCheck.Text = TotalPostDatedAmount.ToString();
+                //var TotalPostDatedAmount = (dgvpostdatedcheck.Rows.Count() < 0) ? 0 : (Convert.ToDecimal(dgvpostdatedcheck.Rows.Count().ToString()) * Functions.ConvertStringToDecimal(txtTotalRental.Text));
+                this.TotalPostDatedAmounts(dgvpostdatedcheck.Rows.Count(), Functions.ConvertStringToDecimal(txtTotalRental.Text));
             }
             else
             {

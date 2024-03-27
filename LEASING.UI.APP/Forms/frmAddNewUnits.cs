@@ -367,13 +367,13 @@ namespace LEASING.UI.APP.Forms
                 txtBaseRentalWithVatAmount.Text = Convert.ToString(AMount);
                 /*TAX*/
                 M_GetBaseRentalTaxAMount();
-                var tax =(txtBaseRentalTax.Text == "" ? 0 : Convert.ToDecimal(txtBaseRentalTax.Text));
+                var tax = (txtBaseRentalTax.Text == "" ? 0 : Convert.ToDecimal(txtBaseRentalTax.Text));
                 var totalrental = (txtBaseRentalWithVatAmount.Text == "" ? 0 : Convert.ToDecimal(txtBaseRentalWithVatAmount.Text));
                 var result = (totalrental - tax);
                 //txtTotalRental.Text = String.Format("{0:0.00}", Convert.ToString(result));
                 txtTotalRental.Text = result.ToString("0.00");
             }
-      
+
         }
         private void M_GetSecAndMainVatAMount()
         {
@@ -403,7 +403,9 @@ namespace LEASING.UI.APP.Forms
         //}
         private void M_GetBaseRentalTaxAMount()
         {
-            var amount = ((txtBaseRentalWithVatAmount.Text == "" ? 0 : Convert.ToDecimal(txtBaseRentalWithVatAmount.Text)) * (vWithHoldingTax) / 100);
+
+            //var amount = ((txtBaseRentalWithVatAmount.Text == "" ? 0 : Convert.ToDecimal(txtBaseRentalWithVatAmount.Text)) * (vWithHoldingTax) / 100);
+            var amount = ((txtBaseRental.Text == "" ? 0 : Convert.ToDecimal(txtBaseRental.Text)) * (vWithHoldingTax) / 100);
             txtBaseRentalTax.Text = Convert.ToString(amount);
 
         }
@@ -419,7 +421,7 @@ namespace LEASING.UI.APP.Forms
             M_GetUnitStatus();
             M_GetUnitList();
             M_ForDisableOnlyFields();
-            
+
 
         }
 
@@ -434,9 +436,9 @@ namespace LEASING.UI.APP.Forms
                 M_GetProjectTypeById();
                 //if (isResidential)
                 //{
-                    ddlFloorType.Visible = true;
-                    lblFloorType.Visible = true;
-                    M_SelectFloortypes();
+                ddlFloorType.Visible = true;
+                lblFloorType.Visible = true;
+                M_SelectFloortypes();
                 //}
                 //else
                 //{
@@ -446,19 +448,19 @@ namespace LEASING.UI.APP.Forms
                 if (isResidential)
                 {
                     M_GetResendentialRateSettings();
-                 
+
                     M_GetSecAndMainVatAMount();
                     M_GetSecAndMainWithVatAMount();
                     M_GetBaseRentalVatAmount();
                     M_GetBaseRentalWithVatAmount();
                     //M_GetSecAndMainTaxAMount();
-               
+
 
                 }
                 else if (isCommercial)
                 {
                     M_GetCOMMERCIALateSettings();
-                  
+
                     M_GetSecAndMainVatAMount();
                     M_GetSecAndMainWithVatAMount();
                     M_GetBaseRentalVatAmount();
@@ -469,7 +471,7 @@ namespace LEASING.UI.APP.Forms
                 else if (isWarehouse)
                 {
                     M_GetWAREHOUSERateSettings();
-                  
+
                     M_GetSecAndMainVatAMount();
                     M_GetSecAndMainWithVatAMount();
                     M_GetBaseRentalVatAmount();
@@ -536,13 +538,13 @@ namespace LEASING.UI.APP.Forms
             //dto.UnitStatus = ddlUnitStatus.Text;
             dto.UnitNo = txtUnitNumber.Text;
             dto.IsParking = chkIsParking.Checked;
-            dto.FloorNo = txtFloorNumber.Text==string.Empty ? 0 : Convert.ToInt32(txtFloorNumber.Text);
+            dto.FloorNo = txtFloorNumber.Text == string.Empty ? 0 : Convert.ToInt32(txtFloorNumber.Text);
             dto.AreaSqm = txtAreSql.Text == string.Empty ? 0 : decimal.Parse(txtAreSql.Text);
             dto.AreaRateSqm = txtAreRateSqm.Text == string.Empty ? 0 : decimal.Parse(txtAreRateSqm.Text);
             dto.FloorType = ddlFloorType.Text;
             dto.BaseRental = txtBaseRental.Text == string.Empty ? 0 : decimal.Parse(txtBaseRental.Text);
             dto.DetailsofProperty = txtDetailsOfProperty.Text;
-            dto.UnitSequence = txtUnitSequence.Text==string.Empty ? 0 : Convert.ToInt32(txtUnitSequence.Text);
+            dto.UnitSequence = txtUnitSequence.Text == string.Empty ? 0 : Convert.ToInt32(txtUnitSequence.Text);
             dto.EncodedBy = 1;
             dto.Message_Code = UnitContext.SaveUnit(dto);
             if (dto.Message_Code.Equals("SUCCESS"))
@@ -601,7 +603,7 @@ namespace LEASING.UI.APP.Forms
                             //    M_GetProjectList();
                             //}
                         }
-                    }      
+                    }
                 }
             }
         }
@@ -638,7 +640,7 @@ namespace LEASING.UI.APP.Forms
                 {
                     e.CellElement.DrawFill = true;
                     e.CellElement.GradientStyle = GradientStyles.Solid;
-                    e.CellElement.ForeColor = Color.Black; 
+                    e.CellElement.ForeColor = Color.Black;
                     e.CellElement.BackColor = Color.LightSalmon;
 
                 }
@@ -685,7 +687,7 @@ namespace LEASING.UI.APP.Forms
                         //    element.Enabled = false;
                         //}
                     }
-                    
+
 
 
                 }
@@ -726,7 +728,7 @@ namespace LEASING.UI.APP.Forms
             M_GetBaseRentalVatAmount();
             M_GetBaseRentalWithVatAmount();
             //M_GetSecAndMainTaxAMount();
-           // M_GetBaseRentalTaxAMount();
+            // M_GetBaseRentalTaxAMount();
         }
 
         private void txtSecAndMainWithVatAmount_TextChanged(object sender, EventArgs e)

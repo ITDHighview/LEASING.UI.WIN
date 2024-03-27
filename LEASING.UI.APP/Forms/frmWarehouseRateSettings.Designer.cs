@@ -52,15 +52,15 @@
             this.radLabel15 = new Telerik.WinControls.UI.RadLabel();
             this.txtSecAndMaintenanceWithVatLessTAX = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel16 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
+            this.txtPenalty = new Telerik.WinControls.UI.RadTextBox();
+            this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnEdit = new System.Windows.Forms.ToolStripButton();
             this.btnSave = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.btnUndo = new System.Windows.Forms.ToolStripButton();
             this.btnLogs = new System.Windows.Forms.ToolStripButton();
-            this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
-            this.txtPenalty = new Telerik.WinControls.UI.RadTextBox();
-            this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
             this.radGroupBox1.SuspendLayout();
@@ -86,10 +86,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSecAndMaintenanceWithVatLessTAX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel16)).BeginInit();
-            this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPenalty)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel2
@@ -328,6 +328,7 @@
             this.radLabel13.Size = new System.Drawing.Size(178, 19);
             this.radLabel13.TabIndex = 1;
             this.radLabel13.Text = "With Holding Tax Computed :";
+            this.radLabel13.Visible = false;
             // 
             // radLabel14
             // 
@@ -339,6 +340,7 @@
             this.radLabel14.Size = new System.Drawing.Size(63, 19);
             this.radLabel14.TabIndex = 1;
             this.radLabel14.Text = "(Amount)";
+            this.radLabel14.Visible = false;
             // 
             // txtWithHoldingTaxAmount
             // 
@@ -348,6 +350,7 @@
             this.txtWithHoldingTaxAmount.Size = new System.Drawing.Size(80, 19);
             this.txtWithHoldingTaxAmount.TabIndex = 0;
             this.txtWithHoldingTaxAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtWithHoldingTaxAmount.Visible = false;
             this.txtWithHoldingTaxAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtWithHoldingTaxAmount_KeyPress);
             // 
             // radLabel15
@@ -359,6 +362,7 @@
             this.radLabel15.Size = new System.Drawing.Size(261, 19);
             this.radLabel15.TabIndex = 1;
             this.radLabel15.Text = "Security and Maintenance W/ VAT less TAX:";
+            this.radLabel15.Visible = false;
             // 
             // txtSecAndMaintenanceWithVatLessTAX
             // 
@@ -367,6 +371,7 @@
             this.txtSecAndMaintenanceWithVatLessTAX.Size = new System.Drawing.Size(78, 19);
             this.txtSecAndMaintenanceWithVatLessTAX.TabIndex = 0;
             this.txtSecAndMaintenanceWithVatLessTAX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtSecAndMaintenanceWithVatLessTAX.Visible = false;
             this.txtSecAndMaintenanceWithVatLessTAX.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSecAndMaintenanceWithVatLessTAX_KeyPress);
             // 
             // radLabel16
@@ -379,6 +384,39 @@
             this.radLabel16.Size = new System.Drawing.Size(62, 19);
             this.radLabel16.TabIndex = 1;
             this.radLabel16.Text = "(Amount)";
+            this.radLabel16.Visible = false;
+            // 
+            // radLabel7
+            // 
+            this.radLabel7.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.radLabel7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel7.Location = new System.Drawing.Point(546, 53);
+            this.radLabel7.Name = "radLabel7";
+            this.radLabel7.Size = new System.Drawing.Size(57, 19);
+            this.radLabel7.TabIndex = 1;
+            this.radLabel7.Text = "Penalty :";
+            // 
+            // txtPenalty
+            // 
+            this.txtPenalty.Location = new System.Drawing.Point(609, 53);
+            this.txtPenalty.MaxLength = 10;
+            this.txtPenalty.Name = "txtPenalty";
+            this.txtPenalty.Size = new System.Drawing.Size(80, 19);
+            this.txtPenalty.TabIndex = 0;
+            this.txtPenalty.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtPenalty.TextChanged += new System.EventHandler(this.txtWithHoldingTax_TextChanged);
+            this.txtPenalty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPenalty_KeyPress);
+            // 
+            // radLabel8
+            // 
+            this.radLabel8.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.radLabel8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel8.ForeColor = System.Drawing.Color.DarkRed;
+            this.radLabel8.Location = new System.Drawing.Point(696, 53);
+            this.radLabel8.Name = "radLabel8";
+            this.radLabel8.Size = new System.Drawing.Size(26, 19);
+            this.radLabel8.TabIndex = 1;
+            this.radLabel8.Text = "(%)";
             // 
             // toolStrip1
             // 
@@ -435,38 +473,6 @@
             this.btnLogs.Size = new System.Drawing.Size(52, 22);
             this.btnLogs.Text = "Logs";
             // 
-            // radLabel7
-            // 
-            this.radLabel7.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.radLabel7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel7.Location = new System.Drawing.Point(546, 53);
-            this.radLabel7.Name = "radLabel7";
-            this.radLabel7.Size = new System.Drawing.Size(57, 19);
-            this.radLabel7.TabIndex = 1;
-            this.radLabel7.Text = "Penalty :";
-            // 
-            // txtPenalty
-            // 
-            this.txtPenalty.Location = new System.Drawing.Point(609, 53);
-            this.txtPenalty.MaxLength = 10;
-            this.txtPenalty.Name = "txtPenalty";
-            this.txtPenalty.Size = new System.Drawing.Size(80, 20);
-            this.txtPenalty.TabIndex = 0;
-            this.txtPenalty.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtPenalty.TextChanged += new System.EventHandler(this.txtWithHoldingTax_TextChanged);
-            this.txtPenalty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPenalty_KeyPress);
-            // 
-            // radLabel8
-            // 
-            this.radLabel8.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.radLabel8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel8.ForeColor = System.Drawing.Color.DarkRed;
-            this.radLabel8.Location = new System.Drawing.Point(696, 53);
-            this.radLabel8.Name = "radLabel8";
-            this.radLabel8.Size = new System.Drawing.Size(26, 19);
-            this.radLabel8.TabIndex = 1;
-            this.radLabel8.Text = "(%)";
-            // 
             // frmWarehouseRateSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -506,11 +512,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSecAndMaintenanceWithVatLessTAX)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel16)).EndInit();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPenalty)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
 
         }

@@ -20,7 +20,18 @@ CREATE PROCEDURE [dbo].[sp_SaveNewtUnit]
     @UnitNo VARCHAR(20) = NULL,
     @UnitSequence INT = NULL,
     @EndodedBy INT = NULL,
-    @ComputerName VARCHAR(20) = NULL
+    @ComputerName VARCHAR(20) = NULL,
+    @BaseRentalVatAmount DECIMAL(18, 2) = NULL,
+    @BaseRentalWithVatAmount DECIMAL(18, 2) = NULL,
+    @BaseRentalTax DECIMAL(18, 2) = NULL,
+    @IsNonVat BIT = NULL,
+    @TotalRental DECIMAL(18, 2) = NULL,
+    @SecAndMainAmount DECIMAL(18, 2) = NULL,
+    @SecAndMainVatAmount DECIMAL(18, 2) = NULL,
+    @SecAndMainWithVatAmount DECIMAL(18, 2) = NULL,
+    @Vat DECIMAL(18, 2) = NULL,
+    @Tax DECIMAL(18, 2) = NULL,
+    @TaxAmount DECIMAL(18, 2) = NULL
 AS
 BEGIN
     DECLARE @Message_Code VARCHAR(100) = '';
@@ -50,11 +61,24 @@ BEGIN
             [EndodedBy],
             [EndodedDate],
             [IsActive],
-            [ComputerName]
+            [ComputerName],
+            [BaseRentalVatAmount],
+            [BaseRentalWithVatAmount],
+            [BaseRentalTax],
+            [IsNonVat],
+            [TotalRental],
+            [SecAndMainAmount],
+            [SecAndMainVatAmount],
+            [SecAndMainWithVatAmount],
+            [Vat],
+            [Tax],
+            [TaxAmount]
         )
         VALUES
         (@ProjectId, @IsParking, @FloorNo, @AreaSqm, @AreaRateSqm, @FloorType, @BaseRental, 'VACANT',
-         @DetailsofProperty, @UnitNo, @UnitSequence, @EndodedBy, GETDATE(), 1, @ComputerName);
+         @DetailsofProperty, @UnitNo, @UnitSequence, @EndodedBy, GETDATE(), 1, @ComputerName, @BaseRentalVatAmount,
+         @BaseRentalWithVatAmount, @BaseRentalTax, @IsNonVat, @TotalRental, @SecAndMainAmount, @SecAndMainVatAmount,
+         @SecAndMainWithVatAmount, @Vat, @Tax, @TaxAmount);
 
         IF (@@ROWCOUNT > 0)
         BEGIN

@@ -23,6 +23,17 @@ CREATE TABLE [dbo].[tblUnitMstr]
 [ComputerName] [varchar] (20) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
 [clientID] [int] NULL,
 [Tennant] [varchar] (200) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
-[IsParking] [bit] NULL
+[IsParking] [bit] NULL,
+[IsNonVat] [bit] NULL,
+[BaseRentalVatAmount] [decimal] (18, 2) NULL,
+[BaseRentalWithVatAmount] [decimal] (18, 2) NULL,
+[BaseRentalTax] [decimal] (18, 2) NULL,
+[TotalRental] [decimal] (18, 2) NULL,
+[SecAndMainAmount] [decimal] (18, 2) NULL,
+[SecAndMainVatAmount] [decimal] (18, 2) NULL,
+[SecAndMainWithVatAmount] [decimal] (18, 2) NULL,
+[Vat] [decimal] (18, 2) NULL,
+[Tax] [decimal] (18, 2) NULL,
+[TaxAmount] [decimal] (18, 2) NULL
 ) ON [PRIMARY]
 GO

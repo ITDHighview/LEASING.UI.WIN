@@ -103,15 +103,15 @@ namespace LEASING.UI.APP.Forms
             txtaddresstelephoneno.Enabled = true;
             txttelno.Enabled = true;
             txtTinNo.Enabled = true;
-      
-            txtage.Enabled = false;        
+
+            txtage.Enabled = false;
             dtpdob.Enabled = false;
             ddlgender.Enabled = false;
             txttelno.Enabled = false;
             txtnationality.Enabled = false;
             txtoccupation.Enabled = false;
             txtannualincome.Enabled = false;
-            txtnameofemployer.Enabled = false;    
+            txtnameofemployer.Enabled = false;
             txtspousename.Enabled = false;
             txtnameofchildren.Enabled = false;
             txttotalnoofperson.Enabled = false;
@@ -140,7 +140,7 @@ namespace LEASING.UI.APP.Forms
 
         }
 
-    
+
 
         private void DisabledFields()
         {
@@ -179,10 +179,30 @@ namespace LEASING.UI.APP.Forms
 
             return true;
         }
+
+
+        private string GetClientTypeCode()
+        {
+            string Code = string.Empty;
+            switch (ddlClientType.Text)
+            {
+                case "INDIVIDUAL":
+                    Code = "INDV";
+                    break;
+                case "CORPORATE":
+                    Code = "CORP";
+                    break;
+                case "PARTNERSHIP":
+                    Code = "PART";
+                    break;
+            }
+
+            return Code;
+        }
         private void M_SaveClient()
         {
             ClientModel dto = new ClientModel();
-            dto.ClientType = ddlClientType.Text == "INDIVIDUAL" ? "INDV" : "CORP";
+            dto.ClientType = GetClientTypeCode();
             dto.ClientName = txtname.Text;
             dto.Age = txtage.Text == string.Empty ? 0 : Convert.ToInt32(txtage.Text);
             dto.PostalAddress = txtpostaladdress.Text;
@@ -317,9 +337,9 @@ namespace LEASING.UI.APP.Forms
         }
         private void ddlClientType_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
         {
-            if (ddlClientType.SelectedIndex >=0)
+            if (ddlClientType.SelectedIndex >= 0)
             {
-                if (ddlClientType.SelectedIndex == 1)
+                if (ddlClientType.SelectedIndex == 1 || ddlClientType.SelectedIndex == 2)
                 {
                     IsCorporate();
                 }

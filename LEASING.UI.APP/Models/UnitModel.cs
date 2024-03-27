@@ -15,7 +15,7 @@ namespace LEASING.UI.APP.Models
         public decimal AreaSqm { get; set; }
         public decimal AreaRateSqm { get; set; }
         public string FloorType { get; set; }
-        public decimal BaseRental { get; set; }
+       
         public string UnitStatus { get; set; }
         public string DetailsofProperty { get; set; }
         public string UnitNo { get; set; }
@@ -26,5 +26,24 @@ namespace LEASING.UI.APP.Models
         public int ClientID { get; set; }
         public string Tenant { get; set; }
         public bool IsParking { get; set; }
+
+        public decimal BaseRental { get; set; }
+        public decimal BaseRentalVatAmount { get; set; }
+        public decimal BaseRentalWithVatAmount { get; set; }
+        public decimal BaseRentalTax { get; set; }
+
+        public bool IsNonVat { get; set; }
+
+        public decimal TotalRental { get; set; }
+
+        public decimal SecAndMainAmount { get; set; }
+        public decimal SecAndMainVatAmount { get; set; }
+        public decimal SecAndMainWithVatAmount { get; set; }
+
+        public decimal Tax { get; set; }
+        public decimal TaxAmount { get; set; }
+
+        public decimal Vat { get; set; }
+
     }
 }

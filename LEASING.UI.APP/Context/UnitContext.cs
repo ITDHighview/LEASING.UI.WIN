@@ -48,6 +48,29 @@ namespace LEASING.UI.APP.Context
             _sqlpara = new SqlParameter("@ComputerName", Environment.MachineName);
             _sqlcmd.Parameters.Add(_sqlpara);
 
+            _sqlpara = new SqlParameter("@BaseRentalVatAmount", model.BaseRentalVatAmount);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@BaseRentalWithVatAmount", model.BaseRentalWithVatAmount);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@BaseRentalTax", model.BaseRentalTax);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@IsNonVat", model.IsNonVat);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@TotalRental", model.TotalRental);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@SecAndMainAmount", model.SecAndMainAmount);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@SecAndMainVatAmount ", model.SecAndMainVatAmount);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@SecAndMainWithVatAmount", model.SecAndMainWithVatAmount);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@Vat", model.Vat);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@Tax", model.Tax);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@TaxAmount", model.TaxAmount);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            
             try
             {
                 _sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());

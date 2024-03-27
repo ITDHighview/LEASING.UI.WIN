@@ -1103,6 +1103,15 @@ namespace LEASING.UI.APP.Common
             return MessageBox.Show(message, "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
         }
 
+        public static int ConvertStringToInt(string amountString)
+        {
+            if (string.IsNullOrEmpty(amountString))
+            {
+                return 0;
+            }
+            return int.Parse(amountString);
+        }
+
         public static decimal ConvertStringToDecimal(string amountString)
         {
             if (string.IsNullOrEmpty(amountString))

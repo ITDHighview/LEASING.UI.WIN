@@ -32,6 +32,7 @@
             Telerik.WinControls.UI.RadListDataItem radListDataItem2 = new Telerik.WinControls.UI.RadListDataItem();
             Telerik.WinControls.UI.RadListDataItem radListDataItem3 = new Telerik.WinControls.UI.RadListDataItem();
             Telerik.WinControls.UI.RadListDataItem radListDataItem4 = new Telerik.WinControls.UI.RadListDataItem();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem5 = new Telerik.WinControls.UI.RadListDataItem();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
@@ -603,8 +604,10 @@
             // 
             radListDataItem3.Text = "INDIVIDUAL";
             radListDataItem4.Text = "CORPORATE";
+            radListDataItem5.Text = "PARTNERSHIP";
             this.ddlClientType.Items.Add(radListDataItem3);
             this.ddlClientType.Items.Add(radListDataItem4);
+            this.ddlClientType.Items.Add(radListDataItem5);
             this.ddlClientType.Location = new System.Drawing.Point(177, 3);
             this.ddlClientType.Name = "ddlClientType";
             this.ddlClientType.NullText = "Select here...";

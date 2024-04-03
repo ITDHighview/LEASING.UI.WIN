@@ -337,9 +337,10 @@ namespace LEASING.UI.APP.Forms
 
         private void TotalRentalParking()
         {
-            var tax = Functions.ConvertStringToDecimal(txtBaseRentalTax.Text);
-            var totalrental = Functions.ConvertStringToDecimal(txtBaseRentalWithVatAmount.Text);
-            var result = (totalrental - tax);
+            decimal tax = Functions.ConvertStringToDecimal(txtBaseRentalTax.Text);
+            //var totalrental = Functions.ConvertStringToDecimal(txtBaseRentalWithVatAmount.Text);
+            decimal totalrental = this.chkNonVat.Checked == true ? Functions.ConvertStringToDecimal(txtBaseRental.Text) : Functions.ConvertStringToDecimal(txtBaseRentalWithVatAmount.Text);
+            decimal result = (totalrental - tax);
             if (Functions.ConvertStringToDecimal(txtBaseRental.Text) > 0)
             {
                 txtTotalRental.Text = result.ToString("0.00");

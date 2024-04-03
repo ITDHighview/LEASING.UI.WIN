@@ -538,17 +538,17 @@ namespace LEASING.UI.APP.Forms
             dto.UnitNo = ddlUnitNumber.Text;
             dto.StatDate = dtpStartDate.Text;
             dto.FinishDate = dtpFinishDate.Text;
-            dto.Rental = txtRental.Text == string.Empty ? 0 : decimal.Parse(txtRental.Text);
+            dto.Rental = Functions.ConvertStringToDecimal(txtRental.Text);
             //dto.SecAndMaintenance = txtSecAndMaintenance.Text == string.Empty ? 0 : decimal.Parse(txtSecAndMaintenance.Text);
-            dto.TotalRent = txtRental.Text == string.Empty ? 0 : decimal.Parse(txtRental.Text);
+            dto.TotalRent = Functions.ConvertStringToDecimal(txtRental.Text);
             //dto.SecDeposit = txtMonthsSecurityDeposit.Text == string.Empty ? 0 : decimal.Parse(txtMonthsSecurityDeposit.Text);
             if (sIsFullPayment)
             {
-                dto.Total = txtTotal.Text == string.Empty ? 0 : decimal.Parse(txtTotal.Text);
+                dto.Total = Functions.ConvertStringToDecimal(txtTotal.Text);
             }
             else
             {
-                dto.Total = txtRental.Text == string.Empty ? 0 : decimal.Parse(txtRental.Text);
+                dto.Total = Functions.ConvertStringToDecimal(txtRental.Text);
             }
 
             dto.EncodedBy = Variables.UserID;

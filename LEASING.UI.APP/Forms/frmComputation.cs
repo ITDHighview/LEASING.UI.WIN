@@ -321,14 +321,14 @@ namespace LEASING.UI.APP.Forms
         }
         private void M_GetRateSettings()
         {
-            txtSecAndMaintenance.Text = string.Empty;
+           
             lblVat.Text = string.Empty;
             using (DataSet dt = RateSettingsContext.GetRateSettingsByType(txtProjectType.Text))
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                 {
                     //txtGenVat.Text = Convert.ToString(dt.Tables[0].Rows[0]["GenVat"]);
-                    txtSecAndMaintenance.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecurityAndMaintenance"]);
+                    //txtSecAndMaintenance.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecurityAndMaintenance"]);
                     lblVat.Text = Convert.ToString(dt.Tables[0].Rows[0]["labelVat"]);
                     //chkIsWithVat.Checked = Convert.ToBoolean(dt.Tables[0].Rows[0]["IsSecAndMaintVat"]);
                     //txtSecAndMaintenanceVat.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecurityAndMaintenanceVat"]);
@@ -397,7 +397,6 @@ namespace LEASING.UI.APP.Forms
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                 {
 
-
                     txtProjectAddress.Text = Convert.ToString(dt.Tables[0].Rows[0]["ProjectAddress"]);
                     txtProjectType.Text = Convert.ToString(dt.Tables[0].Rows[0]["ProjectType"]);
                 }
@@ -405,16 +404,18 @@ namespace LEASING.UI.APP.Forms
         }
         private void M_GetUnitAvaibleById()
         {
-
+           
             txtFloorType.Text = string.Empty;
+            txtSecAndMaintenance.Text = string.Empty;
             txtRental.Text = string.Empty;
             using (DataSet dt = UnitContext.GetUnitAvailableById(Convert.ToInt32(ddlUnitNumber.SelectedValue)))
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                 {
 
-
+                   
                     txtFloorType.Text = Convert.ToString(dt.Tables[0].Rows[0]["FloorType"]);
+                    txtSecAndMaintenance.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecurityAndMaintenance"]);
                     txtRental.Text = Convert.ToString(dt.Tables[0].Rows[0]["BaseRental"]);
                 }
             }

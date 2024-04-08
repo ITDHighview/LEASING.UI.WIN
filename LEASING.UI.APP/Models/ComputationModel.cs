@@ -28,6 +28,7 @@ namespace LEASING.UI.APP.Models
         public string XML { get; set; }
         public decimal AdvancePaymentAmount { get; set; }
         public bool IsFullPayment { get; set; }
+        public bool IsRenewal { get; set; }
 
     }
 

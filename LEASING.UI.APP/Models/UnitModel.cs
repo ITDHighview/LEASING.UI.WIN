@@ -14,6 +14,7 @@ namespace LEASING.UI.APP.Models
         public int FloorNo { get; set; }
         public decimal AreaSqm { get; set; }
         public decimal AreaRateSqm { get; set; }
+        public decimal AreaTotalAmount { get; set; }
         public string FloorType { get; set; }
        
         public string UnitStatus { get; set; }
@@ -44,6 +45,9 @@ namespace LEASING.UI.APP.Models
         public decimal TaxAmount { get; set; }
 
         public decimal Vat { get; set; }
+
+
+        
 
     }
 }

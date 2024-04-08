@@ -514,6 +514,7 @@
             gridViewTextBoxColumn12.FieldName = "Remarks";
             gridViewTextBoxColumn12.HeaderText = "Remarks";
             gridViewTextBoxColumn12.Name = "Remarks";
+            gridViewTextBoxColumn12.ReadOnly = true;
             gridViewTextBoxColumn12.Width = 200;
             gridViewTextBoxColumn13.FieldName = "PaymentStatus";
             gridViewTextBoxColumn13.HeaderText = "Status";
@@ -570,7 +571,7 @@
             this.radPageViewPagePaymentHistory.ItemSize = new System.Drawing.SizeF(130F, 28F);
             this.radPageViewPagePaymentHistory.Location = new System.Drawing.Point(10, 37);
             this.radPageViewPagePaymentHistory.Name = "radPageViewPagePaymentHistory";
-            this.radPageViewPagePaymentHistory.Size = new System.Drawing.Size(710, 525);
+            this.radPageViewPagePaymentHistory.Size = new System.Drawing.Size(908, 525);
             this.radPageViewPagePaymentHistory.Text = "PAYMENT HISTORY";
             // 
             // dgvPaymentList
@@ -592,23 +593,23 @@
             gridViewTextBoxColumn16.FieldName = "TranId";
             gridViewTextBoxColumn16.HeaderText = "Transaction ID";
             gridViewTextBoxColumn16.Name = "TranId";
-            gridViewTextBoxColumn16.Width = 121;
+            gridViewTextBoxColumn16.Width = 155;
             gridViewTextBoxColumn17.FieldName = "ForMonth";
             gridViewTextBoxColumn17.HeaderText = "For Month";
             gridViewTextBoxColumn17.Name = "ForMonth";
-            gridViewTextBoxColumn17.Width = 109;
+            gridViewTextBoxColumn17.Width = 139;
             gridViewTextBoxColumn18.FieldName = "Amount";
             gridViewTextBoxColumn18.HeaderText = "Amount Pay";
             gridViewTextBoxColumn18.Name = "Amount";
-            gridViewTextBoxColumn18.Width = 109;
+            gridViewTextBoxColumn18.Width = 139;
             gridViewTextBoxColumn19.FieldName = "DatePayed";
             gridViewTextBoxColumn19.HeaderText = "Date Pay";
             gridViewTextBoxColumn19.Name = "DatePayed";
-            gridViewTextBoxColumn19.Width = 109;
+            gridViewTextBoxColumn19.Width = 139;
             gridViewTextBoxColumn20.FieldName = "Remarks";
             gridViewTextBoxColumn20.HeaderText = "Remarks";
             gridViewTextBoxColumn20.Name = "Remarks";
-            gridViewTextBoxColumn20.Width = 265;
+            gridViewTextBoxColumn20.Width = 339;
             this.dgvPaymentList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn16,
             gridViewTextBoxColumn17,
@@ -622,7 +623,7 @@
             this.dgvPaymentList.ReadOnly = true;
             this.dgvPaymentList.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgvPaymentList.ShowGroupPanel = false;
-            this.dgvPaymentList.Size = new System.Drawing.Size(710, 525);
+            this.dgvPaymentList.Size = new System.Drawing.Size(908, 525);
             this.dgvPaymentList.TabIndex = 0;
             this.dgvPaymentList.Text = "radGridView1";
             this.dgvPaymentList.ThemeName = "TelerikMetroTouch";

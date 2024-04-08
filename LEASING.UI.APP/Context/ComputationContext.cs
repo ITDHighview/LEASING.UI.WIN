@@ -56,6 +56,10 @@ namespace LEASING.UI.APP.Context
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@IsFullPayment", model.IsFullPayment);
             _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@IsRenewal", model.IsRenewal);
+            _sqlcmd.Parameters.Add(_sqlpara);
+
+            
 
             try
             {
@@ -133,6 +137,8 @@ namespace LEASING.UI.APP.Context
             _sqlpara = new SqlParameter("@AdvancePaymentAmount", model.AdvancePaymentAmount);
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@IsFullPayment", model.IsFullPayment);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@IsRenewal", model.IsRenewal);
             _sqlcmd.Parameters.Add(_sqlpara);
 
             try

@@ -282,7 +282,7 @@ namespace LEASING.UI.APP.Forms
             dgvAdvancePayment.Enabled = true;
             txtSecurityPaymentMonthCount.Enabled = true;
             btnGeneratePostdatedCountMonth.Enabled = true;
-
+            this.chkIsRenewal.Enabled = true;
         }
         private void DisableFields()
         {
@@ -317,11 +317,11 @@ namespace LEASING.UI.APP.Forms
             txtSecurityPaymentMonthCount.Enabled = false;
             btnGeneratePostdatedCountMonth.Enabled = false;
 
-
+            this.chkIsRenewal.Enabled = false;
         }
         private void M_GetRateSettings()
         {
-           
+
             lblVat.Text = string.Empty;
             using (DataSet dt = RateSettingsContext.GetRateSettingsByType(txtProjectType.Text))
             {
@@ -404,7 +404,7 @@ namespace LEASING.UI.APP.Forms
         }
         private void M_GetUnitAvaibleById()
         {
-           
+
             txtFloorType.Text = string.Empty;
             txtSecAndMaintenance.Text = string.Empty;
             txtRental.Text = string.Empty;
@@ -413,7 +413,7 @@ namespace LEASING.UI.APP.Forms
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                 {
 
-                   
+
                     txtFloorType.Text = Convert.ToString(dt.Tables[0].Rows[0]["FloorType"]);
                     txtSecAndMaintenance.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecurityAndMaintenance"]);
                     txtRental.Text = Convert.ToString(dt.Tables[0].Rows[0]["BaseRental"]);
@@ -422,18 +422,24 @@ namespace LEASING.UI.APP.Forms
         }
         private void M_GetTotalRental()
         {
-            var rental = ((txtRental.Text == "" ? 0 : Convert.ToDecimal(txtRental.Text)) + (txtSecAndMaintenance.Text == "" ? 0 : Convert.ToDecimal(txtSecAndMaintenance.Text)));
+            var rental = ((Functions.ConvertStringToDecimal(txtRental.Text)) + (Functions.ConvertStringToDecimal(txtSecAndMaintenance.Text)));
             txtTotalRental.Text = Convert.ToString(rental);
-            var rental2 = (rental * (txtSecurityPaymentMonthCount.Text == "" ? 0 : Convert.ToDecimal(txtSecurityPaymentMonthCount.Text)));
-            txtMonthsSecurityDeposit.Text = Convert.ToString(rental2);
+            var rental2 = (rental * (Functions.ConvertStringToDecimal(txtSecurityPaymentMonthCount.Text)));
+            var rental3 =  (Functions.ConvertStringToDecimal(txtMonthsSecurityDeposit.Text));
+            if (rental2 > 0)
+            {
+                txtMonthsSecurityDeposit.Text = Convert.ToString(rental2);
+            }
+       
+            
             var rentalfinal = (rental * dgvAdvancePayment.Rows.Count());
             if (sIsFullPayment)
             {
-                txtTotal.Text = Convert.ToString((txtTotalPostDatedAmount.Text == "" ? 0 : Convert.ToDecimal(txtTotalPostDatedAmount.Text)) + rental2);
+                txtTotal.Text = Convert.ToString((Functions.ConvertStringToDecimal(txtTotalPostDatedAmount.Text)) + rental2 + rental3);
             }
             else
             {
-                txtTotal.Text = Convert.ToString(rentalfinal + rental2);
+                txtTotal.Text = Convert.ToString(rentalfinal + rental2 + rental3);
             }
             AdvancePaymentAmount = rentalfinal;
         }
@@ -526,15 +532,16 @@ namespace LEASING.UI.APP.Forms
             dto.UnitNo = ddlUnitNumber.Text;
             dto.StatDate = dtpStartDate.Text;
             dto.FinishDate = dtpFinishDate.Text;
-            dto.Rental = txtRental.Text == string.Empty ? 0 : decimal.Parse(txtRental.Text);
-            dto.SecAndMaintenance = txtSecAndMaintenance.Text == string.Empty ? 0 : decimal.Parse(txtSecAndMaintenance.Text);
-            dto.TotalRent = txtTotalRental.Text == string.Empty ? 0 : decimal.Parse(txtTotalRental.Text);
-            dto.SecDeposit = txtMonthsSecurityDeposit.Text == string.Empty ? 0 : decimal.Parse(txtMonthsSecurityDeposit.Text);
-            dto.Total = txtTotal.Text == string.Empty ? 0 : decimal.Parse(txtTotal.Text);
+            dto.Rental = Functions.ConvertStringToDecimal(txtRental.Text);
+            dto.SecAndMaintenance = Functions.ConvertStringToDecimal(txtSecAndMaintenance.Text);
+            dto.TotalRent = Functions.ConvertStringToDecimal(txtTotalRental.Text);
+            dto.SecDeposit = Functions.ConvertStringToDecimal(txtMonthsSecurityDeposit.Text);
+            dto.Total = Functions.ConvertStringToDecimal(txtTotal.Text);
             dto.EncodedBy = Variables.UserID;
             dto.XML = M_getXMLData();
             dto.AdvancePaymentAmount = AdvancePaymentAmount;
             dto.IsFullPayment = sIsFullPayment;
+            dto.IsRenewal = chkIsRenewal.Checked;
             dto.Message_Code = ComputationContext.SaveComputation(dto);
             if (dto.Message_Code.Equals("SUCCESS"))
             {
@@ -568,7 +575,7 @@ namespace LEASING.UI.APP.Forms
             txtRental.ReadOnly = true;
             txtSecAndMaintenance.ReadOnly = true;
             txtTotalRental.ReadOnly = true;
-            txtMonthsSecurityDeposit.ReadOnly = true;
+            //txtMonthsSecurityDeposit.ReadOnly = true;
             txtTotal.ReadOnly = true;
 
             dataTable = new DataTable();
@@ -781,7 +788,7 @@ namespace LEASING.UI.APP.Forms
             {
                 IsComputed = true;
                 seq = 0;
-                txtTotalPostDatedAmount.Text = string.Empty;
+                //txtTotalPostDatedAmount.Text = string.Empty;
                 M_GetPostDatedCountMonth();
                 var TotalPostDatedAmount = (dgvpostdatedcheck.Rows.Count() < 0) ? 0 : (Convert.ToDecimal(dgvpostdatedcheck.Rows.Count().ToString()) * ((txtTotalRental.Text == "") ? 0 : Convert.ToDecimal(txtTotalRental.Text)));
                 txtTotalPostDatedAmount.Text = TotalPostDatedAmount.ToString();
@@ -850,6 +857,42 @@ namespace LEASING.UI.APP.Forms
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9\b]"))
                 e.Handled = true;
+        }
+
+        private void chkIsRenewal_ToggleStateChanged(object sender, Telerik.WinControls.UI.StateChangedEventArgs args)
+        {
+            if (chkIsRenewal.CheckState == CheckState.Checked)
+            {
+                txtSecurityPaymentMonthCount.Text = "0";
+                txtSecurityPaymentMonthCount.Enabled = false;
+                txtMonthsSecurityDeposit.ReadOnly = false;
+                txtMonthsSecurityDeposit.Text = "0";
+               
+                this.lblContractState.Text = "<<<---RENEWAL CONTRACT--->>>";
+                this.lblContractState.ForeColor = Color.DarkSlateBlue;
+            }
+            else
+            {
+                txtSecurityPaymentMonthCount.Text = "0";
+                txtSecurityPaymentMonthCount.Enabled = true;
+                txtMonthsSecurityDeposit.ReadOnly = true;
+                txtMonthsSecurityDeposit.Text = "0";
+
+                this.lblContractState.Text = "<<<---NEW CONTRACT--->>>";
+                this.lblContractState.ForeColor = Color.Green;
+            }
+
+        }
+
+        private void txtMonthsSecurityDeposit_TextChanged(object sender, EventArgs e)
+        {
+            if (chkIsRenewal.Checked == true)
+            {
+                //if (IsComputationValid())
+                //{
+                    M_GetTotalRental();
+                //}
+            }       
         }
     }
 }

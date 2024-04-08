@@ -542,6 +542,7 @@ namespace LEASING.UI.APP.Forms
             //dto.SecAndMaintenance = txtSecAndMaintenance.Text == string.Empty ? 0 : decimal.Parse(txtSecAndMaintenance.Text);
             dto.TotalRent = Functions.ConvertStringToDecimal(txtRental.Text);
             //dto.SecDeposit = txtMonthsSecurityDeposit.Text == string.Empty ? 0 : decimal.Parse(txtMonthsSecurityDeposit.Text);
+            dto.IsRenewal = chkIsRenewal.Checked;
             if (sIsFullPayment)
             {
                 dto.Total = Functions.ConvertStringToDecimal(txtTotal.Text);
@@ -858,6 +859,28 @@ namespace LEASING.UI.APP.Forms
             else
             {
                 MessageBox.Show("Please select a row to remove.");
+            }
+        }
+
+        private void chkIsRenewal_ToggleStateChanged(object sender, Telerik.WinControls.UI.StateChangedEventArgs args)
+        {
+            if (chkIsRenewal.Checked)
+            {
+                //txtSecurityPaymentMonthCount.Text = "0";
+                //txtSecurityPaymentMonthCount.Enabled = false;
+                //txtMonthsSecurityDeposit.Text = "0";
+                //txtMonthsSecurityDeposit.ReadOnly = false;
+                this.lblContractState.Text = "<<<---RENEWAL CONTRACT--->>>";
+                this.lblContractState.ForeColor = Color.DarkSlateBlue;
+            }
+            else
+            {
+                //txtSecurityPaymentMonthCount.Text = "0";
+                //txtSecurityPaymentMonthCount.Enabled = true;
+                //txtMonthsSecurityDeposit.Text = "0";
+                //txtMonthsSecurityDeposit.ReadOnly = true;
+                this.lblContractState.Text = "<<<---NEW CONTRACT--->>>";
+                this.lblContractState.ForeColor = Color.Green;
             }
         }
     }

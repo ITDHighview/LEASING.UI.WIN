@@ -91,6 +91,8 @@ namespace LEASING.UI.APP.Forms
         public decimal ItemLedgAmount { get; set; } = 0;
         public int ItemTotalSelectedMonth { get; set; } = 0;
         public decimal ActualAmountTobePaidFromPaymentMode { get; set; } = 0;
+        public bool IsHold = false;
+        public bool IsClearPDC = false;
         #endregion
 
         #region Call Methods
@@ -264,6 +266,19 @@ namespace LEASING.UI.APP.Forms
 
             Functions.MessageShow(PAYMENT_SUCCESS);
 
+            if (string.IsNullOrEmpty(this.TranID))
+            {
+                Functions.MessageShow("No transaction code is generated, Please contact system administrator");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(this.RecieptID))
+            {
+                Functions.MessageShow("No Receipt code is generated, Please contact system administrator");
+                return;
+            }
+
+
             Functions.GetNotification("PAYMENT SUCCESS", $"Transaction ID : {TranID} generated");
             Functions.GetNotification("PAYMENT SUCCESS", $"Reciept ID : {RecieptID} generated");
 
@@ -271,6 +286,11 @@ namespace LEASING.UI.APP.Forms
             this.CheckPaymentProgressStatus();
             this.M_GetLedgerList();
             this.M_GetPaymentListByReferenceId();
+
+            var fReciept = new frmRecieptSelectionSecondPayment(this.TranID, "", "SECOND");
+            this.InitReciept(fReciept);
+
+
 
             this.IsProceed = true;
         }
@@ -466,6 +486,8 @@ namespace LEASING.UI.APP.Forms
             this.ReceiveAmount = this.fn_ConvertStringToDecimal(pForm.txtReceiveAmount.Text);
             this.ActualAmountTobePaidFromPaymentMode = this.fn_ConvertStringToDecimal(pForm.txtPaidAmount.Text);
             this.ChangeAmount = 0;
+            this.IsHold = pForm.IsHold;
+            this.IsClearPDC = pForm.IsClearPDC;
             this.IsProceed = true;
             return true;
         }
@@ -530,6 +552,27 @@ namespace LEASING.UI.APP.Forms
             this.btnTerminateContract.Enabled = false;
         }
 
+        private void SaveTransaction()
+        {
+            if (Functions.MessageConfirm("Are you sure you want to hold the payment?") == DialogResult.Yes)
+            {
+                string result = PaymentContext.HoldPDCPayment(this.M_getXMLData(), this.CompanyORNo, this.CompanyPRNo, this.BankAccountName, this.BankAccountNumber, this.BankName, this.SerialNo, this.BankBranch, this.REF, this.ModeType);
+                if (!string.IsNullOrEmpty(result))
+                {
+                    if (result.Equals("SUCCESS"))
+                    {
+                        Functions.MessageShow("PAYMENT HOLD SUCCESS");
+                        this.CheckPaymentProgressStatus();
+                        M_GetLedgerList();
+                        M_GetPaymentListByReferenceId();
+                    }
+                    else
+                    {
+                        Functions.MessageShow(result);
+                    }
+                }
+            }
+        }
         private void SavePayment()
         {
             if (dgvLedgerList.Rows.Count <= 0)
@@ -554,22 +597,14 @@ namespace LEASING.UI.APP.Forms
                     return;
                 }
 
-                this.GeneratePayment();
-
-                if (string.IsNullOrEmpty(this.TranID))
+                if (this.IsHold == true && this.IsClearPDC == false)
                 {
-                    Functions.MessageShow("No transaction code is generated, Please contact system administrator");
-                    return;
+                    this.SaveTransaction();
                 }
-
-                if (string.IsNullOrEmpty(this.RecieptID))
+                else
                 {
-                    Functions.MessageShow("No Receipt code is generated, Please contact system administrator");
-                    return;
+                    this.GeneratePayment();
                 }
-                var fReciept = new frmRecieptSelectionSecondPayment(this.TranID, "", "SECOND");
-                this.InitReciept(fReciept);
-
             }
 
             #endregion
@@ -590,24 +625,17 @@ namespace LEASING.UI.APP.Forms
                     return;
                 }
 
-                this.GeneratePayment();
-
-                if (string.IsNullOrEmpty(this.TranID))
+                if (this.IsHold == true && this.IsClearPDC == false)
                 {
-                    Functions.MessageShow("No transaction code is generated, Please contact system administrator");
-                    return;
+                    this.SaveTransaction();
                 }
-                if (string.IsNullOrEmpty(this.RecieptID))
+                else
                 {
-                    Functions.MessageShow("No Receipt code is generated, Please contact system administrator");
-                    return;
+                    this.GeneratePayment();
                 }
-                var fReciept = new frmRecieptSelectionSecondPayment(this.TranID, "", "SECOND");
-                this.InitReciept(fReciept);
             }
 
             #endregion
-
         }
         private void CloseContract()
         {

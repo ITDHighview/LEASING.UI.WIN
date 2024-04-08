@@ -150,7 +150,7 @@ namespace LEASING.UI.APP.Forms
 
         private void M_ForDisableOnlyFields()
         {
-            txtAreTotal.Enabled = false;
+            txtAreaTotalAmount.Enabled = false;
             txtBaseRentalVatPercentage.Enabled = false;
             txtBaseRentalVatAmount.Enabled = false;
             txtBaseRentalWithVatAmount.Enabled = false;
@@ -307,8 +307,8 @@ namespace LEASING.UI.APP.Forms
 
         private void M_GetCalculationAreaTotal()
         {
-            var result = Functions.ConvertStringToDecimal(txtAreSql.Text) * Functions.ConvertStringToDecimal(txtAreRateSqm.Text);
-            txtAreTotal.Text = Convert.ToString(result);
+            var result = Math.Round(Functions.ConvertStringToDecimal(txtAreSql.Text) * Functions.ConvertStringToDecimal(txtAreRateSqm.Text));
+            txtAreaTotalAmount.Text = Convert.ToString(result);
         }
         private void M_GetBaseRentalVatAmount()
         {
@@ -327,7 +327,7 @@ namespace LEASING.UI.APP.Forms
             var result = (totalrental - tax);
             if (Functions.ConvertStringToDecimal(txtBaseRental.Text) > 0)
             {
-                txtTotalRental.Text = result.ToString("0.00");
+                txtTotalRental.Text = result.ToString("#,##0.00");
             }
             else
             {
@@ -343,7 +343,7 @@ namespace LEASING.UI.APP.Forms
             decimal result = (totalrental - tax);
             if (Functions.ConvertStringToDecimal(txtBaseRental.Text) > 0)
             {
-                txtTotalRental.Text = result.ToString("0.00");
+                txtTotalRental.Text = result.ToString("#,##0.00");
             }
             else
             {
@@ -500,56 +500,67 @@ namespace LEASING.UI.APP.Forms
         }
 
 
+        private string SelectFloorType()
+        {
+            if (this.ddlFloorType.Text == "--SELECT--")
+            {
+                return "NONE";
+            }
+            else
+            {
+                return this.ddlFloorType.Text;
+            }
+            return "";
+        }
         private void M_SaveUnit()
         {
-            UnitModel dto = new UnitModel();
-            dto.ProjectId = Convert.ToInt32(ddlProject.SelectedValue);
-
-            dto.UnitNo = txtUnitNumber.Text;
-            dto.IsParking = chkIsParking.Checked;
-            dto.FloorNo = Functions.ConvertStringToInt(txtFloorNumber.Text);
-            dto.AreaSqm = Functions.ConvertStringToDecimal(txtAreSql.Text);
-            dto.AreaRateSqm = Functions.ConvertStringToDecimal(txtAreRateSqm.Text);
-            dto.FloorType = ddlFloorType.Text;
-            dto.BaseRental = Functions.ConvertStringToDecimal(txtBaseRental.Text);
-            dto.DetailsofProperty = txtDetailsOfProperty.Text;
-            dto.UnitSequence = Functions.ConvertStringToInt(txtUnitSequence.Text);
-            dto.EncodedBy = Variables.UserID;
-            dto.BaseRentalVatAmount = Functions.ConvertStringToDecimal(txtBaseRentalVatAmount.Text);
-            dto.BaseRentalWithVatAmount = Functions.ConvertStringToDecimal(txtBaseRentalWithVatAmount.Text);
-            dto.BaseRentalTax = Functions.ConvertStringToDecimal(txtBaseRentalTax.Text);
-            dto.IsNonVat = chkNonVat.Checked;
-            dto.TotalRental = Functions.ConvertStringToDecimal(txtTotalRental.Text);
-            dto.SecAndMainAmount = Functions.ConvertStringToDecimal(txtSecAndMainAmount.Text);
-            dto.SecAndMainVatAmount = Functions.ConvertStringToDecimal(txtSecAndMainVatAmount.Text);
-            dto.SecAndMainWithVatAmount = Functions.ConvertStringToDecimal(txtSecAndMainWithVatAmount.Text);
-            dto.Vat = Functions.ConvertStringToDecimal(txtBaseRentalVatPercentage.Text);
-            dto.Tax = WithHoldingTaxParam;
-            dto.TaxAmount = Functions.ConvertStringToDecimal(txtBaseRentalTax.Text);
-
-            dto.Message_Code = UnitContext.SaveUnit(dto);
-            if (dto.Message_Code.Equals("SUCCESS"))
+            UnitModel UnitNew = new UnitModel();
+            UnitNew.ProjectId = Convert.ToInt32(this.ddlProject.SelectedValue);
+            UnitNew.UnitNo = this.txtUnitNumber.Text;
+            UnitNew.IsParking = this.chkIsParking.Checked;
+            UnitNew.FloorNo = Functions.ConvertStringToInt(this.txtFloorNumber.Text);
+            UnitNew.AreaSqm = Functions.ConvertStringToDecimal(this.txtAreSql.Text);
+            UnitNew.AreaRateSqm = Functions.ConvertStringToDecimal(this.txtAreRateSqm.Text);
+            UnitNew.AreaTotalAmount = Functions.ConvertStringToDecimal(this.txtAreaTotalAmount.Text);
+            UnitNew.FloorType = this.SelectFloorType();
+            UnitNew.BaseRental = Functions.ConvertStringToDecimal(this.txtBaseRental.Text);
+            UnitNew.DetailsofProperty = this.txtDetailsOfProperty.Text;
+            UnitNew.UnitSequence = Functions.ConvertStringToInt(this.txtUnitSequence.Text);           
+            UnitNew.BaseRentalVatAmount = Functions.ConvertStringToDecimal(this.txtBaseRentalVatAmount.Text);
+            UnitNew.BaseRentalWithVatAmount = Functions.ConvertStringToDecimal(this.txtBaseRentalWithVatAmount.Text);
+            UnitNew.BaseRentalTax = Functions.ConvertStringToDecimal(this.txtBaseRentalTax.Text);
+            UnitNew.IsNonVat = this.chkNonVat.Checked;
+            UnitNew.TotalRental = Functions.ConvertStringToDecimal(this.txtTotalRental.Text);
+            UnitNew.SecAndMainAmount = Functions.ConvertStringToDecimal(this.txtSecAndMainAmount.Text);
+            UnitNew.SecAndMainVatAmount = Functions.ConvertStringToDecimal(this.txtSecAndMainVatAmount.Text);
+            UnitNew.SecAndMainWithVatAmount = Functions.ConvertStringToDecimal(this.txtSecAndMainWithVatAmount.Text);
+            UnitNew.Vat = Functions.ConvertStringToDecimal(this.txtBaseRentalVatPercentage.Text);
+            UnitNew.Tax = this.WithHoldingTaxParam;
+            UnitNew.TaxAmount = Functions.ConvertStringToDecimal(this.txtBaseRentalTax.Text);
+            
+            UnitNew.Message_Code = UnitContext.SaveUnit(UnitNew);
+            if (UnitNew.Message_Code.Equals("SUCCESS"))
             {
-                MessageBox.Show("New Unit has been added successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                strUnitFormMode = "READ";
-                M_GetUnitList();
+                Functions.MessageShow("New Unit has been added successfully !");
+                this.strUnitFormMode = "READ";
+                this.M_GetUnitList();
 
             }
             else
             {
-                MessageBox.Show(dto.Message_Code, "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Functions.MessageShow(UnitNew.Message_Code);
 
             }
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (strUnitFormMode == "NEW")
+            if (this.strUnitFormMode == "NEW")
             {
-                if (IsUnitValid())
+                if (this.IsUnitValid())
                 {
                     if (MessageBox.Show("Are you sure you want to add this Unit ?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                     {
-                        M_SaveUnit();
+                        this.M_SaveUnit();
                     }
                 }
             }
@@ -693,11 +704,6 @@ namespace LEASING.UI.APP.Forms
 
         }
 
-        private void txtSecAndMainWithVatAmount_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void txtAreTotal_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
@@ -816,9 +822,9 @@ namespace LEASING.UI.APP.Forms
 
         private void txtAreTotal_TextChanged(object sender, EventArgs e)
         {
-            if (Functions.ConvertStringToDecimal(txtAreTotal.Text) > 0)
+            if (Functions.ConvertStringToDecimal(txtAreaTotalAmount.Text) > 0)
             {
-                txtBaseRental.Text = txtAreTotal.Text;
+                txtBaseRental.Text = txtAreaTotalAmount.Text;
             }
         }
 

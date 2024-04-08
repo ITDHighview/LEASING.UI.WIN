@@ -546,6 +546,67 @@ namespace LEASING.UI.APP.Context
             }
             return "";
         }
+        public string HoldPDCPayment(string xml, string CompanyORNo,string CompanyPRNo,string BankAccountName,string BankAccountNumber,string BankName,string SerialNo,string BankBranch, string REF,string ModeType)
+        {
+            SqlCommand _sqlcmd = null;
+            SqlParameter _sqlpara;
+            SqlConnection _sqlcon = null;
+            SqlDataReader _sqlreader = null;
+            _sqlcmd = new SqlCommand();
+            _sqlcmd.CommandText = "sp_HoldPDCPayment";
+
+            _sqlpara = new SqlParameter("@XML", xml);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@CompanyORNo", CompanyORNo);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@CompanyPRNo", CompanyPRNo);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@BankAccountName", BankAccountName);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@BankAccountNumber", BankAccountNumber);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@BankName", BankName);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@SerialNo", SerialNo);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@BankBranch", BankBranch);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@REF", REF);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@ModeType", ModeType);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            try
+            {
+                _sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
+                _sqlcmd.Connection = _sqlcon;
+                _sqlcmd.CommandType = CommandType.StoredProcedure;
+                _sqlcmd.Connection.Open();
+                _sqlreader = _sqlcmd.ExecuteReader();
+                _sqlreader.Read();
+                int index;
+                if (_sqlreader.HasRows)
+                {
+                    index = _sqlreader.GetOrdinal("Message_Code");
+                    if (!_sqlreader.IsDBNull(index))
+                        return Convert.ToString(_sqlreader.GetString(index));
+                }
+            }
+            catch (Exception expCommon)
+            {
+                return "FAILED|" + Convert.ToString(expCommon.Message);
+            }
+            finally
+            {
+                if (_sqlcon.State != ConnectionState.Closed)
+                {
+                    _sqlcon.Close();
+                }
+                _sqlpara = null;
+                _sqlcmd = null;
+                _sqlreader = null;
+            }
+            return "";
+        }
         public string SaveNewBankName(string bankName)
         {
             SqlCommand _sqlcmd = null;

@@ -13,14 +13,12 @@ CREATE PROCEDURE [dbo].[sp_SaveNewtUnit]
     @FloorNo INT = NULL,
     @AreaSqm DECIMAL(18, 2) = NULL,
     @AreaRateSqm DECIMAL(18, 2) = NULL,
+    @AreaTotalAmount DECIMAL(18, 2) = NULL,
     @FloorType VARCHAR(50) = NULL,
     @BaseRental DECIMAL(18, 2) = NULL,
-    --@UnitStatus VARCHAR(50) = NULL,
     @DetailsofProperty VARCHAR(300) = NULL,
     @UnitNo VARCHAR(20) = NULL,
     @UnitSequence INT = NULL,
-    @EndodedBy INT = NULL,
-    @ComputerName VARCHAR(20) = NULL,
     @BaseRentalVatAmount DECIMAL(18, 2) = NULL,
     @BaseRentalWithVatAmount DECIMAL(18, 2) = NULL,
     @BaseRentalTax DECIMAL(18, 2) = NULL,
@@ -31,7 +29,9 @@ CREATE PROCEDURE [dbo].[sp_SaveNewtUnit]
     @SecAndMainWithVatAmount DECIMAL(18, 2) = NULL,
     @Vat DECIMAL(18, 2) = NULL,
     @Tax DECIMAL(18, 2) = NULL,
-    @TaxAmount DECIMAL(18, 2) = NULL
+    @TaxAmount DECIMAL(18, 2) = NULL,
+    @EndodedBy INT = NULL,
+    @ComputerName VARCHAR(20) = NULL
 AS
 BEGIN
     DECLARE @Message_Code VARCHAR(100) = '';
@@ -52,6 +52,7 @@ BEGIN
             [FloorNo],
             [AreaSqm],
             [AreaRateSqm],
+            [AreaTotalAmount],
             [FloorType],
             [BaseRental],
             [UnitStatus],
@@ -75,7 +76,7 @@ BEGIN
             [TaxAmount]
         )
         VALUES
-        (@ProjectId, @IsParking, @FloorNo, @AreaSqm, @AreaRateSqm, @FloorType, @BaseRental, 'VACANT',
+        (@ProjectId, @IsParking, @FloorNo, @AreaSqm, @AreaRateSqm, @AreaTotalAmount, @FloorType, @BaseRental, 'VACANT',
          @DetailsofProperty, @UnitNo, @UnitSequence, @EndodedBy, GETDATE(), 1, @ComputerName, @BaseRentalVatAmount,
          @BaseRentalWithVatAmount, @BaseRentalTax, @IsNonVat, @TotalRental, @SecAndMainAmount, @SecAndMainVatAmount,
          @SecAndMainWithVatAmount, @Vat, @Tax, @TaxAmount);

@@ -41,7 +41,24 @@ CREATE TABLE [dbo].[tblUnitReference]
 [IsFullPayment] [bit] NULL,
 [PenaltyPct] [decimal] (18, 2) NULL,
 [IsPartialPayment] [bit] NULL,
-[FirtsPaymentBalanceAmount] [decimal] (18, 2) NULL
+[FirtsPaymentBalanceAmount] [decimal] (18, 2) NULL,
+[Unit_IsNonVat] [bit] NULL,
+[Unit_BaseRentalVatAmount] [decimal] (18, 2) NULL,
+[Unit_BaseRentalWithVatAmount] [decimal] (18, 2) NULL,
+[Unit_BaseRentalTax] [decimal] (18, 2) NULL,
+[Unit_TotalRental] [decimal] (18, 2) NULL,
+[Unit_SecAndMainAmount] [decimal] (18, 2) NULL,
+[Unit_SecAndMainVatAmount] [decimal] (18, 2) NULL,
+[Unit_SecAndMainWithVatAmount] [decimal] (18, 2) NULL,
+[Unit_Vat] [decimal] (18, 2) NULL,
+[Unit_Tax] [decimal] (18, 2) NULL,
+[Unit_TaxAmount] [decimal] (18, 2) NULL,
+[Unit_IsParking] [bit] NULL,
+[Unit_ProjectType] [varchar] (150) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[Unit_AreaTotalAmount] [decimal] (18, 2) NULL,
+[Unit_AreaSqm] [decimal] (18, 2) NULL,
+[Unit_AreaRateSqm] [decimal] (18, 2) NULL,
+[IsRenewal] [bit] NULL
 ) ON [PRIMARY]
 GO
 SET QUOTED_IDENTIFIER ON

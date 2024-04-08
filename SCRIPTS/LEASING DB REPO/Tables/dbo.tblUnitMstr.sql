@@ -34,6 +34,7 @@ CREATE TABLE [dbo].[tblUnitMstr]
 [SecAndMainWithVatAmount] [decimal] (18, 2) NULL,
 [Vat] [decimal] (18, 2) NULL,
 [Tax] [decimal] (18, 2) NULL,
-[TaxAmount] [decimal] (18, 2) NULL
+[TaxAmount] [decimal] (18, 2) NULL,
+[AreaTotalAmount] [decimal] (18, 2) NULL
 ) ON [PRIMARY]
 GO

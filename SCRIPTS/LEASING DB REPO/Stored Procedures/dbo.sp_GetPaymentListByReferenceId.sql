@@ -19,7 +19,7 @@ BEGIN
            [tblPayment].[TranId],
            [tblPayment].[Amount],
            ISNULL(CONVERT(VARCHAR(20), [tblPayment].[ForMonth], 107), '') AS [ForMonth],
-           [tblPayment].[Remarks],
+           COALESCE([tblPayment].[Notes], [tblPayment].[Remarks]) AS [Remarks],
            [tblPayment].[EncodedBy],
            ISNULL(CONVERT(VARCHAR(20), [tblPayment].[EncodedDate], 107), '') AS [DatePayed],
            [tblPayment].[LastChangedBy],
@@ -29,6 +29,6 @@ BEGIN
            [tblPayment].[RefId]
     FROM [dbo].[tblPayment]
     WHERE [tblPayment].[RefId] = @RefId
-         
+    ORDER BY [EncodedDate] ASC
 END;
 GO

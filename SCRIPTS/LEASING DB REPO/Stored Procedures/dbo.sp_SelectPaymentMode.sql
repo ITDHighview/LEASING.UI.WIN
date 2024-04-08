@@ -17,13 +17,13 @@ BEGIN
 
     --SELECT -1 AS ModeType,'--SELECT--' AS Mode
     --UNION
-    SELECT 'CASH' AS [ModeType],
-           'CASH' AS [Mode]
+    SELECT 'PDC' AS [ModeType],
+           'PDC' AS [Mode]
     UNION
     SELECT 'BANK' AS [ModeType],
            'BANK' AS [Mode]
     UNION
-    SELECT 'PDC' AS [ModeType],
-           'PDC' AS [Mode];
+    SELECT 'CASH' AS [ModeType],
+           'CASH' AS [Mode]
 END;
 GO

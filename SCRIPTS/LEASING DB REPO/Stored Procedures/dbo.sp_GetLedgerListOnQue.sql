@@ -61,8 +61,18 @@ BEGIN
                ),
                ([tblMonthLedger].[LedgRentalAmount] - ISNULL([tblMonthLedger].[BalanceAmount], 0)),
                0) AS [AmountPaid],
-           CAST(ABS(ISNULL([tblMonthLedger].[BalanceAmount], 0)) AS DECIMAL(18, 2)) AS [BalanceAmount]
-         
+           CAST(ABS(ISNULL([tblMonthLedger].[BalanceAmount], 0)) AS DECIMAL(18, 2)) AS [BalanceAmount],
+           --ISNULL([tblMonthLedger].[PaymentMode], '') AS [PaymentMode],
+           --ISNULL([tblMonthLedger].[RcptID], '') AS [RcptID],
+           ISNULL([tblMonthLedger].[CompanyORNo], '') AS [CompanyORNo],
+           ISNULL([tblMonthLedger].[CompanyPRNo], '') AS [CompanyPRNo],
+           ISNULL([tblMonthLedger].[REF], '') AS [REF],
+           ISNULL([tblMonthLedger].[BNK_ACCT_NAME], '') AS [BNK_ACCT_NAME],
+           ISNULL([tblMonthLedger].[BNK_ACCT_NUMBER], '') AS [BNK_ACCT_NUMBER],
+           ISNULL([tblMonthLedger].[BNK_NAME], '') AS [BNK_NAME],
+           ISNULL([tblMonthLedger].[SERIAL_NO], '') AS [SERIAL_NO],
+           ISNULL([tblMonthLedger].[ModeType], '') AS [ModeType],
+           ISNULL([tblMonthLedger].[BankBranch], '') AS [BankBranch]
     FROM [dbo].[tblMonthLedger]
     WHERE [tblMonthLedger].[Recid] IN
           (

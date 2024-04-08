@@ -9,16 +9,13 @@ GO
 -- =============================================
 CREATE PROCEDURE [dbo].[sp_SelectBankName]
 AS
-    BEGIN
-        -- SET NOCOUNT ON added to prevent extra result sets from
-        -- interfering with SELECT statements.
-        SET NOCOUNT ON;
+BEGIN
+    -- SET NOCOUNT ON added to prevent extra result sets from
+    -- interfering with SELECT statements.
+    SET NOCOUNT ON;
 
-        -- Insert statements for procedure here
-        SELECT
-            [tblBankName].[RecId],
-            [tblBankName].[BankName]
-        FROM
-            [dbo].[tblBankName] WITH (NOLOCK);
-    END;
+    -- Insert statements for procedure here
+    SELECT ISNULL([tblBankName].[BankName], '') AS [BankName]
+    FROM [dbo].[tblBankName]
+END;
 GO

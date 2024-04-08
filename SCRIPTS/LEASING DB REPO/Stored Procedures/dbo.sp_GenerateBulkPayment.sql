@@ -104,16 +104,14 @@ BEGIN TRY
 
 
     DECLARE [CursorName] CURSOR FOR
-    SELECT
-        --IIF([tblMonthLedger].[BalanceAmount] > 0, [tblMonthLedger].[BalanceAmount], [tblMonthLedger].[LedgAmount]) AS [Amount],
-        IIF([tblMonthLedger].[BalanceAmount] > 0,
-            [tblMonthLedger].[BalanceAmount],
-            IIF([tblMonthLedger].[ActualAmount] > 0,
-                CAST([tblMonthLedger].[ActualAmount] AS DECIMAL(18, 2)),
-                [tblMonthLedger].[LedgRentalAmount])) AS [Amount],
-        [tblMonthLedger].[LedgMonth],
-        [tblMonthLedger].[Recid],
-        [tblMonthLedger].[LedgAmount]
+    SELECT IIF([tblMonthLedger].[BalanceAmount] > 0,
+               [tblMonthLedger].[BalanceAmount],
+               IIF([tblMonthLedger].[ActualAmount] > 0,
+                   CAST([tblMonthLedger].[ActualAmount] AS DECIMAL(18, 2)),
+                   [tblMonthLedger].[LedgRentalAmount])) AS [Amount],
+           [tblMonthLedger].[LedgMonth],
+           [tblMonthLedger].[Recid],
+           [tblMonthLedger].[LedgAmount]
     FROM [dbo].[tblMonthLedger] WITH (NOLOCK)
     WHERE [tblMonthLedger].[ReferenceID] =
     (
@@ -159,6 +157,15 @@ BEGIN TRY
                 UPDATE [dbo].[tblMonthLedger]
                 SET [tblMonthLedger].[IsPaid] = 1,
                     [tblMonthLedger].[IsHold] = 0,
+                    [tblMonthLedger].[CompanyORNo] = @CompanyORNo,
+                    [tblMonthLedger].[CompanyPRNo] = @CompanyPRNo,
+                    [tblMonthLedger].[REF] = @REF,
+                    [tblMonthLedger].[BNK_ACCT_NAME] = @BankAccountName,
+                    [tblMonthLedger].[BNK_ACCT_NUMBER] = @BankAccountNumber,
+                    [tblMonthLedger].[BNK_NAME] = @BankName,
+                    [tblMonthLedger].[SERIAL_NO] = @SerialNo,
+                    [tblMonthLedger].[ModeType] = @ModeType,
+                    [tblMonthLedger].[BankBranch] = @BankBranch,
                     [tblMonthLedger].[BalanceAmount] = 0,
                     [tblMonthLedger].[TransactionID] = @TranID
                 WHERE [tblMonthLedger].[LedgMonth] = @ForMonth
@@ -168,9 +175,6 @@ BEGIN TRY
                           OR ISNULL([tblMonthLedger].[IsHold], 0) = 1
                       )
                       AND [tblMonthLedger].[Recid] = @ForMonthRecID
-
-                --IF @ActualLedgeAMount = @ReceiveAmount
-                --   OR @ReceiveAmount < @ActualLedgeAMount --- to avoid Duplicate 
                 BEGIN
                     INSERT INTO [dbo].[tblPayment]
                     (
@@ -183,7 +187,8 @@ BEGIN TRY
                         [EncodedDate],
                         [ComputerName],
                         [IsActive],
-                        [Notes]
+                        [Notes],
+                        [LedgeRecid]
                     )
                     SELECT @TranID AS [TranId],
                            @RefId AS [RefId],
@@ -194,7 +199,8 @@ BEGIN TRY
                            GETDATE(),                   --Dated payed
                            @ComputerName,
                            1,
-                           [tblMonthLedger].[Remarks]
+                           [tblMonthLedger].[Remarks],
+                           [tblMonthLedger].[Recid]
                     FROM [dbo].[tblMonthLedger] WITH (NOLOCK)
                     WHERE [tblMonthLedger].[ReferenceID] =
                     (
@@ -203,7 +209,6 @@ BEGIN TRY
                         WHERE [tblUnitReference].[RefId] = @RefId
                     )
                           AND [tblMonthLedger].[Recid] IN ( @ForMonthRecID )
-                --AND [tblMonthLedger].[LedgMonth] = @ForMonth
                 END
 
             END
@@ -211,6 +216,15 @@ BEGIN TRY
             BEGIN
                 UPDATE [dbo].[tblMonthLedger]
                 SET [tblMonthLedger].[IsHold] = 1,
+                    [tblMonthLedger].[CompanyORNo] = @CompanyORNo,
+                    [tblMonthLedger].[CompanyPRNo] = @CompanyPRNo,
+                    [tblMonthLedger].[REF] = @REF,
+                    [tblMonthLedger].[BNK_ACCT_NAME] = @BankAccountName,
+                    [tblMonthLedger].[BNK_ACCT_NUMBER] = @BankAccountNumber,
+                    [tblMonthLedger].[BNK_NAME] = @BankName,
+                    [tblMonthLedger].[SERIAL_NO] = @SerialNo,
+                    [tblMonthLedger].[ModeType] = @ModeType,
+                    [tblMonthLedger].[BankBranch] = @BankBranch,
                     [tblMonthLedger].[BalanceAmount] = ABS(@ActualAmount - @AmountToDeduct),
                     [tblMonthLedger].[TransactionID] = @TranID --- TRN WILL CHANGE IF ALWAYS A PAYMENT FOR BALANCE AMOUNT
                 WHERE [tblMonthLedger].[LedgMonth] = @ForMonth
@@ -232,7 +246,8 @@ BEGIN TRY
                     [EncodedDate],
                     [ComputerName],
                     [IsActive],
-                    [Notes]
+                    [Notes],
+                    [LedgeRecid]
                 )
                 SELECT @TranID AS [TranId],
                        @RefId AS [RefId],
@@ -243,7 +258,8 @@ BEGIN TRY
                        GETDATE(),                                                                              --Dated payed
                        @ComputerName,
                        1,
-                       [tblMonthLedger].[Remarks]
+                       [tblMonthLedger].[Remarks],
+                       [tblMonthLedger].[Recid]
                 FROM [dbo].[tblMonthLedger] WITH (NOLOCK)
                 WHERE [tblMonthLedger].[ReferenceID] =
                 (
@@ -251,13 +267,7 @@ BEGIN TRY
                     FROM [dbo].[tblUnitReference] WITH (NOLOCK)
                     WHERE [tblUnitReference].[RefId] = @RefId
                 )
-                      AND [tblMonthLedger].[Recid] IN (
-                                                          --SELECT [#tblBulkPostdatedMonth].[Recid]
-                                                          --FROM [#tblBulkPostdatedMonth] WITH (NOLOCK)
-                                                          @ForMonthRecID
-                                                      )
-            --AND [tblMonthLedger].[LedgMonth] = @ForMonth
-
+                      AND [tblMonthLedger].[Recid] IN ( @ForMonthRecID )
 
             END
         END

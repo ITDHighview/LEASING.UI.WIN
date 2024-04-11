@@ -9,30 +9,36 @@ GO
 --SELECT [dbo].[fnGetPostDatedMonthCount](10000000)
 -- =============================================
 CREATE FUNCTION [dbo].[fnGetPostDatedMonthCount]
-(
-    -- Add the parameters for the function here
-    @RefId AS BIGINT
-)
+    (
+        -- Add the parameters for the function here
+        @RefId AS BIGINT
+    )
 RETURNS INT
 AS
-BEGIN
-    -- Declare the return variable here
-    DECLARE @counts INT
+    BEGIN
+        -- Declare the return variable here
+        DECLARE @counts INT
 
 
-    -- Add the T-SQL statements to compute the return value here
-    SELECT @counts = COUNT(*)
-    FROM [dbo].[tblMonthLedger]
-    WHERE [dbo].[tblMonthLedger].[ReferenceID] = @RefId
-          AND [tblMonthLedger].[LedgMonth] NOT IN
-              (
-                  SELECT [tblAdvancePayment].[Months]
-                  FROM [dbo].[tblAdvancePayment]
-                  WHERE [tblAdvancePayment].[RefId] = 'REF' + CAST(@RefId AS VARCHAR(50))
-              )
+        -- Add the T-SQL statements to compute the return value here
+        SELECT
+            @counts = (COUNT(*)/2)
+        FROM
+            [dbo].[tblMonthLedger]
+        WHERE
+            [dbo].[tblMonthLedger].[ReferenceID] = @RefId
+            AND [tblMonthLedger].[LedgMonth] NOT IN
+                    (
+                        SELECT
+                            [tblAdvancePayment].[Months]
+                        FROM
+                            [dbo].[tblAdvancePayment]
+                        WHERE
+                            [tblAdvancePayment].[RefId] = 'REF' + CAST(@RefId AS VARCHAR(50))
+                    )
 
 
-    RETURN @counts
+        RETURN @counts
 
-END
+    END
 GO

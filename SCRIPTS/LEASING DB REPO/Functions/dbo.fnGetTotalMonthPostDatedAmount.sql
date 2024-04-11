@@ -21,7 +21,7 @@ BEGIN
 
 
     -- Add the T-SQL statements to compute the return value here
-    SELECT @Amount = SUM([dbo].[tblMonthLedger].[LedgAmount])
+    SELECT @Amount = SUM([dbo].[tblMonthLedger].[LedgRentalAmount])
     FROM [dbo].[tblMonthLedger]
     WHERE [tblMonthLedger].[ReferenceID] = @RefId
 

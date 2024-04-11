@@ -2,7 +2,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_NULLS ON
 GO
-CREATE PROCEDURE [dbo].[sp_ContractSignedResidentialReport] @RefId AS VARCHAR(20) = NULL
+CREATE PROCEDURE [dbo].[sp_ContractSignedParkingReport] @RefId AS VARCHAR(20) = NULL
 AS
     BEGIN
         SET NOCOUNT ON;
@@ -37,7 +37,7 @@ AS
                 CAST([tblUnitReference].[GenVat] AS VARCHAR(100)) + ' %'                                                                                        AS [VatPercentage_WithWords],
                 [tblClientMstr].[ClientName]                                                                                                                    AS [Lessee],
                 [dbo].[fnGetClientIsRenewal]([dbo].[tblUnitReference].[ClientID], [dbo].[tblUnitReference].[ProjectId])
-                + '(' + UPPER([dbo].[fnGetProjectTypeByUnitId]([dbo].[tblUnitReference].[UnitId])) + ')'                                                        AS [ContractTitle],
+                + '(' + 'PARKING' + ')'                                                                                                                         AS [ContractTitle],
                 CAST(CONCAT(
                                CONVERT(VARCHAR(10), [tblUnitReference].[StatDate], 101), '-',
                                CONVERT(VARCHAR(10), [tblUnitReference].[FinishDate], 101)
@@ -46,7 +46,8 @@ AS
                 CAST([tblUnitReference].[Unit_SecAndMainAmount] AS VARCHAR(150))                                                                                AS [TSecurityandMaintenance],
                 CONCAT(CAST([tblUnitReference].[Unit_Vat] AS VARCHAR(150)), ' % VAT')                                                                           AS [TLableVAT],
                 CAST(CAST([tblUnitReference].[Unit_BaseRentalVatAmount] + [tblUnitReference].[Unit_SecAndMainVatAmount] AS DECIMAL(18, 2)) AS VARCHAR(150))     AS [TVAT],
-                CAST([tblUnitReference].[Unit_TotalRental] AS VARCHAR(150))                                                                                     AS [TTotalMonthlyRental]
+                CAST([tblUnitReference].[Unit_TotalRental] AS VARCHAR(150))                                                                                     AS [TTotalMonthlyRental],
+				CAST(DATENAME(DAY,[tblUnitReference].[StatDate])AS VARCHAR(150)) AS [DayOfMonth]
         FROM
                 [dbo].[tblUnitReference] WITH (NOLOCK)
             INNER JOIN

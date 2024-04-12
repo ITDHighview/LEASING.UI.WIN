@@ -216,21 +216,29 @@ namespace LEASING.UI.APP.Forms
             using (DataSet dt = ClientContext.GetCheckContractProjectType(refid))
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
-                {
-                    if (Convert.ToString(dt.Tables[0].Rows[0]["ProjectType"]) == "RESIDENTIAL")
+                {           
+                    if (Convert.ToString(dt.Tables[0].Rows[0]["UnitType"]) == "UNIT")
                     {
-                        frmContractSingedResidentialReport contractResidential = new frmContractSingedResidentialReport(refid);
-                        contractResidential.Show();
-                    }
-                    else if (Convert.ToString(dt.Tables[0].Rows[0]["ProjectType"]) == "COMMERCIAL")
-                    {
-                        frmContractSingedCommercialReport contractCommercial = new frmContractSingedCommercialReport(refid);
-                        contractCommercial.Show();
+                        if (Convert.ToString(dt.Tables[0].Rows[0]["ProjectType"]) == "RESIDENTIAL")
+                        {
+                            frmContractSingedResidentialReport contractResidential = new frmContractSingedResidentialReport(refid);
+                            contractResidential.Show();
+                        }
+                        else if (Convert.ToString(dt.Tables[0].Rows[0]["ProjectType"]) == "COMMERCIAL")
+                        {
+                            frmContractSingedCommercialReport contractCommercial = new frmContractSingedCommercialReport(refid);
+                            contractCommercial.Show();
+                        }
+                        else
+                        {
+                            frmContractSingedWareHouseReport contractWareHouse = new frmContractSingedWareHouseReport(refid);
+                            contractWareHouse.Show();
+                        }
                     }
                     else
                     {
-                        frmContractSingedWareHouseReport contractWareHouse = new frmContractSingedWareHouseReport(refid);
-                        contractWareHouse.Show();
+                        frmContractSingedParkingReport parking = new frmContractSingedParkingReport(refid);
+                        parking.Show();
                     }
                 }
             }

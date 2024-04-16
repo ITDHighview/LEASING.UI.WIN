@@ -19,7 +19,7 @@ AS
             ISNULL([tblClientMstr].[ClientName], '')                                          AS [ClientName],
             ISNULL([tblClientMstr].[Age], 0)                                                  AS [Age],
             ISNULL([tblClientMstr].[PostalAddress], '')                                       AS [PostalAddress],
-            ISNULL(CONVERT(VARCHAR(10), [tblClientMstr].[DateOfBirth], 103), '')              AS [DateOfBirth],
+            ISNULL(CONVERT(VARCHAR(10), [tblClientMstr].[DateOfBirth], 1), '')              AS [DateOfBirth],
             ISNULL([tblClientMstr].[TelNumber], 0)                                            AS [TelNumber],
             IIF(ISNULL([tblClientMstr].[Gender], 0) = 1, 'MALE', 'FEMALE')                    AS [Gender],
             ISNULL([tblClientMstr].[Nationality], '')                                         AS [Nationality],

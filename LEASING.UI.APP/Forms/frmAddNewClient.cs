@@ -314,6 +314,7 @@ namespace LEASING.UI.APP.Forms
                     frmEditClient forms = new frmEditClient();
                     forms.ClientID = Convert.ToString(dgvClientList.CurrentRow.Cells["ClientID"].Value);
                     forms.ShowDialog();
+                    M_GetClientList();
                     if (forms.IsProceed)
                     {
                         // M_GetProjectList();

@@ -7,14 +7,14 @@ GO
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE PROCEDURE [dbo].[sp_GetClientById] @ClientID VARCHAR(50)
+CREATE PROCEDURE [dbo].[sp_GetClientList]
 AS
     BEGIN
 
         SET NOCOUNT ON;
 
         SELECT
-            [tblClientMstr].[ClientID],
+            ISNULL([tblClientMstr].[ClientID], '')                                            AS [ClientID],
             IIF(ISNULL([tblClientMstr].[ClientType], '') = 'INDV', 'INDIVIDUAL', 'CORPORATE') AS [ClientType],
             ISNULL([tblClientMstr].[ClientName], '')                                          AS [ClientName],
             ISNULL([tblClientMstr].[Age], 0)                                                  AS [Age],
@@ -45,8 +45,6 @@ AS
             IIF(ISNULL([tblClientMstr].[IsActive], 0) = 1, 'ACTIVE', 'IN-ACTIVE')             AS [IsActive],
 			ISNULL(TIN_No,'') AS TIN_No
         FROM
-            [dbo].[tblClientMstr]
-        WHERE
-            [tblClientMstr].[ClientID] = @ClientID;
+            [dbo].[tblClientMstr];
     END;
 GO

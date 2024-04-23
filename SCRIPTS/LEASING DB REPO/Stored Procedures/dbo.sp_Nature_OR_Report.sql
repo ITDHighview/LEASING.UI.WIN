@@ -9,6 +9,7 @@ GO
 --EXEC [sp_Nature_OR_Report] @TranID = 'TRN10000000',@Mode = 'SEC',@PaymentLevel = 'FIRST'
 --EXEC [sp_Nature_OR_Report] @TranID = 'TRN10000004',@Mode = 'REN',@PaymentLevel = 'SECOND'
 --EXEC [sp_Nature_OR_Report] @TranID = 'TRN10000004',@Mode = 'MAIN',@PaymentLevel = 'SECOND'
+--TRUNCATE TABLE [dbo].[tblRecieptReport]
 CREATE PROCEDURE [dbo].[sp_Nature_OR_Report]
     @TranID       VARCHAR(20) = NULL,
     @Mode         VARCHAR(50) = NULL,
@@ -569,16 +570,27 @@ AS
                                         [PAYMENT].[PAYMENT_FOR]                                                  AS [PaymentFor],
                                         [TRANSACTION].[ReceiveAmount]                                            AS [TotalAmountInDigit],
                                         [TRANSACTION].[ReceiveAmount]                                            AS [RENTAL],
-                                        CAST(CAST((([tblUnitReference].[Unit_Vat] * [TRANSACTION].[ReceiveAmount])
-                                                   / 100
-                                                  ) AS DECIMAL(18, 2)) AS VARCHAR(30))                           AS [VAT],
+                                        --CAST(CAST((([tblUnitReference].[Unit_Vat] * [TRANSACTION].[ReceiveAmount])
+                                        --           / 100
+                                        --          ) AS DECIMAL(18, 2)) AS VARCHAR(30))                           AS [VAT],
+                                        CAST([dbo].[fnGetBaseRentalTotalVatAmount](
+                                                                                      [dbo].[tblUnitReference].[RefId],
+                                                                                      [TRANSACTION].[AmountToPay],
+                                                                                      [TRANSACTION].[ReceiveAmount]
+                                                                                  ) AS VARCHAR(150))             AS [VAT],
+								
                                         CAST([tblUnitReference].[Unit_Vat] AS VARCHAR(10)) + '% VAT'             AS [VATPct],
                                         [TRANSACTION].[ReceiveAmount]                                            AS [TOTAL],
-                                        IIF([tblUnitReference].[Unit_Tax] > 0,
-                                            CAST(CAST((([tblUnitReference].[Unit_Tax] * [TRANSACTION].[ReceiveAmount])
-                                                       / 100
-                                                      ) AS DECIMAL(18, 2)) AS VARCHAR(30)),
-                                            '0.00')                                                              AS [LESSWITHHOLDING],
+                                        --IIF([tblUnitReference].[Unit_Tax] > 0,
+                                        --    CAST(CAST((([tblUnitReference].[Unit_Tax] * [TRANSACTION].[ReceiveAmount])
+                                        --               / 100
+                                        --              ) AS DECIMAL(18, 2)) AS VARCHAR(30)),
+                                        --    '0.00')                                                              AS [LESSWITHHOLDING],
+                                        CAST([dbo].[fnGetBaseRentalTotalTaxAmount](
+                                                                                      [dbo].[tblUnitReference].[RefId],
+                                                                                      [TRANSACTION].[AmountToPay],
+                                                                                      [TRANSACTION].[ReceiveAmount]
+                                                                                  ) AS VARCHAR(150))             AS [LESSWITHHOLDING],
                                         [TRANSACTION].[ReceiveAmount]                                            AS [TOTALAMOUNTDUE],
                                         [RECEIPT].[BankName]                                                     AS [BANKNAME],
                                         [RECEIPT].[PDC_CHECK_SERIAL]                                             AS [PDCCHECKSERIALNO],
@@ -611,6 +623,9 @@ AS
                                             SELECT
                                                     [tblTransaction].[EncodedDate]                                   AS [TransactionDate],
                                                     [tblTransaction].[TranID],
+                                                
+                                                            SUM([tblMonthLedger].[LedgRentalAmount]) 
+                                                                                                           AS [AmountToPay],
                                                     ISNULL([dbo].[fn_GetUserName]([tblTransaction].[EncodedBy]), '') AS [USER],
                                                     SUM([tblPayment].[Amount])                                       AS [ReceiveAmount]
                                             FROM
@@ -618,6 +633,8 @@ AS
                                                 INNER JOIN
                                                     [dbo].[tblPayment]
                                                         ON [tblPayment].[TranId] = [tblTransaction].[TranID]
+														INNER JOIN [dbo].[tblMonthLedger]
+														ON [tblMonthLedger].[Recid] = [tblPayment].[LedgeRecid]
                                             WHERE
                                                     [tblUnitReference].[RefId] = [tblTransaction].[RefId]
                                                     AND [tblPayment].[Notes] = 'RENTAL NET OF VAT'
@@ -625,7 +642,8 @@ AS
                                                     [tblTransaction].[EncodedDate],
                                                     [tblTransaction].[TranID],
                                                     [tblTransaction].[EncodedBy],
-                                                    [tblPayment].[Amount]
+                                                    [tblPayment].[Amount],
+                                                    [tblTransaction].[PaidAmount]
                                         ) [TRANSACTION]
                                         OUTER APPLY
                                         (

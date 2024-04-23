@@ -1,4 +1,5 @@
-﻿using LEASING.UI.APP.Context;
+﻿using LEASING.UI.APP.Common;
+using LEASING.UI.APP.Context;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -63,7 +64,7 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-        private void M_GetRateSettings()
+        private void GetRateSettings()
         {
             using (DataSet dt = RateSettingsContext.GetRESIDENTIALSettings())
             {
@@ -81,12 +82,14 @@ namespace LEASING.UI.APP.Forms
 
         private void M_UpdateRates()
         {
-            string results = RateSettingsContext.UpdateRESIDENTIALSettings(txtGenVat.Text == string.Empty ? 0 : decimal.Parse(txtGenVat.Text), txtSecAndMaintenance.Text == string.Empty ? 0 : decimal.Parse(txtSecAndMaintenance.Text), txtPentalty.Text == string.Empty ? 0 : decimal.Parse(txtPentalty.Text));
+            string results = RateSettingsContext.UpdateRESIDENTIALSettings(Functions.ConvertStringToDecimal(txtGenVat.Text), 
+                                                                            Functions.ConvertStringToDecimal(txtSecAndMaintenance.Text),
+                                                                            Functions.ConvertStringToDecimal(txtPentalty.Text));
             if (results.Equals("SUCCESS"))
             {
                 MessageBox.Show("Rate  has been Upated successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 strRateFormMode = "READ";
-                M_GetRateSettings();
+                this.GetRateSettings();
             }
             else
             {
@@ -95,29 +98,29 @@ namespace LEASING.UI.APP.Forms
         }
         private void M_GetVatAMount()
         {
-            var AMount = ((txtSecAndMaintenance.Text == "" ? 0 : Convert.ToDecimal(txtSecAndMaintenance.Text)) * (txtGenVat.Text == "" ? 0 : Convert.ToDecimal(txtGenVat.Text)) / 100);
-            txtVatAmount.Text = Convert.ToString(AMount);
+            var AMount = ((Functions.ConvertStringToDecimal(txtSecAndMaintenance.Text) * Functions.ConvertStringToDecimal(txtGenVat.Text)) / 100);
+            txtVatAmount.Text = AMount.ToString("0.00"); 
 
 
         }
         private void M_GetSecAndMainVatAMount()
         {
-            var AMount = ((txtSecAndMaintenance.Text == "" ? 0 : Convert.ToDecimal(txtSecAndMaintenance.Text)) + (txtVatAmount.Text == "" ? 0 : Convert.ToDecimal(txtVatAmount.Text)));
-            txtSecAndMaintenanceWithVat.Text = Convert.ToString(AMount);
+            var AMount = (Functions.ConvertStringToDecimal(txtSecAndMaintenance.Text) + Functions.ConvertStringToDecimal(txtVatAmount.Text));
+            txtSecAndMaintenanceWithVat.Text = AMount.ToString("0.00");
 
 
         }
         private void frmResidentialRateSettings_Load(object sender, EventArgs e)
         {
-            strRateFormMode = "READ";
-            M_GetRateSettings();
+            this.strRateFormMode = "READ";
+            this.GetRateSettings();
             M_GetVatAMount();
             M_GetSecAndMainVatAMount();
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            strRateFormMode = "EDIT";
+            this.strRateFormMode = "EDIT";
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -142,7 +145,7 @@ namespace LEASING.UI.APP.Forms
 
         private void btnUndo_Click(object sender, EventArgs e)
         {
-            strRateFormMode = "READ";
+            this.strRateFormMode = "READ";
         }
 
         private void txtGenVat_KeyPress(object sender, KeyPressEventArgs e)
@@ -185,6 +188,12 @@ namespace LEASING.UI.APP.Forms
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
+        }
+
+        private void txtSecAndMaintenance_TextChanged(object sender, EventArgs e)
+        {
+            M_GetVatAMount();
+            M_GetSecAndMainVatAMount();
         }
     }
 }

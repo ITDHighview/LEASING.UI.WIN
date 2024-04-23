@@ -250,6 +250,7 @@
             this.txtSecAndMaintenance.TabIndex = 0;
             this.txtSecAndMaintenance.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSecAndMaintenance.ThemeName = "Office2007Silver";
+            this.txtSecAndMaintenance.TextChanged += new System.EventHandler(this.txtSecAndMaintenance_TextChanged);
             this.txtSecAndMaintenance.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSecAndMaintenance_KeyPress);
             // 
             // radLabel9

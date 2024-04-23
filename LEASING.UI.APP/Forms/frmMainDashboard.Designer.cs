@@ -1283,9 +1283,10 @@
             this.dgvUnitList.MasterTemplate.AllowAddNewRow = false;
             this.dgvUnitList.MasterTemplate.AllowColumnReorder = false;
             this.dgvUnitList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn7.FieldName = "UnitDescription";
-            gridViewTextBoxColumn7.HeaderText = "Type";
-            gridViewTextBoxColumn7.Name = "UnitDescription";
+            gridViewTextBoxColumn7.FieldName = "TotalMonthlyRental";
+            gridViewTextBoxColumn7.HeaderText = "Total Monthly Rental";
+            gridViewTextBoxColumn7.Name = "TotalMonthlyRental";
+            gridViewTextBoxColumn7.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewTextBoxColumn7.Width = 62;
             gridViewTextBoxColumn8.FieldName = "UnitNo";
             gridViewTextBoxColumn8.HeaderText = "Unit No";

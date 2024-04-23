@@ -1,4 +1,5 @@
-﻿using LEASING.UI.APP.Context;
+﻿using LEASING.UI.APP.Common;
+using LEASING.UI.APP.Context;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -82,7 +83,10 @@ namespace LEASING.UI.APP.Forms
         }
         private void M_UpdateRates()
         {
-            string results = RateSettingsContext.UpdateWAREHOUSESettings(txtGenVat.Text == string.Empty ? 0 : decimal.Parse(txtGenVat.Text), txtSecAndMaintenance.Text == string.Empty ? 0 : decimal.Parse(txtSecAndMaintenance.Text), txtWithHoldingTax.Text == string.Empty ? 0 : decimal.Parse(txtWithHoldingTax.Text), txtPenalty.Text == string.Empty ? 0 : decimal.Parse(txtPenalty.Text));
+            string results = RateSettingsContext.UpdateWAREHOUSESettings(Functions.ConvertStringToDecimal(txtGenVat.Text), 
+                                                                        Functions.ConvertStringToDecimal(txtSecAndMaintenance.Text), 
+                                                                        Functions.ConvertStringToDecimal(txtWithHoldingTax.Text), 
+                                                                        Functions.ConvertStringToDecimal(txtPenalty.Text));
             if (results.Equals("SUCCESS"))
             {
                 MessageBox.Show("Rate  has been Upated successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -96,23 +100,23 @@ namespace LEASING.UI.APP.Forms
         }
         private void M_GetVatAMount()
         {
-            var AMount = ((txtSecAndMaintenance.Text == "" ? 0 : Convert.ToDecimal(txtSecAndMaintenance.Text)) * (txtGenVat.Text == "" ? 0 : Convert.ToDecimal(txtGenVat.Text)) / 100);
-            txtVatAmount.Text = Convert.ToString(AMount);
+            var AMount = ((Functions.ConvertStringToDecimal(txtSecAndMaintenance.Text) * Functions.ConvertStringToDecimal(txtGenVat.Text)) / 100);
+            txtVatAmount.Text = AMount.ToString("0.00");
         }
         private void M_GetSecAndMainVatAMount()
         {
-            var AMount = ((txtSecAndMaintenance.Text == "" ? 0 : Convert.ToDecimal(txtSecAndMaintenance.Text)) + (txtVatAmount.Text == "" ? 0 : Convert.ToDecimal(txtVatAmount.Text)));
-            txtSecAndMaintenanceWithVat.Text = Convert.ToString(AMount);
+            var AMount = (Functions.ConvertStringToDecimal(txtSecAndMaintenance.Text) + Functions.ConvertStringToDecimal(txtVatAmount.Text));
+            txtSecAndMaintenanceWithVat.Text = AMount.ToString("0.00");
         }
         private void M_GetTaxAMount()
         {
-            var AMount = ((txtSecAndMaintenanceWithVat.Text == "" ? 0 : Convert.ToDecimal(txtSecAndMaintenanceWithVat.Text)) * (txtWithHoldingTax.Text == "" ? 0 : Convert.ToDecimal(txtWithHoldingTax.Text)) / 100);
-            txtWithHoldingTaxAmount.Text = Convert.ToString(AMount);
+            var AMount = ((Functions.ConvertStringToDecimal(txtSecAndMaintenanceWithVat.Text) * Functions.ConvertStringToDecimal(txtWithHoldingTax.Text)) / 100);
+            txtWithHoldingTaxAmount.Text = AMount.ToString("0.00");
         }
         private void M_GetSecAndMainWithVatandLessTax()
         {
-            var AMount = (txtSecAndMaintenanceWithVat.Text == "" ? 0 : Convert.ToDecimal(txtSecAndMaintenanceWithVat.Text)) - (txtWithHoldingTaxAmount.Text == "" ? 0 : Convert.ToDecimal(txtWithHoldingTaxAmount.Text));
-            txtSecAndMaintenanceWithVatLessTAX.Text = Convert.ToString(AMount);
+            var AMount = (Functions.ConvertStringToDecimal(txtSecAndMaintenanceWithVat.Text) - Functions.ConvertStringToDecimal(txtWithHoldingTaxAmount.Text));
+            txtSecAndMaintenanceWithVatLessTAX.Text = AMount.ToString("0.00");
         }
         private void frmWarehouseRateSettings_Load(object sender, EventArgs e)
         {
@@ -214,6 +218,14 @@ namespace LEASING.UI.APP.Forms
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
+        }
+
+        private void txtSecAndMaintenance_TextChanged(object sender, EventArgs e)
+        {
+            M_GetVatAMount();
+            M_GetSecAndMainVatAMount();
+            M_GetTaxAMount();
+            M_GetSecAndMainWithVatandLessTax();
         }
     }
 }

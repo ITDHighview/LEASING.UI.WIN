@@ -24,8 +24,10 @@ CREATE PROCEDURE [dbo].[sp_GenerateBulkPayment]
     @SerialNo VARCHAR(30) = NULL,
     @PaymentRemarks VARCHAR(100) = NULL,
     @REF VARCHAR(100) = NULL,
+	@ReceiptDate DATETIME= NULL,
     @BankBranch VARCHAR(100) = NULL,
     @ModeType VARCHAR(20) = NULL,
+
     @XML XML
 AS
 BEGIN TRY
@@ -306,11 +308,12 @@ BEGIN TRY
         [SerialNo],
         [REF],
         [BankBranch],
-        [RefId]
+        [RefId],
+		[ReceiptDate]
     )
     VALUES
     (@TranID, @ReceiveAmount, 'FOLLOW-UP PAYMENT', @PaymentRemarks, @EncodedBy, GETDATE(), @ComputerName, 1, @ModeType,
-     @CompanyORNo, @CompanyPRNo, @BankAccountName, @BankAccountNumber, @BankName, @SerialNo, @REF, @BankBranch, @RefId);
+     @CompanyORNo, @CompanyPRNo, @BankAccountName, @BankAccountNumber, @BankName, @SerialNo, @REF, @BankBranch, @RefId,@ReceiptDate);
 
     SET @RcptRecId = @@IDENTITY
     SELECT @RcptID = [tblReceipt].[RcptID]
@@ -328,11 +331,12 @@ BEGIN TRY
         [BNK_NAME],
         [SERIAL_NO],
         [ModeType],
-        [BankBranch]
+        [BankBranch],
+		[ReceiptDate]
     )
     VALUES
     (@RcptID, @CompanyORNo, @CompanyPRNo, @REF, @BankAccountName, @BankAccountNumber, @BankName, @SerialNo, @ModeType,
-     @BankBranch);
+     @BankBranch,@ReceiptDate);
 
 
     IF (@TranID <> '' AND @@ROWCOUNT > 0)

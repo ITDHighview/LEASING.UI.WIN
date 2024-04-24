@@ -24,6 +24,7 @@ CREATE PROCEDURE [dbo].[sp_GenerateFirstPayment]
     @SerialNo VARCHAR(30) = NULL,
     @PaymentRemarks VARCHAR(100) = NULL,
     @REF VARCHAR(100) = NULL,
+	@ReceiptDate DATE = NULL,
     @BankBranch VARCHAR(100) = NULL,
     @ModeType VARCHAR(20) = NULL
 AS
@@ -116,12 +117,13 @@ BEGIN TRY
                 [SerialNo],
                 [REF],
                 [BankBranch],
-                [RefId]
+                [RefId],
+				[ReceiptDate]
             )
             VALUES
             (@TranID, @ReceiveAmount, 'PARTIAL - FIRST PAYMENT', @PaymentRemarks, @EncodedBy, GETDATE(), @ComputerName,
              1  , @ModeType, @CompanyORNo, @CompanyPRNo, @BankAccountName, @BankAccountNumber, @BankName, @SerialNo,
-             @REF, @BankBranch, @RefId);
+             @REF, @BankBranch, @RefId,@ReceiptDate);
 
             SET @RcptRecId = @@IDENTITY;
             SELECT @RcptID = [tblReceipt].[RcptID]
@@ -139,11 +141,12 @@ BEGIN TRY
                 [BNK_NAME],
                 [SERIAL_NO],
                 [ModeType],
-                [BankBranch]
+                [BankBranch],
+				[ReceiptDate]
             )
             VALUES
             (@RcptID, @CompanyORNo, @CompanyPRNo, @REF, @BankAccountName, @BankAccountNumber, @BankName, @SerialNo,
-             @ModeType, @BankBranch);
+             @ModeType, @BankBranch,@ReceiptDate);
 
         END
         ELSE
@@ -254,12 +257,13 @@ BEGIN TRY
                 [SerialNo],
                 [REF],
                 [BankBranch],
-                [RefId]
+                [RefId],
+				[ReceiptDate]
             )
             VALUES
             (@TranID, @PaidAmount, 'FIRST PAYMENT', @PaymentRemarks, @EncodedBy, GETDATE(), @ComputerName, 1,
              @ModeType, @CompanyORNo, @CompanyPRNo, @BankAccountName, @BankAccountNumber, @BankName, @SerialNo, @REF,
-             @BankBranch, @RefId);
+             @BankBranch, @RefId,@ReceiptDate);
 
             SET @RcptRecId = @@IDENTITY;
             SELECT @RcptID = [tblReceipt].[RcptID]
@@ -277,11 +281,12 @@ BEGIN TRY
                 [BNK_NAME],
                 [SERIAL_NO],
                 [ModeType],
-                [BankBranch]
+                [BankBranch],
+				[ReceiptDate]
             )
             VALUES
             (@RcptID, @CompanyORNo, @CompanyPRNo, @REF, @BankAccountName, @BankAccountNumber, @BankName, @SerialNo,
-             @ModeType, @BankBranch);
+             @ModeType, @BankBranch,@ReceiptDate);
         END
     END
     ELSE IF @IsFullPayment = 1
@@ -339,12 +344,13 @@ BEGIN TRY
                 [SerialNo],
                 [REF],
                 [BankBranch],
-                [RefId]
+                [RefId],
+				[ReceiptDate]
             )
             VALUES
             (@TranID, @PaidAmount, 'FULL PAYMENT', @PaymentRemarks, @EncodedBy, GETDATE(), @ComputerName, 1, @ModeType,
              @CompanyORNo, @CompanyPRNo, @BankAccountName, @BankAccountNumber, @BankName, @SerialNo, @REF, @BankBranch,
-             @RefId);
+             @RefId,@ReceiptDate);
 
             SET @RcptRecId = @@IDENTITY;
             SELECT @RcptID = [tblReceipt].[RcptID]
@@ -362,11 +368,12 @@ BEGIN TRY
                 [BNK_NAME],
                 [SERIAL_NO],
                 [ModeType],
-                [BankBranch]
+                [BankBranch],
+				[ReceiptDate]
             )
             VALUES
             (@RcptID, @CompanyORNo, @CompanyPRNo, @REF, @BankAccountName, @BankAccountNumber, @BankName, @SerialNo,
-             @ModeType, @BankBranch);
+             @ModeType, @BankBranch,@ReceiptDate);
         END
 
     END;

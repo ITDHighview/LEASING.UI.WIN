@@ -22,7 +22,8 @@ CREATE TABLE [dbo].[tblReceipt]
 [CompanyPRNo] [varchar] (150) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
 [Category] [varchar] (20) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
 [BankBranch] [varchar] (250) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
-[RefId] [varchar] (150) COLLATE SQL_Latin1_General_CP1_CI_AS NULL
+[RefId] [varchar] (150) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[ReceiptDate] [datetime] NULL
 ) ON [PRIMARY]
 GO
 SET QUOTED_IDENTIFIER ON

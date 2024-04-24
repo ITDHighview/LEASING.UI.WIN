@@ -46,6 +46,8 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn14 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn15 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn16 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn17 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn18 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
@@ -241,14 +243,21 @@
             gridViewTextBoxColumn14.Name = "CompanyPRNo";
             gridViewTextBoxColumn14.Width = 150;
             gridViewTextBoxColumn15.FieldName = "BankBranch";
-            gridViewTextBoxColumn15.HeaderText = "BankBranch";
-            gridViewTextBoxColumn15.IsVisible = false;
+            gridViewTextBoxColumn15.HeaderText = "Bank Branch";
             gridViewTextBoxColumn15.Name = "BankBranch";
             gridViewTextBoxColumn15.Width = 150;
-            gridViewTextBoxColumn16.FieldName = "Description";
-            gridViewTextBoxColumn16.HeaderText = "Description";
-            gridViewTextBoxColumn16.IsVisible = false;
-            gridViewTextBoxColumn16.Name = "Description";
+            gridViewTextBoxColumn16.FieldName = "BankName";
+            gridViewTextBoxColumn16.HeaderText = "Bank Name";
+            gridViewTextBoxColumn16.Name = "BankName";
+            gridViewTextBoxColumn16.Width = 200;
+            gridViewTextBoxColumn17.FieldName = "Description";
+            gridViewTextBoxColumn17.HeaderText = "Description";
+            gridViewTextBoxColumn17.IsVisible = false;
+            gridViewTextBoxColumn17.Name = "Description";
+            gridViewTextBoxColumn18.FieldName = "ReceiptDate";
+            gridViewTextBoxColumn18.HeaderText = "Receipt Date";
+            gridViewTextBoxColumn18.Name = "ReceiptDate";
+            gridViewTextBoxColumn18.Width = 150;
             this.dgvReceiptList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewCommandColumn1,
             gridViewCommandColumn2,
@@ -261,7 +270,9 @@
             gridViewTextBoxColumn13,
             gridViewTextBoxColumn14,
             gridViewTextBoxColumn15,
-            gridViewTextBoxColumn16});
+            gridViewTextBoxColumn16,
+            gridViewTextBoxColumn17,
+            gridViewTextBoxColumn18});
             this.dgvReceiptList.MasterTemplate.EnableFiltering = true;
             this.dgvReceiptList.MasterTemplate.ShowRowHeaderColumn = false;
             this.dgvReceiptList.Name = "dgvReceiptList";

@@ -522,7 +522,16 @@ namespace LEASING.UI.APP.Context
             }
             return "";
         }
-        public string SaveUser(int groupid,int? UserId, string UserPassword, string UserName, string StaffName, string Middlename, string Lastname, string EmailAddress, string Phone,string Mode)
+        public string SaveUser(int groupid,
+                                int? UserId, 
+                                string UserPassword, 
+                                string UserName, 
+                                string StaffName, 
+                                string Middlename, 
+                                string Lastname, 
+                                string EmailAddress, 
+                                string Phone,
+                                string Mode)
         {
             SqlCommand _sqlcmd = null;
             SqlParameter _sqlpara;

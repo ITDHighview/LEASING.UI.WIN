@@ -25,8 +25,8 @@ namespace LEASING.UI.APP.Forms
         public string PaymentRemarks { get; set; }
         public string REF { get; set; }
         public string ModeType { get; set; }
-      
 
+        public string RecieptDate { get; set; }
         public bool IsOR { get; set; } = false;
         public frmPaymentMode1()
         {
@@ -225,6 +225,7 @@ namespace LEASING.UI.APP.Forms
                 PaymentRemarks = txtRemarks.Text;
                 REF = txtReferrence.Text;
                 BankBranch = txtBankBranch.Text;
+                this.RecieptDate = dtpRecieptDate.Text;
                 this.Close();
             }
         }

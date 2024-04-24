@@ -308,7 +308,7 @@ namespace LEASING.UI.APP.Forms
         private void M_GetCalculationAreaTotal()
         {
             var result = Math.Round(Functions.ConvertStringToDecimal(txtAreSql.Text) * Functions.ConvertStringToDecimal(txtAreRateSqm.Text));
-            txtAreaTotalAmount.Text = Convert.ToString(result);
+            txtAreaTotalAmount.Text = result.ToString("0.00");
         }
         private void M_GetBaseRentalVatAmount()
         {
@@ -324,7 +324,7 @@ namespace LEASING.UI.APP.Forms
         {
             var tax = (Functions.ConvertStringToDecimal(txtBaseRentalTax.Text));
             var totalrental = ((this.chkNonVat.Checked == true ? Functions.ConvertStringToDecimal(txtBaseRental.Text) : Functions.ConvertStringToDecimal(txtBaseRentalWithVatAmount.Text)) + Functions.ConvertStringToDecimal(txtSecAndMainWithVatAmount.Text));
-            var result = (totalrental - tax);
+            var result = Math.Round(totalrental - tax);
             if (Functions.ConvertStringToDecimal(txtBaseRental.Text) > 0)
             {
                 txtTotalRental.Text = result.ToString("#,##0.00");
@@ -340,7 +340,7 @@ namespace LEASING.UI.APP.Forms
             decimal tax = Functions.ConvertStringToDecimal(txtBaseRentalTax.Text);
             //var totalrental = Functions.ConvertStringToDecimal(txtBaseRentalWithVatAmount.Text);
             decimal totalrental = this.chkNonVat.Checked == true ? Functions.ConvertStringToDecimal(txtBaseRental.Text) : Functions.ConvertStringToDecimal(txtBaseRentalWithVatAmount.Text);
-            decimal result = (totalrental - tax);
+            decimal result = Math.Round(totalrental - tax);
             if (Functions.ConvertStringToDecimal(txtBaseRental.Text) > 0)
             {
                 txtTotalRental.Text = result.ToString("#,##0.00");

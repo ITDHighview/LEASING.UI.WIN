@@ -39,6 +39,7 @@ namespace LEASING.UI.APP.Context
             string REF,
             string ModeType,
             string BankBranch,
+            string RecieptDate,
             out string TransID)
         {
             SqlCommand _sqlcmd = null;
@@ -80,6 +81,8 @@ namespace LEASING.UI.APP.Context
             _sqlpara = new SqlParameter("@ComputerName", Environment.MachineName);
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@BankBranch", BankBranch);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@RecieptDate", RecieptDate);
             _sqlcmd.Parameters.Add(_sqlpara);
             TransID = string.Empty;
             try
@@ -227,6 +230,7 @@ namespace LEASING.UI.APP.Context
            int ledgerRecId,
           string XML,
           string BankBranch,
+          string ReceiptDate,
           out string TransID,
           out string RecieptID
           )
@@ -270,6 +274,8 @@ namespace LEASING.UI.APP.Context
             _sqlpara = new SqlParameter("@XML", XML);
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@BankBranch", BankBranch);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@ReceiptDate", ReceiptDate);
             _sqlcmd.Parameters.Add(_sqlpara);
 
             TransID = string.Empty;

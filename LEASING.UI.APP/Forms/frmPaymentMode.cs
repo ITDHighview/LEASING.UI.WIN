@@ -38,6 +38,7 @@ namespace LEASING.UI.APP.Forms
         public string Amount = string.Empty;
         public int recid = 0;
         int DayCount = 0;
+        public string RecieptDate { get; set; }
 
         public frmPaymentMode()
         {
@@ -81,6 +82,17 @@ namespace LEASING.UI.APP.Forms
 
                         break;
                     case "PDC":
+                        txtCompanyORNo.Enabled = true;
+                        txtPRNo.Enabled = true;
+                        txtReferrence.Enabled = false;
+                        ddlbankName.Enabled = true;
+                        txtBankAccountName.Enabled = true;
+                        txtBankAccountNo.Enabled = true;
+                        txtBankBranch.Enabled = true;
+                        txtSerialNo.Enabled = true;
+
+                        break;
+                    case "DC":
                         txtCompanyORNo.Enabled = true;
                         txtPRNo.Enabled = true;
                         txtReferrence.Enabled = false;
@@ -257,7 +269,7 @@ namespace LEASING.UI.APP.Forms
                 this.radLabel8.Visible = false;
                 this.txtRemarks.Visible = false;
                 this.txtReceiveAmount.Text = txtPaidAmount.Text;
-                this.btnOk.Text = "SAVE TRANSACTION>>>";           
+                this.btnOk.Text = "SAVE TRANSACTION>>>";
                 this.txtReceiveAmount.Focus();
             }
             else
@@ -269,7 +281,7 @@ namespace LEASING.UI.APP.Forms
                 this.txtRemarks.Visible = true;
                 this.txtReceiveAmount.Text = string.Empty;
                 this.btnOk.Text = "PROCEED PAYMENT>>>";
-               
+
                 this.txtReceiveAmount.Focus();
             }
             return strPaymentmMode;
@@ -301,6 +313,7 @@ namespace LEASING.UI.APP.Forms
             this.BankBranch = this.txtBankBranch.Text;
             this.IsHold = chkHold.IsChecked;
             this.IsClearPDC = chkClearPDC.IsChecked;
+            this.RecieptDate = dtpRecieptDate.Text;
 
         }
         private void SavePaymentInfo()
@@ -450,7 +463,7 @@ namespace LEASING.UI.APP.Forms
         {
             if (dgvLedgerList.Rows.Count >= 0 && Convert.ToString(dgvLedgerList.CurrentRow.Cells["PaymentStatus"].Value) == "HOLD")
             {
-                ddlSelectMode.SelectedValue = Convert.ToString(dgvLedgerList.CurrentRow.Cells["ModeType"].Value);               
+                ddlSelectMode.SelectedValue = Convert.ToString(dgvLedgerList.CurrentRow.Cells["ModeType"].Value);
                 txtCompanyORNo.Text = Convert.ToString(dgvLedgerList.CurrentRow.Cells["CompanyORNo"].Value);
                 txtPRNo.Text = Convert.ToString(dgvLedgerList.CurrentRow.Cells["CompanyPRNo"].Value);
                 txtReferrence.Text = Convert.ToString(dgvLedgerList.CurrentRow.Cells["REF"].Value);

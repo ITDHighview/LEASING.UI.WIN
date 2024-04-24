@@ -53,7 +53,7 @@ namespace LEASING.UI.APP.Forms
                         btnSave.Enabled = false;
                         btnUndo.Enabled = false;
                         DisableFields();
-                        ClearFields();
+                        //ClearFields();
                         txtUserPassword.PasswordChar = '*';
                         break;
                 }
@@ -139,7 +139,16 @@ namespace LEASING.UI.APP.Forms
             {
                 try
                 {
-                    string result = SecurityControlContext.SaveUser(Convert.ToInt32(ddlUserGroup.SelectedValue), Convert.ToInt32(dgvControlList.CurrentRow.Cells["UserId"].Value), txtUserPassword.Text.Trim(), txtUserName.Text.Trim(), txtStaffName.Text.Trim(), txtMiddlename.Text.Trim(), txtLastname.Text.Trim(), txtEmailAddress.Text.Trim(), txtPhone.Text.Trim(), FormMode);
+                    string result = SecurityControlContext.SaveUser(Convert.ToInt32(ddlUserGroup.SelectedValue), 
+                                                                    Convert.ToInt32(dgvControlList.CurrentRow.Cells["UserId"].Value), 
+                                                                    txtUserPassword.Text.Trim(), 
+                                                                    txtUserName.Text.Trim(), 
+                                                                    txtStaffName.Text.Trim(), 
+                                                                    txtMiddlename.Text.Trim(), 
+                                                                    txtLastname.Text.Trim(), 
+                                                                    txtEmailAddress.Text.Trim(), 
+                                                                    txtPhone.Text.Trim(), 
+                                                                    FormMode);
                     if (result.Equals("SUCCESS"))
                     {
                         Functions.MessageShow("New user Save Successfully");
@@ -162,7 +171,16 @@ namespace LEASING.UI.APP.Forms
                 {
                     try
                     {
-                        string result = SecurityControlContext.SaveUser(Convert.ToInt32(ddlUserGroup.SelectedValue), Convert.ToInt32(dgvControlList.CurrentRow.Cells["UserId"].Value), txtUserPassword.Text.Trim(), txtUserName.Text.Trim(), txtStaffName.Text.Trim(), txtMiddlename.Text.Trim(), txtLastname.Text.Trim(), txtEmailAddress.Text.Trim(), txtPhone.Text.Trim(), FormMode);
+                        string result = SecurityControlContext.SaveUser(Convert.ToInt32(ddlUserGroup.SelectedValue), 
+                                                                        Convert.ToInt32(dgvControlList.CurrentRow.Cells["UserId"].Value),
+                                                                        txtUserPassword.Text.Trim(),
+                                                                        txtUserName.Text.Trim(),
+                                                                        txtStaffName.Text.Trim(),
+                                                                        txtMiddlename.Text.Trim(),
+                                                                        txtLastname.Text.Trim(),
+                                                                        txtEmailAddress.Text.Trim(),
+                                                                        txtPhone.Text.Trim(),
+                                                                        FormMode);
                         if (result.Equals("SUCCESS"))
                         {
                             Functions.MessageShow("user updated  Successfully");
@@ -222,6 +240,7 @@ namespace LEASING.UI.APP.Forms
         {
             if (dgvControlList.Rows.Count > 0)
             {
+                ddlUserGroup.SelectedValue = Convert.ToInt32(dgvControlList.CurrentRow.Cells["GroupId"].Value);
                 txtStaffName.Text = Convert.ToString(dgvControlList.CurrentRow.Cells["StaffName"].Value);
                 txtMiddlename.Text = Convert.ToString(dgvControlList.CurrentRow.Cells["Middlename"].Value);
                 txtLastname.Text = Convert.ToString(dgvControlList.CurrentRow.Cells["Lastname"].Value);

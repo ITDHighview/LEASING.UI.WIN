@@ -432,7 +432,6 @@
             gridViewTextBoxColumn8.Name = "UserPassword";
             gridViewTextBoxColumn9.FieldName = "GroupId";
             gridViewTextBoxColumn9.HeaderText = "GroupId";
-            gridViewTextBoxColumn9.IsVisible = false;
             gridViewTextBoxColumn9.Name = "GroupId";
             this.dgvControlList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,

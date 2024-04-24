@@ -93,6 +93,7 @@ namespace LEASING.UI.APP.Forms
         public decimal ActualAmountTobePaidFromPaymentMode { get; set; } = 0;
         public bool IsHold = false;
         public bool IsClearPDC = false;
+        public string RecieptDate { get; set; }
         #endregion
 
         #region Call Methods
@@ -230,69 +231,79 @@ namespace LEASING.UI.APP.Forms
         }
         private void GeneratePayment()
         {
-            if (!this.IsProceed)
+            try
             {
-                return;
+                if (!this.IsProceed)
+                {
+                    return;
+                }
+
+                this.InitiliazedGridItem();
+
+                string result = PaymentContext.GenerateBulkPayment(this.RefId,
+                this.ActualAmountTobePaidFromPaymentMode,
+                this.ReceiveAmount,
+                this.ChangeAmount,
+                this.CompanyORNo,
+                this.CompanyPRNo,
+                this.BankAccountName,
+                this.BankAccountNumber,
+                this.BankName,
+                this.SerialNo,
+                this.PaymentRemarks,
+                this.REF,
+                this.ModeType,
+                this.ItemRecid,
+                this.M_getXMLData(),
+                this.BankBranch,
+                this.RecieptDate,
+                 out TranID,
+                 out RecieptID
+                 );
+
+                if (!result.Equals(MSSG_SUCCESS))
+                {
+                    Functions.MessageShow(result);
+                    this.IsProceed = false;
+                    return;
+                }
+
+                Functions.MessageShow(PAYMENT_SUCCESS);
+
+                if (string.IsNullOrEmpty(this.TranID))
+                {
+                    Functions.MessageShow("No transaction code is generated, Please contact system administrator");
+                    return;
+                }
+
+                if (string.IsNullOrEmpty(this.RecieptID))
+                {
+                    Functions.MessageShow("No Receipt code is generated, Please contact system administrator");
+                    return;
+                }
+
+
+                Functions.GetNotification("PAYMENT SUCCESS", $"Transaction ID : {TranID} generated");
+                Functions.GetNotification("PAYMENT SUCCESS", $"Reciept ID : {RecieptID} generated");
+
+                this.M_GetComputationById();
+                this.CheckPaymentProgressStatus();
+                this.M_GetLedgerList();
+                this.M_GetPaymentListByReferenceId();
+
+                var fReciept = new frmRecieptSelectionSecondPayment(this.TranID, "", "SECOND");
+                this.InitReciept(fReciept);
+
+
+
+                this.IsProceed = true;
             }
-
-            this.InitiliazedGridItem();
-
-            string result = PaymentContext.GenerateBulkPayment(this.RefId,
-            this.ActualAmountTobePaidFromPaymentMode,
-            this.ReceiveAmount,
-            this.ChangeAmount,
-            this.CompanyORNo,
-            this.CompanyPRNo,
-            this.BankAccountName,
-            this.BankAccountNumber,
-            this.BankName,
-            this.SerialNo,
-            this.PaymentRemarks,
-            this.REF,
-            this.ModeType,
-            this.ItemRecid,
-            this.M_getXMLData(),
-            this.BankBranch,
-             out TranID,
-             out RecieptID
-             );
-
-            if (!result.Equals(MSSG_SUCCESS))
+            catch (Exception ex)
             {
-                Functions.MessageShow(result);
-                this.IsProceed = false;
-                return;
+
+                Functions.MessageShow(ex.ToString());
             }
-
-            Functions.MessageShow(PAYMENT_SUCCESS);
-
-            if (string.IsNullOrEmpty(this.TranID))
-            {
-                Functions.MessageShow("No transaction code is generated, Please contact system administrator");
-                return;
-            }
-
-            if (string.IsNullOrEmpty(this.RecieptID))
-            {
-                Functions.MessageShow("No Receipt code is generated, Please contact system administrator");
-                return;
-            }
-
-
-            Functions.GetNotification("PAYMENT SUCCESS", $"Transaction ID : {TranID} generated");
-            Functions.GetNotification("PAYMENT SUCCESS", $"Reciept ID : {RecieptID} generated");
-
-            this.M_GetComputationById();
-            this.CheckPaymentProgressStatus();
-            this.M_GetLedgerList();
-            this.M_GetPaymentListByReferenceId();
-
-            var fReciept = new frmRecieptSelectionSecondPayment(this.TranID, "", "SECOND");
-            this.InitReciept(fReciept);
-
-
-
-            this.IsProceed = true;
+           
         }
         private bool IsComputationValid()
         {
@@ -488,6 +499,7 @@ namespace LEASING.UI.APP.Forms
             this.ChangeAmount = 0;
             this.IsHold = pForm.IsHold;
             this.IsClearPDC = pForm.IsClearPDC;
+            this.RecieptDate = pForm.RecieptDate;
             this.IsProceed = true;
             return true;
         }

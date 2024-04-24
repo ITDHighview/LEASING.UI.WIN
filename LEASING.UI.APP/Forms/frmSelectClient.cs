@@ -45,6 +45,8 @@ namespace LEASING.UI.APP.Forms
         public string REF { get; set; }
         public string ModeType { get; set; }
         private bool IsPartialPayment = false;
+        public string RecieptDate { get; set; }
+
         #endregion
 
         #region Call Methods
@@ -66,6 +68,11 @@ namespace LEASING.UI.APP.Forms
             dtpFrom.Enabled = false;
             dtpTo.Enabled = false;
             btnPrintReciept.Enabled = false;
+            txtAmountPaid.Enabled = false;
+            txtBalanceAmount.Enabled = false;
+            txtTwoMonAdv.Enabled = false;
+            txtThreeMonSecDep.Enabled = false;
+            txtTotalForPayment.Enabled = false;
         }
         private bool IsComputationValid()
         {
@@ -127,45 +134,55 @@ namespace LEASING.UI.APP.Forms
         }
         private void GeneratePayment()
         {
-            if (string.IsNullOrEmpty(this.RefId))
+            try
             {
-                return;
-            }
-            var result = PaymentContext.GenerateFirstPayment(
-               this.RefId,
-               this.fn_ConvertStringToDecimal(this.txtTotalForPayment.Text),
-               this.ReceiveAmount,
-               this.ChangeAmount,
-               this.fn_ConvertStringToDecimal(this.txtThreeMonSecDep.Text),
-               this.CompanyORNo,
-               this.CompanyPRNo,
-               this.BankAccountName,
-               this.BankAccountNumber,
-               this.BankName,
-               this.SerialNo,
-               this.PaymentRemarks,
-               this.REF,
-               this.ModeType,
-               this.BankBranch,
-                out TransID);
+                if (string.IsNullOrEmpty(this.RefId))
+                {
+                    return;
+                }
+                var result = PaymentContext.GenerateFirstPayment(
+                   this.RefId,
+                   this.fn_ConvertStringToDecimal(this.txtTotalForPayment.Text),
+                   this.ReceiveAmount,
+                   this.ChangeAmount,
+                   this.fn_ConvertStringToDecimal(this.txtThreeMonSecDep.Text),
+                   this.CompanyORNo,
+                   this.CompanyPRNo,
+                   this.BankAccountName,
+                   this.BankAccountNumber,
+                   this.BankName,
+                   this.SerialNo,
+                   this.PaymentRemarks,
+                   this.REF,
+                   this.ModeType,
+                   this.BankBranch,
+                   this.RecieptDate,
+                    out TransID);
 
-            if (string.IsNullOrEmpty(result))
+                if (string.IsNullOrEmpty(result))
+                {
+                    Functions.MessageShow("Response Empty.");
+                    return;
+                }
+
+                if (!result.Equals("SUCCESS"))
+                {
+                    Functions.MessageShow(result);
+                    return;
+                }
+
+                Functions.MessageShow($"PAYMENT {result}");
+
+                IsProceed = true;
+                btnGenerate.Enabled = false;
+                btnPrintReciept.Enabled = true;
+            }
+            catch (Exception ex)
             {
-                Functions.MessageShow("Response Empty.");
-                return;
+
+                Functions.MessageShow(ex.ToString());
             }
 
-            if (!result.Equals("SUCCESS"))
-            {
-                Functions.MessageShow(result);
-                return;
-            }
-
-            Functions.MessageShow($"PAYMENT {result}");
-
-            IsProceed = true;
-            btnGenerate.Enabled = false;
-            btnPrintReciept.Enabled = true;
         }
         private void ShowClientUnitsTaken()
         {
@@ -241,6 +258,7 @@ namespace LEASING.UI.APP.Forms
             this.REF = pForm.REF;
             this.BankBranch = pForm.BankBranch;
             this.ModeType = pForm.ModeType;
+            this.RecieptDate = pForm.RecieptDate;
 
             return true;
         }

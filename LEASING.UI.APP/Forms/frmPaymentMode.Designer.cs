@@ -28,29 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn12 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn13 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn14 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn15 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn16 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn17 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn69 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn70 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn71 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn72 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn73 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn74 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn75 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn76 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn77 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn78 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn79 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn80 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn81 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn82 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn83 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn84 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn85 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.radLabel10 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel11 = new Telerik.WinControls.UI.RadLabel();
             this.txtPaidAmount = new Telerik.WinControls.UI.RadTextBox();
             this.txtReceiveAmount = new Telerik.WinControls.UI.RadTextBox();
+            this.radGroupBoxPDCStatus = new Telerik.WinControls.UI.RadGroupBox();
+            this.chkClearPDC = new Telerik.WinControls.UI.RadRadioButton();
+            this.chkHold = new Telerik.WinControls.UI.RadRadioButton();
             this.dgvLedgerList = new Telerik.WinControls.UI.RadGridView();
             this.btnOk = new Telerik.WinControls.UI.RadButton();
             this.radGroupBox2 = new Telerik.WinControls.UI.RadGroupBox();
@@ -76,15 +79,18 @@
             this.radLabel12 = new Telerik.WinControls.UI.RadLabel();
             this.txtBankBranch = new Telerik.WinControls.UI.RadTextBox();
             this.telerikMetroTouchTheme1 = new Telerik.WinControls.Themes.TelerikMetroTouchTheme();
-            this.radGroupBoxPDCStatus = new Telerik.WinControls.UI.RadGroupBox();
-            this.chkHold = new Telerik.WinControls.UI.RadRadioButton();
-            this.chkClearPDC = new Telerik.WinControls.UI.RadRadioButton();
+            this.radLabel13 = new Telerik.WinControls.UI.RadLabel();
+            this.dtpRecieptDate = new Telerik.WinControls.UI.RadDateTimePicker();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPaidAmount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtReceiveAmount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxPDCStatus)).BeginInit();
+            this.radGroupBoxPDCStatus.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chkClearPDC)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkHold)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLedgerList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLedgerList.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnOk)).BeginInit();
@@ -111,10 +117,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtBankAccountName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBankBranch)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxPDCStatus)).BeginInit();
-            this.radGroupBoxPDCStatus.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chkHold)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkClearPDC)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpRecieptDate)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -131,8 +135,8 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 327F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 378F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 357F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 348F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
@@ -163,7 +167,7 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 59F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 93F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 88F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(271, 321);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(271, 351);
             this.tableLayoutPanel3.TabIndex = 7;
             // 
             // radLabel10
@@ -214,6 +218,39 @@
             this.txtReceiveAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtReceiveAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtReceiveAmount_KeyPress);
             // 
+            // radGroupBoxPDCStatus
+            // 
+            this.radGroupBoxPDCStatus.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this.tableLayoutPanel3.SetColumnSpan(this.radGroupBoxPDCStatus, 2);
+            this.radGroupBoxPDCStatus.Controls.Add(this.chkClearPDC);
+            this.radGroupBoxPDCStatus.Controls.Add(this.chkHold);
+            this.radGroupBoxPDCStatus.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radGroupBoxPDCStatus.HeaderText = "PDC STATUS";
+            this.radGroupBoxPDCStatus.Location = new System.Drawing.Point(3, 125);
+            this.radGroupBoxPDCStatus.Name = "radGroupBoxPDCStatus";
+            this.radGroupBoxPDCStatus.Size = new System.Drawing.Size(265, 87);
+            this.radGroupBoxPDCStatus.TabIndex = 4;
+            this.radGroupBoxPDCStatus.Text = "PDC STATUS";
+            // 
+            // chkClearPDC
+            // 
+            this.chkClearPDC.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkClearPDC.Location = new System.Drawing.Point(168, 34);
+            this.chkClearPDC.Name = "chkClearPDC";
+            this.chkClearPDC.Size = new System.Drawing.Size(68, 24);
+            this.chkClearPDC.TabIndex = 0;
+            this.chkClearPDC.Text = "CLEAR";
+            // 
+            // chkHold
+            // 
+            this.chkHold.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkHold.Location = new System.Drawing.Point(32, 34);
+            this.chkHold.Name = "chkHold";
+            this.chkHold.Size = new System.Drawing.Size(64, 24);
+            this.chkHold.TabIndex = 0;
+            this.chkHold.Text = "HOLD";
+            this.chkHold.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.chkHold_ToggleStateChanged);
+            // 
             // dgvLedgerList
             // 
             this.dgvLedgerList.BackColor = System.Drawing.SystemColors.ButtonHighlight;
@@ -223,126 +260,126 @@
             this.dgvLedgerList.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.dgvLedgerList.ForeColor = System.Drawing.Color.Black;
             this.dgvLedgerList.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.dgvLedgerList.Location = new System.Drawing.Point(3, 330);
+            this.dgvLedgerList.Location = new System.Drawing.Point(3, 360);
             // 
             // dgvLedgerList
             // 
             this.dgvLedgerList.MasterTemplate.AllowAddNewRow = false;
             this.dgvLedgerList.MasterTemplate.AllowColumnReorder = false;
             this.dgvLedgerList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn1.FieldName = "seq";
-            gridViewTextBoxColumn1.HeaderText = "seq";
-            gridViewTextBoxColumn1.Name = "seq";
-            gridViewTextBoxColumn1.ReadOnly = true;
-            gridViewTextBoxColumn1.Width = 34;
-            gridViewTextBoxColumn2.FieldName = "LedgMonth";
-            gridViewTextBoxColumn2.HeaderText = "Month";
-            gridViewTextBoxColumn2.Name = "LedgMonth";
-            gridViewTextBoxColumn2.ReadOnly = true;
-            gridViewTextBoxColumn2.Width = 138;
-            gridViewTextBoxColumn3.FieldName = "LedgAmount";
-            gridViewTextBoxColumn3.HeaderText = "Due Amount";
-            gridViewTextBoxColumn3.Name = "LedgAmount";
-            gridViewTextBoxColumn3.ReadOnly = true;
-            gridViewTextBoxColumn3.Width = 138;
-            gridViewTextBoxColumn4.FieldName = "BalanceAmount";
-            gridViewTextBoxColumn4.HeaderText = "Balance Amount";
-            gridViewTextBoxColumn4.Name = "BalanceAmount";
-            gridViewTextBoxColumn4.ReadOnly = true;
-            gridViewTextBoxColumn4.Width = 138;
-            gridViewTextBoxColumn4.WrapText = true;
-            gridViewTextBoxColumn5.FieldName = "AmountPaid";
-            gridViewTextBoxColumn5.HeaderText = "Amount Paid";
-            gridViewTextBoxColumn5.IsVisible = false;
-            gridViewTextBoxColumn5.Name = "AmountPaid";
-            gridViewTextBoxColumn5.ReadOnly = true;
-            gridViewTextBoxColumn5.Width = 120;
-            gridViewTextBoxColumn5.WrapText = true;
-            gridViewTextBoxColumn6.FieldName = "PenaltyAmount";
-            gridViewTextBoxColumn6.HeaderText = "Penalty Amount";
-            gridViewTextBoxColumn6.Name = "PenaltyAmount";
-            gridViewTextBoxColumn6.ReadOnly = true;
-            gridViewTextBoxColumn6.Width = 138;
-            gridViewTextBoxColumn6.WrapText = true;
-            gridViewTextBoxColumn7.FieldName = "PaymentStatus";
-            gridViewTextBoxColumn7.HeaderText = "Status";
-            gridViewTextBoxColumn7.Name = "PaymentStatus";
-            gridViewTextBoxColumn7.ReadOnly = true;
-            gridViewTextBoxColumn7.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn7.Width = 125;
-            gridViewTextBoxColumn8.FieldName = "Recid";
-            gridViewTextBoxColumn8.HeaderText = "Recid";
-            gridViewTextBoxColumn8.IsVisible = false;
-            gridViewTextBoxColumn8.Name = "Recid";
-            gridViewTextBoxColumn9.FieldName = "CompanyORNo";
-            gridViewTextBoxColumn9.HeaderText = "CompanyORNo";
-            gridViewTextBoxColumn9.IsVisible = false;
-            gridViewTextBoxColumn9.Name = "CompanyORNo";
-            gridViewTextBoxColumn9.Width = 47;
-            gridViewTextBoxColumn10.FieldName = "REF";
-            gridViewTextBoxColumn10.HeaderText = "REF";
-            gridViewTextBoxColumn10.IsVisible = false;
-            gridViewTextBoxColumn10.Name = "REF";
-            gridViewTextBoxColumn10.Width = 47;
-            gridViewTextBoxColumn11.FieldName = "BNK_ACCT_NAME";
-            gridViewTextBoxColumn11.HeaderText = "BNK_ACCT_NAME";
-            gridViewTextBoxColumn11.IsVisible = false;
-            gridViewTextBoxColumn11.Name = "BNK_ACCT_NAME";
-            gridViewTextBoxColumn11.Width = 47;
-            gridViewTextBoxColumn12.FieldName = "BNK_ACCT_NUMBER";
-            gridViewTextBoxColumn12.HeaderText = "BNK_ACCT_NUMBER";
-            gridViewTextBoxColumn12.IsVisible = false;
-            gridViewTextBoxColumn12.Name = "BNK_ACCT_NUMBER";
-            gridViewTextBoxColumn12.Width = 47;
-            gridViewTextBoxColumn13.FieldName = "BNK_NAME";
-            gridViewTextBoxColumn13.HeaderText = "BNK_NAME";
-            gridViewTextBoxColumn13.IsVisible = false;
-            gridViewTextBoxColumn13.Name = "BNK_NAME";
-            gridViewTextBoxColumn13.Width = 47;
-            gridViewTextBoxColumn14.FieldName = "SERIAL_NO";
-            gridViewTextBoxColumn14.HeaderText = "SERIAL_NO";
-            gridViewTextBoxColumn14.IsVisible = false;
-            gridViewTextBoxColumn14.Name = "SERIAL_NO";
-            gridViewTextBoxColumn14.Width = 47;
-            gridViewTextBoxColumn15.FieldName = "ModeType";
-            gridViewTextBoxColumn15.HeaderText = "ModeType";
-            gridViewTextBoxColumn15.IsVisible = false;
-            gridViewTextBoxColumn15.Name = "ModeType";
-            gridViewTextBoxColumn15.Width = 47;
-            gridViewTextBoxColumn16.FieldName = "CompanyPRNo";
-            gridViewTextBoxColumn16.HeaderText = "CompanyPRNo";
-            gridViewTextBoxColumn16.IsVisible = false;
-            gridViewTextBoxColumn16.Name = "CompanyPRNo";
-            gridViewTextBoxColumn16.Width = 47;
-            gridViewTextBoxColumn17.FieldName = "BankBranch";
-            gridViewTextBoxColumn17.HeaderText = "BankBranch";
-            gridViewTextBoxColumn17.IsVisible = false;
-            gridViewTextBoxColumn17.Name = "BankBranch";
-            gridViewTextBoxColumn17.Width = 47;
+            gridViewTextBoxColumn69.FieldName = "seq";
+            gridViewTextBoxColumn69.HeaderText = "seq";
+            gridViewTextBoxColumn69.Name = "seq";
+            gridViewTextBoxColumn69.ReadOnly = true;
+            gridViewTextBoxColumn69.Width = 34;
+            gridViewTextBoxColumn70.FieldName = "LedgMonth";
+            gridViewTextBoxColumn70.HeaderText = "Month";
+            gridViewTextBoxColumn70.Name = "LedgMonth";
+            gridViewTextBoxColumn70.ReadOnly = true;
+            gridViewTextBoxColumn70.Width = 138;
+            gridViewTextBoxColumn71.FieldName = "LedgAmount";
+            gridViewTextBoxColumn71.HeaderText = "Due Amount";
+            gridViewTextBoxColumn71.Name = "LedgAmount";
+            gridViewTextBoxColumn71.ReadOnly = true;
+            gridViewTextBoxColumn71.Width = 138;
+            gridViewTextBoxColumn72.FieldName = "BalanceAmount";
+            gridViewTextBoxColumn72.HeaderText = "Balance Amount";
+            gridViewTextBoxColumn72.Name = "BalanceAmount";
+            gridViewTextBoxColumn72.ReadOnly = true;
+            gridViewTextBoxColumn72.Width = 138;
+            gridViewTextBoxColumn72.WrapText = true;
+            gridViewTextBoxColumn73.FieldName = "AmountPaid";
+            gridViewTextBoxColumn73.HeaderText = "Amount Paid";
+            gridViewTextBoxColumn73.IsVisible = false;
+            gridViewTextBoxColumn73.Name = "AmountPaid";
+            gridViewTextBoxColumn73.ReadOnly = true;
+            gridViewTextBoxColumn73.Width = 120;
+            gridViewTextBoxColumn73.WrapText = true;
+            gridViewTextBoxColumn74.FieldName = "PenaltyAmount";
+            gridViewTextBoxColumn74.HeaderText = "Penalty Amount";
+            gridViewTextBoxColumn74.Name = "PenaltyAmount";
+            gridViewTextBoxColumn74.ReadOnly = true;
+            gridViewTextBoxColumn74.Width = 138;
+            gridViewTextBoxColumn74.WrapText = true;
+            gridViewTextBoxColumn75.FieldName = "PaymentStatus";
+            gridViewTextBoxColumn75.HeaderText = "Status";
+            gridViewTextBoxColumn75.Name = "PaymentStatus";
+            gridViewTextBoxColumn75.ReadOnly = true;
+            gridViewTextBoxColumn75.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn75.Width = 125;
+            gridViewTextBoxColumn76.FieldName = "Recid";
+            gridViewTextBoxColumn76.HeaderText = "Recid";
+            gridViewTextBoxColumn76.IsVisible = false;
+            gridViewTextBoxColumn76.Name = "Recid";
+            gridViewTextBoxColumn77.FieldName = "CompanyORNo";
+            gridViewTextBoxColumn77.HeaderText = "CompanyORNo";
+            gridViewTextBoxColumn77.IsVisible = false;
+            gridViewTextBoxColumn77.Name = "CompanyORNo";
+            gridViewTextBoxColumn77.Width = 47;
+            gridViewTextBoxColumn78.FieldName = "REF";
+            gridViewTextBoxColumn78.HeaderText = "REF";
+            gridViewTextBoxColumn78.IsVisible = false;
+            gridViewTextBoxColumn78.Name = "REF";
+            gridViewTextBoxColumn78.Width = 47;
+            gridViewTextBoxColumn79.FieldName = "BNK_ACCT_NAME";
+            gridViewTextBoxColumn79.HeaderText = "BNK_ACCT_NAME";
+            gridViewTextBoxColumn79.IsVisible = false;
+            gridViewTextBoxColumn79.Name = "BNK_ACCT_NAME";
+            gridViewTextBoxColumn79.Width = 47;
+            gridViewTextBoxColumn80.FieldName = "BNK_ACCT_NUMBER";
+            gridViewTextBoxColumn80.HeaderText = "BNK_ACCT_NUMBER";
+            gridViewTextBoxColumn80.IsVisible = false;
+            gridViewTextBoxColumn80.Name = "BNK_ACCT_NUMBER";
+            gridViewTextBoxColumn80.Width = 47;
+            gridViewTextBoxColumn81.FieldName = "BNK_NAME";
+            gridViewTextBoxColumn81.HeaderText = "BNK_NAME";
+            gridViewTextBoxColumn81.IsVisible = false;
+            gridViewTextBoxColumn81.Name = "BNK_NAME";
+            gridViewTextBoxColumn81.Width = 47;
+            gridViewTextBoxColumn82.FieldName = "SERIAL_NO";
+            gridViewTextBoxColumn82.HeaderText = "SERIAL_NO";
+            gridViewTextBoxColumn82.IsVisible = false;
+            gridViewTextBoxColumn82.Name = "SERIAL_NO";
+            gridViewTextBoxColumn82.Width = 47;
+            gridViewTextBoxColumn83.FieldName = "ModeType";
+            gridViewTextBoxColumn83.HeaderText = "ModeType";
+            gridViewTextBoxColumn83.IsVisible = false;
+            gridViewTextBoxColumn83.Name = "ModeType";
+            gridViewTextBoxColumn83.Width = 47;
+            gridViewTextBoxColumn84.FieldName = "CompanyPRNo";
+            gridViewTextBoxColumn84.HeaderText = "CompanyPRNo";
+            gridViewTextBoxColumn84.IsVisible = false;
+            gridViewTextBoxColumn84.Name = "CompanyPRNo";
+            gridViewTextBoxColumn84.Width = 47;
+            gridViewTextBoxColumn85.FieldName = "BankBranch";
+            gridViewTextBoxColumn85.HeaderText = "BankBranch";
+            gridViewTextBoxColumn85.IsVisible = false;
+            gridViewTextBoxColumn85.Name = "BankBranch";
+            gridViewTextBoxColumn85.Width = 47;
             this.dgvLedgerList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn1,
-            gridViewTextBoxColumn2,
-            gridViewTextBoxColumn3,
-            gridViewTextBoxColumn4,
-            gridViewTextBoxColumn5,
-            gridViewTextBoxColumn6,
-            gridViewTextBoxColumn7,
-            gridViewTextBoxColumn8,
-            gridViewTextBoxColumn9,
-            gridViewTextBoxColumn10,
-            gridViewTextBoxColumn11,
-            gridViewTextBoxColumn12,
-            gridViewTextBoxColumn13,
-            gridViewTextBoxColumn14,
-            gridViewTextBoxColumn15,
-            gridViewTextBoxColumn16,
-            gridViewTextBoxColumn17});
+            gridViewTextBoxColumn69,
+            gridViewTextBoxColumn70,
+            gridViewTextBoxColumn71,
+            gridViewTextBoxColumn72,
+            gridViewTextBoxColumn73,
+            gridViewTextBoxColumn74,
+            gridViewTextBoxColumn75,
+            gridViewTextBoxColumn76,
+            gridViewTextBoxColumn77,
+            gridViewTextBoxColumn78,
+            gridViewTextBoxColumn79,
+            gridViewTextBoxColumn80,
+            gridViewTextBoxColumn81,
+            gridViewTextBoxColumn82,
+            gridViewTextBoxColumn83,
+            gridViewTextBoxColumn84,
+            gridViewTextBoxColumn85});
             this.dgvLedgerList.MasterTemplate.ShowRowHeaderColumn = false;
             this.dgvLedgerList.Name = "dgvLedgerList";
             this.dgvLedgerList.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.dgvLedgerList.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgvLedgerList.ShowGroupPanel = false;
-            this.dgvLedgerList.Size = new System.Drawing.Size(707, 372);
+            this.dgvLedgerList.Size = new System.Drawing.Size(707, 342);
             this.dgvLedgerList.TabIndex = 6;
             this.dgvLedgerList.Text = "radGridView1";
             this.dgvLedgerList.ThemeName = "TelerikMetroTouch";
@@ -369,7 +406,7 @@
             this.radGroupBox2.HeaderText = "PAYMENT MODE";
             this.radGroupBox2.Location = new System.Drawing.Point(3, 3);
             this.radGroupBox2.Name = "radGroupBox2";
-            this.radGroupBox2.Size = new System.Drawing.Size(430, 321);
+            this.radGroupBox2.Size = new System.Drawing.Size(430, 351);
             this.radGroupBox2.TabIndex = 5;
             this.radGroupBox2.Text = "PAYMENT MODE";
             // 
@@ -388,8 +425,6 @@
             this.tableLayoutPanel2.Controls.Add(this.ddlSelectMode, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.radLabel3, 0, 3);
             this.tableLayoutPanel2.Controls.Add(this.radLabel4, 0, 4);
-            this.tableLayoutPanel2.Controls.Add(this.radLabel8, 0, 9);
-            this.tableLayoutPanel2.Controls.Add(this.txtRemarks, 1, 9);
             this.tableLayoutPanel2.Controls.Add(this.radLabel7, 0, 8);
             this.tableLayoutPanel2.Controls.Add(this.txtSerialNo, 1, 8);
             this.tableLayoutPanel2.Controls.Add(this.radLabel6, 0, 7);
@@ -398,10 +433,14 @@
             this.tableLayoutPanel2.Controls.Add(this.txtBankAccountName, 1, 6);
             this.tableLayoutPanel2.Controls.Add(this.radLabel12, 0, 5);
             this.tableLayoutPanel2.Controls.Add(this.txtBankBranch, 1, 5);
+            this.tableLayoutPanel2.Controls.Add(this.txtRemarks, 1, 10);
+            this.tableLayoutPanel2.Controls.Add(this.radLabel8, 0, 10);
+            this.tableLayoutPanel2.Controls.Add(this.radLabel13, 0, 9);
+            this.tableLayoutPanel2.Controls.Add(this.dtpRecieptDate, 1, 9);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(2, 18);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 10;
+            this.tableLayoutPanel2.RowCount = 11;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
@@ -411,8 +450,9 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(426, 301);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(426, 331);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // radLabel1
@@ -522,7 +562,7 @@
             this.radLabel8.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.radLabel8.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radLabel8.ForeColor = System.Drawing.Color.DarkRed;
-            this.radLabel8.Location = new System.Drawing.Point(87, 273);
+            this.radLabel8.Location = new System.Drawing.Point(87, 304);
             this.radLabel8.Name = "radLabel8";
             this.radLabel8.Size = new System.Drawing.Size(87, 24);
             this.radLabel8.TabIndex = 0;
@@ -532,7 +572,7 @@
             // 
             this.txtRemarks.AutoSize = false;
             this.txtRemarks.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRemarks.Location = new System.Drawing.Point(180, 273);
+            this.txtRemarks.Location = new System.Drawing.Point(180, 300);
             this.txtRemarks.Name = "txtRemarks";
             this.txtRemarks.Size = new System.Drawing.Size(241, 24);
             this.txtRemarks.TabIndex = 2;
@@ -617,38 +657,29 @@
             this.txtBankBranch.Size = new System.Drawing.Size(241, 24);
             this.txtBankBranch.TabIndex = 2;
             // 
-            // radGroupBoxPDCStatus
+            // radLabel13
             // 
-            this.radGroupBoxPDCStatus.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.tableLayoutPanel3.SetColumnSpan(this.radGroupBoxPDCStatus, 2);
-            this.radGroupBoxPDCStatus.Controls.Add(this.chkClearPDC);
-            this.radGroupBoxPDCStatus.Controls.Add(this.chkHold);
-            this.radGroupBoxPDCStatus.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radGroupBoxPDCStatus.HeaderText = "PDC STATUS";
-            this.radGroupBoxPDCStatus.Location = new System.Drawing.Point(3, 125);
-            this.radGroupBoxPDCStatus.Name = "radGroupBoxPDCStatus";
-            this.radGroupBoxPDCStatus.Size = new System.Drawing.Size(265, 87);
-            this.radGroupBoxPDCStatus.TabIndex = 4;
-            this.radGroupBoxPDCStatus.Text = "PDC STATUS";
+            this.radLabel13.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.radLabel13.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel13.ForeColor = System.Drawing.Color.DarkRed;
+            this.radLabel13.Location = new System.Drawing.Point(57, 273);
+            this.radLabel13.Name = "radLabel13";
+            this.radLabel13.Size = new System.Drawing.Size(117, 24);
+            this.radLabel13.TabIndex = 0;
+            this.radLabel13.Text = "Receipt Date.  :";
             // 
-            // chkHold
+            // dtpRecieptDate
             // 
-            this.chkHold.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkHold.Location = new System.Drawing.Point(32, 34);
-            this.chkHold.Name = "chkHold";
-            this.chkHold.Size = new System.Drawing.Size(64, 24);
-            this.chkHold.TabIndex = 0;
-            this.chkHold.Text = "HOLD";
-            this.chkHold.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.chkHold_ToggleStateChanged);
-            // 
-            // chkClearPDC
-            // 
-            this.chkClearPDC.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkClearPDC.Location = new System.Drawing.Point(168, 34);
-            this.chkClearPDC.Name = "chkClearPDC";
-            this.chkClearPDC.Size = new System.Drawing.Size(68, 24);
-            this.chkClearPDC.TabIndex = 0;
-            this.chkClearPDC.Text = "CLEAR";
+            this.dtpRecieptDate.AutoSize = false;
+            this.dtpRecieptDate.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpRecieptDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpRecieptDate.Location = new System.Drawing.Point(180, 273);
+            this.dtpRecieptDate.Name = "dtpRecieptDate";
+            this.dtpRecieptDate.Size = new System.Drawing.Size(164, 21);
+            this.dtpRecieptDate.TabIndex = 5;
+            this.dtpRecieptDate.TabStop = false;
+            this.dtpRecieptDate.Text = "4/24/2024";
+            this.dtpRecieptDate.Value = new System.DateTime(2024, 4, 24, 13, 8, 48, 926);
             // 
             // frmPaymentMode
             // 
@@ -657,6 +688,8 @@
             this.ClientSize = new System.Drawing.Size(713, 745);
             this.Controls.Add(this.tableLayoutPanel1);
             this.DoubleBuffered = true;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmPaymentMode";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -668,6 +701,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPaidAmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtReceiveAmount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxPDCStatus)).EndInit();
+            this.radGroupBoxPDCStatus.ResumeLayout(false);
+            this.radGroupBoxPDCStatus.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chkClearPDC)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkHold)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLedgerList.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLedgerList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnOk)).EndInit();
@@ -695,11 +733,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtBankAccountName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBankBranch)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxPDCStatus)).EndInit();
-            this.radGroupBoxPDCStatus.ResumeLayout(false);
-            this.radGroupBoxPDCStatus.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chkHold)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkClearPDC)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpRecieptDate)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -740,5 +775,7 @@
         private Telerik.WinControls.UI.RadGroupBox radGroupBoxPDCStatus;
         public Telerik.WinControls.UI.RadRadioButton chkClearPDC;
         public Telerik.WinControls.UI.RadRadioButton chkHold;
+        private Telerik.WinControls.UI.RadLabel radLabel13;
+        private Telerik.WinControls.UI.RadDateTimePicker dtpRecieptDate;
     }
 }

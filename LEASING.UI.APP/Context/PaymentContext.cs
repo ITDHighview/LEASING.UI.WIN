@@ -39,7 +39,7 @@ namespace LEASING.UI.APP.Context
             string REF,
             string ModeType,
             string BankBranch,
-            string RecieptDate,
+            string ReceiptDate,
             out string TransID)
         {
             SqlCommand _sqlcmd = null;
@@ -82,7 +82,7 @@ namespace LEASING.UI.APP.Context
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@BankBranch", BankBranch);
             _sqlcmd.Parameters.Add(_sqlpara);
-            _sqlpara = new SqlParameter("@RecieptDate", RecieptDate);
+            _sqlpara = new SqlParameter("@ReceiptDate", ReceiptDate);
             _sqlcmd.Parameters.Add(_sqlpara);
             TransID = string.Empty;
             try

@@ -24,7 +24,7 @@ CREATE OR ALTER PROCEDURE [dbo].[sp_GenerateFirstPayment]
     @SerialNo VARCHAR(30) = NULL,
     @PaymentRemarks VARCHAR(100) = NULL,
     @REF VARCHAR(100) = NULL,
-	@ReceiptDate DATE = NULL,
+	@ReceiptDate DATETIME = NULL,
     @BankBranch VARCHAR(100) = NULL,
     @ModeType VARCHAR(20) = NULL
 AS

@@ -42,8 +42,6 @@
             this.ddlSelectMode = new Telerik.WinControls.UI.RadDropDownList();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
-            this.txtRemarks = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
             this.txtSerialNo = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
@@ -52,6 +50,8 @@
             this.txtBankAccountName = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel10 = new Telerik.WinControls.UI.RadLabel();
             this.txtBankBranch = new Telerik.WinControls.UI.RadTextBox();
+            this.txtRemarks = new Telerik.WinControls.UI.RadTextBox();
+            this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel11 = new Telerik.WinControls.UI.RadLabel();
             this.dtpRecieptDate = new Telerik.WinControls.UI.RadDateTimePicker();
             this.tableLayoutPanel1.SuspendLayout();
@@ -69,8 +69,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.ddlSelectMode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRemarks)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSerialNo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
@@ -79,6 +77,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtBankAccountName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBankBranch)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRemarks)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpRecieptDate)).BeginInit();
             this.SuspendLayout();
@@ -271,36 +271,16 @@
             this.radLabel4.TabIndex = 0;
             this.radLabel4.Text = "Bank Name.  :";
             // 
-            // radLabel8
-            // 
-            this.radLabel8.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.radLabel8.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel8.ForeColor = System.Drawing.Color.DarkRed;
-            this.radLabel8.Location = new System.Drawing.Point(87, 303);
-            this.radLabel8.Name = "radLabel8";
-            this.radLabel8.Size = new System.Drawing.Size(87, 24);
-            this.radLabel8.TabIndex = 0;
-            this.radLabel8.Text = "Remarks.  :";
-            // 
-            // txtRemarks
-            // 
-            this.txtRemarks.AutoSize = false;
-            this.txtRemarks.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRemarks.Location = new System.Drawing.Point(180, 303);
-            this.txtRemarks.Name = "txtRemarks";
-            this.txtRemarks.Size = new System.Drawing.Size(241, 24);
-            this.txtRemarks.TabIndex = 2;
-            // 
             // radLabel7
             // 
             this.radLabel7.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.radLabel7.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radLabel7.ForeColor = System.Drawing.Color.DarkRed;
-            this.radLabel7.Location = new System.Drawing.Point(83, 243);
+            this.radLabel7.Location = new System.Drawing.Point(80, 243);
             this.radLabel7.Name = "radLabel7";
-            this.radLabel7.Size = new System.Drawing.Size(91, 24);
+            this.radLabel7.Size = new System.Drawing.Size(94, 24);
             this.radLabel7.TabIndex = 0;
-            this.radLabel7.Text = "Serial No.  :";
+            this.radLabel7.Text = "Check No.  :";
             // 
             // txtSerialNo
             // 
@@ -371,6 +351,26 @@
             this.txtBankBranch.Size = new System.Drawing.Size(241, 24);
             this.txtBankBranch.TabIndex = 2;
             // 
+            // txtRemarks
+            // 
+            this.txtRemarks.AutoSize = false;
+            this.txtRemarks.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRemarks.Location = new System.Drawing.Point(180, 303);
+            this.txtRemarks.Name = "txtRemarks";
+            this.txtRemarks.Size = new System.Drawing.Size(241, 24);
+            this.txtRemarks.TabIndex = 2;
+            // 
+            // radLabel8
+            // 
+            this.radLabel8.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.radLabel8.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel8.ForeColor = System.Drawing.Color.DarkRed;
+            this.radLabel8.Location = new System.Drawing.Point(87, 303);
+            this.radLabel8.Name = "radLabel8";
+            this.radLabel8.Size = new System.Drawing.Size(87, 24);
+            this.radLabel8.TabIndex = 0;
+            this.radLabel8.Text = "Remarks.  :";
+            // 
             // radLabel11
             // 
             this.radLabel11.Anchor = System.Windows.Forms.AnchorStyles.Right;
@@ -425,8 +425,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.ddlSelectMode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRemarks)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSerialNo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
@@ -435,6 +433,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtBankAccountName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBankBranch)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRemarks)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpRecieptDate)).EndInit();
             this.ResumeLayout(false);

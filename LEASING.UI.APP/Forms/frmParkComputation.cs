@@ -749,7 +749,7 @@ namespace LEASING.UI.APP.Forms
                     if (MessageBox.Show("Are you sure you want to generate transaction to this Contract?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                     {
                         frmSelectClient forms = new frmSelectClient();
-                        forms.ComputationRecid = Convert.ToInt32(dgvList.CurrentRow.Cells["RecId"].Value);
+                        forms.contractId = Convert.ToInt32(dgvList.CurrentRow.Cells["RecId"].Value);
                         forms.ShowDialog();
                         M_GetComputationList();
                     }

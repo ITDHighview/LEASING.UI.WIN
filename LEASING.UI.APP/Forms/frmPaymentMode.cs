@@ -16,7 +16,7 @@ namespace LEASING.UI.APP.Forms
 {
     public partial class frmPaymentMode : Form
     {
-        PaymentContext PaymentContext = new PaymentContext();
+        private PaymentContext _payment = new PaymentContext();
         public bool IsProceed = false;
         public string CompanyORNo { get; set; }
         public string CompanyPRNo { get; set; }
@@ -33,8 +33,8 @@ namespace LEASING.UI.APP.Forms
         public bool IsOR { get; set; } = false;
 
         public bool IsPartialPayment = false;
-        public bool IsHold = false;
-        public bool IsClearPDC = false;
+        public bool IsHold { get; set; } = false;
+        public bool IsClearPDC { get; set; } = false;
         public string Amount = string.Empty;
         public int recid = 0;
         int DayCount = 0;
@@ -77,7 +77,7 @@ namespace LEASING.UI.APP.Forms
                         ddlbankName.Enabled = true;
                         txtBankAccountName.Enabled = true;
                         txtBankAccountNo.Enabled = true;
-                        txtSerialNo.Enabled = false;
+                        txtSerialNo.Enabled = true;
                         txtBankBranch.Enabled = true;
 
                         break;
@@ -128,7 +128,7 @@ namespace LEASING.UI.APP.Forms
         {
 
             ddlSelectMode.DataSource = null;
-            using (DataSet dt = PaymentContext.GetSelectPaymentMode())
+            using (DataSet dt = _payment.GetSelectPaymentMode())
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                 {
@@ -142,7 +142,7 @@ namespace LEASING.UI.APP.Forms
         {
 
             ddlbankName.DataSource = null;
-            using (DataSet dt = PaymentContext.GetSelectBankName())
+            using (DataSet dt = _payment.GetBankNameBrowse())
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                 {
@@ -157,7 +157,7 @@ namespace LEASING.UI.APP.Forms
         {
 
             dgvLedgerList.DataSource = null;
-            using (DataSet dt = PaymentContext.GetLedgerListOnQue(XML))
+            using (DataSet dt = _payment.GetLedgerListOnQue(XML))
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                 {
@@ -170,7 +170,7 @@ namespace LEASING.UI.APP.Forms
         {
 
             txtPaidAmount.Text = string.Empty;
-            using (DataSet dt = PaymentContext.GetLedgerListOnQueTotalAMount(XML))
+            using (DataSet dt = _payment.GetLedgerListOnQueTotalAMount(XML))
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                 {
@@ -223,7 +223,7 @@ namespace LEASING.UI.APP.Forms
         }
         private bool IsORExist()
         {
-            using (DataSet dt = PaymentContext.GetCheckOrNumber(txtCompanyORNo.Text.Trim()))
+            using (DataSet dt = _payment.GetCheckOrNumber(txtCompanyORNo.Text.Trim()))
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                 {
@@ -235,7 +235,7 @@ namespace LEASING.UI.APP.Forms
         }
         private bool IsPRExist()
         {
-            using (DataSet dt = PaymentContext.GetCheckPRNumber(txtPRNo.Text.Trim()))
+            using (DataSet dt = _payment.GetCheckPRNumber(txtPRNo.Text.Trim()))
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                 {
@@ -253,6 +253,9 @@ namespace LEASING.UI.APP.Forms
             this.M_GetSelectBanknName();
             this.M_GetLedgerListOnQue();
             this.M_GetLedgerListOnQueTotalAMount();
+            this.dtpRecieptDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
+            this.IsClearPDC = false;
+            this.IsHold = true;
             //this.ddlbankName.Text = string.Empty;
             //this.ddlbankName.SelectedIndex = -1;
             //this.radGroupBoxPDCStatus.Visible = false;
@@ -279,7 +282,7 @@ namespace LEASING.UI.APP.Forms
                 this.chkClearPDC.IsChecked = false;
                 this.radLabel8.Visible = true;
                 this.txtRemarks.Visible = true;
-                this.txtReceiveAmount.Text = string.Empty;
+                //this.txtReceiveAmount.Text = string.Empty;
                 this.btnOk.Text = "PROCEED PAYMENT>>>";
 
                 this.txtReceiveAmount.Focus();
@@ -311,8 +314,8 @@ namespace LEASING.UI.APP.Forms
             this.PaymentRemarks = this.txtRemarks.Text;
             this.REF = this.txtReferrence.Text;
             this.BankBranch = this.txtBankBranch.Text;
-            this.IsHold = chkHold.IsChecked;
-            this.IsClearPDC = chkClearPDC.IsChecked;
+            //this.IsHold = chkHold.IsChecked;
+            //this.IsClearPDC = chkClearPDC.IsChecked;
             this.RecieptDate = dtpRecieptDate.Text;
 
         }
@@ -357,11 +360,11 @@ namespace LEASING.UI.APP.Forms
 
         private string PaymentMessageInfo()
         {
-            if (chkHold.IsChecked)
+            if (chkHold.IsChecked == true)
             {
                 return "Are you sure you want to save this transaction?.";
             }
-            else
+            else if (chkHold.IsChecked == false && chkClearPDC.IsChecked == true)
             {
                 if (this.IsPaymentforPartial())
                 {
@@ -443,21 +446,7 @@ namespace LEASING.UI.APP.Forms
             }
         }
 
-        private void chkHold_ToggleStateChanged(object sender, Telerik.WinControls.UI.StateChangedEventArgs args)
-        {
-            if (chkHold.IsChecked)
-            {
-                this.radLabel8.Visible = false;
-                this.txtRemarks.Visible = false;
-                btnOk.Text = "SAVE TRANSACTION>>>";
-            }
-            else
-            {
-                this.radLabel8.Visible = true;
-                this.txtRemarks.Visible = true;
-                btnOk.Text = "PROCEED PAYMENT>>>";
-            }
-        }
+
 
         private void dgvLedgerList_SelectionChanged(object sender, EventArgs e)
         {
@@ -473,6 +462,26 @@ namespace LEASING.UI.APP.Forms
                 txtBankAccountNo.Text = Convert.ToString(dgvLedgerList.CurrentRow.Cells["BNK_ACCT_NUMBER"].Value);
                 txtSerialNo.Text = Convert.ToString(dgvLedgerList.CurrentRow.Cells["SERIAL_NO"].Value);
             }
+        }
+
+        private void chkHold_Click(object sender, EventArgs e)
+        {
+            chkClearPDC.IsChecked = false;
+            IsClearPDC = false;
+            IsHold = true;
+            this.radLabel8.Visible = false;
+            this.txtRemarks.Visible = false;
+            btnOk.Text = "SAVE TRANSACTION>>>";
+        }
+
+        private void chkClearPDC_Click(object sender, EventArgs e)
+        {
+            chkHold.IsChecked = false;
+            IsClearPDC = true;
+            IsHold = false;
+            this.radLabel8.Visible = true;
+            this.txtRemarks.Visible = true;
+            btnOk.Text = "PROCEED PAYMENT>>>";
         }
     }
 }

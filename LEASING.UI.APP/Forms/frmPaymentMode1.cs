@@ -65,11 +65,22 @@ namespace LEASING.UI.APP.Forms
                         ddlbankName.Enabled = true;
                         txtBankAccountName.Enabled = true;
                         txtBankAccountNo.Enabled = true;
-                        txtSerialNo.Enabled = false;
+                        txtSerialNo.Enabled = true;
                         txtBankBranch.Enabled = true;
 
                         break;
                     case "PDC":
+                        txtCompanyORNo.Enabled = true;
+                        txtPRNo.Enabled = true;
+                        txtReferrence.Enabled = false;
+                        ddlbankName.Enabled = true;
+                        txtBankAccountName.Enabled = true;
+                        txtBankAccountNo.Enabled = true;
+                        txtSerialNo.Enabled = true;
+                        txtBankBranch.Enabled = true;
+
+                        break;
+                    case "DC":
                         txtCompanyORNo.Enabled = true;
                         txtPRNo.Enabled = true;
                         txtReferrence.Enabled = false;
@@ -117,7 +128,7 @@ namespace LEASING.UI.APP.Forms
         {
 
             ddlbankName.DataSource = null;
-            using (DataSet dt = PaymentContext.GetSelectBankName())
+            using (DataSet dt = PaymentContext.GetBankNameBrowse())
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                 {
@@ -199,6 +210,7 @@ namespace LEASING.UI.APP.Forms
             M_GetSelectBanknName();          
             ddlbankName.Text = string.Empty;
             ddlbankName.SelectedIndex = -1;
+            this.dtpRecieptDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
         }
 
         private void ddlSelectMode_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)

@@ -1,4 +1,5 @@
-﻿using LEASING.UI.APP.Context;
+﻿using LEASING.UI.APP.Common;
+using LEASING.UI.APP.Context;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,7 +14,7 @@ namespace LEASING.UI.APP.Forms
 {
     public partial class frmAddBankName : Form
     {
-        PaymentContext PaymentContext = new PaymentContext();
+       private PaymentContext _payment = new PaymentContext();
         public frmAddBankName()
         {
             InitializeComponent();
@@ -51,7 +52,7 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-        private bool IsValid()
+        private bool _isValid()
         {
             if (string.IsNullOrEmpty(txtBankName.Text))
             {
@@ -65,53 +66,53 @@ namespace LEASING.UI.APP.Forms
             //}
             return true;
         }
-        private void SaveBankName()
+        private void _saveBankName()
         {
             try
             {
-                string result = PaymentContext.SaveNewBankName(txtBankName.Text);
+                string result = _payment.SaveBankNameInfo(this.txtBankName.Text);
                 if (result.Equals("SUCCESS"))
                 {
-                    MessageBox.Show("New Bank Name has been added successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    strBankNameFormMode = "READ";
-                    M_GetBankNameList();
+                    Functions.MessageShow("New Bank Name has been added successfully !");
+                    this.strBankNameFormMode = "READ";
+                    this._getBankNameBrowse();
                 }
                 else
-                {
-                    MessageBox.Show(result, "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                {                   
+                    Functions.MessageShow(result);
                 }
             }
             catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString(), "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            {               
+                Functions.MessageShow(ex.ToString());
             }
         }
-        private void DeleteBankName()
+        private void _deleteBankName()
         {
             try
             {
-                string result = PaymentContext.DeleteBankName(Convert.ToString(dgvList.CurrentRow.Cells["BankName"].Value));
+                string result = _payment.DeleteBankName(Convert.ToString(dgvList.CurrentRow.Cells["BankName"].Value));
                 if (result.Equals("SUCCESS"))
                 {
-                    MessageBox.Show("Deleted successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    strBankNameFormMode = "READ";
-                    M_GetBankNameList();
+                    Functions.MessageShow("Deleted successfully !");
+                    this.strBankNameFormMode = "READ";
+                    this._getBankNameBrowse();
                 }
                 else
                 {
-                    MessageBox.Show(result, "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Functions.MessageShow(result);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Functions.MessageShow(ex.ToString());
             }
         }
 
-        private void M_GetBankNameList()
+        private void _getBankNameBrowse()
         {
             dgvList.DataSource = null;
-            using (DataSet dt = PaymentContext.GetSelectBankName())
+            using (DataSet dt = _payment.GetBankNameBrowse())
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                 {
@@ -121,13 +122,13 @@ namespace LEASING.UI.APP.Forms
         }
         private void frmAddBankName_Load(object sender, EventArgs e)
         {
-            strBankNameFormMode = "READ";
-            M_GetBankNameList();
+            this.strBankNameFormMode = "READ";
+            this._getBankNameBrowse();
         }
 
         private void btnNew_Click(object sender, EventArgs e)
         {
-            strBankNameFormMode = "NEW";
+            this.strBankNameFormMode = "NEW";
         }
 
         private void btnUndo_Click(object sender, EventArgs e)
@@ -137,11 +138,11 @@ namespace LEASING.UI.APP.Forms
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (IsValid())
+            if (this._isValid())
             {
                 if (MessageBox.Show("Are you sure you want to add this Bank Name ?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                 {
-                    SaveBankName();
+                    this._saveBankName();
                 }
             }
         }
@@ -154,7 +155,7 @@ namespace LEASING.UI.APP.Forms
                 {
                     if (MessageBox.Show("Are you sure you want to delete this Bank Name ?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                     {
-                        DeleteBankName();
+                        this._deleteBankName();
                     }
                 }       
             }

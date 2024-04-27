@@ -52,8 +52,8 @@
             this.txtPaidAmount = new Telerik.WinControls.UI.RadTextBox();
             this.txtReceiveAmount = new Telerik.WinControls.UI.RadTextBox();
             this.radGroupBoxPDCStatus = new Telerik.WinControls.UI.RadGroupBox();
-            this.chkClearPDC = new Telerik.WinControls.UI.RadRadioButton();
-            this.chkHold = new Telerik.WinControls.UI.RadRadioButton();
+            this.chkHold = new Telerik.WinControls.UI.RadCheckBox();
+            this.chkClearPDC = new Telerik.WinControls.UI.RadCheckBox();
             this.dgvLedgerList = new Telerik.WinControls.UI.RadGridView();
             this.btnOk = new Telerik.WinControls.UI.RadButton();
             this.radGroupBox2 = new Telerik.WinControls.UI.RadGroupBox();
@@ -68,8 +68,6 @@
             this.ddlSelectMode = new Telerik.WinControls.UI.RadDropDownList();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
-            this.txtRemarks = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
             this.txtSerialNo = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
@@ -78,9 +76,11 @@
             this.txtBankAccountName = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel12 = new Telerik.WinControls.UI.RadLabel();
             this.txtBankBranch = new Telerik.WinControls.UI.RadTextBox();
-            this.telerikMetroTouchTheme1 = new Telerik.WinControls.Themes.TelerikMetroTouchTheme();
+            this.txtRemarks = new Telerik.WinControls.UI.RadTextBox();
+            this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel13 = new Telerik.WinControls.UI.RadLabel();
             this.dtpRecieptDate = new Telerik.WinControls.UI.RadDateTimePicker();
+            this.telerikMetroTouchTheme1 = new Telerik.WinControls.Themes.TelerikMetroTouchTheme();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).BeginInit();
@@ -89,8 +89,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtReceiveAmount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxPDCStatus)).BeginInit();
             this.radGroupBoxPDCStatus.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chkClearPDC)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkHold)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkClearPDC)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLedgerList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLedgerList.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnOk)).BeginInit();
@@ -107,8 +107,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.ddlSelectMode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRemarks)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSerialNo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
@@ -117,6 +115,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtBankAccountName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBankBranch)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRemarks)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpRecieptDate)).BeginInit();
             this.SuspendLayout();
@@ -222,8 +222,8 @@
             // 
             this.radGroupBoxPDCStatus.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
             this.tableLayoutPanel3.SetColumnSpan(this.radGroupBoxPDCStatus, 2);
-            this.radGroupBoxPDCStatus.Controls.Add(this.chkClearPDC);
             this.radGroupBoxPDCStatus.Controls.Add(this.chkHold);
+            this.radGroupBoxPDCStatus.Controls.Add(this.chkClearPDC);
             this.radGroupBoxPDCStatus.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radGroupBoxPDCStatus.HeaderText = "PDC STATUS";
             this.radGroupBoxPDCStatus.Location = new System.Drawing.Point(3, 125);
@@ -232,24 +232,27 @@
             this.radGroupBoxPDCStatus.TabIndex = 4;
             this.radGroupBoxPDCStatus.Text = "PDC STATUS";
             // 
-            // chkClearPDC
-            // 
-            this.chkClearPDC.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkClearPDC.Location = new System.Drawing.Point(168, 34);
-            this.chkClearPDC.Name = "chkClearPDC";
-            this.chkClearPDC.Size = new System.Drawing.Size(68, 24);
-            this.chkClearPDC.TabIndex = 0;
-            this.chkClearPDC.Text = "CLEAR";
-            // 
             // chkHold
             // 
-            this.chkHold.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkHold.Location = new System.Drawing.Point(32, 34);
+            this.chkHold.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkHold.ForeColor = System.Drawing.Color.DarkRed;
+            this.chkHold.Location = new System.Drawing.Point(24, 46);
             this.chkHold.Name = "chkHold";
-            this.chkHold.Size = new System.Drawing.Size(64, 24);
-            this.chkHold.TabIndex = 0;
+            this.chkHold.Size = new System.Drawing.Size(68, 25);
+            this.chkHold.TabIndex = 5;
             this.chkHold.Text = "HOLD";
-            this.chkHold.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.chkHold_ToggleStateChanged);
+            this.chkHold.Click += new System.EventHandler(this.chkHold_Click);
+            // 
+            // chkClearPDC
+            // 
+            this.chkClearPDC.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkClearPDC.ForeColor = System.Drawing.Color.Green;
+            this.chkClearPDC.Location = new System.Drawing.Point(173, 46);
+            this.chkClearPDC.Name = "chkClearPDC";
+            this.chkClearPDC.Size = new System.Drawing.Size(72, 25);
+            this.chkClearPDC.TabIndex = 5;
+            this.chkClearPDC.Text = "CLEAR";
+            this.chkClearPDC.Click += new System.EventHandler(this.chkClearPDC_Click);
             // 
             // dgvLedgerList
             // 
@@ -557,36 +560,16 @@
             this.radLabel4.TabIndex = 0;
             this.radLabel4.Text = "Bank Name.  :";
             // 
-            // radLabel8
-            // 
-            this.radLabel8.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.radLabel8.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel8.ForeColor = System.Drawing.Color.DarkRed;
-            this.radLabel8.Location = new System.Drawing.Point(87, 304);
-            this.radLabel8.Name = "radLabel8";
-            this.radLabel8.Size = new System.Drawing.Size(87, 24);
-            this.radLabel8.TabIndex = 0;
-            this.radLabel8.Text = "Remarks.  :";
-            // 
-            // txtRemarks
-            // 
-            this.txtRemarks.AutoSize = false;
-            this.txtRemarks.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRemarks.Location = new System.Drawing.Point(180, 300);
-            this.txtRemarks.Name = "txtRemarks";
-            this.txtRemarks.Size = new System.Drawing.Size(241, 24);
-            this.txtRemarks.TabIndex = 2;
-            // 
             // radLabel7
             // 
             this.radLabel7.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.radLabel7.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radLabel7.ForeColor = System.Drawing.Color.DarkRed;
-            this.radLabel7.Location = new System.Drawing.Point(83, 243);
+            this.radLabel7.Location = new System.Drawing.Point(80, 243);
             this.radLabel7.Name = "radLabel7";
-            this.radLabel7.Size = new System.Drawing.Size(91, 24);
+            this.radLabel7.Size = new System.Drawing.Size(94, 24);
             this.radLabel7.TabIndex = 0;
-            this.radLabel7.Text = "Serial No.  :";
+            this.radLabel7.Text = "Check No.  :";
             // 
             // txtSerialNo
             // 
@@ -657,6 +640,26 @@
             this.txtBankBranch.Size = new System.Drawing.Size(241, 24);
             this.txtBankBranch.TabIndex = 2;
             // 
+            // txtRemarks
+            // 
+            this.txtRemarks.AutoSize = false;
+            this.txtRemarks.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRemarks.Location = new System.Drawing.Point(180, 300);
+            this.txtRemarks.Name = "txtRemarks";
+            this.txtRemarks.Size = new System.Drawing.Size(241, 24);
+            this.txtRemarks.TabIndex = 2;
+            // 
+            // radLabel8
+            // 
+            this.radLabel8.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.radLabel8.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel8.ForeColor = System.Drawing.Color.DarkRed;
+            this.radLabel8.Location = new System.Drawing.Point(87, 304);
+            this.radLabel8.Name = "radLabel8";
+            this.radLabel8.Size = new System.Drawing.Size(87, 24);
+            this.radLabel8.TabIndex = 0;
+            this.radLabel8.Text = "Remarks.  :";
+            // 
             // radLabel13
             // 
             this.radLabel13.Anchor = System.Windows.Forms.AnchorStyles.Right;
@@ -664,7 +667,7 @@
             this.radLabel13.ForeColor = System.Drawing.Color.DarkRed;
             this.radLabel13.Location = new System.Drawing.Point(57, 273);
             this.radLabel13.Name = "radLabel13";
-            this.radLabel13.Size = new System.Drawing.Size(117, 24);
+            this.radLabel13.Size = new System.Drawing.Size(117, 21);
             this.radLabel13.TabIndex = 0;
             this.radLabel13.Text = "Receipt Date.  :";
             // 
@@ -704,8 +707,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBoxPDCStatus)).EndInit();
             this.radGroupBoxPDCStatus.ResumeLayout(false);
             this.radGroupBoxPDCStatus.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chkClearPDC)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkHold)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkClearPDC)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLedgerList.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLedgerList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnOk)).EndInit();
@@ -723,8 +726,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.ddlSelectMode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRemarks)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSerialNo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
@@ -733,6 +734,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtBankAccountName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBankBranch)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRemarks)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpRecieptDate)).EndInit();
             this.ResumeLayout(false);
@@ -773,9 +776,9 @@
         private Telerik.WinControls.UI.RadLabel radLabel12;
         private Telerik.WinControls.UI.RadTextBox txtBankBranch;
         private Telerik.WinControls.UI.RadGroupBox radGroupBoxPDCStatus;
-        public Telerik.WinControls.UI.RadRadioButton chkClearPDC;
-        public Telerik.WinControls.UI.RadRadioButton chkHold;
         private Telerik.WinControls.UI.RadLabel radLabel13;
         private Telerik.WinControls.UI.RadDateTimePicker dtpRecieptDate;
+        private Telerik.WinControls.UI.RadCheckBox chkHold;
+        private Telerik.WinControls.UI.RadCheckBox chkClearPDC;
     }
 }

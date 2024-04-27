@@ -817,7 +817,7 @@
             // 
             // txtAreRateSqm
             // 
-            this.txtAreRateSqm.Location = new System.Drawing.Point(73, 26);
+            this.txtAreRateSqm.Location = new System.Drawing.Point(74, 56);
             this.txtAreRateSqm.Name = "txtAreRateSqm";
             this.txtAreRateSqm.NullText = "Type here...";
             this.txtAreRateSqm.Size = new System.Drawing.Size(82, 20);
@@ -866,7 +866,7 @@
             // 
             // txtAreSql
             // 
-            this.txtAreSql.Location = new System.Drawing.Point(74, 56);
+            this.txtAreSql.Location = new System.Drawing.Point(74, 26);
             this.txtAreSql.Name = "txtAreSql";
             this.txtAreSql.NullText = "Type here...";
             this.txtAreSql.Size = new System.Drawing.Size(81, 20);

@@ -17,35 +17,34 @@ namespace LEASING.UI.APP.Forms
     public partial class frmSelectClient : Form
     {
         #region Context
-        ClientContext ClientContext = new ClientContext();
-        ComputationContext ComputationContext = new ComputationContext();
-        PaymentContext PaymentContext = new PaymentContext();
+        private ClientContext _client = new ClientContext();
+        private ComputationContext _contract = new ComputationContext();
+        private PaymentContext _payment = new PaymentContext();
         #endregion
 
         #region Variables
-        public int TotalRental { get; set; }
-        public int ComputationRecid { get; set; }
-        public string TransID = string.Empty;
-        public string RefId { get; set; }
-        public string ClientId { get; set; }
+        public int contractId { get; set; }
+        public string contractNumber { get; set; }
+        public string clientNumber { get; set; }
+        public string transactionNumber = string.Empty;
+
+        public int totalMonthlyRental { get; set; }         
         public bool IsProceed { get; set; }
-        public string FromDate { get; set; }
-        public string Todate { get; set; }
-        public int TotalAmount { get; set; }
-        public decimal ReceiveAmount { get; set; }
-        public decimal ChangeAmount { get; set; }
-        public string CompanyORNo { get; set; }
-        public string CompanyPRNo { get; set; }
-        public string BankAccountName { get; set; }
-        public string BankBranch { get; set; }
-        public string BankAccountNumber { get; set; }
-        public string BankName { get; set; }
-        public string SerialNo { get; set; }
-        public string PaymentRemarks { get; set; }
-        public string REF { get; set; }
-        public string ModeType { get; set; }
+
+        public decimal receiveAmount { get; set; }
+        public decimal changeAmount { get; set; }
+        public string _Company_OR_Number_ { get; set; }
+        public string _Company_PR_Number_ { get; set; }
+        public string _Bank_Account_Name_ { get; set; }
+        public string _Bank_Branch_ { get; set; }
+        public string _Bank_Account_Number_ { get; set; }
+        public string _Bank_Name_ { get; set; }
+        public string _Bank_Serial_No_ { get; set; }
+        public string paymentRemarks { get; set; }
+        public string _Bank_Reference_Number_ { get; set; }
+        public string modeType { get; set; }
         private bool IsPartialPayment = false;
-        public string RecieptDate { get; set; }
+        public string _Company_Original_Receipt_Date_ { get; set; }
 
         #endregion
 
@@ -54,8 +53,8 @@ namespace LEASING.UI.APP.Forms
         {
             this.FormLoadDisableControl();
             this.FormLoadReadOnlyControls();
-            this.M_GetComputationById();
-            this.M_GetMonthLedgerByRefIdAndClientId();
+            this._getContractById();
+            this._getMonthLedgerBrowseByContractIdClientNumber();
         }
         private void FormLoadReadOnlyControls()
         {
@@ -74,9 +73,9 @@ namespace LEASING.UI.APP.Forms
             txtThreeMonSecDep.Enabled = false;
             txtTotalForPayment.Enabled = false;
         }
-        private bool IsComputationValid()
+        private bool _isPaymentValid()
         {
-            if (string.IsNullOrEmpty(ClientId))
+            if (string.IsNullOrEmpty(this.clientNumber))
             {
                 Functions.MessageShow("Client  cannot be empty!.");
                 return false;
@@ -91,11 +90,11 @@ namespace LEASING.UI.APP.Forms
 
             return true;
         }
-        private void M_GetMonthLedgerByRefIdAndClientId()
+        private void _getMonthLedgerBrowseByContractIdClientNumber()
         {
 
             dgvLedgerList.DataSource = null;
-            using (DataSet dt = ComputationContext.GetMonthLedgerByRefIdAndClientId(ComputationRecid, ClientId))
+            using (DataSet dt = _contract.GetMonthLedgerBrowseByContractIdClientNumber(this.contractId, this.clientNumber))
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                 {
@@ -104,18 +103,18 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-        private void M_GetComputationById()
+        private void _getContractById()
         {
-            using (DataSet dt = ComputationContext.GetComputationById(ComputationRecid))
+            using (DataSet dt = _contract.GetContractById(this.contractId))
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                 {
-                    RefId = Convert.ToString(dt.Tables[0].Rows[0]["RefId"]);
+                    this.contractNumber = Convert.ToString(dt.Tables[0].Rows[0]["RefId"]);
                     txtClientName.Text = Convert.ToString(dt.Tables[0].Rows[0]["InquiringClient"]);
-                    ClientId = Convert.ToString(dt.Tables[0].Rows[0]["ClientID"]);
+                    this.clientNumber = Convert.ToString(dt.Tables[0].Rows[0]["ClientID"]);
                     dtpFrom.Text = Convert.ToString(dt.Tables[0].Rows[0]["StatDate"]);
                     dtpTo.Text = Convert.ToString(dt.Tables[0].Rows[0]["FinishDate"]);
-                    TotalRental = Convert.ToInt32(dt.Tables[0].Rows[0]["TotalRent"]);
+                    this.totalMonthlyRental = Convert.ToInt32(dt.Tables[0].Rows[0]["TotalRent"]);
                     txtTwoMonAdv.Text = Convert.ToString(dt.Tables[0].Rows[0]["TwoMonAdvance"]);
                     txtThreeMonSecDep.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecDeposit"]);
                     txtTotalForPayment.Text = Convert.ToString(dt.Tables[0].Rows[0]["TotalForPayment"]);
@@ -124,40 +123,32 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-        private decimal fn_ConvertStringToDecimal(string amountString)
-        {
-            if (string.IsNullOrEmpty(amountString))
-            {
-                return 0;
-            }
-            return decimal.Parse(amountString);
-        }
-        private void GeneratePayment()
+        private void _generatePayment()
         {
             try
             {
-                if (string.IsNullOrEmpty(this.RefId))
+                if (string.IsNullOrEmpty(this.contractNumber))
                 {
                     return;
                 }
-                var result = PaymentContext.GenerateFirstPayment(
-                   this.RefId,
-                   this.fn_ConvertStringToDecimal(this.txtTotalForPayment.Text),
-                   this.ReceiveAmount,
-                   this.ChangeAmount,
-                   this.fn_ConvertStringToDecimal(this.txtThreeMonSecDep.Text),
-                   this.CompanyORNo,
-                   this.CompanyPRNo,
-                   this.BankAccountName,
-                   this.BankAccountNumber,
-                   this.BankName,
-                   this.SerialNo,
-                   this.PaymentRemarks,
-                   this.REF,
-                   this.ModeType,
-                   this.BankBranch,
-                   this.RecieptDate,
-                    out TransID);
+                var result = _payment.GenerateFirstPayment(
+                   this.contractNumber,
+                   Functions.ConvertStringToDecimal(this.txtTotalForPayment.Text),
+                   this.receiveAmount,
+                   this.changeAmount,
+                   Functions.ConvertStringToDecimal(this.txtThreeMonSecDep.Text),
+                   this._Company_OR_Number_,
+                   this._Company_PR_Number_,
+                   this._Bank_Account_Name_,
+                   this._Bank_Account_Number_,
+                   this._Bank_Name_,
+                   this._Bank_Serial_No_,
+                   this.paymentRemarks,
+                   this._Bank_Reference_Number_,
+                   this.modeType,
+                   this._Bank_Branch_,
+                   this._Company_Original_Receipt_Date_,
+                    out transactionNumber);
 
                 if (string.IsNullOrEmpty(result))
                 {
@@ -173,9 +164,9 @@ namespace LEASING.UI.APP.Forms
 
                 Functions.MessageShow($"PAYMENT {result}");
 
-                IsProceed = true;
-                btnGenerate.Enabled = false;
-                btnPrintReciept.Enabled = true;
+                this.IsProceed = true;
+                this.btnGenerate.Enabled = false;
+                this.btnPrintReciept.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -184,63 +175,63 @@ namespace LEASING.UI.APP.Forms
             }
 
         }
-        private void ShowClientUnitsTaken()
+        private void _showClientUnitsTaken()
         {
-            if (string.IsNullOrEmpty(this.ClientId))
+            if (string.IsNullOrEmpty(this.clientNumber))
             {
                 return;
             }
-            frmCheckClientUnits CheckClientUnits = new frmCheckClientUnits();
-            CheckClientUnits.ClientId = this.ClientId;
-            CheckClientUnits.ShowDialog();
+            frmCheckClientUnits unitTaken = new frmCheckClientUnits();
+            unitTaken.ClientId = this.clientNumber;
+            unitTaken.ShowDialog();
         }
-        private string GetPaymentLevel()
+        private string _getPaymentLevel()
         {
 
             return "FIRST";
         }
-        private void ShowPrintRecieptForm()
+        private void _showPrintReceiptForm()
         {
-            frmRecieptSelection RecieptSelection = new frmRecieptSelection(this.TransID, this.RefId, this.GetPaymentLevel());
-            using (DataSet dt = PaymentContext.CheckIfOrIsEmpty(this.TransID))
+            frmRecieptSelection receipt = new frmRecieptSelection(this.transactionNumber, this.contractNumber, this._getPaymentLevel());
+            using (DataSet dt = _payment.CheckIfOrIsEmpty(this.transactionNumber))
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                 {
                     if (string.IsNullOrEmpty(Convert.ToString(dt.Tables[0].Rows[0]["CompanyORNo"])) && !string.IsNullOrEmpty(Convert.ToString(dt.Tables[0].Rows[0]["CompanyPRNo"])))
                     {
-                        RecieptSelection.IsNoOR = true;
+                        receipt.IsNoOR = true;
                     }
                     else if (!string.IsNullOrEmpty(Convert.ToString(dt.Tables[0].Rows[0]["CompanyORNo"])) && string.IsNullOrEmpty(Convert.ToString(dt.Tables[0].Rows[0]["CompanyPRNo"])))
                     {
-                        RecieptSelection.IsNoOR = false;
+                        receipt.IsNoOR = false;
                     }
                     else if (!string.IsNullOrEmpty(Convert.ToString(dt.Tables[0].Rows[0]["CompanyORNo"])) && !string.IsNullOrEmpty(Convert.ToString(dt.Tables[0].Rows[0]["CompanyPRNo"])))
                     {
-                        RecieptSelection.IsNoOR = false;
+                        receipt.IsNoOR = false;
                     }
                 }
             }
-            RecieptSelection.ShowDialog();
+            receipt.ShowDialog();
         }
-        private bool CheckTranIDAndRefIdIsEmpty()
+        private bool _checkTranIDContractNumberIsEmpty()
         {
-            if (string.IsNullOrEmpty(this.TransID) && string.IsNullOrEmpty(this.RefId))
+            if (string.IsNullOrEmpty(this.transactionNumber) && string.IsNullOrEmpty(this.contractNumber))
             {
                 return true;
             }
 
             return false;
         }
-        private void ShowPaymentPrintReciept()
+        private void _showPaymentPrintReceipt()
         {
-            if (this.CheckTranIDAndRefIdIsEmpty())
+            if (this._checkTranIDContractNumberIsEmpty())
             {
                 return;
             }
 
-            this.ShowPrintRecieptForm();
+            this._showPrintReceiptForm();
         }
-        private bool InitPayment(frmPaymentMode1 pForm)
+        private bool _initPayment(frmPaymentMode1 pForm)
         {
             pForm.ShowDialog();
             if (!pForm.IsProceed)
@@ -248,21 +239,21 @@ namespace LEASING.UI.APP.Forms
                 return false; ;
             }
 
-            this.CompanyORNo = pForm.CompanyORNo;
-            this.CompanyPRNo = pForm.CompanyPRNo;
-            this.BankAccountName = pForm.BankAccountName;
-            this.BankAccountNumber = pForm.BankAccountNumber;
-            this.BankName = pForm.BankName;
-            this.SerialNo = pForm.SerialNo;
-            this.PaymentRemarks = pForm.PaymentRemarks;
-            this.REF = pForm.REF;
-            this.BankBranch = pForm.BankBranch;
-            this.ModeType = pForm.ModeType;
-            this.RecieptDate = pForm.RecieptDate;
+            this._Company_OR_Number_ = pForm.CompanyORNo;
+            this._Company_PR_Number_ = pForm.CompanyPRNo;
+            this._Bank_Account_Name_ = pForm.BankAccountName;
+            this._Bank_Account_Number_ = pForm.BankAccountNumber;
+            this._Bank_Name_ = pForm.BankName;
+            this._Bank_Serial_No_ = pForm.SerialNo;
+            this.paymentRemarks = pForm.PaymentRemarks;
+            this._Bank_Reference_Number_ = pForm.REF;
+            this._Bank_Branch_ = pForm.BankBranch;
+            this.modeType = pForm.ModeType;
+            this._Company_Original_Receipt_Date_ = pForm.RecieptDate;
 
             return true;
         }
-        private void RecievePayment(frmReceivePayment pForm)
+        private void _recievePayment(frmReceivePayment pForm)
         {
             pForm.Amount = this.txtTotalForPayment.Text;
             pForm.ShowDialog();
@@ -278,24 +269,24 @@ namespace LEASING.UI.APP.Forms
 
             }
 
-            this.ReceiveAmount = fn_ConvertStringToDecimal(pForm.txtReceiveAmount.Text);
-            this.ChangeAmount = 0;
+            this.receiveAmount = Functions.ConvertStringToDecimal(pForm.txtReceiveAmount.Text);
+            this.changeAmount = 0;
         }
-        private void InitReciept(frmRecieptSelection pForm)
+        private void _initReciept(frmRecieptSelection pForm)
         {
-            if (string.IsNullOrEmpty(this.CompanyORNo) && !string.IsNullOrEmpty(this.CompanyPRNo))
+            if (string.IsNullOrEmpty(this._Company_OR_Number_) && !string.IsNullOrEmpty(this._Company_PR_Number_))
             {
                 pForm.IsNoOR = true;
             }
-            else if (!string.IsNullOrEmpty(this.CompanyORNo) && string.IsNullOrEmpty(this.CompanyPRNo))
+            else if (!string.IsNullOrEmpty(this._Company_OR_Number_) && string.IsNullOrEmpty(this._Company_PR_Number_))
             {
                 pForm.IsNoOR = false;
             }
 
             pForm.ShowDialog();
-            this.M_GetComputationById();
+            this._getContractById();
         }
-        private void SavePayment()
+        private void _savePayment()
         {
             if (Functions.MessageConfirm("Are you sure you want to proceed  to this payment?") == DialogResult.No)
             {
@@ -304,17 +295,17 @@ namespace LEASING.UI.APP.Forms
             }
 
             var fPayment = new frmPaymentMode1();
-            if (!this.InitPayment(fPayment))
+            if (!this._initPayment(fPayment))
             {
                 return;
             }
 
             var fReceivePayment = new frmReceivePayment();
-            this.RecievePayment(fReceivePayment);
+            this._recievePayment(fReceivePayment);
 
-            this.GeneratePayment();
+            this._generatePayment();
 
-            if (CheckTranIDAndRefIdIsEmpty())
+            if (this._checkTranIDContractNumberIsEmpty())
             {
                 Functions.MessageShow("No transaction code is generated, Please contact system administrator");
                 return;
@@ -323,8 +314,8 @@ namespace LEASING.UI.APP.Forms
             if (!this.IsPartialPayment)
             {
                 /*If Partial Payment Dont show Reciept Printing*/
-                var fReciept = new frmRecieptSelection(this.TransID, this.RefId, this.GetPaymentLevel());
-                this.InitReciept(fReciept);
+                var fReciept = new frmRecieptSelection(this.transactionNumber, this.contractNumber, this._getPaymentLevel());
+                this._initReciept(fReciept);
             }
 
         }
@@ -333,15 +324,15 @@ namespace LEASING.UI.APP.Forms
         #region Buttons
         private void btnCheckUnits_Click(object sender, EventArgs e)
         {
-            this.ShowClientUnitsTaken();
+            this._showClientUnitsTaken();
         }
         private void btnGenerate_Click(object sender, EventArgs e)
         {
-            this.SavePayment();
+            this._savePayment();
         }
         private void btnPrintReciept_Click(object sender, EventArgs e)
         {
-            this.ShowPaymentPrintReciept();
+            this._showPaymentPrintReceipt();
         }
         #endregion
 

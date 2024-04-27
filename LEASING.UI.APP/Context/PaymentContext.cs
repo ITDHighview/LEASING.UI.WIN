@@ -214,6 +214,12 @@ namespace LEASING.UI.APP.Context
             }
             return "";
         }
+
+        internal object GenerateFirstPayment(string contractNumber, object p1, decimal receiveAmount, decimal changeAmount, object p2, string companyORNo, string companyPRNo, string bankAccountName, string bankAccountNumber, string bankName, string serialNo, string paymentRemarks, string rEF, string modeType, string bankBranch, string recieptDate, out string transID)
+        {
+            throw new NotImplementedException();
+        }
+
         public string GenerateBulkPayment(string RefId,
            decimal PaidAmount,
            decimal ReceiveAmount,
@@ -613,7 +619,7 @@ namespace LEASING.UI.APP.Context
             }
             return "";
         }
-        public string SaveNewBankName(string bankName)
+        public string SaveBankNameInfo(string bankName)
         {
             SqlCommand _sqlcmd = null;
             SqlParameter _sqlpara;
@@ -820,7 +826,7 @@ namespace LEASING.UI.APP.Context
                 return dsRec;
             }
         }
-        public DataSet GetSelectBankName()
+        public DataSet GetBankNameBrowse()
         {
 
             SqlCommand _SqlCommand = null;

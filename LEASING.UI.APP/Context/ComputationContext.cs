@@ -512,7 +512,7 @@ namespace LEASING.UI.APP.Context
                 return dsRec;
             }
         }
-        public DataSet GetComputationById(int recid)
+        public DataSet GetContractById(int id)
         {
 
             SqlCommand _SqlCommand = null;
@@ -525,7 +525,7 @@ namespace LEASING.UI.APP.Context
                 _SqlCommand = new SqlCommand();
                 _SqlCommand.CommandText = "sp_GetComputationById";
 
-                _SqlParameter = new SqlParameter("@RecId", recid);
+                _SqlParameter = new SqlParameter("@RecId", id);
                 _SqlCommand.Parameters.Add(_SqlParameter);
 
                 try
@@ -555,7 +555,7 @@ namespace LEASING.UI.APP.Context
                 return dsRec;
             }
         }
-        public DataSet GetMonthLedgerByRefIdAndClientId(int refid,string cliendId)
+        public DataSet GetMonthLedgerBrowseByContractIdClientNumber(int ContractId, string ClientNumber)
         {
 
             SqlCommand _SqlCommand = null;
@@ -568,10 +568,10 @@ namespace LEASING.UI.APP.Context
                 _SqlCommand = new SqlCommand();
                 _SqlCommand.CommandText = "sp_GetMonthLedgerByRefIdAndClientId";
 
-                _SqlParameter = new SqlParameter("@ReferenceID", refid);
+                _SqlParameter = new SqlParameter("@ReferenceID", ContractId);
                 _SqlCommand.Parameters.Add(_SqlParameter);
 
-                _SqlParameter = new SqlParameter("@ClientID", cliendId);
+                _SqlParameter = new SqlParameter("@ClientID", ClientNumber);
                 _SqlCommand.Parameters.Add(_SqlParameter);
               
                 try
@@ -601,7 +601,7 @@ namespace LEASING.UI.APP.Context
                 return dsRec;
             }
         }
-        public DataSet GetLedgerList(int recid,string ClientID)
+        public DataSet GetLedgerBrowseByContractIdClientId(int ContractId, string ClientId)
         {
 
             SqlCommand _SqlCommand = null;
@@ -614,9 +614,9 @@ namespace LEASING.UI.APP.Context
                 _SqlCommand = new SqlCommand();
                 _SqlCommand.CommandText = "sp_GetLedgerList";
 
-                _SqlParameter = new SqlParameter("@ReferenceID", recid);
+                _SqlParameter = new SqlParameter("@ReferenceID", ContractId);
                 _SqlCommand.Parameters.Add(_SqlParameter);
-                _SqlParameter = new SqlParameter("@ClientID", ClientID);
+                _SqlParameter = new SqlParameter("@ClientID", ClientId);
                 _SqlCommand.Parameters.Add(_SqlParameter);
 
                 try

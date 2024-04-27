@@ -150,7 +150,7 @@ namespace LEASING.UI.APP.Forms
         private void M_GetComputationById()
         {
 
-            using (DataSet dt = ComputationContext.GetComputationById(Recid))
+            using (DataSet dt = ComputationContext.GetContractById(Recid))
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                 {

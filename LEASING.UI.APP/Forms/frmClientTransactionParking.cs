@@ -80,7 +80,7 @@ namespace LEASING.UI.APP.Forms
         {
 
             dgvLedgerList.DataSource = null;
-            using (DataSet dt = ComputationContext.GetLedgerList(ComputationRecid, ClientId))
+            using (DataSet dt = ComputationContext.GetLedgerBrowseByContractIdClientId(ComputationRecid, ClientId))
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                 {
@@ -129,7 +129,7 @@ namespace LEASING.UI.APP.Forms
         }
         private void M_GetComputationById()
         {
-            using (DataSet dt = ComputationContext.GetComputationById(ComputationRecid))
+            using (DataSet dt = ComputationContext.GetContractById(ComputationRecid))
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                 {

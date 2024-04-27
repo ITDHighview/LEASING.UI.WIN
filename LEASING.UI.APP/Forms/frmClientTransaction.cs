@@ -22,16 +22,16 @@ namespace LEASING.UI.APP.Forms
     {
 
         #region Context
-        ClientContext ClientContext = new ClientContext();
-        ComputationContext ComputationContext = new ComputationContext();
-        PaymentContext PaymentContext = new PaymentContext();
-        UnitContext UnitContext = new UnitContext();
+        private ClientContext _client = new ClientContext();
+        private ComputationContext _contract = new ComputationContext();
+        private PaymentContext _payment = new PaymentContext();
+        private UnitContext _unit = new UnitContext();
         #endregion
 
         #region Constant
-        const string TYPE_OF_UNIT = "TYPE OF UNIT";
-        const string MSSG_SUCCESS = "SUCCESS";
-        const string PAYMENT_SUCCESS = "PAYMENT SUCCESS";
+        private const string _TYPE_OF_UNIT_ = "TYPE OF UNIT";
+        private const string _MSSG_SUCCESS_ = "SUCCESS";
+        private const string _PAYMENT_SUCCESS_ = "PAYMENT SUCCESS";
         #endregion
 
         #region Viriables
@@ -52,23 +52,24 @@ namespace LEASING.UI.APP.Forms
                 {
                     case true:
 
-                        btnPayAll.Text = "Pay";
+                        this.btnPayAll.Text = "Pay";
                         break;
 
                     case false:
-                        btnPayAll.Text = "Pay All";
+                        this.btnPayAll.Text = "Pay All";
                         break;
                 }
             }
         }
-        bool IsProceedWithHold = false;
+        private int _contractId { get; set; } = 0;
+        private string _contractNumber { get; set; }
+        private string _clientId { get; set; }
+        private bool _isProceedWithHold { get; set; } = false;
         public string TranID = string.Empty;
         public string RecieptID = string.Empty;
         public int TotalRental { get; set; }
-        public int ComputationRecid { get; set; } = 0;
         public string AdvancePaymentAmount { get; set; }
-        public string RefId { get; set; }
-        public string ClientId { get; set; }
+
         public bool IsProceed { get; set; }
         public string FromDate { get; set; }
         public string Todate { get; set; }
@@ -91,8 +92,8 @@ namespace LEASING.UI.APP.Forms
         public decimal ItemLedgAmount { get; set; } = 0;
         public int ItemTotalSelectedMonth { get; set; } = 0;
         public decimal ActualAmountTobePaidFromPaymentMode { get; set; } = 0;
-        public bool IsHold = false;
-        public bool IsClearPDC = false;
+        public bool IsHold { get; set; } = false;
+        public bool IsClearPDC { get; set; } = false;
         public string RecieptDate { get; set; }
         #endregion
 
@@ -101,7 +102,7 @@ namespace LEASING.UI.APP.Forms
         {
             this.FormLoadDisabledControls();
             this.FormLoadReadOnlyControls();
-            this.M_GetComputationById();
+            this.getContractById();
         }
         #region XML
         private static string SetXMLTable(ref ArrayList xml)
@@ -240,7 +241,7 @@ namespace LEASING.UI.APP.Forms
 
                 this.InitiliazedGridItem();
 
-                string result = PaymentContext.GenerateBulkPayment(this.RefId,
+                string result = _payment.GenerateBulkPayment(this._contractNumber,
                 this.ActualAmountTobePaidFromPaymentMode,
                 this.ReceiveAmount,
                 this.ChangeAmount,
@@ -261,14 +262,14 @@ namespace LEASING.UI.APP.Forms
                  out RecieptID
                  );
 
-                if (!result.Equals(MSSG_SUCCESS))
+                if (!result.Equals(_MSSG_SUCCESS_))
                 {
                     Functions.MessageShow(result);
                     this.IsProceed = false;
                     return;
                 }
 
-                Functions.MessageShow(PAYMENT_SUCCESS);
+                Functions.MessageShow(_PAYMENT_SUCCESS_);
 
                 if (string.IsNullOrEmpty(this.TranID))
                 {
@@ -286,10 +287,10 @@ namespace LEASING.UI.APP.Forms
                 Functions.GetNotification("PAYMENT SUCCESS", $"Transaction ID : {TranID} generated");
                 Functions.GetNotification("PAYMENT SUCCESS", $"Reciept ID : {RecieptID} generated");
 
-                this.M_GetComputationById();
-                this.CheckPaymentProgressStatus();
-                this.M_GetLedgerList();
-                this.M_GetPaymentListByReferenceId();
+                this.getContractById();
+                this.checkPaymentProgressStatus();
+                this.getLedgerBrowseByContractIdClientId();
+                this.getPaymentBrowseByContractNumber();
 
                 var fReciept = new frmRecieptSelectionSecondPayment(this.TranID, "", "SECOND");
                 this.InitReciept(fReciept);
@@ -303,11 +304,11 @@ namespace LEASING.UI.APP.Forms
 
                 Functions.MessageShow(ex.ToString());
             }
-           
+
         }
         private bool IsComputationValid()
         {
-            if (string.IsNullOrEmpty(this.ClientId))
+            if (string.IsNullOrEmpty(this._clientId))
             {
                 Functions.MessageShow("Client  cannot be empty!.");
                 return false;
@@ -322,10 +323,10 @@ namespace LEASING.UI.APP.Forms
 
             return true;
         }
-        private void M_GetLedgerList()
+        private void getLedgerBrowseByContractIdClientId()
         {
             dgvLedgerList.DataSource = null;
-            using (DataSet dt = ComputationContext.GetLedgerList(ComputationRecid, ClientId))
+            using (DataSet dt = _contract.GetLedgerBrowseByContractIdClientId(this._contractId, this._clientId))
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                 {
@@ -333,11 +334,11 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-        private void M_GetReferenceByClientID()
+        private void getContractBrowseByClientId()
         {
 
             dgvTransactionList.DataSource = null;
-            using (DataSet dt = ComputationContext.GetReferenceByClientID(ClientId))
+            using (DataSet dt = _contract.GetReferenceByClientID(this._clientId))
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                 {
@@ -346,11 +347,11 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-        private void M_GetPaymentListByReferenceId()
+        private void getPaymentBrowseByContractNumber()
         {
 
             dgvPaymentList.DataSource = null;
-            using (DataSet dt = ComputationContext.GetPaymentListByReferenceId(RefId))
+            using (DataSet dt = _contract.GetPaymentListByReferenceId(this._contractNumber))
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                 {
@@ -360,18 +361,18 @@ namespace LEASING.UI.APP.Forms
             }
         }
 
-        private void M_GetComputationById()
+        private void getContractById()
         {
-            if (this.ComputationRecid <= 0)
+            if (this._contractId <= 0)
             {
                 return;
             }
             txtTotalPay.Text = string.Empty;
-            using (DataSet dt = ComputationContext.GetComputationById(this.ComputationRecid))
+            using (DataSet dt = _contract.GetContractById(this._contractId))
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                 {
-                    this.RefId = Convert.ToString(dt.Tables[0].Rows[0]["RefId"]);
+                    this._contractNumber = Convert.ToString(dt.Tables[0].Rows[0]["RefId"]);
                     this.txtClientName.Text = Convert.ToString(dt.Tables[0].Rows[0]["InquiringClient"]);
                     this.IsMoveOut = Convert.ToBoolean(dt.Tables[0].Rows[0]["IsUnitMoveOut"]);
                     this.dtpFrom.Text = Convert.ToString(dt.Tables[0].Rows[0]["StatDate"]);
@@ -382,9 +383,9 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-        private void CheckPaymentProgressStatus()
+        private void checkPaymentProgressStatus()
         {
-            using (DataSet dt = PaymentContext.GetCheckPaymentStatus(this.RefId))
+            using (DataSet dt = _payment.GetCheckPaymentStatus(this._contractNumber))
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                 {
@@ -415,19 +416,19 @@ namespace LEASING.UI.APP.Forms
                 {
                     if (Convert.ToBoolean(this.dgvLedgerList.Rows[iRow].Cells["ColCheck"].Value) && Convert.ToString(this.dgvLedgerList.Rows[iRow].Cells["PaymentStatus"].Value) == PaymentStatus.HOLD.ToString())
                     {
-                        if (Functions.MessageConfirm("There is a hold payment on your list would you like to proceed?") == DialogResult.Yes)
+                        //if (Functions.MessageConfirm("There is a hold payment on your list would you like to proceed?") == DialogResult.Yes)
+                        //{
+                        if (Convert.ToBoolean(this.dgvLedgerList.Rows[iRow].Cells["ColCheck"].Value) && (Convert.ToString(this.dgvLedgerList.Rows[iRow].Cells["PaymentStatus"].Value) == PaymentStatus.PENDING.ToString() || Convert.ToString(this.dgvLedgerList.Rows[iRow].Cells["PaymentStatus"].Value) == PaymentStatus.HOLD.ToString()))
                         {
-                            if (Convert.ToBoolean(this.dgvLedgerList.Rows[iRow].Cells["ColCheck"].Value) && (Convert.ToString(this.dgvLedgerList.Rows[iRow].Cells["PaymentStatus"].Value) == PaymentStatus.PENDING.ToString() || Convert.ToString(this.dgvLedgerList.Rows[iRow].Cells["PaymentStatus"].Value) == PaymentStatus.HOLD.ToString()))
-                            {
-                                //alDoctorSchedule.Add(Convert.ToString(vMasterRecordID));
-                                idx++;
-                            }
-                            this.IsProceedWithHold = true;
+                            //alDoctorSchedule.Add(Convert.ToString(vMasterRecordID));
+                            idx++;
                         }
-                        else
-                        {
-                            this.IsProceedWithHold = false;
-                        }
+                        this._isProceedWithHold = true;
+                        //}
+                        //else
+                        //{
+                        //    this.IsProceedWithHold = false;
+                        //}
                     }
                     else
                     {
@@ -436,7 +437,7 @@ namespace LEASING.UI.APP.Forms
                             //alDoctorSchedule.Add(Convert.ToString(vMasterRecordID));
                             idx++;
                         }
-                        this.IsProceedWithHold = true;
+                        this._isProceedWithHold = true;
                     }
                 }
             }
@@ -446,19 +447,19 @@ namespace LEASING.UI.APP.Forms
                 {
                     if (Convert.ToString(this.dgvLedgerList.Rows[iRow].Cells["PaymentStatus"].Value) == "HOLD")
                     {
-                        if (Functions.MessageConfirm("There is a hold payment on your list would you like to proceed?") == DialogResult.Yes)
+                        //if (Functions.MessageConfirm("There is a hold payment on your list would you like to proceed?") == DialogResult.Yes)
+                        //{
+                        if (Convert.ToString(this.dgvLedgerList.Rows[iRow].Cells["PaymentStatus"].Value) == PaymentStatus.PENDING.ToString() || Convert.ToString(this.dgvLedgerList.Rows[iRow].Cells["PaymentStatus"].Value) == PaymentStatus.HOLD.ToString())
                         {
-                            if (Convert.ToString(this.dgvLedgerList.Rows[iRow].Cells["PaymentStatus"].Value) == PaymentStatus.PENDING.ToString() || Convert.ToString(this.dgvLedgerList.Rows[iRow].Cells["PaymentStatus"].Value) == PaymentStatus.HOLD.ToString())
-                            {
-                                //alDoctorSchedule.Add(Convert.ToString(vMasterRecordID));
-                                idx++;
-                            }
-                            this.IsProceedWithHold = true;
+                            //alDoctorSchedule.Add(Convert.ToString(vMasterRecordID));
+                            idx++;
                         }
-                        else
-                        {
-                            this.IsProceedWithHold = false;
-                        }
+                        this._isProceedWithHold = true;
+                        //}
+                        //else
+                        //{
+                        //    this.IsProceedWithHold = false;
+                        //}
 
                     }
                     else
@@ -468,7 +469,7 @@ namespace LEASING.UI.APP.Forms
                             //alDoctorSchedule.Add(Convert.ToString(vMasterRecordID));
                             idx++;
                         }
-                        this.IsProceedWithHold = true;
+                        this._isProceedWithHold = true;
                     }
                 }
             }
@@ -538,11 +539,11 @@ namespace LEASING.UI.APP.Forms
             {
                 return;
             }
-            if (string.IsNullOrEmpty(this.RefId))
+            if (string.IsNullOrEmpty(this._contractNumber))
             {
                 return;
             }
-            string result = PaymentContext.TerminateContract(this.RefId);
+            string result = _payment.TerminateContract(this._contractNumber);
 
             if (string.IsNullOrEmpty(result))
             {
@@ -551,16 +552,16 @@ namespace LEASING.UI.APP.Forms
             }
 
 
-            if (!result.Equals(MSSG_SUCCESS))
+            if (!result.Equals(_MSSG_SUCCESS_))
             {
                 Functions.MessageShow(result);
                 return;
             }
 
             Functions.MessageShow("TERMINATE CONTRACT SUCCESS");
-            this.M_GetComputationById();
-            this.CheckPaymentProgressStatus();
-            this.M_GetPaymentListByReferenceId();
+            this.getContractById();
+            this.checkPaymentProgressStatus();
+            this.getPaymentBrowseByContractNumber();
             this.btnTerminateContract.Enabled = false;
         }
 
@@ -568,15 +569,15 @@ namespace LEASING.UI.APP.Forms
         {
             if (Functions.MessageConfirm("Are you sure you want to hold the payment?") == DialogResult.Yes)
             {
-                string result = PaymentContext.HoldPDCPayment(this.M_getXMLData(), this.CompanyORNo, this.CompanyPRNo, this.BankAccountName, this.BankAccountNumber, this.BankName, this.SerialNo, this.BankBranch, this.REF, this.ModeType);
+                string result = _payment.HoldPDCPayment(this.M_getXMLData(), this.CompanyORNo, this.CompanyPRNo, this.BankAccountName, this.BankAccountNumber, this.BankName, this.SerialNo, this.BankBranch, this.REF, this.ModeType);
                 if (!string.IsNullOrEmpty(result))
                 {
                     if (result.Equals("SUCCESS"))
                     {
                         Functions.MessageShow("PAYMENT HOLD SUCCESS");
-                        this.CheckPaymentProgressStatus();
-                        M_GetLedgerList();
-                        M_GetPaymentListByReferenceId();
+                        this.checkPaymentProgressStatus();
+                        this.getLedgerBrowseByContractIdClientId();
+                        this.getPaymentBrowseByContractNumber();
                     }
                     else
                     {
@@ -609,9 +610,13 @@ namespace LEASING.UI.APP.Forms
                     return;
                 }
 
-                if (this.IsHold == true && this.IsClearPDC == false)
+                if (this.IsHold == true)
                 {
                     this.SaveTransaction();
+                }
+                else if (this.IsClearPDC == true)
+                {
+                    this.GeneratePayment();
                 }
                 else
                 {
@@ -637,9 +642,13 @@ namespace LEASING.UI.APP.Forms
                     return;
                 }
 
-                if (this.IsHold == true && this.IsClearPDC == false)
+                if (this.IsHold == true)
                 {
                     this.SaveTransaction();
+                }
+                else if (this.IsClearPDC == true)
+                {
+                    this.GeneratePayment();
                 }
                 else
                 {
@@ -656,7 +665,7 @@ namespace LEASING.UI.APP.Forms
                 return;
             }
 
-            string result = UnitContext.MovedOut(this.RefId);
+            string result = _unit.MovedOut(this._contractNumber);
 
             if (string.IsNullOrEmpty(result))
             {
@@ -672,9 +681,9 @@ namespace LEASING.UI.APP.Forms
 
             Functions.MessageShow("MOVE-OUT SUCCESS");
 
-            this.M_GetPaymentListByReferenceId();
-            this.M_GetComputationById();
-            this.CheckPaymentProgressStatus();
+            this.getPaymentBrowseByContractNumber();
+            this.getContractById();
+            this.checkPaymentProgressStatus();
             this.btnCloseContract.Enabled = false;
         }
         private void FormLoadDisabledControls()
@@ -703,7 +712,7 @@ namespace LEASING.UI.APP.Forms
             }
 
             frmCheckClientUnits CheckClientUnits = new frmCheckClientUnits();
-            CheckClientUnits.ClientId = this.ClientId;
+            CheckClientUnits.ClientId = this._clientId;
             CheckClientUnits.ShowDialog();
         }
         private void radButton1_Click(object sender, EventArgs e)
@@ -712,24 +721,24 @@ namespace LEASING.UI.APP.Forms
             dgvLedgerList.DataSource = null;
             dgvPaymentList.DataSource = null;
 
-            this.ComputationRecid = 0;
-            this.RefId = string.Empty;
-            this.ClientId = string.Empty;
+            this._contractId = 0;
+            this._contractNumber = string.Empty;
+            this._clientId = string.Empty;
             this.txtClientName.Text = string.Empty;
 
-            frmGetSelectClient SelectClient = new frmGetSelectClient();
-            SelectClient.ShowDialog();
-            if (!SelectClient.IsProceed)
+            frmGetSelectClient clientSearch = new frmGetSelectClient();
+            clientSearch.ShowDialog();
+            if (!clientSearch.IsProceed)
             {
                 return;
             }
 
-            this.ClientId = SelectClient.ClientID;
+            this._clientId = clientSearch.ClientID;
 
-            this.M_GetReferenceByClientID();
-            this.M_GetComputationById();
-            this.CheckPaymentProgressStatus();
-            this.M_GetPaymentListByReferenceId();
+            this.getContractBrowseByClientId();
+            this.getContractById();
+            this.checkPaymentProgressStatus();
+            this.getPaymentBrowseByContractNumber();
 
 
         }
@@ -760,12 +769,12 @@ namespace LEASING.UI.APP.Forms
                 return;
             }
 
-            this.ComputationRecid = Convert.ToInt32(dgvTransactionList.CurrentRow.Cells["RecId"].Value);
+            this._contractId = Convert.ToInt32(dgvTransactionList.CurrentRow.Cells["RecId"].Value);
 
-            this.M_GetLedgerList();
-            this.M_GetComputationById();
-            this.CheckPaymentProgressStatus();
-            this.M_GetPaymentListByReferenceId();
+            this.getLedgerBrowseByContractIdClientId();
+            this.getContractById();
+            this.checkPaymentProgressStatus();
+            this.getPaymentBrowseByContractNumber();
         }
         private void dgvPaymentList_CellFormatting(object sender, Telerik.WinControls.UI.CellFormattingEventArgs e)
         {
@@ -795,15 +804,15 @@ namespace LEASING.UI.APP.Forms
                     {
                         if (MessageBox.Show("Are you sure you want to hold to this payment?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                         {
-                            string result = PaymentContext.HoldPayment(RefId, Convert.ToInt32(dgvLedgerList.CurrentRow.Cells["Recid"].Value));
+                            string result = _payment.HoldPayment(this._contractNumber, Convert.ToInt32(dgvLedgerList.CurrentRow.Cells["Recid"].Value));
                             if (!string.IsNullOrEmpty(result))
                             {
                                 if (result.Equals("SUCCESS"))
                                 {
                                     MessageBox.Show("PAYMENT HOLD SUCCESS", "System Message", MessageBoxButtons.OK);
-                                    this.CheckPaymentProgressStatus();
-                                    M_GetLedgerList();
-                                    M_GetPaymentListByReferenceId();
+                                    this.checkPaymentProgressStatus();
+                                    this.getLedgerBrowseByContractIdClientId();
+                                    this.getPaymentBrowseByContractNumber();
                                 }
                                 else
                                 {
@@ -818,7 +827,7 @@ namespace LEASING.UI.APP.Forms
                     if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "PAID")
                     {
                         frmRecieptSelection frmRecieptSelection = new frmRecieptSelection(Convert.ToString(dgvLedgerList.CurrentRow.Cells["TransactionID"].Value), "", this.GetPaymentLevel());
-                        using (DataSet dt = PaymentContext.CheckIfOrIsEmpty(Convert.ToString(dgvLedgerList.CurrentRow.Cells["TransactionID"].Value)))
+                        using (DataSet dt = _payment.CheckIfOrIsEmpty(Convert.ToString(dgvLedgerList.CurrentRow.Cells["TransactionID"].Value)))
                         {
                             if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                             {

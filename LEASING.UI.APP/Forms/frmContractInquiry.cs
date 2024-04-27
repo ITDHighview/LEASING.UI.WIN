@@ -162,7 +162,7 @@ namespace LEASING.UI.APP.Forms
         private void M_GetLedgerList()
         {
             dgvLedgerList.DataSource = null;
-            using (DataSet dt = ComputationContext.GetLedgerList(ComputationRecid, ClientId))
+            using (DataSet dt = ComputationContext.GetLedgerBrowseByContractIdClientId(ComputationRecid, ClientId))
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                 {

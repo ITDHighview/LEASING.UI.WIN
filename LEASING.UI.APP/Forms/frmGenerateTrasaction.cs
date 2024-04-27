@@ -67,7 +67,7 @@ namespace LEASING.UI.APP.Forms
                             //forms.ShowDialog();
 
                             frmSelectClient forms = new frmSelectClient();
-                            forms.ComputationRecid = Convert.ToInt32(dgvList.CurrentRow.Cells["RecId"].Value);
+                            forms.contractId = Convert.ToInt32(dgvList.CurrentRow.Cells["RecId"].Value);
                             //forms.IsFullPayment = Convert.ToString(dgvList.CurrentRow.Cells["PaymentCategory"].Value) == "FULL PAYMENT" ? true : false;
                             forms.ShowDialog();
 
@@ -76,7 +76,7 @@ namespace LEASING.UI.APP.Forms
                         else
                         {
                             frmSelectClient forms = new frmSelectClient();
-                            forms.ComputationRecid = Convert.ToInt32(dgvList.CurrentRow.Cells["RecId"].Value);
+                            forms.contractId = Convert.ToInt32(dgvList.CurrentRow.Cells["RecId"].Value);
                             //forms.IsFullPayment = Convert.ToString(dgvList.CurrentRow.Cells["PaymentCategory"].Value) == "FULL PAYMENT" ? true : false;
                             forms.ShowDialog();
                             M_GetComputationList();

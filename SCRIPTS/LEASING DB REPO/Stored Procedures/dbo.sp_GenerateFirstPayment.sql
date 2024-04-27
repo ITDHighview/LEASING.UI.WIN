@@ -7,7 +7,7 @@ GO
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE PROCEDURE [dbo].[sp_GenerateFirstPayment]
+CREATE   PROCEDURE [dbo].[sp_GenerateFirstPayment]
     -- Add the parameters for the stored procedure here
     @RefId VARCHAR(50) = NULL,
     @PaidAmount DECIMAL(18, 2) = NULL,
@@ -24,7 +24,7 @@ CREATE PROCEDURE [dbo].[sp_GenerateFirstPayment]
     @SerialNo VARCHAR(30) = NULL,
     @PaymentRemarks VARCHAR(100) = NULL,
     @REF VARCHAR(100) = NULL,
-	@ReceiptDate DATE = NULL,
+	@ReceiptDate DATETIME = NULL,
     @BankBranch VARCHAR(100) = NULL,
     @ModeType VARCHAR(20) = NULL
 AS

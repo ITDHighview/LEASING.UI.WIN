@@ -248,7 +248,7 @@ namespace LEASING.UI.APP.Context
                 return dsRec;
             }
         }
-        public DataSet GetClientById(string clientid)
+        public DataSet GetClientByNumber(string ClientNumber)
         {
 
             SqlCommand _SqlCommand = null;
@@ -261,7 +261,7 @@ namespace LEASING.UI.APP.Context
                 _SqlCommand = new SqlCommand();
                 _SqlCommand.CommandText = "sp_GetClientById";
 
-                _SqlParameter = new SqlParameter("@ClientID", clientid);
+                _SqlParameter = new SqlParameter("@ClientID", ClientNumber);
                 _SqlCommand.Parameters.Add(_SqlParameter);
 
                 try
@@ -334,7 +334,7 @@ namespace LEASING.UI.APP.Context
                 return dsRec;
             }
         }
-        public DataSet GetGetFilesByClient(string ClientId)
+        public DataSet GetClientFileBrowseByNumber(string ClientNumber)
         {
 
             SqlCommand _SqlCommand = null;
@@ -347,7 +347,7 @@ namespace LEASING.UI.APP.Context
                 _SqlCommand = new SqlCommand();
                 _SqlCommand.CommandText = "sp_GetFilesByClient";
 
-                _SqlParameter = new SqlParameter("@ClientName", ClientId);
+                _SqlParameter = new SqlParameter("@ClientName", ClientNumber);
                 _SqlCommand.Parameters.Add(_SqlParameter);
 
                 try
@@ -693,7 +693,7 @@ namespace LEASING.UI.APP.Context
                 return dsRec;
             }
         }
-        public DataSet GetClientID(string ClientID)
+        public DataSet CheckClientNumberExist(string ClientID)
         {
 
             SqlCommand _SqlCommand = null;

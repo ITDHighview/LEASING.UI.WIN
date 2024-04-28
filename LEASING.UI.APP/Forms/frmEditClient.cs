@@ -166,7 +166,7 @@ namespace LEASING.UI.APP.Forms
         private void M_GetClientFileList()
         {
             dgvFileList.DataSource = null;
-            using (DataSet dt = ClientContext.GetGetFilesByClient(ClientID))
+            using (DataSet dt = ClientContext.GetClientFileBrowseByNumber(ClientID))
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                 {
@@ -179,7 +179,7 @@ namespace LEASING.UI.APP.Forms
         private void M_GetClientById()
         {
 
-            using (DataSet dt = ClientContext.GetClientById(ClientID))
+            using (DataSet dt = ClientContext.GetClientByNumber(ClientID))
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                 {

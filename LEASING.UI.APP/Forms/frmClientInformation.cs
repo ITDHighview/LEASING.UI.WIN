@@ -14,9 +14,9 @@ namespace LEASING.UI.APP.Forms
 {
     public partial class frmClientInformation : Form
     {
-        ClientContext ClientContext = new ClientContext();
-        public string ClientID { get; set; }
-        public string Message_Code { get; set; }
+        private ClientContext _client = new ClientContext();
+        public string clientNumber { get; set; }
+        public string _Message_Code_ { get; set; }
         public frmClientInformation()
         {
             InitializeComponent();
@@ -50,7 +50,7 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-        private void EmptyFields()
+        private void _clearFields()
         {
             ddlClientType.Text = string.Empty;
             txtname.Text = string.Empty;
@@ -68,10 +68,12 @@ namespace LEASING.UI.APP.Forms
             txtnameofmaid.Text = string.Empty;
             txtnameofdriver.Text = string.Empty;
             txtnoofvisitorperday.Text = string.Empty;
-
-            ddlgender.Text = string.Empty;
-            dgvFileList.DataSource = null;
             txtTinNo.Text = string.Empty;
+            ddlgender.Text = string.Empty;
+
+            dgvFileList.DataSource = null;
+            dgvList.DataSource = null;
+
         }
         private void EnabledFields()
         {
@@ -146,23 +148,21 @@ namespace LEASING.UI.APP.Forms
 
 
         }
-        private void M_GetClientID()
+        private void _getClientNumber()
         {
-
-            using (DataSet dt = ClientContext.GetClientID(txtClienID.Text))
+            using (DataSet dt = _client.CheckClientNumberExist(this.txtClienID.Text))
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                 {
-
-                    ClientID = Convert.ToString(dt.Tables[0].Rows[0]["ClientID"]);
-                    Message_Code = Convert.ToString(dt.Tables[0].Rows[0]["Message_Code"]);
+                    this.clientNumber = Convert.ToString(dt.Tables[0].Rows[0]["ClientID"]);
+                    this._Message_Code_ = Convert.ToString(dt.Tables[0].Rows[0]["Message_Code"]);
                 }
             }
         }
-        private void M_GetClientFileList()
+        private void _getClientFileBrowse()
         {
             dgvFileList.DataSource = null;
-            using (DataSet dt = ClientContext.GetGetFilesByClient(ClientID))
+            using (DataSet dt = _client.GetClientFileBrowseByNumber(this.clientNumber))
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                 {
@@ -171,39 +171,58 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-        private void M_GetClientById()
+        private void _getClientByNumber()
         {
+            this.ddlClientType.Text = string.Empty;
+            this.txtname.Text = string.Empty;
+            this.txtage.Text = string.Empty;
+            this.txtpostaladdress.Text = string.Empty;
+            this.dtpdob.Value = DateTime.Now;
+            this.ddlgender.Text = string.Empty;
+            this.txttelno.Text = string.Empty;
+            this.txtnationality.Text = string.Empty;
+            this.txtoccupation.Text = string.Empty;
+            this.txtannualincome.Text = string.Empty;
+            this.txtnameofemployer.Text = string.Empty;
+            this.txtaddresstelephoneno.Text = string.Empty;
+            this.txtspousename.Text = string.Empty;
+            this.txtnameofchildren.Text = string.Empty;
+            this.txttotalnoofperson.Text = string.Empty;
+            this.txtnameofmaid.Text = string.Empty;
+            this.txtnoofvisitorperday.Text = string.Empty;
+            this.txtnameofdriver.Text = string.Empty;
+            this.txtTinNo.Text = string.Empty;
 
-            using (DataSet dt = ClientContext.GetClientById(ClientID))
+            using (DataSet dt = _client.GetClientByNumber(this.clientNumber))
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                 {
-                    ddlClientType.Text = Convert.ToString(dt.Tables[0].Rows[0]["ClientType"]);
-                    txtname.Text = Convert.ToString(dt.Tables[0].Rows[0]["ClientName"]);
-                    txtage.Text = Convert.ToString(dt.Tables[0].Rows[0]["Age"]);
-                    txtpostaladdress.Text = Convert.ToString(dt.Tables[0].Rows[0]["PostalAddress"]);
-                    dtpdob.Value = Convert.ToDateTime(dt.Tables[0].Rows[0]["DateOfBirth"]);
-                    ddlgender.Text = Convert.ToString(dt.Tables[0].Rows[0]["Gender"]);
-                    txttelno.Text = Convert.ToString(dt.Tables[0].Rows[0]["TelNumber"]);
-                    txtnationality.Text = Convert.ToString(dt.Tables[0].Rows[0]["Nationality"]);
-                    txtoccupation.Text = Convert.ToString(dt.Tables[0].Rows[0]["Occupation"]);
-                    txtannualincome.Text = Convert.ToString(dt.Tables[0].Rows[0]["AnnualIncome"]);
-                    txtnameofemployer.Text = Convert.ToString(dt.Tables[0].Rows[0]["EmployerName"]);
-                    txtaddresstelephoneno.Text = Convert.ToString(dt.Tables[0].Rows[0]["EmployerAddress"]);
-                    txtspousename.Text = Convert.ToString(dt.Tables[0].Rows[0]["SpouseName"]);
-                    txtnameofchildren.Text = Convert.ToString(dt.Tables[0].Rows[0]["ChildrenNames"]);
-                    txttotalnoofperson.Text = Convert.ToString(dt.Tables[0].Rows[0]["TotalPersons"]);
-                    txtnameofmaid.Text = Convert.ToString(dt.Tables[0].Rows[0]["MaidName"]);
-                    txtnoofvisitorperday.Text = Convert.ToString(dt.Tables[0].Rows[0]["VisitorsPerDay"]);
-                    txtnameofdriver.Text = Convert.ToString(dt.Tables[0].Rows[0]["DriverName"]);
-                    txtTinNo.Text = Convert.ToString(dt.Tables[0].Rows[0]["TIN_No"]);
+                    this.ddlClientType.Text = Convert.ToString(dt.Tables[0].Rows[0]["ClientType"]);
+                    this.txtname.Text = Convert.ToString(dt.Tables[0].Rows[0]["ClientName"]);
+                    this.txtage.Text = Convert.ToString(dt.Tables[0].Rows[0]["Age"]);
+                    this.txtpostaladdress.Text = Convert.ToString(dt.Tables[0].Rows[0]["PostalAddress"]);
+                    this.dtpdob.Value = Convert.ToDateTime(dt.Tables[0].Rows[0]["DateOfBirth"]);
+                    this.ddlgender.Text = Convert.ToString(dt.Tables[0].Rows[0]["Gender"]);
+                    this.txttelno.Text = Convert.ToString(dt.Tables[0].Rows[0]["TelNumber"]);
+                    this.txtnationality.Text = Convert.ToString(dt.Tables[0].Rows[0]["Nationality"]);
+                    this.txtoccupation.Text = Convert.ToString(dt.Tables[0].Rows[0]["Occupation"]);
+                    this.txtannualincome.Text = Convert.ToString(dt.Tables[0].Rows[0]["AnnualIncome"]);
+                    this.txtnameofemployer.Text = Convert.ToString(dt.Tables[0].Rows[0]["EmployerName"]);
+                    this.txtaddresstelephoneno.Text = Convert.ToString(dt.Tables[0].Rows[0]["EmployerAddress"]);
+                    this.txtspousename.Text = Convert.ToString(dt.Tables[0].Rows[0]["SpouseName"]);
+                    this.txtnameofchildren.Text = Convert.ToString(dt.Tables[0].Rows[0]["ChildrenNames"]);
+                    this.txttotalnoofperson.Text = Convert.ToString(dt.Tables[0].Rows[0]["TotalPersons"]);
+                    this.txtnameofmaid.Text = Convert.ToString(dt.Tables[0].Rows[0]["MaidName"]);
+                    this.txtnoofvisitorperday.Text = Convert.ToString(dt.Tables[0].Rows[0]["VisitorsPerDay"]);
+                    this.txtnameofdriver.Text = Convert.ToString(dt.Tables[0].Rows[0]["DriverName"]);
+                    this.txtTinNo.Text = Convert.ToString(dt.Tables[0].Rows[0]["TIN_No"]);
                 }
             }
         }
-        private void M_GetReferenceByClientID()
+        private void _getContractByClientNumber()
         {
             dgvList.DataSource = null;
-            using (DataSet dt = ClientContext.GetReferenceByClientID(ClientID))
+            using (DataSet dt = _client.GetReferenceByClientID(this.clientNumber))
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                 {
@@ -211,12 +230,12 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-        private void M_GetContractProjectTypeReport(string refid)
+        private void _getContractProjectTypeReport(string refid)
         {
-            using (DataSet dt = ClientContext.GetCheckContractProjectType(refid))
+            using (DataSet dt = _client.GetCheckContractProjectType(refid))
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
-                {           
+                {
                     if (Convert.ToString(dt.Tables[0].Rows[0]["UnitType"]) == "UNIT")
                     {
                         if (Convert.ToString(dt.Tables[0].Rows[0]["ProjectType"]) == "RESIDENTIAL")
@@ -243,35 +262,34 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
+        private void _getClientInfo()
+        {
+            if (string.IsNullOrEmpty(this.txtClienID.Text))
+            {
+                return;
+            }
+            this._getClientNumber();
+            this._getClientByNumber();
+            this._getClientFileBrowse();
+            this._getContractByClientNumber();
+            if (string.IsNullOrEmpty(this._Message_Code_))
+            {
+                return;
+            }
+            Functions.MessageShow(this._Message_Code_);
+        }
         private void txtClienID_KeyDown(object sender, KeyEventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtClienID.Text))
+            if (e.KeyCode != Keys.Enter)
             {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    M_GetClientID();
-                    M_GetClientById();
-                    M_GetClientFileList();
-                    M_GetReferenceByClientID();
-                    if (!string.IsNullOrEmpty(Message_Code))
-                    {
-                        MessageBox.Show(Message_Code, "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                }
-                else
-                {
-
-                    EmptyFields();
-                }
+                this._clearFields();
+                return;
             }
-            //else
-            //{
-            //    MessageBox.Show("Client ID Cannot be Empty", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //}
+            this._getClientInfo();
         }
         private void frmClientInformation_Load(object sender, EventArgs e)
         {
-            strClientFormMode = "READ";
+            this.strClientFormMode = "READ";
             //Functions.SecurityControls(this);
         }
         private void btnUndo_Click(object sender, EventArgs e)
@@ -292,10 +310,11 @@ namespace LEASING.UI.APP.Forms
         }
         private void txtClienID_TextChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtClienID.Text))
+            if (!string.IsNullOrEmpty(this.txtClienID.Text))
             {
-                EmptyFields();
+                return;
             }
+            this._clearFields();
         }
         private void dgvFileList_CellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
@@ -304,7 +323,7 @@ namespace LEASING.UI.APP.Forms
                 if (this.dgvFileList.Columns[e.ColumnIndex].Name == "ColView")
                 {
                     // forms.ClientID = Convert.ToString(dgvFileList.CurrentRow.Cells["ClientID"].Value);
-                    ClientContext.GetViewFileById(ClientID.Trim(), Config.baseFolderPath, Convert.ToInt32(dgvFileList.CurrentRow.Cells["Id"].Value));
+                    _client.GetViewFileById(this.clientNumber.Trim(), Config.baseFolderPath, Convert.ToInt32(dgvFileList.CurrentRow.Cells["Id"].Value));
                 }
                 //else if (this.dgvFileList.Columns[e.ColumnIndex].Name == "ColDelete")
                 //{
@@ -338,12 +357,13 @@ namespace LEASING.UI.APP.Forms
         }
         private void btnSelectClient_Click(object sender, EventArgs e)
         {
-            frmGetSelectClient forms = new frmGetSelectClient();
-            forms.ShowDialog();
-            if (forms.IsProceed)
+            frmGetSelectClient SearchClient = new frmGetSelectClient();
+            SearchClient.ShowDialog();
+            if (SearchClient.IsProceed)
             {
-                txtClienID.Text = forms.ClientID;
-                txtClienID.Focus();
+                this.txtClienID.Text = SearchClient.ClientID;
+                this._getClientInfo();
+                this.txtClienID.Focus();
             }
         }
         private void btnEnableView_Click_1(object sender, EventArgs e)
@@ -385,11 +405,11 @@ namespace LEASING.UI.APP.Forms
         }
         private void btnPrintContract_Click(object sender, EventArgs e)
         {
-            if (dgvList.Rows.Count > 0)
+            if (dgvList.Rows.Count < 0)
             {
-                M_GetContractProjectTypeReport(Convert.ToString(dgvList.CurrentRow.Cells["RefId"].Value));
+                return;
             }
-            //Convert.ToString(dgvFileList.CurrentRow.Cells["RefId"].Value)          
+            this._getContractProjectTypeReport(Convert.ToString(dgvList.CurrentRow.Cells["RefId"].Value));
         }
     }
 }

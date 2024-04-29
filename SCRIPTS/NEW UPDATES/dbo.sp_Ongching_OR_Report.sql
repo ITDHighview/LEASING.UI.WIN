@@ -5,7 +5,7 @@ GO
 --SET QUOTED_IDENTIFIER ON|OFF
 --SET ANSI_NULLS ON|OFF
 --GO
-CREATE PROCEDURE [dbo].[sp_Ongching_OR_Report]
+CREATE OR ALTER PROCEDURE [dbo].[sp_Ongching_OR_Report]
      @TranID       VARCHAR(20) = NULL,
     @Mode         VARCHAR(50) = NULL,
     @PaymentLevel VARCHAR(50) = NULL

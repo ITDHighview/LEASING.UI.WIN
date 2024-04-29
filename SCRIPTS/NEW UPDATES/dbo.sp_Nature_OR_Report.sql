@@ -10,7 +10,7 @@ GO
 --EXEC [sp_Nature_OR_Report] @TranID = 'TRN10000007',@Mode = 'REN',@PaymentLevel = 'SECOND'
 --EXEC [sp_Nature_OR_Report] @TranID = 'TRN10000007',@Mode = 'MAIN',@PaymentLevel = 'SECOND'
 --TRUNCATE TABLE [dbo].[tblRecieptReport]
-CREATE PROCEDURE [dbo].[sp_Nature_OR_Report]
+CREATE OR ALTER PROCEDURE [dbo].[sp_Nature_OR_Report]
     @TranID       VARCHAR(20) = NULL,
     @Mode         VARCHAR(50) = NULL,
     @PaymentLevel VARCHAR(50) = NULL

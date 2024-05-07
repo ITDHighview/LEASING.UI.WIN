@@ -232,35 +232,43 @@ namespace LEASING.UI.APP.Forms
         }
         private void _getContractProjectTypeReport(string refid)
         {
-            using (DataSet dt = _client.GetCheckContractProjectType(refid))
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                using (DataSet dt = _client.GetCheckContractProjectType(refid))
                 {
-                    if (Convert.ToString(dt.Tables[0].Rows[0]["UnitType"]) == "UNIT")
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
-                        if (Convert.ToString(dt.Tables[0].Rows[0]["ProjectType"]) == "RESIDENTIAL")
+                        if (Convert.ToString(dt.Tables[0].Rows[0]["UnitType"]) == "UNIT")
                         {
-                            frmContractSingedResidentialReport contractResidential = new frmContractSingedResidentialReport(refid);
-                            contractResidential.Show();
-                        }
-                        else if (Convert.ToString(dt.Tables[0].Rows[0]["ProjectType"]) == "COMMERCIAL")
-                        {
-                            frmContractSingedCommercialReport contractCommercial = new frmContractSingedCommercialReport(refid);
-                            contractCommercial.Show();
+                            if (Convert.ToString(dt.Tables[0].Rows[0]["ProjectType"]) == "RESIDENTIAL")
+                            {
+                                frmContractSingedResidentialReport contractResidential = new frmContractSingedResidentialReport(refid);
+                                contractResidential.Show();
+                            }
+                            else if (Convert.ToString(dt.Tables[0].Rows[0]["ProjectType"]) == "COMMERCIAL")
+                            {
+                                frmContractSingedCommercialReport contractCommercial = new frmContractSingedCommercialReport(refid);
+                                contractCommercial.Show();
+                            }
+                            else
+                            {
+                                frmContractSingedWareHouseReport contractWareHouse = new frmContractSingedWareHouseReport(refid);
+                                contractWareHouse.Show();
+                            }
                         }
                         else
                         {
-                            frmContractSingedWareHouseReport contractWareHouse = new frmContractSingedWareHouseReport(refid);
-                            contractWareHouse.Show();
+                            frmContractSingedParkingReport parking = new frmContractSingedParkingReport(refid);
+                            parking.Show();
                         }
-                    }
-                    else
-                    {
-                        frmContractSingedParkingReport parking = new frmContractSingedParkingReport(refid);
-                        parking.Show();
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.MessageShow(ex.ToString());
+            }
+           
         }
         private void _getClientInfo()
         {
@@ -405,11 +413,11 @@ namespace LEASING.UI.APP.Forms
         }
         private void btnPrintContract_Click(object sender, EventArgs e)
         {
-            if (dgvList.Rows.Count < 0)
+            if (dgvList.Rows.Count > 0)
             {
-                return;
+                this._getContractProjectTypeReport(Convert.ToString(dgvList.CurrentRow.Cells["RefId"].Value));
             }
-            this._getContractProjectTypeReport(Convert.ToString(dgvList.CurrentRow.Cells["RefId"].Value));
+            
         }
     }
 }

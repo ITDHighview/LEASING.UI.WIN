@@ -78,7 +78,7 @@ namespace LEASING.UI.APP.Forms
         {
             //new UnitStatus { UnitStatusName = "--SELECT--"},
             new UnitStatus { UnitStatusName = "VACANT"},
-            //new UnitStatus { UnitStatusName = "RESERVED"},
+            new UnitStatus { UnitStatusName = "DISABLED"},
             //new UnitStatus { UnitStatusName = "OCCUPIED"},
              new UnitStatus { UnitStatusName = "HOLD"}
         };
@@ -480,7 +480,7 @@ namespace LEASING.UI.APP.Forms
                     if (Projecttype == "RESIDENTIAL")
                     {
                         isResidential = true;
-                        chkNonCusaMaintenance.Text = "Non Maintenance";
+                        chkNonCusaMaintenance.Text = "Non Sec/Maintenance";
                         M_GetResendentialRateSettings();
                     }
                     else if (Projecttype == "COMMERCIAL")

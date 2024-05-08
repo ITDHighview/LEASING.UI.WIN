@@ -299,7 +299,7 @@ namespace LEASING.UI.APP.Forms
                     if (Projecttype == "RESIDENTIAL")
                     {
                         isResidential = true;
-                        chkNonCusaMaintenance.Text = "Non Maintenance";
+                        chkNonCusaMaintenance.Text = "Non Sec/Maintenance";
                     }
                     else if (Projecttype == "COMMERCIAL")
                     {

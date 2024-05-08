@@ -67,7 +67,7 @@ AS
             [tblUnitMstr].[UnitStatus] = @UnitStatus
         WHERE
             [tblUnitMstr].[RecId] = @RecId
-            AND [tblUnitMstr].[UnitStatus] = 'VACANT'
+            --AND [tblUnitMstr].[UnitStatus] = 'VACANT'
 
         IF (@@ROWCOUNT > 0)
             BEGIN
@@ -75,7 +75,7 @@ AS
             END
         ELSE
             BEGIN
-                SET @Message_Code = 'THIS UNIT CURRENTLY OPEN IN CONTRACT, MODIFICATION IS NOT PERMITTED';
+                SET @Message_Code = 'NO RESPONSE PLEASE CONTACT SYSTEM ADMIN';
             END
         SELECT
             @Message_Code AS [Message_Code];

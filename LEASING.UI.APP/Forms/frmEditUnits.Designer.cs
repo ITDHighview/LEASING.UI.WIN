@@ -54,6 +54,8 @@
             this.txtFloorNumber = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.txtUnitSequence = new Telerik.WinControls.UI.RadTextBox();
+            this.lblStat = new Telerik.WinControls.UI.RadLabel();
+            this.ddlUnitStatList = new Telerik.WinControls.UI.RadDropDownList();
             this.radGroupBox3 = new Telerik.WinControls.UI.RadGroupBox();
             this.radLabel12 = new Telerik.WinControls.UI.RadLabel();
             this.lblBaseRentalTax = new Telerik.WinControls.UI.RadLabel();
@@ -87,6 +89,7 @@
             this.txtTotalRental = new Telerik.WinControls.UI.RadTextBox();
             this.radGroupBox10 = new Telerik.WinControls.UI.RadGroupBox();
             this.chkIsParking = new Telerik.WinControls.UI.RadCheckBox();
+            this.chkNonCusaMaintenance = new Telerik.WinControls.UI.RadCheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
             this.radGroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).BeginInit();
@@ -110,6 +113,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtFloorNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUnitSequence)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblStat)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlUnitStatList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).BeginInit();
             this.radGroupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).BeginInit();
@@ -149,6 +154,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox10)).BeginInit();
             this.radGroupBox10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chkIsParking)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkNonCusaMaintenance)).BeginInit();
             this.SuspendLayout();
             // 
             // radGroupBox1
@@ -159,7 +165,7 @@
             this.radGroupBox1.HeaderText = "";
             this.radGroupBox1.Location = new System.Drawing.Point(0, 0);
             this.radGroupBox1.Name = "radGroupBox1";
-            this.radGroupBox1.Size = new System.Drawing.Size(1149, 282);
+            this.radGroupBox1.Size = new System.Drawing.Size(1149, 295);
             this.radGroupBox1.TabIndex = 4;
             // 
             // radGroupBox2
@@ -170,7 +176,7 @@
             this.radGroupBox2.HeaderText = "INFORMATION";
             this.radGroupBox2.Location = new System.Drawing.Point(2, 18);
             this.radGroupBox2.Name = "radGroupBox2";
-            this.radGroupBox2.Size = new System.Drawing.Size(1145, 262);
+            this.radGroupBox2.Size = new System.Drawing.Size(1145, 275);
             this.radGroupBox2.TabIndex = 4;
             this.radGroupBox2.Text = "INFORMATION";
             // 
@@ -208,7 +214,7 @@
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(1141, 242);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(1141, 255);
             this.tableLayoutPanel5.TabIndex = 0;
             // 
             // toolStrip1
@@ -283,8 +289,8 @@
             this.radGroupBox9.HeaderText = "UNIT DETAILS";
             this.radGroupBox9.Location = new System.Drawing.Point(3, 28);
             this.radGroupBox9.Name = "radGroupBox9";
-            this.tableLayoutPanel5.SetRowSpan(this.radGroupBox9, 8);
-            this.radGroupBox9.Size = new System.Drawing.Size(445, 197);
+            this.tableLayoutPanel5.SetRowSpan(this.radGroupBox9, 9);
+            this.radGroupBox9.Size = new System.Drawing.Size(445, 224);
             this.radGroupBox9.TabIndex = 1;
             this.radGroupBox9.Text = "UNIT DETAILS";
             // 
@@ -308,6 +314,8 @@
             this.tableLayoutPanel1.Controls.Add(this.txtFloorNumber, 1, 5);
             this.tableLayoutPanel1.Controls.Add(this.radLabel1, 0, 6);
             this.tableLayoutPanel1.Controls.Add(this.txtUnitSequence, 1, 6);
+            this.tableLayoutPanel1.Controls.Add(this.lblStat, 0, 7);
+            this.tableLayoutPanel1.Controls.Add(this.ddlUnitStatList, 1, 7);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(2, 18);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -320,7 +328,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(441, 177);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(441, 204);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // radLabel4
@@ -452,6 +460,24 @@
             this.txtUnitSequence.NullText = "Type here...";
             this.txtUnitSequence.Size = new System.Drawing.Size(119, 19);
             this.txtUnitSequence.TabIndex = 6;
+            // 
+            // lblStat
+            // 
+            this.lblStat.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lblStat.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStat.Location = new System.Drawing.Point(56, 180);
+            this.lblStat.Name = "lblStat";
+            this.lblStat.Size = new System.Drawing.Size(78, 19);
+            this.lblStat.TabIndex = 0;
+            this.lblStat.Text = "Unit Status :";
+            // 
+            // ddlUnitStatList
+            // 
+            this.ddlUnitStatList.Location = new System.Drawing.Point(140, 178);
+            this.ddlUnitStatList.Name = "ddlUnitStatList";
+            this.ddlUnitStatList.NullText = "Select here...";
+            this.ddlUnitStatList.Size = new System.Drawing.Size(120, 20);
+            this.ddlUnitStatList.TabIndex = 5;
             // 
             // radGroupBox3
             // 
@@ -674,7 +700,7 @@
             // 
             // txtAreRateSqm
             // 
-            this.txtAreRateSqm.Location = new System.Drawing.Point(73, 33);
+            this.txtAreRateSqm.Location = new System.Drawing.Point(74, 65);
             this.txtAreRateSqm.Name = "txtAreRateSqm";
             this.txtAreRateSqm.NullText = "Type here...";
             this.txtAreRateSqm.Size = new System.Drawing.Size(82, 20);
@@ -713,7 +739,7 @@
             // 
             // txtAreaTotalAmount
             // 
-            this.txtAreaTotalAmount.Location = new System.Drawing.Point(74, 90);
+            this.txtAreaTotalAmount.Location = new System.Drawing.Point(74, 92);
             this.txtAreaTotalAmount.Name = "txtAreaTotalAmount";
             this.txtAreaTotalAmount.Size = new System.Drawing.Size(81, 20);
             this.txtAreaTotalAmount.TabIndex = 6;
@@ -721,7 +747,7 @@
             // 
             // txtAreSql
             // 
-            this.txtAreSql.Location = new System.Drawing.Point(74, 63);
+            this.txtAreSql.Location = new System.Drawing.Point(74, 40);
             this.txtAreSql.Name = "txtAreSql";
             this.txtAreSql.NullText = "Type here...";
             this.txtAreSql.Size = new System.Drawing.Size(81, 20);
@@ -732,13 +758,14 @@
             // 
             this.radGroupBox7.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
             this.radGroupBox7.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.radGroupBox7.Controls.Add(this.chkNonCusaMaintenance);
             this.radGroupBox7.Controls.Add(this.chkNonVat);
             this.radGroupBox7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radGroupBox7.HeaderText = "VAT Option";
             this.radGroupBox7.Location = new System.Drawing.Point(690, 178);
             this.radGroupBox7.Name = "radGroupBox7";
-            this.tableLayoutPanel5.SetRowSpan(this.radGroupBox7, 2);
-            this.radGroupBox7.Size = new System.Drawing.Size(205, 47);
+            this.tableLayoutPanel5.SetRowSpan(this.radGroupBox7, 3);
+            this.radGroupBox7.Size = new System.Drawing.Size(205, 74);
             this.radGroupBox7.TabIndex = 11;
             this.radGroupBox7.Text = "VAT Option";
             // 
@@ -761,8 +788,8 @@
             this.radGroupBox8.HeaderText = "TOTAL MONTHLY RENTAL";
             this.radGroupBox8.Location = new System.Drawing.Point(901, 178);
             this.radGroupBox8.Name = "radGroupBox8";
-            this.tableLayoutPanel5.SetRowSpan(this.radGroupBox8, 2);
-            this.radGroupBox8.Size = new System.Drawing.Size(237, 47);
+            this.tableLayoutPanel5.SetRowSpan(this.radGroupBox8, 3);
+            this.radGroupBox8.Size = new System.Drawing.Size(237, 74);
             this.radGroupBox8.TabIndex = 12;
             this.radGroupBox8.Text = "TOTAL MONTHLY RENTAL";
             // 
@@ -773,7 +800,7 @@
             this.txtTotalRental.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTotalRental.Location = new System.Drawing.Point(2, 18);
             this.txtTotalRental.Name = "txtTotalRental";
-            this.txtTotalRental.Size = new System.Drawing.Size(233, 27);
+            this.txtTotalRental.Size = new System.Drawing.Size(233, 54);
             this.txtTotalRental.TabIndex = 6;
             this.txtTotalRental.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -787,8 +814,8 @@
             this.radGroupBox10.HeaderText = "IS PARKING UNIT";
             this.radGroupBox10.Location = new System.Drawing.Point(454, 178);
             this.radGroupBox10.Name = "radGroupBox10";
-            this.tableLayoutPanel5.SetRowSpan(this.radGroupBox10, 2);
-            this.radGroupBox10.Size = new System.Drawing.Size(230, 47);
+            this.tableLayoutPanel5.SetRowSpan(this.radGroupBox10, 3);
+            this.radGroupBox10.Size = new System.Drawing.Size(230, 74);
             this.radGroupBox10.TabIndex = 13;
             this.radGroupBox10.Text = "IS PARKING UNIT";
             // 
@@ -803,11 +830,19 @@
             this.chkIsParking.Text = "Please flag this box ";
             this.chkIsParking.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.chkIsParking_ToggleStateChanged);
             // 
+            // chkNonCusaMaintenance
+            // 
+            this.chkNonCusaMaintenance.Location = new System.Drawing.Point(8, 45);
+            this.chkNonCusaMaintenance.Name = "chkNonCusaMaintenance";
+            this.chkNonCusaMaintenance.Size = new System.Drawing.Size(15, 15);
+            this.chkNonCusaMaintenance.TabIndex = 0;
+            this.chkNonCusaMaintenance.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.chkNonCusaMaintenance_ToggleStateChanged);
+            // 
             // frmEditUnits
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1149, 282);
+            this.ClientSize = new System.Drawing.Size(1149, 295);
             this.Controls.Add(this.radGroupBox1);
             this.DoubleBuffered = true;
             this.MaximizeBox = false;
@@ -843,6 +878,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtFloorNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUnitSequence)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblStat)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlUnitStatList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).EndInit();
             this.radGroupBox3.ResumeLayout(false);
             this.radGroupBox3.PerformLayout();
@@ -887,6 +924,7 @@
             this.radGroupBox10.ResumeLayout(false);
             this.radGroupBox10.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chkIsParking)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkNonCusaMaintenance)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -952,5 +990,8 @@
         private Telerik.WinControls.UI.RadTextBox txtTotalRental;
         private Telerik.WinControls.UI.RadGroupBox radGroupBox10;
         private Telerik.WinControls.UI.RadCheckBox chkIsParking;
+        private Telerik.WinControls.UI.RadLabel lblStat;
+        private Telerik.WinControls.UI.RadDropDownList ddlUnitStatList;
+        private Telerik.WinControls.UI.RadCheckBox chkNonCusaMaintenance;
     }
 }

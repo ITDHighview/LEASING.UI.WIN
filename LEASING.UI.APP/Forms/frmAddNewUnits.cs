@@ -78,7 +78,8 @@ namespace LEASING.UI.APP.Forms
             new UnitStatus { UnitStatusName = "OCCUPIED"},
              new UnitStatus { UnitStatusName = "NOT AVAILABLE"}
         };
-
+        private string _secAndMainVatPercentage { get; set; }
+        private string _secAndMainAmount { get; set; }
         private void M_GetResendentialRateSettings()
         {
             txtBaseRentalVatPercentage.Text = string.Empty;
@@ -93,7 +94,9 @@ namespace LEASING.UI.APP.Forms
                 {
                     txtBaseRentalVatPercentage.Text = Convert.ToString(dt.Tables[0].Rows[0]["GenVat"]);
                     txtSecAndMainVatPercentage.Text = String.Format("{0:0.00}", Convert.ToString(dt.Tables[0].Rows[0]["GenVat"]));
+                    this._secAndMainVatPercentage  = String.Format("{0:0.00}", Convert.ToString(dt.Tables[0].Rows[0]["GenVat"]));
                     txtSecAndMainAmount.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecurityAndMaintenance"]);
+                    this._secAndMainAmount = Convert.ToString(dt.Tables[0].Rows[0]["SecurityAndMaintenance"]);
                     //lblSecAndMainTax.Text = "TAX  : " + Convert.ToString(vWithHoldingTax) + "%";
                     lblBaseRentalTax.Text = "TAX  : " + Convert.ToString(vWithHoldingTax) + "%";
                 }
@@ -113,7 +116,9 @@ namespace LEASING.UI.APP.Forms
                 {
                     txtBaseRentalVatPercentage.Text = Convert.ToString(dt.Tables[0].Rows[0]["GenVat"]);
                     txtSecAndMainVatPercentage.Text = String.Format("{0:0.00}", Convert.ToString(dt.Tables[0].Rows[0]["GenVat"]));
+                    this._secAndMainVatPercentage = String.Format("{0:0.00}", Convert.ToString(dt.Tables[0].Rows[0]["GenVat"]));
                     txtSecAndMainAmount.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecurityAndMaintenance"]);
+                    this._secAndMainAmount = Convert.ToString(dt.Tables[0].Rows[0]["SecurityAndMaintenance"]);
                     vWithHoldingTax = Convert.ToInt32(dt.Tables[0].Rows[0]["WithHoldingTax"]);
                     WithHoldingTaxParam = vWithHoldingTax;
                     //lblSecAndMainTax.Text = "TAX  : " + Convert.ToString(vWithHoldingTax) + "%";
@@ -138,7 +143,9 @@ namespace LEASING.UI.APP.Forms
                 {
                     txtBaseRentalVatPercentage.Text = Convert.ToString(dt.Tables[0].Rows[0]["GenVat"]);
                     txtSecAndMainVatPercentage.Text = String.Format("{0:0.00}", Convert.ToString(dt.Tables[0].Rows[0]["GenVat"]));
+                    this._secAndMainVatPercentage = String.Format("{0:0.00}", Convert.ToString(dt.Tables[0].Rows[0]["GenVat"]));
                     txtSecAndMainAmount.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecurityAndMaintenance"]);
+                    this._secAndMainAmount = Convert.ToString(dt.Tables[0].Rows[0]["SecurityAndMaintenance"]);
                     vWithHoldingTax = Convert.ToInt32(dt.Tables[0].Rows[0]["WithHoldingTax"]);
                     WithHoldingTaxParam = vWithHoldingTax;
                     //lblSecAndMainTax.Text = "TAX  : " +Convert.ToString(vWithHoldingTax) + "%";
@@ -292,14 +299,17 @@ namespace LEASING.UI.APP.Forms
                     if (Projecttype == "RESIDENTIAL")
                     {
                         isResidential = true;
+                        chkNonCusaMaintenance.Text = "Non Maintenance";
                     }
                     else if (Projecttype == "COMMERCIAL")
                     {
                         isCommercial = true;
+                        chkNonCusaMaintenance.Text = "Non Cusa";
                     }
                     else if (Projecttype == "WAREHOUSE")
                     {
                         isWarehouse = true;
+                        chkNonCusaMaintenance.Text = "Non Cusa";
                     }
                 }
             }
@@ -372,29 +382,42 @@ namespace LEASING.UI.APP.Forms
             }
         }
 
+        private void _toggleNonCusaMaintenance()
+        {
+            if (chkNonCusaMaintenance.Checked == true)
+            {
+                this.txtSecAndMainVatPercentage.Text = "0.00";
+                this.txtSecAndMainAmount.Text = "0.00";
+                this.txtSecAndMainVatAmount.Text = "0.00";
+                this.txtSecAndMainWithVatAmount.Text = "0.00";
+            }
+            else
+            {
+                this.txtSecAndMainVatPercentage.Text = this._secAndMainVatPercentage;
+                this.txtSecAndMainAmount.Text = this._secAndMainAmount;
+                //this.txtSecAndMainVatAmount.Text = string.Empty;
+                //this.txtSecAndMainWithVatAmount.Text = string.Empty;
+            }
+
+        }
 
         private void M_GetSecAndMainVatAMount()
         {
+   
             var AMount = (Functions.ConvertStringToDecimal(txtSecAndMainAmount.Text) * Functions.ConvertStringToDecimal(txtSecAndMainVatPercentage.Text) / 100);
             txtSecAndMainVatAmount.Text = AMount.ToString("0.00");
         }
         private void M_GetSecAndMainWithVatAMount()
         {
             var AMount = (Functions.ConvertStringToDecimal(txtSecAndMainAmount.Text) + Functions.ConvertStringToDecimal(txtSecAndMainVatAmount.Text));
-            txtSecAndMainWithVatAmount.Text = AMount.ToString("0.00");
-            /*TAX*/
-            //var tax = (Functions.ConvertStringToDecimal(txtBaseRentalTax.Text)); ;
-            var totalrental = (this.chkNonVat.Checked == true ? Functions.ConvertStringToDecimal(txtBaseRental.Text) : Functions.ConvertStringToDecimal(txtBaseRentalWithVatAmount.Text) + Functions.ConvertStringToDecimal(txtSecAndMainWithVatAmount.Text));
-            //var result = (totalrental - tax);
-            var result = (totalrental);
-
-            if (Functions.ConvertStringToDecimal(txtBaseRental.Text) > 0)
-            {
-                txtTotalRental.Text = result.ToString("0.00");
+            txtSecAndMainWithVatAmount.Text = AMount.ToString("0.00");         
+            if (!chkIsParking.Checked)
+            {               
+                this.TotalRentalUnit();
             }
             else
-            {
-                txtTotalRental.Text = "0.00";
+            {             
+                this.TotalRentalParking();
             }
         }
         private void M_GetBaseRentalTaxAMount()
@@ -832,6 +855,13 @@ namespace LEASING.UI.APP.Forms
         {
             M_GetBaseRentalVatAmount();
             M_GetBaseRentalWithVatAmount();
+        }
+
+        private void chkNonCusaMaintenance_ToggleStateChanged(object sender, StateChangedEventArgs args)
+        {
+            this._toggleNonCusaMaintenance();
+            this.M_GetSecAndMainVatAMount();
+            this.M_GetSecAndMainWithVatAMount();
         }
     }
 }

@@ -73,7 +73,7 @@ namespace LEASING.UI.APP.Context
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@TaxAmount", model.TaxAmount);
             _sqlcmd.Parameters.Add(_sqlpara);
-            
+
             try
             {
                 _sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
@@ -137,7 +137,7 @@ namespace LEASING.UI.APP.Context
             _sqlpara = new SqlParameter("@FloorType", model.FloorType);
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@BaseRental", model.BaseRental);
-            _sqlcmd.Parameters.Add(_sqlpara);          
+            _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@DetailsofProperty", model.DetailsofProperty);
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@UnitNo", model.UnitNo);
@@ -170,7 +170,8 @@ namespace LEASING.UI.APP.Context
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@ComputerName", Environment.MachineName);
             _sqlcmd.Parameters.Add(_sqlpara);
-      
+            _sqlpara = new SqlParameter("@UnitStatus", model.UnitStatus);
+            _sqlcmd.Parameters.Add(_sqlpara);
 
             try
             {
@@ -219,7 +220,7 @@ namespace LEASING.UI.APP.Context
             _sqlcmd = new SqlCommand();
             _sqlcmd.CommandText = "sp_MovedIn";
             _sqlpara = new SqlParameter("@ReferenceID", ReferenceID);
-            _sqlcmd.Parameters.Add(_sqlpara);    
+            _sqlcmd.Parameters.Add(_sqlpara);
             //_sqlpara = new SqlParameter("@LastChangedBy", model.LastchangedBy);
             //_sqlcmd.Parameters.Add(_sqlpara);
             //_sqlpara = new SqlParameter("@ComputerName", Environment.MachineName);

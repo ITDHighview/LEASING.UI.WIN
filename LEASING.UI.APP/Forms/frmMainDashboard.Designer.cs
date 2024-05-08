@@ -29,23 +29,23 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn25 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn26 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn27 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn28 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn29 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn30 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.RadListDataItem radListDataItem1 = new Telerik.WinControls.UI.RadListDataItem();
             Telerik.WinControls.UI.RadListDataItem radListDataItem2 = new Telerik.WinControls.UI.RadListDataItem();
             Telerik.WinControls.UI.RadListDataItem radListDataItem3 = new Telerik.WinControls.UI.RadListDataItem();
             Telerik.WinControls.UI.RadListDataItem radListDataItem4 = new Telerik.WinControls.UI.RadListDataItem();
             Telerik.WinControls.UI.RadListDataItem radListDataItem5 = new Telerik.WinControls.UI.RadListDataItem();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn12 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn31 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn32 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn33 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn34 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn35 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn36 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             this.radDesktopAlert1 = new Telerik.WinControls.UI.RadDesktopAlert(this.components);
             this.radMenuItemNotification = new Telerik.WinControls.UI.RadMenuItem();
             this.lblUserInfoPanel = new Telerik.WinControls.UI.RadLabel();
@@ -153,6 +153,7 @@
             this.lblNotAvailableCount = new Telerik.WinControls.UI.RadLabel();
             this.telerikMetroTouchTheme1 = new Telerik.WinControls.Themes.TelerikMetroTouchTheme();
             this.TimerCountDown = new System.Windows.Forms.Timer(this.components);
+            this.btnRefresh = new Telerik.WinControls.UI.RadMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.lblUserInfoPanel)).BeginInit();
             this.lblUserInfoPanel.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -1049,11 +1050,12 @@
             // 
             this.radMenu1.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.radMenuItemNotification,
-            this.radMenuItemQuickInquiry});
+            this.radMenuItemQuickInquiry,
+            this.btnRefresh});
             this.radMenu1.Location = new System.Drawing.Point(245, 3);
             this.radMenu1.Name = "radMenu1";
             this.radMenu1.Padding = new System.Windows.Forms.Padding(2, 2, 0, 0);
-            this.radMenu1.Size = new System.Drawing.Size(763, 39);
+            this.radMenu1.Size = new System.Drawing.Size(763, 50);
             this.radMenu1.TabIndex = 4;
             this.radMenu1.Text = "radMenu1";
             this.radMenu1.ThemeName = "TelerikMetroTouch";
@@ -1123,42 +1125,42 @@
             this.dgvNotificationList.MasterTemplate.AllowAddNewRow = false;
             this.dgvNotificationList.MasterTemplate.AllowColumnReorder = false;
             this.dgvNotificationList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn1.FieldName = "ClientID";
-            gridViewTextBoxColumn1.HeaderText = "Client ID";
-            gridViewTextBoxColumn1.Name = "ClientID";
-            gridViewTextBoxColumn1.Width = 55;
-            gridViewTextBoxColumn2.FieldName = "Client";
-            gridViewTextBoxColumn2.HeaderText = "Client Name";
-            gridViewTextBoxColumn2.Name = "Client";
-            gridViewTextBoxColumn2.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn2.Width = 110;
-            gridViewTextBoxColumn3.FieldName = "ContractID";
-            gridViewTextBoxColumn3.HeaderText = "Contract ID";
-            gridViewTextBoxColumn3.Name = "ContractID";
-            gridViewTextBoxColumn3.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn3.Width = 55;
-            gridViewTextBoxColumn4.FieldName = "ForMonth";
-            gridViewTextBoxColumn4.HeaderText = "Month";
-            gridViewTextBoxColumn4.Name = "ForMonth";
-            gridViewTextBoxColumn4.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn4.Width = 55;
-            gridViewTextBoxColumn5.FieldName = "Amount";
-            gridViewTextBoxColumn5.HeaderText = "Amount";
-            gridViewTextBoxColumn5.Name = "Amount";
-            gridViewTextBoxColumn5.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn5.Width = 44;
-            gridViewTextBoxColumn6.FieldName = "Status";
-            gridViewTextBoxColumn6.HeaderText = "Status";
-            gridViewTextBoxColumn6.Name = "Status";
-            gridViewTextBoxColumn6.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn6.Width = 56;
+            gridViewTextBoxColumn25.FieldName = "ClientID";
+            gridViewTextBoxColumn25.HeaderText = "Client ID";
+            gridViewTextBoxColumn25.Name = "ClientID";
+            gridViewTextBoxColumn25.Width = 55;
+            gridViewTextBoxColumn26.FieldName = "Client";
+            gridViewTextBoxColumn26.HeaderText = "Client Name";
+            gridViewTextBoxColumn26.Name = "Client";
+            gridViewTextBoxColumn26.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn26.Width = 110;
+            gridViewTextBoxColumn27.FieldName = "ContractID";
+            gridViewTextBoxColumn27.HeaderText = "Contract ID";
+            gridViewTextBoxColumn27.Name = "ContractID";
+            gridViewTextBoxColumn27.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn27.Width = 55;
+            gridViewTextBoxColumn28.FieldName = "ForMonth";
+            gridViewTextBoxColumn28.HeaderText = "Month";
+            gridViewTextBoxColumn28.Name = "ForMonth";
+            gridViewTextBoxColumn28.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn28.Width = 55;
+            gridViewTextBoxColumn29.FieldName = "Amount";
+            gridViewTextBoxColumn29.HeaderText = "Amount";
+            gridViewTextBoxColumn29.Name = "Amount";
+            gridViewTextBoxColumn29.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn29.Width = 44;
+            gridViewTextBoxColumn30.FieldName = "Status";
+            gridViewTextBoxColumn30.HeaderText = "Status";
+            gridViewTextBoxColumn30.Name = "Status";
+            gridViewTextBoxColumn30.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn30.Width = 56;
             this.dgvNotificationList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn1,
-            gridViewTextBoxColumn2,
-            gridViewTextBoxColumn3,
-            gridViewTextBoxColumn4,
-            gridViewTextBoxColumn5,
-            gridViewTextBoxColumn6});
+            gridViewTextBoxColumn25,
+            gridViewTextBoxColumn26,
+            gridViewTextBoxColumn27,
+            gridViewTextBoxColumn28,
+            gridViewTextBoxColumn29,
+            gridViewTextBoxColumn30});
             this.dgvNotificationList.MasterTemplate.EnableFiltering = true;
             this.dgvNotificationList.MasterTemplate.ShowRowHeaderColumn = false;
             this.dgvNotificationList.Name = "dgvNotificationList";
@@ -1283,43 +1285,43 @@
             this.dgvUnitList.MasterTemplate.AllowAddNewRow = false;
             this.dgvUnitList.MasterTemplate.AllowColumnReorder = false;
             this.dgvUnitList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn7.FieldName = "TotalMonthlyRental";
-            gridViewTextBoxColumn7.HeaderText = "Total Monthly Rental";
-            gridViewTextBoxColumn7.Name = "TotalMonthlyRental";
-            gridViewTextBoxColumn7.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn7.Width = 62;
-            gridViewTextBoxColumn8.FieldName = "UnitNo";
-            gridViewTextBoxColumn8.HeaderText = "Unit No";
-            gridViewTextBoxColumn8.Name = "UnitNo";
-            gridViewTextBoxColumn8.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn8.Width = 54;
-            gridViewTextBoxColumn9.FieldName = "FloorNo";
-            gridViewTextBoxColumn9.HeaderText = "Floor No";
-            gridViewTextBoxColumn9.Name = "FloorNo";
-            gridViewTextBoxColumn9.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn9.Width = 46;
-            gridViewTextBoxColumn10.FieldName = "FloorType";
-            gridViewTextBoxColumn10.HeaderText = "Floor Type";
-            gridViewTextBoxColumn10.Name = "FloorType";
-            gridViewTextBoxColumn10.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn10.Width = 54;
-            gridViewTextBoxColumn11.FieldName = "UnitStatus";
-            gridViewTextBoxColumn11.HeaderText = "Status";
-            gridViewTextBoxColumn11.Name = "UnitStatus";
-            gridViewTextBoxColumn11.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn11.Width = 153;
-            gridViewTextBoxColumn12.FieldName = "UnitStat";
-            gridViewTextBoxColumn12.HeaderText = "UnitStat";
-            gridViewTextBoxColumn12.IsVisible = false;
-            gridViewTextBoxColumn12.Name = "UnitStat";
-            gridViewTextBoxColumn12.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn31.FieldName = "TotalMonthlyRental";
+            gridViewTextBoxColumn31.HeaderText = "Total Monthly Rental";
+            gridViewTextBoxColumn31.Name = "TotalMonthlyRental";
+            gridViewTextBoxColumn31.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn31.Width = 62;
+            gridViewTextBoxColumn32.FieldName = "UnitNo";
+            gridViewTextBoxColumn32.HeaderText = "Unit No";
+            gridViewTextBoxColumn32.Name = "UnitNo";
+            gridViewTextBoxColumn32.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn32.Width = 54;
+            gridViewTextBoxColumn33.FieldName = "FloorNo";
+            gridViewTextBoxColumn33.HeaderText = "Floor No";
+            gridViewTextBoxColumn33.Name = "FloorNo";
+            gridViewTextBoxColumn33.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn33.Width = 46;
+            gridViewTextBoxColumn34.FieldName = "FloorType";
+            gridViewTextBoxColumn34.HeaderText = "Floor Type";
+            gridViewTextBoxColumn34.Name = "FloorType";
+            gridViewTextBoxColumn34.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn34.Width = 54;
+            gridViewTextBoxColumn35.FieldName = "UnitStatus";
+            gridViewTextBoxColumn35.HeaderText = "Status";
+            gridViewTextBoxColumn35.Name = "UnitStatus";
+            gridViewTextBoxColumn35.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn35.Width = 153;
+            gridViewTextBoxColumn36.FieldName = "UnitStat";
+            gridViewTextBoxColumn36.HeaderText = "UnitStat";
+            gridViewTextBoxColumn36.IsVisible = false;
+            gridViewTextBoxColumn36.Name = "UnitStat";
+            gridViewTextBoxColumn36.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.dgvUnitList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn7,
-            gridViewTextBoxColumn8,
-            gridViewTextBoxColumn9,
-            gridViewTextBoxColumn10,
-            gridViewTextBoxColumn11,
-            gridViewTextBoxColumn12});
+            gridViewTextBoxColumn31,
+            gridViewTextBoxColumn32,
+            gridViewTextBoxColumn33,
+            gridViewTextBoxColumn34,
+            gridViewTextBoxColumn35,
+            gridViewTextBoxColumn36});
             this.dgvUnitList.MasterTemplate.EnableFiltering = true;
             this.dgvUnitList.MasterTemplate.ShowRowHeaderColumn = false;
             this.dgvUnitList.Name = "dgvUnitList";
@@ -1525,6 +1527,15 @@
             // 
             this.TimerCountDown.Interval = 1000;
             this.TimerCountDown.Tick += new System.EventHandler(this.TimerCountDown_Tick);
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.AccessibleDescription = "Refresh Unit List";
+            this.btnRefresh.AccessibleName = "Refresh Unit List";
+            this.btnRefresh.Image = global::LEASING.UI.APP.Properties.Resources.arrow_refresh_small;
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Text = "Refresh Unit List";
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // frmMainDashboard
             // 
@@ -1738,5 +1749,6 @@
         private Telerik.WinControls.UI.RadLabel lblReservedCount;
         private Telerik.WinControls.UI.RadLabel lblNotAvailableCount;
         private System.Windows.Forms.Timer TimerCountDown;
+        private Telerik.WinControls.UI.RadMenuItem btnRefresh;
     }
 }

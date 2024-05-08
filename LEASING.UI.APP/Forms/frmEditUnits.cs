@@ -25,6 +25,9 @@ namespace LEASING.UI.APP.Forms
         public bool isResidential = false;
         public bool isWarehouse = false;
         public bool isCommercial = false;
+
+        private string _secAndMainVatPercentage { get; set; }
+        private string _secAndMainAmount { get; set; }
         int vWithHoldingTax = 0;
         decimal WithHoldingTaxParam = 0;
         public frmEditUnits()
@@ -73,11 +76,11 @@ namespace LEASING.UI.APP.Forms
         }
         List<UnitStatus> UnitStatusList = new List<UnitStatus>()
         {
-            new UnitStatus { UnitStatusName = "--SELECT--"},
+            //new UnitStatus { UnitStatusName = "--SELECT--"},
             new UnitStatus { UnitStatusName = "VACANT"},
             //new UnitStatus { UnitStatusName = "RESERVED"},
             //new UnitStatus { UnitStatusName = "OCCUPIED"},
-             new UnitStatus { UnitStatusName = "NOT AVAILABLE"}
+             new UnitStatus { UnitStatusName = "HOLD"}
         };
 
         private void GetUnitStates()
@@ -138,31 +141,25 @@ namespace LEASING.UI.APP.Forms
         {
             var AMount = (Functions.ConvertStringToDecimal(txtSecAndMainAmount.Text) + Functions.ConvertStringToDecimal(txtSecAndMainVatAmount.Text));
             txtSecAndMainWithVatAmount.Text = AMount.ToString("0.00");
-            /*TAX*/
-            //var tax = (Functions.ConvertStringToDecimal(txtBaseRentalTax.Text)); ;
-            var totalrental = (this.chkNonVat.Checked == true ? Functions.ConvertStringToDecimal(txtBaseRental.Text) : Functions.ConvertStringToDecimal(txtBaseRentalWithVatAmount.Text) + Functions.ConvertStringToDecimal(txtSecAndMainWithVatAmount.Text));
-            //var result = (totalrental - tax);
-            var result = (totalrental);
-
-            if (Functions.ConvertStringToDecimal(txtBaseRental.Text) > 0)
+            if (!chkIsParking.Checked)
             {
-                txtTotalRental.Text = result.ToString("#,##0.00");
+                this.TotalRentalUnit();
             }
             else
             {
-                txtTotalRental.Text = "0.00";
+                this.TotalRentalParking();
             }
         }
         private void M_GetUnitStatus()
         {
 
-            //ddlUnitStatus.DataSource = null;
-            //if (UnitStatusList.Count() > 0)
-            //{
-            //    ddlUnitStatus.DisplayMember = "UnitStatusName";
-            //    ddlUnitStatus.ValueMember = "UnitStatusName";
-            //    ddlUnitStatus.DataSource = UnitStatusList;
-            //}
+            ddlUnitStatList.DataSource = null;
+            if (UnitStatusList.Count() > 0)
+            {
+                ddlUnitStatList.DisplayMember = "UnitStatusName";
+                ddlUnitStatList.ValueMember = "UnitStatusName";
+                ddlUnitStatList.DataSource = UnitStatusList;
+            }
         }
         private void M_GetUnitById()
         {
@@ -184,6 +181,7 @@ namespace LEASING.UI.APP.Forms
                     txtAreaTotalAmount.Text = Convert.ToString(dt.Tables[0].Rows[0]["AreaTotalAmount"]);
                     chkIsParking.Checked = Convert.ToBoolean(dt.Tables[0].Rows[0]["IsParking"]);
                     txtBaseRentalVatPercentage.Text = Convert.ToString(dt.Tables[0].Rows[0]["Vat"]);
+                    this._secAndMainVatPercentage = Convert.ToString(dt.Tables[0].Rows[0]["Vat"]);
                     txtBaseRental.Text = Convert.ToString(dt.Tables[0].Rows[0]["BaseRental"]);
                     txtBaseRentalVatAmount.Text = Convert.ToString(dt.Tables[0].Rows[0]["BaseRentalVatAmount"]);
                     txtBaseRentalWithVatAmount.Text = Convert.ToString(dt.Tables[0].Rows[0]["BaseRentalWithVatAmount"]);
@@ -194,12 +192,25 @@ namespace LEASING.UI.APP.Forms
                     chkNonVat.Checked = Convert.ToBoolean(dt.Tables[0].Rows[0]["IsNonVat"]);
                     txtSecAndMainVatPercentage.Text = Convert.ToString(dt.Tables[0].Rows[0]["Vat"]);
                     txtSecAndMainAmount.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecAndMainAmount"]);
+                    this._secAndMainAmount = Convert.ToString(dt.Tables[0].Rows[0]["SecAndMainAmount"]);
                     txtSecAndMainVatAmount.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecAndMainVatAmount"]);
                     txtSecAndMainWithVatAmount.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecAndMainWithVatAmount"]);
-                   
+
                     var TotalMonthlyRental = Convert.ToString(dt.Tables[0].Rows[0]["TotalRental"]);
                     txtTotalRental.Text = TotalMonthlyRental.ToString();
-                    //ddlUnitStatus.SelectedText = Convert.ToString(dt.Tables[0].Rows[0]["UnitStatus"]);
+                    if (Convert.ToString(dt.Tables[0].Rows[0]["UnitStatus"]) == "MOVE-IN" || Convert.ToString(dt.Tables[0].Rows[0]["UnitStatus"]) == "RESERVED")
+                    {
+                        ddlUnitStatList.SelectedText = Convert.ToString(dt.Tables[0].Rows[0]["UnitStatus"]);
+                        ddlUnitStatList.Visible = false;
+                        lblStat.Visible = false;
+                    }
+                    else
+                    {
+                        ddlUnitStatList.SelectedText = Convert.ToString(dt.Tables[0].Rows[0]["UnitStatus"]);
+                        ddlUnitStatList.Visible = true;
+                        lblStat.Visible = true;
+                    }
+
                     //txtIsParking.Text = Convert.ToString(dt.Tables[0].Rows[0]["UnitDescription"]);
 
                 }
@@ -469,16 +480,19 @@ namespace LEASING.UI.APP.Forms
                     if (Projecttype == "RESIDENTIAL")
                     {
                         isResidential = true;
+                        chkNonCusaMaintenance.Text = "Non Maintenance";
                         M_GetResendentialRateSettings();
                     }
                     else if (Projecttype == "COMMERCIAL")
                     {
                         isCommercial = true;
+                        chkNonCusaMaintenance.Text = "Non Cusa";
                         M_GetCOMMERCIALateSettings();
                     }
                     else if (Projecttype == "WAREHOUSE")
                     {
                         isWarehouse = true;
+                        chkNonCusaMaintenance.Text = "Non Cusa";
                         M_GetWAREHOUSERateSettings();
                     }
                 }
@@ -534,6 +548,24 @@ namespace LEASING.UI.APP.Forms
             //}
             return "";
         }
+        private void _toggleNonCusaMaintenance()
+        {
+            if (chkNonCusaMaintenance.Checked == true)
+            {
+                this.txtSecAndMainVatPercentage.Text = "0.00";
+                this.txtSecAndMainAmount.Text = "0.00";
+                this.txtSecAndMainVatAmount.Text = "0.00";
+                this.txtSecAndMainWithVatAmount.Text = "0.00";
+            }
+            else
+            {
+                this.txtSecAndMainVatPercentage.Text = this._secAndMainVatPercentage;
+                this.txtSecAndMainAmount.Text = this._secAndMainAmount;
+                //this.txtSecAndMainVatAmount.Text = string.Empty;
+                //this.txtSecAndMainWithVatAmount.Text = string.Empty;
+            }
+
+        }
         private void M_SaveUnit()
         {
             UnitModel UnitUpdate = new UnitModel();
@@ -560,12 +592,13 @@ namespace LEASING.UI.APP.Forms
             UnitUpdate.Vat = Functions.ConvertStringToDecimal(this.txtBaseRentalVatPercentage.Text);
             UnitUpdate.Tax = this.WithHoldingTaxParam;
             UnitUpdate.TaxAmount = Functions.ConvertStringToDecimal(this.txtBaseRentalTax.Text);
+            UnitUpdate.UnitStatus = ddlUnitStatList.Text == "" ? "VACANT" : ddlUnitStatList.Text;
             UnitUpdate.Message_Code = UnitContext.EditUnit(UnitUpdate);
             if (UnitUpdate.Message_Code.Equals("SUCCESS"))
             {
                 Functions.MessageShow("Unit has been updated successfully !");
                 this.strUnitFormMode = "READ";
-                this.IsProceed = true;              
+                this.IsProceed = true;
             }
             else
             {
@@ -747,6 +780,13 @@ namespace LEASING.UI.APP.Forms
         {
             M_GetBaseRentalVatAmount();
             M_GetBaseRentalWithVatAmount();
+        }
+
+        private void chkNonCusaMaintenance_ToggleStateChanged(object sender, Telerik.WinControls.UI.StateChangedEventArgs args)
+        {
+            this._toggleNonCusaMaintenance();
+            this.M_GetSecAndMainVatAMount();
+            this.M_GetSecAndMainWithVatAMount();
         }
     }
 }

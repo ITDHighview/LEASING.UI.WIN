@@ -1,0 +1,70 @@
+---[tblUnitMstr]---
+
+CREATE INDEX [IdxtblUnitMstr_RecId]
+    ON [dbo].[tblUnitMstr] ([RecId]);
+CREATE INDEX [IdxtblUnitMstr_ProjectId]
+    ON [dbo].[tblUnitMstr] ([ProjectId]);
+CREATE INDEX [IdxtblUnitMstr_FloorNo]
+    ON [dbo].[tblUnitMstr] ([FloorNo]);
+CREATE INDEX [IdxtblUnitMstr_AreaSqm]
+    ON [dbo].[tblUnitMstr] ([AreaSqm]);
+CREATE INDEX [IdxtblUnitMstr_AreaRateSqm]
+    ON [dbo].[tblUnitMstr] ([AreaRateSqm]);
+CREATE INDEX [IdxtblUnitMstr_FloorType]
+    ON [dbo].[tblUnitMstr] ([FloorType]);
+CREATE INDEX [IdxtblUnitMstr_BaseRental]
+    ON [dbo].[tblUnitMstr] ([BaseRental]);
+CREATE INDEX [IdxtblUnitMstr_GenVat]
+    ON [dbo].[tblUnitMstr] ([GenVat]);
+CREATE INDEX [IdxtblUnitMstr_SecurityAndMaintenance]
+    ON [dbo].[tblUnitMstr] ([SecurityAndMaintenance]);
+CREATE INDEX [IdxtblUnitMstr_SecurityAndMaintenanceVat]
+    ON [dbo].[tblUnitMstr] ([SecurityAndMaintenanceVat]);
+CREATE INDEX [IdxtblUnitMstr_UnitStatus]
+    ON [dbo].[tblUnitMstr] ([UnitStatus]);
+CREATE INDEX [IdxtblUnitMstr_DetailsofProperty]
+    ON [dbo].[tblUnitMstr] ([DetailsofProperty]);
+CREATE INDEX [IdxtblUnitMstr_UnitNo]
+    ON [dbo].[tblUnitMstr] ([UnitNo]);
+CREATE INDEX [IdxtblUnitMstr_UnitSequence]
+    ON [dbo].[tblUnitMstr] ([UnitSequence]);
+CREATE INDEX [IdxtblUnitMstr_EndodedBy]
+    ON [dbo].[tblUnitMstr] ([EndodedBy]);
+CREATE INDEX [IdxtblUnitMstr_EndodedDate]
+    ON [dbo].[tblUnitMstr] ([EndodedDate]);
+CREATE INDEX [IdxtblUnitMstr_LastChangedBy]
+    ON [dbo].[tblUnitMstr] ([LastChangedBy]);
+CREATE INDEX [IdxtblUnitMstr_LastChangedDate]
+    ON [dbo].[tblUnitMstr] ([LastChangedDate]);
+CREATE INDEX [IdxtblUnitMstr_IsActive]
+    ON [dbo].[tblUnitMstr] ([IsActive]);
+CREATE INDEX [IdxtblUnitMstr_clientID]
+    ON [dbo].[tblUnitMstr] ([clientID]);
+CREATE INDEX [IdxtblUnitMstr_Tennant]
+    ON [dbo].[tblUnitMstr] ([Tennant]);
+CREATE INDEX [IdxtblUnitMstr_IsParking]
+    ON [dbo].[tblUnitMstr] ([IsParking]);
+CREATE INDEX [IdxtblUnitMstr_IsNonVat]
+    ON [dbo].[tblUnitMstr] ([IsNonVat]);
+CREATE INDEX [IdxtblUnitMstr_BaseRentalVatAmount]
+    ON [dbo].[tblUnitMstr] ([BaseRentalVatAmount]);
+CREATE INDEX [IdxtblUnitMstr_BaseRentalWithVatAmount]
+    ON [dbo].[tblUnitMstr] ([BaseRentalWithVatAmount]);
+CREATE INDEX [IdxtblUnitMstr_BaseRentalTax]
+    ON [dbo].[tblUnitMstr] ([BaseRentalTax]);
+CREATE INDEX [IdxtblUnitMstr_TotalRental]
+    ON [dbo].[tblUnitMstr] ([TotalRental]);
+CREATE INDEX [IdxtblUnitMstr_SecAndMainAmount]
+    ON [dbo].[tblUnitMstr] ([SecAndMainAmount]);
+CREATE INDEX [IdxtblUnitMstr_SecAndMainVatAmount]
+    ON [dbo].[tblUnitMstr] ([SecAndMainVatAmount]);
+CREATE INDEX [IdxtblUnitMstr_SecAndMainWithVatAmount]
+    ON [dbo].[tblUnitMstr] ([SecAndMainWithVatAmount]);
+CREATE INDEX [IdxtblUnitMstr_Vat]
+    ON [dbo].[tblUnitMstr] ([Vat]);
+CREATE INDEX [IdxtblUnitMstr_Tax]
+    ON [dbo].[tblUnitMstr] ([Tax]);
+CREATE INDEX [IdxtblUnitMstr_TaxAmount]
+    ON [dbo].[tblUnitMstr] ([TaxAmount]);
+CREATE INDEX [IdxtblUnitMstr_AreaTotalAmount]
+    ON [dbo].[tblUnitMstr] ([AreaTotalAmount]);

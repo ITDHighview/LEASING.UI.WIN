@@ -7,7 +7,7 @@ GO
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE PROCEDURE [dbo].[sp_GetPostDatedCountMonth]
+CREATE   PROCEDURE [dbo].[sp_GetPostDatedCountMonth]
     -- Add the parameters for the stored procedure here
     @FromDate VARCHAR(10) = NULL,
     @EndDate VARCHAR(10) = NULL,
@@ -53,7 +53,8 @@ BEGIN
         [Month]
     )
     SELECT [MonthsCTE].[Month]
-    FROM [MonthsCTE];
+    FROM [MonthsCTE]
+	option (maxrecursion 0);
 
 
 

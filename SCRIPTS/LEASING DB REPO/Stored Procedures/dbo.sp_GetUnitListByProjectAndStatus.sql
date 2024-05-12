@@ -7,7 +7,7 @@ GO
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE PROCEDURE [dbo].[sp_GetUnitListByProjectAndStatus]
+CREATE   PROCEDURE [dbo].[sp_GetUnitListByProjectAndStatus]
     @ProjectId  INT         = NULL,
     @UnitStatus VARCHAR(15) = NULL
 AS
@@ -58,6 +58,7 @@ AS
                             ON [tblUnitMstr].[RecId] = [tblUnitReference].[UnitId]
                 WHERE
                         [tblProjectMstr].[RecId] = @ProjectId
+                        AND [tblUnitMstr].[UnitStatus] <> 'DISABLED'
             END
         ELSE
             BEGIN

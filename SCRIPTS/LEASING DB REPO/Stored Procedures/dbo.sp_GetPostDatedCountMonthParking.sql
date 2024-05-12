@@ -7,7 +7,7 @@ GO
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE PROCEDURE [dbo].[sp_GetPostDatedCountMonthParking]
+CREATE   PROCEDURE [dbo].[sp_GetPostDatedCountMonthParking]
     @FromDate VARCHAR(10) = NULL,
     @EndDate VARCHAR(10) = NULL,
     @Rental VARCHAR(10) = NULL,
@@ -36,7 +36,9 @@ BEGIN
         [Month]
     )
     SELECT [MonthsCTE].[Month]
-    FROM [MonthsCTE];
+    FROM [MonthsCTE]
+	OPTION (maxrecursion 0);
+
 
 
     SELECT ROW_NUMBER() OVER (ORDER BY [#GeneratedMonths].[Month] ASC) [seq],

@@ -10,3 +10,19 @@ CREATE TABLE [dbo].[tblProjectMstr]
 [CompanyId] [int] NULL
 ) ON [PRIMARY]
 GO
+CREATE NONCLUSTERED INDEX [IdxtblProjectMstr_CompanyId] ON [dbo].[tblProjectMstr] ([CompanyId]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblProjectMstr_Descriptions] ON [dbo].[tblProjectMstr] ([Descriptions]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblProjectMstr_IsActive] ON [dbo].[tblProjectMstr] ([IsActive]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblProjectMstr_LocId] ON [dbo].[tblProjectMstr] ([LocId]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblProjectMstr_ProjectAddress] ON [dbo].[tblProjectMstr] ([ProjectAddress]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblProjectMstr_ProjectName] ON [dbo].[tblProjectMstr] ([ProjectName]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblProjectMstr_ProjectType] ON [dbo].[tblProjectMstr] ([ProjectType]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblProjectMstr_RecId] ON [dbo].[tblProjectMstr] ([RecId]) ON [PRIMARY]
+GO

@@ -55,3 +55,17 @@ BEGIN
 
 END
 GO
+CREATE NONCLUSTERED INDEX [IdxtblClientMstr_ClientID] ON [dbo].[tblClientMstr] ([ClientID]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblClientMstr_EncodedBy] ON [dbo].[tblClientMstr] ([EncodedBy]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblClientMstr_EncodedDate] ON [dbo].[tblClientMstr] ([EncodedDate]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblClientMstr_IsActive] ON [dbo].[tblClientMstr] ([IsActive]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblClientMstr_LastChangedBy] ON [dbo].[tblClientMstr] ([LastChangedBy]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblClientMstr_LastChangedDate] ON [dbo].[tblClientMstr] ([LastChangedDate]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblClientMstr_RecId] ON [dbo].[tblClientMstr] ([RecId]) ON [PRIMARY]
+GO

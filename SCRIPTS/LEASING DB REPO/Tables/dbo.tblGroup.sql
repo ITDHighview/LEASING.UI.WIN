@@ -7,3 +7,9 @@ CREATE TABLE [dbo].[tblGroup]
 GO
 ALTER TABLE [dbo].[tblGroup] ADD CONSTRAINT [PK__tblGroup__149AF36A052EFE6E] PRIMARY KEY CLUSTERED ([GroupId]) ON [PRIMARY]
 GO
+CREATE NONCLUSTERED INDEX [IdxtblGroup_GroupId] ON [dbo].[tblGroup] ([GroupId]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblGroup_GroupName] ON [dbo].[tblGroup] ([GroupName]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblGroup_IsDelete] ON [dbo].[tblGroup] ([IsDelete]) ON [PRIMARY]
+GO

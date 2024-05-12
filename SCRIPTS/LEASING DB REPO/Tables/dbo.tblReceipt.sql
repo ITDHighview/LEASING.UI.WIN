@@ -45,3 +45,49 @@ BEGIN
 
 END
 GO
+CREATE NONCLUSTERED INDEX [IdxtblReceipt_Amount] ON [dbo].[tblReceipt] ([Amount]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblReceipt_BankAccountName] ON [dbo].[tblReceipt] ([BankAccountName]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblReceipt_BankAccountNumber] ON [dbo].[tblReceipt] ([BankAccountNumber]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblReceipt_BankBranch] ON [dbo].[tblReceipt] ([BankBranch]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblReceipt_BankName] ON [dbo].[tblReceipt] ([BankName]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblReceipt_Category] ON [dbo].[tblReceipt] ([Category]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblReceipt_CompanyORNo] ON [dbo].[tblReceipt] ([CompanyORNo]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblReceipt_CompanyPRNo] ON [dbo].[tblReceipt] ([CompanyPRNo]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblReceipt_Description] ON [dbo].[tblReceipt] ([Description]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblReceipt_EncodedBy] ON [dbo].[tblReceipt] ([EncodedBy]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblReceipt_EncodedDate] ON [dbo].[tblReceipt] ([EncodedDate]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblReceipt_IsActive] ON [dbo].[tblReceipt] ([IsActive]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblReceipt_LastChangedBy] ON [dbo].[tblReceipt] ([LastChangedBy]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblReceipt_LastChangedDate] ON [dbo].[tblReceipt] ([LastChangedDate]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblReceipt_PaymentMethod] ON [dbo].[tblReceipt] ([PaymentMethod]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblReceipt_RcptID] ON [dbo].[tblReceipt] ([RcptID]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblReceipt_ReceiptDate] ON [dbo].[tblReceipt] ([ReceiptDate]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblReceipt_RecId] ON [dbo].[tblReceipt] ([RecId]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblReceipt_REF] ON [dbo].[tblReceipt] ([REF]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblReceipt_RefId] ON [dbo].[tblReceipt] ([RefId]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblReceipt_Remarks] ON [dbo].[tblReceipt] ([Remarks]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblReceipt_SerialNo] ON [dbo].[tblReceipt] ([SerialNo]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblReceipt_TranIdD] ON [dbo].[tblReceipt] ([TranId]) ON [PRIMARY]
+GO

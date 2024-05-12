@@ -5,3 +5,7 @@ CREATE TABLE [dbo].[tblFloorTypes]
 [IsActive] [bit] NULL
 ) ON [PRIMARY]
 GO
+CREATE NONCLUSTERED INDEX [IdxtblFloorTypes_IsActive] ON [dbo].[tblFloorTypes] ([IsActive]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblFloorTypes_RecId] ON [dbo].[tblFloorTypes] ([RecId]) ON [PRIMARY]
+GO

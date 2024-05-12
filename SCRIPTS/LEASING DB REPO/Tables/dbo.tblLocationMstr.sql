@@ -6,3 +6,11 @@ CREATE TABLE [dbo].[tblLocationMstr]
 [IsActive] [bit] NULL
 ) ON [PRIMARY]
 GO
+CREATE NONCLUSTERED INDEX [IdxtblLocationMstr_Descriptions] ON [dbo].[tblLocationMstr] ([Descriptions]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblLocationMstr_IsActive] ON [dbo].[tblLocationMstr] ([IsActive]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblLocationMstr_LocAddress] ON [dbo].[tblLocationMstr] ([LocAddress]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblLocationMstr_RecId] ON [dbo].[tblLocationMstr] ([RecId]) ON [PRIMARY]
+GO

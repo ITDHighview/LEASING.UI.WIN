@@ -35,3 +35,29 @@ BEGIN
 
 END
 GO
+CREATE NONCLUSTERED INDEX [IdxtblTransaction_ActualAmountPaid] ON [dbo].[tblTransaction] ([ActualAmountPaid]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblTransaction_ChangeAmount] ON [dbo].[tblTransaction] ([ChangeAmount]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblTransaction_EncodedBy] ON [dbo].[tblTransaction] ([EncodedBy]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblTransaction_EncodedDate] ON [dbo].[tblTransaction] ([EncodedDate]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblTransaction_IsActive] ON [dbo].[tblTransaction] ([IsActive]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblTransaction_LastChangedBy] ON [dbo].[tblTransaction] ([LastChangedBy]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblTransaction_LastChangedDate] ON [dbo].[tblTransaction] ([LastChangedDate]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblTransaction_PaidAmount] ON [dbo].[tblTransaction] ([PaidAmount]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblTransaction_ReceiveAmount] ON [dbo].[tblTransaction] ([ReceiveAmount]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblTransaction_RecId] ON [dbo].[tblTransaction] ([RecId]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblTransaction_RefId] ON [dbo].[tblTransaction] ([RefId]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblTransaction_Remarks] ON [dbo].[tblTransaction] ([Remarks]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblTransaction_TranID] ON [dbo].[tblTransaction] ([TranID]) ON [PRIMARY]
+GO

@@ -13,3 +13,15 @@ CREATE TABLE [dbo].[tblCompany]
 [ComputerName] [varchar] (20) COLLATE SQL_Latin1_General_CP1_CI_AS NULL
 ) ON [PRIMARY]
 GO
+CREATE NONCLUSTERED INDEX [IdxtblCompany_EncodedBy] ON [dbo].[tblCompany] ([EncodedBy]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblCompany_EncodedDate] ON [dbo].[tblCompany] ([EncodedDate]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblCompany_LastChangedBy] ON [dbo].[tblCompany] ([LastChangedBy]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblCompany_LastChangedDate] ON [dbo].[tblCompany] ([LastChangedDate]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblCompany_RecId] ON [dbo].[tblCompany] ([RecId]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblCompany_Status] ON [dbo].[tblCompany] ([Status]) ON [PRIMARY]
+GO

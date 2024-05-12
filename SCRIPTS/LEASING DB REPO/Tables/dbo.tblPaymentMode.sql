@@ -16,3 +16,27 @@ CREATE TABLE [dbo].[tblPaymentMode]
 GO
 ALTER TABLE [dbo].[tblPaymentMode] ADD CONSTRAINT [PK__tblPayme__360414DF7CA23D95] PRIMARY KEY CLUSTERED ([RecId]) ON [PRIMARY]
 GO
+CREATE NONCLUSTERED INDEX [IdxtblPaymentMode_BankBranch] ON [dbo].[tblPaymentMode] ([BankBranch]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblPaymentMode_BNK_ACCT_NAME] ON [dbo].[tblPaymentMode] ([BNK_ACCT_NAME]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblPaymentMode_BNK_ACCT_NUMBER] ON [dbo].[tblPaymentMode] ([BNK_ACCT_NUMBER]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblPaymentMode_BNK_NAME] ON [dbo].[tblPaymentMode] ([BNK_NAME]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblPaymentMode_CompanyORNo] ON [dbo].[tblPaymentMode] ([CompanyORNo]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblPaymentMode_CompanyPRNo] ON [dbo].[tblPaymentMode] ([CompanyPRNo]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblPaymentMode_ModeType] ON [dbo].[tblPaymentMode] ([ModeType]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblPaymentMode_RcptID] ON [dbo].[tblPaymentMode] ([RcptID]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblPaymentMode_ReceiptDate] ON [dbo].[tblPaymentMode] ([ReceiptDate]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblPaymentMode_RecId] ON [dbo].[tblPaymentMode] ([RecId]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblPaymentMode_REF] ON [dbo].[tblPaymentMode] ([REF]) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [IdxtblPaymentMode_SERIAL_NO] ON [dbo].[tblPaymentMode] ([SERIAL_NO]) ON [PRIMARY]
+GO

@@ -10,15 +10,13 @@ GO
 CREATE PROCEDURE [dbo].[sp_HoldPayment]
     @ReferenceID VARCHAR(50) = NULL,
     @Recid       INT         = NULL
---,@EncodedBy INT = NULL
---,@ComputerName VARCHAR(20) = null
 AS
-    BEGIN
-        -- SET NOCOUNT ON added to prevent extra result sets from
-        -- interfering with SELECT statements.
-        SET NOCOUNT ON;
+    BEGIN TRY
 
-        -- Insert statements for procedure here
+        SET NOCOUNT ON;
+        DECLARE @Message_Code VARCHAR(MAX) = '';
+        DECLARE @ErrorMessage NVARCHAR(MAX) = N'';
+        BEGIN TRANSACTION
         UPDATE
             [dbo].[tblMonthLedger]
         SET
@@ -37,10 +35,37 @@ AS
 
         IF (@@ROWCOUNT > 0)
             BEGIN
-                SELECT
-                    'SUCCESS' AS [Message_Code];
+                SET @Message_Code = 'SUCCESS'
+                SET @ErrorMessage = N''
             END;
 
-    --select IIF(COUNT(*)>0,'IN-PROGRESS','PAYMENT DONE') AS PAYMENT_STATUS from tblMonthLedger where ReferenceID = substring(@ReferenceID,4,11) and ISNULL(IsPaid,0)=0
-    END;
+        SELECT
+            @ErrorMessage AS [ErrorMessage],
+            @Message_Code AS [Message_Code];
+
+
+        COMMIT TRANSACTION
+
+    END TRY
+    BEGIN CATCH
+        IF @@TRANCOUNT > 0
+            ROLLBACK TRANSACTION
+        SET @Message_Code = 'ERROR'
+        SET @ErrorMessage = ERROR_MESSAGE()
+
+        INSERT INTO [dbo].[ErrorLog]
+            (
+                [ProcedureName],
+                [ErrorMessage],
+                [LogDateTime]
+            )
+        VALUES
+            (
+                'sp_HoldPayment', @ErrorMessage, GETDATE()
+            );
+
+        SELECT
+            @ErrorMessage AS [ErrorMessage],
+            @Message_Code AS [Message_Code];
+    END CATCH
 GO

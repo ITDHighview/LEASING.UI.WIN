@@ -3,7 +3,7 @@ GO
 SET ANSI_NULLS ON
 GO
 CREATE PROCEDURE [dbo].[sp_UpdateClient]
-    @ClientID        VARCHAR(50),
+    @ClientID          VARCHAR(50),
     @ClientType        VARCHAR(50),
     @ClientName        VARCHAR(100),
     @Age               INT            = 0,
@@ -25,47 +25,82 @@ CREATE PROCEDURE [dbo].[sp_UpdateClient]
     @BuildingSecretary INT            = 0,
     @EncodedBy         INT            = 0,
     @ComputerName      VARCHAR(50)    = NULL,
-	@TIN_No      VARCHAR(50)    = NULL,
-	@IsActive BIT = NULL
+    @TIN_No            VARCHAR(50)    = NULL,
+    @IsActive          BIT            = NULL
 AS
-    BEGIN
+    BEGIN TRY
+
         SET NOCOUNT ON;
+        DECLARE @Message_Code VARCHAR(MAX) = '';
+        DECLARE @ErrorMessage NVARCHAR(MAX) = N'';
+        BEGIN TRANSACTION
 
 
 
+        UPDATE
+            [dbo].[tblClientMstr]
+        SET
+            [tblClientMstr].[ClientType] = @ClientType,
+            [tblClientMstr].[ClientName] = @ClientName,
+            [tblClientMstr].[Age] = @Age,
+            [tblClientMstr].[PostalAddress] = @PostalAddress,
+            [tblClientMstr].[DateOfBirth] = @DateOfBirth,
+            [tblClientMstr].[TelNumber] = @TelNumber,
+            [tblClientMstr].[Gender] = @Gender,
+            [tblClientMstr].[Nationality] = @Nationality,
+            [tblClientMstr].[Occupation] = @Occupation,
+            [tblClientMstr].[AnnualIncome] = @AnnualIncome,
+            [tblClientMstr].[EmployerName] = @EmployerName,
+            [tblClientMstr].[EmployerAddress] = @EmployerAddress,
+            [tblClientMstr].[SpouseName] = @SpouseName,
+            [tblClientMstr].[ChildrenNames] = @ChildrenNames,
+            [tblClientMstr].[TotalPersons] = @TotalPersons,
+            [tblClientMstr].[MaidName] = @MaidName,
+            [tblClientMstr].[DriverName] = @DriverName,
+            [tblClientMstr].[VisitorsPerDay] = @VisitorsPerDay,
+            [tblClientMstr].[BuildingSecretary] = @BuildingSecretary,
+            [tblClientMstr].[LastChangedDate] = GETDATE(),
+            [tblClientMstr].[LastChangedBy] = @EncodedBy,
+            --[IsActive]= @IsActive,
+            [tblClientMstr].[ComputerName] = @ComputerName,
+            [tblClientMstr].[TIN_No] = @TIN_No
+        WHERE
+            [tblClientMstr].[ClientID] = @ClientID
 
-		update [tblClientMstr] 
-		set [ClientType] = @ClientType,
-		[ClientName] = @ClientName,
-		[Age] = @Age,
-		[PostalAddress] = @PostalAddress,
-		[DateOfBirth] = @DateOfBirth,
-		[TelNumber] = @TelNumber,
-		[Gender] = @Gender,
-		[Nationality] = @Nationality,
-		[Occupation] = @Occupation,
-		[AnnualIncome] = @AnnualIncome,
-		[EmployerName] = @EmployerName,
-		[EmployerAddress] = @EmployerAddress,
-		[SpouseName]=@SpouseName,
-		[ChildrenNames]=@ChildrenNames,
-		[TotalPersons] = @TotalPersons,
-		[MaidName] = @MaidName,
-		[DriverName] = @DriverName,
-		[VisitorsPerDay] = @VisitorsPerDay,
-		[BuildingSecretary]=@BuildingSecretary,
-		[LastChangedDate] = GETDATE(),
-		[LastChangedBy] = @EncodedBy,
-		--[IsActive]= @IsActive,
-		[ComputerName] = @ComputerName,
-		[TIN_No] = @TIN_No
-		WHERE [ClientID] = @ClientID
-        
 
         IF (@@ROWCOUNT > 0)
             BEGIN
-                SELECT
-                    'SUCCESS' AS [Message_Code];
+                SET @Message_Code = 'SUCCESS'
+                SET @ErrorMessage = N''
             END;
-    END;
+        SELECT
+            @ErrorMessage AS [ErrorMessage],
+            @Message_Code AS [Message_Code];
+
+
+        COMMIT TRANSACTION
+
+    END TRY
+    BEGIN CATCH
+        IF @@TRANCOUNT > 0
+            ROLLBACK TRANSACTION
+        SET @Message_Code = 'ERROR'
+        SET @ErrorMessage = ERROR_MESSAGE()
+
+        INSERT INTO [dbo].[ErrorLog]
+            (
+                [ProcedureName],
+                [ErrorMessage],
+                [LogDateTime]
+            )
+        VALUES
+            (
+                'sp_UpdateClient', @ErrorMessage, GETDATE()
+            );
+
+        SELECT
+            @ErrorMessage AS [ErrorMessage],
+            @Message_Code AS [Message_Code];
+    END CATCH
+
 GO

@@ -14,10 +14,12 @@ CREATE PROCEDURE [dbo].[sp_SaveUser]
     @Phone AS        VARCHAR(20)   = NULL,
     @Mode AS         VARCHAR(20)   = NULL
 AS
-    BEGIN
-        SET NOCOUNT ON;
+    BEGIN TRY
 
-        DECLARE @Message_Code AS NVARCHAR(MAX) = N'';
+        SET NOCOUNT ON;
+        DECLARE @Message_Code VARCHAR(MAX) = '';
+        DECLARE @ErrorMessage NVARCHAR(MAX) = N'';
+        BEGIN TRANSACTION
 
         IF @Mode = 'NEW'
             BEGIN
@@ -63,16 +65,15 @@ AS
 
                         IF (@@ROWCOUNT > 0)
                             BEGIN
-                                SET @Message_Code = N'SUCCESS';
-                            END;
-                        ELSE
-                            BEGIN
-                                SET @Message_Code = ERROR_MESSAGE();
+
+                                SET @Message_Code = 'SUCCESS'
+                                SET @ErrorMessage = N''
                             END;
                     END;
                 ELSE
                     BEGIN
                         SET @Message_Code = N'User Name is already associate to other Group';
+                        SET @ErrorMessage = N''
                     END;
 
             END;
@@ -94,16 +95,42 @@ AS
 
                 IF (@@ROWCOUNT > 0)
                     BEGIN
-                        SET @Message_Code = N'SUCCESS';
+
+                        SET @Message_Code = 'SUCCESS'
+                        SET @ErrorMessage = N''
                     END;
-                ELSE
-                    BEGIN
-                        SET @Message_Code = ERROR_MESSAGE();
-                    END;
+
+
 
             END;
 
         SELECT
+            @ErrorMessage AS [ErrorMessage],
             @Message_Code AS [Message_Code];
-    END;
+
+
+        COMMIT TRANSACTION
+
+    END TRY
+    BEGIN CATCH
+        IF @@TRANCOUNT > 0
+            ROLLBACK TRANSACTION
+        SET @Message_Code = 'ERROR'
+        SET @ErrorMessage = ERROR_MESSAGE()
+
+        INSERT INTO [dbo].[ErrorLog]
+            (
+                [ProcedureName],
+                [ErrorMessage],
+                [LogDateTime]
+            )
+        VALUES
+            (
+                'sp_SaveUser', @ErrorMessage, GETDATE()
+            );
+
+        SELECT
+            @ErrorMessage AS [ErrorMessage],
+            @Message_Code AS [Message_Code];
+    END CATCH
 GO

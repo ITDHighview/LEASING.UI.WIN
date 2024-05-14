@@ -12,7 +12,12 @@ CREATE PROCEDURE [dbo].[sp_SaveFile]
     @ReferenceId      VARCHAR(500) = NULL,
     @IsSignedContract BIT          = 0
 AS
-    BEGIN
+    BEGIN TRY
+        SET NOCOUNT ON;
+        DECLARE @Message_Code VARCHAR(MAX) = '';
+        DECLARE @ErrorMessage NVARCHAR(MAX) = N'';
+
+        BEGIN TRANSACTION
         INSERT INTO [dbo].[Files]
             (
                 [ClientName],
@@ -31,34 +36,10 @@ AS
         -- Log a success event    
         IF (@@ROWCOUNT > 0)
             BEGIN
-                -- Log a success event
-                INSERT INTO [dbo].[LoggingEvent]
-                    (
-                        [EventType],
-                        [EventMessage]
-                    )
-                VALUES
-                    (
-                        'SUCCESS', 'Result From : sp_SaveFile -(' + @FilePath + ') File saved successfully'
-                    );
-
-                SELECT
-                    'SUCCESS' AS [Message_Code];
+                SET @Message_Code = 'SUCCESS'
+                SET @ErrorMessage = N''
             END;
-        ELSE
-            BEGIN
-                -- Log an error event
-                INSERT INTO [dbo].[LoggingEvent]
-                    (
-                        [EventType],
-                        [EventMessage]
-                    )
-                VALUES
-                    (
-                        'ERROR', 'Result From : sp_SaveFile -' + 'No rows affected in Files table'
-                    );
 
-            END;
         -- Update the flag in tblUnitReference
         IF (@IsSignedContract = 1)
             BEGIN
@@ -72,71 +53,40 @@ AS
 
                 IF (@@ROWCOUNT > 0)
                     BEGIN
-                        -- Log a success event
-                        INSERT INTO [dbo].[LoggingEvent]
-                            (
-                                [EventType],
-                                [EventMessage]
-                            )
-                        VALUES
-                            (
-                                'SUCCESS',
-                                'Result From : sp_SaveFile -' + '(' + @ReferenceId
-                                + ': IsSignedContract = 1 ) UnitReference updated successfully'
-                            );
+                        SET @Message_Code = 'SUCCESS'
+                        SET @ErrorMessage = N''
+                    END
 
-                        SELECT
-                            'SUCCESS' AS [Message_Code];
-                    END;
-                ELSE
-                    BEGIN
+            END
 
-                        -- Log an error event
-                        INSERT INTO [dbo].[LoggingEvent]
-                            (
-                                [EventType],
-                                [EventMessage]
-                            )
-                        VALUES
-                            (
-                                'ERROR', 'Result From : sp_SaveFile -' + 'No rows affected in UnitReference table'
-                            );
-                    END;
-            END;
-        -- Log the error message
-        DECLARE @ErrorMessage NVARCHAR(MAX);
-        SET @ErrorMessage = ERROR_MESSAGE();
+        SELECT
+            @ErrorMessage AS [ErrorMessage],
+            @Message_Code AS [Message_Code];
+
+        COMMIT TRANSACTION
+
+    END TRY
+    BEGIN CATCH
+        IF @@TRANCOUNT > 0
+            ROLLBACK TRANSACTION
+
+        SET @Message_Code = 'ERROR'
+        SET @ErrorMessage = ERROR_MESSAGE()
 
 
-        IF @ErrorMessage <> ''
-            BEGIN
-                -- Log an error event
-                INSERT INTO [dbo].[LoggingEvent]
-                    (
-                        [EventType],
-                        [EventMessage]
-                    )
-                VALUES
-                    (
-                        'ERROR', 'From : sp_SaveFile -' + @ErrorMessage
-                    );
+        INSERT INTO [dbo].[ErrorLog]
+            (
+                [ProcedureName],
+                [ErrorMessage],
+                [LogDateTime]
+            )
+        VALUES
+            (
+                'sp_SaveFile', @ErrorMessage, GETDATE()
+            );
 
-                -- Insert into a logging table
-                INSERT INTO [dbo].[ErrorLog]
-                    (
-                        [ProcedureName],
-                        [ErrorMessage],
-                        [LogDateTime]
-                    )
-                VALUES
-                    (
-                        'sp_SaveFile', @ErrorMessage, GETDATE()
-                    );
-
-                -- Return an error message
-                SELECT
-                    'ERROR'       AS [Message_Code],
-                    @ErrorMessage AS [ErrorMessage];
-            END;
-    END;
+        SELECT
+            @ErrorMessage AS [ErrorMessage],
+            @Message_Code AS [Message_Code];
+    END CATCH
 GO

@@ -7,50 +7,33 @@ GO
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE PROCEDURE [dbo].[sp_SaveBankName] @BankName VARCHAR(50) = NULL
+CREATE   PROCEDURE [dbo].[sp_TEMPLATE]
 AS
     BEGIN TRY
 
         SET NOCOUNT ON;
         DECLARE @Message_Code VARCHAR(MAX) = '';
         DECLARE @ErrorMessage NVARCHAR(MAX) = N'';
-
         BEGIN TRANSACTION
-        IF NOT EXISTS
-            (
-                SELECT
-                    [tblBankName].[BankName]
-                FROM
-                    [dbo].[tblBankName]
-                WHERE
-                    [tblBankName].[BankName] = @BankName
-            )
-            BEGIN
-                INSERT INTO [dbo].[tblBankName]
-                    (
-                        [BankName]
-                    )
-                VALUES
-                    (
-                        UPPER(@BankName)
-                    );
-                IF (@@ROWCOUNT > 0)
-                    BEGIN
-                        SET @Message_Code = 'SUCCESS'
-                        SET @ErrorMessage = N''
-                    END
-            END
-        ELSE
+
+        IF (@@ROWCOUNT > 0)
             BEGIN
 
-                SET @Message_Code = 'THIS BANK IS ALREADy EXISTST!'
+                SET @Message_Code = 'SUCCESS'
                 SET @ErrorMessage = N''
+            END;
 
-            END
+
+			  --SELECT
+     --       @ErrorMessage AS [ErrorMessage],
+     --       @Message_Code AS [Message_Code],
+     --       @RcptID       AS [ReceiptID],
+     --       @TranID       AS [TranID]
 
         SELECT
             @ErrorMessage AS [ErrorMessage],
             @Message_Code AS [Message_Code];
+
 
         COMMIT TRANSACTION
 
@@ -58,7 +41,6 @@ AS
     BEGIN CATCH
         IF @@TRANCOUNT > 0
             ROLLBACK TRANSACTION
-
         SET @Message_Code = 'ERROR'
         SET @ErrorMessage = ERROR_MESSAGE()
 
@@ -70,7 +52,7 @@ AS
             )
         VALUES
             (
-                'sp_SaveBankName', @ErrorMessage, GETDATE()
+                'sp_TEMPLATE', @ErrorMessage, GETDATE()
             );
 
         SELECT

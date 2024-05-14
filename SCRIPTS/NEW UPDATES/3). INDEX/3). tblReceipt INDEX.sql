@@ -1,0 +1,48 @@
+---[tblReceipt]---
+
+CREATE INDEX [IdxtblReceipt_RecId]
+    ON [dbo].[tblReceipt] ([RecId]);
+CREATE INDEX [IdxtblReceipt_RcptID]
+    ON [dbo].[tblReceipt] ([RcptID]);
+CREATE INDEX [IdxtblReceipt_TranIdD]
+    ON [dbo].[tblReceipt] ([TranId]);
+CREATE INDEX [IdxtblReceipt_Amount]
+    ON [dbo].[tblReceipt] ([Amount]);
+CREATE INDEX [IdxtblReceipt_Description]
+    ON [dbo].[tblReceipt] ([Description]);
+CREATE INDEX [IdxtblReceipt_Remarks]
+    ON [dbo].[tblReceipt] ([Remarks]);
+CREATE INDEX [IdxtblReceipt_EncodedBy]
+    ON [dbo].[tblReceipt] ([EncodedBy]);
+CREATE INDEX [IdxtblReceipt_EncodedDate]
+    ON [dbo].[tblReceipt] ([EncodedDate]);
+CREATE INDEX [IdxtblReceipt_LastChangedBy]
+    ON [dbo].[tblReceipt] ([LastChangedBy]);
+CREATE INDEX [IdxtblReceipt_LastChangedDate]
+    ON [dbo].[tblReceipt] ([LastChangedDate]);
+CREATE INDEX [IdxtblReceipt_IsActive]
+    ON [dbo].[tblReceipt] ([IsActive]);
+CREATE INDEX [IdxtblReceipt_PaymentMethod]
+    ON [dbo].[tblReceipt] ([PaymentMethod]);
+CREATE INDEX [IdxtblReceipt_CompanyORNo]
+    ON [dbo].[tblReceipt] ([CompanyORNo]);
+CREATE INDEX [IdxtblReceipt_BankAccountName]
+    ON [dbo].[tblReceipt] ([BankAccountName]);
+CREATE INDEX [IdxtblReceipt_BankAccountNumber]
+    ON [dbo].[tblReceipt] ([BankAccountNumber]);
+CREATE INDEX [IdxtblReceipt_BankName]
+    ON [dbo].[tblReceipt] ([BankName]);
+CREATE INDEX [IdxtblReceipt_SerialNo]
+    ON [dbo].[tblReceipt] ([SerialNo]);
+CREATE INDEX [IdxtblReceipt_REF]
+    ON [dbo].[tblReceipt] ([REF]);
+CREATE INDEX [IdxtblReceipt_CompanyPRNo]
+    ON [dbo].[tblReceipt] ([CompanyPRNo]);
+CREATE INDEX [IdxtblReceipt_Category]
+    ON [dbo].[tblReceipt] ([Category]);
+CREATE INDEX [IdxtblReceipt_BankBranch]
+    ON [dbo].[tblReceipt] ([BankBranch]);
+CREATE INDEX [IdxtblReceipt_RefId]
+    ON [dbo].[tblReceipt] ([RefId]);
+CREATE INDEX [IdxtblReceipt_ReceiptDate]
+    ON [dbo].[tblReceipt] ([ReceiptDate]);

@@ -7,7 +7,7 @@ GO
 
 SET QUOTED_IDENTIFIER ON
 GO
-
+DROP TABLE [dbo].[tblProjPurchItem]
 CREATE TABLE [dbo].[tblProjPurchItem](
 	[RecId] BIGINT IDENTITY(10000000,1) NOT NULL,
 	[PurchItemID]  VARCHAR(150) NULL,

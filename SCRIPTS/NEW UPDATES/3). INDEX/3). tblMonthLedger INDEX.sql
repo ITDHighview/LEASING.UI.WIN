@@ -1,0 +1,82 @@
+---[tblMonthLedger]---
+
+CREATE INDEX [IdxtblMonthLedger_RecId]
+    ON [dbo].[tblMonthLedger] ([Recid]);
+CREATE INDEX [IdxtblMonthLedger_ReferenceID]
+    ON [dbo].[tblMonthLedger] ([ReferenceID]);
+CREATE INDEX [IdxtblMonthLedger_ClientID]
+    ON [dbo].[tblMonthLedger] ([ClientID]);
+CREATE INDEX [IdxtblMonthLedger_LedgMonth]
+    ON [dbo].[tblMonthLedger] ([LedgMonth]);
+CREATE INDEX [IdxtblMonthLedger_LedgAmount]
+    ON [dbo].[tblMonthLedger] ([LedgAmount]);
+CREATE INDEX [IdxtblMonthLedger_IsPaid]
+    ON [dbo].[tblMonthLedger] ([IsPaid]);
+CREATE INDEX [IdxtblMonthLedger_EncodedBy]
+    ON [dbo].[tblMonthLedger] ([EncodedBy]);
+CREATE INDEX [IdxtblMonthLedger_EncodedDate]
+    ON [dbo].[tblMonthLedger] ([EncodedDate]);
+CREATE INDEX [IdxtblMonthLedger_TransactionID]
+    ON [dbo].[tblMonthLedger] ([TransactionID]);
+CREATE INDEX [IdxtblMonthLedger_IsHold]
+    ON [dbo].[tblMonthLedger] ([IsHold]);
+CREATE INDEX [IdxtblMonthLedger_BalanceAmount]
+    ON [dbo].[tblMonthLedger] ([BalanceAmount]);
+CREATE INDEX [IdxtblMonthLedger_PenaltyAmount]
+    ON [dbo].[tblMonthLedger] ([PenaltyAmount]);
+CREATE INDEX [IdxtblMonthLedger_ActualAmount]
+    ON [dbo].[tblMonthLedger] ([ActualAmount]);
+CREATE INDEX [IdxtblMonthLedger_LedgRentalAmount]
+    ON [dbo].[tblMonthLedger] ([LedgRentalAmount]);
+CREATE INDEX [IdxtblMonthLedger_Unit_ProjectType]
+    ON [dbo].[tblMonthLedger] ([Unit_ProjectType]);
+CREATE INDEX [IdxtblMonthLedger_Unit_IsNonVat]
+    ON [dbo].[tblMonthLedger] ([Unit_IsNonVat]);
+CREATE INDEX [IdxtblMonthLedger_Unit_BaseRentalVatAmount]
+    ON [dbo].[tblMonthLedger] ([Unit_BaseRentalVatAmount]);
+CREATE INDEX [IdxtblMonthLedger_Unit_BaseRentalWithVatAmount]
+    ON [dbo].[tblMonthLedger] ([Unit_BaseRentalWithVatAmount]);
+CREATE INDEX [IdxtblMonthLedger_Unit_BaseRentalTax]
+    ON [dbo].[tblMonthLedger] ([Unit_BaseRentalTax]);
+CREATE INDEX [IdxtblMonthLedger_Unit_TotalRental]
+    ON [dbo].[tblMonthLedger] ([Unit_TotalRental]);
+CREATE INDEX [IdxtblMonthLedger_Unit_SecAndMainAmount]
+    ON [dbo].[tblMonthLedger] ([Unit_SecAndMainAmount]);
+CREATE INDEX [IdxtblMonthLedger_Unit_SecAndMainVatAmount]
+    ON [dbo].[tblMonthLedger] ([Unit_SecAndMainVatAmount]);
+CREATE INDEX [IdxtblMonthLedger_Unit_SecAndMainWithVatAmount]
+    ON [dbo].[tblMonthLedger] ([Unit_SecAndMainWithVatAmount]);
+CREATE INDEX [IdxtblMonthLedger_Unit_Vat]
+    ON [dbo].[tblMonthLedger] ([Unit_Vat]);
+CREATE INDEX [IdxtblMonthLedger_Unit_Tax]
+    ON [dbo].[tblMonthLedger] ([Unit_Tax]);
+CREATE INDEX [IdxtblMonthLedger_Unit_TaxAmount]
+    ON [dbo].[tblMonthLedger] ([Unit_TaxAmount]);
+CREATE INDEX [IdxtblMonthLedger_Unit_IsParking]
+    ON [dbo].[tblMonthLedger] ([Unit_IsParking]);
+CREATE INDEX [IdxtblMonthLedger_Unit_AreaTotalAmount]
+    ON [dbo].[tblMonthLedger] ([Unit_AreaTotalAmount]);
+CREATE INDEX [IdxtblMonthLedger_Unit_AreaSqm]
+    ON [dbo].[tblMonthLedger] ([Unit_AreaSqm]);
+CREATE INDEX [IdxtblMonthLedger_Unit_AreaRateSqm]
+    ON [dbo].[tblMonthLedger] ([Unit_AreaRateSqm]);
+CREATE INDEX [IdxtblMonthLedger_IsRenewal]
+    ON [dbo].[tblMonthLedger] ([IsRenewal]);
+CREATE INDEX [IdxtblMonthLedger_CompanyORNo]
+    ON [dbo].[tblMonthLedger] ([CompanyORNo]);
+CREATE INDEX [IdxtblMonthLedger_REF]
+    ON [dbo].[tblMonthLedger] ([REF]);
+CREATE INDEX [IdxtblMonthLedger_BNK_ACCT_NAME]
+    ON [dbo].[tblMonthLedger] ([BNK_ACCT_NAME])
+CREATE INDEX [IdxtblMonthLedger_BNK_ACCT_NUMBER]
+    ON [dbo].[tblMonthLedger] ([BNK_ACCT_NUMBER])
+CREATE INDEX [IdxtblMonthLedger_BNK_NAME]
+    ON [dbo].[tblMonthLedger] ([BNK_NAME])
+CREATE INDEX [IdxtblMonthLedger_SERIAL_NO]
+    ON [dbo].[tblMonthLedger] ([SERIAL_NO])
+CREATE INDEX [IdxtblMonthLedger_ModeType]
+    ON [dbo].[tblMonthLedger] ([ModeType])
+CREATE INDEX [IdxtblMonthLedger_CompanyPRNo]
+    ON [dbo].[tblMonthLedger] ([CompanyPRNo])
+CREATE INDEX [IdxtblMonthLedger_BankBranch]
+    ON [dbo].[tblMonthLedger] ([BankBranch])

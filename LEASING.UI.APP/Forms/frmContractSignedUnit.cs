@@ -1,4 +1,5 @@
-﻿using LEASING.UI.APP.Context;
+﻿using LEASING.UI.APP.Common;
+using LEASING.UI.APP.Context;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,14 +25,25 @@ namespace LEASING.UI.APP.Forms
 
         private void M_GetForContractSignedUnitList()
         {
-            dgvList.DataSource = null;
-            using (DataSet dt = PaymentContext.GetForContractSignedUnitList())
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                dgvList.DataSource = null;
+                using (DataSet dt = PaymentContext.GetForContractSignedUnitList())
                 {
-                    dgvList.DataSource = dt.Tables[0];
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        dgvList.DataSource = dt.Tables[0];
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_GetForContractSignedUnitList()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
+
         }
 
         private void frmContractSignedUnit_Load(object sender, EventArgs e)
@@ -61,18 +73,29 @@ namespace LEASING.UI.APP.Forms
                 {
                     if (MessageBox.Show("Are you sure you want to approved?", "System Message",MessageBoxButtons.YesNo,MessageBoxIcon.Question,MessageBoxDefaultButton.Button2)== DialogResult.Yes)
                     {
-                        var result = ClientContext.ConrtactSignedByPass(Convert.ToString(dgvList.CurrentRow.Cells["RefId"].Value));
-                        if (result.Equals("SUCCESS"))
+                        try
                         {
-                            MessageBox.Show("Approved Successfully!","System Message");
-                            M_GetForContractSignedUnitList();
+                            var result = ClientContext.ConrtactSignedByPass(Convert.ToString(dgvList.CurrentRow.Cells["RefId"].Value));
+                            if (result.Equals("SUCCESS"))
+                            {
+                                MessageBox.Show("Approved Successfully!", "System Message");
+                                M_GetForContractSignedUnitList();
+                            }
+                            else
+                            {
+                                MessageBox.Show(result, "System Message");
+                            }
                         }
-                        else
+                        catch (Exception ex)
                         {
-                            MessageBox.Show(result, "System Message");
+                            Functions.LogErrorIntoStoredProcedure("Cell Click : ColByPass", this.Text, ex.Message, DateTime.Now, this);
+
+                            Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
                         }
-                    }              
-                    
+
+
+                    }
+
                 }
                 else if (this.dgvList.Columns[e.ColumnIndex].Name == "ColView")
                 {

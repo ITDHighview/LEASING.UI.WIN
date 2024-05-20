@@ -1,4 +1,5 @@
-﻿using LEASING.UI.APP.Context;
+﻿using LEASING.UI.APP.Common;
+using LEASING.UI.APP.Context;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,15 +24,26 @@ namespace LEASING.UI.APP.Forms
         }
         private void M_GetSelectClientReferencePaid()
         {
-            dgvList.DataSource = null;
-            using (DataSet dt = ClientContext.GetClientReferencePaid(ClientID))
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                dgvList.DataSource = null;
+                using (DataSet dt = ClientContext.GetClientReferencePaid(ClientID))
                 {
-                    dgvList.AutoGenerateColumns = false;
-                    dgvList.DataSource = dt.Tables[0];
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        dgvList.AutoGenerateColumns = false;
+                        dgvList.DataSource = dt.Tables[0];
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_GetSelectClientReferencePaid()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
+
         }
 
         private void frmSelectClientReferencePaid_Load(object sender, EventArgs e)

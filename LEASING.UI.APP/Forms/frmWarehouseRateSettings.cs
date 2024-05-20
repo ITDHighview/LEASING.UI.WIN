@@ -68,35 +68,56 @@ namespace LEASING.UI.APP.Forms
         }
         private void M_GetRateSettings()
         {
-            using (DataSet dt = RateSettingsContext.GetWAREHOUSESettings())
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                using (DataSet dt = RateSettingsContext.GetWAREHOUSESettings())
                 {
-                    txtGenVat.Text = Convert.ToString(dt.Tables[0].Rows[0]["GenVat"]);
-                    txtSecAndMaintenance.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecurityAndMaintenance"]);
-                    //chkIsSecAndMaintenenceVat.Checked = Convert.ToBoolean(dt.Tables[0].Rows[0]["IsSecAndMaintVat"]);
-                    //txtSecAndMaintenanceVat.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecurityAndMaintenanceVat"]);
-                    txtWithHoldingTax.Text = Convert.ToString(dt.Tables[0].Rows[0]["WithHoldingTax"]);
-                    txtPenalty.Text = Convert.ToString(dt.Tables[0].Rows[0]["PenaltyPct"]);
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        txtGenVat.Text = Convert.ToString(dt.Tables[0].Rows[0]["GenVat"]);
+                        txtSecAndMaintenance.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecurityAndMaintenance"]);
+                        //chkIsSecAndMaintenenceVat.Checked = Convert.ToBoolean(dt.Tables[0].Rows[0]["IsSecAndMaintVat"]);
+                        //txtSecAndMaintenanceVat.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecurityAndMaintenanceVat"]);
+                        txtWithHoldingTax.Text = Convert.ToString(dt.Tables[0].Rows[0]["WithHoldingTax"]);
+                        txtPenalty.Text = Convert.ToString(dt.Tables[0].Rows[0]["PenaltyPct"]);
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_GetRateSettings()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
         }
         private void M_UpdateRates()
         {
-            string results = RateSettingsContext.UpdateWAREHOUSESettings(Functions.ConvertStringToDecimal(txtGenVat.Text), 
-                                                                        Functions.ConvertStringToDecimal(txtSecAndMaintenance.Text), 
-                                                                        Functions.ConvertStringToDecimal(txtWithHoldingTax.Text), 
-                                                                        Functions.ConvertStringToDecimal(txtPenalty.Text));
-            if (results.Equals("SUCCESS"))
+            try
             {
-                MessageBox.Show("Rate  has been Upated successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                strRateFormMode = "READ";
-                M_GetRateSettings();
+                string results = RateSettingsContext.UpdateWAREHOUSESettings(Functions.ConvertStringToDecimal(txtGenVat.Text),
+                                                                             Functions.ConvertStringToDecimal(txtSecAndMaintenance.Text),
+                                                                             Functions.ConvertStringToDecimal(txtWithHoldingTax.Text),
+                                                                             Functions.ConvertStringToDecimal(txtPenalty.Text));
+                if (results.Equals("SUCCESS"))
+                {
+                    MessageBox.Show("Rate  has been Upated successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    strRateFormMode = "READ";
+                    M_GetRateSettings();
+                }
+                else
+                {
+                    MessageBox.Show(results, "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show(results, "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Functions.LogErrorIntoStoredProcedure("M_UpdateRates()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
             }
+
+
         }
         private void M_GetVatAMount()
         {

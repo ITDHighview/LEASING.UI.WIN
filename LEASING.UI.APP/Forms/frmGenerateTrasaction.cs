@@ -1,4 +1,5 @@
-﻿using LEASING.UI.APP.Context;
+﻿using LEASING.UI.APP.Common;
+using LEASING.UI.APP.Context;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,15 +21,26 @@ namespace LEASING.UI.APP.Forms
         }
         private void M_GetComputationList()
         {
-            dgvList.DataSource = null;
-            using (DataSet dt = ComputationContext.GetComputationList())
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                dgvList.DataSource = null;
+                using (DataSet dt = ComputationContext.GetComputationList())
                 {
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
 
-                    dgvList.DataSource = dt.Tables[0];
+                        dgvList.DataSource = dt.Tables[0];
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_GetComputationList()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
+
         }
         private void frmGenerateTrasaction_Load(object sender, EventArgs e)
         {

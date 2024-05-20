@@ -1,4 +1,5 @@
-﻿using LEASING.UI.APP.Context;
+﻿using LEASING.UI.APP.Common;
+using LEASING.UI.APP.Context;
 using LEASING.UI.APP.Models;
 using System;
 using System.Collections.Generic;
@@ -73,14 +74,25 @@ namespace LEASING.UI.APP.Forms
         }
         private void M_GetLocationList()
         {
-            dgvLocationList.DataSource = null;
-            using (DataSet dt = LocationContext.GetLocationList())
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                dgvLocationList.DataSource = null;
+                using (DataSet dt = LocationContext.GetLocationList())
                 {
-                    dgvLocationList.DataSource = dt.Tables[0];
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        dgvLocationList.DataSource = dt.Tables[0];
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_GetLocationList()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
+
         }
         private void M_SaveLocation()
         {
@@ -92,22 +104,21 @@ namespace LEASING.UI.APP.Forms
                 dto.Message_Code = LocationContext.SaveLocation(dto);
                 if (dto.Message_Code.Equals("SUCCESS"))
                 {
-                    MessageBox.Show("New Location has been added successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Functions.MessageShow("New Location has been added successfully !");
                     strlocationFormMode = "READ";
                     M_GetLocationList();
-
                 }
                 else
                 {
-                    MessageBox.Show(dto.Message_Code, "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Functions.MessageShow(dto.Message_Code);
                 }
             }
             catch (Exception ex)
             {
+                Functions.LogErrorIntoStoredProcedure("M_SaveLocation()", this.Text, ex.Message, DateTime.Now, this);
 
-                MessageBox.Show(ex.ToString(), "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
             }
-      
         }
 
         private void frmAddNewLocation_Load(object sender, EventArgs e)

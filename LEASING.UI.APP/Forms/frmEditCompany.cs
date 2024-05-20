@@ -90,37 +90,58 @@ namespace LEASING.UI.APP.Forms
             txtCompanyAddress.Text = string.Empty;
             txtCompanyTINNo.Text = string.Empty;
             txtCompanyOwnerName.Text = string.Empty;
-            using (DataSet dt = CompanyContext.GetCompanyDetails(Recid))
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                using (DataSet dt = CompanyContext.GetCompanyDetails(Recid))
                 {
-                    txtCompanyName.Text = Convert.ToString(dt.Tables[0].Rows[0]["CompanyName"]);
-                    txtCompanyAddress.Text = Convert.ToString(dt.Tables[0].Rows[0]["CompanyAddress"]);
-                    txtCompanyTINNo.Text = Convert.ToString(dt.Tables[0].Rows[0]["CompanyTIN"]);
-                    txtCompanyOwnerName.Text = Convert.ToString(dt.Tables[0].Rows[0]["CompanyOwnerName"]);
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        txtCompanyName.Text = Convert.ToString(dt.Tables[0].Rows[0]["CompanyName"]);
+                        txtCompanyAddress.Text = Convert.ToString(dt.Tables[0].Rows[0]["CompanyAddress"]);
+                        txtCompanyTINNo.Text = Convert.ToString(dt.Tables[0].Rows[0]["CompanyTIN"]);
+                        txtCompanyOwnerName.Text = Convert.ToString(dt.Tables[0].Rows[0]["CompanyOwnerName"]);
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_GetCompanyList()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
+
         }
         private void M_SaveCompany()
         {
-            CompanyModel dto = new CompanyModel();
-            dto.RecId = Recid;
-            dto.CompanyName = txtCompanyName.Text;
-            dto.CompanyAddress = txtCompanyAddress.Text;
-            dto.CompanyTIN = txtCompanyTINNo.Text;
-            dto.CompanyOwnerName = txtCompanyOwnerName.Text;
-            dto.Message_Code = CompanyContext.UpdateCompany(dto);
-            if (dto.Message_Code.Equals("SUCCESS"))
+            try
             {
-                Functions.MessageShow("Company Details has been Updated successfully !");
-                strFormMode = "READ";
+                CompanyModel dto = new CompanyModel();
+                dto.RecId = Recid;
+                dto.CompanyName = txtCompanyName.Text;
+                dto.CompanyAddress = txtCompanyAddress.Text;
+                dto.CompanyTIN = txtCompanyTINNo.Text;
+                dto.CompanyOwnerName = txtCompanyOwnerName.Text;
+                dto.Message_Code = CompanyContext.UpdateCompany(dto);
+                if (dto.Message_Code.Equals("SUCCESS"))
+                {
+                    Functions.MessageShow("Company Details has been Updated successfully !");
+                    strFormMode = "READ";
 
+                }
+                else
+                {
+                    Functions.MessageShow(dto.Message_Code);
+                    strFormMode = "READ";
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Functions.MessageShow(dto.Message_Code);
-                strFormMode = "READ";
+                Functions.LogErrorIntoStoredProcedure("M_SaveCompany()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
             }
+
         }
 
 

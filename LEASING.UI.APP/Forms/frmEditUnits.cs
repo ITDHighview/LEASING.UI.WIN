@@ -165,56 +165,67 @@ namespace LEASING.UI.APP.Forms
         {
             vWithHoldingTax = 0;
             lblBaseRentalTax.Text = "TAX  : 0%";
-            using (DataSet dt = UnitContext.GetUnitById(Recid))
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                using (DataSet dt = UnitContext.GetUnitById(Recid))
                 {
-                    ddlProject.SelectedValue = Convert.ToInt32(dt.Tables[0].Rows[0]["ProjectId"]);
-                    txtType.Text = Convert.ToString(dt.Tables[0].Rows[0]["ProjectType"]);
-                    txtDetailsOfProperty.Text = Convert.ToString(dt.Tables[0].Rows[0]["DetailsofProperty"]);
-                    ddlFloorType.SelectedText = Convert.ToString(dt.Tables[0].Rows[0]["FloorType"]);
-                    txtUnitNumber.Text = Convert.ToString(dt.Tables[0].Rows[0]["UnitNo"]);
-                    txtFloorNumber.Text = Convert.ToString(dt.Tables[0].Rows[0]["FloorNo"]);
-                    txtUnitSequence.Text = Convert.ToString(dt.Tables[0].Rows[0]["UnitSequence"]);
-                    txtAreSql.Text = Convert.ToString(dt.Tables[0].Rows[0]["AreaSqm"]);
-                    txtAreRateSqm.Text = Convert.ToString(dt.Tables[0].Rows[0]["AreaRateSqm"]);
-                    txtAreaTotalAmount.Text = Convert.ToString(dt.Tables[0].Rows[0]["AreaTotalAmount"]);
-                    chkIsParking.Checked = Convert.ToBoolean(dt.Tables[0].Rows[0]["IsParking"]);
-                    txtBaseRentalVatPercentage.Text = Convert.ToString(dt.Tables[0].Rows[0]["Vat"]);
-                    this._secAndMainVatPercentage = Convert.ToString(dt.Tables[0].Rows[0]["Vat"]);
-                    txtBaseRental.Text = Convert.ToString(dt.Tables[0].Rows[0]["BaseRental"]);
-                    txtBaseRentalVatAmount.Text = Convert.ToString(dt.Tables[0].Rows[0]["BaseRentalVatAmount"]);
-                    txtBaseRentalWithVatAmount.Text = Convert.ToString(dt.Tables[0].Rows[0]["BaseRentalWithVatAmount"]);
-                    vWithHoldingTax = Convert.ToInt32(dt.Tables[0].Rows[0]["Tax"]);
-                    WithHoldingTaxParam = vWithHoldingTax;
-                    lblBaseRentalTax.Text = "TAX  : " + Convert.ToString(vWithHoldingTax) + "%";
-                    txtBaseRentalTax.Text = Convert.ToString(dt.Tables[0].Rows[0]["TaxAmount"]);
-                    chkNonVat.Checked = Convert.ToBoolean(dt.Tables[0].Rows[0]["IsNonVat"]);
-                    txtSecAndMainVatPercentage.Text = Convert.ToString(dt.Tables[0].Rows[0]["Vat"]);
-                    txtSecAndMainAmount.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecAndMainAmount"]);
-                    this._secAndMainAmount = Convert.ToString(dt.Tables[0].Rows[0]["SecAndMainAmount"]);
-                    txtSecAndMainVatAmount.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecAndMainVatAmount"]);
-                    txtSecAndMainWithVatAmount.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecAndMainWithVatAmount"]);
-
-                    var TotalMonthlyRental = Convert.ToString(dt.Tables[0].Rows[0]["TotalRental"]);
-                    txtTotalRental.Text = TotalMonthlyRental.ToString();
-                    if (Convert.ToString(dt.Tables[0].Rows[0]["UnitStatus"]) == "MOVE-IN" || Convert.ToString(dt.Tables[0].Rows[0]["UnitStatus"]) == "RESERVED")
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
-                        ddlUnitStatList.SelectedText = Convert.ToString(dt.Tables[0].Rows[0]["UnitStatus"]);
-                        ddlUnitStatList.Visible = false;
-                        lblStat.Visible = false;
-                    }
-                    else
-                    {
-                        ddlUnitStatList.SelectedText = Convert.ToString(dt.Tables[0].Rows[0]["UnitStatus"]);
-                        ddlUnitStatList.Visible = true;
-                        lblStat.Visible = true;
-                    }
+                        ddlProject.SelectedValue = Convert.ToInt32(dt.Tables[0].Rows[0]["ProjectId"]);
+                        txtType.Text = Convert.ToString(dt.Tables[0].Rows[0]["ProjectType"]);
+                        txtDetailsOfProperty.Text = Convert.ToString(dt.Tables[0].Rows[0]["DetailsofProperty"]);
+                        ddlFloorType.SelectedText = Convert.ToString(dt.Tables[0].Rows[0]["FloorType"]);
+                        txtUnitNumber.Text = Convert.ToString(dt.Tables[0].Rows[0]["UnitNo"]);
+                        txtFloorNumber.Text = Convert.ToString(dt.Tables[0].Rows[0]["FloorNo"]);
+                        txtUnitSequence.Text = Convert.ToString(dt.Tables[0].Rows[0]["UnitSequence"]);
+                        txtAreSql.Text = Convert.ToString(dt.Tables[0].Rows[0]["AreaSqm"]);
+                        txtAreRateSqm.Text = Convert.ToString(dt.Tables[0].Rows[0]["AreaRateSqm"]);
+                        txtAreaTotalAmount.Text = Convert.ToString(dt.Tables[0].Rows[0]["AreaTotalAmount"]);
+                        chkIsParking.Checked = Convert.ToBoolean(dt.Tables[0].Rows[0]["IsParking"]);
+                        txtBaseRentalVatPercentage.Text = Convert.ToString(dt.Tables[0].Rows[0]["Vat"]);
+                        this._secAndMainVatPercentage = Convert.ToString(dt.Tables[0].Rows[0]["Vat"]);
+                        txtBaseRental.Text = Convert.ToString(dt.Tables[0].Rows[0]["BaseRental"]);
+                        txtBaseRentalVatAmount.Text = Convert.ToString(dt.Tables[0].Rows[0]["BaseRentalVatAmount"]);
+                        txtBaseRentalWithVatAmount.Text = Convert.ToString(dt.Tables[0].Rows[0]["BaseRentalWithVatAmount"]);
+                        vWithHoldingTax = Convert.ToInt32(dt.Tables[0].Rows[0]["Tax"]);
+                        WithHoldingTaxParam = vWithHoldingTax;
+                        lblBaseRentalTax.Text = "TAX  : " + Convert.ToString(vWithHoldingTax) + "%";
+                        txtBaseRentalTax.Text = Convert.ToString(dt.Tables[0].Rows[0]["TaxAmount"]);
+                        chkNonVat.Checked = Convert.ToBoolean(dt.Tables[0].Rows[0]["IsNonVat"]);
+                        txtSecAndMainVatPercentage.Text = Convert.ToString(dt.Tables[0].Rows[0]["Vat"]);
+                        txtSecAndMainAmount.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecAndMainAmount"]);
+                        this._secAndMainAmount = Convert.ToString(dt.Tables[0].Rows[0]["SecAndMainAmount"]);
+                        txtSecAndMainVatAmount.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecAndMainVatAmount"]);
+                        txtSecAndMainWithVatAmount.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecAndMainWithVatAmount"]);
 
-                    //txtIsParking.Text = Convert.ToString(dt.Tables[0].Rows[0]["UnitDescription"]);
+                        var TotalMonthlyRental = Convert.ToString(dt.Tables[0].Rows[0]["TotalRental"]);
+                        txtTotalRental.Text = TotalMonthlyRental.ToString();
+                        if (Convert.ToString(dt.Tables[0].Rows[0]["UnitStatus"]) == "MOVE-IN" || Convert.ToString(dt.Tables[0].Rows[0]["UnitStatus"]) == "RESERVED")
+                        {
+                            ddlUnitStatList.SelectedText = Convert.ToString(dt.Tables[0].Rows[0]["UnitStatus"]);
+                            ddlUnitStatList.Visible = false;
+                            lblStat.Visible = false;
+                        }
+                        else
+                        {
+                            ddlUnitStatList.SelectedText = Convert.ToString(dt.Tables[0].Rows[0]["UnitStatus"]);
+                            ddlUnitStatList.Visible = true;
+                            lblStat.Visible = true;
+                        }
 
+                        //txtIsParking.Text = Convert.ToString(dt.Tables[0].Rows[0]["UnitDescription"]);
+
+                    }
                 }
             }
+
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_GetUnitById()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
         }
         private bool IsUnitValid()
         {
@@ -310,31 +321,49 @@ namespace LEASING.UI.APP.Forms
         }
         private void M_SelectProject()
         {
-
-            ddlProject.DataSource = null;
-            using (DataSet dt = ProjectContext.GetSelectProject())
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                ddlProject.DataSource = null;
+                using (DataSet dt = ProjectContext.GetSelectProject())
                 {
-                    ddlProject.DisplayMember = "ProjectName";
-                    ddlProject.ValueMember = "RecId";
-                    ddlProject.DataSource = dt.Tables[0];
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        ddlProject.DisplayMember = "ProjectName";
+                        ddlProject.ValueMember = "RecId";
+                        ddlProject.DataSource = dt.Tables[0];
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_SelectProject()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
         }
         private void M_SelectFloortypes()
         {
-
-            ddlFloorType.DataSource = null;
-            using (DataSet dt = FloorTypeContext.GetSelectFloortypes())
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                ddlFloorType.DataSource = null;
+                using (DataSet dt = FloorTypeContext.GetSelectFloortypes())
                 {
-                    ddlFloorType.DisplayMember = "FloorTypesDescription";
-                    ddlFloorType.ValueMember = "RecId";
-                    ddlFloorType.DataSource = dt.Tables[0];
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        ddlFloorType.DisplayMember = "FloorTypesDescription";
+                        ddlFloorType.ValueMember = "RecId";
+                        ddlFloorType.DataSource = dt.Tables[0];
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_SelectFloortypes()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
         }
         private void M_GetBaseRentalVatAmount()
         {
@@ -412,16 +441,27 @@ namespace LEASING.UI.APP.Forms
             txtSecAndMainAmount.Text = string.Empty;
             vWithHoldingTax = 0;
             lblBaseRentalTax.Text = "TAX  : 0%";
-            using (DataSet dt = RateSettingsContext.GetRESIDENTIALSettings())
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                using (DataSet dt = RateSettingsContext.GetRESIDENTIALSettings())
                 {
-                    txtBaseRentalVatPercentage.Text = Convert.ToString(dt.Tables[0].Rows[0]["GenVat"]);
-                    txtSecAndMainVatPercentage.Text = String.Format("{0:0.00}", Convert.ToString(dt.Tables[0].Rows[0]["GenVat"]));
-                    txtSecAndMainAmount.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecurityAndMaintenance"]);
-                    lblBaseRentalTax.Text = "TAX  : " + Convert.ToString(vWithHoldingTax) + "%";
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        txtBaseRentalVatPercentage.Text = Convert.ToString(dt.Tables[0].Rows[0]["GenVat"]);
+                        txtSecAndMainVatPercentage.Text = String.Format("{0:0.00}", Convert.ToString(dt.Tables[0].Rows[0]["GenVat"]));
+                        txtSecAndMainAmount.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecurityAndMaintenance"]);
+                        lblBaseRentalTax.Text = "TAX  : " + Convert.ToString(vWithHoldingTax) + "%";
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_GetResendentialRateSettings()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
+
         }
         private void M_GetWAREHOUSERateSettings()
         {
@@ -430,18 +470,28 @@ namespace LEASING.UI.APP.Forms
             txtSecAndMainAmount.Text = string.Empty;
             vWithHoldingTax = 0;
             lblBaseRentalTax.Text = "TAX  : 0%";
-            using (DataSet dt = RateSettingsContext.GetWAREHOUSESettings())
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                using (DataSet dt = RateSettingsContext.GetWAREHOUSESettings())
                 {
-                    txtBaseRentalVatPercentage.Text = Convert.ToString(dt.Tables[0].Rows[0]["GenVat"]);
-                    txtSecAndMainVatPercentage.Text = String.Format("{0:0.00}", Convert.ToString(dt.Tables[0].Rows[0]["GenVat"]));
-                    txtSecAndMainAmount.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecurityAndMaintenance"]);
-                    vWithHoldingTax = Convert.ToInt32(dt.Tables[0].Rows[0]["WithHoldingTax"]);
-                    WithHoldingTaxParam = vWithHoldingTax;
-                    lblBaseRentalTax.Text = "TAX  : " + Convert.ToString(vWithHoldingTax) + "%";
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        txtBaseRentalVatPercentage.Text = Convert.ToString(dt.Tables[0].Rows[0]["GenVat"]);
+                        txtSecAndMainVatPercentage.Text = String.Format("{0:0.00}", Convert.ToString(dt.Tables[0].Rows[0]["GenVat"]));
+                        txtSecAndMainAmount.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecurityAndMaintenance"]);
+                        vWithHoldingTax = Convert.ToInt32(dt.Tables[0].Rows[0]["WithHoldingTax"]);
+                        WithHoldingTaxParam = vWithHoldingTax;
+                        lblBaseRentalTax.Text = "TAX  : " + Convert.ToString(vWithHoldingTax) + "%";
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_GetWAREHOUSERateSettings()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
         }
         private void M_GetCOMMERCIALateSettings()
         {
@@ -450,18 +500,28 @@ namespace LEASING.UI.APP.Forms
             txtSecAndMainAmount.Text = string.Empty;
             vWithHoldingTax = 0;
             lblBaseRentalTax.Text = "TAX  : 0%";
-            using (DataSet dt = RateSettingsContext.GetCOMMERCIALSettings())
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                using (DataSet dt = RateSettingsContext.GetCOMMERCIALSettings())
                 {
-                    txtBaseRentalVatPercentage.Text = Convert.ToString(dt.Tables[0].Rows[0]["GenVat"]);
-                    txtSecAndMainVatPercentage.Text = String.Format("{0:0.00}", Convert.ToString(dt.Tables[0].Rows[0]["GenVat"]));
-                    txtSecAndMainAmount.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecurityAndMaintenance"]);
-                    vWithHoldingTax = Convert.ToInt32(dt.Tables[0].Rows[0]["WithHoldingTax"]);
-                    WithHoldingTaxParam = vWithHoldingTax;
-                    lblBaseRentalTax.Text = "TAX  : " + Convert.ToString(vWithHoldingTax) + "%";
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        txtBaseRentalVatPercentage.Text = Convert.ToString(dt.Tables[0].Rows[0]["GenVat"]);
+                        txtSecAndMainVatPercentage.Text = String.Format("{0:0.00}", Convert.ToString(dt.Tables[0].Rows[0]["GenVat"]));
+                        txtSecAndMainAmount.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecurityAndMaintenance"]);
+                        vWithHoldingTax = Convert.ToInt32(dt.Tables[0].Rows[0]["WithHoldingTax"]);
+                        WithHoldingTaxParam = vWithHoldingTax;
+                        lblBaseRentalTax.Text = "TAX  : " + Convert.ToString(vWithHoldingTax) + "%";
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_GetCOMMERCIALateSettings()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
         }
         private void M_GetProjectTypeById()
         {
@@ -469,34 +529,43 @@ namespace LEASING.UI.APP.Forms
             isCommercial = false;
             isWarehouse = false;
             txtType.Text = string.Empty;
-
-            using (DataSet dt = ProjectContext.GetProjectTypeById(Convert.ToInt32(ddlProject.SelectedValue)))
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                using (DataSet dt = ProjectContext.GetProjectTypeById(Convert.ToInt32(ddlProject.SelectedValue)))
                 {
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
 
-                    string Projecttype = Convert.ToString(dt.Tables[0].Rows[0]["ProjectType"]);
-                    txtType.Text = Projecttype;
-                    if (Projecttype == "RESIDENTIAL")
-                    {
-                        isResidential = true;
-                        chkNonCusaMaintenance.Text = "Non Sec/Maintenance";
-                        M_GetResendentialRateSettings();
-                    }
-                    else if (Projecttype == "COMMERCIAL")
-                    {
-                        isCommercial = true;
-                        chkNonCusaMaintenance.Text = "Non Cusa";
-                        M_GetCOMMERCIALateSettings();
-                    }
-                    else if (Projecttype == "WAREHOUSE")
-                    {
-                        isWarehouse = true;
-                        chkNonCusaMaintenance.Text = "Non Cusa";
-                        M_GetWAREHOUSERateSettings();
+                        string Projecttype = Convert.ToString(dt.Tables[0].Rows[0]["ProjectType"]);
+                        txtType.Text = Projecttype;
+                        if (Projecttype == "RESIDENTIAL")
+                        {
+                            isResidential = true;
+                            chkNonCusaMaintenance.Text = "Non Sec/Maintenance";
+                            M_GetResendentialRateSettings();
+                        }
+                        else if (Projecttype == "COMMERCIAL")
+                        {
+                            isCommercial = true;
+                            chkNonCusaMaintenance.Text = "Non Cusa";
+                            M_GetCOMMERCIALateSettings();
+                        }
+                        else if (Projecttype == "WAREHOUSE")
+                        {
+                            isWarehouse = true;
+                            chkNonCusaMaintenance.Text = "Non Cusa";
+                            M_GetWAREHOUSERateSettings();
+                        }
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_GetProjectTypeById()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
         }
         private void frmEditUnits_Load(object sender, EventArgs e)
         {
@@ -568,43 +637,54 @@ namespace LEASING.UI.APP.Forms
         }
         private void M_SaveUnit()
         {
-            UnitModel UnitUpdate = new UnitModel();
-            UnitUpdate.UnitId = Recid;
-            UnitUpdate.ProjectId = Convert.ToInt32(this.ddlProject.SelectedValue);
-            UnitUpdate.UnitNo = this.txtUnitNumber.Text;
-            UnitUpdate.IsParking = this.chkIsParking.Checked;
-            UnitUpdate.FloorNo = Functions.ConvertStringToInt(this.txtFloorNumber.Text);
-            UnitUpdate.AreaSqm = Functions.ConvertStringToDecimal(this.txtAreSql.Text);
-            UnitUpdate.AreaRateSqm = Functions.ConvertStringToDecimal(this.txtAreRateSqm.Text);
-            UnitUpdate.AreaTotalAmount = Functions.ConvertStringToDecimal(this.txtAreaTotalAmount.Text);
-            UnitUpdate.FloorType = this.SelectFloorType();
-            UnitUpdate.BaseRental = Functions.ConvertStringToDecimal(this.txtBaseRental.Text);
-            UnitUpdate.DetailsofProperty = this.txtDetailsOfProperty.Text;
-            UnitUpdate.UnitSequence = Functions.ConvertStringToInt(this.txtUnitSequence.Text);
-            UnitUpdate.BaseRentalVatAmount = Functions.ConvertStringToDecimal(this.txtBaseRentalVatAmount.Text);
-            UnitUpdate.BaseRentalWithVatAmount = Functions.ConvertStringToDecimal(this.txtBaseRentalWithVatAmount.Text);
-            UnitUpdate.BaseRentalTax = Functions.ConvertStringToDecimal(this.txtBaseRentalTax.Text);
-            UnitUpdate.IsNonVat = this.chkNonVat.Checked;
-            UnitUpdate.TotalRental = Functions.ConvertStringToDecimal(this.txtTotalRental.Text);
-            UnitUpdate.SecAndMainAmount = Functions.ConvertStringToDecimal(this.txtSecAndMainAmount.Text);
-            UnitUpdate.SecAndMainVatAmount = Functions.ConvertStringToDecimal(this.txtSecAndMainVatAmount.Text);
-            UnitUpdate.SecAndMainWithVatAmount = Functions.ConvertStringToDecimal(this.txtSecAndMainWithVatAmount.Text);
-            UnitUpdate.Vat = Functions.ConvertStringToDecimal(this.txtBaseRentalVatPercentage.Text);
-            UnitUpdate.Tax = this.WithHoldingTaxParam;
-            UnitUpdate.TaxAmount = Functions.ConvertStringToDecimal(this.txtBaseRentalTax.Text);
-            UnitUpdate.UnitStatus = ddlUnitStatList.Text == "" ? "VACANT" : ddlUnitStatList.Text;
-            UnitUpdate.Message_Code = UnitContext.EditUnit(UnitUpdate);
-            if (UnitUpdate.Message_Code.Equals("SUCCESS"))
+            try
             {
-                Functions.MessageShow("Unit has been updated successfully !");
-                this.strUnitFormMode = "READ";
-                this.IsProceed = true;
+                UnitModel UnitUpdate = new UnitModel();
+                UnitUpdate.UnitId = Recid;
+                UnitUpdate.ProjectId = Convert.ToInt32(this.ddlProject.SelectedValue);
+                UnitUpdate.UnitNo = this.txtUnitNumber.Text;
+                UnitUpdate.IsParking = this.chkIsParking.Checked;
+                UnitUpdate.FloorNo = Functions.ConvertStringToInt(this.txtFloorNumber.Text);
+                UnitUpdate.AreaSqm = Functions.ConvertStringToDecimal(this.txtAreSql.Text);
+                UnitUpdate.AreaRateSqm = Functions.ConvertStringToDecimal(this.txtAreRateSqm.Text);
+                UnitUpdate.AreaTotalAmount = Functions.ConvertStringToDecimal(this.txtAreaTotalAmount.Text);
+                UnitUpdate.FloorType = this.SelectFloorType();
+                UnitUpdate.BaseRental = Functions.ConvertStringToDecimal(this.txtBaseRental.Text);
+                UnitUpdate.DetailsofProperty = this.txtDetailsOfProperty.Text;
+                UnitUpdate.UnitSequence = Functions.ConvertStringToInt(this.txtUnitSequence.Text);
+                UnitUpdate.BaseRentalVatAmount = Functions.ConvertStringToDecimal(this.txtBaseRentalVatAmount.Text);
+                UnitUpdate.BaseRentalWithVatAmount = Functions.ConvertStringToDecimal(this.txtBaseRentalWithVatAmount.Text);
+                UnitUpdate.BaseRentalTax = Functions.ConvertStringToDecimal(this.txtBaseRentalTax.Text);
+                UnitUpdate.IsNonVat = this.chkNonVat.Checked;
+                UnitUpdate.TotalRental = Functions.ConvertStringToDecimal(this.txtTotalRental.Text);
+                UnitUpdate.SecAndMainAmount = Functions.ConvertStringToDecimal(this.txtSecAndMainAmount.Text);
+                UnitUpdate.SecAndMainVatAmount = Functions.ConvertStringToDecimal(this.txtSecAndMainVatAmount.Text);
+                UnitUpdate.SecAndMainWithVatAmount = Functions.ConvertStringToDecimal(this.txtSecAndMainWithVatAmount.Text);
+                UnitUpdate.Vat = Functions.ConvertStringToDecimal(this.txtBaseRentalVatPercentage.Text);
+                UnitUpdate.Tax = this.WithHoldingTaxParam;
+                UnitUpdate.TaxAmount = Functions.ConvertStringToDecimal(this.txtBaseRentalTax.Text);
+                UnitUpdate.UnitStatus = ddlUnitStatList.Text == "" ? "VACANT" : ddlUnitStatList.Text;
+                UnitUpdate.Message_Code = UnitContext.EditUnit(UnitUpdate);
+                if (UnitUpdate.Message_Code.Equals("SUCCESS"))
+                {
+                    Functions.MessageShow("Unit has been updated successfully !");
+                    this.strUnitFormMode = "READ";
+                    this.IsProceed = true;
+                }
+                else
+                {
+                    Functions.MessageShow(UnitUpdate.Message_Code);
+                    this.strUnitFormMode = "READ";
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Functions.MessageShow(UnitUpdate.Message_Code);
-                this.strUnitFormMode = "READ";
+                Functions.LogErrorIntoStoredProcedure("M_SaveUnit()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
             }
+
+
         }
         private void btnSave_Click(object sender, EventArgs e)
         {

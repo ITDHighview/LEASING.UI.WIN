@@ -1,4 +1,5 @@
-﻿using LEASING.UI.APP.Context;
+﻿using LEASING.UI.APP.Common;
+using LEASING.UI.APP.Context;
 using LEASING.UI.APP.Models;
 using System;
 using System.Collections.Generic;
@@ -175,17 +176,28 @@ namespace LEASING.UI.APP.Forms
 
         private void M_SelectFloortypes()
         {
-
-            ddlFloorType.DataSource = null;
-            using (DataSet dt = FloorTypeContext.GetSelectFloortypes())
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                ddlFloorType.DataSource = null;
+                using (DataSet dt = FloorTypeContext.GetSelectFloortypes())
                 {
-                    ddlFloorType.DisplayMember = "FloorTypesDescription";
-                    ddlFloorType.ValueMember = "RecId";
-                    ddlFloorType.DataSource = dt.Tables[0];
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        ddlFloorType.DisplayMember = "FloorTypesDescription";
+                        ddlFloorType.ValueMember = "RecId";
+                        ddlFloorType.DataSource = dt.Tables[0];
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_SelectFloortypes()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
+
+
         }
 
 
@@ -193,20 +205,30 @@ namespace LEASING.UI.APP.Forms
         {
             isResidential = false;
             txtType.Text = string.Empty;
-
-            using (DataSet dt = ProjectContext.GetProjectTypeById(RecId))
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                using (DataSet dt = ProjectContext.GetProjectTypeById(RecId))
                 {
-
-                    string Projecttype = Convert.ToString(dt.Tables[0].Rows[0]["ProjectType"]);
-                    txtType.Text = Convert.ToString(dt.Tables[0].Rows[0]["ProjectType"]);
-                    if (Projecttype == "RESIDENTIAL")
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
-                        isResidential = true;
+
+                        string Projecttype = Convert.ToString(dt.Tables[0].Rows[0]["ProjectType"]);
+                        txtType.Text = Convert.ToString(dt.Tables[0].Rows[0]["ProjectType"]);
+                        if (Projecttype == "RESIDENTIAL")
+                        {
+                            isResidential = true;
+                        }
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_GetProjectTypeById()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
+
         }
 
         private void frmAddNewUnits_Load(object sender, EventArgs e)
@@ -318,34 +340,45 @@ namespace LEASING.UI.APP.Forms
 
         private void M_SaveUnit()
         {
-            UnitModel dto = new UnitModel();
-            dto.ProjectId = RecId;
-            //dto.UnitStatus = ddlUnitStatus.Text;
-            dto.UnitNo = txtUnitNumber.Text;
-            dto.IsParking = chkIsParking.Checked;
-            dto.FloorNo = Convert.ToInt32(txtFloorNumber.Text);
-            dto.AreaSqm = txtAreSql.Text == string.Empty ? 0 : decimal.Parse(txtAreSql.Text);
-            dto.AreaRateSqm = txtAreRateSqm.Text == string.Empty ? 0 : decimal.Parse(txtAreRateSqm.Text);
-            dto.FloorType = ddlFloorType.Text;
-            dto.BaseRental = txtBaseRental.Text == string.Empty ? 0 : decimal.Parse(txtBaseRental.Text);
-            dto.DetailsofProperty = txtDetailsOfProperty.Text;
-            dto.UnitSequence = Convert.ToInt32(txtUnitSequence.Text);
-            dto.EncodedBy = 1;
-            dto.Message_Code = UnitContext.SaveUnit(dto);
-            if (dto.Message_Code.Equals("SUCCESS"))
+            try
             {
-                MessageBox.Show("New Unit has been added successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                strUnitFormMode = "READ";
-                IsProceed = true;
-                this.Close();
+                UnitModel dto = new UnitModel();
+                dto.ProjectId = RecId;
+                //dto.UnitStatus = ddlUnitStatus.Text;
+                dto.UnitNo = txtUnitNumber.Text;
+                dto.IsParking = chkIsParking.Checked;
+                dto.FloorNo = Convert.ToInt32(txtFloorNumber.Text);
+                dto.AreaSqm = txtAreSql.Text == string.Empty ? 0 : decimal.Parse(txtAreSql.Text);
+                dto.AreaRateSqm = txtAreRateSqm.Text == string.Empty ? 0 : decimal.Parse(txtAreRateSqm.Text);
+                dto.FloorType = ddlFloorType.Text;
+                dto.BaseRental = txtBaseRental.Text == string.Empty ? 0 : decimal.Parse(txtBaseRental.Text);
+                dto.DetailsofProperty = txtDetailsOfProperty.Text;
+                dto.UnitSequence = Convert.ToInt32(txtUnitSequence.Text);
+                dto.EncodedBy = 1;
+                dto.Message_Code = UnitContext.SaveUnit(dto);
+                if (dto.Message_Code.Equals("SUCCESS"))
+                {
+                    Functions.MessageShow("New Unit has been added successfully !");
+                    strUnitFormMode = "READ";
+                    IsProceed = true;
+                    this.Close();
 
 
+                }
+                else
+                {
+                    Functions.MessageShow(dto.Message_Code);
+                    strUnitFormMode = "READ";
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show(dto.Message_Code, "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                strUnitFormMode = "READ";
+                Functions.LogErrorIntoStoredProcedure("M_SaveUnit()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
             }
+
+
         }
         private void btnSave_Click(object sender, EventArgs e)
         {

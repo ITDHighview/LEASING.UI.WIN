@@ -301,9 +301,11 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
+                Functions.LogErrorIntoStoredProcedure("GeneratePayment()", this.Text, ex.Message, DateTime.Now, this);
 
-                Functions.MessageShow(ex.ToString());
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
             }
+
 
         }
         private bool IsComputationValid()
@@ -325,40 +327,70 @@ namespace LEASING.UI.APP.Forms
         }
         private void getLedgerBrowseByContractIdClientId()
         {
-            dgvLedgerList.DataSource = null;
-            using (DataSet dt = _contract.GetLedgerBrowseByContractIdClientId(this._contractId, this._clientId))
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                dgvLedgerList.DataSource = null;
+                using (DataSet dt = _contract.GetLedgerBrowseByContractIdClientId(this._contractId, this._clientId))
                 {
-                    dgvLedgerList.DataSource = dt.Tables[0];
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        dgvLedgerList.DataSource = dt.Tables[0];
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("getLedgerBrowseByContractIdClientId()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
+
         }
         private void getContractBrowseByClientId()
         {
-
-            dgvTransactionList.DataSource = null;
-            using (DataSet dt = _contract.GetReferenceByClientID(this._clientId))
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                dgvTransactionList.DataSource = null;
+                using (DataSet dt = _contract.GetReferenceByClientID(this._clientId))
                 {
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
 
-                    dgvTransactionList.DataSource = dt.Tables[0];
+                        dgvTransactionList.DataSource = dt.Tables[0];
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("getContractBrowseByClientId()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
         }
         private void getPaymentBrowseByContractNumber()
         {
-
-            dgvPaymentList.DataSource = null;
-            using (DataSet dt = _contract.GetPaymentListByReferenceId(this._contractNumber))
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                dgvPaymentList.DataSource = null;
+                using (DataSet dt = _contract.GetPaymentListByReferenceId(this._contractNumber))
                 {
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
 
-                    dgvPaymentList.DataSource = dt.Tables[0];
+                        dgvPaymentList.DataSource = dt.Tables[0];
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("getPaymentBrowseByContractNumber()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
+
         }
 
         private void getContractById()
@@ -368,44 +400,64 @@ namespace LEASING.UI.APP.Forms
                 return;
             }
             txtTotalPay.Text = string.Empty;
-            using (DataSet dt = _contract.GetContractById(this._contractId))
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                using (DataSet dt = _contract.GetContractById(this._contractId))
                 {
-                    this._contractNumber = Convert.ToString(dt.Tables[0].Rows[0]["RefId"]);
-                    this.txtClientName.Text = Convert.ToString(dt.Tables[0].Rows[0]["InquiringClient"]);
-                    this.IsMoveOut = Convert.ToBoolean(dt.Tables[0].Rows[0]["IsUnitMoveOut"]);
-                    this.dtpFrom.Text = Convert.ToString(dt.Tables[0].Rows[0]["StatDate"]);
-                    this.dtpTo.Text = Convert.ToString(dt.Tables[0].Rows[0]["FinishDate"]);
-                    this.TotalRental = Convert.ToInt32(dt.Tables[0].Rows[0]["TotalRent"]);
-                    this.AdvancePaymentAmount = Convert.ToString(dt.Tables[0].Rows[0]["AdvancePaymentAmount"]);
-                    this.txtTotalPay.Text = Convert.ToString(dt.Tables[0].Rows[0]["TotalPayAMount"]);
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        this._contractNumber = Convert.ToString(dt.Tables[0].Rows[0]["RefId"]);
+                        this.txtClientName.Text = Convert.ToString(dt.Tables[0].Rows[0]["InquiringClient"]);
+                        this.IsMoveOut = Convert.ToBoolean(dt.Tables[0].Rows[0]["IsUnitMoveOut"]);
+                        this.dtpFrom.Text = Convert.ToString(dt.Tables[0].Rows[0]["StatDate"]);
+                        this.dtpTo.Text = Convert.ToString(dt.Tables[0].Rows[0]["FinishDate"]);
+                        this.TotalRental = Convert.ToInt32(dt.Tables[0].Rows[0]["TotalRent"]);
+                        this.AdvancePaymentAmount = Convert.ToString(dt.Tables[0].Rows[0]["AdvancePaymentAmount"]);
+                        this.txtTotalPay.Text = Convert.ToString(dt.Tables[0].Rows[0]["TotalPayAMount"]);
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("getContractById()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
         }
         private void checkPaymentProgressStatus()
         {
-            using (DataSet dt = _payment.GetCheckPaymentStatus(this._contractNumber))
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                using (DataSet dt = _payment.GetCheckPaymentStatus(this._contractNumber))
                 {
-                    this.txtPaymentStatus.Text = Convert.ToString(dt.Tables[0].Rows[0]["PAYMENT_STATUS"]);
-                    if (Convert.ToString(dt.Tables[0].Rows[0]["PAYMENT_STATUS"]) == "IN-PROGRESS")
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
-                        this.btnCloseContract.Enabled = false;
-                        this.btnTerminateContract.Visible = true;
-                        this.btnTerminateContract.Enabled = true;
-                        this.btnPayAll.Visible = true;
-                    }
-                    else if (Convert.ToString(dt.Tables[0].Rows[0]["PAYMENT_STATUS"]) == "PAYMENT DONE")
-                    {
-                        Functions.GetNotification("Payment Status", this.txtPaymentStatus.Text);
-                        this.btnCloseContract.Enabled = true;
-                        this.btnTerminateContract.Visible = false;
-                        this.btnPayAll.Visible = false;
+                        this.txtPaymentStatus.Text = Convert.ToString(dt.Tables[0].Rows[0]["PAYMENT_STATUS"]);
+                        if (Convert.ToString(dt.Tables[0].Rows[0]["PAYMENT_STATUS"]) == "IN-PROGRESS")
+                        {
+                            this.btnCloseContract.Enabled = false;
+                            this.btnTerminateContract.Visible = true;
+                            this.btnTerminateContract.Enabled = true;
+                            this.btnPayAll.Visible = true;
+                        }
+                        else if (Convert.ToString(dt.Tables[0].Rows[0]["PAYMENT_STATUS"]) == "PAYMENT DONE")
+                        {
+                            Functions.GetNotification("Payment Status", this.txtPaymentStatus.Text);
+                            this.btnCloseContract.Enabled = true;
+                            this.btnTerminateContract.Visible = false;
+                            this.btnPayAll.Visible = false;
+                        }
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("checkPaymentProgressStatus()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
         }
         private int CountGridCheckBoxCheck()
         {
@@ -543,22 +595,32 @@ namespace LEASING.UI.APP.Forms
             {
                 return;
             }
-            string result = _payment.TerminateContract(this._contractNumber);
-
-            if (string.IsNullOrEmpty(result))
+            try
             {
-                Functions.MessageShow("Responce is empty please contact system administrator");
-                return;
+                string result = _payment.TerminateContract(this._contractNumber);
+                if (string.IsNullOrEmpty(result))
+                {
+                    Functions.MessageShow("Responce is empty please contact system administrator");
+                    return;
+                }
+
+
+                if (!result.Equals(_MSSG_SUCCESS_))
+                {
+                    Functions.MessageShow(result);
+                    return;
+                }
+
+                Functions.MessageShow("TERMINATE CONTRACT SUCCESS");
+            }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("TerminateCOntract()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
             }
 
 
-            if (!result.Equals(_MSSG_SUCCESS_))
-            {
-                Functions.MessageShow(result);
-                return;
-            }
-
-            Functions.MessageShow("TERMINATE CONTRACT SUCCESS");
             this.getContractById();
             this.checkPaymentProgressStatus();
             this.getPaymentBrowseByContractNumber();
@@ -569,21 +631,31 @@ namespace LEASING.UI.APP.Forms
         {
             if (Functions.MessageConfirm("Are you sure you want to hold the payment?") == DialogResult.Yes)
             {
-                string result = _payment.HoldPDCPayment(this.M_getXMLData(), this.CompanyORNo, this.CompanyPRNo, this.BankAccountName, this.BankAccountNumber, this.BankName, this.SerialNo, this.BankBranch, this.REF, this.ModeType);
-                if (!string.IsNullOrEmpty(result))
+                try
                 {
-                    if (result.Equals("SUCCESS"))
+                    string result = _payment.HoldPDCPayment(this.M_getXMLData(), this.CompanyORNo, this.CompanyPRNo, this.BankAccountName, this.BankAccountNumber, this.BankName, this.SerialNo, this.BankBranch, this.REF, this.ModeType);
+                    if (!string.IsNullOrEmpty(result))
                     {
-                        Functions.MessageShow("PAYMENT HOLD SUCCESS");
-                        this.checkPaymentProgressStatus();
-                        this.getLedgerBrowseByContractIdClientId();
-                        this.getPaymentBrowseByContractNumber();
-                    }
-                    else
-                    {
-                        Functions.MessageShow(result);
+                        if (result.Equals("SUCCESS"))
+                        {
+                            Functions.MessageShow("PAYMENT HOLD SUCCESS");
+                            this.checkPaymentProgressStatus();
+                            this.getLedgerBrowseByContractIdClientId();
+                            this.getPaymentBrowseByContractNumber();
+                        }
+                        else
+                        {
+                            Functions.MessageShow(result);
+                        }
                     }
                 }
+                catch (Exception ex)
+                {
+                    Functions.LogErrorIntoStoredProcedure("SaveTransaction()", this.Text, ex.Message, DateTime.Now, this);
+
+                    Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                }
+
             }
         }
         private void SavePayment()
@@ -673,21 +745,31 @@ namespace LEASING.UI.APP.Forms
                 return;
             }
 
-            string result = _unit.MovedOut(this._contractNumber);
-
-            if (string.IsNullOrEmpty(result))
+            try
             {
-                Functions.MessageShow("Response Empty.");
-                return;
+                string result = _unit.MovedOut(this._contractNumber);
+
+                if (string.IsNullOrEmpty(result))
+                {
+                    Functions.MessageShow("Response Empty.");
+                    return;
+                }
+
+                if (!result.Equals("SUCCESS"))
+                {
+                    Functions.MessageShow(result);
+                    return;
+                }
+
+                Functions.MessageShow("MOVE-OUT SUCCESS");
+            }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("CloseContract()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
             }
 
-            if (!result.Equals("SUCCESS"))
-            {
-                Functions.MessageShow(result);
-                return;
-            }
-
-            Functions.MessageShow("MOVE-OUT SUCCESS");
 
             this.getPaymentBrowseByContractNumber();
             this.getContractById();

@@ -24,14 +24,25 @@ namespace LEASING.UI.APP.Forms
         }
         private void M_GetForMoveOutUnitList()
         {
-            dgvList.DataSource = null;
-            using (DataSet dt = PaymentContext.GetForMoveOutParkingList())
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                dgvList.DataSource = null;
+                using (DataSet dt = PaymentContext.GetForMoveOutParkingList())
                 {
-                    dgvList.DataSource = dt.Tables[0];
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        dgvList.DataSource = dt.Tables[0];
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_GetForMoveOutUnitList()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
+
         }
 
         private void dgvList_CellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
@@ -40,9 +51,9 @@ namespace LEASING.UI.APP.Forms
             {
                 if (this.dgvList.Columns[e.ColumnIndex].Name == "ColApproved")
                 {
-                    try
+                    if (MessageBox.Show("Are you sure you want Close this Contract?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                     {
-                        if (MessageBox.Show("Are you sure you want Close this Contract?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                        try
                         {
                             string result = PaymentContext.CloseContract(Convert.ToString(dgvList.CurrentRow.Cells["RefId"].Value));
                             if (result.Equals("SUCCESS"))
@@ -53,18 +64,14 @@ namespace LEASING.UI.APP.Forms
                             else
                             {
                                 MessageBox.Show(result, "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                                Functions.LogErrorIntoStoredProcedure("sp_CloseContract: ", "Close Contract", result, DateTime.Now, this);
                             }
                         }
-
+                        catch (Exception ex)
+                        {
+                            Functions.LogErrorIntoStoredProcedure("Cell Click : ColApproved", this.Text, ex.Message, DateTime.Now, this);
+                            Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                        }
                     }
-                    catch (Exception ex)
-                    {
-                        Functions.LogErrorIntoStoredProcedure("sp_CloseContract: ", "Close Contract", ex.Message, DateTime.Now, this);
-                        MessageBox.Show("An error occurred : " + ex.ToString() + "Please Contact IT Administrator", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-
                 }
                 else if (this.dgvList.Columns[e.ColumnIndex].Name == "ColView")
                 {

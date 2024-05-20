@@ -1,4 +1,5 @@
-﻿using LEASING.UI.APP.Context;
+﻿using LEASING.UI.APP.Common;
+using LEASING.UI.APP.Context;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -102,27 +103,47 @@ namespace LEASING.UI.APP.Forms
 
         private void M_GetLedgerList()
         {
-            dgvLedgerList.DataSource = null;
-            using (DataSet dt = ComputationContext.GetLedgerBrowseByContractIdClientId(ComputationRecid, ClientId))
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                dgvLedgerList.DataSource = null;
+                using (DataSet dt = ComputationContext.GetLedgerBrowseByContractIdClientId(ComputationRecid, ClientId))
                 {
-                    dgvLedgerList.DataSource = dt.Tables[0];
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        dgvLedgerList.DataSource = dt.Tables[0];
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_GetLedgerList()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
+
         }
         private void M_GetPaymentListByReferenceId()
         {
-
-            dgvPaymentList.DataSource = null;
-            using (DataSet dt = ComputationContext.GetPaymentListByReferenceId(RefId))
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                dgvPaymentList.DataSource = null;
+                using (DataSet dt = ComputationContext.GetPaymentListByReferenceId(RefId))
                 {
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
 
-                    dgvPaymentList.DataSource = dt.Tables[0];
+                        dgvPaymentList.DataSource = dt.Tables[0];
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_GetPaymentListByReferenceId()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
         }
 
         private void M_GetClientTypeAndID()
@@ -130,14 +151,24 @@ namespace LEASING.UI.APP.Forms
 
             //txtTotalPay.Text = string.Empty;
             txtPaymentStatus.Text = string.Empty;
-            using (DataSet dt = ClientContext.GetGetClientTypeAndID(ClientId))
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                using (DataSet dt = ClientContext.GetGetClientTypeAndID(ClientId))
                 {
-                    //txtTotalPay.Text = Convert.ToString(dt.Tables[0].Rows[0]["ClientType"]);
-                    txtPaymentStatus.Text = Convert.ToString(dt.Tables[0].Rows[0]["ClientID"]);
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        //txtTotalPay.Text = Convert.ToString(dt.Tables[0].Rows[0]["ClientType"]);
+                        txtPaymentStatus.Text = Convert.ToString(dt.Tables[0].Rows[0]["ClientID"]);
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_GetClientTypeAndID()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
         }
         private void frmSelectClient_Load(object sender, EventArgs e)
         {
@@ -149,52 +180,70 @@ namespace LEASING.UI.APP.Forms
         }
         private void M_GetComputationById()
         {
-
-            using (DataSet dt = ComputationContext.GetContractById(ComputationRecid))
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                using (DataSet dt = ComputationContext.GetContractById(ComputationRecid))
                 {
-                    RefId = Convert.ToString(dt.Tables[0].Rows[0]["RefId"]);
-                    txtClientName.Text = Convert.ToString(dt.Tables[0].Rows[0]["InquiringClient"]);
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        RefId = Convert.ToString(dt.Tables[0].Rows[0]["RefId"]);
+                        txtClientName.Text = Convert.ToString(dt.Tables[0].Rows[0]["InquiringClient"]);
 
-                    lblUnitNo.Text = Convert.ToString(dt.Tables[0].Rows[0]["UnitNo"]);
-                    lblProjectName.Text = Convert.ToString(dt.Tables[0].Rows[0]["ProjectName"]);
-                    lblType.Text = Convert.ToString(dt.Tables[0].Rows[0]["FloorType"]);
-                    lblBaseRental.Text = Convert.ToString(dt.Tables[0].Rows[0]["Rental"]);
-                    //ClientId = Convert.ToString(dt.Tables[0].Rows[0]["ClientID"]);
-                    //txtProjectType.Text = Convert.ToString(dt.Tables[0].Rows[0]["ProjectType"]);
-                    //txtProjectAddress.Text = Convert.ToString(dt.Tables[0].Rows[0]["ProjectAddress"]);
-                    //dtpTransactionDate.Text = Convert.ToString(dt.Tables[0].Rows[0]["TransactionDate"]);
-                    //txtClient.Text = Convert.ToString(dt.Tables[0].Rows[0]["InquiringClient"]);
-                    //txtContactNumber.Text = Convert.ToString(dt.Tables[0].Rows[0]["ClientMobile"]);
-                    //txtUnitNumber.Text = Convert.ToString(dt.Tables[0].Rows[0]["UnitNo"]);
-                    //txtFloorType.Text = Convert.ToString(dt.Tables[0].Rows[0]["FloorType"]);
-                    dtpFrom.Text = Convert.ToString(dt.Tables[0].Rows[0]["StatDate"]);
-                    dtpTo.Text = Convert.ToString(dt.Tables[0].Rows[0]["FinishDate"]);
-                    //txtRental.Text = Convert.ToString(dt.Tables[0].Rows[0]["Rental"]);
-                    //txtSecAndMaintenance.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecAndMaintenance"]);
-                    TotalRental = Convert.ToInt32(dt.Tables[0].Rows[0]["TotalRent"]);
-                    AdvancePaymentAmount = Convert.ToString(dt.Tables[0].Rows[0]["AdvancePaymentAmount"]);
+                        lblUnitNo.Text = Convert.ToString(dt.Tables[0].Rows[0]["UnitNo"]);
+                        lblProjectName.Text = Convert.ToString(dt.Tables[0].Rows[0]["ProjectName"]);
+                        lblType.Text = Convert.ToString(dt.Tables[0].Rows[0]["FloorType"]);
+                        lblBaseRental.Text = Convert.ToString(dt.Tables[0].Rows[0]["Rental"]);
+                        //ClientId = Convert.ToString(dt.Tables[0].Rows[0]["ClientID"]);
+                        //txtProjectType.Text = Convert.ToString(dt.Tables[0].Rows[0]["ProjectType"]);
+                        //txtProjectAddress.Text = Convert.ToString(dt.Tables[0].Rows[0]["ProjectAddress"]);
+                        //dtpTransactionDate.Text = Convert.ToString(dt.Tables[0].Rows[0]["TransactionDate"]);
+                        //txtClient.Text = Convert.ToString(dt.Tables[0].Rows[0]["InquiringClient"]);
+                        //txtContactNumber.Text = Convert.ToString(dt.Tables[0].Rows[0]["ClientMobile"]);
+                        //txtUnitNumber.Text = Convert.ToString(dt.Tables[0].Rows[0]["UnitNo"]);
+                        //txtFloorType.Text = Convert.ToString(dt.Tables[0].Rows[0]["FloorType"]);
+                        dtpFrom.Text = Convert.ToString(dt.Tables[0].Rows[0]["StatDate"]);
+                        dtpTo.Text = Convert.ToString(dt.Tables[0].Rows[0]["FinishDate"]);
+                        //txtRental.Text = Convert.ToString(dt.Tables[0].Rows[0]["Rental"]);
+                        //txtSecAndMaintenance.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecAndMaintenance"]);
+                        TotalRental = Convert.ToInt32(dt.Tables[0].Rows[0]["TotalRent"]);
+                        AdvancePaymentAmount = Convert.ToString(dt.Tables[0].Rows[0]["AdvancePaymentAmount"]);
 
-                    //txtTwoMonAdv.Text = Convert.ToString(dt.Tables[0].Rows[0]["TwoMonAdvance"]);
-                    //txtThreeMonSecDep.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecDeposit"]);
-                    //txtTotal.Text = Convert.ToString(dt.Tables[0].Rows[0]["Total"]);
-                    //txtTotalForPayment.Text = Convert.ToString(dt.Tables[0].Rows[0]["TotalForPayment"]);
-                    txtTotalPay.Text = Convert.ToString(dt.Tables[0].Rows[0]["TotalPayAMount"]);
+                        //txtTwoMonAdv.Text = Convert.ToString(dt.Tables[0].Rows[0]["TwoMonAdvance"]);
+                        //txtThreeMonSecDep.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecDeposit"]);
+                        //txtTotal.Text = Convert.ToString(dt.Tables[0].Rows[0]["Total"]);
+                        //txtTotalForPayment.Text = Convert.ToString(dt.Tables[0].Rows[0]["TotalForPayment"]);
+                        txtTotalPay.Text = Convert.ToString(dt.Tables[0].Rows[0]["TotalPayAMount"]);
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("GetContractById()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
         }
         private void M_GetCheckPaymentStatus()
         {
-
-            using (DataSet dt = PaymentContext.GetCheckPaymentStatus(RefId))
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                using (DataSet dt = PaymentContext.GetCheckPaymentStatus(RefId))
                 {
-                    txtPaymentStatus.Text = Convert.ToString(dt.Tables[0].Rows[0]["PAYMENT_STATUS"]);
-                   
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        txtPaymentStatus.Text = Convert.ToString(dt.Tables[0].Rows[0]["PAYMENT_STATUS"]);
+
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_GetCheckPaymentStatus()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
         }
 
         private void radTextBox1_KeyPress(object sender, KeyPressEventArgs e)
@@ -467,26 +516,32 @@ namespace LEASING.UI.APP.Forms
                 {
                     if (MessageBox.Show("Are you sure you want to hold to this payment?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                     {
-                        string result = PaymentContext.HoldPayment(RefId,Convert.ToInt32(dgvLedgerList.CurrentRow.Cells["Recid"].Value));
-                        if (!string.IsNullOrEmpty(result))
+                        try
                         {
-                            if (result.Equals("SUCCESS"))
+                            string result = PaymentContext.HoldPayment(RefId, Convert.ToInt32(dgvLedgerList.CurrentRow.Cells["Recid"].Value));
+                            if (!string.IsNullOrEmpty(result))
                             {
-                                MessageBox.Show("PAYMENT HOLD SUCCESS", "System Message", MessageBoxButtons.OK);
-                                
-                            }
-                            else
-                            {
-                                MessageBox.Show(result, "System Message", MessageBoxButtons.OK);
+                                if (result.Equals("SUCCESS"))
+                                {
+                                    MessageBox.Show("PAYMENT HOLD SUCCESS", "System Message", MessageBoxButtons.OK);
+
+                                }
+                                else
+                                {
+                                    MessageBox.Show(result, "System Message", MessageBoxButtons.OK);
+                                }
                             }
                         }
+                        catch (Exception ex)
+                        {
+                            Functions.LogErrorIntoStoredProcedure("Cell Click : Hold Payment", this.Text, ex.Message, DateTime.Now, this);
+
+                            Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                        }
+
                     }
                 }
             }
         }
-
-
-
-
     }
 }

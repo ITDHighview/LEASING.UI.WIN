@@ -1,4 +1,5 @@
-﻿using LEASING.UI.APP.Context;
+﻿using LEASING.UI.APP.Common;
+using LEASING.UI.APP.Context;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -28,20 +29,31 @@ namespace LEASING.UI.APP.Forms
 
         private void M_SaveORNumber()
         {
-            if (!string.IsNullOrEmpty(txtORNumber.Text) && !string.IsNullOrEmpty(RcptID))
+            try
             {
-                string result = PaymentContext.UpdateORNumber(RcptID, txtORNumber.Text);
-                if (result.Equals("SUCCESS"))
+                if (!string.IsNullOrEmpty(txtORNumber.Text) && !string.IsNullOrEmpty(RcptID))
                 {
-                    IsProceed = true;
-                    MessageBox.Show("OR Number Added Successfully.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Close();
+                    string result = PaymentContext.UpdateORNumber(RcptID, txtORNumber.Text);
+                    if (result.Equals("SUCCESS"))
+                    {
+                        IsProceed = true;
+                        MessageBox.Show("OR Number Added Successfully.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Close();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("OR Number Cannot be empty.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("OR Number Cannot be empty.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Functions.LogErrorIntoStoredProcedure("M_SaveORNumber()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
             }
+
+
         }
         private void btnSave_Click(object sender, EventArgs e)
         {

@@ -1,4 +1,5 @@
-﻿using LEASING.UI.APP.Context;
+﻿using LEASING.UI.APP.Common;
+using LEASING.UI.APP.Context;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,14 +23,25 @@ namespace LEASING.UI.APP.Forms
         }
         private void M_GetUnitByProjectId()
         {
-            dgvUnitList.DataSource = null;
-            using (DataSet dt = UnitContext.GetUnitByProjectId(Recid))
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                dgvUnitList.DataSource = null;
+                using (DataSet dt = UnitContext.GetUnitByProjectId(Recid))
                 {
-                    dgvUnitList.DataSource = dt.Tables[0];
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        dgvUnitList.DataSource = dt.Tables[0];
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_GetUnitByProjectId()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
+
         }
         private void frmCheckUnits_Load(object sender, EventArgs e)
         {

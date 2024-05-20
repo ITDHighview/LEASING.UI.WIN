@@ -98,34 +98,54 @@ namespace LEASING.UI.APP.Forms
         }
         private void M_GetCompanyList()
         {
-            dgvCompanyList.DataSource = null;
-            using (DataSet dt = CompanyContext.GetCompanyList())
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                dgvCompanyList.DataSource = null;
+                using (DataSet dt = CompanyContext.GetCompanyList())
                 {
-                    dgvCompanyList.DataSource = dt.Tables[0];
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        dgvCompanyList.DataSource = dt.Tables[0];
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_GetCompanyList()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
         }
         private void M_SaveCompany()
         {
-            CompanyModel dto = new CompanyModel();         
-            dto.CompanyName = txtCompanyName.Text;
-            dto.CompanyAddress = txtCompanyAddress.Text;
-            dto.CompanyTIN = txtCompanyTINNo.Text;
-            dto.CompanyOwnerName = txtCompanyOwnerName.Text;
-            dto.Message_Code = CompanyContext.SaveCompany(dto);
-            if (dto.Message_Code.Equals("SUCCESS"))
+            try
             {
-                Functions.MessageShow("New Company has been added successfully !");
-                strFormMode = "READ";
-                M_GetCompanyList();
+                CompanyModel dto = new CompanyModel();
+                dto.CompanyName = txtCompanyName.Text;
+                dto.CompanyAddress = txtCompanyAddress.Text;
+                dto.CompanyTIN = txtCompanyTINNo.Text;
+                dto.CompanyOwnerName = txtCompanyOwnerName.Text;
+                dto.Message_Code = CompanyContext.SaveCompany(dto);
+                if (dto.Message_Code.Equals("SUCCESS"))
+                {
+                    Functions.MessageShow("New Company has been added successfully !");
+                    strFormMode = "READ";
+                    M_GetCompanyList();
+                }
+                else
+                {
+                    Functions.MessageShow(dto.Message_Code);
+                    strFormMode = "READ";
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Functions.MessageShow(dto.Message_Code);
-                strFormMode = "READ";
+                Functions.LogErrorIntoStoredProcedure("M_SaveCompany()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
             }
+
         }
 
 

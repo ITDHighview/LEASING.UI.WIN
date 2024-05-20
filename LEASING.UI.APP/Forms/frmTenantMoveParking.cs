@@ -1,4 +1,5 @@
-﻿using LEASING.UI.APP.Context;
+﻿using LEASING.UI.APP.Common;
+using LEASING.UI.APP.Context;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,14 +23,25 @@ namespace LEASING.UI.APP.Forms
 
         private void M_GetForMoveInParkingList()
         {
-            dgvList.DataSource = null;
-            using (DataSet dt = PaymentContext.GetForMoveInParkingList())
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                dgvList.DataSource = null;
+                using (DataSet dt = PaymentContext.GetForMoveInParkingList())
                 {
-                    dgvList.DataSource = dt.Tables[0];
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        dgvList.DataSource = dt.Tables[0];
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_GetForMoveInParkingList()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
+
         }
 
         private void dgvList_CellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
@@ -38,9 +50,9 @@ namespace LEASING.UI.APP.Forms
             {
                 if (this.dgvList.Columns[e.ColumnIndex].Name == "ColApproved")
                 {
-                    try
+                    if (MessageBox.Show("Are you sure you want tag this as Move-in?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                     {
-                        if (MessageBox.Show("Are you sure you want tag this as Move-in?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                        try
                         {
                             string result = UnitContext.MovedIn(Convert.ToString(dgvList.CurrentRow.Cells["RefId"].Value));
                             if (result.Equals("SUCCESS"))
@@ -51,16 +63,14 @@ namespace LEASING.UI.APP.Forms
                             else
                             {
                                 MessageBox.Show(result, "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                                //LogErrorIntoStoredProcedure("sp_LogError", "sp_MovedIn: " + "Move-In", result, DateTime.Now);
                             }
                         }
+                        catch (Exception ex)
+                        {
+                            Functions.LogErrorIntoStoredProcedure("Cell Click : ColApproved", this.Text, ex.Message, DateTime.Now, this);
 
-                    }
-                    catch (Exception ex)
-                    {
-                        //LogErrorIntoStoredProcedure("sp_LogError", "sp_MovedIn: " + "Move-In", ex.Message, DateTime.Now);
-                        MessageBox.Show("An error occurred : " + ex.ToString() + " Please check the log table details.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                        }
                     }
                 }
                 else if (this.dgvList.Columns[e.ColumnIndex].Name == "ColView")
@@ -88,7 +98,7 @@ namespace LEASING.UI.APP.Forms
             {
                 frmMoveInAuthorizationReport MoveIn = new frmMoveInAuthorizationReport(Convert.ToString(dgvList.CurrentRow.Cells["RefId"].Value));
                 MoveIn.Show();
-            }        
+            }
         }
     }
 }

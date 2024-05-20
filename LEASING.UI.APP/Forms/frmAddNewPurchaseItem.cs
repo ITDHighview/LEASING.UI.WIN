@@ -1,4 +1,5 @@
-﻿using LEASING.UI.APP.Context;
+﻿using LEASING.UI.APP.Common;
+using LEASING.UI.APP.Context;
 using LEASING.UI.APP.Models;
 using System;
 using System.Collections.Generic;
@@ -118,29 +119,40 @@ namespace LEASING.UI.APP.Forms
         }
         private void M_SavePurchaseItem()
         {
-            PurchaseItemModel dto = new PurchaseItemModel();
-            dto.ProjectId = Convert.ToInt32(ddlProjectList.SelectedValue);
-            dto.Descriptions = txtDescription.Text;
-            dto.DatePurchase = dtpDatePurchase.Text;
-            dto.UnitAmount = Convert.ToInt32(txtUnitAmount.Text);
-            dto.Amount = txtAmount.Text == string.Empty ? 0 : decimal.Parse(txtAmount.Text);
-            dto.TotalAmount = txtTotal.Text == string.Empty ? 0 : decimal.Parse(txtTotal.Text);
-            dto.Remarks = txtRemarks.Text;
-            dto.UnitNumber = txtUnitNumber.Text;
-            dto.UnitID = UnitID;
-            dto.Message_Code = PurchaseItemContext.SavePurchaseItem(dto);
-            if (dto.Message_Code.Equals("SUCCESS"))
+            try
             {
-                MessageBox.Show("New Purchase Item has been added successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                strPurchaseFormMode = "READ";
-                M_GetPurchaseItemList();
+                PurchaseItemModel dto = new PurchaseItemModel();
+                dto.ProjectId = Convert.ToInt32(ddlProjectList.SelectedValue);
+                dto.Descriptions = txtDescription.Text;
+                dto.DatePurchase = dtpDatePurchase.Text;
+                dto.UnitAmount = Convert.ToInt32(txtUnitAmount.Text);
+                dto.Amount = txtAmount.Text == string.Empty ? 0 : decimal.Parse(txtAmount.Text);
+                dto.TotalAmount = txtTotal.Text == string.Empty ? 0 : decimal.Parse(txtTotal.Text);
+                dto.Remarks = txtRemarks.Text;
+                dto.UnitNumber = txtUnitNumber.Text;
+                dto.UnitID = UnitID;
+                dto.Message_Code = PurchaseItemContext.SavePurchaseItem(dto);
+                if (dto.Message_Code.Equals("SUCCESS"))
+                {
+                    Functions.MessageShow("New Purchase Item has been added successfully !");
+                    strPurchaseFormMode = "READ";
+                    M_GetPurchaseItemList();
 
+                }
+                else
+                {
+                    Functions.MessageShow(dto.Message_Code);
+                    strPurchaseFormMode = "READ";
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show(dto.Message_Code, "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                strPurchaseFormMode = "READ";
+                Functions.LogErrorIntoStoredProcedure("M_SavePurchaseItem()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
             }
+
+
         }
         public frmAddNewPurchaseItem()
         {
@@ -148,28 +160,48 @@ namespace LEASING.UI.APP.Forms
         }
         private void M_SelectProject()
         {
-
-            ddlProjectList.DataSource = null;
-            using (DataSet dt = ProjectContext.GetSelectProject())
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                ddlProjectList.DataSource = null;
+                using (DataSet dt = ProjectContext.GetSelectProject())
                 {
-                    ddlProjectList.DisplayMember = "ProjectName";
-                    ddlProjectList.ValueMember = "RecId";
-                    ddlProjectList.DataSource = dt.Tables[0];
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        ddlProjectList.DisplayMember = "ProjectName";
+                        ddlProjectList.ValueMember = "RecId";
+                        ddlProjectList.DataSource = dt.Tables[0];
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_SelectProject()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
         }
         private void M_GetPurchaseItemList()
         {
-            dgvPurchaseItemList.DataSource = null;
-            using (DataSet dt = PurchaseItemContext.GetGetPurchaseItemList())
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                dgvPurchaseItemList.DataSource = null;
+                using (DataSet dt = PurchaseItemContext.GetGetPurchaseItemList())
                 {
-                    dgvPurchaseItemList.DataSource = dt.Tables[0];
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        dgvPurchaseItemList.DataSource = dt.Tables[0];
+                    }
                 }
             }
+
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_GetPurchaseItemList()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
         }
         private void M_GetTotal()
         {
@@ -183,16 +215,25 @@ namespace LEASING.UI.APP.Forms
             lblEncodedBy.Text = "Encoded By :";
             lblLastChangedBy.Text = "Last Changed By :";
 
-
-
-            using (DataSet dt = PurchaseItemContext.GetGetPurchaseItemInfoById(Convert.ToInt32(dgvPurchaseItemList.CurrentRow.Cells["RecId"].Value)))
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                using (DataSet dt = PurchaseItemContext.GetGetPurchaseItemInfoById(Convert.ToInt32(dgvPurchaseItemList.CurrentRow.Cells["RecId"].Value)))
                 {
-                    lblEncodedBy.Text = "Encoded By :" + Convert.ToString(dt.Tables[0].Rows[0]["EncodedBy"]) + "-" + Convert.ToString(dt.Tables[0].Rows[0]["EncodedName"]);
-                    lblLastChangedBy.Text = "Last Changed By :" + Convert.ToString(dt.Tables[0].Rows[0]["LastChangedBy"]) + "-" + Convert.ToString(dt.Tables[0].Rows[0]["LastChangedName"]);
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        lblEncodedBy.Text = "Encoded By :" + Convert.ToString(dt.Tables[0].Rows[0]["EncodedBy"]) + "-" + Convert.ToString(dt.Tables[0].Rows[0]["EncodedName"]);
+                        lblLastChangedBy.Text = "Last Changed By :" + Convert.ToString(dt.Tables[0].Rows[0]["LastChangedBy"]) + "-" + Convert.ToString(dt.Tables[0].Rows[0]["LastChangedName"]);
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_getPurchaseItemInfoById()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
+
         }
         private void frmAddNewPurchaseItem_Load(object sender, EventArgs e)
         {

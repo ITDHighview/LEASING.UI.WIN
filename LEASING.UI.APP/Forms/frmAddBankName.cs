@@ -83,8 +83,10 @@ namespace LEASING.UI.APP.Forms
                 }
             }
             catch (Exception ex)
-            {               
-                Functions.MessageShow(ex.ToString());
+            {
+                Functions.LogErrorIntoStoredProcedure("_saveBankName()", "Bank Name", ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : " + ex.ToString() + " Please check the [ErrorLog] ");
             }
         }
         private void _deleteBankName()
@@ -105,20 +107,32 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.MessageShow(ex.ToString());
+                Functions.LogErrorIntoStoredProcedure("_deleteBankName()", "Bank Name", ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : " + ex.ToString() + " Please check the [ErrorLog] ");
             }
         }
 
         private void _getBankNameBrowse()
         {
-            dgvList.DataSource = null;
-            using (DataSet dt = _payment.GetBankNameBrowse())
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                dgvList.DataSource = null;
+                using (DataSet dt = _payment.GetBankNameBrowse())
                 {
-                    dgvList.DataSource = dt.Tables[0];
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        dgvList.DataSource = dt.Tables[0];
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("_getBankNameBrowse()", "Bank Name", ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : " + ex.ToString() + " Please check the [ErrorLog] ");
+            }
+
         }
         private void frmAddBankName_Load(object sender, EventArgs e)
         {

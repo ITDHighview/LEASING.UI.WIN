@@ -24,14 +24,24 @@ namespace LEASING.UI.APP.Forms
         }
         private void M_GetFilesByClientAndReference()
         {
-            dgvFileList.DataSource = null;
-            using (DataSet dt = ClientContext.GetFilesByClientAndReference(ClientID, ReferenceID))
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                dgvFileList.DataSource = null;
+                using (DataSet dt = ClientContext.GetFilesByClientAndReference(ClientID, ReferenceID))
                 {
-                    dgvFileList.DataSource = dt.Tables[0];
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        dgvFileList.DataSource = dt.Tables[0];
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_GetFilesByClientAndReference()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
         }
 
         private void frmGetContactSignedDocumentsByReference_Load(object sender, EventArgs e)

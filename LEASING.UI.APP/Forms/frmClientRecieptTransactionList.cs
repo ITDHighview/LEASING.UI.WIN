@@ -1,4 +1,5 @@
-﻿using LEASING.UI.APP.Context;
+﻿using LEASING.UI.APP.Common;
+using LEASING.UI.APP.Context;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -37,14 +38,25 @@ namespace LEASING.UI.APP.Forms
         private void M_GetContractList(string refid)
         {
 
-            dgvReceiptList.DataSource = null;
-            using (DataSet dt = ComputationContext.GetReceiptByRefId(refid))
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                dgvReceiptList.DataSource = null;
+                using (DataSet dt = ComputationContext.GetReceiptByRefId(refid))
                 {
-                    dgvReceiptList.DataSource = dt.Tables[0];
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        dgvReceiptList.DataSource = dt.Tables[0];
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_GetContractList()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
+
         }
         private void frmClientRecieptTransaction_Load(object sender, EventArgs e)
         {

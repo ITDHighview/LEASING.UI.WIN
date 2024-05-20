@@ -1,4 +1,5 @@
-﻿using LEASING.UI.APP.Context;
+﻿using LEASING.UI.APP.Common;
+using LEASING.UI.APP.Context;
 using LEASING.UI.APP.Models;
 using System;
 using System.Collections.Generic;
@@ -134,79 +135,129 @@ namespace LEASING.UI.APP.Forms
         }
         private void M_GetProjectList()
         {
-            dgvProjectList.DataSource = null;
-            using (DataSet dt = ProjectContext.GetProjectList())
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                dgvProjectList.DataSource = null;
+                using (DataSet dt = ProjectContext.GetProjectList())
                 {
-                    dgvProjectList.DataSource = dt.Tables[0];
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        dgvProjectList.DataSource = dt.Tables[0];
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_GetProjectList()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
+
         }
         private void M_SaveProject()
         {
-            ProjectModel dto = new ProjectModel();
-            dto.LocId = Convert.ToInt32(ddLocationList.SelectedValue);
-            dto.ProjectType = ddlProjectType.Text;
-            dto.ProjectName = txtProjectName.Text;
-            dto.Description = txtProjectDescription.Text;
-            dto.ProjectAddress = txtProjectAddress.Text;
-            dto.CompanyId = Convert.ToInt32(ddlCompanyList.SelectedValue);
-            dto.Message_Code = ProjectContext.SaveProject(dto);
-            if (dto.Message_Code.Equals("SUCCESS"))
+            try
             {
-                MessageBox.Show("New Project has been added successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                strProjectFormMode = "READ";
-                M_GetProjectList();
+                ProjectModel dto = new ProjectModel();
+                dto.LocId = Convert.ToInt32(ddLocationList.SelectedValue);
+                dto.ProjectType = ddlProjectType.Text;
+                dto.ProjectName = txtProjectName.Text;
+                dto.Description = txtProjectDescription.Text;
+                dto.ProjectAddress = txtProjectAddress.Text;
+                dto.CompanyId = Convert.ToInt32(ddlCompanyList.SelectedValue);
+                dto.Message_Code = ProjectContext.SaveProject(dto);
+                if (dto.Message_Code.Equals("SUCCESS"))
+                {
+                    Functions.MessageShow("New Project has been added successfully !");
+                    strProjectFormMode = "READ";
+                    M_GetProjectList();
+                }
+                else
+                {
+                    Functions.MessageShow(dto.Message_Code);
+                    strProjectFormMode = "READ";
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show(dto.Message_Code, "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                strProjectFormMode = "READ";
+                Functions.LogErrorIntoStoredProcedure("M_SaveProject()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
             }
+
         }
         private void M_SelectCompany()
         {
-
-            ddlCompanyList.DataSource = null;
-            using (DataSet dt = ProjectContext.GetSelectCompany())
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                ddlCompanyList.DataSource = null;
+                using (DataSet dt = ProjectContext.GetSelectCompany())
                 {
-                    ddlCompanyList.DisplayMember = "CompanyName";
-                    ddlCompanyList.ValueMember = "RecId";
-                    ddlCompanyList.DataSource = dt.Tables[0];
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        ddlCompanyList.DisplayMember = "CompanyName";
+                        ddlCompanyList.ValueMember = "RecId";
+                        ddlCompanyList.DataSource = dt.Tables[0];
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_SelectCompany()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
+
         }
         private void M_SelectLocation()
         {
-
-            ddLocationList.DataSource = null;
-            using (DataSet dt = LocationContext.GetSelectLocation())
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                ddLocationList.DataSource = null;
+                using (DataSet dt = LocationContext.GetSelectLocation())
                 {
-                    ddLocationList.DisplayMember = "Descriptions";
-                    ddLocationList.ValueMember = "RecId";
-                    ddLocationList.DataSource = dt.Tables[0];
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        ddLocationList.DisplayMember = "Descriptions";
+                        ddLocationList.ValueMember = "RecId";
+                        ddLocationList.DataSource = dt.Tables[0];
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_SelectLocation()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
+
         }
 
         private void M_SelectProjectType()
         {
-
-            ddlProjectType.DataSource = null;
-            using (DataSet dt = ProjectContext.GetSelectProjectType())
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                ddlProjectType.DataSource = null;
+                using (DataSet dt = ProjectContext.GetSelectProjectType())
                 {
-                    ddlProjectType.DisplayMember = "ProjectTypeName";
-                    ddlProjectType.ValueMember = "Recid";
-                    ddlProjectType.DataSource = dt.Tables[0];
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        ddlProjectType.DisplayMember = "ProjectTypeName";
+                        ddlProjectType.ValueMember = "Recid";
+                        ddlProjectType.DataSource = dt.Tables[0];
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_SelectProjectType()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
         }
         private void frmAddNewProject_Load(object sender, EventArgs e)
         {

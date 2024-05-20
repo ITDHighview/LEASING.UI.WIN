@@ -217,82 +217,141 @@ namespace LEASING.UI.APP.Forms
         }
         private void M_GetPostDatedCountMonth()
         {
-
-            dgvpostdatedcheck.DataSource = null;
-            using (DataSet dt = ComputationContext.GetPostDatedCountMonth(dtpStartDate.Text, dtpFinishDate.Text, txtRental.Text, txtSecAndMaintenance.Text, M_getXMLData()))
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                dgvpostdatedcheck.DataSource = null;
+                using (DataSet dt = ComputationContext.GetPostDatedCountMonth(dtpStartDate.Text, dtpFinishDate.Text, txtRental.Text, txtSecAndMaintenance.Text, M_getXMLData()))
                 {
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
 
-                    dgvpostdatedcheck.DataSource = dt.Tables[0];
+                        dgvpostdatedcheck.DataSource = dt.Tables[0];
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_GetPostDatedCountMonth()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
+
         }
         private void M_GetRateSettings()
         {
             txtSecAndMaintenance.Text = string.Empty;
             lblVat.Text = string.Empty;
-
-            using (DataSet dt = RateSettingsContext.GetRateSettingsByType(txtProjectType.Text))
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                using (DataSet dt = RateSettingsContext.GetRateSettingsByType(txtProjectType.Text))
                 {
-                    txtSecAndMaintenance.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecurityAndMaintenance"]);
-                    lblVat.Text = Convert.ToString(dt.Tables[0].Rows[0]["labelVat"]);
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        txtSecAndMaintenance.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecurityAndMaintenance"]);
+                        lblVat.Text = Convert.ToString(dt.Tables[0].Rows[0]["labelVat"]);
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_GetRateSettings()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
         }
         private void M_SelectProject()
         {
-            ddlProject.DataSource = null;
-            using (DataSet dt = ProjectContext.GetSelectProject())
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                ddlProject.DataSource = null;
+                using (DataSet dt = ProjectContext.GetSelectProject())
                 {
-                    ddlProject.DisplayMember = "ProjectName";
-                    ddlProject.ValueMember = "RecId";
-                    ddlProject.DataSource = dt.Tables[0];
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        ddlProject.DisplayMember = "ProjectName";
+                        ddlProject.ValueMember = "RecId";
+                        ddlProject.DataSource = dt.Tables[0];
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_SelectProject()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
         }
         private void M_SelectUnit()
         {
-            ddlUnitNumber.DataSource = null;
-            using (DataSet dt = UnitContext.GetUnitAvailableByProjectId(Convert.ToInt32(ddlProject.SelectedValue)))
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                ddlUnitNumber.DataSource = null;
+                using (DataSet dt = UnitContext.GetUnitAvailableByProjectId(Convert.ToInt32(ddlProject.SelectedValue)))
                 {
-                    ddlUnitNumber.DisplayMember = "UnitNo";
-                    ddlUnitNumber.ValueMember = "RecId";
-                    ddlUnitNumber.DataSource = dt.Tables[0];
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        ddlUnitNumber.DisplayMember = "UnitNo";
+                        ddlUnitNumber.ValueMember = "RecId";
+                        ddlUnitNumber.DataSource = dt.Tables[0];
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_SelectUnit()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
         }
         private void M_GetProjecAddress()
         {
             txtProjectAddress.Text = string.Empty;
             txtProjectType.Text = string.Empty;
-            using (DataSet dt = ProjectContext.GetProjectAddress(Convert.ToInt32(ddlProject.SelectedValue)))
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                using (DataSet dt = ProjectContext.GetProjectAddress(Convert.ToInt32(ddlProject.SelectedValue)))
                 {
-                    txtProjectAddress.Text = Convert.ToString(dt.Tables[0].Rows[0]["ProjectAddress"]);
-                    txtProjectType.Text = Convert.ToString(dt.Tables[0].Rows[0]["ProjectType"]);
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        txtProjectAddress.Text = Convert.ToString(dt.Tables[0].Rows[0]["ProjectAddress"]);
+                        txtProjectType.Text = Convert.ToString(dt.Tables[0].Rows[0]["ProjectType"]);
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_GetProjecAddress()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
         }
         private void M_GetUnitAvaibleById()
         {
             txtFloorType.Text = string.Empty;
             txtRental.Text = string.Empty;
-            using (DataSet dt = UnitContext.GetUnitAvailableById(Convert.ToInt32(ddlUnitNumber.SelectedValue)))
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                using (DataSet dt = UnitContext.GetUnitAvailableById(Convert.ToInt32(ddlUnitNumber.SelectedValue)))
                 {
-                    txtFloorType.Text = Convert.ToString(dt.Tables[0].Rows[0]["FloorType"]);
-                    txtRental.Text = Convert.ToString(dt.Tables[0].Rows[0]["BaseRental"]);
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        txtFloorType.Text = Convert.ToString(dt.Tables[0].Rows[0]["FloorType"]);
+                        txtRental.Text = Convert.ToString(dt.Tables[0].Rows[0]["BaseRental"]);
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_GetUnitAvaibleById()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
         }
         private void M_GetTotalRental()
         {

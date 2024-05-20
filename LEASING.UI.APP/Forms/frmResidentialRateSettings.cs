@@ -66,35 +66,56 @@ namespace LEASING.UI.APP.Forms
         }
         private void GetRateSettings()
         {
-            using (DataSet dt = RateSettingsContext.GetRESIDENTIALSettings())
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                using (DataSet dt = RateSettingsContext.GetRESIDENTIALSettings())
                 {
-                    txtGenVat.Text = Convert.ToString(dt.Tables[0].Rows[0]["GenVat"]);
-                    txtSecAndMaintenance.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecurityAndMaintenance"]);
-                    txtPentalty.Text = Convert.ToString(dt.Tables[0].Rows[0]["PenaltyPct"]);
-                    //txtSecAndMaintenanceVat.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecurityAndMaintenanceVat"]);
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        txtGenVat.Text = Convert.ToString(dt.Tables[0].Rows[0]["GenVat"]);
+                        txtSecAndMaintenance.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecurityAndMaintenance"]);
+                        txtPentalty.Text = Convert.ToString(dt.Tables[0].Rows[0]["PenaltyPct"]);
+                        //txtSecAndMaintenanceVat.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecurityAndMaintenanceVat"]);
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("GetRateSettings()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
+
         }
 
 
 
         private void M_UpdateRates()
         {
-            string results = RateSettingsContext.UpdateRESIDENTIALSettings(Functions.ConvertStringToDecimal(txtGenVat.Text), 
-                                                                            Functions.ConvertStringToDecimal(txtSecAndMaintenance.Text),
-                                                                            Functions.ConvertStringToDecimal(txtPentalty.Text));
-            if (results.Equals("SUCCESS"))
+            try
             {
-                MessageBox.Show("Rate  has been Upated successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                strRateFormMode = "READ";
-                this.GetRateSettings();
+                string results = RateSettingsContext.UpdateRESIDENTIALSettings(Functions.ConvertStringToDecimal(txtGenVat.Text),
+                                                                Functions.ConvertStringToDecimal(txtSecAndMaintenance.Text),
+                                                                Functions.ConvertStringToDecimal(txtPentalty.Text));
+                if (results.Equals("SUCCESS"))
+                {
+                    MessageBox.Show("Rate  has been Upated successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    strRateFormMode = "READ";
+                    this.GetRateSettings();
+                }
+                else
+                {
+                    MessageBox.Show(results, "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show(results, "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Functions.LogErrorIntoStoredProcedure("M_UpdateRates()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
             }
+
         }
         private void M_GetVatAMount()
         {

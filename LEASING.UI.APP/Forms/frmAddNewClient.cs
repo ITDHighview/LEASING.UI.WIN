@@ -201,41 +201,51 @@ namespace LEASING.UI.APP.Forms
         }
         private void M_SaveClient()
         {
-            ClientModel dto = new ClientModel();
-            dto.ClientType = GetClientTypeCode();
-            dto.ClientName = txtname.Text;
-            dto.Age = txtage.Text == string.Empty ? 0 : Convert.ToInt32(txtage.Text);
-            dto.PostalAddress = txtpostaladdress.Text;
-            dto.DateOfBirth = dtpdob.Text;
-            dto.Gender = ddlgender.Text == "MALE" ? true : false;
-            dto.TelNumber = txttelno.Text;
-            dto.Nationality = txtnationality.Text;
-            dto.Occupation = txtoccupation.Text;
-            dto.AnnualIncome = txtannualincome.Text == string.Empty ? 0 : Convert.ToInt32(txtannualincome.Text);
-            dto.EmployerName = txtnameofemployer.Text;
-            dto.EmployerAddress = txtaddresstelephoneno.Text;
-            dto.SpouseName = txtspousename.Text;
-            dto.ChildrenNames = txtnameofchildren.Text;
-            dto.TotalPersons = txttotalnoofperson.Text == string.Empty ? 0 : Convert.ToInt32(txttotalnoofperson.Text);
-            dto.MaidName = txtnameofmaid.Text;
-            dto.DriverName = txtnameofdriver.Text;
-            dto.NoVisitorsPerDay = txtnoofvisitorperday.Text == string.Empty ? 0 : Convert.ToInt32(txtnoofvisitorperday.Text);
-            dto.BuildingSecretary = 1;
-            dto.EncodedBy = Variables.UserID;
-            dto.TIN_No = txtTinNo.Text.Trim();
-            dto.Message_Code = ClientContext.SaveClient(dto);
-            if (dto.Message_Code.Equals("SUCCESS"))
+            try
             {
-                MessageBox.Show("New Client  has been added successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                strClientFormMode = "READ";
-                M_GetClientList();
+                ClientModel dto = new ClientModel();
+                dto.ClientType = GetClientTypeCode();
+                dto.ClientName = txtname.Text;
+                dto.Age = txtage.Text == string.Empty ? 0 : Convert.ToInt32(txtage.Text);
+                dto.PostalAddress = txtpostaladdress.Text;
+                dto.DateOfBirth = dtpdob.Text;
+                dto.Gender = ddlgender.Text == "MALE" ? true : false;
+                dto.TelNumber = txttelno.Text;
+                dto.Nationality = txtnationality.Text;
+                dto.Occupation = txtoccupation.Text;
+                dto.AnnualIncome = txtannualincome.Text == string.Empty ? 0 : Convert.ToInt32(txtannualincome.Text);
+                dto.EmployerName = txtnameofemployer.Text;
+                dto.EmployerAddress = txtaddresstelephoneno.Text;
+                dto.SpouseName = txtspousename.Text;
+                dto.ChildrenNames = txtnameofchildren.Text;
+                dto.TotalPersons = txttotalnoofperson.Text == string.Empty ? 0 : Convert.ToInt32(txttotalnoofperson.Text);
+                dto.MaidName = txtnameofmaid.Text;
+                dto.DriverName = txtnameofdriver.Text;
+                dto.NoVisitorsPerDay = txtnoofvisitorperday.Text == string.Empty ? 0 : Convert.ToInt32(txtnoofvisitorperday.Text);
+                dto.BuildingSecretary = 1;
+                dto.EncodedBy = Variables.UserID;
+                dto.TIN_No = txtTinNo.Text.Trim();
+                dto.Message_Code = ClientContext.SaveClient(dto);
+                if (dto.Message_Code.Equals("SUCCESS"))
+                {
+                    Functions.MessageShow("New Client  has been added successfully !");
+                    this.strClientFormMode = "READ";
+                    M_GetClientList();
 
+                }
+                else
+                {
+                    Functions.MessageShow(dto.Message_Code);
+                    this.strClientFormMode = "READ";
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show(dto.Message_Code, "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                strClientFormMode = "READ";
+                Functions.LogErrorIntoStoredProcedure("M_SaveClient()", "Client Form", ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : " + ex.ToString() + " Please check the [ErrorLog] ");
             }
+
         }
         public frmAddNewClient()
         {
@@ -243,14 +253,24 @@ namespace LEASING.UI.APP.Forms
         }
         private void M_GetClientList()
         {
-            dgvClientList.DataSource = null;
-            using (DataSet dt = ClientContext.GetClientList())
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                dgvClientList.DataSource = null;
+                using (DataSet dt = ClientContext.GetClientList())
                 {
-                    dgvClientList.DataSource = dt.Tables[0];
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        dgvClientList.DataSource = dt.Tables[0];
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_GetClientList()", "Client Form", ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : " + ex.ToString() + " Please check the [ErrorLog] ");
+            }
+           
         }
         private void txtage_KeyPress(object sender, KeyPressEventArgs e)
         {

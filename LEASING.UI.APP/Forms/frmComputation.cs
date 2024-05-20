@@ -323,84 +323,141 @@ namespace LEASING.UI.APP.Forms
         {
 
             lblVat.Text = string.Empty;
-            using (DataSet dt = RateSettingsContext.GetRateSettingsByType(txtProjectType.Text))
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                using (DataSet dt = RateSettingsContext.GetRateSettingsByType(txtProjectType.Text))
                 {
-                    //txtGenVat.Text = Convert.ToString(dt.Tables[0].Rows[0]["GenVat"]);
-                    //txtSecAndMaintenance.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecurityAndMaintenance"]);
-                    lblVat.Text = Convert.ToString(dt.Tables[0].Rows[0]["labelVat"]);
-                    //chkIsWithVat.Checked = Convert.ToBoolean(dt.Tables[0].Rows[0]["IsSecAndMaintVat"]);
-                    //txtSecAndMaintenanceVat.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecurityAndMaintenanceVat"]);
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        //txtGenVat.Text = Convert.ToString(dt.Tables[0].Rows[0]["GenVat"]);
+                        //txtSecAndMaintenance.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecurityAndMaintenance"]);
+                        lblVat.Text = Convert.ToString(dt.Tables[0].Rows[0]["labelVat"]);
+                        //chkIsWithVat.Checked = Convert.ToBoolean(dt.Tables[0].Rows[0]["IsSecAndMaintVat"]);
+                        //txtSecAndMaintenanceVat.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecurityAndMaintenanceVat"]);
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_GetRateSettings()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
+
         }
         private void M_SelectProject()
         {
-
-            ddlProject.DataSource = null;
-            using (DataSet dt = ProjectContext.GetSelectProject())
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                ddlProject.DataSource = null;
+                using (DataSet dt = ProjectContext.GetSelectProject())
                 {
-                    ddlProject.DisplayMember = "ProjectName";
-                    ddlProject.ValueMember = "RecId";
-                    ddlProject.DataSource = dt.Tables[0];
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        ddlProject.DisplayMember = "ProjectName";
+                        ddlProject.ValueMember = "RecId";
+                        ddlProject.DataSource = dt.Tables[0];
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_SelectProject()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
         }
         private void M_SelectUnit()
         {
-
-            ddlUnitNumber.DataSource = null;
-            using (DataSet dt = UnitContext.GetUnitAvailableByProjectId(Convert.ToInt32(ddlProject.SelectedValue)))
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                ddlUnitNumber.DataSource = null;
+                using (DataSet dt = UnitContext.GetUnitAvailableByProjectId(Convert.ToInt32(ddlProject.SelectedValue)))
                 {
-                    ddlUnitNumber.DisplayMember = "UnitNo";
-                    ddlUnitNumber.ValueMember = "RecId";
-                    ddlUnitNumber.DataSource = dt.Tables[0];
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        ddlUnitNumber.DisplayMember = "UnitNo";
+                        ddlUnitNumber.ValueMember = "RecId";
+                        ddlUnitNumber.DataSource = dt.Tables[0];
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_SelectUnit()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
             }
         }
         private void M_GetComputationList()
         {
-
-            dgvList.DataSource = null;
-            using (DataSet dt = ComputationContext.GetUnitComputationList())
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                dgvList.DataSource = null;
+                using (DataSet dt = ComputationContext.GetUnitComputationList())
                 {
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
 
-                    dgvList.DataSource = dt.Tables[0];
+                        dgvList.DataSource = dt.Tables[0];
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_GetComputationList()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
         }
         private void M_GetPostDatedCountMonth()
         {
-            dgvpostdatedcheck.DataSource = null;
-            using (DataSet dt = ComputationContext.GetPostDatedCountMonth(dtpStartDate.Text, dtpFinishDate.Text, txtRental.Text, txtSecAndMaintenance.Text, M_getXMLData()))
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                dgvpostdatedcheck.DataSource = null;
+                using (DataSet dt = ComputationContext.GetPostDatedCountMonth(dtpStartDate.Text, dtpFinishDate.Text, txtRental.Text, txtSecAndMaintenance.Text, M_getXMLData()))
                 {
-                    dgvpostdatedcheck.DataSource = dt.Tables[0];
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        dgvpostdatedcheck.DataSource = dt.Tables[0];
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_GetPostDatedCountMonth()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
         }
         private void M_GetProjecAddress()
         {
 
             txtProjectAddress.Text = string.Empty;
             txtProjectType.Text = string.Empty;
-            using (DataSet dt = ProjectContext.GetProjectAddress(Convert.ToInt32(ddlProject.SelectedValue)))
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                using (DataSet dt = ProjectContext.GetProjectAddress(Convert.ToInt32(ddlProject.SelectedValue)))
                 {
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
 
-                    txtProjectAddress.Text = Convert.ToString(dt.Tables[0].Rows[0]["ProjectAddress"]);
-                    txtProjectType.Text = Convert.ToString(dt.Tables[0].Rows[0]["ProjectType"]);
+                        txtProjectAddress.Text = Convert.ToString(dt.Tables[0].Rows[0]["ProjectAddress"]);
+                        txtProjectType.Text = Convert.ToString(dt.Tables[0].Rows[0]["ProjectType"]);
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_GetProjecAddress()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
         }
         private void M_GetUnitAvaibleById()
         {
@@ -408,17 +465,27 @@ namespace LEASING.UI.APP.Forms
             txtFloorType.Text = string.Empty;
             txtSecAndMaintenance.Text = string.Empty;
             txtRental.Text = string.Empty;
-            using (DataSet dt = UnitContext.GetUnitAvailableById(Convert.ToInt32(ddlUnitNumber.SelectedValue)))
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                using (DataSet dt = UnitContext.GetUnitAvailableById(Convert.ToInt32(ddlUnitNumber.SelectedValue)))
                 {
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
 
 
-                    txtFloorType.Text = Convert.ToString(dt.Tables[0].Rows[0]["FloorType"]);
-                    txtSecAndMaintenance.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecurityAndMaintenance"]);
-                    txtRental.Text = Convert.ToString(dt.Tables[0].Rows[0]["BaseRental"]);
+                        txtFloorType.Text = Convert.ToString(dt.Tables[0].Rows[0]["FloorType"]);
+                        txtSecAndMaintenance.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecurityAndMaintenance"]);
+                        txtRental.Text = Convert.ToString(dt.Tables[0].Rows[0]["BaseRental"]);
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_GetUnitAvaibleById()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
         }
         private void M_GetTotalRental()
         {
@@ -523,37 +590,46 @@ namespace LEASING.UI.APP.Forms
         #endregion
         private void M_Save()
         {
-            ComputationModel dto = new ComputationModel();
-            dto.ProjectId = Convert.ToInt32(ddlProject.SelectedValue);
-            dto.InquiringClient = txtClient.Text;
-            dto.ClientMobile = "";
-            dto.ClientID = ClientId;
-            dto.UnitId = Convert.ToInt32(ddlUnitNumber.SelectedValue);
-            dto.UnitNo = ddlUnitNumber.Text;
-            dto.StatDate = dtpStartDate.Text;
-            dto.FinishDate = dtpFinishDate.Text;
-            dto.Rental = Functions.ConvertStringToDecimal(txtRental.Text);
-            dto.SecAndMaintenance = Functions.ConvertStringToDecimal(txtSecAndMaintenance.Text);
-            dto.TotalRent = Functions.ConvertStringToDecimal(txtTotalRental.Text);
-            dto.SecDeposit = Functions.ConvertStringToDecimal(txtMonthsSecurityDeposit.Text);
-            dto.Total = Functions.ConvertStringToDecimal(txtTotal.Text);
-            dto.EncodedBy = Variables.UserID;
-            dto.XML = M_getXMLData();
-            dto.AdvancePaymentAmount = AdvancePaymentAmount;
-            dto.IsFullPayment = sIsFullPayment;
-            dto.IsRenewal = chkIsRenewal.Checked;
-            dto.Message_Code = ComputationContext.SaveComputation(dto);
-            if (dto.Message_Code.Equals("SUCCESS"))
+            try
             {
-                MessageBox.Show("New Reference has been generated successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                strFormMode = "READ";
-                M_GetComputationList();
+                ComputationModel dto = new ComputationModel();
+                dto.ProjectId = Convert.ToInt32(ddlProject.SelectedValue);
+                dto.InquiringClient = txtClient.Text;
+                dto.ClientMobile = "";
+                dto.ClientID = ClientId;
+                dto.UnitId = Convert.ToInt32(ddlUnitNumber.SelectedValue);
+                dto.UnitNo = ddlUnitNumber.Text;
+                dto.StatDate = dtpStartDate.Text;
+                dto.FinishDate = dtpFinishDate.Text;
+                dto.Rental = Functions.ConvertStringToDecimal(txtRental.Text);
+                dto.SecAndMaintenance = Functions.ConvertStringToDecimal(txtSecAndMaintenance.Text);
+                dto.TotalRent = Functions.ConvertStringToDecimal(txtTotalRental.Text);
+                dto.SecDeposit = Functions.ConvertStringToDecimal(txtMonthsSecurityDeposit.Text);
+                dto.Total = Functions.ConvertStringToDecimal(txtTotal.Text);
+                dto.EncodedBy = Variables.UserID;
+                dto.XML = M_getXMLData();
+                dto.AdvancePaymentAmount = AdvancePaymentAmount;
+                dto.IsFullPayment = sIsFullPayment;
+                dto.IsRenewal = chkIsRenewal.Checked;
+                dto.Message_Code = ComputationContext.SaveComputation(dto);
+                if (dto.Message_Code.Equals("SUCCESS"))
+                {
+                    MessageBox.Show("New Reference has been generated successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    strFormMode = "READ";
+                    M_GetComputationList();
 
+                }
+                else
+                {
+                    MessageBox.Show(dto.Message_Code, "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    strFormMode = "READ";
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show(dto.Message_Code, "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                strFormMode = "READ";
+                Functions.LogErrorIntoStoredProcedure("M_Save()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
             }
         }
         private bool IsMoreThanSixMonths(DateTime date1, DateTime date2)
@@ -733,12 +809,23 @@ namespace LEASING.UI.APP.Forms
                     if (MessageBox.Show("Are you sure you want to Delete this computation?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                     {
 
-                        var result = ComputationContext.DeleteComputation(Convert.ToInt32(dgvList.CurrentRow.Cells["RecId"].Value), Convert.ToInt32(dgvList.CurrentRow.Cells["UnitId"].Value));
-                        if (result.Equals("SUCCESS"))
+                        try
                         {
-                            MessageBox.Show("Reference has been deleted successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            M_GetComputationList();
+                            var result = ComputationContext.DeleteComputation(Convert.ToInt32(dgvList.CurrentRow.Cells["RecId"].Value), Convert.ToInt32(dgvList.CurrentRow.Cells["UnitId"].Value));
+                            if (result.Equals("SUCCESS"))
+                            {
+                                MessageBox.Show("Reference has been deleted successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                M_GetComputationList();
+                            }
                         }
+                        catch (Exception ex)
+                        {
+                            Functions.LogErrorIntoStoredProcedure("Cell Click : ColRemoved", this.Text, ex.Message, DateTime.Now, this);
+
+                            Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                        }
+
+
                     }
                 }
                 else if (this.dgvList.Columns[e.ColumnIndex].Name == "ColGenerate")

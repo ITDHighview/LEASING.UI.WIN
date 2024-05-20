@@ -92,36 +92,56 @@ namespace LEASING.UI.APP.Forms
         }
         private void _getMonthLedgerBrowseByContractIdClientNumber()
         {
-
-            dgvLedgerList.DataSource = null;
-            using (DataSet dt = _contract.GetMonthLedgerBrowseByContractIdClientNumber(this.contractId, this.clientNumber))
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                dgvLedgerList.DataSource = null;
+                using (DataSet dt = _contract.GetMonthLedgerBrowseByContractIdClientNumber(this.contractId, this.clientNumber))
                 {
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
 
-                    dgvLedgerList.DataSource = dt.Tables[0];
+                        dgvLedgerList.DataSource = dt.Tables[0];
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("_getMonthLedgerBrowseByContractIdClientNumber()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
+
         }
         private void _getContractById()
         {
-            using (DataSet dt = _contract.GetContractById(this.contractId))
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                using (DataSet dt = _contract.GetContractById(this.contractId))
                 {
-                    this.contractNumber = Convert.ToString(dt.Tables[0].Rows[0]["RefId"]);
-                    txtClientName.Text = Convert.ToString(dt.Tables[0].Rows[0]["InquiringClient"]);
-                    this.clientNumber = Convert.ToString(dt.Tables[0].Rows[0]["ClientID"]);
-                    dtpFrom.Text = Convert.ToString(dt.Tables[0].Rows[0]["StatDate"]);
-                    dtpTo.Text = Convert.ToString(dt.Tables[0].Rows[0]["FinishDate"]);
-                    this.totalMonthlyRental = Convert.ToInt32(dt.Tables[0].Rows[0]["TotalRent"]);
-                    txtTwoMonAdv.Text = Convert.ToString(dt.Tables[0].Rows[0]["TwoMonAdvance"]);
-                    txtThreeMonSecDep.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecDeposit"]);
-                    txtTotalForPayment.Text = Convert.ToString(dt.Tables[0].Rows[0]["TotalForPayment"]);
-                    txtAmountPaid.Text = Convert.ToString(dt.Tables[0].Rows[0]["TotalPayAMount"]);
-                    txtBalanceAmount.Text = Convert.ToString(dt.Tables[0].Rows[0]["FirtsPaymentBalanceAmount"]);
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        this.contractNumber = Convert.ToString(dt.Tables[0].Rows[0]["RefId"]);
+                        txtClientName.Text = Convert.ToString(dt.Tables[0].Rows[0]["InquiringClient"]);
+                        this.clientNumber = Convert.ToString(dt.Tables[0].Rows[0]["ClientID"]);
+                        dtpFrom.Text = Convert.ToString(dt.Tables[0].Rows[0]["StatDate"]);
+                        dtpTo.Text = Convert.ToString(dt.Tables[0].Rows[0]["FinishDate"]);
+                        this.totalMonthlyRental = Convert.ToInt32(dt.Tables[0].Rows[0]["TotalRent"]);
+                        txtTwoMonAdv.Text = Convert.ToString(dt.Tables[0].Rows[0]["TwoMonAdvance"]);
+                        txtThreeMonSecDep.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecDeposit"]);
+                        txtTotalForPayment.Text = Convert.ToString(dt.Tables[0].Rows[0]["TotalForPayment"]);
+                        txtAmountPaid.Text = Convert.ToString(dt.Tables[0].Rows[0]["TotalPayAMount"]);
+                        txtBalanceAmount.Text = Convert.ToString(dt.Tables[0].Rows[0]["FirtsPaymentBalanceAmount"]);
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("_getContractById()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
         }
         private void _generatePayment()
         {
@@ -170,8 +190,9 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
+                Functions.LogErrorIntoStoredProcedure("_generatePayment()", this.Text, ex.Message, DateTime.Now, this);
 
-                Functions.MessageShow(ex.ToString());
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
             }
 
         }

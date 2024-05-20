@@ -1,4 +1,5 @@
-﻿using LEASING.UI.APP.Context;
+﻿using LEASING.UI.APP.Common;
+using LEASING.UI.APP.Context;
 using LEASING.UI.APP.Models;
 using System;
 using System.Collections.Generic;
@@ -120,30 +121,41 @@ namespace LEASING.UI.APP.Forms
         }
         private void M_SavePurchaseItem()
         {
-            PurchaseItemModel dto = new PurchaseItemModel();
-            dto.ProjectId = RecId;
-            dto.Descriptions = txtDescription.Text;
-            dto.DatePurchase = dtpDatePurchase.Text;
-            dto.UnitAmount = Convert.ToInt32(txtUnitAmount.Text);
-            dto.Amount = txtAmount.Text == string.Empty ? 0 : decimal.Parse(txtAmount.Text);
-            dto.TotalAmount = txtTotal.Text == string.Empty ? 0 : decimal.Parse(txtTotal.Text);
-            dto.Remarks = txtRemarks.Text;
-            dto.UnitNumber = txtUnitNumber.Text;
-            dto.UnitID = UnitID;
-            dto.Message_Code = PurchaseItemContext.SavePurchaseItem(dto);
-            if (dto.Message_Code.Equals("SUCCESS"))
+            try
             {
-                MessageBox.Show("New Purchase Item has been added successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                strPurchaseFormMode = "READ";
-                IsProceed = true;
-                this.Close();
+                PurchaseItemModel dto = new PurchaseItemModel();
+                dto.ProjectId = RecId;
+                dto.Descriptions = txtDescription.Text;
+                dto.DatePurchase = dtpDatePurchase.Text;
+                dto.UnitAmount = Convert.ToInt32(txtUnitAmount.Text);
+                dto.Amount = txtAmount.Text == string.Empty ? 0 : decimal.Parse(txtAmount.Text);
+                dto.TotalAmount = txtTotal.Text == string.Empty ? 0 : decimal.Parse(txtTotal.Text);
+                dto.Remarks = txtRemarks.Text;
+                dto.UnitNumber = txtUnitNumber.Text;
+                dto.UnitID = UnitID;
+                dto.Message_Code = PurchaseItemContext.SavePurchaseItem(dto);
+                if (dto.Message_Code.Equals("SUCCESS"))
+                {
+                    Functions.MessageShow("New Purchase Item has been added successfully !");
+                    strPurchaseFormMode = "READ";
+                    IsProceed = true;
+                    this.Close();
 
+                }
+                else
+                {
+                    Functions.MessageShow(dto.Message_Code);
+                    strPurchaseFormMode = "READ";
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show(dto.Message_Code, "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                strPurchaseFormMode = "READ";
+                Functions.LogErrorIntoStoredProcedure("M_SavePurchaseItem()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
             }
+
+
         }
         public frmAddNewPurchaseItemByProject()
         {

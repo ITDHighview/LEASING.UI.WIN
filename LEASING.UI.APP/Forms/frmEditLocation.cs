@@ -1,4 +1,5 @@
-﻿using LEASING.UI.APP.Context;
+﻿using LEASING.UI.APP.Common;
+using LEASING.UI.APP.Context;
 using LEASING.UI.APP.Models;
 using System;
 using System.Collections.Generic;
@@ -83,34 +84,54 @@ namespace LEASING.UI.APP.Forms
         {
             txtLocDescription.Text = string.Empty;
             txtLocAddress.Text = string.Empty;
-          
-
-            using (DataSet dt = context.GetLocationById(RecId))
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                using (DataSet dt = context.GetLocationById(RecId))
                 {
-                    txtLocDescription.Text = Convert.ToString(dt.Tables[0].Rows[0]["Descriptions"]);
-                    txtLocAddress.Text = Convert.ToString(dt.Tables[0].Rows[0]["LocAddress"]);
-                   
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        txtLocDescription.Text = Convert.ToString(dt.Tables[0].Rows[0]["Descriptions"]);
+                        txtLocAddress.Text = Convert.ToString(dt.Tables[0].Rows[0]["LocAddress"]);
+
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_getLocationById()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
+
+
         }
         private void M_SaveLotion()
         {
-
-            LocationModel dto = new LocationModel();
-            dto.LocId = RecId;
-            dto.Description = txtLocDescription.Text;
-            dto.LocAddress = txtLocAddress.Text;
-            //dto.LocStatus = chkIsActive.Checked;
-            dto.Message_Code = context.EditLocation(dto);
-            if (dto.Message_Code.Equals("SUCCESS"))
+            try
             {
-                IsProceed = true;
-                MessageBox.Show("Location info has been Upated successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                strlocationFormMode = "READ";
-                this.Close();
+                LocationModel dto = new LocationModel();
+                dto.LocId = RecId;
+                dto.Description = txtLocDescription.Text;
+                dto.LocAddress = txtLocAddress.Text;
+                //dto.LocStatus = chkIsActive.Checked;
+                dto.Message_Code = context.EditLocation(dto);
+                if (dto.Message_Code.Equals("SUCCESS"))
+                {
+                    IsProceed = true;
+                    MessageBox.Show("Location info has been Upated successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    strlocationFormMode = "READ";
+                    this.Close();
+                }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_SaveLotion()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
+
 
 
         }

@@ -22,28 +22,48 @@ namespace LEASING.UI.APP.Forms
         private void GetAnnouncement()
         {
             txtAnnouncementMessage.Text = string.Empty;
-            using (DataSet dt = AnnouncementContext.GetAnnouncement())
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                using (DataSet dt = AnnouncementContext.GetAnnouncement())
                 {
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
 
-                    txtAnnouncementMessage.Text = Convert.ToString(dt.Tables[0].Rows[0]["AnnounceMessage"]);
+                        txtAnnouncementMessage.Text = Convert.ToString(dt.Tables[0].Rows[0]["AnnounceMessage"]);
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("GetAnnouncement()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
         }
 
         private void M_UpdateAnnouncement()
         {
 
-            string result = AnnouncementContext.UpdateAnnouncement(txtAnnouncementMessage.Text);
-            if (result.Equals("SUCCESS"))
+            try
             {
-                Functions.MessageShow("Updated!.");
+                string result = AnnouncementContext.UpdateAnnouncement(txtAnnouncementMessage.Text);
+                if (result.Equals("SUCCESS"))
+                {
+                    Functions.MessageShow("Updated!.");
+                }
+                else
+                {
+                    Functions.MessageShow(result);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Functions.MessageShow(result);
+                Functions.LogErrorIntoStoredProcedure("M_UpdateAnnouncement()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
             }
+
 
         }
 

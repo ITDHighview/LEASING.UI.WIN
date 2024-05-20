@@ -1,4 +1,5 @@
-﻿using LEASING.UI.APP.Context;
+﻿using LEASING.UI.APP.Common;
+using LEASING.UI.APP.Context;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -109,65 +110,84 @@ namespace LEASING.UI.APP.Forms
             lblFloorType.Text = string.Empty;
             lblBaseRental.Text = string.Empty;
             txtMonthlyRental.Text = string.Empty;
-
-            using (DataSet dt = InquiryContext.GetContractDetailsInquiry(txtContractId.Text))
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                using (DataSet dt = InquiryContext.GetContractDetailsInquiry(txtContractId.Text))
                 {
-                    ComputationRecid = Convert.ToInt32(dt.Tables[0].Rows[0]["RecId"]);
-                    ClientId = Convert.ToString(dt.Tables[0].Rows[0]["ClientID"]);
-                    txtContractDate.Text = Convert.ToString(dt.Tables[0].Rows[0]["TransactionDate"]);
-                    txtClientName.Text = Convert.ToString(dt.Tables[0].Rows[0]["InquiringClient"]);                   
-                    txtStartDate.Text = Convert.ToString(dt.Tables[0].Rows[0]["StatDate"]);
-                    txtFinishDate.Text = Convert.ToString(dt.Tables[0].Rows[0]["FinishDate"]);
-                    txtMonthlyRental.Text = Convert.ToString(dt.Tables[0].Rows[0]["TotalRent"]);
-                    txtTotalPay.Text = Convert.ToString(dt.Tables[0].Rows[0]["TotalPayAMount"]);
-
-                    pictureBox1.Visible = Convert.ToBoolean(dt.Tables[0].Rows[0]["PaymentStatus"]);
-                    lblPaymentFlag.Visible = Convert.ToBoolean(dt.Tables[0].Rows[0]["PaymentStatus"]);
-
-                    if (!Convert.ToBoolean(dt.Tables[0].Rows[0]["PaymentStatus"]))
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
-                        radLabel2.Text = "CONTRACT PENDING-Payment Waiting";
+                        ComputationRecid = Convert.ToInt32(dt.Tables[0].Rows[0]["RecId"]);
+                        ClientId = Convert.ToString(dt.Tables[0].Rows[0]["ClientID"]);
+                        txtContractDate.Text = Convert.ToString(dt.Tables[0].Rows[0]["TransactionDate"]);
+                        txtClientName.Text = Convert.ToString(dt.Tables[0].Rows[0]["InquiringClient"]);
+                        txtStartDate.Text = Convert.ToString(dt.Tables[0].Rows[0]["StatDate"]);
+                        txtFinishDate.Text = Convert.ToString(dt.Tables[0].Rows[0]["FinishDate"]);
+                        txtMonthlyRental.Text = Convert.ToString(dt.Tables[0].Rows[0]["TotalRent"]);
+                        txtTotalPay.Text = Convert.ToString(dt.Tables[0].Rows[0]["TotalPayAMount"]);
+
+                        pictureBox1.Visible = Convert.ToBoolean(dt.Tables[0].Rows[0]["PaymentStatus"]);
+                        lblPaymentFlag.Visible = Convert.ToBoolean(dt.Tables[0].Rows[0]["PaymentStatus"]);
+
+                        if (!Convert.ToBoolean(dt.Tables[0].Rows[0]["PaymentStatus"]))
+                        {
+                            radLabel2.Text = "CONTRACT PENDING-Payment Waiting";
+                        }
+                        else
+                        {
+                            radLabel2.Text = "";
+                        }
+
+                        pictureBox2.Visible = Convert.ToBoolean(dt.Tables[0].Rows[0]["ContractSignStatus"]);
+                        lblContractSignedFlag.Visible = Convert.ToBoolean(dt.Tables[0].Rows[0]["ContractSignStatus"]);
+
+                        pictureBox3.Visible = Convert.ToBoolean(dt.Tables[0].Rows[0]["MoveinStatus"]);
+                        lblMoveInFlag.Visible = Convert.ToBoolean(dt.Tables[0].Rows[0]["MoveinStatus"]);
+
+                        pictureBox4.Visible = Convert.ToBoolean(dt.Tables[0].Rows[0]["MoveOutStatus"]);
+                        lblMoveOutFlag.Visible = Convert.ToBoolean(dt.Tables[0].Rows[0]["MoveOutStatus"]);
+
+                        pictureBox5.Visible = Convert.ToBoolean(dt.Tables[0].Rows[0]["TerminationStatus"]);
+                        lblTerminateFlag.Visible = Convert.ToBoolean(dt.Tables[0].Rows[0]["TerminationStatus"]);
+
+                        pictureBox6.Visible = Convert.ToBoolean(dt.Tables[0].Rows[0]["ContractStatus"]);
+                        lblContractClosedflag.Visible = Convert.ToBoolean(dt.Tables[0].Rows[0]["ContractStatus"]);
+
+
+                        lblUnitNo.Text = Convert.ToString(dt.Tables[0].Rows[0]["UnitNo"]);
+                        lblProjectName.Text = Convert.ToString(dt.Tables[0].Rows[0]["ProjectName"]);
+                        //lblType.Text = Convert.ToString(dt.Tables[0].Rows[0]["TotalPayAMount"]);
+                        lblFloorType.Text = Convert.ToString(dt.Tables[0].Rows[0]["FloorType"]);
+                        lblBaseRental.Text = Convert.ToString(dt.Tables[0].Rows[0]["Rental"]);
                     }
-                    else
-                    {
-                        radLabel2.Text = "";
-                    }
-
-                    pictureBox2.Visible = Convert.ToBoolean(dt.Tables[0].Rows[0]["ContractSignStatus"]);
-                    lblContractSignedFlag.Visible = Convert.ToBoolean(dt.Tables[0].Rows[0]["ContractSignStatus"]);
-
-                    pictureBox3.Visible = Convert.ToBoolean(dt.Tables[0].Rows[0]["MoveinStatus"]);
-                    lblMoveInFlag.Visible = Convert.ToBoolean(dt.Tables[0].Rows[0]["MoveinStatus"]);
-
-                    pictureBox4.Visible = Convert.ToBoolean(dt.Tables[0].Rows[0]["MoveOutStatus"]);
-                    lblMoveOutFlag.Visible = Convert.ToBoolean(dt.Tables[0].Rows[0]["MoveOutStatus"]);
-
-                    pictureBox5.Visible = Convert.ToBoolean(dt.Tables[0].Rows[0]["TerminationStatus"]);
-                    lblTerminateFlag.Visible = Convert.ToBoolean(dt.Tables[0].Rows[0]["TerminationStatus"]);
-
-                    pictureBox6.Visible = Convert.ToBoolean(dt.Tables[0].Rows[0]["ContractStatus"]);
-                    lblContractClosedflag.Visible = Convert.ToBoolean(dt.Tables[0].Rows[0]["ContractStatus"]);
-
-
-                    lblUnitNo.Text = Convert.ToString(dt.Tables[0].Rows[0]["UnitNo"]);
-                    lblProjectName.Text = Convert.ToString(dt.Tables[0].Rows[0]["ProjectName"]);
-                    //lblType.Text = Convert.ToString(dt.Tables[0].Rows[0]["TotalPayAMount"]);
-                    lblFloorType.Text = Convert.ToString(dt.Tables[0].Rows[0]["FloorType"]);
-                    lblBaseRental.Text = Convert.ToString(dt.Tables[0].Rows[0]["Rental"]);
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_GetContractDetailsInquiry()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
+
         }
         private void M_GetLedgerList()
         {
-            dgvLedgerList.DataSource = null;
-            using (DataSet dt = ComputationContext.GetLedgerBrowseByContractIdClientId(ComputationRecid, ClientId))
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                dgvLedgerList.DataSource = null;
+                using (DataSet dt = ComputationContext.GetLedgerBrowseByContractIdClientId(ComputationRecid, ClientId))
                 {
-                    dgvLedgerList.DataSource = dt.Tables[0];
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        dgvLedgerList.DataSource = dt.Tables[0];
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_GetLedgerList()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
             }
         }
         private void txtContractId_KeyDown(object sender, KeyEventArgs e)

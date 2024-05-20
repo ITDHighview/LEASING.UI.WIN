@@ -150,26 +150,47 @@ namespace LEASING.UI.APP.Forms
         }
         private void _getClientNumber()
         {
-            using (DataSet dt = _client.CheckClientNumberExist(this.txtClienID.Text))
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                using (DataSet dt = _client.CheckClientNumberExist(this.txtClienID.Text))
                 {
-                    this.clientNumber = Convert.ToString(dt.Tables[0].Rows[0]["ClientID"]);
-                    this._Message_Code_ = Convert.ToString(dt.Tables[0].Rows[0]["Message_Code"]);
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        this.clientNumber = Convert.ToString(dt.Tables[0].Rows[0]["ClientID"]);
+                        this._Message_Code_ = Convert.ToString(dt.Tables[0].Rows[0]["Message_Code"]);
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("_getClientNumber()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
+
         }
         private void _getClientFileBrowse()
         {
-            dgvFileList.DataSource = null;
-            using (DataSet dt = _client.GetClientFileBrowseByNumber(this.clientNumber))
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                dgvFileList.DataSource = null;
+                using (DataSet dt = _client.GetClientFileBrowseByNumber(this.clientNumber))
                 {
-                    dgvFileList.AutoGenerateColumns = false;
-                    dgvFileList.DataSource = dt.Tables[0];
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        dgvFileList.AutoGenerateColumns = false;
+                        dgvFileList.DataSource = dt.Tables[0];
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("_getClientFileBrowse()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
         }
         private void _getClientByNumber()
         {
@@ -193,42 +214,77 @@ namespace LEASING.UI.APP.Forms
             this.txtnameofdriver.Text = string.Empty;
             this.txtTinNo.Text = string.Empty;
 
-            using (DataSet dt = _client.GetClientByNumber(this.clientNumber))
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                using (DataSet dt = _client.GetClientByNumber(this.clientNumber))
                 {
-                    this.ddlClientType.Text = Convert.ToString(dt.Tables[0].Rows[0]["ClientType"]);
-                    this.txtname.Text = Convert.ToString(dt.Tables[0].Rows[0]["ClientName"]);
-                    this.txtage.Text = Convert.ToString(dt.Tables[0].Rows[0]["Age"]);
-                    this.txtpostaladdress.Text = Convert.ToString(dt.Tables[0].Rows[0]["PostalAddress"]);
-                    this.dtpdob.Value = Convert.ToDateTime(dt.Tables[0].Rows[0]["DateOfBirth"]);
-                    this.ddlgender.Text = Convert.ToString(dt.Tables[0].Rows[0]["Gender"]);
-                    this.txttelno.Text = Convert.ToString(dt.Tables[0].Rows[0]["TelNumber"]);
-                    this.txtnationality.Text = Convert.ToString(dt.Tables[0].Rows[0]["Nationality"]);
-                    this.txtoccupation.Text = Convert.ToString(dt.Tables[0].Rows[0]["Occupation"]);
-                    this.txtannualincome.Text = Convert.ToString(dt.Tables[0].Rows[0]["AnnualIncome"]);
-                    this.txtnameofemployer.Text = Convert.ToString(dt.Tables[0].Rows[0]["EmployerName"]);
-                    this.txtaddresstelephoneno.Text = Convert.ToString(dt.Tables[0].Rows[0]["EmployerAddress"]);
-                    this.txtspousename.Text = Convert.ToString(dt.Tables[0].Rows[0]["SpouseName"]);
-                    this.txtnameofchildren.Text = Convert.ToString(dt.Tables[0].Rows[0]["ChildrenNames"]);
-                    this.txttotalnoofperson.Text = Convert.ToString(dt.Tables[0].Rows[0]["TotalPersons"]);
-                    this.txtnameofmaid.Text = Convert.ToString(dt.Tables[0].Rows[0]["MaidName"]);
-                    this.txtnoofvisitorperday.Text = Convert.ToString(dt.Tables[0].Rows[0]["VisitorsPerDay"]);
-                    this.txtnameofdriver.Text = Convert.ToString(dt.Tables[0].Rows[0]["DriverName"]);
-                    this.txtTinNo.Text = Convert.ToString(dt.Tables[0].Rows[0]["TIN_No"]);
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        this.ddlClientType.Text = Convert.ToString(dt.Tables[0].Rows[0]["ClientType"]);
+                        this.txtname.Text = Convert.ToString(dt.Tables[0].Rows[0]["ClientName"]);
+                        this.txtage.Text = Convert.ToString(dt.Tables[0].Rows[0]["Age"]);
+                        this.txtpostaladdress.Text = Convert.ToString(dt.Tables[0].Rows[0]["PostalAddress"]);
+                        this.dtpdob.Value = Convert.ToDateTime(dt.Tables[0].Rows[0]["DateOfBirth"]);
+                        this.ddlgender.Text = Convert.ToString(dt.Tables[0].Rows[0]["Gender"]);
+                        this.txttelno.Text = Convert.ToString(dt.Tables[0].Rows[0]["TelNumber"]);
+                        this.txtnationality.Text = Convert.ToString(dt.Tables[0].Rows[0]["Nationality"]);
+                        this.txtoccupation.Text = Convert.ToString(dt.Tables[0].Rows[0]["Occupation"]);
+                        this.txtannualincome.Text = Convert.ToString(dt.Tables[0].Rows[0]["AnnualIncome"]);
+                        this.txtnameofemployer.Text = Convert.ToString(dt.Tables[0].Rows[0]["EmployerName"]);
+                        this.txtaddresstelephoneno.Text = Convert.ToString(dt.Tables[0].Rows[0]["EmployerAddress"]);
+                        this.txtspousename.Text = Convert.ToString(dt.Tables[0].Rows[0]["SpouseName"]);
+                        this.txtnameofchildren.Text = Convert.ToString(dt.Tables[0].Rows[0]["ChildrenNames"]);
+                        this.txttotalnoofperson.Text = Convert.ToString(dt.Tables[0].Rows[0]["TotalPersons"]);
+                        this.txtnameofmaid.Text = Convert.ToString(dt.Tables[0].Rows[0]["MaidName"]);
+                        this.txtnoofvisitorperday.Text = Convert.ToString(dt.Tables[0].Rows[0]["VisitorsPerDay"]);
+                        this.txtnameofdriver.Text = Convert.ToString(dt.Tables[0].Rows[0]["DriverName"]);
+                        this.txtTinNo.Text = Convert.ToString(dt.Tables[0].Rows[0]["TIN_No"]);
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+
+                Functions.MessageShow(ex.ToString());
+            }
+
         }
         private void _getContractByClientNumber()
         {
-            dgvList.DataSource = null;
-            using (DataSet dt = _client.GetReferenceByClientID(this.clientNumber))
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                dgvList.DataSource = null;
+                using (DataSet dt = _client.GetReferenceByClientID(this.clientNumber))
                 {
-                    dgvList.DataSource = dt.Tables[0];
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        dgvList.DataSource = dt.Tables[0];
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("_getContractByClientNumber()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
+        }
+        private void _getClientInfo()
+        {
+            if (string.IsNullOrEmpty(this.txtClienID.Text))
+            {
+                return;
+            }
+            this._getClientNumber();
+            this._getClientByNumber();
+            this._getClientFileBrowse();
+            this._getContractByClientNumber();
+            if (string.IsNullOrEmpty(this._Message_Code_))
+            {
+                return;
+            }
+            Functions.MessageShow(this._Message_Code_);
         }
         private void _getContractProjectTypeReport(string refid)
         {
@@ -266,25 +322,12 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.MessageShow(ex.ToString());
+                Functions.LogErrorIntoStoredProcedure("_getContractProjectTypeReport()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
             }
-           
-        }
-        private void _getClientInfo()
-        {
-            if (string.IsNullOrEmpty(this.txtClienID.Text))
-            {
-                return;
-            }
-            this._getClientNumber();
-            this._getClientByNumber();
-            this._getClientFileBrowse();
-            this._getContractByClientNumber();
-            if (string.IsNullOrEmpty(this._Message_Code_))
-            {
-                return;
-            }
-            Functions.MessageShow(this._Message_Code_);
+
+
         }
         private void txtClienID_KeyDown(object sender, KeyEventArgs e)
         {

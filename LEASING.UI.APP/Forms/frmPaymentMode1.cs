@@ -1,4 +1,5 @@
-﻿using LEASING.UI.APP.Context;
+﻿using LEASING.UI.APP.Common;
+using LEASING.UI.APP.Context;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -112,31 +113,49 @@ namespace LEASING.UI.APP.Forms
         }
         private void M_GetSelectPaymentMode()
         {
-
-            ddlSelectMode.DataSource = null;
-            using (DataSet dt = PaymentContext.GetSelectPaymentMode())
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                ddlSelectMode.DataSource = null;
+                using (DataSet dt = PaymentContext.GetSelectPaymentMode())
                 {
-                    ddlSelectMode.DisplayMember = "Mode";
-                    ddlSelectMode.ValueMember = "ModeType";
-                    ddlSelectMode.DataSource = dt.Tables[0];
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        ddlSelectMode.DisplayMember = "Mode";
+                        ddlSelectMode.ValueMember = "ModeType";
+                        ddlSelectMode.DataSource = dt.Tables[0];
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_GetSelectPaymentMode()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
         }
         private void M_GetSelectBanknName()
         {
-
-            ddlbankName.DataSource = null;
-            using (DataSet dt = PaymentContext.GetBankNameBrowse())
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                ddlbankName.DataSource = null;
+                using (DataSet dt = PaymentContext.GetBankNameBrowse())
                 {
-                    ddlbankName.DisplayMember = "BankName";
-                    ddlbankName.ValueMember = "BankName";
-                    ddlbankName.DataSource = dt.Tables[0];
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        ddlbankName.DisplayMember = "BankName";
+                        ddlbankName.ValueMember = "BankName";
+                        ddlbankName.DataSource = dt.Tables[0];
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_GetSelectBanknName()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
         }
 
 
@@ -170,36 +189,57 @@ namespace LEASING.UI.APP.Forms
         {
            
             bool IsExist = false;
-            using (DataSet dt = PaymentContext.GetCheckOrNumber(txtCompanyORNo.Text.Trim()))
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                using (DataSet dt = PaymentContext.GetCheckOrNumber(txtCompanyORNo.Text.Trim()))
                 {
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
 
-                    IsExist = Convert.ToBoolean(dt.Tables[0].Rows[0]["IsExist"]);
-                }
-                else
-                {
-                    IsExist = false;
+                        IsExist = Convert.ToBoolean(dt.Tables[0].Rows[0]["IsExist"]);
+                    }
+                    else
+                    {
+                        IsExist = false;
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_CheckOrNumber()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
             return IsExist;
         }
         private bool M_CheckPRNumber()
         {
            
             bool IsExist = false;
-            using (DataSet dt = PaymentContext.GetCheckPRNumber(txtPRNo.Text.Trim()))
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                using (DataSet dt = PaymentContext.GetCheckPRNumber(txtPRNo.Text.Trim()))
                 {
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
 
-                    IsExist = Convert.ToBoolean(dt.Tables[0].Rows[0]["IsExist"]);
-                }
-                else
-                {
-                    IsExist = false;
+                        IsExist = Convert.ToBoolean(dt.Tables[0].Rows[0]["IsExist"]);
+                    }
+                    else
+                    {
+                        IsExist = false;
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_CheckPRNumber()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
+
             return IsExist;
         }
 

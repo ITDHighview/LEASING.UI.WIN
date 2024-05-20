@@ -165,57 +165,87 @@ namespace LEASING.UI.APP.Forms
 
         private void M_GetClientFileList()
         {
-            dgvFileList.DataSource = null;
-            using (DataSet dt = ClientContext.GetClientFileBrowseByNumber(ClientID))
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                dgvFileList.DataSource = null;
+                using (DataSet dt = ClientContext.GetClientFileBrowseByNumber(ClientID))
                 {
-                    dgvFileList.AutoGenerateColumns = false;
-                    dgvFileList.DataSource = dt.Tables[0];
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        dgvFileList.AutoGenerateColumns = false;
+                        dgvFileList.DataSource = dt.Tables[0];
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_GetClientFileList()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
+
         }
 
         private void M_GetClientById()
         {
-
-            using (DataSet dt = ClientContext.GetClientByNumber(ClientID))
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                using (DataSet dt = ClientContext.GetClientByNumber(ClientID))
                 {
-                    ddlClientType.Text = Convert.ToString(dt.Tables[0].Rows[0]["ClientType"]);
-                    txtname.Text = Convert.ToString(dt.Tables[0].Rows[0]["ClientName"]);
-                    txtage.Text = Convert.ToString(dt.Tables[0].Rows[0]["Age"]);
-                    txtpostaladdress.Text = Convert.ToString(dt.Tables[0].Rows[0]["PostalAddress"]);
-                    dtpdob.Value = Convert.ToDateTime(dt.Tables[0].Rows[0]["DateOfBirth"]);
-                    ddlgender.Text = Convert.ToString(dt.Tables[0].Rows[0]["Gender"]);
-                    txttelno.Text = Convert.ToString(dt.Tables[0].Rows[0]["TelNumber"]);
-                    txtnationality.Text = Convert.ToString(dt.Tables[0].Rows[0]["Nationality"]);
-                    txtoccupation.Text = Convert.ToString(dt.Tables[0].Rows[0]["Occupation"]);
-                    txtannualincome.Text = Convert.ToString(dt.Tables[0].Rows[0]["AnnualIncome"]);
-                    txtnameofemployer.Text = Convert.ToString(dt.Tables[0].Rows[0]["EmployerName"]);
-                    txtaddresstelephoneno.Text = Convert.ToString(dt.Tables[0].Rows[0]["EmployerAddress"]);
-                    txtspousename.Text = Convert.ToString(dt.Tables[0].Rows[0]["SpouseName"]);
-                    txtnameofchildren.Text = Convert.ToString(dt.Tables[0].Rows[0]["ChildrenNames"]);
-                    txttotalnoofperson.Text = Convert.ToString(dt.Tables[0].Rows[0]["TotalPersons"]);
-                    txtnameofmaid.Text = Convert.ToString(dt.Tables[0].Rows[0]["MaidName"]);
-                    txtnoofvisitorperday.Text = Convert.ToString(dt.Tables[0].Rows[0]["VisitorsPerDay"]);
-                    txtnameofdriver.Text = Convert.ToString(dt.Tables[0].Rows[0]["DriverName"]);
-                    txtTinNo.Text = Convert.ToString(dt.Tables[0].Rows[0]["TIN_No"]);
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        ddlClientType.Text = Convert.ToString(dt.Tables[0].Rows[0]["ClientType"]);
+                        txtname.Text = Convert.ToString(dt.Tables[0].Rows[0]["ClientName"]);
+                        txtage.Text = Convert.ToString(dt.Tables[0].Rows[0]["Age"]);
+                        txtpostaladdress.Text = Convert.ToString(dt.Tables[0].Rows[0]["PostalAddress"]);
+                        dtpdob.Value = Convert.ToDateTime(dt.Tables[0].Rows[0]["DateOfBirth"]);
+                        ddlgender.Text = Convert.ToString(dt.Tables[0].Rows[0]["Gender"]);
+                        txttelno.Text = Convert.ToString(dt.Tables[0].Rows[0]["TelNumber"]);
+                        txtnationality.Text = Convert.ToString(dt.Tables[0].Rows[0]["Nationality"]);
+                        txtoccupation.Text = Convert.ToString(dt.Tables[0].Rows[0]["Occupation"]);
+                        txtannualincome.Text = Convert.ToString(dt.Tables[0].Rows[0]["AnnualIncome"]);
+                        txtnameofemployer.Text = Convert.ToString(dt.Tables[0].Rows[0]["EmployerName"]);
+                        txtaddresstelephoneno.Text = Convert.ToString(dt.Tables[0].Rows[0]["EmployerAddress"]);
+                        txtspousename.Text = Convert.ToString(dt.Tables[0].Rows[0]["SpouseName"]);
+                        txtnameofchildren.Text = Convert.ToString(dt.Tables[0].Rows[0]["ChildrenNames"]);
+                        txttotalnoofperson.Text = Convert.ToString(dt.Tables[0].Rows[0]["TotalPersons"]);
+                        txtnameofmaid.Text = Convert.ToString(dt.Tables[0].Rows[0]["MaidName"]);
+                        txtnoofvisitorperday.Text = Convert.ToString(dt.Tables[0].Rows[0]["VisitorsPerDay"]);
+                        txtnameofdriver.Text = Convert.ToString(dt.Tables[0].Rows[0]["DriverName"]);
+                        txtTinNo.Text = Convert.ToString(dt.Tables[0].Rows[0]["TIN_No"]);
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_GetClientById()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
         }
 
         private void M_GetReferenceByClientID()
         {
-            dgvList.DataSource = null;
-            using (DataSet dt = ClientContext.GetReferenceByClientID(ClientID))
+            try
             {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                dgvList.DataSource = null;
+                using (DataSet dt = ClientContext.GetReferenceByClientID(ClientID))
                 {
-                    dgvList.DataSource = dt.Tables[0];
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        dgvList.DataSource = dt.Tables[0];
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Functions.LogErrorIntoStoredProcedure("M_GetReferenceByClientID()", this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+            }
+
         }
 
         private void btnUploadFile_Click(object sender, EventArgs e)
@@ -323,17 +353,10 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-
-                // Log the exception
-
-
                 // Log the error into the stored procedure
-                Functions.LogErrorIntoStoredProcedure("sp_SaveFile" + "Upload File", "EDIT Client", ex.Message, DateTime.Now, this);
-
-                // Optionally, show a message box to the user
-                MessageBox.Show("An error occurred : " + ex.ToString() + " Please check the log table details.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Functions.LogErrorIntoStoredProcedure("Button Click : btnUploadFile", this.Text, ex.Message, DateTime.Now, this);
+                Functions.MessageShow("An error occurred : " + ex.ToString() + " Please check the [ErrorLog] ");
             }
-
         }
 
         private void frmEditClient_Load(object sender, EventArgs e)
@@ -383,15 +406,24 @@ namespace LEASING.UI.APP.Forms
 
                         if (result == DialogResult.Yes)
                         {
-                            string sfilepath = Convert.ToString(dgvFileList.CurrentRow.Cells["FilePath"].Value);
-                            if (File.Exists(sfilepath))
+                            try
                             {
-                                File.Delete(sfilepath);
+                                string sfilepath = Convert.ToString(dgvFileList.CurrentRow.Cells["FilePath"].Value);
+                                if (File.Exists(sfilepath))
+                                {
+                                    File.Delete(sfilepath);
+                                }
+
+                                ClientContext.DeleteFileFromDatabase(sfilepath);
+                                M_GetClientFileList();
+                            }
+                            catch (Exception ex)
+                            {
+                                Functions.LogErrorIntoStoredProcedure("Cell Click : ColDelete", this.Text, ex.Message, DateTime.Now, this);
+
+                                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
                             }
 
-                            ClientContext.DeleteFileFromDatabase(sfilepath);
-                            M_GetClientFileList();
-                            //labelStatus.Text = "Files deleted successfully!";
                         }
 
                     }
@@ -421,41 +453,50 @@ namespace LEASING.UI.APP.Forms
 
         private void M_SaveClient()
         {
-            ClientModel dto = new ClientModel();
-            dto.ClientID = txtClienID.Text.Trim();
-            dto.ClientType = ddlClientType.Text == "INDIVIDUAL" ? "INDV" : "CORP";
-            dto.ClientName = txtname.Text;
-            dto.Age = txtage.Text == "" ? 0 : Convert.ToInt32(txtage.Text);
-            dto.PostalAddress = txtpostaladdress.Text;
-            dto.DateOfBirth = dtpdob.Text;
-            dto.Gender = ddlgender.Text == "MALE" ? true : false;
-            dto.TelNumber = txttelno.Text;
-            dto.Nationality = txtnationality.Text;
-            dto.Occupation = txtoccupation.Text;
-            dto.AnnualIncome = txtannualincome.Text == string.Empty ? 0 : decimal.Parse(txtannualincome.Text);
-            dto.EmployerName = txtnameofemployer.Text;
-            dto.EmployerAddress = txtaddresstelephoneno.Text;
-            dto.SpouseName = txtspousename.Text;
-            dto.ChildrenNames = txtnameofchildren.Text;
-            dto.TotalPersons = txttotalnoofperson.Text == "" ? 0 : Convert.ToInt32(txttotalnoofperson.Text);
-            dto.MaidName = txtnameofmaid.Text;
-            dto.DriverName = txtnameofdriver.Text;
-            dto.NoVisitorsPerDay = txtnoofvisitorperday.Text == "" ? 0 : Convert.ToInt32(txtnoofvisitorperday.Text);
-            dto.BuildingSecretary = 1;
-            dto.EncodedBy = Variables.UserID; ;
-            dto.TIN_No = txtTinNo.Text.Trim();
-            dto.Message_Code = ClientContext.UpdateClient(dto);
-            if (dto.Message_Code.Equals("SUCCESS"))
+            try
             {
-                MessageBox.Show("Client  has been updated successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                strClientFormMode = "READ";
+                ClientModel dto = new ClientModel();
+                dto.ClientID = txtClienID.Text.Trim();
+                dto.ClientType = ddlClientType.Text == "INDIVIDUAL" ? "INDV" : "CORP";
+                dto.ClientName = txtname.Text;
+                dto.Age = txtage.Text == "" ? 0 : Convert.ToInt32(txtage.Text);
+                dto.PostalAddress = txtpostaladdress.Text;
+                dto.DateOfBirth = dtpdob.Text;
+                dto.Gender = ddlgender.Text == "MALE" ? true : false;
+                dto.TelNumber = txttelno.Text;
+                dto.Nationality = txtnationality.Text;
+                dto.Occupation = txtoccupation.Text;
+                dto.AnnualIncome = txtannualincome.Text == string.Empty ? 0 : decimal.Parse(txtannualincome.Text);
+                dto.EmployerName = txtnameofemployer.Text;
+                dto.EmployerAddress = txtaddresstelephoneno.Text;
+                dto.SpouseName = txtspousename.Text;
+                dto.ChildrenNames = txtnameofchildren.Text;
+                dto.TotalPersons = txttotalnoofperson.Text == "" ? 0 : Convert.ToInt32(txttotalnoofperson.Text);
+                dto.MaidName = txtnameofmaid.Text;
+                dto.DriverName = txtnameofdriver.Text;
+                dto.NoVisitorsPerDay = txtnoofvisitorperday.Text == "" ? 0 : Convert.ToInt32(txtnoofvisitorperday.Text);
+                dto.BuildingSecretary = 1;
+                dto.EncodedBy = Variables.UserID; ;
+                dto.TIN_No = txtTinNo.Text.Trim();
+                dto.Message_Code = ClientContext.UpdateClient(dto);
+                if (dto.Message_Code.Equals("SUCCESS"))
+                {
+                    MessageBox.Show("Client  has been updated successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    strClientFormMode = "READ";
 
 
+                }
+                else
+                {
+                    MessageBox.Show(dto.Message_Code, "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    strClientFormMode = "READ";
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show(dto.Message_Code, "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                strClientFormMode = "READ";
+                Functions.LogErrorIntoStoredProcedure("M_SaveClient()",this.Text, ex.Message, DateTime.Now, this);
+
+                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
             }
         }
         private void btnSave_Click(object sender, EventArgs e)

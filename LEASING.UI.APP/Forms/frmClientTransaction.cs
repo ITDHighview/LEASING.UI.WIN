@@ -610,18 +610,26 @@ namespace LEASING.UI.APP.Forms
                     return;
                 }
 
-                if (this.IsHold == true)
+                if (this.ModeType == "PDC")
                 {
-                    this.SaveTransaction();
-                }
-                else if (this.IsClearPDC == true)
-                {
-                    this.GeneratePayment();
+                    if (this.IsHold == true)
+                    {
+                        this.SaveTransaction();
+                    }
+                    else if (this.IsClearPDC == true)
+                    {
+                        this.GeneratePayment();
+                    }
+                    else
+                    {
+                        this.GeneratePayment();
+                    }
                 }
                 else
                 {
                     this.GeneratePayment();
                 }
+     
             }
 
             #endregion

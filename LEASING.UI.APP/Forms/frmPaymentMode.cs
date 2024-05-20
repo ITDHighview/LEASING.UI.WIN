@@ -360,21 +360,29 @@ namespace LEASING.UI.APP.Forms
 
         private string PaymentMessageInfo()
         {
-            if (chkHold.IsChecked == true)
+            if (this.strPaymentmMode == "PDC")
             {
-                return "Are you sure you want to save this transaction?.";
+                if (chkHold.IsChecked == true)
+                {
+                    return "Are you sure you want to save this transaction?.";
+                }
+                else if (chkHold.IsChecked == false && chkClearPDC.IsChecked == true)
+                {
+                    if (this.IsPaymentforPartial())
+                    {
+                        return "Due amount is greater than  Recieve amount, would you like to pay as Partial payment?.";
+                    }
+                    else
+                    {
+                        return "Are you sure you want to proceed the payment?.";
+                    }
+                }
             }
-            else if (chkHold.IsChecked == false && chkClearPDC.IsChecked == true)
+            else
             {
-                if (this.IsPaymentforPartial())
-                {
-                    return "Due amount is greater than  Recieve amount, would you like to pay as Partial payment?.";
-                }
-                else
-                {
-                    return "Are you sure you want to proceed the payment?.";
-                }
+                return "Are you sure you want to proceed the payment?.";
             }
+           
 
             return "";
         }

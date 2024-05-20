@@ -870,6 +870,8 @@ namespace LEASING.UI.APP.Forms
                     e.CellElement.DrawFill = true;
                     e.CellElement.GradientStyle = GradientStyles.Solid;
                     e.CellElement.BackColor = Color.Green;
+                    this.dgvLedgerList.Rows[e.RowIndex].Cells["ColCheck"].ReadOnly = true;
+                    //this.dgvLedgerList.Rows[e.RowIndex].Cells["ColCheck"].Style.DrawFill = true;
                 }
                 else if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "PENDING")
                 {
@@ -891,7 +893,9 @@ namespace LEASING.UI.APP.Forms
                     e.CellElement.DrawFill = true;
                     e.CellElement.GradientStyle = GradientStyles.Solid;
                     e.CellElement.BackColor = Color.Red;
+                
                 }
+
                 if (e.CellElement.ColumnInfo is GridViewCommandColumn && !(e.CellElement.RowElement is GridTableHeaderRowElement))
                 {
                     GridViewCommandColumn column = (GridViewCommandColumn)e.CellElement.ColumnInfo;
@@ -1034,7 +1038,7 @@ namespace LEASING.UI.APP.Forms
                             element.Enabled = true;
                         }
                     }
-                    //if (column.Name == "ColCheck" && e.RowIndex >= 0)
+                    //if (column.Name == "ColCheck")
                     //{
                     //    if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "PAID")
                     //    {
@@ -1043,10 +1047,15 @@ namespace LEASING.UI.APP.Forms
                     //        //element.Image = Properties.Resources.bookmark_16;
                     //        //element.ToolTipText = "Click to Hold";
 
-                    //        e.CellElement.Visibility = ElementVisibility.Hidden;
+                    //        //e.CellElement.Visibility = ElementVisibility.Hidden;
+                    //        e.CellElement.
+                    //    }
+                    //    else
+                    //    {
+                    //        //e.CellElement.Enabled = true;
                     //    }
                     //}
-                    //if (column.Name == "ColCheck" && e.RowIndex >= 0)
+                    //if (column.Name == "ColCheck")
                     //{
                     //    if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "HOLD")
                     //    {

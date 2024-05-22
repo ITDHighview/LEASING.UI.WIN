@@ -27,11 +27,11 @@ AS
 
                 [dbo].[fn_GetDateFullName]([tblUnitReference].[StatDate])                                                                                       AS [YearStarting],
                 [dbo].[fn_GetDateFullName]([tblUnitReference].[FinishDate])                                                                                     AS [YearEnding],
-                UPPER([dbo].[fnNumberToWordsWithDecimal]([tblUnitReference].[Unit_BaseRentalWithVatAmount])) + '('
+                [dbo].[fnNumberToWordsWithDecimal]([tblUnitReference].[Unit_BaseRentalWithVatAmount]) + '('
                 + CAST([tblUnitReference].[Unit_BaseRentalWithVatAmount] AS VARCHAR(100)) + ')'                                                                 AS [RentalForLeased_AmountInWords],
-                UPPER([dbo].[fnNumberToWordsWithDecimal]([tblUnitReference].[Unit_SecAndMainWithVatAmount])) + '('
+                [dbo].[fnNumberToWordsWithDecimal]([tblUnitReference].[Unit_SecAndMainWithVatAmount]) + '('
                 + CAST([tblUnitReference].[Unit_SecAndMainWithVatAmount] AS VARCHAR(100)) + ')'                                                                 AS [AsShareInSecAndMaint_AmountInWords],
-                UPPER([dbo].[fnNumberToWordsWithDecimal]([tblUnitReference].[TotalRent])) + '('
+                [dbo].[fnNumberToWordsWithDecimal]([tblUnitReference].[TotalRent]) + '('
                 + CAST([tblUnitReference].[TotalRent] AS VARCHAR(100)) + ')'                                                                                    AS [TotalAmountInYear_AmountInWords],
                 CAST([tblUnitReference].[GenVat] AS VARCHAR(100)) + ' %'                                                                                        AS [VatPercentage_WithWords],
                 [tblClientMstr].[ClientName]                                                                                                                    AS [Lessee],

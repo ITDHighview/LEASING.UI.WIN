@@ -14,9 +14,10 @@ namespace LEASING.UI.APP.Forms
 {
     public partial class frmAnnouncement : Form
     {
-        AnnouncementContext AnnouncementContext = new AnnouncementContext();
+      private  AnnouncementContext _announcementContext;
         public frmAnnouncement()
         {
+            _announcementContext = new AnnouncementContext();
             InitializeComponent();
         }
         private void GetAnnouncement()
@@ -24,30 +25,25 @@ namespace LEASING.UI.APP.Forms
             txtAnnouncementMessage.Text = string.Empty;
             try
             {
-                using (DataSet dt = AnnouncementContext.GetAnnouncement())
+                using (DataSet dt = _announcementContext.GetAnnouncement())
                 {
                     if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
-
                         txtAnnouncementMessage.Text = Convert.ToString(dt.Tables[0].Rows[0]["AnnounceMessage"]);
                     }
                 }
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("GetAnnouncement()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("GetAnnouncement()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("GetAnnouncement()", ex.ToString());
             }
-
         }
-
         private void M_UpdateAnnouncement()
         {
-
             try
             {
-                string result = AnnouncementContext.UpdateAnnouncement(txtAnnouncementMessage.Text);
+                string result = _announcementContext.UpdateAnnouncement(txtAnnouncementMessage.Text);
                 if (result.Equals("SUCCESS"))
                 {
                     Functions.MessageShow("Updated!.");
@@ -59,19 +55,14 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_UpdateAnnouncement()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_UpdateAnnouncement()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_UpdateAnnouncement()", ex.ToString());
             }
-
-
         }
-
         private void btnSave_Click(object sender, EventArgs e)
         {
             M_UpdateAnnouncement();
         }
-
         private void frmAnnouncement_Load(object sender, EventArgs e)
         {
             GetAnnouncement();

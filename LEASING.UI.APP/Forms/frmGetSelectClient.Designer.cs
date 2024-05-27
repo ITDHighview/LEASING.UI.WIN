@@ -51,6 +51,7 @@
             this.radGroupBox1.Size = new System.Drawing.Size(444, 408);
             this.radGroupBox1.TabIndex = 0;
             this.radGroupBox1.Text = "Client List";
+            this.radGroupBox1.ThemeName = "Office2007Silver";
             // 
             // dgvList
             // 

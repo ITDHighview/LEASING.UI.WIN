@@ -141,12 +141,9 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetSelectPaymentMode()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_GetSelectPaymentMode()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_GetSelectPaymentMode()", ex.ToString());
             }
-
-
         }
         private void M_GetSelectBanknName()
         {
@@ -165,9 +162,8 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetSelectBanknName()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_GetSelectBanknName()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_GetSelectBanknName()", ex.ToString());
             }
         }
 
@@ -187,11 +183,9 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetLedgerListOnQue()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_GetLedgerListOnQue()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_GetLedgerListOnQue()", ex.ToString());
             }
-
         }
         private void M_GetLedgerListOnQueTotalAMount()
         {
@@ -210,14 +204,10 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetLedgerListOnQueTotalAMount()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_GetLedgerListOnQueTotalAMount()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_GetLedgerListOnQueTotalAMount()", ex.ToString());
             }
-
         }
-
-
         private bool IsPassValidation()
         {
             if (!chkHold.IsChecked)
@@ -273,12 +263,9 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("IsORExist()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("IsORExist()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("IsORExist()", ex.ToString());
             }
-
-
             return false;
         }
         private bool IsPRExist()
@@ -297,11 +284,9 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("IsPRExist()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("IsPRExist()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("IsPRExist()", ex.ToString());
             }
-
             return false;
         }
         private void OnInitialized()

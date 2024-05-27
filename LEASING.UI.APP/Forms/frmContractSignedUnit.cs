@@ -16,13 +16,12 @@ namespace LEASING.UI.APP.Forms
     {
         PaymentContext PaymentContext = new PaymentContext();
         ClientContext ClientContext = new ClientContext();
-        public bool IsContractSigned { get; set; } = true;
-        public string ReferenceId { get; set; } = string.Empty;
         public frmContractSignedUnit()
         {
             InitializeComponent();
         }
-
+        public bool IsContractSigned { get; set; } = true;
+        public string ReferenceId { get; set; } = string.Empty;
         private void M_GetForContractSignedUnitList()
         {
             try
@@ -38,24 +37,18 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetForContractSignedUnitList()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_GetForContractSignedUnitList()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_GetForContractSignedUnitList()", ex.ToString());
             }
-
-
         }
-
         private void frmContractSignedUnit_Load(object sender, EventArgs e)
         {
             M_GetForContractSignedUnitList();
         }
-
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             M_GetForContractSignedUnitList();
         }
-
         private void dgvList_CellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -88,14 +81,10 @@ namespace LEASING.UI.APP.Forms
                         }
                         catch (Exception ex)
                         {
-                            Functions.LogErrorIntoStoredProcedure("Cell Click : ColByPass", this.Text, ex.Message, DateTime.Now, this);
-
-                            Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                            Functions.LogError("Cell Click : ColByPass", this.Text, ex.ToString(), DateTime.Now, this);
+                            Functions.ErrorShow("Cell Click : ColByPass", ex.ToString());
                         }
-
-
                     }
-
                 }
                 else if (this.dgvList.Columns[e.ColumnIndex].Name == "ColView")
                 {

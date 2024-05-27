@@ -37,9 +37,8 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetForMoveOutUnitList()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_GetForMoveOutUnitList()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_GetForMoveOutUnitList()", ex.ToString());
             }
 
         }
@@ -68,9 +67,8 @@ namespace LEASING.UI.APP.Forms
                         }
                         catch (Exception ex)
                         {
-                            Functions.LogErrorIntoStoredProcedure("Cell Click : ColApproved", this.Text, ex.Message, DateTime.Now, this);
-
-                            Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                            Functions.LogError("Cell Click : ColApproved", this.Text, ex.ToString(), DateTime.Now, this);
+                            Functions.ErrorShow("Cell Click : ColApproved", ex.ToString());
                         }
 
                     }

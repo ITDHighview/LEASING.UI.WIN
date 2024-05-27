@@ -18,7 +18,6 @@ namespace LEASING.UI.APP.Forms
         LocationContext context = new LocationContext();
         public int RecId { get; set; }
         public bool IsProceed = false;
-
         private string _strlocationFormMode;
         public string strlocationFormMode
         {
@@ -37,10 +36,6 @@ namespace LEASING.UI.APP.Forms
                         btnEdit.Enabled = false;
                         txtLocDescription.Enabled = true;
                         txtLocAddress.Enabled = true;
-
-
-                        //txtLocDescription.Text = string.Empty;
-                        //txtLocAddress.Text = string.Empty;
                         break;
                     case "READ":
                         btnUndo.Enabled = false;
@@ -48,12 +43,7 @@ namespace LEASING.UI.APP.Forms
                         btnEdit.Enabled = true;
                         txtLocDescription.Enabled = false;
                         txtLocAddress.Enabled = false;
-
-
-                        //txtLocDescription.Text = string.Empty;
-                        //txtLocAddress.Text = string.Empty;
                         break;
-
                     default:
                         break;
                 }
@@ -79,7 +69,6 @@ namespace LEASING.UI.APP.Forms
 
             return true;
         }
-
         private void M_getLocationById()
         {
             txtLocDescription.Text = string.Empty;
@@ -98,13 +87,9 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_getLocationById()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_getLocationById()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_getLocationById()", ex.ToString());
             }
-
-
-
         }
         private void M_SaveLotion()
         {
@@ -126,16 +111,10 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_SaveLotion()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_SaveLotion()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_SaveLotion()", ex.ToString());
             }
-
-
-
-
         }
-
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (strlocationFormMode == "EDIT")
@@ -155,17 +134,12 @@ namespace LEASING.UI.APP.Forms
             {
                 MessageBox.Show("Please Click Edit", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-    
-
         }
-
         private void frmEditLocation_Load(object sender, EventArgs e)
         {
             strlocationFormMode = "READ";
             M_getLocationById();
         }
-
-
         private void btnSave_Click_1(object sender, EventArgs e)
         {
             if (RecId > 0)
@@ -179,12 +153,10 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-
         private void btnUndo_Click(object sender, EventArgs e)
         {
             strlocationFormMode = "READ";
         }
-
         private void btnEdit_Click(object sender, EventArgs e)
         {
             strlocationFormMode = "EDIT";

@@ -301,12 +301,9 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("GeneratePayment()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("GeneratePayment()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("GeneratePayment()", ex.ToString());
             }
-
-
         }
         private bool IsComputationValid()
         {
@@ -340,12 +337,9 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("getLedgerBrowseByContractIdClientId()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("getLedgerBrowseByContractIdClientId()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("getLedgerBrowseByContractIdClientId()", ex.ToString());
             }
-
-
         }
         private void getContractBrowseByClientId()
         {
@@ -363,11 +357,9 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("getContractBrowseByClientId()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("getContractBrowseByClientId()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("getContractBrowseByClientId()", ex.ToString());
             }
-
         }
         private void getPaymentBrowseByContractNumber()
         {
@@ -385,14 +377,10 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("getPaymentBrowseByContractNumber()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("getPaymentBrowseByContractNumber()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("getPaymentBrowseByContractNumber()", ex.ToString());
             }
-
-
         }
-
         private void getContractById()
         {
             if (this._contractId <= 0)
@@ -419,11 +407,9 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("getContractById()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("getContractById()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("getContractById()", ex.ToString());
             }
-
         }
         private void checkPaymentProgressStatus()
         {
@@ -453,11 +439,9 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("checkPaymentProgressStatus()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("checkPaymentProgressStatus()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("checkPaymentProgressStatus()", ex.ToString());
             }
-
         }
         private int CountGridCheckBoxCheck()
         {
@@ -615,11 +599,9 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("TerminateCOntract()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("TerminateCOntract()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("TerminateCOntract()", ex.ToString());
             }
-
 
             this.getContractById();
             this.checkPaymentProgressStatus();
@@ -651,11 +633,9 @@ namespace LEASING.UI.APP.Forms
                 }
                 catch (Exception ex)
                 {
-                    Functions.LogErrorIntoStoredProcedure("SaveTransaction()", this.Text, ex.Message, DateTime.Now, this);
-
-                    Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                    Functions.LogError("SaveTransaction()", this.Text, ex.ToString(), DateTime.Now, this);
+                    Functions.ErrorShow("SaveTransaction()", ex.ToString());
                 }
-
             }
         }
         private void SavePayment()
@@ -765,11 +745,9 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("CloseContract()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("CloseContract()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("CloseContract()", ex.ToString());
             }
-
 
             this.getPaymentBrowseByContractNumber();
             this.getContractById();
@@ -829,8 +807,6 @@ namespace LEASING.UI.APP.Forms
             this.getContractById();
             this.checkPaymentProgressStatus();
             this.getPaymentBrowseByContractNumber();
-
-
         }
         private void btnCloseContract_Click(object sender, EventArgs e)
         {
@@ -894,20 +870,28 @@ namespace LEASING.UI.APP.Forms
                     {
                         if (MessageBox.Show("Are you sure you want to hold to this payment?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                         {
-                            string result = _payment.HoldPayment(this._contractNumber, Convert.ToInt32(dgvLedgerList.CurrentRow.Cells["Recid"].Value));
-                            if (!string.IsNullOrEmpty(result))
+                            try
                             {
-                                if (result.Equals("SUCCESS"))
+                                string result = _payment.HoldPayment(this._contractNumber, Convert.ToInt32(dgvLedgerList.CurrentRow.Cells["Recid"].Value));
+                                if (!string.IsNullOrEmpty(result))
                                 {
-                                    MessageBox.Show("PAYMENT HOLD SUCCESS", "System Message", MessageBoxButtons.OK);
-                                    this.checkPaymentProgressStatus();
-                                    this.getLedgerBrowseByContractIdClientId();
-                                    this.getPaymentBrowseByContractNumber();
+                                    if (result.Equals("SUCCESS"))
+                                    {
+                                        MessageBox.Show("PAYMENT HOLD SUCCESS", "System Message", MessageBoxButtons.OK);
+                                        this.checkPaymentProgressStatus();
+                                        this.getLedgerBrowseByContractIdClientId();
+                                        this.getPaymentBrowseByContractNumber();
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show(result, "System Message", MessageBoxButtons.OK);
+                                    }
                                 }
-                                else
-                                {
-                                    MessageBox.Show(result, "System Message", MessageBoxButtons.OK);
-                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                Functions.LogError("Cell Click : ColHold", this.Text, ex.ToString(), DateTime.Now, this);
+                                Functions.ErrorShow("Cell Click : ColHold", ex.ToString());
                             }
                         }
                     }
@@ -937,7 +921,6 @@ namespace LEASING.UI.APP.Forms
                         }
                         frmRecieptSelection.ShowDialog();
                     }
-
                 }
             }
         }

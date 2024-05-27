@@ -52,6 +52,8 @@
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.btnUndo = new System.Windows.Forms.ToolStripButton();
             this.btnLogs = new System.Windows.Forms.ToolStripButton();
+            this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
             this.radGroupBox1.SuspendLayout();
@@ -100,9 +102,11 @@
             this.radGroupBox1.Size = new System.Drawing.Size(584, 151);
             this.radGroupBox1.TabIndex = 2;
             this.radGroupBox1.Text = "RESIDENTIAL RATE SETTINGS";
+            this.radGroupBox1.ThemeName = "Office2007Silver";
             // 
             // tableLayoutPanel1
             // 
+            this.tableLayoutPanel1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.tableLayoutPanel1.ColumnCount = 4;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 218F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 104F));
@@ -150,9 +154,10 @@
             this.txtGenVat.Location = new System.Drawing.Point(221, 3);
             this.txtGenVat.MaxLength = 10;
             this.txtGenVat.Name = "txtGenVat";
-            this.txtGenVat.Size = new System.Drawing.Size(98, 19);
+            this.txtGenVat.Size = new System.Drawing.Size(98, 20);
             this.txtGenVat.TabIndex = 0;
             this.txtGenVat.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtGenVat.ThemeName = "Office2007Silver";
             this.txtGenVat.TextChanged += new System.EventHandler(this.txtGenVat_TextChanged);
             this.txtGenVat.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtGenVat_KeyPress);
             // 
@@ -184,6 +189,7 @@
             this.txtSecAndMaintenanceWithVat.Size = new System.Drawing.Size(98, 20);
             this.txtSecAndMaintenanceWithVat.TabIndex = 0;
             this.txtSecAndMaintenanceWithVat.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtSecAndMaintenanceWithVat.ThemeName = "Office2007Silver";
             this.txtSecAndMaintenanceWithVat.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSecAndMaintenanceWithVat_KeyPress);
             // 
             // radLabel5
@@ -211,9 +217,10 @@
             // 
             this.txtSecAndMaintenance.Location = new System.Drawing.Point(221, 28);
             this.txtSecAndMaintenance.Name = "txtSecAndMaintenance";
-            this.txtSecAndMaintenance.Size = new System.Drawing.Size(98, 19);
+            this.txtSecAndMaintenance.Size = new System.Drawing.Size(98, 20);
             this.txtSecAndMaintenance.TabIndex = 0;
             this.txtSecAndMaintenance.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtSecAndMaintenance.ThemeName = "Office2007Silver";
             this.txtSecAndMaintenance.TextChanged += new System.EventHandler(this.txtSecAndMaintenance_TextChanged);
             this.txtSecAndMaintenance.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSecAndMaintenance_KeyPress);
             // 
@@ -232,9 +239,10 @@
             // 
             this.txtVatAmount.Location = new System.Drawing.Point(221, 53);
             this.txtVatAmount.Name = "txtVatAmount";
-            this.txtVatAmount.Size = new System.Drawing.Size(98, 19);
+            this.txtVatAmount.Size = new System.Drawing.Size(98, 20);
             this.txtVatAmount.TabIndex = 0;
             this.txtVatAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtVatAmount.ThemeName = "Office2007Silver";
             this.txtVatAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtVatAmount_KeyPress);
             // 
             // radLabel9
@@ -275,6 +283,7 @@
             this.txtPentalty.Size = new System.Drawing.Size(98, 20);
             this.txtPentalty.TabIndex = 0;
             this.txtPentalty.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtPentalty.ThemeName = "Office2007Silver";
             this.txtPentalty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPentalty_KeyPress);
             // 
             // radLabel8
@@ -292,6 +301,7 @@
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnEdit,
+            this.toolStripSeparator1,
             this.btnSave,
             this.toolStripSeparator,
             this.btnUndo,
@@ -342,6 +352,11 @@
             this.btnLogs.Name = "btnLogs";
             this.btnLogs.Size = new System.Drawing.Size(52, 22);
             this.btnLogs.Text = "Logs";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // frmResidentialRateSettings
             // 
@@ -408,5 +423,7 @@
         private Telerik.WinControls.UI.RadLabel radLabel7;
         private Telerik.WinControls.UI.RadTextBox txtPentalty;
         private Telerik.WinControls.UI.RadLabel radLabel8;
+        private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }

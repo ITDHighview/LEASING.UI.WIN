@@ -32,23 +32,24 @@
             this.btnOk = new Telerik.WinControls.UI.RadButton();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.txtnotes = new Telerik.WinControls.UI.RadTextBox();
-            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
-            this.txtfilename = new Telerik.WinControls.UI.RadTextBox();
             this.btnReference = new Telerik.WinControls.UI.RadButton();
-            this.txtReference = new Telerik.WinControls.UI.RadTextBox();
             this.txtClientID = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
+            this.txtfilename = new Telerik.WinControls.UI.RadTextBox();
+            this.txtReference = new Telerik.WinControls.UI.RadTextBox();
             this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
+            this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnOk)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtnotes)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtfilename)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnReference)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtReference)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtClientID)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtfilename)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtReference)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
             this.radGroupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -90,6 +91,7 @@
             this.btnOk.Size = new System.Drawing.Size(112, 21);
             this.btnOk.TabIndex = 3;
             this.btnOk.Text = "ok";
+            this.btnOk.ThemeName = "Office2007Silver";
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // radLabel2
@@ -108,8 +110,38 @@
             this.txtnotes.Location = new System.Drawing.Point(100, 78);
             this.txtnotes.Name = "txtnotes";
             this.txtnotes.NullText = "Type here...";
-            this.txtnotes.Size = new System.Drawing.Size(341, 19);
+            this.txtnotes.Size = new System.Drawing.Size(341, 20);
             this.txtnotes.TabIndex = 2;
+            this.txtnotes.ThemeName = "Office2007Silver";
+            // 
+            // btnReference
+            // 
+            this.btnReference.Image = global::LEASING.UI.APP.Properties.Resources.magnifier;
+            this.btnReference.Location = new System.Drawing.Point(325, 3);
+            this.btnReference.Name = "btnReference";
+            this.btnReference.Size = new System.Drawing.Size(116, 19);
+            this.btnReference.TabIndex = 5;
+            this.btnReference.Text = "Reference List";
+            this.btnReference.ThemeName = "Office2007Silver";
+            this.btnReference.Click += new System.EventHandler(this.btnReference_Click);
+            // 
+            // txtClientID
+            // 
+            this.txtClientID.Location = new System.Drawing.Point(100, 3);
+            this.txtClientID.Name = "txtClientID";
+            this.txtClientID.Size = new System.Drawing.Size(112, 20);
+            this.txtClientID.TabIndex = 2;
+            this.txtClientID.ThemeName = "Office2007Silver";
+            // 
+            // radLabel3
+            // 
+            this.radLabel3.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.radLabel3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel3.Location = new System.Drawing.Point(27, 3);
+            this.radLabel3.Name = "radLabel3";
+            this.radLabel3.Size = new System.Drawing.Size(67, 19);
+            this.radLabel3.TabIndex = 1;
+            this.radLabel3.Text = "Client ID  :";
             // 
             // radLabel1
             // 
@@ -129,16 +161,7 @@
             this.txtfilename.NullText = "Type here...";
             this.txtfilename.Size = new System.Drawing.Size(219, 20);
             this.txtfilename.TabIndex = 2;
-            // 
-            // btnReference
-            // 
-            this.btnReference.Image = global::LEASING.UI.APP.Properties.Resources.magnifier;
-            this.btnReference.Location = new System.Drawing.Point(325, 3);
-            this.btnReference.Name = "btnReference";
-            this.btnReference.Size = new System.Drawing.Size(116, 19);
-            this.btnReference.TabIndex = 5;
-            this.btnReference.Text = "Reference List";
-            this.btnReference.Click += new System.EventHandler(this.btnReference_Click);
+            this.txtfilename.ThemeName = "Office2007Silver";
             // 
             // txtReference
             // 
@@ -146,23 +169,7 @@
             this.txtReference.Name = "txtReference";
             this.txtReference.Size = new System.Drawing.Size(116, 20);
             this.txtReference.TabIndex = 2;
-            // 
-            // txtClientID
-            // 
-            this.txtClientID.Location = new System.Drawing.Point(100, 3);
-            this.txtClientID.Name = "txtClientID";
-            this.txtClientID.Size = new System.Drawing.Size(112, 19);
-            this.txtClientID.TabIndex = 2;
-            // 
-            // radLabel3
-            // 
-            this.radLabel3.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.radLabel3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel3.Location = new System.Drawing.Point(27, 3);
-            this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(67, 19);
-            this.radLabel3.TabIndex = 1;
-            this.radLabel3.Text = "Client ID  :";
+            this.txtReference.ThemeName = "Office2007Silver";
             // 
             // radGroupBox1
             // 
@@ -175,6 +182,7 @@
             this.radGroupBox1.Size = new System.Drawing.Size(452, 149);
             this.radGroupBox1.TabIndex = 4;
             this.radGroupBox1.Text = "FILE DETAILS";
+            this.radGroupBox1.ThemeName = "Office2007Silver";
             // 
             // frmUploadFile
             // 
@@ -193,12 +201,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnOk)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtnotes)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtfilename)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnReference)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtReference)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtClientID)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtfilename)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtReference)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).EndInit();
             this.radGroupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -218,5 +226,6 @@
         public Telerik.WinControls.UI.RadTextBox txtReference;
         public Telerik.WinControls.UI.RadTextBox txtClientID;
         private Telerik.WinControls.UI.RadLabel radLabel3;
+        private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme1;
     }
 }

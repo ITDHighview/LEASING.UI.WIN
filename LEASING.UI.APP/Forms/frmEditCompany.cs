@@ -16,12 +16,12 @@ namespace LEASING.UI.APP.Forms
     public partial class frmEditCompany : Form
     {
         CompanyContext CompanyContext = new CompanyContext();
-        public int Recid { get; set; } = 0;
-        public bool IsProceed = false;
         public frmEditCompany()
         {
             InitializeComponent();
         }
+        public int Recid { get; set; } = 0;
+        public bool IsProceed = false;  
         private string _strFormMode;
         public string strFormMode
         {
@@ -58,8 +58,6 @@ namespace LEASING.UI.APP.Forms
             txtCompanyAddress.Enabled = true;
             txtCompanyTINNo.Enabled = true;
             txtCompanyOwnerName.Enabled = true;
-
-
         }
         private void DisableFields()
         {
@@ -67,8 +65,6 @@ namespace LEASING.UI.APP.Forms
             txtCompanyAddress.Enabled = false;
             txtCompanyTINNo.Enabled = false;
             txtCompanyOwnerName.Enabled = false;
-
-
         }
         private bool IsValid()
         {
@@ -105,12 +101,9 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetCompanyList()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_GetCompanyList()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_GetCompanyList()", ex.ToString());
             }
-
-
         }
         private void M_SaveCompany()
         {
@@ -137,14 +130,10 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_SaveCompany()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_SaveCompany()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_SaveCompany()", ex.ToString());
             }
-
         }
-
-
         private void frmAddNewProject_Load(object sender, EventArgs e)
         {
             strFormMode = "READ";
@@ -152,7 +141,6 @@ namespace LEASING.UI.APP.Forms
             M_GetCompanyList();
 
         }
-
         private void btnSaveProject_Click(object sender, EventArgs e)
         {
             if (strFormMode == "NEW")
@@ -168,16 +156,13 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-
         private void btnUndoProject_Click(object sender, EventArgs e)
         {
             strFormMode = "READ";
         }
-
         private void btnNewProject_Click(object sender, EventArgs e)
         {
             strFormMode = "NEW";
         }
-
     }
 }

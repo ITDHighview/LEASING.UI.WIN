@@ -36,12 +36,9 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetForMoveInParkingList()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_GetForMoveInParkingList()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_GetForMoveInParkingList()", ex.ToString());
             }
-
-
         }
 
         private void dgvList_CellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
@@ -67,9 +64,8 @@ namespace LEASING.UI.APP.Forms
                         }
                         catch (Exception ex)
                         {
-                            Functions.LogErrorIntoStoredProcedure("Cell Click : ColApproved", this.Text, ex.Message, DateTime.Now, this);
-
-                            Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                            Functions.LogError("Cell Click : ColApproved", this.Text, ex.ToString(), DateTime.Now, this);
+                            Functions.ErrorShow("Cell Click : ColApproved", ex.ToString());
                         }
                     }
                 }

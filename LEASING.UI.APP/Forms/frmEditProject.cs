@@ -23,7 +23,6 @@ namespace LEASING.UI.APP.Forms
         bool isResidential = false;
         public int Recid { get; set; }
         public bool IsProceed = false;
-
         private string _strProjectFormMode;
         public string strProjectFormMode
         {
@@ -56,8 +55,6 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-
-
         private void EnableFields()
         {
             txtProjectName.Enabled = true;
@@ -76,7 +73,6 @@ namespace LEASING.UI.APP.Forms
             ddLocationList.Enabled = false;
             ddlProjectType.Enabled = false;
         }
-
         private void M_GetUnitByProjectId()
         {
             try
@@ -92,11 +88,9 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetUnitByProjectId()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_GetUnitByProjectId()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_GetUnitByProjectId()", ex.ToString());
             }
-
         }
         private bool IsProjectValid()
         {
@@ -158,11 +152,9 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_SelectLocation()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_SelectLocation()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_SelectLocation()", ex.ToString());
             }
-
         }
         private void M_getProjectById()
         {
@@ -187,11 +179,9 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_getProjectById()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_getProjectById()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_getProjectById()", ex.ToString());
             }
-
         }
         private void M_SelectProjectType()
         {
@@ -210,23 +200,10 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_SelectProjectType()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_SelectProjectType()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_SelectProjectType()", ex.ToString());
             }
-
         }
-        //private void M_GetPurchaseItemList()
-        //{
-        //    dgvPurchaseItemList.DataSource = null;
-        //    using (DataSet dt = PurchaseItemContext.GetGetPurchaseItemById(Recid))
-        //    {
-        //        if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
-        //        {
-        //            dgvPurchaseItemList.DataSource = dt.Tables[0];
-        //        }
-        //    }
-        //}
         private void M_SaveProject()
         {
             try
@@ -250,13 +227,10 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_SaveProject()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_SaveProject()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_SaveProject()", ex.ToString());
             }
-
         }
-
         private void frmEditProject_Load(object sender, EventArgs e)
         {
             strProjectFormMode = "READ";
@@ -264,11 +238,7 @@ namespace LEASING.UI.APP.Forms
             M_SelectProjectType();
             M_getProjectById();
             M_GetUnitByProjectId();
-            //M_GetPurchaseItemList();
-
-
         }
-
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (strProjectFormMode == "EDIT")
@@ -284,27 +254,21 @@ namespace LEASING.UI.APP.Forms
                     }
                 }
             }
-
         }
-
-
         private void btnEdit_Click(object sender, EventArgs e)
         {
             strProjectFormMode = "EDIT";
         }
-
         private void btnUndo_Click(object sender, EventArgs e)
         {
             strProjectFormMode = "READ";
         }
-
         private void btnPuchaseItemList_Click(object sender, EventArgs e)
         {
             frmPurchaseItemList forms = new frmPurchaseItemList();
             forms.Recid = Recid;
             forms.ShowDialog();
         }
-
         private void dgvUnitList_CellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -320,23 +284,22 @@ namespace LEASING.UI.APP.Forms
                         M_GetUnitByProjectId();
                     }
                 }
-                else if (this.dgvUnitList.Columns[e.ColumnIndex].Name == "ColDeactivate")
-                {
+                //else if (this.dgvUnitList.Columns[e.ColumnIndex].Name == "ColDeactivate")
+                //{
 
-                    if (MessageBox.Show("Are you sure you want to Deactivated the Unit?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
-                    {
+                //    if (MessageBox.Show("Are you sure you want to Deactivated the Unit?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                //    {
 
-                        //var result = ProjectContext.DeActivateProject(Convert.ToInt32(dgvProjectList.CurrentRow.Cells["RecId"].Value));
-                        //if (result.Equals("SUCCESS"))
-                        //{
-                        //    MessageBox.Show("Project has been Deactivated successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        //    M_GetProjectList();
-                        //}
-                    }
-                }
+                //        //var result = ProjectContext.DeActivateProject(Convert.ToInt32(dgvProjectList.CurrentRow.Cells["RecId"].Value));
+                //        //if (result.Equals("SUCCESS"))
+                //        //{
+                //        //    MessageBox.Show("Project has been Deactivated successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //        //    M_GetProjectList();
+                //        //}
+                //    }
+                //}
             }
         }
-
         private void dgvUnitList_CellFormatting(object sender, Telerik.WinControls.UI.CellFormattingEventArgs e)
         {
 
@@ -384,7 +347,6 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-
         private void btnNewPurchaseItems_Click(object sender, EventArgs e)
         {
             frmAddNewPurchaseItemByProject forms = new frmAddNewPurchaseItemByProject();
@@ -397,7 +359,6 @@ namespace LEASING.UI.APP.Forms
                 frmPurchaseItemList.ShowDialog();
             }
         }
-
         private void btnAddUnits_Click(object sender, EventArgs e)
         {
             frmAddNewUnitsByProject frmAddNewUnitsByProject = new frmAddNewUnitsByProject();

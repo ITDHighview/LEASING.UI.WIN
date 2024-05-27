@@ -20,15 +20,12 @@ namespace LEASING.UI.APP.Forms
         PaymentContext PaymentContext = new PaymentContext();
         UnitContext UnitContext = new UnitContext();
         InquiryContext InquiryContext = new InquiryContext();
-
-         int ComputationRecid { get; set; }
-         string ClientId { get; set; }
         public frmContractInquiry()
         {
             InitializeComponent();
         }
-
-
+        int ComputationRecid { get; set; }
+        string ClientId { get; set; }
         private void ClearFields()
         {
             pictureBox1.Visible = false;
@@ -70,7 +67,7 @@ namespace LEASING.UI.APP.Forms
         {
             //this.WindowState = FormWindowState.Maximized;
             pictureBox1.Image = Properties.Resources.tick_64;
-            
+
             pictureBox2.Image = Properties.Resources.tick_64;
             pictureBox3.Image = Properties.Resources.tick_64;
             pictureBox4.Image = Properties.Resources.tick_64;
@@ -85,7 +82,7 @@ namespace LEASING.UI.APP.Forms
 
             pictureBox3.Visible = false;
             lblMoveInFlag.Visible = false;
-       
+
             pictureBox4.Visible = false;
             lblMoveOutFlag.Visible = false;
 
@@ -94,7 +91,7 @@ namespace LEASING.UI.APP.Forms
 
             pictureBox6.Visible = false;
             lblContractClosedflag.Visible = false;
-     
+
         }
         private void M_GetContractDetailsInquiry()
         {
@@ -163,12 +160,9 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetContractDetailsInquiry()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_GetContractDetailsInquiry()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_GetContractDetailsInquiry()", ex.ToString());
             }
-
-
         }
         private void M_GetLedgerList()
         {
@@ -185,9 +179,8 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetLedgerList()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_GetLedgerList()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_GetLedgerList()", ex.ToString());
             }
         }
         private void txtContractId_KeyDown(object sender, KeyEventArgs e)
@@ -198,7 +191,6 @@ namespace LEASING.UI.APP.Forms
                 M_GetLedgerList();
             }
         }
-
         private void dgvLedgerList_CellFormatting(object sender, Telerik.WinControls.UI.CellFormattingEventArgs e)
         {
             if (!string.IsNullOrEmpty(Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value)))
@@ -233,8 +225,7 @@ namespace LEASING.UI.APP.Forms
                     e.CellElement.BackColor = Color.Red;
                 }
             }
-            }
-
+        }
         private void txtContractId_TextChanged(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtContractId.Text))

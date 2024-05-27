@@ -16,28 +16,38 @@ namespace LEASING.UI.APP.Forms
 {
     public partial class frmAddNewPurchaseItem : Form
     {
-        ProjectContext ProjectContext = new ProjectContext();
-        LocationContext LocationContext = new LocationContext();
-        PurchaseItemContext PurchaseItemContext = new PurchaseItemContext();
+       private ProjectContext _project;
+       private LocationContext _location;
+       private PurchaseItemContext _purchase;
+        public frmAddNewPurchaseItem()
+        {
+            _project = new ProjectContext();
+            _location = new LocationContext();
+            _purchase = new PurchaseItemContext();
+            InitializeComponent();
+        }
         public int UnitID { get; set; }
-
-        private string _strPurchaseFormMode;
-        public string strPurchaseFormMode
+        enum ModeStatus
+        {
+            READ,
+            NEW
+        }
+        private string _FormMode;
+        public string FormMode
         {
             get
             {
-                return _strPurchaseFormMode;
+                return _FormMode;
             }
             set
             {
-                _strPurchaseFormMode = value;
-                switch (_strPurchaseFormMode)
+                _FormMode = value;
+                switch (_FormMode)
                 {
                     case "NEW":
                         btnUndoProject.Enabled = true;
                         btnSaveProject.Enabled = true;
                         ddlProjectList.Enabled = true;
-
                         txtDescription.Enabled = true;
                         txtUnitAmount.Enabled = true;
                         txtAmount.Enabled = true;
@@ -46,20 +56,17 @@ namespace LEASING.UI.APP.Forms
                         txtTotal.Enabled = true;
                         txtUnitNumber.Enabled = true;
                         btnSelectUnits.Enabled = true;
-
                         txtDescription.Text = string.Empty;
                         txtUnitAmount.Text = string.Empty;
                         txtAmount.Text = string.Empty;
                         txtRemarks.Text = string.Empty;
                         txtTotal.Text = string.Empty;
                         txtUnitNumber.Text = string.Empty;
-
                         break;
                     case "READ":
                         btnUndoProject.Enabled = false;
                         btnSaveProject.Enabled = false;
                         ddlProjectList.Enabled = false;
-
                         txtDescription.Enabled = false;
                         txtUnitAmount.Enabled = false;
                         txtAmount.Enabled = false;
@@ -68,7 +75,6 @@ namespace LEASING.UI.APP.Forms
                         txtTotal.Enabled = false;
                         txtUnitNumber.Enabled = false;
                         btnSelectUnits.Enabled = false;
-
                         txtDescription.Text = string.Empty;
                         txtUnitAmount.Text = string.Empty;
                         txtAmount.Text = string.Empty;
@@ -131,39 +137,32 @@ namespace LEASING.UI.APP.Forms
                 dto.Remarks = txtRemarks.Text;
                 dto.UnitNumber = txtUnitNumber.Text;
                 dto.UnitID = UnitID;
-                dto.Message_Code = PurchaseItemContext.SavePurchaseItem(dto);
+                dto.Message_Code = _purchase.SavePurchaseItem(dto);
                 if (dto.Message_Code.Equals("SUCCESS"))
                 {
                     Functions.MessageShow("New Purchase Item has been added successfully !");
-                    strPurchaseFormMode = "READ";
+                    this.FormMode = ModeStatus.READ.ToString();
                     M_GetPurchaseItemList();
 
                 }
                 else
                 {
                     Functions.MessageShow(dto.Message_Code);
-                    strPurchaseFormMode = "READ";
+                    this.FormMode = ModeStatus.READ.ToString();
                 }
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_SavePurchaseItem()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_SavePurchaseItem()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_SavePurchaseItem()", ex.ToString());
             }
-
-
-        }
-        public frmAddNewPurchaseItem()
-        {
-            InitializeComponent();
         }
         private void M_SelectProject()
         {
             try
             {
                 ddlProjectList.DataSource = null;
-                using (DataSet dt = ProjectContext.GetSelectProject())
+                using (DataSet dt = _project.GetSelectProject())
                 {
                     if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
@@ -175,18 +174,16 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_SelectProject()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_SelectProject()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_SelectProject()", ex.ToString());
             }
-
         }
         private void M_GetPurchaseItemList()
         {
             try
             {
                 dgvPurchaseItemList.DataSource = null;
-                using (DataSet dt = PurchaseItemContext.GetGetPurchaseItemList())
+                using (DataSet dt = _purchase.GetGetPurchaseItemList())
                 {
                     if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
@@ -194,14 +191,11 @@ namespace LEASING.UI.APP.Forms
                     }
                 }
             }
-
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetPurchaseItemList()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_GetPurchaseItemList()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_GetPurchaseItemList()", ex.ToString());
             }
-
         }
         private void M_GetTotal()
         {
@@ -209,15 +203,13 @@ namespace LEASING.UI.APP.Forms
             var rental = (txtUnitAmount.Text == "") ? 0 : (Convert.ToDecimal(txtUnitAmount.Text) * ((txtAmount.Text == "") ? 0 : Convert.ToDecimal(txtAmount.Text)));
             txtTotal.Text = Convert.ToString(rental);
         }
-
         private void M_getPurchaseItemInfoById()
         {
             lblEncodedBy.Text = "Encoded By :";
             lblLastChangedBy.Text = "Last Changed By :";
-
             try
             {
-                using (DataSet dt = PurchaseItemContext.GetGetPurchaseItemInfoById(Convert.ToInt32(dgvPurchaseItemList.CurrentRow.Cells["RecId"].Value)))
+                using (DataSet dt = _purchase.GetGetPurchaseItemInfoById(Convert.ToInt32(dgvPurchaseItemList.CurrentRow.Cells["RecId"].Value)))
                 {
                     if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
@@ -228,33 +220,26 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_getPurchaseItemInfoById()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_getPurchaseItemInfoById()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_getPurchaseItemInfoById()", ex.ToString());
             }
-
-
         }
         private void frmAddNewPurchaseItem_Load(object sender, EventArgs e)
         {
-            strPurchaseFormMode = "READ";
+            this.FormMode = ModeStatus.READ.ToString();
             lblEncodedBy.Text = "Encoded By :";
             lblLastChangedBy.Text = "Last Changed By :";
-
             M_SelectProject();
             M_GetPurchaseItemList();
         }
-
         private void btnNewProject_Click(object sender, EventArgs e)
         {
-            strPurchaseFormMode = "NEW";
+            this.FormMode = ModeStatus.NEW.ToString();
         }
-
         private void btnUndoProject_Click(object sender, EventArgs e)
         {
-            strPurchaseFormMode = "READ";
+            this.FormMode = ModeStatus.READ.ToString();
         }
-
         private void btnSaveProject_Click(object sender, EventArgs e)
         {
             if (IsPurchaseItemValid())
@@ -265,7 +250,6 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-
         private void dgvPurchaseItemList_CellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -286,7 +270,7 @@ namespace LEASING.UI.APP.Forms
                     if (MessageBox.Show("Are you sure you want to Dectivate the Item?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                     {
 
-                        var result = PurchaseItemContext.DeactivatePurchaseItem(Convert.ToInt32(dgvPurchaseItemList.CurrentRow.Cells["RecId"].Value));
+                        var result = _purchase.DeactivatePurchaseItem(Convert.ToInt32(dgvPurchaseItemList.CurrentRow.Cells["RecId"].Value));
                         if (result.Equals("SUCCESS"))
                         {
                             MessageBox.Show("Item has been Dectivate successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -296,46 +280,38 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-
         private void btnCheckDeactivatedList_Click(object sender, EventArgs e)
         {
             frmInActivePurchaseItemList froms = new frmInActivePurchaseItemList();
             froms.ShowDialog();
             M_GetPurchaseItemList();
         }
-
         private void txtUnitAmount_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
         }
-
         private void txtAmount_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
         }
-
         private void txtTotal_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
         }
-
         private void txtAmount_TextChanged(object sender, EventArgs e)
         {
             M_GetTotal();
         }
-
         private void dgvPurchaseItemList_SelectionChanged(object sender, EventArgs e)
         {
             if (dgvPurchaseItemList.Rows.Count > 0)
             {
                 M_getPurchaseItemInfoById();
             }
-
         }
-
         private void btnSelectUnits_Click(object sender, EventArgs e)
         {
             frmSelectUnit forms = new frmSelectUnit();
@@ -347,13 +323,11 @@ namespace LEASING.UI.APP.Forms
                 txtUnitNumber.Text = forms.UnitNumber;
             }
         }
-
         private void btnLogs_Click(object sender, EventArgs e)
         {
             frmPurchaseItemLogs forms = new frmPurchaseItemLogs();
             forms.ShowDialog();
         }
-
         private void txtUnitAmount_TextChanged(object sender, EventArgs e)
         {
             M_GetTotal();

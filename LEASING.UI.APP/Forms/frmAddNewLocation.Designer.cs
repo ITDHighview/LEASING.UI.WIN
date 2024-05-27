@@ -54,6 +54,7 @@
             this.btnLogs = new System.Windows.Forms.ToolStripButton();
             this.btnCheckInactiveList = new System.Windows.Forms.ToolStripButton();
             this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lblFoot)).BeginInit();
             this.lblFoot.SuspendLayout();
@@ -96,7 +97,7 @@
             // lblFoot
             // 
             this.lblFoot.AutoSize = false;
-            this.lblFoot.BackColor = System.Drawing.Color.DarkSlateBlue;
+            this.lblFoot.BackColor = System.Drawing.Color.White;
             this.tableLayoutPanel1.SetColumnSpan(this.lblFoot, 2);
             this.lblFoot.Controls.Add(this.radLabel8);
             this.lblFoot.Controls.Add(this.radLabel7);
@@ -110,7 +111,7 @@
             // 
             this.radLabel8.AutoSize = false;
             this.radLabel8.Dock = System.Windows.Forms.DockStyle.Right;
-            this.radLabel8.ForeColor = System.Drawing.Color.White;
+            this.radLabel8.ForeColor = System.Drawing.Color.Black;
             this.radLabel8.Location = new System.Drawing.Point(485, 0);
             this.radLabel8.Name = "radLabel8";
             this.radLabel8.Size = new System.Drawing.Size(256, 31);
@@ -122,7 +123,7 @@
             // 
             this.radLabel7.AutoSize = false;
             this.radLabel7.Dock = System.Windows.Forms.DockStyle.Left;
-            this.radLabel7.ForeColor = System.Drawing.Color.White;
+            this.radLabel7.ForeColor = System.Drawing.Color.Black;
             this.radLabel7.Location = new System.Drawing.Point(0, 0);
             this.radLabel7.Name = "radLabel7";
             this.radLabel7.Size = new System.Drawing.Size(271, 31);
@@ -142,6 +143,7 @@
             this.radGroupBox1.Size = new System.Drawing.Size(741, 187);
             this.radGroupBox1.TabIndex = 0;
             this.radGroupBox1.Text = "LOCATION DETAILS";
+            this.radGroupBox1.ThemeName = "Office2007Silver";
             // 
             // tableLayoutPanel5
             // 
@@ -190,18 +192,18 @@
             this.txtLocDescription.Location = new System.Drawing.Point(103, 28);
             this.txtLocDescription.Name = "txtLocDescription";
             this.txtLocDescription.NullText = "Type here....";
-            this.txtLocDescription.Size = new System.Drawing.Size(556, 19);
+            this.txtLocDescription.Size = new System.Drawing.Size(556, 20);
             this.txtLocDescription.TabIndex = 1;
-            this.txtLocDescription.ThemeName = "Office2013Light";
+            this.txtLocDescription.ThemeName = "Office2007Silver";
             // 
             // txtLocAddress
             // 
             this.txtLocAddress.Location = new System.Drawing.Point(103, 53);
             this.txtLocAddress.Name = "txtLocAddress";
             this.txtLocAddress.NullText = "Type Here....";
-            this.txtLocAddress.Size = new System.Drawing.Size(556, 19);
+            this.txtLocAddress.Size = new System.Drawing.Size(556, 20);
             this.txtLocAddress.TabIndex = 1;
-            this.txtLocAddress.ThemeName = "Office2013Light";
+            this.txtLocAddress.ThemeName = "Office2007Silver";
             // 
             // radGroupBox2
             // 
@@ -215,6 +217,7 @@
             this.radGroupBox2.Size = new System.Drawing.Size(741, 383);
             this.radGroupBox2.TabIndex = 1;
             this.radGroupBox2.Text = "LOCATION LIST";
+            this.radGroupBox2.ThemeName = "Office2007Silver";
             // 
             // dgvLocationList
             // 
@@ -289,6 +292,7 @@
             this.tableLayoutPanel1.SetColumnSpan(this.toolStrip1, 2);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnNew,
+            this.toolStripSeparator1,
             this.btnSave,
             this.toolStripSeparator,
             this.btnUndo,
@@ -351,6 +355,11 @@
             this.btnCheckInactiveList.Text = "In-Active Location List";
             this.btnCheckInactiveList.Click += new System.EventHandler(this.ToolStripButton_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
             // frmAddNewLocation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -409,5 +418,6 @@
         private System.Windows.Forms.ToolStripButton btnLogs;
         private System.Windows.Forms.ToolStripButton btnCheckInactiveList;
         private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }

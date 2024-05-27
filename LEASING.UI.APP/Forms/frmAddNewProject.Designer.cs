@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn3 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn4 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn12 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn5 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn6 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn13 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn14 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn15 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn16 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn17 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn18 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.lblFoot = new Telerik.WinControls.UI.RadLabel();
             this.lblLastChangedBy = new Telerik.WinControls.UI.RadLabel();
@@ -46,12 +46,14 @@
             this.txtProjectAddress = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.txtProjectDescription = new Telerik.WinControls.UI.RadTextBox();
-            this.txtProjectName = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
-            this.ddLocationList = new Telerik.WinControls.UI.RadDropDownList();
+            this.txtProjectName = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
+            this.ddLocationList = new Telerik.WinControls.UI.RadDropDownList();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.ddlProjectType = new Telerik.WinControls.UI.RadDropDownList();
+            this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
+            this.ddlCompanyList = new Telerik.WinControls.UI.RadDropDownList();
             this.radGroupBox4 = new Telerik.WinControls.UI.RadGroupBox();
             this.radGridView2 = new Telerik.WinControls.UI.RadGridView();
             this.dgvProjectList = new Telerik.WinControls.UI.RadGridView();
@@ -63,8 +65,7 @@
             this.btnLogs = new System.Windows.Forms.ToolStripButton();
             this.btnCheckDeactivatedlist = new System.Windows.Forms.ToolStripButton();
             this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
-            this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
-            this.ddlCompanyList = new Telerik.WinControls.UI.RadDropDownList();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lblFoot)).BeginInit();
             this.lblFoot.SuspendLayout();
@@ -77,12 +78,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtProjectAddress)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtProjectDescription)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtProjectName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddLocationList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtProjectName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddLocationList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlProjectType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlCompanyList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox4)).BeginInit();
             this.radGroupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView2)).BeginInit();
@@ -91,8 +94,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvProjectList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProjectList.MasterTemplate)).BeginInit();
             this.toolStrip2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlCompanyList)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel2
@@ -109,47 +110,47 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 4;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 193F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 178F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(768, 644);
             this.tableLayoutPanel2.TabIndex = 2;
             // 
             // lblFoot
             // 
             this.lblFoot.AutoSize = false;
-            this.lblFoot.BackColor = System.Drawing.Color.DarkSlateBlue;
+            this.lblFoot.BackColor = System.Drawing.Color.White;
             this.tableLayoutPanel2.SetColumnSpan(this.lblFoot, 2);
             this.lblFoot.Controls.Add(this.lblLastChangedBy);
             this.lblFoot.Controls.Add(this.lblEncodedBy);
             this.lblFoot.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblFoot.Location = new System.Drawing.Point(3, 622);
+            this.lblFoot.Location = new System.Drawing.Point(3, 613);
             this.lblFoot.Name = "lblFoot";
-            this.lblFoot.Size = new System.Drawing.Size(762, 19);
+            this.lblFoot.Size = new System.Drawing.Size(762, 28);
             this.lblFoot.TabIndex = 5;
             // 
             // lblLastChangedBy
             // 
             this.lblLastChangedBy.AutoSize = false;
             this.lblLastChangedBy.Dock = System.Windows.Forms.DockStyle.Right;
-            this.lblLastChangedBy.ForeColor = System.Drawing.Color.White;
+            this.lblLastChangedBy.ForeColor = System.Drawing.Color.Black;
             this.lblLastChangedBy.Location = new System.Drawing.Point(506, 0);
             this.lblLastChangedBy.Name = "lblLastChangedBy";
-            this.lblLastChangedBy.Size = new System.Drawing.Size(256, 19);
+            this.lblLastChangedBy.Size = new System.Drawing.Size(256, 28);
             this.lblLastChangedBy.TabIndex = 1;
-            this.lblLastChangedBy.Text = "Last Changed By : 12345 - Mark Jason Gelisanga";
+            this.lblLastChangedBy.Text = "Last Changed By : 12345 - N/A";
             this.lblLastChangedBy.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblEncodedBy
             // 
             this.lblEncodedBy.AutoSize = false;
             this.lblEncodedBy.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lblEncodedBy.ForeColor = System.Drawing.Color.White;
+            this.lblEncodedBy.ForeColor = System.Drawing.Color.Black;
             this.lblEncodedBy.Location = new System.Drawing.Point(0, 0);
             this.lblEncodedBy.Name = "lblEncodedBy";
-            this.lblEncodedBy.Size = new System.Drawing.Size(271, 19);
+            this.lblEncodedBy.Size = new System.Drawing.Size(271, 28);
             this.lblEncodedBy.TabIndex = 0;
-            this.lblEncodedBy.Text = "Encoded By : 12345 - Mark Jason Gelisanga";
+            this.lblEncodedBy.Text = "Encoded By : 12345 - N/A";
             this.lblEncodedBy.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // radGroupBox3
@@ -161,9 +162,10 @@
             this.radGroupBox3.HeaderText = "PROJECT DETAILS";
             this.radGroupBox3.Location = new System.Drawing.Point(3, 28);
             this.radGroupBox3.Name = "radGroupBox3";
-            this.radGroupBox3.Size = new System.Drawing.Size(762, 187);
+            this.radGroupBox3.Size = new System.Drawing.Size(762, 172);
             this.radGroupBox3.TabIndex = 0;
             this.radGroupBox3.Text = "PROJECT DETAILS";
+            this.radGroupBox3.ThemeName = "Office2007Silver";
             // 
             // tableLayoutPanel6
             // 
@@ -192,14 +194,14 @@
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(758, 167);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(758, 152);
             this.tableLayoutPanel6.TabIndex = 1;
             // 
             // radLabel1
             // 
             this.radLabel1.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.radLabel1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel1.Location = new System.Drawing.Point(37, 136);
+            this.radLabel1.Location = new System.Drawing.Point(37, 129);
             this.radLabel1.Name = "radLabel1";
             this.radLabel1.Size = new System.Drawing.Size(60, 19);
             this.radLabel1.TabIndex = 0;
@@ -212,7 +214,7 @@
             this.txtProjectAddress.NullText = "Type Here....";
             this.txtProjectAddress.Size = new System.Drawing.Size(590, 20);
             this.txtProjectAddress.TabIndex = 1;
-            this.txtProjectAddress.ThemeName = "Office2013Light";
+            this.txtProjectAddress.ThemeName = "Office2007Silver";
             // 
             // radLabel4
             // 
@@ -231,16 +233,7 @@
             this.txtProjectDescription.NullText = "Type Here....";
             this.txtProjectDescription.Size = new System.Drawing.Size(590, 20);
             this.txtProjectDescription.TabIndex = 1;
-            this.txtProjectDescription.ThemeName = "Office2013Light";
-            // 
-            // txtProjectName
-            // 
-            this.txtProjectName.Location = new System.Drawing.Point(103, 78);
-            this.txtProjectName.Name = "txtProjectName";
-            this.txtProjectName.NullText = "Type here....";
-            this.txtProjectName.Size = new System.Drawing.Size(590, 20);
-            this.txtProjectName.TabIndex = 1;
-            this.txtProjectName.ThemeName = "Office2013Light";
+            this.txtProjectDescription.ThemeName = "Office2007Silver";
             // 
             // radLabel3
             // 
@@ -252,14 +245,14 @@
             this.radLabel3.TabIndex = 0;
             this.radLabel3.Text = "Name :";
             // 
-            // ddLocationList
+            // txtProjectName
             // 
-            this.ddLocationList.Location = new System.Drawing.Point(103, 53);
-            this.ddLocationList.Name = "ddLocationList";
-            this.ddLocationList.NullText = "Select Here...";
-            this.ddLocationList.Size = new System.Drawing.Size(257, 20);
-            this.ddLocationList.TabIndex = 2;
-            this.ddLocationList.ThemeName = "Office2013Light";
+            this.txtProjectName.Location = new System.Drawing.Point(103, 78);
+            this.txtProjectName.Name = "txtProjectName";
+            this.txtProjectName.NullText = "Type here....";
+            this.txtProjectName.Size = new System.Drawing.Size(590, 20);
+            this.txtProjectName.TabIndex = 1;
+            this.txtProjectName.ThemeName = "Office2007Silver";
             // 
             // radLabel5
             // 
@@ -270,6 +263,15 @@
             this.radLabel5.Size = new System.Drawing.Size(63, 19);
             this.radLabel5.TabIndex = 0;
             this.radLabel5.Text = "Location :";
+            // 
+            // ddLocationList
+            // 
+            this.ddLocationList.Location = new System.Drawing.Point(103, 53);
+            this.ddLocationList.Name = "ddLocationList";
+            this.ddLocationList.NullText = "Select Here...";
+            this.ddLocationList.Size = new System.Drawing.Size(257, 20);
+            this.ddLocationList.TabIndex = 2;
+            this.ddLocationList.ThemeName = "Office2007Silver";
             // 
             // radLabel2
             // 
@@ -288,7 +290,26 @@
             this.ddlProjectType.NullText = "Select Here...";
             this.ddlProjectType.Size = new System.Drawing.Size(150, 20);
             this.ddlProjectType.TabIndex = 2;
-            this.ddlProjectType.ThemeName = "Office2013Light";
+            this.ddlProjectType.ThemeName = "Office2007Silver";
+            // 
+            // radLabel6
+            // 
+            this.radLabel6.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.radLabel6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel6.Location = new System.Drawing.Point(29, 3);
+            this.radLabel6.Name = "radLabel6";
+            this.radLabel6.Size = new System.Drawing.Size(68, 19);
+            this.radLabel6.TabIndex = 0;
+            this.radLabel6.Text = "Company :";
+            // 
+            // ddlCompanyList
+            // 
+            this.ddlCompanyList.Location = new System.Drawing.Point(103, 3);
+            this.ddlCompanyList.Name = "ddlCompanyList";
+            this.ddlCompanyList.NullText = "Select Here...";
+            this.ddlCompanyList.Size = new System.Drawing.Size(257, 20);
+            this.ddlCompanyList.TabIndex = 2;
+            this.ddlCompanyList.ThemeName = "Office2007Silver";
             // 
             // radGroupBox4
             // 
@@ -297,11 +318,12 @@
             this.radGroupBox4.Controls.Add(this.radGridView2);
             this.radGroupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radGroupBox4.HeaderText = "PROJECT LIST";
-            this.radGroupBox4.Location = new System.Drawing.Point(3, 221);
+            this.radGroupBox4.Location = new System.Drawing.Point(3, 206);
             this.radGroupBox4.Name = "radGroupBox4";
-            this.radGroupBox4.Size = new System.Drawing.Size(762, 395);
+            this.radGroupBox4.Size = new System.Drawing.Size(762, 401);
             this.radGroupBox4.TabIndex = 1;
             this.radGroupBox4.Text = "PROJECT LIST";
+            this.radGroupBox4.ThemeName = "Office2007Silver";
             // 
             // radGridView2
             // 
@@ -309,7 +331,7 @@
             this.radGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radGridView2.Location = new System.Drawing.Point(2, 18);
             this.radGridView2.Name = "radGridView2";
-            this.radGridView2.Size = new System.Drawing.Size(758, 375);
+            this.radGridView2.Size = new System.Drawing.Size(758, 381);
             this.radGridView2.TabIndex = 0;
             this.radGridView2.Text = "radGridView2";
             // 
@@ -327,62 +349,62 @@
             // 
             this.dgvProjectList.MasterTemplate.AllowAddNewRow = false;
             this.dgvProjectList.MasterTemplate.AllowColumnReorder = false;
-            gridViewCommandColumn3.FieldName = "coledit";
-            gridViewCommandColumn3.HeaderImage = global::LEASING.UI.APP.Properties.Resources.co_folder_20;
-            gridViewCommandColumn3.HeaderText = "";
-            gridViewCommandColumn3.Image = global::LEASING.UI.APP.Properties.Resources.co_folder_20;
-            gridViewCommandColumn3.IsPinned = true;
-            gridViewCommandColumn3.Name = "coledit";
-            gridViewCommandColumn3.PinPosition = Telerik.WinControls.UI.PinnedColumnPosition.Left;
-            gridViewCommandColumn3.Width = 30;
-            gridViewCommandColumn4.FieldName = "coldelete";
-            gridViewCommandColumn4.HeaderImage = global::LEASING.UI.APP.Properties.Resources.co_delete_16;
-            gridViewCommandColumn4.HeaderText = "";
-            gridViewCommandColumn4.Image = global::LEASING.UI.APP.Properties.Resources.co_delete_16;
-            gridViewCommandColumn4.IsPinned = true;
-            gridViewCommandColumn4.Name = "coldelete";
-            gridViewCommandColumn4.PinPosition = Telerik.WinControls.UI.PinnedColumnPosition.Left;
-            gridViewCommandColumn4.Width = 30;
-            gridViewTextBoxColumn7.FieldName = "RecId";
-            gridViewTextBoxColumn7.HeaderText = "PROJECT ID";
-            gridViewTextBoxColumn7.IsPinned = true;
-            gridViewTextBoxColumn7.Name = "RecId";
-            gridViewTextBoxColumn7.PinPosition = Telerik.WinControls.UI.PinnedColumnPosition.Left;
-            gridViewTextBoxColumn7.WrapText = true;
-            gridViewTextBoxColumn8.EnableExpressionEditor = false;
-            gridViewTextBoxColumn8.FieldName = "LocationName";
-            gridViewTextBoxColumn8.HeaderText = "Location";
-            gridViewTextBoxColumn8.Name = "LocationName";
-            gridViewTextBoxColumn8.Width = 150;
-            gridViewTextBoxColumn9.FieldName = "ProjectAddress";
-            gridViewTextBoxColumn9.HeaderText = "Address";
-            gridViewTextBoxColumn9.Name = "ProjectAddress";
-            gridViewTextBoxColumn9.Width = 300;
-            gridViewTextBoxColumn10.EnableExpressionEditor = false;
-            gridViewTextBoxColumn10.FieldName = "ProjectName";
-            gridViewTextBoxColumn10.HeaderText = "Name";
-            gridViewTextBoxColumn10.Name = "ProjectName";
-            gridViewTextBoxColumn10.Width = 300;
-            gridViewTextBoxColumn11.EnableExpressionEditor = false;
-            gridViewTextBoxColumn11.FieldName = "Descriptions";
-            gridViewTextBoxColumn11.HeaderText = "Descriptions";
-            gridViewTextBoxColumn11.Name = "Descriptions";
-            gridViewTextBoxColumn11.Width = 200;
-            gridViewTextBoxColumn12.EnableExpressionEditor = false;
-            gridViewTextBoxColumn12.FieldName = "IsActive";
-            gridViewTextBoxColumn12.HeaderText = "Status";
-            gridViewTextBoxColumn12.IsVisible = false;
-            gridViewTextBoxColumn12.Name = "IsActive";
-            gridViewTextBoxColumn12.Width = 100;
+            gridViewCommandColumn5.FieldName = "coledit";
+            gridViewCommandColumn5.HeaderImage = global::LEASING.UI.APP.Properties.Resources.co_folder_20;
+            gridViewCommandColumn5.HeaderText = "";
+            gridViewCommandColumn5.Image = global::LEASING.UI.APP.Properties.Resources.co_folder_20;
+            gridViewCommandColumn5.IsPinned = true;
+            gridViewCommandColumn5.Name = "coledit";
+            gridViewCommandColumn5.PinPosition = Telerik.WinControls.UI.PinnedColumnPosition.Left;
+            gridViewCommandColumn5.Width = 30;
+            gridViewCommandColumn6.FieldName = "coldelete";
+            gridViewCommandColumn6.HeaderImage = global::LEASING.UI.APP.Properties.Resources.co_delete_16;
+            gridViewCommandColumn6.HeaderText = "";
+            gridViewCommandColumn6.Image = global::LEASING.UI.APP.Properties.Resources.co_delete_16;
+            gridViewCommandColumn6.IsPinned = true;
+            gridViewCommandColumn6.Name = "coldelete";
+            gridViewCommandColumn6.PinPosition = Telerik.WinControls.UI.PinnedColumnPosition.Left;
+            gridViewCommandColumn6.Width = 30;
+            gridViewTextBoxColumn13.FieldName = "RecId";
+            gridViewTextBoxColumn13.HeaderText = "PROJECT ID";
+            gridViewTextBoxColumn13.IsPinned = true;
+            gridViewTextBoxColumn13.Name = "RecId";
+            gridViewTextBoxColumn13.PinPosition = Telerik.WinControls.UI.PinnedColumnPosition.Left;
+            gridViewTextBoxColumn13.WrapText = true;
+            gridViewTextBoxColumn14.EnableExpressionEditor = false;
+            gridViewTextBoxColumn14.FieldName = "LocationName";
+            gridViewTextBoxColumn14.HeaderText = "Location";
+            gridViewTextBoxColumn14.Name = "LocationName";
+            gridViewTextBoxColumn14.Width = 150;
+            gridViewTextBoxColumn15.FieldName = "ProjectAddress";
+            gridViewTextBoxColumn15.HeaderText = "Address";
+            gridViewTextBoxColumn15.Name = "ProjectAddress";
+            gridViewTextBoxColumn15.Width = 300;
+            gridViewTextBoxColumn16.EnableExpressionEditor = false;
+            gridViewTextBoxColumn16.FieldName = "ProjectName";
+            gridViewTextBoxColumn16.HeaderText = "Name";
+            gridViewTextBoxColumn16.Name = "ProjectName";
+            gridViewTextBoxColumn16.Width = 300;
+            gridViewTextBoxColumn17.EnableExpressionEditor = false;
+            gridViewTextBoxColumn17.FieldName = "Descriptions";
+            gridViewTextBoxColumn17.HeaderText = "Descriptions";
+            gridViewTextBoxColumn17.Name = "Descriptions";
+            gridViewTextBoxColumn17.Width = 200;
+            gridViewTextBoxColumn18.EnableExpressionEditor = false;
+            gridViewTextBoxColumn18.FieldName = "IsActive";
+            gridViewTextBoxColumn18.HeaderText = "Status";
+            gridViewTextBoxColumn18.IsVisible = false;
+            gridViewTextBoxColumn18.Name = "IsActive";
+            gridViewTextBoxColumn18.Width = 100;
             this.dgvProjectList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewCommandColumn3,
-            gridViewCommandColumn4,
-            gridViewTextBoxColumn7,
-            gridViewTextBoxColumn8,
-            gridViewTextBoxColumn9,
-            gridViewTextBoxColumn10,
-            gridViewTextBoxColumn11,
-            gridViewTextBoxColumn12});
+            gridViewCommandColumn5,
+            gridViewCommandColumn6,
+            gridViewTextBoxColumn13,
+            gridViewTextBoxColumn14,
+            gridViewTextBoxColumn15,
+            gridViewTextBoxColumn16,
+            gridViewTextBoxColumn17,
+            gridViewTextBoxColumn18});
             this.dgvProjectList.MasterTemplate.EnableFiltering = true;
             this.dgvProjectList.MasterTemplate.ShowRowHeaderColumn = false;
             this.dgvProjectList.Name = "dgvProjectList";
@@ -390,7 +412,7 @@
             this.dgvProjectList.ReadOnly = true;
             this.dgvProjectList.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgvProjectList.ShowGroupPanel = false;
-            this.dgvProjectList.Size = new System.Drawing.Size(758, 375);
+            this.dgvProjectList.Size = new System.Drawing.Size(758, 381);
             this.dgvProjectList.TabIndex = 2;
             this.dgvProjectList.Text = "radGridView1";
             this.dgvProjectList.ThemeName = "Office2007Silver";
@@ -402,6 +424,7 @@
             this.tableLayoutPanel2.SetColumnSpan(this.toolStrip2, 2);
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnNewProject,
+            this.toolStripSeparator1,
             this.btnSaveProject,
             this.toolStripSeparator2,
             this.btnUndoProject,
@@ -464,24 +487,10 @@
             this.btnCheckDeactivatedlist.Text = "In-Active Project List";
             this.btnCheckDeactivatedlist.Click += new System.EventHandler(this.btnCheckDeactivatedlist_Click);
             // 
-            // radLabel6
+            // toolStripSeparator1
             // 
-            this.radLabel6.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.radLabel6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel6.Location = new System.Drawing.Point(29, 3);
-            this.radLabel6.Name = "radLabel6";
-            this.radLabel6.Size = new System.Drawing.Size(68, 19);
-            this.radLabel6.TabIndex = 0;
-            this.radLabel6.Text = "Company :";
-            // 
-            // ddlCompanyList
-            // 
-            this.ddlCompanyList.Location = new System.Drawing.Point(103, 3);
-            this.ddlCompanyList.Name = "ddlCompanyList";
-            this.ddlCompanyList.NullText = "Select Here...";
-            this.ddlCompanyList.Size = new System.Drawing.Size(257, 20);
-            this.ddlCompanyList.TabIndex = 2;
-            this.ddlCompanyList.ThemeName = "Office2013Light";
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // frmAddNewProject
             // 
@@ -509,12 +518,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtProjectAddress)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtProjectDescription)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtProjectName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddLocationList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtProjectName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddLocationList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlProjectType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlCompanyList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox4)).EndInit();
             this.radGroupBox4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radGridView2.MasterTemplate)).EndInit();
@@ -525,8 +536,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvProjectList)).EndInit();
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlCompanyList)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -562,5 +571,6 @@
         private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme1;
         private Telerik.WinControls.UI.RadLabel radLabel6;
         private Telerik.WinControls.UI.RadDropDownList ddlCompanyList;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }

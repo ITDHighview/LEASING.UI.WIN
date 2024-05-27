@@ -54,6 +54,7 @@
             this.btnPrintReport = new Telerik.WinControls.UI.RadButton();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.ddlProjectList = new Telerik.WinControls.UI.RadDropDownList();
+            this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvList.MasterTemplate)).BeginInit();
@@ -200,7 +201,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 86F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 232F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 41F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 188F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 646F));
             this.tableLayoutPanel2.Controls.Add(this.radLabel2, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.dtpFrom, 1, 2);
             this.tableLayoutPanel2.Controls.Add(this.radLabel4, 2, 2);
@@ -235,7 +236,7 @@
             this.dtpFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpFrom.Location = new System.Drawing.Point(89, 53);
             this.dtpFrom.Name = "dtpFrom";
-            this.dtpFrom.Size = new System.Drawing.Size(164, 20);
+            this.dtpFrom.Size = new System.Drawing.Size(164, 19);
             this.dtpFrom.TabIndex = 1;
             this.dtpFrom.TabStop = false;
             this.dtpFrom.Text = "2/27/2024";
@@ -256,7 +257,7 @@
             this.dtoTo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtoTo.Location = new System.Drawing.Point(362, 53);
             this.dtoTo.Name = "dtoTo";
-            this.dtoTo.Size = new System.Drawing.Size(164, 20);
+            this.dtoTo.Size = new System.Drawing.Size(164, 19);
             this.dtoTo.TabIndex = 1;
             this.dtoTo.TabStop = false;
             this.dtoTo.Text = "2/27/2024";
@@ -296,7 +297,7 @@
             // 
             this.ddlProjectList.Location = new System.Drawing.Point(89, 28);
             this.ddlProjectList.Name = "ddlProjectList";
-            this.ddlProjectList.Size = new System.Drawing.Size(226, 20);
+            this.ddlProjectList.Size = new System.Drawing.Size(226, 19);
             this.ddlProjectList.TabIndex = 3;
             // 
             // GeneralReport
@@ -345,5 +346,6 @@
         private Telerik.WinControls.UI.RadButton btnPrintReport;
         private Telerik.WinControls.UI.RadLabel radLabel3;
         private Telerik.WinControls.UI.RadDropDownList ddlProjectList;
+        private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme1;
     }
 }

@@ -14,25 +14,30 @@ namespace LEASING.UI.APP.Forms
 {
     public partial class frmClientInformation : Form
     {
-        private ClientContext _client = new ClientContext();
-        public string clientNumber { get; set; }
-        public string _Message_Code_ { get; set; }
+        private ClientContext _client;
         public frmClientInformation()
         {
+            _client = new ClientContext();
             InitializeComponent();
-
         }
-        private string _strClientFormMode;
-        public string strClientFormMode
+        enum ModeStatus
+        {
+            VIEW,
+            READ
+        }
+        public string clientNumber { get; set; }
+        public string _Message_Code_ { get; set; }
+        private string _FormMode;
+        public string FormMode
         {
             get
             {
-                return _strClientFormMode;
+                return _FormMode;
             }
             set
             {
-                _strClientFormMode = value;
-                switch (_strClientFormMode)
+                _FormMode = value;
+                switch (_FormMode)
                 {
                     case "VIEW":
                         btnEnableView.Enabled = false;
@@ -44,7 +49,6 @@ namespace LEASING.UI.APP.Forms
                         btnUndo.Enabled = false;
                         DisabledFields();
                         break;
-
                     default:
                         break;
                 }
@@ -70,10 +74,8 @@ namespace LEASING.UI.APP.Forms
             txtnoofvisitorperday.Text = string.Empty;
             txtTinNo.Text = string.Empty;
             ddlgender.Text = string.Empty;
-
             dgvFileList.DataSource = null;
             dgvList.DataSource = null;
-
         }
         private void EnabledFields()
         {
@@ -96,7 +98,6 @@ namespace LEASING.UI.APP.Forms
             txtnameofdriver.Enabled = true;
             txtnoofvisitorperday.Enabled = true;
             txtTinNo.Enabled = true;
-
             ReadOnlyFields();
         }
         private void DisabledFields()
@@ -120,8 +121,6 @@ namespace LEASING.UI.APP.Forms
             txtnameofdriver.Enabled = false;
             txtnoofvisitorperday.Enabled = false;
             txtTinNo.Enabled = false;
-
-
             ReadOnlyFields();
         }
         private void ReadOnlyFields()
@@ -145,8 +144,6 @@ namespace LEASING.UI.APP.Forms
             txtnameofdriver.ReadOnly = true;
             txtnoofvisitorperday.ReadOnly = true;
             txtTinNo.ReadOnly = true;
-
-
         }
         private void _getClientNumber()
         {
@@ -163,12 +160,9 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("_getClientNumber()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("_getClientNumber()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("_getClientNumber()", ex.ToString());
             }
-
-
         }
         private void _getClientFileBrowse()
         {
@@ -186,11 +180,9 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("_getClientFileBrowse()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("_getClientFileBrowse()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("_getClientFileBrowse()", ex.ToString());
             }
-
         }
         private void _getClientByNumber()
         {
@@ -213,7 +205,6 @@ namespace LEASING.UI.APP.Forms
             this.txtnoofvisitorperday.Text = string.Empty;
             this.txtnameofdriver.Text = string.Empty;
             this.txtTinNo.Text = string.Empty;
-
             try
             {
                 using (DataSet dt = _client.GetClientByNumber(this.clientNumber))
@@ -244,10 +235,9 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-
-                Functions.MessageShow(ex.ToString());
+                Functions.LogError("_getClientByNumber()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("_getClientByNumber()", ex.ToString());
             }
-
         }
         private void _getContractByClientNumber()
         {
@@ -264,11 +254,9 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("_getContractByClientNumber()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("_getContractByClientNumber()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("_getContractByClientNumber()", ex.ToString());
             }
-
         }
         private void _getClientInfo()
         {
@@ -322,12 +310,9 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("_getContractProjectTypeReport()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("_getContractProjectTypeReport()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("_getContractProjectTypeReport()", ex.ToString());
             }
-
-
         }
         private void txtClienID_KeyDown(object sender, KeyEventArgs e)
         {
@@ -340,24 +325,23 @@ namespace LEASING.UI.APP.Forms
         }
         private void frmClientInformation_Load(object sender, EventArgs e)
         {
-            this.strClientFormMode = "READ";
+            this.FormMode = ModeStatus.READ.ToString();
             //Functions.SecurityControls(this);
         }
         private void btnUndo_Click(object sender, EventArgs e)
         {
-            strClientFormMode = "READ";
+            this.FormMode = ModeStatus.READ.ToString();
         }
         private void btnEnableView_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(txtClienID.Text))
             {
-                strClientFormMode = "VIEW";
+                this.FormMode = ModeStatus.VIEW.ToString();
             }
             else
             {
                 MessageBox.Show("Please provide Client ID !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
         }
         private void txtClienID_TextChanged(object sender, EventArgs e)
         {
@@ -373,37 +357,8 @@ namespace LEASING.UI.APP.Forms
             {
                 if (this.dgvFileList.Columns[e.ColumnIndex].Name == "ColView")
                 {
-                    // forms.ClientID = Convert.ToString(dgvFileList.CurrentRow.Cells["ClientID"].Value);
                     _client.GetViewFileById(this.clientNumber.Trim(), Config.baseFolderPath, Convert.ToInt32(dgvFileList.CurrentRow.Cells["Id"].Value));
                 }
-                //else if (this.dgvFileList.Columns[e.ColumnIndex].Name == "ColDelete")
-                //{
-
-                //    if (!string.IsNullOrWhiteSpace(ClientID))
-                //    {
-
-                //        DialogResult result = MessageBox.Show("Are you sure you want to delete all files for this client?", "Confirmation", MessageBoxButtons.YesNo);
-
-                //        if (result == DialogResult.Yes)
-                //        {
-                //            string sfilepath = Convert.ToString(dgvFileList.CurrentRow.Cells["FilePath"].Value);
-                //            if (File.Exists(sfilepath))
-                //            {
-                //                File.Delete(sfilepath);
-                //            }
-
-                //            ClientContext.DeleteFileFromDatabase(sfilepath);
-                //            M_GetClientFileList();
-                //            //labelStatus.Text = "Files deleted successfully!";
-                //        }
-
-                //    }
-                //    else
-                //    {
-                //        MessageBox.Show("Please enter a client name.");
-                //    }
-                //}
-
             }
         }
         private void btnSelectClient_Click(object sender, EventArgs e)
@@ -449,8 +404,15 @@ namespace LEASING.UI.APP.Forms
                 else if (this.dgvList.Columns[e.ColumnIndex].Name == "ColShowReceipt")
                 {
                     frmClientRecieptTransactionList forms = new frmClientRecieptTransactionList();
-                    forms.srefid = Convert.ToString(dgvList.CurrentRow.Cells["RefId"].Value);
+                    forms.ContractNumber = Convert.ToString(dgvList.CurrentRow.Cells["RefId"].Value);
                     forms.ShowDialog();
+                }
+                else if (this.dgvList.Columns[e.ColumnIndex].Name == "ColContract")
+                {
+                    if (dgvList.Rows.Count > 0)
+                    {
+                        this._getContractProjectTypeReport(Convert.ToString(dgvList.CurrentRow.Cells["RefId"].Value));
+                    }
                 }
             }
         }
@@ -459,8 +421,7 @@ namespace LEASING.UI.APP.Forms
             if (dgvList.Rows.Count > 0)
             {
                 this._getContractProjectTypeReport(Convert.ToString(dgvList.CurrentRow.Cells["RefId"].Value));
-            }
-            
+            }           
         }
     }
 }

@@ -14,10 +14,10 @@ namespace LEASING.UI.APP.Forms
 {
     public partial class frmClosedContracts : Form
     {
-        PaymentContext PaymentContext = new PaymentContext();
-
+       private PaymentContext _payment;
         public frmClosedContracts()
         {
+            _payment = new PaymentContext();
             InitializeComponent();
         }
         private void M_GetClosedContracts()
@@ -25,7 +25,7 @@ namespace LEASING.UI.APP.Forms
             try
             {
                 dgvList.DataSource = null;
-                using (DataSet dt = PaymentContext.GetClosedContracts())
+                using (DataSet dt = _payment.GetClosedContracts())
                 {
                     if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
@@ -35,19 +35,14 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetClosedContracts()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_GetClosedContracts()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_GetClosedContracts()", ex.ToString());
             }
-
-
         }
-
         private void frmClosedContracts_Load(object sender, EventArgs e)
         {
             M_GetClosedContracts();
         }
-
         private void dgvList_CellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)

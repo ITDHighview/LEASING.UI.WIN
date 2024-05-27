@@ -77,6 +77,7 @@
             this.radGroupBox2.Size = new System.Drawing.Size(910, 424);
             this.radGroupBox2.TabIndex = 2;
             this.radGroupBox2.Text = "RECEIPT LIST";
+            this.radGroupBox2.ThemeName = "Office2007Silver";
             // 
             // dgvReceiptList
             // 

@@ -23,30 +23,7 @@ namespace LEASING.UI.APP.Forms
         {
             InitializeComponent();
         }
-        private void LogErrorIntoStoredProcedure(string storedProcedureName, string procedureName, string errorMessage, DateTime logDateTime)
-        {
-            try
-            {
-                using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString()))
-                {
-                    connection.Open();
-                    using (SqlCommand command = new SqlCommand(storedProcedureName, connection))
-                    {
-                        command.CommandType = CommandType.StoredProcedure;
-                        // Add parameters
-                        command.Parameters.AddWithValue("@ProcedureName", procedureName);
-                        command.Parameters.AddWithValue("@ErrorMessage", errorMessage);
-                        command.Parameters.AddWithValue("@LogDateTime", logDateTime);
-                        // Execute the stored procedure
-                        command.ExecuteNonQuery();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString(), "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
+
         private void M_GetForMoveInUnitList()
         {
             try
@@ -62,9 +39,8 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetForMoveInUnitList()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_GetForMoveInUnitList()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_GetForMoveInUnitList()", ex.ToString());
             }
 
         }
@@ -100,9 +76,8 @@ namespace LEASING.UI.APP.Forms
                         }
                         catch (Exception ex)
                         {
-                            Functions.LogErrorIntoStoredProcedure("Cell Click : ColApproved", this.Text, ex.Message, DateTime.Now, this);
-
-                            Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                            Functions.LogError("Cell Click : ColApproved", this.Text, ex.ToString(), DateTime.Now, this);
+                            Functions.ErrorShow("Cell Click : ColApproved", ex.ToString());
                         }
                     }
                 }

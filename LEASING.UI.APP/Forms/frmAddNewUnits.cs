@@ -18,27 +18,43 @@ namespace LEASING.UI.APP.Forms
 {
     public partial class frmAddNewUnits : Form
     {
-        ProjectContext ProjectContext = new ProjectContext();
-        FloorTypeContext FloorTypeContext = new FloorTypeContext();
-        UnitContext UnitContext = new UnitContext();
-        RateSettingsContext RateSettingsContext = new RateSettingsContext();
+        private ProjectContext _project;
+        private FloorTypeContext _floorType;
+        private UnitContext _unit;
+        private RateSettingsContext _rateSettings;
+
+        public frmAddNewUnits()
+        {
+            _project = new ProjectContext();
+            _floorType = new FloorTypeContext();
+            _unit = new UnitContext();
+            _rateSettings = new RateSettingsContext();
+            InitializeComponent();
+        }
+
+        enum ModeStatus
+        {
+            READ,
+            NEW
+        }
+        
         bool isResidential = false;
         bool isWarehouse = false;
         bool isCommercial = false;
         int vWithHoldingTax = 0;
         decimal WithHoldingTaxParam = 0;
 
-        private string _strUnitFormMode;
-        public string strUnitFormMode
+        private string _FormMode;
+        public string FormMode
         {
             get
             {
-                return _strUnitFormMode;
+                return _FormMode;
             }
             set
             {
-                _strUnitFormMode = value;
-                switch (_strUnitFormMode)
+                _FormMode = value;
+                switch (_FormMode)
                 {
                     case "NEW":
                         btnUndo.Enabled = true;
@@ -58,13 +74,11 @@ namespace LEASING.UI.APP.Forms
                         ddlFloorType.SelectedIndex = 0;
                         ClearFields();
                         break;
-
                     default:
                         break;
                 }
             }
         }
-
         private class UnitStatus
         {
             public string UnitStatusName { get; set; }
@@ -90,7 +104,7 @@ namespace LEASING.UI.APP.Forms
             lblBaseRentalTax.Text = "TAX  : 0%";
             try
             {
-                using (DataSet dt = RateSettingsContext.GetRESIDENTIALSettings())
+                using (DataSet dt = _rateSettings.GetRESIDENTIALSettings())
                 {
                     if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
@@ -106,12 +120,9 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetResendentialRateSettings()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_GetResendentialRateSettings()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_GetResendentialRateSettings()", ex.ToString());
             }
-
-
         }
         private void M_GetWAREHOUSERateSettings()
         {
@@ -123,7 +134,7 @@ namespace LEASING.UI.APP.Forms
             lblBaseRentalTax.Text = "TAX  : 0%";
             try
             {
-                using (DataSet dt = RateSettingsContext.GetWAREHOUSESettings())
+                using (DataSet dt = _rateSettings.GetWAREHOUSESettings())
                 {
                     if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
@@ -136,20 +147,14 @@ namespace LEASING.UI.APP.Forms
                         WithHoldingTaxParam = vWithHoldingTax;
                         //lblSecAndMainTax.Text = "TAX  : " + Convert.ToString(vWithHoldingTax) + "%";
                         lblBaseRentalTax.Text = "TAX  : " + Convert.ToString(vWithHoldingTax) + "%";
-
-
-
                     }
                 }
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetWAREHOUSERateSettings()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_GetWAREHOUSERateSettings()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_GetWAREHOUSERateSettings()", ex.ToString());
             }
-
-
         }
         private void M_GetCOMMERCIALateSettings()
         {
@@ -161,7 +166,7 @@ namespace LEASING.UI.APP.Forms
             lblBaseRentalTax.Text = "TAX  : 0%";
             try
             {
-                using (DataSet dt = RateSettingsContext.GetCOMMERCIALSettings())
+                using (DataSet dt = _rateSettings.GetCOMMERCIALSettings())
                 {
                     if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
@@ -180,14 +185,10 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetCOMMERCIALateSettings()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_GetCOMMERCIALateSettings()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_GetCOMMERCIALateSettings()", ex.ToString());
             }
-
-
         }
-
         private void M_ForDisableOnlyFields()
         {
             txtAreaTotalAmount.Enabled = false;
@@ -202,14 +203,12 @@ namespace LEASING.UI.APP.Forms
             //txtSecAndMainTax.Enabled = false;
 
         }
-
-
         private void M_GetUnitList()
         {
             try
             {
                 dgvUnitList.DataSource = null;
-                using (DataSet dt = UnitContext.GetUnitList())
+                using (DataSet dt = _unit.GetUnitList())
                 {
                     if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
@@ -219,14 +218,10 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetUnitList()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_GetUnitList()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_GetUnitList()", ex.ToString());
             }
-
-
         }
-
         private bool IsUnitValid()
         {
             if (ddlProject.SelectedText == "--SELECT--")
@@ -244,7 +239,6 @@ namespace LEASING.UI.APP.Forms
                         return false;
                     }
                 }
-
             }
             return true;
         }
@@ -290,17 +284,12 @@ namespace LEASING.UI.APP.Forms
             txtUnitSequence.Enabled = false;
             chkIsParking.Enabled = false;
         }
-        public frmAddNewUnits()
-        {
-            InitializeComponent();
-        }
-
         private void M_SelectProject()
         {
             try
             {
                 ddlProject.DataSource = null;
-                using (DataSet dt = ProjectContext.GetSelectProject())
+                using (DataSet dt = _project.GetSelectProject())
                 {
                     if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
@@ -312,21 +301,16 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_SelectProject()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_SelectProject()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_SelectProject()", ex.ToString());
             }
-
-
-
         }
-
         private void M_SelectFloortypes()
         {
             try
             {
                 ddlFloorType.DataSource = null;
-                using (DataSet dt = FloorTypeContext.GetSelectFloortypes())
+                using (DataSet dt = _floorType.GetSelectFloortypes())
                 {
                     if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
@@ -338,14 +322,10 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_SelectFloortypes()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_SelectFloortypes()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_SelectFloortypes()", ex.ToString());
             }
-
         }
-
-
         private void M_GetProjectTypeById()
         {
             isResidential = false;
@@ -354,7 +334,7 @@ namespace LEASING.UI.APP.Forms
             txtType.Text = string.Empty;
             try
             {
-                using (DataSet dt = ProjectContext.GetProjectTypeById(Convert.ToInt32(ddlProject.SelectedValue)))
+                using (DataSet dt = _project.GetProjectTypeById(Convert.ToInt32(ddlProject.SelectedValue)))
                 {
                     if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
@@ -381,15 +361,10 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetProjectTypeById()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_GetProjectTypeById()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_GetProjectTypeById()", ex.ToString());
             }
-
-
-
         }
-
         private void M_GetCalculationAreaTotal()
         {
             var result = Math.Round(Functions.ConvertStringToDecimal(txtAreSql.Text) * Functions.ConvertStringToDecimal(txtAreRateSqm.Text));
@@ -400,7 +375,6 @@ namespace LEASING.UI.APP.Forms
             var AMount = (Functions.ConvertStringToDecimal(txtBaseRental.Text) * (chkNonVat.Checked == true ? 0 : Functions.ConvertStringToDecimal(txtBaseRentalVatPercentage.Text)) / 100);
             txtBaseRentalVatAmount.Text = Convert.ToString(AMount);
         }
-
         private decimal RentalNetOfVat()
         {
             return (Functions.ConvertStringToDecimal(txtBaseRental.Text) + Functions.ConvertStringToDecimal(txtBaseRentalVatAmount.Text));
@@ -419,7 +393,6 @@ namespace LEASING.UI.APP.Forms
                 txtTotalRental.Text = "0.00";
             }
         }
-
         private void TotalRentalParking()
         {
             decimal tax = Functions.ConvertStringToDecimal(txtBaseRentalTax.Text);
@@ -456,7 +429,6 @@ namespace LEASING.UI.APP.Forms
                 this.TotalRentalParking();
             }
         }
-
         private void _toggleNonCusaMaintenance()
         {
             if (chkNonCusaMaintenance.Checked == true)
@@ -475,23 +447,22 @@ namespace LEASING.UI.APP.Forms
             }
 
         }
-
         private void M_GetSecAndMainVatAMount()
         {
-   
+
             var AMount = (Functions.ConvertStringToDecimal(txtSecAndMainAmount.Text) * Functions.ConvertStringToDecimal(txtSecAndMainVatPercentage.Text) / 100);
             txtSecAndMainVatAmount.Text = AMount.ToString("0.00");
         }
         private void M_GetSecAndMainWithVatAMount()
         {
             var AMount = (Functions.ConvertStringToDecimal(txtSecAndMainAmount.Text) + Functions.ConvertStringToDecimal(txtSecAndMainVatAmount.Text));
-            txtSecAndMainWithVatAmount.Text = AMount.ToString("0.00");         
+            txtSecAndMainWithVatAmount.Text = AMount.ToString("0.00");
             if (!chkIsParking.Checked)
-            {               
+            {
                 this.TotalRentalUnit();
             }
             else
-            {             
+            {
                 this.TotalRentalParking();
             }
         }
@@ -502,7 +473,7 @@ namespace LEASING.UI.APP.Forms
         }
         private void frmAddNewUnits_Load(object sender, EventArgs e)
         {
-            strUnitFormMode = "READ";
+            this.FormMode = ModeStatus.READ.ToString();
             txtTotalRental.ReadOnly = true;
             ddlFloorType.Visible = false;
             lblFloorType.Visible = false;
@@ -511,7 +482,6 @@ namespace LEASING.UI.APP.Forms
             M_ForDisableOnlyFields();
             txtType.ReadOnly = true;
         }
-
         private void ddlProject_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
         {
             if (ddlProject.SelectedIndex > 0)
@@ -556,48 +526,39 @@ namespace LEASING.UI.APP.Forms
                 isResidential = false;
             }
         }
-
         private void txtFloorNumber_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9\b]"))
                 e.Handled = true;
         }
-
         private void txtUnitSequence_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9\b]"))
                 e.Handled = true;
         }
-
         private void txtAreRateSqm_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
         }
-
         private void txtBaseRental_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
         }
-
         private void txtAreSql_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
         }
-
         private void btnNew_Click(object sender, EventArgs e)
         {
-            strUnitFormMode = "NEW";
+            this.FormMode = ModeStatus.NEW.ToString();
         }
-
         private void btnUndo_Click(object sender, EventArgs e)
         {
-            strUnitFormMode = "READ";
+            this.FormMode = ModeStatus.READ.ToString();
         }
-
-
         private string SelectFloorType()
         {
             if (this.ddlFloorType.Text == "--SELECT--")
@@ -638,11 +599,11 @@ namespace LEASING.UI.APP.Forms
                 UnitNew.Tax = this.WithHoldingTaxParam;
                 UnitNew.TaxAmount = Functions.ConvertStringToDecimal(this.txtBaseRentalTax.Text);
 
-                UnitNew.Message_Code = UnitContext.SaveUnit(UnitNew);
+                UnitNew.Message_Code = _unit.SaveUnit(UnitNew);
                 if (UnitNew.Message_Code.Equals("SUCCESS"))
                 {
                     Functions.MessageShow("New Unit has been added successfully !");
-                    this.strUnitFormMode = "READ";
+                    this.FormMode = ModeStatus.READ.ToString();
                     this.M_GetUnitList();
 
                 }
@@ -654,16 +615,13 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_SaveUnit()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_SaveUnit()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_SaveUnit()", ex.ToString());
             }
-
-
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (this.strUnitFormMode == "NEW")
+            if (this.FormMode == ModeStatus.NEW.ToString())
             {
                 if (this.IsUnitValid())
                 {
@@ -674,7 +632,6 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-
         private void dgvUnitList_CellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -690,20 +647,19 @@ namespace LEASING.UI.APP.Forms
                         M_GetUnitList();
                     }
                 }
-                else if (this.dgvUnitList.Columns[e.ColumnIndex].Name == "ColDeactivate")
-                {
-                    if (Convert.ToString(this.dgvUnitList.Rows[e.RowIndex].Cells["UnitStat"].Value) == "VACANT")
-                    {
-                        if (MessageBox.Show("Are you sure you want to Deactivated the Unit?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
-                        {
+                //else if (this.dgvUnitList.Columns[e.ColumnIndex].Name == "ColDeactivate")
+                //{
+                //    if (Convert.ToString(this.dgvUnitList.Rows[e.RowIndex].Cells["UnitStat"].Value) == "VACANT")
+                //    {
+                //        if (MessageBox.Show("Are you sure you want to Deactivated the Unit?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                //        {
 
 
-                        }
-                    }
-                }
+                //        }
+                //    }
+                //}
             }
         }
-
         private void dgvUnitList_CellFormatting(object sender, Telerik.WinControls.UI.CellFormattingEventArgs e)
         {
             if (!string.IsNullOrEmpty(Convert.ToString(this.dgvUnitList.Rows[e.RowIndex].Cells["UnitStat"].Value)))
@@ -783,102 +739,81 @@ namespace LEASING.UI.APP.Forms
                         //    element.Enabled = false;
                         //}
                     }
-
-
-
                 }
             }
         }
-
-
         private void btnPuchaseItemList_Click(object sender, EventArgs e)
         {
 
         }
-
         private void txtAreRateSqm_TextChanged(object sender, EventArgs e)
         {
             M_GetCalculationAreaTotal();
         }
-
         private void txtAreSql_TextChanged(object sender, EventArgs e)
         {
             M_GetCalculationAreaTotal();
         }
-
         private void txtBaseRental_TextChanged(object sender, EventArgs e)
         {
             M_GetBaseRentalVatAmount();
             M_GetBaseRentalWithVatAmount();
-
         }
-
         private void txtAreTotal_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
         }
-
         private void txtBaseRentalVatPercentage_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
         }
-
         private void txtBaseRentalVatAmount_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
         }
-
         private void txtBaseRentalWithVatAmount_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
         }
-
         private void txtBaseRentalTax_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
         }
-
         private void txtSecAndMainVatPercentage_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
         }
-
         private void txtSecAndMainAmount_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
         }
-
         private void txtSecAndMainVatAmount_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
         }
-
         private void txtSecAndMainWithVatAmount_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
         }
-
         private void txtSecAndMainTax_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
         }
-
         private void txtTotalRental_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
         }
-
         private void chkIsParking_ToggleStateChanged(object sender, Telerik.WinControls.UI.StateChangedEventArgs args)
         {
             if (chkIsParking.CheckState == CheckState.Checked)
@@ -887,7 +822,6 @@ namespace LEASING.UI.APP.Forms
                 txtSecAndMainAmount.Text = string.Empty;
                 txtSecAndMainVatAmount.Text = string.Empty;
                 txtSecAndMainWithVatAmount.Text = string.Empty;
-
                 txtTotalRental.Text = string.Empty;
                 M_GetBaseRentalVatAmount();
                 M_GetBaseRentalWithVatAmount();
@@ -897,12 +831,10 @@ namespace LEASING.UI.APP.Forms
                 if (isResidential)
                 {
                     M_GetResendentialRateSettings();
-
                     M_GetSecAndMainVatAMount();
                     M_GetSecAndMainWithVatAMount();
                     M_GetBaseRentalVatAmount();
                     M_GetBaseRentalWithVatAmount();
-
                 }
                 else if (isCommercial)
                 {
@@ -912,23 +844,17 @@ namespace LEASING.UI.APP.Forms
                     M_GetSecAndMainWithVatAMount();
                     M_GetBaseRentalVatAmount();
                     M_GetBaseRentalWithVatAmount();
-
-
                 }
                 else if (isWarehouse)
                 {
                     M_GetWAREHOUSERateSettings();
-
                     M_GetSecAndMainVatAMount();
                     M_GetSecAndMainWithVatAMount();
                     M_GetBaseRentalVatAmount();
                     M_GetBaseRentalWithVatAmount();
-
-
                 }
             }
         }
-
         private void txtAreTotal_TextChanged(object sender, EventArgs e)
         {
             if (Functions.ConvertStringToDecimal(txtAreaTotalAmount.Text) > 0)
@@ -936,13 +862,11 @@ namespace LEASING.UI.APP.Forms
                 txtBaseRental.Text = txtAreaTotalAmount.Text;
             }
         }
-
         private void chkNonVat_ToggleStateChanged(object sender, StateChangedEventArgs args)
         {
             M_GetBaseRentalVatAmount();
             M_GetBaseRentalWithVatAmount();
         }
-
         private void chkNonCusaMaintenance_ToggleStateChanged(object sender, StateChangedEventArgs args)
         {
             this._toggleNonCusaMaintenance();

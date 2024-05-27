@@ -40,6 +40,7 @@
             this.btnPrintAuthorization = new System.Windows.Forms.ToolStripButton();
             this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
             this.dgvList = new Telerik.WinControls.UI.RadGridView();
+            this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
             this.tableLayoutPanel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
@@ -104,6 +105,7 @@
             this.radGroupBox1.Size = new System.Drawing.Size(590, 307);
             this.radGroupBox1.TabIndex = 1;
             this.radGroupBox1.Text = "FOR MOVE IN";
+            this.radGroupBox1.ThemeName = "Office2007Silver";
             // 
             // dgvList
             // 
@@ -198,5 +200,6 @@
         private Telerik.WinControls.UI.RadGroupBox radGroupBox1;
         private Telerik.WinControls.UI.RadGridView dgvList;
         private System.Windows.Forms.ToolStripButton btnPrintAuthorization;
+        private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme1;
     }
 }

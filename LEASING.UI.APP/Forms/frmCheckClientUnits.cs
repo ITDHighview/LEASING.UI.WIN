@@ -14,23 +14,20 @@ namespace LEASING.UI.APP.Forms
 {
     public partial class frmCheckClientUnits : Form
     {
-
-        UnitContext UnitContext = new UnitContext();
-
-        public bool IsProceed = false;
-        public string ClientId { get; set; }
+        private UnitContext _unit;
         public frmCheckClientUnits()
         {
+            _unit = new UnitContext();
             InitializeComponent();
         }
-
-
+        public bool IsProceed = false;
+        public string ClientId { get; set; }     
         private void M_GetClientUnitList()
         {
             try
             {
                 dgvList.DataSource = null;
-                using (DataSet dt = UnitContext.GetClientUnitList(ClientId))
+                using (DataSet dt = _unit.GetClientUnitList(ClientId))
                 {
                     if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
@@ -38,17 +35,12 @@ namespace LEASING.UI.APP.Forms
                     }
                 }
             }
-
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetClientUnitList()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_GetClientUnitList()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_GetClientUnitList()", ex.ToString());
             }
-
-
         }
-
         private void frmCheckClientUnits_Load(object sender, EventArgs e)
         {
             M_GetClientUnitList();

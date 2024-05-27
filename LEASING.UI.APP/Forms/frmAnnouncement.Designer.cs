@@ -31,6 +31,7 @@
             this.btnSave = new Telerik.WinControls.UI.RadButton();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.txtAnnouncementMessage = new Telerik.WinControls.UI.RadTextBox();
+            this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAnnouncementMessage)).BeginInit();
@@ -43,6 +44,7 @@
             this.btnSave.Size = new System.Drawing.Size(94, 27);
             this.btnSave.TabIndex = 1;
             this.btnSave.Text = "Save";
+            this.btnSave.ThemeName = "Office2007Silver";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // radLabel1
@@ -59,14 +61,17 @@
             this.txtAnnouncementMessage.AutoSize = false;
             this.txtAnnouncementMessage.Location = new System.Drawing.Point(27, 45);
             this.txtAnnouncementMessage.Name = "txtAnnouncementMessage";
+            this.txtAnnouncementMessage.NullText = "Type here...";
             this.txtAnnouncementMessage.Size = new System.Drawing.Size(566, 74);
             this.txtAnnouncementMessage.TabIndex = 3;
             this.txtAnnouncementMessage.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtAnnouncementMessage.ThemeName = "Office2007Silver";
             // 
             // frmAnnouncement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(621, 157);
             this.Controls.Add(this.txtAnnouncementMessage);
             this.Controls.Add(this.radLabel1);
@@ -91,5 +96,6 @@
         private Telerik.WinControls.UI.RadButton btnSave;
         private Telerik.WinControls.UI.RadLabel radLabel1;
         private Telerik.WinControls.UI.RadTextBox txtAnnouncementMessage;
+        private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme1;
     }
 }

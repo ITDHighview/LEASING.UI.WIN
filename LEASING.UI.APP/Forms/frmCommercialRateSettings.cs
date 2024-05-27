@@ -15,40 +15,42 @@ namespace LEASING.UI.APP.Forms
 {
     public partial class frmCommercialRateSettings : Form
     {
-        RateSettingsContext RateSettingsContext = new RateSettingsContext();
+        private RateSettingsContext _rateSettings;
         public frmCommercialRateSettings()
         {
+            _rateSettings = new RateSettingsContext();
             InitializeComponent();
         }
-        private string _strRateFormMode;
-        public string strRateFormMode
+        enum ModeStatus
+        {
+            READ,
+            EDIT
+        }
+        private string _FormMode;
+        public string FormMode
         {
             get
             {
-                return _strRateFormMode;
+                return _FormMode;
             }
             set
             {
-                _strRateFormMode = value;
-                switch (_strRateFormMode)
+                _FormMode = value;
+                switch (_FormMode)
                 {
                     case "EDIT":
                         btnUndo.Enabled = true;
                         btnSave.Enabled = true;
                         btnEdit.Enabled = false;
-
                         txtGenVat.Enabled = true;
                         txtSecAndMaintenance.Enabled = true;
-
                         txtWithHoldingTax.Enabled = true;
                         txtPenalty.Enabled = true;
-
                         break;
                     case "READ":
                         btnUndo.Enabled = false;
                         btnSave.Enabled = false;
                         btnEdit.Enabled = true;
-
                         txtGenVat.Enabled = false;
                         txtSecAndMaintenance.Enabled = false;
                         txtWithHoldingTax.Enabled = false;
@@ -57,9 +59,7 @@ namespace LEASING.UI.APP.Forms
                         txtSecAndMaintenanceWithVatLessTAX.Enabled = false;
                         txtWithHoldingTaxAmount.Enabled = false;
                         txtPenalty.Enabled = false;
-
                         break;
-
                     default:
                         break;
                 }
@@ -69,7 +69,7 @@ namespace LEASING.UI.APP.Forms
         {
             try
             {
-                using (DataSet dt = RateSettingsContext.GetCOMMERCIALSettings())
+                using (DataSet dt = _rateSettings.GetCOMMERCIALSettings())
                 {
                     if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
@@ -84,25 +84,22 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetRateSettings()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_GetRateSettings()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_GetRateSettings()", ex.ToString());
             }
-
-
         }
         private void M_UpdateRates()
         {
             try
             {
-                string results = RateSettingsContext.UpdateCOMMERCIALSettings(Functions.ConvertStringToDecimal(txtGenVat.Text),
-                                                                                           Functions.ConvertStringToDecimal(txtSecAndMaintenance.Text),
-                                                                                           Functions.ConvertStringToDecimal(txtWithHoldingTax.Text),
-                                                                                           Functions.ConvertStringToDecimal(txtPenalty.Text));
+                string results = _rateSettings.UpdateCOMMERCIALSettings(Functions.ConvertStringToDecimal(txtGenVat.Text),
+                                                                        Functions.ConvertStringToDecimal(txtSecAndMaintenance.Text),
+                                                                        Functions.ConvertStringToDecimal(txtWithHoldingTax.Text),
+                                                                        Functions.ConvertStringToDecimal(txtPenalty.Text));
                 if (results.Equals("SUCCESS"))
                 {
                     MessageBox.Show("Rate  has been Upated successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    strRateFormMode = "READ";
+                    this.FormMode = ModeStatus.READ.ToString();
                     M_GetRateSettings();
                 }
                 else
@@ -112,13 +109,10 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_UpdateRates()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_UpdateRates()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_UpdateRates()", ex.ToString());
             }
-
         }
-
         private void M_GetVatAMount()
         {
             var AMount = ((Functions.ConvertStringToDecimal(txtSecAndMaintenance.Text) * Functions.ConvertStringToDecimal(txtGenVat.Text)) / 100);
@@ -141,80 +135,62 @@ namespace LEASING.UI.APP.Forms
         }
         private void frmCommercialRateSettings_Load(object sender, EventArgs e)
         {
-            strRateFormMode = "READ";
+            this.FormMode = ModeStatus.READ.ToString();
             M_GetRateSettings();
             M_GetVatAMount();
             M_GetSecAndMainVatAMount();
             M_GetTaxAMount();
             M_GetSecAndMainWithVatandLessTax();
         }
-
         private void txtGenVat_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
         }
-
         private void txtWithHoldingTax_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
         }
-
         private void txtSecAndMaintenance_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
         }
-
         private void txtSecAndMaintenanceVat_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9\b]"))
                 e.Handled = true;
         }
-
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            strRateFormMode = "EDIT";
+            this.FormMode = ModeStatus.EDIT.ToString();
         }
-
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (strRateFormMode == "EDIT")
+            if (this.FormMode == ModeStatus.EDIT.ToString())
             {
                 if (MessageBox.Show("Are you sure you want to update the following Rate?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                 {
-                    try
-                    {
-                        M_UpdateRates();
-                    }
-                    catch (Exception ex)
-                    {
 
-                        MessageBox.Show(ex.ToString(), "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                  
+                    M_UpdateRates();
                 }
             }
         }
-
         private void btnUndo_Click(object sender, EventArgs e)
         {
-            strRateFormMode = "READ";
+            this.FormMode = ModeStatus.READ.ToString();
         }
-
         private void txtVatAmount_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9\b]"))
                 e.Handled = true;
         }
-
         private void txtSecAndMaintenanceWithVat_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9\b]"))
                 e.Handled = true;
         }
-
         private void txtGenVat_TextChanged(object sender, EventArgs e)
         {
             M_GetVatAMount();
@@ -222,19 +198,16 @@ namespace LEASING.UI.APP.Forms
             M_GetTaxAMount();
             M_GetSecAndMainWithVatandLessTax();
         }
-
         private void txtWithHoldingTax_TextChanged(object sender, EventArgs e)
         {
             M_GetTaxAMount();
             M_GetSecAndMainWithVatandLessTax();
         }
-
         private void txtPenalty_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
         }
-
         private void txtSecAndMaintenance_TextChanged(object sender, EventArgs e)
         {
             M_GetVatAMount();

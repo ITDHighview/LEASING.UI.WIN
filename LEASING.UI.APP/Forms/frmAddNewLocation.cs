@@ -15,30 +15,34 @@ namespace LEASING.UI.APP.Forms
 {
     public partial class frmAddNewLocation : Form
     {
-        LocationContext LocationContext = new LocationContext();
+        private LocationContext _location;
         public frmAddNewLocation()
         {
+            _location = new LocationContext();
             InitializeComponent();
         }
-        private string _strlocationFormMode;
-        public string strlocationFormMode
+        enum ModeStatus
+        {
+            READ,
+            NEW
+        }
+        private string _FormMode;
+        public string FormMode
         {
             get
             {
-                return _strlocationFormMode;
+                return _FormMode;
             }
             set
             {
-                _strlocationFormMode = value;
-                switch (_strlocationFormMode)
+                _FormMode = value;
+                switch (_FormMode)
                 {
                     case "NEW":
                         btnUndo.Enabled = true;
                         btnSave.Enabled = true;
                         txtLocDescription.Enabled = true;
                         txtLocAddress.Enabled = true;
-
-
                         txtLocDescription.Text = string.Empty;
                         txtLocAddress.Text = string.Empty;
                         break;
@@ -47,8 +51,6 @@ namespace LEASING.UI.APP.Forms
                         btnSave.Enabled = false;
                         txtLocDescription.Enabled = false;
                         txtLocAddress.Enabled = false;
-
-
                         txtLocDescription.Text = string.Empty;
                         txtLocAddress.Text = string.Empty;
                         break;
@@ -77,7 +79,7 @@ namespace LEASING.UI.APP.Forms
             try
             {
                 dgvLocationList.DataSource = null;
-                using (DataSet dt = LocationContext.GetLocationList())
+                using (DataSet dt = _location.GetLocationList())
                 {
                     if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
@@ -87,12 +89,9 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetLocationList()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_GetLocationList()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_GetLocationList()", ex.ToString());
             }
-
-
         }
         private void M_SaveLocation()
         {
@@ -101,11 +100,11 @@ namespace LEASING.UI.APP.Forms
                 LocationModel dto = new LocationModel();
                 dto.Description = txtLocDescription.Text;
                 dto.LocAddress = txtLocAddress.Text;
-                dto.Message_Code = LocationContext.SaveLocation(dto);
+                dto.Message_Code = _location.SaveLocation(dto);
                 if (dto.Message_Code.Equals("SUCCESS"))
                 {
                     Functions.MessageShow("New Location has been added successfully !");
-                    strlocationFormMode = "READ";
+                    this.FormMode = ModeStatus.READ.ToString();
                     M_GetLocationList();
                 }
                 else
@@ -115,28 +114,25 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_SaveLocation()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_SaveLocation()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_SaveLocation()", ex.ToString());
             }
         }
 
         private void frmAddNewLocation_Load(object sender, EventArgs e)
         {
-            strlocationFormMode = "READ";
-           
+            this.FormMode = ModeStatus.READ.ToString();
             M_GetLocationList();
-        
         }
 
         private void btnNew_Click(object sender, EventArgs e)
         {
-            strlocationFormMode = "NEW";
+            this.FormMode = ModeStatus.NEW.ToString();
         }
 
         private void btnUndo_Click(object sender, EventArgs e)
         {
-            strlocationFormMode = "READ";
+            this.FormMode = ModeStatus.READ.ToString();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -170,7 +166,7 @@ namespace LEASING.UI.APP.Forms
                     if (MessageBox.Show("Are you sure you want to Deactivate the location?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                     {
 
-                        var result = LocationContext.DeActivateLocation(Convert.ToInt32(dgvLocationList.CurrentRow.Cells["RecId"].Value));
+                        var result = _location.DeActivateLocation(Convert.ToInt32(dgvLocationList.CurrentRow.Cells["RecId"].Value));
                         if (result.Equals("SUCCESS"))
                         {
                             MessageBox.Show("Location has been Deactivate successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);

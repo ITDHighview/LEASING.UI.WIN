@@ -218,14 +218,11 @@ namespace LEASING.UI.APP.Forms
                     }
                 }
             }
-
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetUnitById()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_GetUnitById()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_GetUnitById()", ex.ToString());
             }
-
         }
         private bool IsUnitValid()
         {
@@ -336,11 +333,9 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_SelectProject()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_SelectProject()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_SelectProject()", ex.ToString());
             }
-
         }
         private void M_SelectFloortypes()
         {
@@ -359,11 +354,9 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_SelectFloortypes()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_SelectFloortypes()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_SelectFloortypes()", ex.ToString());
             }
-
         }
         private void M_GetBaseRentalVatAmount()
         {
@@ -456,12 +449,9 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetResendentialRateSettings()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_GetResendentialRateSettings()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_GetResendentialRateSettings()", ex.ToString());
             }
-
-
         }
         private void M_GetWAREHOUSERateSettings()
         {
@@ -487,11 +477,9 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetWAREHOUSERateSettings()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_GetWAREHOUSERateSettings()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_GetWAREHOUSERateSettings()", ex.ToString());
             }
-
         }
         private void M_GetCOMMERCIALateSettings()
         {
@@ -517,11 +505,9 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetCOMMERCIALateSettings()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_GetCOMMERCIALateSettings()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_GetCOMMERCIALateSettings()", ex.ToString());
             }
-
         }
         private void M_GetProjectTypeById()
         {
@@ -561,11 +547,9 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetProjectTypeById()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_GetProjectTypeById()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_GetProjectTypeById()", ex.ToString());
             }
-
         }
         private void frmEditUnits_Load(object sender, EventArgs e)
         {
@@ -679,12 +663,9 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_SaveUnit()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_SaveUnit()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_SaveUnit()", ex.ToString());
             }
-
-
         }
         private void btnSave_Click(object sender, EventArgs e)
         {

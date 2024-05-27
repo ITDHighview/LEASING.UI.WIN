@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn2 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn3 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn4 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn5 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn6 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnRefresh = new System.Windows.Forms.ToolStripButton();
@@ -94,6 +94,7 @@
             this.radGroupBox1.Size = new System.Drawing.Size(590, 307);
             this.radGroupBox1.TabIndex = 1;
             this.radGroupBox1.Text = "FOR UPLOAD CONTRACT";
+            this.radGroupBox1.ThemeName = "Office2007Silver";
             // 
             // dgvList
             // 
@@ -109,48 +110,48 @@
             // 
             this.dgvList.MasterTemplate.AllowAddNewRow = false;
             this.dgvList.MasterTemplate.AllowColumnReorder = false;
-            gridViewCommandColumn1.FieldName = "ColByPass";
-            gridViewCommandColumn1.HeaderImage = global::LEASING.UI.APP.Properties.Resources.accept;
-            gridViewCommandColumn1.HeaderText = "";
-            gridViewCommandColumn1.Image = global::LEASING.UI.APP.Properties.Resources.accept;
-            gridViewCommandColumn1.Name = "ColByPass";
-            gridViewCommandColumn1.Width = 30;
-            gridViewCommandColumn2.FieldName = "ColApproved";
-            gridViewCommandColumn2.HeaderImage = global::LEASING.UI.APP.Properties.Resources.attach;
-            gridViewCommandColumn2.HeaderText = "";
-            gridViewCommandColumn2.Image = global::LEASING.UI.APP.Properties.Resources.attach;
-            gridViewCommandColumn2.Name = "ColApproved";
-            gridViewCommandColumn2.Width = 30;
-            gridViewCommandColumn3.FieldName = "ColView";
-            gridViewCommandColumn3.HeaderImage = global::LEASING.UI.APP.Properties.Resources.magnifier;
-            gridViewCommandColumn3.HeaderText = "";
-            gridViewCommandColumn3.Image = global::LEASING.UI.APP.Properties.Resources.magnifier;
-            gridViewCommandColumn3.Name = "ColView";
-            gridViewCommandColumn3.Width = 30;
-            gridViewTextBoxColumn1.FieldName = "RefId";
-            gridViewTextBoxColumn1.HeaderText = "Contract ID";
-            gridViewTextBoxColumn1.Name = "RefId";
-            gridViewTextBoxColumn1.Width = 150;
-            gridViewTextBoxColumn2.FieldName = "ClientID";
-            gridViewTextBoxColumn2.HeaderText = "Client ID";
-            gridViewTextBoxColumn2.Name = "ClientID";
-            gridViewTextBoxColumn2.Width = 150;
-            gridViewTextBoxColumn3.FieldName = "InquiringClient";
-            gridViewTextBoxColumn3.HeaderText = "Client";
-            gridViewTextBoxColumn3.Name = "InquiringClient";
-            gridViewTextBoxColumn3.Width = 200;
-            gridViewTextBoxColumn4.FieldName = "RecId";
-            gridViewTextBoxColumn4.HeaderText = "RecId";
-            gridViewTextBoxColumn4.IsVisible = false;
-            gridViewTextBoxColumn4.Name = "RecId";
+            gridViewCommandColumn4.FieldName = "ColByPass";
+            gridViewCommandColumn4.HeaderImage = global::LEASING.UI.APP.Properties.Resources.accept;
+            gridViewCommandColumn4.HeaderText = "";
+            gridViewCommandColumn4.Image = global::LEASING.UI.APP.Properties.Resources.accept;
+            gridViewCommandColumn4.Name = "ColByPass";
+            gridViewCommandColumn4.Width = 30;
+            gridViewCommandColumn5.FieldName = "ColApproved";
+            gridViewCommandColumn5.HeaderImage = global::LEASING.UI.APP.Properties.Resources.attach;
+            gridViewCommandColumn5.HeaderText = "";
+            gridViewCommandColumn5.Image = global::LEASING.UI.APP.Properties.Resources.attach;
+            gridViewCommandColumn5.Name = "ColApproved";
+            gridViewCommandColumn5.Width = 30;
+            gridViewCommandColumn6.FieldName = "ColView";
+            gridViewCommandColumn6.HeaderImage = global::LEASING.UI.APP.Properties.Resources.magnifier;
+            gridViewCommandColumn6.HeaderText = "";
+            gridViewCommandColumn6.Image = global::LEASING.UI.APP.Properties.Resources.magnifier;
+            gridViewCommandColumn6.Name = "ColView";
+            gridViewCommandColumn6.Width = 30;
+            gridViewTextBoxColumn5.FieldName = "RefId";
+            gridViewTextBoxColumn5.HeaderText = "Contract ID";
+            gridViewTextBoxColumn5.Name = "RefId";
+            gridViewTextBoxColumn5.Width = 150;
+            gridViewTextBoxColumn6.FieldName = "ClientID";
+            gridViewTextBoxColumn6.HeaderText = "Client ID";
+            gridViewTextBoxColumn6.Name = "ClientID";
+            gridViewTextBoxColumn6.Width = 150;
+            gridViewTextBoxColumn7.FieldName = "InquiringClient";
+            gridViewTextBoxColumn7.HeaderText = "Client";
+            gridViewTextBoxColumn7.Name = "InquiringClient";
+            gridViewTextBoxColumn7.Width = 200;
+            gridViewTextBoxColumn8.FieldName = "RecId";
+            gridViewTextBoxColumn8.HeaderText = "RecId";
+            gridViewTextBoxColumn8.IsVisible = false;
+            gridViewTextBoxColumn8.Name = "RecId";
             this.dgvList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewCommandColumn1,
-            gridViewCommandColumn2,
-            gridViewCommandColumn3,
-            gridViewTextBoxColumn1,
-            gridViewTextBoxColumn2,
-            gridViewTextBoxColumn3,
-            gridViewTextBoxColumn4});
+            gridViewCommandColumn4,
+            gridViewCommandColumn5,
+            gridViewCommandColumn6,
+            gridViewTextBoxColumn5,
+            gridViewTextBoxColumn6,
+            gridViewTextBoxColumn7,
+            gridViewTextBoxColumn8});
             this.dgvList.MasterTemplate.EnableFiltering = true;
             this.dgvList.Name = "dgvList";
             this.dgvList.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
@@ -170,6 +171,8 @@
             this.ClientSize = new System.Drawing.Size(596, 338);
             this.Controls.Add(this.tableLayoutPanel1);
             this.DoubleBuffered = true;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmContractSignedParking";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

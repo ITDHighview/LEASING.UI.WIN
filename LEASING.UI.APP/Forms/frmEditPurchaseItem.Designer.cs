@@ -56,6 +56,7 @@
             this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
             this.txtUnitNumber = new Telerik.WinControls.UI.RadTextBox();
             this.btnSelectUnit = new Telerik.WinControls.UI.RadButton();
+            this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
             this.tableLayoutPanel2.SuspendLayout();
             this.toolStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).BeginInit();
@@ -168,7 +169,7 @@
             this.radGroupBox3.Size = new System.Drawing.Size(727, 256);
             this.radGroupBox3.TabIndex = 0;
             this.radGroupBox3.Text = "PURCHASE DETAILS";
-            this.radGroupBox3.ThemeName = "Office2007Black";
+            this.radGroupBox3.ThemeName = "Office2007Silver";
             // 
             // tableLayoutPanel6
             // 
@@ -204,8 +205,8 @@
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -250,9 +251,9 @@
             this.ddlProjectList.Location = new System.Drawing.Point(105, 28);
             this.ddlProjectList.Name = "ddlProjectList";
             this.ddlProjectList.NullText = "Select Here...";
-            this.ddlProjectList.Size = new System.Drawing.Size(257, 19);
+            this.ddlProjectList.Size = new System.Drawing.Size(257, 20);
             this.ddlProjectList.TabIndex = 2;
-            this.ddlProjectList.ThemeName = "Office2013Light";
+            this.ddlProjectList.ThemeName = "Office2007Silver";
             // 
             // radLabel8
             // 
@@ -271,7 +272,7 @@
             this.txtTotal.NullText = "Type here....";
             this.txtTotal.Size = new System.Drawing.Size(134, 20);
             this.txtTotal.TabIndex = 1;
-            this.txtTotal.ThemeName = "Office2013Light";
+            this.txtTotal.ThemeName = "Office2007Silver";
             this.txtTotal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTotal_KeyPress);
             // 
             // radLabel2
@@ -289,9 +290,9 @@
             this.txtAmount.Location = new System.Drawing.Point(105, 186);
             this.txtAmount.Name = "txtAmount";
             this.txtAmount.NullText = "Type here....";
-            this.txtAmount.Size = new System.Drawing.Size(134, 19);
+            this.txtAmount.Size = new System.Drawing.Size(134, 20);
             this.txtAmount.TabIndex = 1;
-            this.txtAmount.ThemeName = "Office2013Light";
+            this.txtAmount.ThemeName = "Office2007Silver";
             this.txtAmount.TextChanged += new System.EventHandler(this.txtAmount_TextChanged);
             this.txtAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAmount_KeyPress);
             // 
@@ -310,9 +311,9 @@
             this.txtUnitAmount.Location = new System.Drawing.Point(105, 161);
             this.txtUnitAmount.Name = "txtUnitAmount";
             this.txtUnitAmount.NullText = "Type here....";
-            this.txtUnitAmount.Size = new System.Drawing.Size(134, 19);
+            this.txtUnitAmount.Size = new System.Drawing.Size(134, 20);
             this.txtUnitAmount.TabIndex = 1;
-            this.txtUnitAmount.ThemeName = "Office2013Light";
+            this.txtUnitAmount.ThemeName = "Office2007Silver";
             this.txtUnitAmount.TextChanged += new System.EventHandler(this.txtUnitAmount_TextChanged);
             this.txtUnitAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUnitAmount_KeyPress);
             // 
@@ -320,7 +321,7 @@
             // 
             this.radLabel6.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.radLabel6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel6.Location = new System.Drawing.Point(36, 136);
+            this.radLabel6.Location = new System.Drawing.Point(36, 133);
             this.radLabel6.Name = "radLabel6";
             this.radLabel6.Size = new System.Drawing.Size(63, 19);
             this.radLabel6.TabIndex = 0;
@@ -329,18 +330,18 @@
             // txtRemarks
             // 
             this.tableLayoutPanel6.SetColumnSpan(this.txtRemarks, 2);
-            this.txtRemarks.Location = new System.Drawing.Point(105, 136);
+            this.txtRemarks.Location = new System.Drawing.Point(105, 131);
             this.txtRemarks.Name = "txtRemarks";
             this.txtRemarks.NullText = "Type here....";
-            this.txtRemarks.Size = new System.Drawing.Size(575, 19);
+            this.txtRemarks.Size = new System.Drawing.Size(575, 20);
             this.txtRemarks.TabIndex = 1;
-            this.txtRemarks.ThemeName = "Office2013Light";
+            this.txtRemarks.ThemeName = "Office2007Silver";
             // 
             // radLabel4
             // 
             this.radLabel4.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.radLabel4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel4.Location = new System.Drawing.Point(3, 107);
+            this.radLabel4.Location = new System.Drawing.Point(3, 104);
             this.radLabel4.Name = "radLabel4";
             this.radLabel4.Size = new System.Drawing.Size(96, 19);
             this.radLabel4.TabIndex = 0;
@@ -355,7 +356,7 @@
             this.dtpDatePurchase.TabIndex = 3;
             this.dtpDatePurchase.TabStop = false;
             this.dtpDatePurchase.Text = "6/14/2023";
-            this.dtpDatePurchase.ThemeName = "Office2013Light";
+            this.dtpDatePurchase.ThemeName = "Office2007Silver";
             this.dtpDatePurchase.Value = new System.DateTime(2023, 6, 14, 9, 44, 15, 740);
             // 
             // radLabel3
@@ -374,9 +375,9 @@
             this.txtDescription.Location = new System.Drawing.Point(105, 78);
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.NullText = "Type here....";
-            this.txtDescription.Size = new System.Drawing.Size(575, 19);
+            this.txtDescription.Size = new System.Drawing.Size(575, 20);
             this.txtDescription.TabIndex = 1;
-            this.txtDescription.ThemeName = "Office2013Light";
+            this.txtDescription.ThemeName = "Office2007Silver";
             // 
             // radLabel9
             // 
@@ -393,9 +394,9 @@
             this.txtUnitNumber.Location = new System.Drawing.Point(105, 53);
             this.txtUnitNumber.Name = "txtUnitNumber";
             this.txtUnitNumber.NullText = "Type here....";
-            this.txtUnitNumber.Size = new System.Drawing.Size(134, 19);
+            this.txtUnitNumber.Size = new System.Drawing.Size(134, 20);
             this.txtUnitNumber.TabIndex = 1;
-            this.txtUnitNumber.ThemeName = "Office2013Light";
+            this.txtUnitNumber.ThemeName = "Office2007Silver";
             // 
             // btnSelectUnit
             // 
@@ -405,6 +406,7 @@
             this.btnSelectUnit.Size = new System.Drawing.Size(110, 19);
             this.btnSelectUnit.TabIndex = 5;
             this.btnSelectUnit.Text = "Select Unit";
+            this.btnSelectUnit.ThemeName = "Office2007Silver";
             this.btnSelectUnit.Click += new System.EventHandler(this.btnSelectUnit_Click);
             // 
             // frmEditPurchaseItem
@@ -479,5 +481,6 @@
         private Telerik.WinControls.UI.RadLabel radLabel9;
         private Telerik.WinControls.UI.RadTextBox txtUnitNumber;
         private Telerik.WinControls.UI.RadButton btnSelectUnit;
+        private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme1;
     }
 }

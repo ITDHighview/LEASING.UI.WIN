@@ -18,8 +18,6 @@ namespace LEASING.UI.APP.Forms
 {
     public partial class frmEditClient : Form
     {
-
-
         ClientContext ClientContext = new ClientContext();
         public bool IsContractSigned { get; set; } = false;
         public string ReferenceId { get; set; } = string.Empty;
@@ -65,7 +63,6 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-
         private void EnabledFields()
         {
             ddlClientType.Enabled = true;
@@ -118,7 +115,6 @@ namespace LEASING.UI.APP.Forms
             txtClienID.ReadOnly = true;
             txtTinNo.Enabled = false;
         }
-
         private void IsCorporate()
         {
             txtname.Enabled = true;
@@ -141,19 +137,19 @@ namespace LEASING.UI.APP.Forms
             txtnameofmaid.Enabled = false;
             txtnameofdriver.Enabled = false;
             txtnoofvisitorperday.Enabled = false;
-         
-            txtage.Text = string.Empty;                  
+
+            txtage.Text = string.Empty;
             txtnationality.Text = string.Empty;
             txtoccupation.Text = string.Empty;
             txtannualincome.Text = string.Empty;
-            txtnameofemployer.Text = string.Empty;         
+            txtnameofemployer.Text = string.Empty;
             txtspousename.Text = string.Empty;
             txtnameofchildren.Text = string.Empty;
             txttotalnoofperson.Text = string.Empty;
             txtnameofmaid.Text = string.Empty;
             txtnameofdriver.Text = string.Empty;
             txtnoofvisitorperday.Text = string.Empty;
-           
+
 
         }
         public string ClientID { get; set; }
@@ -162,7 +158,6 @@ namespace LEASING.UI.APP.Forms
         {
             InitializeComponent();
         }
-
         private void M_GetClientFileList()
         {
             try
@@ -179,14 +174,10 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetClientFileList()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_GetClientFileList()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_GetClientFileList()", ex.ToString());
             }
-
-
         }
-
         private void M_GetClientById()
         {
             try
@@ -219,13 +210,10 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetClientById()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_GetClientById()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_GetClientById()", ex.ToString());
             }
-
         }
-
         private void M_GetReferenceByClientID()
         {
             try
@@ -241,13 +229,10 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetReferenceByClientID()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_GetReferenceByClientID()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_GetReferenceByClientID()", ex.ToString());
             }
-
         }
-
         private void btnUploadFile_Click(object sender, EventArgs e)
         {
 
@@ -272,10 +257,10 @@ namespace LEASING.UI.APP.Forms
                             frmUploadFile.txtClientID.Text = sClientID;
                             frmUploadFile.IsContractSigned = IsContractSigned;
                             string fileName = Path.GetFileName(filePath);
-                            
-                                                     
+
+
                             //string folderName = Path.GetFileNameWithoutExtension(filePath);                                                
-                           
+
                             //frmUploadFile.sFilePath = folderPath;
                             frmUploadFile.ShowDialog();
                             if (frmUploadFile.IsProceed)
@@ -302,15 +287,22 @@ namespace LEASING.UI.APP.Forms
                                     string destinationFilePath = Path.Combine(folderPath, fileName);
                                     File.Copy(filePath, destinationFilePath);
 
-                                    string result = ClientContext.SaveFileInDatabase(sClientID, destinationFilePath, frmUploadFile.txtfilename.Text, fileName, frmUploadFile.txtnotes.Text, ReferenceId, IsContractSigned);
-                                    if (result.Equals("SUCCESS"))
+                                    try
                                     {
+                                        string result = ClientContext.SaveFileInDatabase(sClientID, destinationFilePath, frmUploadFile.txtfilename.Text, fileName, frmUploadFile.txtnotes.Text, ReferenceId, IsContractSigned);
+                                        if (result.Equals("SUCCESS"))
+                                        {
 
-                                        MessageBox.Show("Files attached successfully!", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                        M_GetClientFileList();
+                                            MessageBox.Show("Files attached successfully!", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            M_GetClientFileList();
 
+                                        }
                                     }
-
+                                    catch (Exception ex)
+                                    {
+                                        Functions.LogError("btnUploadFile_Click", this.Text, ex.ToString(), DateTime.Now, this);
+                                        Functions.ErrorShow("btnUploadFile_Click", ex.ToString());
+                                    }
                                 }
                                 else if (Directory.Exists(folderPath))
                                 {
@@ -322,26 +314,26 @@ namespace LEASING.UI.APP.Forms
                                             File.Delete(destinationFilePath);
                                             ClientContext.DeleteFileFromDatabase(destinationFilePath);
                                         }
-
-
                                     }
                                     //Directory.Delete(folderPath);
                                     //Directory.CreateDirectory(folderPath);
-
-
                                     File.Copy(filePath, destinationFilePath);
-
-                                    string result = ClientContext.SaveFileInDatabase(sClientID, destinationFilePath, frmUploadFile.txtfilename.Text, fileName, frmUploadFile.txtnotes.Text, ReferenceId, IsContractSigned);
-                                    if (result.Equals("SUCCESS"))
+                                    try
                                     {
-                                        MessageBox.Show("Files attached successfully!", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                        M_GetClientFileList();
+                                        string result = ClientContext.SaveFileInDatabase(sClientID, destinationFilePath, frmUploadFile.txtfilename.Text, fileName, frmUploadFile.txtnotes.Text, ReferenceId, IsContractSigned);
+                                        if (result.Equals("SUCCESS"))
+                                        {
+                                            MessageBox.Show("Files attached successfully!", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            M_GetClientFileList();
 
+                                        }
                                     }
-
-
+                                    catch (Exception ex)
+                                    {
+                                        Functions.LogError("btnUploadFile_Click", this.Text, ex.ToString(), DateTime.Now, this);
+                                        Functions.ErrorShow("btnUploadFile_Click", ex.ToString());
+                                    }
                                 }
-
                             }
                         }
                     }
@@ -353,12 +345,10 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                // Log the error into the stored procedure
-                Functions.LogErrorIntoStoredProcedure("Button Click : btnUploadFile", this.Text, ex.Message, DateTime.Now, this);
-                Functions.MessageShow("An error occurred : " + ex.ToString() + " Please check the [ErrorLog] ");
+                Functions.LogError("btnUploadFile_Click", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("btnUploadFile_Click", ex.ToString());
             }
         }
-
         private void frmEditClient_Load(object sender, EventArgs e)
         {
             if (IsContractSigned)
@@ -369,7 +359,7 @@ namespace LEASING.UI.APP.Forms
             {
                 strClientFormMode = "READ";
             }
-     
+
 
             txtClienID.Text = ClientID;
             M_GetClientById();
@@ -384,8 +374,6 @@ namespace LEASING.UI.APP.Forms
             M_GetClientFileList();
             M_GetReferenceByClientID();
         }
-
-
         private void dgvFileList_CellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -419,20 +407,16 @@ namespace LEASING.UI.APP.Forms
                             }
                             catch (Exception ex)
                             {
-                                Functions.LogErrorIntoStoredProcedure("Cell Click : ColDelete", this.Text, ex.Message, DateTime.Now, this);
-
-                                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                                Functions.LogError("Cell Clik : ColDelete", this.Text, ex.ToString(), DateTime.Now, this);
+                                Functions.ErrorShow("Cell Clik : ColDelete", ex.ToString());
                             }
-
                         }
-
                     }
                     else
                     {
                         MessageBox.Show("Please enter a client name.");
                     }
                 }
-
             }
         }
         private bool IsClientValid()
@@ -450,7 +434,6 @@ namespace LEASING.UI.APP.Forms
 
             return true;
         }
-
         private void M_SaveClient()
         {
             try
@@ -494,9 +477,8 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_SaveClient()",this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_SaveClient()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_SaveClient()", ex.ToString());
             }
         }
         private void btnSave_Click(object sender, EventArgs e)
@@ -510,17 +492,14 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-
         private void btnNewProject_Click(object sender, EventArgs e)
         {
             strClientFormMode = "EDIT";
         }
-
         private void btnUndo_Click(object sender, EventArgs e)
         {
             strClientFormMode = "READ";
         }
-
         private void dgvList_CellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -547,7 +526,6 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-
         private void ddlClientType_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
         {
             if (ddlClientType.SelectedIndex >= 0)

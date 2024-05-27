@@ -16,32 +16,20 @@ namespace LEASING.UI.APP.Forms
 {
     public partial class frmClientRecieptTransactionList : Form
     {
-        ComputationContext ComputationContext = new ComputationContext();
-        public string srefid = string.Empty; 
+      private  ComputationContext _computation;
+       
         public frmClientRecieptTransactionList()
         {
+            _computation = new ComputationContext();
             InitializeComponent();
         }
-        //private void M_GetContractList()
-        //{
-
-        //    dgvContractList.DataSource = null;
-        //    using (DataSet dt = ComputationContext.GetContractList())
-        //    {
-        //        if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
-        //        {
-        //            dgvContractList.DataSource = dt.Tables[0];
-        //        }
-
-        //    }
-        //}
-        private void M_GetContractList(string refid)
+        public string ContractNumber { get; set; } = string.Empty;
+        private void M_GetContractList(string contractNumber)
         {
-
             try
             {
                 dgvReceiptList.DataSource = null;
-                using (DataSet dt = ComputationContext.GetReceiptByRefId(refid))
+                using (DataSet dt = _computation.GetReceiptByRefId(contractNumber))
                 {
                     if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
@@ -51,21 +39,13 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetContractList()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_GetContractList()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_GetContractList()", ex.ToString());
             }
-
-
         }
         private void frmClientRecieptTransaction_Load(object sender, EventArgs e)
         {
-            M_GetContractList(srefid);
-        }
-        private string GetPaymentLevel()
-        {
-
-            return "";
+            M_GetContractList(ContractNumber);
         }
         private void dgvReceiptList_CellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
@@ -88,7 +68,7 @@ namespace LEASING.UI.APP.Forms
                         IsNoOR = false;
                     }
 
-                    frmRecieptSelection forms = new frmRecieptSelection(Convert.ToString(dgvReceiptList.CurrentRow.Cells["TranID"].Value), Convert.ToString(dgvReceiptList.CurrentRow.Cells["RefId"].Value),this.GetPaymentLevel());
+                    frmRecieptSelection forms = new frmRecieptSelection(Convert.ToString(dgvReceiptList.CurrentRow.Cells["TranID"].Value), Convert.ToString(dgvReceiptList.CurrentRow.Cells["RefId"].Value),"");
                     forms.IsNoOR = IsNoOR;
 
                     forms.ShowDialog();
@@ -102,13 +82,12 @@ namespace LEASING.UI.APP.Forms
                         forms.ShowDialog();
                         if (forms.IsProceed)
                         {
-                            M_GetContractList(srefid);
+                            M_GetContractList(ContractNumber);
                         }
                     }               
                 }              
             }
         }
-
         private void dgvReceiptList_CellFormatting(object sender, Telerik.WinControls.UI.CellFormattingEventArgs e)
         {
             if (e.CellElement.ColumnInfo is GridViewCommandColumn && !(e.CellElement.RowElement is GridTableHeaderRowElement))

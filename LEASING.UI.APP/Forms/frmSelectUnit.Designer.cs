@@ -51,6 +51,7 @@
             this.radGroupBox1.Size = new System.Drawing.Size(403, 406);
             this.radGroupBox1.TabIndex = 0;
             this.radGroupBox1.Text = "UNIT LIST";
+            this.radGroupBox1.ThemeName = "Office2007Silver";
             // 
             // dgvList
             // 

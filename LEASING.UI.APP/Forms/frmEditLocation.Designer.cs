@@ -40,6 +40,7 @@
             this.btnSave = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnUndo = new System.Windows.Forms.ToolStripButton();
+            this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
             this.radGroupBox1.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
@@ -61,6 +62,7 @@
             this.radGroupBox1.Size = new System.Drawing.Size(592, 146);
             this.radGroupBox1.TabIndex = 1;
             this.radGroupBox1.Text = "LOCATION DETAILS";
+            this.radGroupBox1.ThemeName = "Office2007Silver";
             // 
             // tableLayoutPanel5
             // 
@@ -110,18 +112,18 @@
             this.txtLocDescription.Location = new System.Drawing.Point(103, 28);
             this.txtLocDescription.Name = "txtLocDescription";
             this.txtLocDescription.NullText = "Type here....";
-            this.txtLocDescription.Size = new System.Drawing.Size(349, 19);
+            this.txtLocDescription.Size = new System.Drawing.Size(349, 20);
             this.txtLocDescription.TabIndex = 1;
-            this.txtLocDescription.ThemeName = "Office2013Light";
+            this.txtLocDescription.ThemeName = "Office2007Silver";
             // 
             // txtLocAddress
             // 
             this.txtLocAddress.Location = new System.Drawing.Point(103, 53);
             this.txtLocAddress.Name = "txtLocAddress";
             this.txtLocAddress.NullText = "Type Here....";
-            this.txtLocAddress.Size = new System.Drawing.Size(475, 19);
+            this.txtLocAddress.Size = new System.Drawing.Size(475, 20);
             this.txtLocAddress.TabIndex = 1;
-            this.txtLocAddress.ThemeName = "Office2013Light";
+            this.txtLocAddress.ThemeName = "Office2007Silver";
             // 
             // toolStrip1
             // 
@@ -215,5 +217,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton btnUndo;
+        private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme1;
     }
 }

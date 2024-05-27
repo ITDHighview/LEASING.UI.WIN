@@ -84,12 +84,13 @@
             this.txtAreaTotalAmount = new Telerik.WinControls.UI.RadTextBox();
             this.txtAreSql = new Telerik.WinControls.UI.RadTextBox();
             this.radGroupBox7 = new Telerik.WinControls.UI.RadGroupBox();
+            this.chkNonCusaMaintenance = new Telerik.WinControls.UI.RadCheckBox();
             this.chkNonVat = new Telerik.WinControls.UI.RadCheckBox();
             this.radGroupBox8 = new Telerik.WinControls.UI.RadGroupBox();
             this.txtTotalRental = new Telerik.WinControls.UI.RadTextBox();
             this.radGroupBox10 = new Telerik.WinControls.UI.RadGroupBox();
             this.chkIsParking = new Telerik.WinControls.UI.RadCheckBox();
-            this.chkNonCusaMaintenance = new Telerik.WinControls.UI.RadCheckBox();
+            this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
             this.radGroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).BeginInit();
@@ -147,6 +148,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtAreSql)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox7)).BeginInit();
             this.radGroupBox7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chkNonCusaMaintenance)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkNonVat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox8)).BeginInit();
             this.radGroupBox8.SuspendLayout();
@@ -154,7 +156,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox10)).BeginInit();
             this.radGroupBox10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chkIsParking)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkNonCusaMaintenance)).BeginInit();
             this.SuspendLayout();
             // 
             // radGroupBox1
@@ -179,6 +180,7 @@
             this.radGroupBox2.Size = new System.Drawing.Size(1145, 275);
             this.radGroupBox2.TabIndex = 4;
             this.radGroupBox2.Text = "INFORMATION";
+            this.radGroupBox2.ThemeName = "Office2007Silver";
             // 
             // tableLayoutPanel5
             // 
@@ -293,6 +295,7 @@
             this.radGroupBox9.Size = new System.Drawing.Size(445, 224);
             this.radGroupBox9.TabIndex = 1;
             this.radGroupBox9.Text = "UNIT DETAILS";
+            this.radGroupBox9.ThemeName = "Office2007Silver";
             // 
             // tableLayoutPanel1
             // 
@@ -349,6 +352,7 @@
             this.ddlProject.NullText = "Select here...";
             this.ddlProject.Size = new System.Drawing.Size(298, 19);
             this.ddlProject.TabIndex = 5;
+            this.ddlProject.ThemeName = "Office2007Silver";
             // 
             // radLabel7
             // 
@@ -365,8 +369,9 @@
             this.txtType.Location = new System.Drawing.Point(140, 28);
             this.txtType.Name = "txtType";
             this.txtType.NullText = "Type here...";
-            this.txtType.Size = new System.Drawing.Size(120, 19);
+            this.txtType.Size = new System.Drawing.Size(120, 20);
             this.txtType.TabIndex = 6;
+            this.txtType.ThemeName = "Office2007Silver";
             // 
             // radLabel10
             // 
@@ -386,6 +391,7 @@
             this.txtDetailsOfProperty.NullText = "Type here...";
             this.txtDetailsOfProperty.Size = new System.Drawing.Size(298, 19);
             this.txtDetailsOfProperty.TabIndex = 6;
+            this.txtDetailsOfProperty.ThemeName = "Office2007Silver";
             // 
             // lblFloorType
             // 
@@ -402,8 +408,9 @@
             this.ddlFloorType.Location = new System.Drawing.Point(140, 78);
             this.ddlFloorType.Name = "ddlFloorType";
             this.ddlFloorType.NullText = "Select here...";
-            this.ddlFloorType.Size = new System.Drawing.Size(184, 19);
+            this.ddlFloorType.Size = new System.Drawing.Size(184, 20);
             this.ddlFloorType.TabIndex = 5;
+            this.ddlFloorType.ThemeName = "Office2007Silver";
             // 
             // radLabel3
             // 
@@ -420,8 +427,9 @@
             this.txtUnitNumber.Location = new System.Drawing.Point(140, 103);
             this.txtUnitNumber.Name = "txtUnitNumber";
             this.txtUnitNumber.NullText = "Type here...";
-            this.txtUnitNumber.Size = new System.Drawing.Size(120, 19);
+            this.txtUnitNumber.Size = new System.Drawing.Size(120, 20);
             this.txtUnitNumber.TabIndex = 6;
+            this.txtUnitNumber.ThemeName = "Office2007Silver";
             // 
             // radLabel11
             // 
@@ -439,8 +447,9 @@
             this.txtFloorNumber.MaxLength = 2;
             this.txtFloorNumber.Name = "txtFloorNumber";
             this.txtFloorNumber.NullText = "Type here...";
-            this.txtFloorNumber.Size = new System.Drawing.Size(120, 19);
+            this.txtFloorNumber.Size = new System.Drawing.Size(120, 20);
             this.txtFloorNumber.TabIndex = 6;
+            this.txtFloorNumber.ThemeName = "Office2007Silver";
             // 
             // radLabel1
             // 
@@ -458,8 +467,9 @@
             this.txtUnitSequence.MaxLength = 2;
             this.txtUnitSequence.Name = "txtUnitSequence";
             this.txtUnitSequence.NullText = "Type here...";
-            this.txtUnitSequence.Size = new System.Drawing.Size(119, 19);
+            this.txtUnitSequence.Size = new System.Drawing.Size(119, 20);
             this.txtUnitSequence.TabIndex = 6;
+            this.txtUnitSequence.ThemeName = "Office2007Silver";
             // 
             // lblStat
             // 
@@ -478,6 +488,7 @@
             this.ddlUnitStatList.NullText = "Select here...";
             this.ddlUnitStatList.Size = new System.Drawing.Size(120, 20);
             this.ddlUnitStatList.TabIndex = 5;
+            this.ddlUnitStatList.ThemeName = "Office2007Silver";
             // 
             // radGroupBox3
             // 
@@ -500,6 +511,7 @@
             this.radGroupBox3.Size = new System.Drawing.Size(205, 144);
             this.radGroupBox3.TabIndex = 9;
             this.radGroupBox3.Text = "BASE RENTAL";
+            this.radGroupBox3.ThemeName = "Office2007Silver";
             // 
             // radLabel12
             // 
@@ -557,6 +569,7 @@
             this.txtBaseRentalTax.Name = "txtBaseRentalTax";
             this.txtBaseRentalTax.Size = new System.Drawing.Size(87, 20);
             this.txtBaseRentalTax.TabIndex = 6;
+            this.txtBaseRentalTax.ThemeName = "Office2007Silver";
             // 
             // txtBaseRentalWithVatAmount
             // 
@@ -564,6 +577,7 @@
             this.txtBaseRentalWithVatAmount.Name = "txtBaseRentalWithVatAmount";
             this.txtBaseRentalWithVatAmount.Size = new System.Drawing.Size(87, 20);
             this.txtBaseRentalWithVatAmount.TabIndex = 6;
+            this.txtBaseRentalWithVatAmount.ThemeName = "Office2007Silver";
             // 
             // txtBaseRentalVatAmount
             // 
@@ -571,6 +585,7 @@
             this.txtBaseRentalVatAmount.Name = "txtBaseRentalVatAmount";
             this.txtBaseRentalVatAmount.Size = new System.Drawing.Size(87, 20);
             this.txtBaseRentalVatAmount.TabIndex = 6;
+            this.txtBaseRentalVatAmount.ThemeName = "Office2007Silver";
             // 
             // txtBaseRentalVatPercentage
             // 
@@ -578,6 +593,7 @@
             this.txtBaseRentalVatPercentage.Name = "txtBaseRentalVatPercentage";
             this.txtBaseRentalVatPercentage.Size = new System.Drawing.Size(87, 20);
             this.txtBaseRentalVatPercentage.TabIndex = 6;
+            this.txtBaseRentalVatPercentage.ThemeName = "Office2007Silver";
             // 
             // txtBaseRental
             // 
@@ -586,6 +602,7 @@
             this.txtBaseRental.NullText = "Type here...";
             this.txtBaseRental.Size = new System.Drawing.Size(87, 20);
             this.txtBaseRental.TabIndex = 6;
+            this.txtBaseRental.ThemeName = "Office2007Silver";
             this.txtBaseRental.TextChanged += new System.EventHandler(this.txtBaseRental_TextChanged);
             // 
             // radGroupBox5
@@ -609,6 +626,7 @@
             this.radGroupBox5.Size = new System.Drawing.Size(237, 144);
             this.radGroupBox5.TabIndex = 9;
             this.radGroupBox5.Text = "Sec & Maintenance";
+            this.radGroupBox5.ThemeName = "Office2007Silver";
             // 
             // radLabel2
             // 
@@ -656,6 +674,7 @@
             this.txtSecAndMainWithVatAmount.Name = "txtSecAndMainWithVatAmount";
             this.txtSecAndMainWithVatAmount.Size = new System.Drawing.Size(92, 20);
             this.txtSecAndMainWithVatAmount.TabIndex = 6;
+            this.txtSecAndMainWithVatAmount.ThemeName = "Office2007Silver";
             // 
             // txtSecAndMainVatAmount
             // 
@@ -663,6 +682,7 @@
             this.txtSecAndMainVatAmount.Name = "txtSecAndMainVatAmount";
             this.txtSecAndMainVatAmount.Size = new System.Drawing.Size(92, 20);
             this.txtSecAndMainVatAmount.TabIndex = 6;
+            this.txtSecAndMainVatAmount.ThemeName = "Office2007Silver";
             // 
             // txtSecAndMainVatPercentage
             // 
@@ -670,6 +690,7 @@
             this.txtSecAndMainVatPercentage.Name = "txtSecAndMainVatPercentage";
             this.txtSecAndMainVatPercentage.Size = new System.Drawing.Size(92, 20);
             this.txtSecAndMainVatPercentage.TabIndex = 6;
+            this.txtSecAndMainVatPercentage.ThemeName = "Office2007Silver";
             // 
             // txtSecAndMainAmount
             // 
@@ -677,6 +698,7 @@
             this.txtSecAndMainAmount.Name = "txtSecAndMainAmount";
             this.txtSecAndMainAmount.Size = new System.Drawing.Size(92, 20);
             this.txtSecAndMainAmount.TabIndex = 6;
+            this.txtSecAndMainAmount.ThemeName = "Office2007Silver";
             // 
             // radGroupBox6
             // 
@@ -697,6 +719,7 @@
             this.radGroupBox6.Size = new System.Drawing.Size(230, 144);
             this.radGroupBox6.TabIndex = 10;
             this.radGroupBox6.Text = "AREA";
+            this.radGroupBox6.ThemeName = "Office2007Silver";
             // 
             // txtAreRateSqm
             // 
@@ -705,6 +728,7 @@
             this.txtAreRateSqm.NullText = "Type here...";
             this.txtAreRateSqm.Size = new System.Drawing.Size(82, 20);
             this.txtAreRateSqm.TabIndex = 6;
+            this.txtAreRateSqm.ThemeName = "Office2007Silver";
             this.txtAreRateSqm.TextChanged += new System.EventHandler(this.txtAreRateSqm_TextChanged);
             // 
             // radLabel15
@@ -743,6 +767,7 @@
             this.txtAreaTotalAmount.Name = "txtAreaTotalAmount";
             this.txtAreaTotalAmount.Size = new System.Drawing.Size(81, 20);
             this.txtAreaTotalAmount.TabIndex = 6;
+            this.txtAreaTotalAmount.ThemeName = "Office2007Silver";
             this.txtAreaTotalAmount.TextChanged += new System.EventHandler(this.txtAreaTotalAmount_TextChanged);
             // 
             // txtAreSql
@@ -752,6 +777,7 @@
             this.txtAreSql.NullText = "Type here...";
             this.txtAreSql.Size = new System.Drawing.Size(81, 20);
             this.txtAreSql.TabIndex = 6;
+            this.txtAreSql.ThemeName = "Office2007Silver";
             this.txtAreSql.TextChanged += new System.EventHandler(this.txtAreSql_TextChanged);
             // 
             // radGroupBox7
@@ -768,6 +794,16 @@
             this.radGroupBox7.Size = new System.Drawing.Size(205, 74);
             this.radGroupBox7.TabIndex = 11;
             this.radGroupBox7.Text = "VAT Option";
+            this.radGroupBox7.ThemeName = "Office2007Silver";
+            // 
+            // chkNonCusaMaintenance
+            // 
+            this.chkNonCusaMaintenance.Location = new System.Drawing.Point(8, 45);
+            this.chkNonCusaMaintenance.Name = "chkNonCusaMaintenance";
+            this.chkNonCusaMaintenance.Size = new System.Drawing.Size(15, 15);
+            this.chkNonCusaMaintenance.TabIndex = 0;
+            this.chkNonCusaMaintenance.ThemeName = "Office2007Silver";
+            this.chkNonCusaMaintenance.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.chkNonCusaMaintenance_ToggleStateChanged);
             // 
             // chkNonVat
             // 
@@ -776,6 +812,7 @@
             this.chkNonVat.Size = new System.Drawing.Size(65, 18);
             this.chkNonVat.TabIndex = 0;
             this.chkNonVat.Text = "Non VAT";
+            this.chkNonVat.ThemeName = "Office2007Silver";
             this.chkNonVat.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.chkNonVat_ToggleStateChanged);
             // 
             // radGroupBox8
@@ -792,6 +829,7 @@
             this.radGroupBox8.Size = new System.Drawing.Size(237, 74);
             this.radGroupBox8.TabIndex = 12;
             this.radGroupBox8.Text = "TOTAL MONTHLY RENTAL";
+            this.radGroupBox8.ThemeName = "Office2007Silver";
             // 
             // txtTotalRental
             // 
@@ -803,6 +841,7 @@
             this.txtTotalRental.Size = new System.Drawing.Size(233, 54);
             this.txtTotalRental.TabIndex = 6;
             this.txtTotalRental.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtTotalRental.ThemeName = "Office2007Silver";
             // 
             // radGroupBox10
             // 
@@ -818,6 +857,7 @@
             this.radGroupBox10.Size = new System.Drawing.Size(230, 74);
             this.radGroupBox10.TabIndex = 13;
             this.radGroupBox10.Text = "IS PARKING UNIT";
+            this.radGroupBox10.ThemeName = "Office2007Silver";
             // 
             // chkIsParking
             // 
@@ -828,15 +868,8 @@
             this.chkIsParking.Size = new System.Drawing.Size(119, 18);
             this.chkIsParking.TabIndex = 8;
             this.chkIsParking.Text = "Please flag this box ";
+            this.chkIsParking.ThemeName = "Office2007Silver";
             this.chkIsParking.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.chkIsParking_ToggleStateChanged);
-            // 
-            // chkNonCusaMaintenance
-            // 
-            this.chkNonCusaMaintenance.Location = new System.Drawing.Point(8, 45);
-            this.chkNonCusaMaintenance.Name = "chkNonCusaMaintenance";
-            this.chkNonCusaMaintenance.Size = new System.Drawing.Size(15, 15);
-            this.chkNonCusaMaintenance.TabIndex = 0;
-            this.chkNonCusaMaintenance.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.chkNonCusaMaintenance_ToggleStateChanged);
             // 
             // frmEditUnits
             // 
@@ -916,6 +949,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox7)).EndInit();
             this.radGroupBox7.ResumeLayout(false);
             this.radGroupBox7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chkNonCusaMaintenance)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkNonVat)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox8)).EndInit();
             this.radGroupBox8.ResumeLayout(false);
@@ -924,7 +958,6 @@
             this.radGroupBox10.ResumeLayout(false);
             this.radGroupBox10.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chkIsParking)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkNonCusaMaintenance)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -993,5 +1026,6 @@
         private Telerik.WinControls.UI.RadLabel lblStat;
         private Telerik.WinControls.UI.RadDropDownList ddlUnitStatList;
         private Telerik.WinControls.UI.RadCheckBox chkNonCusaMaintenance;
+        private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme1;
     }
 }

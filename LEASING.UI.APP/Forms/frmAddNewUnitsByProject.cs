@@ -17,24 +17,36 @@ namespace LEASING.UI.APP.Forms
 {
     public partial class frmAddNewUnitsByProject : Form
     {
-        ProjectContext ProjectContext = new ProjectContext();
-        FloorTypeContext FloorTypeContext = new FloorTypeContext();
-        UnitContext UnitContext = new UnitContext();
+       private ProjectContext _project;
+       private FloorTypeContext _floorType;
+       private UnitContext _unit;
+        public frmAddNewUnitsByProject()
+        {
+            _project = new ProjectContext();
+            _floorType = new FloorTypeContext();
+            _unit = new UnitContext();
+            InitializeComponent();
+        }
+
+        enum ModeStatus
+        {
+            READ,
+            NEW
+        }
         bool isResidential = false;
         public bool IsProceed = false;
         public int RecId { get; set; }
-
-        private string _strUnitFormMode;
-        public string strUnitFormMode
+        private string _FormMode;
+        public string FormMode
         {
             get
             {
-                return _strUnitFormMode;
+                return _FormMode;
             }
             set
             {
-                _strUnitFormMode = value;
-                switch (_strUnitFormMode)
+                _FormMode = value;
+                switch (_FormMode)
                 {
                     case "NEW":
                         btnUndo.Enabled = true;
@@ -42,15 +54,12 @@ namespace LEASING.UI.APP.Forms
                         btnNew.Enabled = false;
                         EnableFields();
                         ClearFields();
-
                         break;
                     case "READ":
                         btnUndo.Enabled = false;
                         btnSave.Enabled = false;
                         btnNew.Enabled = true;
-                        DisEnableFields();
-                       
-
+                        DisEnableFields();                     
                         ddlFloorType.SelectedIndex = 0;
                         ClearFields();
                         break;
@@ -60,12 +69,10 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-
         public class UnitStatus
         {
             public string UnitStatusName { get; set; }
         }
-
         List<UnitStatus> UnitStatusList = new List<UnitStatus>()
         {
             new UnitStatus { UnitStatusName = "--SELECT--"},
@@ -74,8 +81,6 @@ namespace LEASING.UI.APP.Forms
             new UnitStatus { UnitStatusName = "OCCUPIED"},
              new UnitStatus { UnitStatusName = "NOT AVAILABLE"}
         };
-
-
         private void M_GetUnitStatus()
         {
 
@@ -87,8 +92,6 @@ namespace LEASING.UI.APP.Forms
                 ddlUnitStatus.DataSource = UnitStatusList;
             }
         }
-
-
         private bool IsUnitValid()
         {
             //if (ddlProject.SelectedText == "--SELECT--")
@@ -111,7 +114,6 @@ namespace LEASING.UI.APP.Forms
 
             return true;
         }
-
         private void EnableFields()
         {
 
@@ -129,7 +131,6 @@ namespace LEASING.UI.APP.Forms
             txtUnitSequence.Enabled = true;
             chkIsParking.Enabled = true;
         }
-
         private void ClearFields()
         {
 
@@ -148,7 +149,6 @@ namespace LEASING.UI.APP.Forms
             chkIsParking.Checked = false;
 
         }
-
         private void DisEnableFields()
         {
 
@@ -167,19 +167,12 @@ namespace LEASING.UI.APP.Forms
             chkIsParking.Enabled = false;
             //dgvUnitList.Enabled = false;
         }
-        public frmAddNewUnitsByProject()
-        {
-            InitializeComponent();
-        }
-
-
-
         private void M_SelectFloortypes()
         {
             try
             {
                 ddlFloorType.DataSource = null;
-                using (DataSet dt = FloorTypeContext.GetSelectFloortypes())
+                using (DataSet dt = _floorType.GetSelectFloortypes())
                 {
                     if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
@@ -191,23 +184,17 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_SelectFloortypes()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_SelectFloortypes()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_SelectFloortypes()", ex.ToString());
             }
-
-
-
         }
-
-
         private void M_GetProjectTypeById()
         {
             isResidential = false;
             txtType.Text = string.Empty;
             try
             {
-                using (DataSet dt = ProjectContext.GetProjectTypeById(RecId))
+                using (DataSet dt = _project.GetProjectTypeById(RecId))
                 {
                     if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
@@ -223,22 +210,17 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetProjectTypeById()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_GetProjectTypeById()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_GetProjectTypeById()", ex.ToString());
             }
-
-
         }
-
         private void frmAddNewUnits_Load(object sender, EventArgs e)
         {
-            strUnitFormMode = "READ";
+            this.FormMode = ModeStatus.READ.ToString();
             ddlFloorType.Visible = false;
             lblFloorType.Visible = false;
             lblUnitStatus.Visible = false;
             ddlUnitStatus.Visible = false;
-
             if (RecId > 0)
             {
                 M_GetProjectTypeById();
@@ -248,7 +230,6 @@ namespace LEASING.UI.APP.Forms
                     lblFloorType.Visible = true;
                     M_SelectFloortypes();
                 }
-
                 else
                 {
                     ddlFloorType.Visible = false;
@@ -262,82 +243,42 @@ namespace LEASING.UI.APP.Forms
                 
                 ddlFloorType.SelectedIndex = 0;
                 isResidential = false;
-            }
-          
+            }        
             M_GetUnitStatus();
-
-
         }
-
-        //private void ddlProject_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
-        //{
-        //    if (RecId > 0)
-        //    {
-        //        M_GetProjectTypeById();
-        //        if (isResidential)
-        //        {
-        //            ddlFloorType.Visible = true;
-        //            lblFloorType.Visible = true;
-        //            M_SelectFloortypes();
-        //        }
-
-        //        else
-        //        {
-        //            ddlFloorType.Visible = false;
-        //            lblFloorType.Visible = false;
-        //        }
-        //    }
-        //    else if (RecId == 0)
-        //    {
-        //        ddlFloorType.Visible = false;
-        //        lblFloorType.Visible = false;
-        //        txtType.Text = string.Empty;
-        //        ddlFloorType.SelectedIndex = 0;
-        //        isResidential = false;
-        //    }
-        //}
-
         private void txtFloorNumber_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9\b]"))
                 e.Handled = true;
         }
-
         private void txtUnitSequence_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9\b]"))
                 e.Handled = true;
         }
-
         private void txtAreRateSqm_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
         }
-
         private void txtBaseRental_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9\b]"))
                 e.Handled = true;
         }
-
         private void txtAreSql_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
         }
-
         private void btnNew_Click(object sender, EventArgs e)
         {
-            strUnitFormMode = "NEW";
+            this.FormMode = ModeStatus.NEW.ToString();
         }
-
         private void btnUndo_Click(object sender, EventArgs e)
         {
-            strUnitFormMode = "READ";
+            this.FormMode = ModeStatus.READ.ToString();
         }
-
-
         private void M_SaveUnit()
         {
             try
@@ -354,35 +295,30 @@ namespace LEASING.UI.APP.Forms
                 dto.BaseRental = txtBaseRental.Text == string.Empty ? 0 : decimal.Parse(txtBaseRental.Text);
                 dto.DetailsofProperty = txtDetailsOfProperty.Text;
                 dto.UnitSequence = Convert.ToInt32(txtUnitSequence.Text);
-                dto.EncodedBy = 1;
-                dto.Message_Code = UnitContext.SaveUnit(dto);
+                dto.EncodedBy = Variables.UserID;
+                dto.Message_Code = _unit.SaveUnit(dto);
                 if (dto.Message_Code.Equals("SUCCESS"))
                 {
                     Functions.MessageShow("New Unit has been added successfully !");
-                    strUnitFormMode = "READ";
+                    this.FormMode = ModeStatus.READ.ToString();
                     IsProceed = true;
                     this.Close();
-
-
                 }
                 else
                 {
                     Functions.MessageShow(dto.Message_Code);
-                    strUnitFormMode = "READ";
+                    this.FormMode = ModeStatus.READ.ToString();
                 }
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_SaveUnit()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_SaveUnit()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_SaveUnit()", ex.ToString());
             }
-
-
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (strUnitFormMode == "NEW")
+            if (this.FormMode == ModeStatus.NEW.ToString())
             {
                 if (IsUnitValid())
                 {
@@ -393,6 +329,5 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-
     }
 }

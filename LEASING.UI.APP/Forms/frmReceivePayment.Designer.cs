@@ -34,6 +34,7 @@
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.txtPaidAmount = new Telerik.WinControls.UI.RadTextBox();
             this.txtReceiveAmount = new Telerik.WinControls.UI.RadTextBox();
+            this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnOK)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
@@ -44,6 +45,7 @@
             // 
             // tableLayoutPanel1
             // 
+            this.tableLayoutPanel1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 46.66667F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 53.33333F));
@@ -72,6 +74,7 @@
             this.btnOK.Size = new System.Drawing.Size(234, 36);
             this.btnOK.TabIndex = 0;
             this.btnOK.Text = "PROCEED >>>";
+            this.btnOK.ThemeName = "Office2007Silver";
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // radLabel2
@@ -107,6 +110,7 @@
             this.txtPaidAmount.Size = new System.Drawing.Size(234, 29);
             this.txtPaidAmount.TabIndex = 2;
             this.txtPaidAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtPaidAmount.ThemeName = "Office2007Silver";
             this.txtPaidAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPaidAmount_KeyPress);
             // 
             // txtReceiveAmount
@@ -120,6 +124,7 @@
             this.txtReceiveAmount.Size = new System.Drawing.Size(234, 29);
             this.txtReceiveAmount.TabIndex = 2;
             this.txtReceiveAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtReceiveAmount.ThemeName = "Office2007Silver";
             this.txtReceiveAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtReceiveAmount_KeyPress);
             // 
             // frmReceivePayment
@@ -152,5 +157,6 @@
         private Telerik.WinControls.UI.RadLabel radLabel1;
         public Telerik.WinControls.UI.RadTextBox txtPaidAmount;
         public Telerik.WinControls.UI.RadTextBox txtReceiveAmount;
+        private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme1;
     }
 }

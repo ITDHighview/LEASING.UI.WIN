@@ -38,7 +38,9 @@
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
+            this.txtAmountPaid = new Telerik.WinControls.UI.RadTextBox();
             this.btnCheckUnits = new Telerik.WinControls.UI.RadButton();
+            this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
             this.txtClientName = new Telerik.WinControls.UI.RadTextBox();
             this.radGroupBox3 = new Telerik.WinControls.UI.RadGroupBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
@@ -51,15 +53,12 @@
             this.btnPrintReciept = new Telerik.WinControls.UI.RadButton();
             this.dtpFrom = new Telerik.WinControls.UI.RadTextBox();
             this.dtpTo = new Telerik.WinControls.UI.RadTextBox();
+            this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
+            this.txtBalanceAmount = new Telerik.WinControls.UI.RadTextBox();
             this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
             this.dgvLedgerList = new Telerik.WinControls.UI.RadGridView();
             this.btnGenerate = new Telerik.WinControls.UI.RadButton();
             this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
-            this.telerikMetroTouchTheme1 = new Telerik.WinControls.Themes.TelerikMetroTouchTheme();
-            this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
-            this.txtAmountPaid = new Telerik.WinControls.UI.RadTextBox();
-            this.txtBalanceAmount = new Telerik.WinControls.UI.RadTextBox();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).BeginInit();
             this.radGroupBox2.SuspendLayout();
@@ -67,7 +66,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAmountPaid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCheckUnits)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtClientName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).BeginInit();
             this.radGroupBox3.SuspendLayout();
@@ -81,15 +82,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnPrintReciept)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFrom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpTo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtBalanceAmount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
             this.radGroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLedgerList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLedgerList.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnGenerate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtAmountPaid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtBalanceAmount)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -126,6 +125,7 @@
             this.radGroupBox2.Size = new System.Drawing.Size(611, 196);
             this.radGroupBox2.TabIndex = 1;
             this.radGroupBox2.Text = "DETAILS";
+            this.radGroupBox2.ThemeName = "Office2007Silver";
             // 
             // tableLayoutPanel2
             // 
@@ -191,6 +191,16 @@
             this.radLabel4.TabIndex = 2;
             this.radLabel4.Text = "CLIENT NAME :";
             // 
+            // txtAmountPaid
+            // 
+            this.txtAmountPaid.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAmountPaid.Location = new System.Drawing.Point(103, 53);
+            this.txtAmountPaid.Name = "txtAmountPaid";
+            this.txtAmountPaid.Size = new System.Drawing.Size(149, 20);
+            this.txtAmountPaid.TabIndex = 4;
+            this.txtAmountPaid.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtAmountPaid.ThemeName = "Office2007Silver";
+            // 
             // btnCheckUnits
             // 
             this.btnCheckUnits.Image = global::LEASING.UI.APP.Properties.Resources.magnifier;
@@ -199,14 +209,27 @@
             this.btnCheckUnits.Size = new System.Drawing.Size(91, 19);
             this.btnCheckUnits.TabIndex = 7;
             this.btnCheckUnits.Text = "Check Unit";
+            this.btnCheckUnits.ThemeName = "Office2007Silver";
             this.btnCheckUnits.Click += new System.EventHandler(this.btnCheckUnits_Click);
+            // 
+            // radLabel5
+            // 
+            this.radLabel5.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.radLabel5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel5.ForeColor = System.Drawing.Color.Green;
+            this.radLabel5.Location = new System.Drawing.Point(14, 53);
+            this.radLabel5.Name = "radLabel5";
+            this.radLabel5.Size = new System.Drawing.Size(83, 19);
+            this.radLabel5.TabIndex = 2;
+            this.radLabel5.Text = "Amount Paid";
             // 
             // txtClientName
             // 
             this.txtClientName.Location = new System.Drawing.Point(103, 3);
             this.txtClientName.Name = "txtClientName";
-            this.txtClientName.Size = new System.Drawing.Size(179, 19);
+            this.txtClientName.Size = new System.Drawing.Size(179, 20);
             this.txtClientName.TabIndex = 8;
+            this.txtClientName.ThemeName = "Office2007Silver";
             // 
             // radGroupBox3
             // 
@@ -221,6 +244,7 @@
             this.radGroupBox3.Size = new System.Drawing.Size(316, 145);
             this.radGroupBox3.TabIndex = 9;
             this.radGroupBox3.Text = "Payment Details";
+            this.radGroupBox3.ThemeName = "Office2007Silver";
             // 
             // tableLayoutPanel3
             // 
@@ -269,18 +293,20 @@
             this.txtTwoMonAdv.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTwoMonAdv.Location = new System.Drawing.Point(154, 3);
             this.txtTwoMonAdv.Name = "txtTwoMonAdv";
-            this.txtTwoMonAdv.Size = new System.Drawing.Size(143, 19);
+            this.txtTwoMonAdv.Size = new System.Drawing.Size(143, 20);
             this.txtTwoMonAdv.TabIndex = 4;
             this.txtTwoMonAdv.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtTwoMonAdv.ThemeName = "Office2007Silver";
             // 
             // txtThreeMonSecDep
             // 
             this.txtThreeMonSecDep.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtThreeMonSecDep.Location = new System.Drawing.Point(154, 28);
             this.txtThreeMonSecDep.Name = "txtThreeMonSecDep";
-            this.txtThreeMonSecDep.Size = new System.Drawing.Size(143, 19);
+            this.txtThreeMonSecDep.Size = new System.Drawing.Size(143, 20);
             this.txtThreeMonSecDep.TabIndex = 4;
             this.txtThreeMonSecDep.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtThreeMonSecDep.ThemeName = "Office2007Silver";
             // 
             // radLabel8
             // 
@@ -303,7 +329,7 @@
             this.txtTotalForPayment.Size = new System.Drawing.Size(155, 41);
             this.txtTotalForPayment.TabIndex = 4;
             this.txtTotalForPayment.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtTotalForPayment.ThemeName = "ControlDefault";
+            this.txtTotalForPayment.ThemeName = "Office2007Silver";
             // 
             // btnPrintReciept
             // 
@@ -314,21 +340,45 @@
             this.btnPrintReciept.Size = new System.Drawing.Size(101, 19);
             this.btnPrintReciept.TabIndex = 7;
             this.btnPrintReciept.Text = "Print Receipt";
+            this.btnPrintReciept.ThemeName = "Office2007Silver";
             this.btnPrintReciept.Click += new System.EventHandler(this.btnPrintReciept_Click);
             // 
             // dtpFrom
             // 
             this.dtpFrom.Location = new System.Drawing.Point(103, 103);
             this.dtpFrom.Name = "dtpFrom";
-            this.dtpFrom.Size = new System.Drawing.Size(107, 19);
+            this.dtpFrom.Size = new System.Drawing.Size(107, 20);
             this.dtpFrom.TabIndex = 8;
+            this.dtpFrom.ThemeName = "Office2007Silver";
             // 
             // dtpTo
             // 
             this.dtpTo.Location = new System.Drawing.Point(103, 128);
             this.dtpTo.Name = "dtpTo";
-            this.dtpTo.Size = new System.Drawing.Size(107, 18);
+            this.dtpTo.Size = new System.Drawing.Size(107, 20);
             this.dtpTo.TabIndex = 8;
+            this.dtpTo.ThemeName = "Office2007Silver";
+            // 
+            // radLabel6
+            // 
+            this.radLabel6.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.radLabel6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel6.ForeColor = System.Drawing.Color.DarkRed;
+            this.radLabel6.Location = new System.Drawing.Point(46, 78);
+            this.radLabel6.Name = "radLabel6";
+            this.radLabel6.Size = new System.Drawing.Size(51, 19);
+            this.radLabel6.TabIndex = 2;
+            this.radLabel6.Text = "Balance";
+            // 
+            // txtBalanceAmount
+            // 
+            this.txtBalanceAmount.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBalanceAmount.Location = new System.Drawing.Point(103, 78);
+            this.txtBalanceAmount.Name = "txtBalanceAmount";
+            this.txtBalanceAmount.Size = new System.Drawing.Size(149, 20);
+            this.txtBalanceAmount.TabIndex = 4;
+            this.txtBalanceAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtBalanceAmount.ThemeName = "Office2007Silver";
             // 
             // radGroupBox1
             // 
@@ -341,6 +391,7 @@
             this.radGroupBox1.Size = new System.Drawing.Size(611, 511);
             this.radGroupBox1.TabIndex = 8;
             this.radGroupBox1.Text = "LEDGER";
+            this.radGroupBox1.ThemeName = "Office2007Silver";
             // 
             // dgvLedgerList
             // 
@@ -386,7 +437,7 @@
             this.dgvLedgerList.Size = new System.Drawing.Size(607, 491);
             this.dgvLedgerList.TabIndex = 0;
             this.dgvLedgerList.Text = "radGridView1";
-            this.dgvLedgerList.ThemeName = "TelerikMetroTouch";
+            this.dgvLedgerList.ThemeName = "Office2007Silver";
             this.dgvLedgerList.CellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.dgvLedgerList_CellFormatting);
             // 
             // btnGenerate
@@ -398,47 +449,8 @@
             this.btnGenerate.Size = new System.Drawing.Size(611, 39);
             this.btnGenerate.TabIndex = 9;
             this.btnGenerate.Text = "PROCEED TO PAYMENT >>>";
+            this.btnGenerate.ThemeName = "Office2007Silver";
             this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
-            // 
-            // radLabel5
-            // 
-            this.radLabel5.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.radLabel5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel5.ForeColor = System.Drawing.Color.Green;
-            this.radLabel5.Location = new System.Drawing.Point(14, 53);
-            this.radLabel5.Name = "radLabel5";
-            this.radLabel5.Size = new System.Drawing.Size(83, 19);
-            this.radLabel5.TabIndex = 2;
-            this.radLabel5.Text = "Amount Paid";
-            // 
-            // radLabel6
-            // 
-            this.radLabel6.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.radLabel6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel6.ForeColor = System.Drawing.Color.DarkRed;
-            this.radLabel6.Location = new System.Drawing.Point(46, 78);
-            this.radLabel6.Name = "radLabel6";
-            this.radLabel6.Size = new System.Drawing.Size(51, 19);
-            this.radLabel6.TabIndex = 2;
-            this.radLabel6.Text = "Balance";
-            // 
-            // txtAmountPaid
-            // 
-            this.txtAmountPaid.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAmountPaid.Location = new System.Drawing.Point(103, 53);
-            this.txtAmountPaid.Name = "txtAmountPaid";
-            this.txtAmountPaid.Size = new System.Drawing.Size(149, 20);
-            this.txtAmountPaid.TabIndex = 4;
-            this.txtAmountPaid.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // txtBalanceAmount
-            // 
-            this.txtBalanceAmount.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBalanceAmount.Location = new System.Drawing.Point(103, 78);
-            this.txtBalanceAmount.Name = "txtBalanceAmount";
-            this.txtBalanceAmount.Size = new System.Drawing.Size(149, 20);
-            this.txtBalanceAmount.TabIndex = 4;
-            this.txtBalanceAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // frmSelectClient
             // 
@@ -460,7 +472,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAmountPaid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCheckUnits)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtClientName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).EndInit();
             this.radGroupBox3.ResumeLayout(false);
@@ -475,15 +489,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnPrintReciept)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpFrom)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpTo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtBalanceAmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).EndInit();
             this.radGroupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvLedgerList.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLedgerList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnGenerate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtAmountPaid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtBalanceAmount)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -513,7 +525,6 @@
         private Telerik.WinControls.UI.RadButton btnPrintReciept;
         private Telerik.WinControls.UI.RadTextBox dtpFrom;
         private Telerik.WinControls.UI.RadTextBox dtpTo;
-        private Telerik.WinControls.Themes.TelerikMetroTouchTheme telerikMetroTouchTheme1;
         private Telerik.WinControls.UI.RadTextBox txtAmountPaid;
         private Telerik.WinControls.UI.RadLabel radLabel5;
         private Telerik.WinControls.UI.RadLabel radLabel6;

@@ -34,6 +34,7 @@
             this.btnSave = new Telerik.WinControls.UI.RadButton();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.txtReceiptNumber = new Telerik.WinControls.UI.RadTextBox();
+            this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtORNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
@@ -57,23 +58,26 @@
             this.txtORNumber.NullText = "Type here...";
             this.txtORNumber.Size = new System.Drawing.Size(146, 20);
             this.txtORNumber.TabIndex = 1;
+            this.txtORNumber.ThemeName = "Office2007Silver";
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(194, 51);
+            this.btnCancel.Location = new System.Drawing.Point(190, 51);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(61, 24);
             this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = "Cancel";
+            this.btnCancel.ThemeName = "Office2007Silver";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(88, 51);
+            this.btnSave.Location = new System.Drawing.Point(107, 51);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(61, 24);
             this.btnSave.TabIndex = 2;
             this.btnSave.Text = "Save";
+            this.btnSave.ThemeName = "Office2007Silver";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // radLabel2
@@ -91,11 +95,13 @@
             this.txtReceiptNumber.NullText = "Type here...";
             this.txtReceiptNumber.Size = new System.Drawing.Size(146, 20);
             this.txtReceiptNumber.TabIndex = 1;
+            this.txtReceiptNumber.ThemeName = "Office2007Silver";
             // 
             // frmEditORNumber
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(263, 83);
             this.ControlBox = false;
             this.Controls.Add(this.btnSave);
@@ -131,5 +137,6 @@
         private Telerik.WinControls.UI.RadButton btnSave;
         private Telerik.WinControls.UI.RadLabel radLabel2;
         private Telerik.WinControls.UI.RadTextBox txtReceiptNumber;
+        private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme1;
     }
 }

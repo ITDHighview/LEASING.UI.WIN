@@ -81,7 +81,7 @@
             this.radLabel19 = new Telerik.WinControls.UI.RadLabel();
             this.lblBaseRental = new Telerik.WinControls.UI.RadLabel();
             this.lblFloorType = new Telerik.WinControls.UI.RadLabel();
-            this.telerikMetroTouchTheme1 = new Telerik.WinControls.Themes.TelerikMetroTouchTheme();
+            this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             this.radLabel1.SuspendLayout();
@@ -179,6 +179,7 @@
             this.txtContractId.NullText = "Type Here...";
             this.txtContractId.Size = new System.Drawing.Size(225, 27);
             this.txtContractId.TabIndex = 1;
+            this.txtContractId.ThemeName = "Office2007Silver";
             this.txtContractId.TextChanged += new System.EventHandler(this.txtContractId_TextChanged);
             this.txtContractId.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtContractId_KeyDown);
             // 
@@ -363,7 +364,7 @@
             this.radGroupBox1.Size = new System.Drawing.Size(1002, 193);
             this.radGroupBox1.TabIndex = 2;
             this.radGroupBox1.Text = "CONTRACT DETAILS";
-            this.radGroupBox1.ThemeName = "TelerikMetroTouch";
+            this.radGroupBox1.ThemeName = "Office2007Silver";
             // 
             // tableLayoutPanel2
             // 
@@ -453,6 +454,7 @@
             this.txtContractDate.Size = new System.Drawing.Size(291, 24);
             this.txtContractDate.TabIndex = 4;
             this.txtContractDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtContractDate.ThemeName = "Office2007Silver";
             // 
             // txtClientName
             // 
@@ -464,6 +466,7 @@
             this.txtClientName.Size = new System.Drawing.Size(291, 24);
             this.txtClientName.TabIndex = 4;
             this.txtClientName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtClientName.ThemeName = "Office2007Silver";
             // 
             // txtStartDate
             // 
@@ -475,6 +478,7 @@
             this.txtStartDate.Size = new System.Drawing.Size(291, 24);
             this.txtStartDate.TabIndex = 4;
             this.txtStartDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtStartDate.ThemeName = "Office2007Silver";
             // 
             // txtFinishDate
             // 
@@ -486,6 +490,7 @@
             this.txtFinishDate.Size = new System.Drawing.Size(291, 24);
             this.txtFinishDate.TabIndex = 4;
             this.txtFinishDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtFinishDate.ThemeName = "Office2007Silver";
             // 
             // txtMonthlyRental
             // 
@@ -497,6 +502,7 @@
             this.txtMonthlyRental.Size = new System.Drawing.Size(291, 47);
             this.txtMonthlyRental.TabIndex = 4;
             this.txtMonthlyRental.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtMonthlyRental.ThemeName = "Office2007Silver";
             // 
             // radGroupBox2
             // 
@@ -509,7 +515,7 @@
             this.radGroupBox2.Size = new System.Drawing.Size(480, 445);
             this.radGroupBox2.TabIndex = 3;
             this.radGroupBox2.Text = "Ledger";
-            this.radGroupBox2.ThemeName = "TelerikMetroTouch";
+            this.radGroupBox2.ThemeName = "Office2007Silver";
             // 
             // tableLayoutPanel4
             // 
@@ -598,7 +604,7 @@
             this.dgvLedgerList.Size = new System.Drawing.Size(470, 379);
             this.dgvLedgerList.TabIndex = 1;
             this.dgvLedgerList.Text = "radGridView1";
-            this.dgvLedgerList.ThemeName = "TelerikMetroTouch";
+            this.dgvLedgerList.ThemeName = "Office2007Silver";
             this.dgvLedgerList.CellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.dgvLedgerList_CellFormatting);
             // 
             // radLabel20
@@ -621,6 +627,7 @@
             this.txtTotalPay.Size = new System.Drawing.Size(266, 34);
             this.txtTotalPay.TabIndex = 4;
             this.txtTotalPay.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtTotalPay.ThemeName = "Office2007Silver";
             // 
             // radGroupBox3
             // 
@@ -634,7 +641,7 @@
             this.radGroupBox3.Size = new System.Drawing.Size(516, 445);
             this.radGroupBox3.TabIndex = 3;
             this.radGroupBox3.Text = "Unit Information";
-            this.radGroupBox3.ThemeName = "TelerikMetroTouch";
+            this.radGroupBox3.ThemeName = "Office2007Silver";
             // 
             // tableLayoutPanel3
             // 
@@ -896,9 +903,9 @@
         private Telerik.WinControls.UI.RadLabel radLabel19;
         private Telerik.WinControls.UI.RadLabel lblBaseRental;
         private Telerik.WinControls.UI.RadLabel lblFloorType;
-        private Telerik.WinControls.Themes.TelerikMetroTouchTheme telerikMetroTouchTheme1;
         private Telerik.WinControls.UI.RadTextBox txtTotalPay;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private Telerik.WinControls.UI.RadLabel radLabel20;
+        private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme1;
     }
 }

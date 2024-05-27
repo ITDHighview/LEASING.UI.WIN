@@ -31,6 +31,7 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             this.dgvList = new Telerik.WinControls.UI.RadGridView();
+            this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
             ((System.ComponentModel.ISupportInitialize)(this.dgvList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvList.MasterTemplate)).BeginInit();
             this.SuspendLayout();
@@ -63,21 +64,25 @@
             gridViewTextBoxColumn2});
             this.dgvList.MasterTemplate.ShowRowHeaderColumn = false;
             this.dgvList.Name = "dgvList";
+            this.dgvList.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.dgvList.ReadOnly = true;
             this.dgvList.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgvList.ShowGroupPanel = false;
-            this.dgvList.Size = new System.Drawing.Size(173, 328);
+            this.dgvList.Size = new System.Drawing.Size(182, 328);
             this.dgvList.TabIndex = 0;
             this.dgvList.Text = "radGridView1";
+            this.dgvList.ThemeName = "Office2007Silver";
             this.dgvList.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.dgvList_CellDoubleClick);
             // 
             // frmPostDatedCheckMonthsList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(173, 328);
+            this.ClientSize = new System.Drawing.Size(182, 328);
             this.Controls.Add(this.dgvList);
             this.DoubleBuffered = true;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmPostDatedCheckMonthsList";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -92,5 +97,6 @@
         #endregion
 
         private Telerik.WinControls.UI.RadGridView dgvList;
+        private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme1;
     }
 }

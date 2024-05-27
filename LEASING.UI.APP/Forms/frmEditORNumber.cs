@@ -15,18 +15,16 @@ namespace LEASING.UI.APP.Forms
     public partial class frmEditORNumber : Form
     {
         PaymentContext PaymentContext = new PaymentContext();
-        public string RcptID { get; set; } = string.Empty;
-        public bool IsProceed = false;
         public frmEditORNumber()
         {
             InitializeComponent();
         }
-
+        public string RcptID { get; set; } = string.Empty;
+        public bool IsProceed = false;
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
         private void M_SaveORNumber()
         {
             try
@@ -48,12 +46,9 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_SaveORNumber()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_SaveORNumber()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_SaveORNumber()", ex.ToString());
             }
-
-
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -70,7 +65,6 @@ namespace LEASING.UI.APP.Forms
                 MessageBox.Show(ex.ToString(), "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-
         private void frmEditORNumber_Load(object sender, EventArgs e)
         {
             txtORNumber.Focus();

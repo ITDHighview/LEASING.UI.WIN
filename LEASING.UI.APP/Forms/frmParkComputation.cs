@@ -335,12 +335,9 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetRateSettings()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_GetRateSettings()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_GetRateSettings()", ex.ToString());
             }
-
-
         }
         private void M_SelectProject()
         {
@@ -359,11 +356,9 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_SelectProject()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_SelectProject()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_SelectProject()", ex.ToString());
             }
-
         }
         private void M_SelectUnit()
         {
@@ -382,11 +377,9 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_SelectUnit()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_SelectUnit()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_SelectUnit()", ex.ToString());
             }
-
         }
         private void M_GetComputationList()
         {
@@ -404,11 +397,9 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetComputationList()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_GetComputationList()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_GetComputationList()", ex.ToString());
             }
-
         }
         private void M_GetPostDatedCountMonth()
         {
@@ -426,11 +417,9 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetPostDatedCountMonth()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_GetPostDatedCountMonth()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_GetPostDatedCountMonth()", ex.ToString());
             }
-
         }
         private void M_GetProjecAddress()
         {
@@ -443,8 +432,6 @@ namespace LEASING.UI.APP.Forms
                 {
                     if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
-
-
                         txtProjectAddress.Text = Convert.ToString(dt.Tables[0].Rows[0]["ProjectAddress"]);
                         txtProjectType.Text = Convert.ToString(dt.Tables[0].Rows[0]["ProjectType"]);
                     }
@@ -452,15 +439,12 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetProjecAddress()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_GetProjecAddress()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_GetProjecAddress()", ex.ToString());
             }
-
         }
         private void M_GetUnitAvaibleById()
         {
-
             txtFloorType.Text = string.Empty;
             txtRental.Text = string.Empty;
             try
@@ -469,8 +453,6 @@ namespace LEASING.UI.APP.Forms
                 {
                     if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
-
-
                         txtFloorType.Text = Convert.ToString(dt.Tables[0].Rows[0]["FloorType"]);
                         txtRental.Text = Convert.ToString(dt.Tables[0].Rows[0]["BaseRental"]);
                     }
@@ -478,11 +460,9 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetUnitAvaibleById()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_GetUnitAvaibleById()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_GetUnitAvaibleById()", ex.ToString());
             }
-
         }
         private void M_GetTotalRental()
         {
@@ -640,12 +620,9 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_Save()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_Save()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_Save()", ex.ToString());
             }
-
-
         }
         private void frmComputation_Load(object sender, EventArgs e)
         {
@@ -824,9 +801,8 @@ namespace LEASING.UI.APP.Forms
                         }
                         catch (Exception ex)
                         {
-                            Functions.LogErrorIntoStoredProcedure("Cell Click : ColRemoved", this.Text, ex.Message, DateTime.Now, this);
-
-                            Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                            Functions.LogError("Cell Click : ColRemoved", this.Text, ex.ToString(), DateTime.Now, this);
+                            Functions.ErrorShow("Cell Click : ColRemoved", ex.ToString());
                         }
 
                     }

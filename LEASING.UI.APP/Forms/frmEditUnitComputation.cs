@@ -193,7 +193,7 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetRateSettings()", this.Text, ex.Message, DateTime.Now, this);
+                Functions.LogError("M_GetRateSettings()", this.Text, ex.Message, DateTime.Now, this);
 
                 Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
             }
@@ -275,7 +275,7 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetComputationById()", this.Text, ex.Message, DateTime.Now, this);
+                Functions.LogError("M_GetComputationById()", this.Text, ex.Message, DateTime.Now, this);
 
                 Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
             }

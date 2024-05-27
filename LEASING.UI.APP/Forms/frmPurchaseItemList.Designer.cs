@@ -60,6 +60,7 @@
             this.radGroupBox2.Size = new System.Drawing.Size(764, 503);
             this.radGroupBox2.TabIndex = 7;
             this.radGroupBox2.Text = "PURCHASE ITEM LIST";
+            this.radGroupBox2.ThemeName = "Office2007Silver";
             // 
             // dgvPurchaseItemList
             // 

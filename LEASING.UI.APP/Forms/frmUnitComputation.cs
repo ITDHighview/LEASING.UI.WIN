@@ -231,7 +231,7 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetPostDatedCountMonth()", this.Text, ex.Message, DateTime.Now, this);
+                Functions.LogError("M_GetPostDatedCountMonth()", this.Text, ex.Message, DateTime.Now, this);
 
                 Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
             }
@@ -255,7 +255,7 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetRateSettings()", this.Text, ex.Message, DateTime.Now, this);
+                Functions.LogError("M_GetRateSettings()", this.Text, ex.Message, DateTime.Now, this);
 
                 Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
             }
@@ -278,7 +278,7 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_SelectProject()", this.Text, ex.Message, DateTime.Now, this);
+                Functions.LogError("M_SelectProject()", this.Text, ex.Message, DateTime.Now, this);
 
                 Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
             }
@@ -301,7 +301,7 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_SelectUnit()", this.Text, ex.Message, DateTime.Now, this);
+                Functions.LogError("M_SelectUnit()", this.Text, ex.Message, DateTime.Now, this);
 
                 Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
             }
@@ -324,7 +324,7 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetProjecAddress()", this.Text, ex.Message, DateTime.Now, this);
+                Functions.LogError("M_GetProjecAddress()", this.Text, ex.Message, DateTime.Now, this);
 
                 Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
             }
@@ -347,7 +347,7 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetUnitAvaibleById()", this.Text, ex.Message, DateTime.Now, this);
+                Functions.LogError("M_GetUnitAvaibleById()", this.Text, ex.Message, DateTime.Now, this);
 
                 Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
             }

@@ -21,22 +21,14 @@ namespace LEASING.UI.APP.Forms
         ProjectContext ProjectContext = new ProjectContext();
         UnitContext UnitContext = new UnitContext();
         ComputationContext ComputationContext = new ComputationContext();
-        public bool sIsFullPayment = false;
-        public bool IsComputed = false;
-        private DataTable dataTable;
         public frmComputation()
         {
             InitializeComponent();
-            //data.Columns.Add("Seq", typeof(int));         
-            //data.Columns.Add("Date", typeof(string));
-            //data.Columns.Add("Rental", typeof(string));
-
-
-
-
-            // Bind the DataTable to the DataGridView
-            //dgvpostdatedcheck.DataSource = data;
         }
+        public bool sIsFullPayment = false;
+        public bool IsComputed = false;
+        private DataTable dataTable;
+
         public int seq = 0;
         public decimal AdvancePaymentAmount { get; set; } = 0;
         private int CountMonths(DateTime startDate, DateTime endDate)
@@ -48,14 +40,11 @@ namespace LEASING.UI.APP.Forms
                 startDate = endDate;
                 endDate = temp;
             }
-
             int months = ((endDate.Year - startDate.Year) * 12) + endDate.Month - startDate.Month;
-
             if (endDate.Day >= startDate.Day)
             {
                 months++;
             }
-
             return months;
         }
         private string _strFormMode;
@@ -183,8 +172,6 @@ namespace LEASING.UI.APP.Forms
                 MessageBox.Show("Lease period is out of range", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return false;
             }
-
-
             return true;
         }
         private bool IsComputationValidForAdvancePayment()
@@ -225,7 +212,6 @@ namespace LEASING.UI.APP.Forms
                 MessageBox.Show("Lease period is out of range", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return false;
             }
-
             return true;
         }
         private void ClearFields()
@@ -339,12 +325,9 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetRateSettings()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_GetRateSettings()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_GetRateSettings()", ex.ToString());
             }
-
-
         }
         private void M_SelectProject()
         {
@@ -363,11 +346,9 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_SelectProject()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_SelectProject()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_SelectProject()", ex.ToString());
             }
-
         }
         private void M_SelectUnit()
         {
@@ -386,9 +367,8 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_SelectUnit()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_SelectUnit()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_SelectUnit()", ex.ToString());
             }
         }
         private void M_GetComputationList()
@@ -407,11 +387,9 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetComputationList()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_GetComputationList()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_GetComputationList()", ex.ToString());
             }
-
         }
         private void M_GetPostDatedCountMonth()
         {
@@ -428,11 +406,9 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetPostDatedCountMonth()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_GetPostDatedCountMonth()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_GetPostDatedCountMonth()", ex.ToString());
             }
-
         }
         private void M_GetProjecAddress()
         {
@@ -453,11 +429,9 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetProjecAddress()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_GetProjecAddress()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_GetProjecAddress()", ex.ToString());
             }
-
         }
         private void M_GetUnitAvaibleById()
         {
@@ -481,11 +455,9 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetUnitAvaibleById()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_GetUnitAvaibleById()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_GetUnitAvaibleById()", ex.ToString());
             }
-
         }
         private void M_GetTotalRental()
         {
@@ -542,9 +514,9 @@ namespace LEASING.UI.APP.Forms
                     xml = new ArrayList();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                Functions.ErrorShow("parseXML()", ex.ToString());
             }
             return strXML.ToString();
         }
@@ -565,9 +537,9 @@ namespace LEASING.UI.APP.Forms
                     retValue = retValue.Trim();
                 }
             }
-            catch (Exception)
-            {
-
+            catch (Exception ex)
+            {              
+                Functions.ErrorShow("parseXML()", ex.ToString());
             }
             return retValue;
         }
@@ -627,9 +599,8 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_Save()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_Save()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_Save()", ex.ToString());
             }
         }
         private bool IsMoreThanSixMonths(DateTime date1, DateTime date2)
@@ -781,7 +752,8 @@ namespace LEASING.UI.APP.Forms
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show(ex.ToString(), "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            Functions.LogError("Button Click : btnSaveComputation", this.Text, ex.ToString(), DateTime.Now, this);
+                            Functions.ErrorShow("Button Click : btnSaveComputation", ex.ToString());
                         }
                     }
                 }
@@ -820,12 +792,9 @@ namespace LEASING.UI.APP.Forms
                         }
                         catch (Exception ex)
                         {
-                            Functions.LogErrorIntoStoredProcedure("Cell Click : ColRemoved", this.Text, ex.Message, DateTime.Now, this);
-
-                            Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                            Functions.LogError("Cell Click : ColRemoved", this.Text, ex.ToString(), DateTime.Now, this);
+                            Functions.ErrorShow("Cell Click : ColRemoved", ex.ToString());
                         }
-
-
                     }
                 }
                 else if (this.dgvList.Columns[e.ColumnIndex].Name == "ColGenerate")
@@ -945,7 +914,6 @@ namespace LEASING.UI.APP.Forms
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9\b]"))
                 e.Handled = true;
         }
-
         private void chkIsRenewal_ToggleStateChanged(object sender, Telerik.WinControls.UI.StateChangedEventArgs args)
         {
             if (chkIsRenewal.CheckState == CheckState.Checked)
@@ -970,7 +938,6 @@ namespace LEASING.UI.APP.Forms
             }
 
         }
-
         private void txtMonthsSecurityDeposit_TextChanged(object sender, EventArgs e)
         {
             if (chkIsRenewal.Checked == true)

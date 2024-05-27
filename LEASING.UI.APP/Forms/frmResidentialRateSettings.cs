@@ -81,15 +81,10 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("GetRateSettings()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("GetRateSettings()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("GetRateSettings()", ex.ToString());
             }
-
-
         }
-
-
 
         private void M_UpdateRates()
         {
@@ -111,9 +106,8 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_UpdateRates()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_UpdateRates()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_UpdateRates()", ex.ToString());
             }
 
         }

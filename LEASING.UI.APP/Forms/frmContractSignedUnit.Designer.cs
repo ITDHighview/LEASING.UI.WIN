@@ -94,6 +94,7 @@
             this.radGroupBox1.Size = new System.Drawing.Size(590, 307);
             this.radGroupBox1.TabIndex = 1;
             this.radGroupBox1.Text = "FOR UPLOAD CONTRACT";
+            this.radGroupBox1.ThemeName = "Office2007Silver";
             // 
             // dgvList
             // 
@@ -170,6 +171,8 @@
             this.ClientSize = new System.Drawing.Size(596, 338);
             this.Controls.Add(this.tableLayoutPanel1);
             this.DoubleBuffered = true;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmContractSignedUnit";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

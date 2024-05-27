@@ -764,10 +764,15 @@ namespace LEASING.UI.APP.Common
             dtTable = null;
             dvView = null;
         }
-        public static void LogErrorIntoStoredProcedure(string procedureName, string FormName, string errorMessage, DateTime logDateTime, Control _ctrl)
+        public static void LogError(string procedureName, string FormName, string errorMessage, DateTime logDateTime, Control _ctrl)
         {
-            int len = _ctrl.GetType().ToString().Length - _ctrl.GetType().ToString().LastIndexOf('.');
-            string vName = _ctrl.GetType().ToString().Substring(_ctrl.GetType().ToString().LastIndexOf('.') + 1, len - 1);
+            string vName = string.Empty;
+            if (_ctrl != null)
+            {
+                int len = _ctrl.GetType().ToString().Length - _ctrl.GetType().ToString().LastIndexOf('.');
+                vName = _ctrl.GetType().ToString().Substring(_ctrl.GetType().ToString().LastIndexOf('.') + 1, len - 1);
+            }
+
             try
             {
                 using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString()))
@@ -826,12 +831,12 @@ namespace LEASING.UI.APP.Common
 
             radDesktopAlert1.Show();
         }
-        public static void GetReceiptReport(string report, Form frm, bool IsPreview,string TranID,string Mode,string PaymentLevel)
+        public static void GetReceiptReport(string report, Form frm, bool IsPreview, string TranID, string Mode, string PaymentLevel)
         {
 
             try
             {
-                Cursor.Current = Cursors.AppStarting;        
+                Cursor.Current = Cursors.AppStarting;
                 CrystalDecisions.CrystalReports.Engine.ReportDocument locRptDocument = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
                 locRptDocument.Load(report);
                 locRptDocument.PrintOptions.PaperSize = CrystalDecisions.Shared.PaperSize.DefaultPaperSize;
@@ -1149,6 +1154,11 @@ namespace LEASING.UI.APP.Common
         public static DialogResult MessageShow(string message)
         {
             return MessageBox.Show(message, "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        public static DialogResult ErrorShow(string functionName, string errorMessage)
+        {
+            return MessageBox.Show($"An error occurred from {functionName} - {errorMessage} Please check the [ErrorLog] ", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         public static DialogResult MessageConfirm(string message)

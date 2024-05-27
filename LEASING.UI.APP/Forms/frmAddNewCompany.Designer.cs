@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn2 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn5 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn6 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn13 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn14 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn15 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn16 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn17 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn18 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.lblFoot = new Telerik.WinControls.UI.RadLabel();
             this.lblLastChangedBy = new Telerik.WinControls.UI.RadLabel();
@@ -59,6 +59,7 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnUndoProject = new System.Windows.Forms.ToolStripButton();
             this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lblFoot)).BeginInit();
             this.lblFoot.SuspendLayout();
@@ -101,45 +102,47 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 193F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(768, 644);
             this.tableLayoutPanel2.TabIndex = 2;
             // 
             // lblFoot
             // 
             this.lblFoot.AutoSize = false;
-            this.lblFoot.BackColor = System.Drawing.Color.DarkSlateBlue;
+            this.lblFoot.BackColor = System.Drawing.Color.White;
             this.tableLayoutPanel2.SetColumnSpan(this.lblFoot, 2);
             this.lblFoot.Controls.Add(this.lblLastChangedBy);
             this.lblFoot.Controls.Add(this.lblEncodedBy);
             this.lblFoot.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblFoot.Location = new System.Drawing.Point(3, 622);
+            this.lblFoot.Location = new System.Drawing.Point(3, 616);
             this.lblFoot.Name = "lblFoot";
-            this.lblFoot.Size = new System.Drawing.Size(762, 19);
+            this.lblFoot.Size = new System.Drawing.Size(762, 25);
             this.lblFoot.TabIndex = 5;
             // 
             // lblLastChangedBy
             // 
             this.lblLastChangedBy.AutoSize = false;
+            this.lblLastChangedBy.BackColor = System.Drawing.Color.White;
             this.lblLastChangedBy.Dock = System.Windows.Forms.DockStyle.Right;
-            this.lblLastChangedBy.ForeColor = System.Drawing.Color.White;
+            this.lblLastChangedBy.ForeColor = System.Drawing.Color.Black;
             this.lblLastChangedBy.Location = new System.Drawing.Point(506, 0);
             this.lblLastChangedBy.Name = "lblLastChangedBy";
-            this.lblLastChangedBy.Size = new System.Drawing.Size(256, 19);
+            this.lblLastChangedBy.Size = new System.Drawing.Size(256, 25);
             this.lblLastChangedBy.TabIndex = 1;
-            this.lblLastChangedBy.Text = "Last Changed By : 12345 - Mark Jason Gelisanga";
+            this.lblLastChangedBy.Text = "Last Changed By : 12345 - N/A";
             this.lblLastChangedBy.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblEncodedBy
             // 
             this.lblEncodedBy.AutoSize = false;
+            this.lblEncodedBy.BackColor = System.Drawing.Color.White;
             this.lblEncodedBy.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lblEncodedBy.ForeColor = System.Drawing.Color.White;
+            this.lblEncodedBy.ForeColor = System.Drawing.Color.Black;
             this.lblEncodedBy.Location = new System.Drawing.Point(0, 0);
             this.lblEncodedBy.Name = "lblEncodedBy";
-            this.lblEncodedBy.Size = new System.Drawing.Size(271, 19);
+            this.lblEncodedBy.Size = new System.Drawing.Size(271, 25);
             this.lblEncodedBy.TabIndex = 0;
-            this.lblEncodedBy.Text = "Encoded By : 12345 - Mark Jason Gelisanga";
+            this.lblEncodedBy.Text = "Encoded By : 12345 - N/A";
             this.lblEncodedBy.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // radGroupBox3
@@ -154,6 +157,7 @@
             this.radGroupBox3.Size = new System.Drawing.Size(762, 187);
             this.radGroupBox3.TabIndex = 0;
             this.radGroupBox3.Text = "COMPANY DETAILS";
+            this.radGroupBox3.ThemeName = "Office2007Silver";
             // 
             // tableLayoutPanel6
             // 
@@ -196,9 +200,9 @@
             this.txtCompanyName.Location = new System.Drawing.Point(113, 3);
             this.txtCompanyName.Name = "txtCompanyName";
             this.txtCompanyName.NullText = "Type here....";
-            this.txtCompanyName.Size = new System.Drawing.Size(299, 19);
+            this.txtCompanyName.Size = new System.Drawing.Size(299, 20);
             this.txtCompanyName.TabIndex = 1;
-            this.txtCompanyName.ThemeName = "Office2013Light";
+            this.txtCompanyName.ThemeName = "Office2007Silver";
             // 
             // radLabel3
             // 
@@ -215,9 +219,9 @@
             this.txtCompanyAddress.Location = new System.Drawing.Point(113, 28);
             this.txtCompanyAddress.Name = "txtCompanyAddress";
             this.txtCompanyAddress.NullText = "Type here....";
-            this.txtCompanyAddress.Size = new System.Drawing.Size(590, 19);
+            this.txtCompanyAddress.Size = new System.Drawing.Size(590, 20);
             this.txtCompanyAddress.TabIndex = 1;
-            this.txtCompanyAddress.ThemeName = "Office2013Light";
+            this.txtCompanyAddress.ThemeName = "Office2007Silver";
             // 
             // radLabel4
             // 
@@ -234,9 +238,9 @@
             this.txtCompanyTINNo.Location = new System.Drawing.Point(113, 53);
             this.txtCompanyTINNo.Name = "txtCompanyTINNo";
             this.txtCompanyTINNo.NullText = "Type Here....";
-            this.txtCompanyTINNo.Size = new System.Drawing.Size(299, 19);
+            this.txtCompanyTINNo.Size = new System.Drawing.Size(299, 20);
             this.txtCompanyTINNo.TabIndex = 1;
-            this.txtCompanyTINNo.ThemeName = "Office2013Light";
+            this.txtCompanyTINNo.ThemeName = "Office2007Silver";
             // 
             // radLabel1
             // 
@@ -253,9 +257,9 @@
             this.txtCompanyOwnerName.Location = new System.Drawing.Point(113, 78);
             this.txtCompanyOwnerName.Name = "txtCompanyOwnerName";
             this.txtCompanyOwnerName.NullText = "Type Here....";
-            this.txtCompanyOwnerName.Size = new System.Drawing.Size(299, 19);
+            this.txtCompanyOwnerName.Size = new System.Drawing.Size(299, 20);
             this.txtCompanyOwnerName.TabIndex = 1;
-            this.txtCompanyOwnerName.ThemeName = "Office2013Light";
+            this.txtCompanyOwnerName.ThemeName = "Office2007Silver";
             // 
             // radGroupBox4
             // 
@@ -266,9 +270,10 @@
             this.radGroupBox4.HeaderText = "COMPANY LIST";
             this.radGroupBox4.Location = new System.Drawing.Point(3, 221);
             this.radGroupBox4.Name = "radGroupBox4";
-            this.radGroupBox4.Size = new System.Drawing.Size(762, 395);
+            this.radGroupBox4.Size = new System.Drawing.Size(762, 389);
             this.radGroupBox4.TabIndex = 1;
             this.radGroupBox4.Text = "COMPANY LIST";
+            this.radGroupBox4.ThemeName = "Office2007Silver";
             // 
             // radGridView2
             // 
@@ -276,7 +281,7 @@
             this.radGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radGridView2.Location = new System.Drawing.Point(2, 18);
             this.radGridView2.Name = "radGridView2";
-            this.radGridView2.Size = new System.Drawing.Size(758, 375);
+            this.radGridView2.Size = new System.Drawing.Size(758, 369);
             this.radGridView2.TabIndex = 0;
             this.radGridView2.Text = "radGridView2";
             // 
@@ -295,64 +300,64 @@
             this.dgvCompanyList.MasterTemplate.AllowAddNewRow = false;
             this.dgvCompanyList.MasterTemplate.AllowColumnReorder = false;
             this.dgvCompanyList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewCommandColumn1.FieldName = "coledit";
-            gridViewCommandColumn1.HeaderImage = global::LEASING.UI.APP.Properties.Resources.co_folder_20;
-            gridViewCommandColumn1.HeaderText = "";
-            gridViewCommandColumn1.Image = global::LEASING.UI.APP.Properties.Resources.co_folder_20;
-            gridViewCommandColumn1.IsPinned = true;
-            gridViewCommandColumn1.Name = "coledit";
-            gridViewCommandColumn1.PinPosition = Telerik.WinControls.UI.PinnedColumnPosition.Left;
-            gridViewCommandColumn1.Width = 26;
-            gridViewCommandColumn2.FieldName = "coldelete";
-            gridViewCommandColumn2.HeaderImage = global::LEASING.UI.APP.Properties.Resources.co_delete_16;
-            gridViewCommandColumn2.HeaderText = "";
-            gridViewCommandColumn2.Image = global::LEASING.UI.APP.Properties.Resources.co_delete_16;
-            gridViewCommandColumn2.IsPinned = true;
-            gridViewCommandColumn2.IsVisible = false;
-            gridViewCommandColumn2.Name = "coldelete";
-            gridViewCommandColumn2.PinPosition = Telerik.WinControls.UI.PinnedColumnPosition.Left;
-            gridViewCommandColumn2.Width = 25;
-            gridViewTextBoxColumn1.FieldName = "RecId";
-            gridViewTextBoxColumn1.HeaderText = "COM ID";
-            gridViewTextBoxColumn1.IsPinned = true;
-            gridViewTextBoxColumn1.Name = "RecId";
-            gridViewTextBoxColumn1.PinPosition = Telerik.WinControls.UI.PinnedColumnPosition.Left;
-            gridViewTextBoxColumn1.Width = 42;
-            gridViewTextBoxColumn1.WrapText = true;
-            gridViewTextBoxColumn2.FieldName = "CompanyTIN";
-            gridViewTextBoxColumn2.HeaderText = "TIN";
-            gridViewTextBoxColumn2.IsPinned = true;
-            gridViewTextBoxColumn2.Name = "CompanyTIN";
-            gridViewTextBoxColumn2.PinPosition = Telerik.WinControls.UI.PinnedColumnPosition.Left;
-            gridViewTextBoxColumn3.EnableExpressionEditor = false;
-            gridViewTextBoxColumn3.FieldName = "CompanyName";
-            gridViewTextBoxColumn3.HeaderText = "Name";
-            gridViewTextBoxColumn3.Name = "CompanyName";
-            gridViewTextBoxColumn3.Width = 129;
-            gridViewTextBoxColumn4.FieldName = "CompanyAddress";
-            gridViewTextBoxColumn4.HeaderText = "Address";
-            gridViewTextBoxColumn4.Name = "CompanyAddress";
-            gridViewTextBoxColumn4.Width = 258;
-            gridViewTextBoxColumn5.EnableExpressionEditor = false;
-            gridViewTextBoxColumn5.FieldName = "CompanyOwnerName";
-            gridViewTextBoxColumn5.HeaderText = "Owner Name";
-            gridViewTextBoxColumn5.Name = "CompanyOwnerName";
-            gridViewTextBoxColumn5.Width = 257;
-            gridViewTextBoxColumn6.EnableExpressionEditor = false;
-            gridViewTextBoxColumn6.FieldName = "IsActive";
-            gridViewTextBoxColumn6.HeaderText = "Status";
-            gridViewTextBoxColumn6.IsVisible = false;
-            gridViewTextBoxColumn6.Name = "IsActive";
-            gridViewTextBoxColumn6.Width = 100;
+            gridViewCommandColumn5.FieldName = "coledit";
+            gridViewCommandColumn5.HeaderImage = global::LEASING.UI.APP.Properties.Resources.co_folder_20;
+            gridViewCommandColumn5.HeaderText = "";
+            gridViewCommandColumn5.Image = global::LEASING.UI.APP.Properties.Resources.co_folder_20;
+            gridViewCommandColumn5.IsPinned = true;
+            gridViewCommandColumn5.Name = "coledit";
+            gridViewCommandColumn5.PinPosition = Telerik.WinControls.UI.PinnedColumnPosition.Left;
+            gridViewCommandColumn5.Width = 26;
+            gridViewCommandColumn6.FieldName = "coldelete";
+            gridViewCommandColumn6.HeaderImage = global::LEASING.UI.APP.Properties.Resources.co_delete_16;
+            gridViewCommandColumn6.HeaderText = "";
+            gridViewCommandColumn6.Image = global::LEASING.UI.APP.Properties.Resources.co_delete_16;
+            gridViewCommandColumn6.IsPinned = true;
+            gridViewCommandColumn6.IsVisible = false;
+            gridViewCommandColumn6.Name = "coldelete";
+            gridViewCommandColumn6.PinPosition = Telerik.WinControls.UI.PinnedColumnPosition.Left;
+            gridViewCommandColumn6.Width = 25;
+            gridViewTextBoxColumn13.FieldName = "RecId";
+            gridViewTextBoxColumn13.HeaderText = "COM ID";
+            gridViewTextBoxColumn13.IsPinned = true;
+            gridViewTextBoxColumn13.Name = "RecId";
+            gridViewTextBoxColumn13.PinPosition = Telerik.WinControls.UI.PinnedColumnPosition.Left;
+            gridViewTextBoxColumn13.Width = 42;
+            gridViewTextBoxColumn13.WrapText = true;
+            gridViewTextBoxColumn14.FieldName = "CompanyTIN";
+            gridViewTextBoxColumn14.HeaderText = "TIN";
+            gridViewTextBoxColumn14.IsPinned = true;
+            gridViewTextBoxColumn14.Name = "CompanyTIN";
+            gridViewTextBoxColumn14.PinPosition = Telerik.WinControls.UI.PinnedColumnPosition.Left;
+            gridViewTextBoxColumn15.EnableExpressionEditor = false;
+            gridViewTextBoxColumn15.FieldName = "CompanyName";
+            gridViewTextBoxColumn15.HeaderText = "Name";
+            gridViewTextBoxColumn15.Name = "CompanyName";
+            gridViewTextBoxColumn15.Width = 129;
+            gridViewTextBoxColumn16.FieldName = "CompanyAddress";
+            gridViewTextBoxColumn16.HeaderText = "Address";
+            gridViewTextBoxColumn16.Name = "CompanyAddress";
+            gridViewTextBoxColumn16.Width = 258;
+            gridViewTextBoxColumn17.EnableExpressionEditor = false;
+            gridViewTextBoxColumn17.FieldName = "CompanyOwnerName";
+            gridViewTextBoxColumn17.HeaderText = "Owner Name";
+            gridViewTextBoxColumn17.Name = "CompanyOwnerName";
+            gridViewTextBoxColumn17.Width = 257;
+            gridViewTextBoxColumn18.EnableExpressionEditor = false;
+            gridViewTextBoxColumn18.FieldName = "IsActive";
+            gridViewTextBoxColumn18.HeaderText = "Status";
+            gridViewTextBoxColumn18.IsVisible = false;
+            gridViewTextBoxColumn18.Name = "IsActive";
+            gridViewTextBoxColumn18.Width = 100;
             this.dgvCompanyList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewCommandColumn1,
-            gridViewCommandColumn2,
-            gridViewTextBoxColumn1,
-            gridViewTextBoxColumn2,
-            gridViewTextBoxColumn3,
-            gridViewTextBoxColumn4,
-            gridViewTextBoxColumn5,
-            gridViewTextBoxColumn6});
+            gridViewCommandColumn5,
+            gridViewCommandColumn6,
+            gridViewTextBoxColumn13,
+            gridViewTextBoxColumn14,
+            gridViewTextBoxColumn15,
+            gridViewTextBoxColumn16,
+            gridViewTextBoxColumn17,
+            gridViewTextBoxColumn18});
             this.dgvCompanyList.MasterTemplate.EnableFiltering = true;
             this.dgvCompanyList.MasterTemplate.ShowRowHeaderColumn = false;
             this.dgvCompanyList.Name = "dgvCompanyList";
@@ -360,7 +365,7 @@
             this.dgvCompanyList.ReadOnly = true;
             this.dgvCompanyList.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgvCompanyList.ShowGroupPanel = false;
-            this.dgvCompanyList.Size = new System.Drawing.Size(758, 375);
+            this.dgvCompanyList.Size = new System.Drawing.Size(758, 369);
             this.dgvCompanyList.TabIndex = 2;
             this.dgvCompanyList.Text = "radGridView1";
             this.dgvCompanyList.ThemeName = "Office2007Silver";
@@ -372,6 +377,7 @@
             this.tableLayoutPanel2.SetColumnSpan(this.toolStrip2, 2);
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnNewProject,
+            this.toolStripSeparator1,
             this.btnSaveProject,
             this.toolStripSeparator2,
             this.btnUndoProject});
@@ -412,6 +418,11 @@
             this.btnUndoProject.Size = new System.Drawing.Size(56, 22);
             this.btnUndoProject.Text = "Undo";
             this.btnUndoProject.Click += new System.EventHandler(this.btnUndoProject_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // frmAddNewCompany
             // 
@@ -482,5 +493,6 @@
         private Telerik.WinControls.UI.RadLabel lblEncodedBy;
         private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme1;
         private Telerik.WinControls.UI.RadTextBox txtCompanyName;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }

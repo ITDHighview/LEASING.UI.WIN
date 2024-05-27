@@ -197,7 +197,7 @@
             this.radGroupBox3.Size = new System.Drawing.Size(1005, 411);
             this.radGroupBox3.TabIndex = 0;
             this.radGroupBox3.Text = "CLIENT DETAILS";
-            this.radGroupBox3.ThemeName = "Office2007Black";
+            this.radGroupBox3.ThemeName = "Office2007Silver";
             // 
             // tableLayoutPanel6
             // 
@@ -284,6 +284,7 @@
             this.txtnoofvisitorperday.NullText = "0";
             this.txtnoofvisitorperday.Size = new System.Drawing.Size(74, 19);
             this.txtnoofvisitorperday.TabIndex = 1;
+            this.txtnoofvisitorperday.ThemeName = "Office2007Silver";
             this.txtnoofvisitorperday.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtnameofvisitorperday_KeyPress);
             // 
             // radLabel18
@@ -303,6 +304,7 @@
             this.txtnameofdriver.NullText = "Type here...";
             this.txtnameofdriver.Size = new System.Drawing.Size(301, 19);
             this.txtnameofdriver.TabIndex = 1;
+            this.txtnameofdriver.ThemeName = "Office2007Silver";
             // 
             // radLabel17
             // 
@@ -321,6 +323,7 @@
             this.txtnameofmaid.NullText = "Type here...";
             this.txtnameofmaid.Size = new System.Drawing.Size(343, 19);
             this.txtnameofmaid.TabIndex = 1;
+            this.txtnameofmaid.ThemeName = "Office2007Silver";
             // 
             // radLabel16
             // 
@@ -341,6 +344,7 @@
             this.txttotalnoofperson.NullText = "0";
             this.txttotalnoofperson.Size = new System.Drawing.Size(74, 19);
             this.txttotalnoofperson.TabIndex = 1;
+            this.txttotalnoofperson.ThemeName = "Office2007Silver";
             this.txttotalnoofperson.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txttotalnoofperson_KeyPress);
             // 
             // radLabel15
@@ -360,6 +364,7 @@
             this.txtnameofchildren.NullText = "Type here...";
             this.txtnameofchildren.Size = new System.Drawing.Size(343, 19);
             this.txtnameofchildren.TabIndex = 1;
+            this.txtnameofchildren.ThemeName = "Office2007Silver";
             // 
             // radLabel5
             // 
@@ -378,6 +383,7 @@
             this.txtspousename.NullText = "Type here...";
             this.txtspousename.Size = new System.Drawing.Size(343, 19);
             this.txtspousename.TabIndex = 1;
+            this.txtspousename.ThemeName = "Office2007Silver";
             // 
             // radLabel14
             // 
@@ -396,6 +402,7 @@
             this.txtaddresstelephoneno.NullText = "Type here...";
             this.txtaddresstelephoneno.Size = new System.Drawing.Size(343, 19);
             this.txtaddresstelephoneno.TabIndex = 1;
+            this.txtaddresstelephoneno.ThemeName = "Office2007Silver";
             // 
             // radLabel13
             // 
@@ -414,6 +421,7 @@
             this.txtnameofemployer.NullText = "Type here...";
             this.txtnameofemployer.Size = new System.Drawing.Size(343, 19);
             this.txtnameofemployer.TabIndex = 1;
+            this.txtnameofemployer.ThemeName = "Office2007Silver";
             // 
             // radLabel11
             // 
@@ -432,6 +440,7 @@
             this.txtoccupation.NullText = "Type here...";
             this.txtoccupation.Size = new System.Drawing.Size(343, 19);
             this.txtoccupation.TabIndex = 1;
+            this.txtoccupation.ThemeName = "Office2007Silver";
             // 
             // radLabel12
             // 
@@ -451,6 +460,7 @@
             this.txtannualincome.NullText = "0.00";
             this.txtannualincome.Size = new System.Drawing.Size(125, 19);
             this.txtannualincome.TabIndex = 1;
+            this.txtannualincome.ThemeName = "Office2007Silver";
             this.txtannualincome.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtannualincome_KeyPress);
             // 
             // radLabel10
@@ -470,6 +480,7 @@
             this.txtnationality.NullText = "Type here...";
             this.txtnationality.Size = new System.Drawing.Size(125, 19);
             this.txtnationality.TabIndex = 1;
+            this.txtnationality.ThemeName = "Office2007Silver";
             // 
             // radLabel9
             // 
@@ -488,6 +499,7 @@
             this.txttelno.NullText = "Type here...";
             this.txttelno.Size = new System.Drawing.Size(343, 19);
             this.txttelno.TabIndex = 1;
+            this.txttelno.ThemeName = "Office2007Silver";
             this.txttelno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txttelno_KeyPress);
             // 
             // radLabel4
@@ -509,6 +521,7 @@
             this.dtpdob.TabIndex = 2;
             this.dtpdob.TabStop = false;
             this.dtpdob.Text = "7/5/2023";
+            this.dtpdob.ThemeName = "Office2007Silver";
             this.dtpdob.Value = new System.DateTime(2023, 7, 5, 21, 32, 28, 354);
             // 
             // radLabel6
@@ -532,6 +545,7 @@
             this.ddlgender.NullText = "Select Here...";
             this.ddlgender.Size = new System.Drawing.Size(125, 19);
             this.ddlgender.TabIndex = 3;
+            this.ddlgender.ThemeName = "Office2007Silver";
             // 
             // radLabel3
             // 
@@ -551,6 +565,7 @@
             this.txtpostaladdress.NullText = "Type here...";
             this.txtpostaladdress.Size = new System.Drawing.Size(801, 19);
             this.txtpostaladdress.TabIndex = 1;
+            this.txtpostaladdress.ThemeName = "Office2007Silver";
             // 
             // radLabel1
             // 
@@ -569,6 +584,7 @@
             this.txtname.NullText = "Type here...";
             this.txtname.Size = new System.Drawing.Size(343, 19);
             this.txtname.TabIndex = 1;
+            this.txtname.ThemeName = "Office2007Silver";
             // 
             // radLabel2
             // 
@@ -588,6 +604,7 @@
             this.txtage.NullText = "0";
             this.txtage.Size = new System.Drawing.Size(82, 19);
             this.txtage.TabIndex = 1;
+            this.txtage.ThemeName = "Office2007Silver";
             this.txtage.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtage_KeyPress);
             // 
             // radLabel20
@@ -613,6 +630,7 @@
             this.ddlClientType.NullText = "Select here...";
             this.ddlClientType.Size = new System.Drawing.Size(125, 19);
             this.ddlClientType.TabIndex = 3;
+            this.ddlClientType.ThemeName = "Office2007Silver";
             this.ddlClientType.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.ddlClientType_SelectedIndexChanged);
             // 
             // radLabel21
@@ -632,6 +650,7 @@
             this.txtTinNo.NullText = "Type here...";
             this.txtTinNo.Size = new System.Drawing.Size(203, 19);
             this.txtTinNo.TabIndex = 1;
+            this.txtTinNo.ThemeName = "Office2007Silver";
             // 
             // radGroupBox4
             // 
@@ -645,7 +664,7 @@
             this.radGroupBox4.Size = new System.Drawing.Size(1005, 263);
             this.radGroupBox4.TabIndex = 1;
             this.radGroupBox4.Text = "CLIENT LIST";
-            this.radGroupBox4.ThemeName = "Office2007Black";
+            this.radGroupBox4.ThemeName = "Office2007Silver";
             // 
             // dgvClientList
             // 
@@ -900,11 +919,12 @@
             // lblFoot
             // 
             this.lblFoot.AutoSize = false;
-            this.lblFoot.BackColor = System.Drawing.Color.DarkSlateBlue;
+            this.lblFoot.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.tableLayoutPanel2.SetColumnSpan(this.lblFoot, 2);
             this.lblFoot.Controls.Add(this.radLabel8);
             this.lblFoot.Controls.Add(this.radLabel7);
             this.lblFoot.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblFoot.ForeColor = System.Drawing.Color.Black;
             this.lblFoot.Location = new System.Drawing.Point(3, 714);
             this.lblFoot.Name = "lblFoot";
             this.lblFoot.Size = new System.Drawing.Size(1005, 30);
@@ -914,24 +934,24 @@
             // 
             this.radLabel8.AutoSize = false;
             this.radLabel8.Dock = System.Windows.Forms.DockStyle.Right;
-            this.radLabel8.ForeColor = System.Drawing.Color.White;
+            this.radLabel8.ForeColor = System.Drawing.Color.Black;
             this.radLabel8.Location = new System.Drawing.Point(715, 0);
             this.radLabel8.Name = "radLabel8";
             this.radLabel8.Size = new System.Drawing.Size(290, 30);
             this.radLabel8.TabIndex = 1;
-            this.radLabel8.Text = "Last Changed By : 12345 - Mark Jason Gelisanga";
+            this.radLabel8.Text = "Last Changed By : 12345 - Anonymous";
             this.radLabel8.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // radLabel7
             // 
             this.radLabel7.AutoSize = false;
             this.radLabel7.Dock = System.Windows.Forms.DockStyle.Left;
-            this.radLabel7.ForeColor = System.Drawing.Color.White;
+            this.radLabel7.ForeColor = System.Drawing.Color.Black;
             this.radLabel7.Location = new System.Drawing.Point(0, 0);
             this.radLabel7.Name = "radLabel7";
             this.radLabel7.Size = new System.Drawing.Size(325, 30);
             this.radLabel7.TabIndex = 0;
-            this.radLabel7.Text = "Encoded By : 12345 - Mark Jason Gelisanga";
+            this.radLabel7.Text = "Encoded By : 12345 - Anonymous";
             this.radLabel7.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // frmAddNewClient

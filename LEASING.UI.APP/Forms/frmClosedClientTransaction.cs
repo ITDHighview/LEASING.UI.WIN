@@ -116,7 +116,7 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetLedgerList()", this.Text, ex.Message, DateTime.Now, this);
+                Functions.LogError("M_GetLedgerList()", this.Text, ex.Message, DateTime.Now, this);
 
                 Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
             }
@@ -139,7 +139,7 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetPaymentListByReferenceId()", this.Text, ex.Message, DateTime.Now, this);
+                Functions.LogError("M_GetPaymentListByReferenceId()", this.Text, ex.Message, DateTime.Now, this);
 
                 Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
             }
@@ -164,7 +164,7 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetClientTypeAndID()", this.Text, ex.Message, DateTime.Now, this);
+                Functions.LogError("M_GetClientTypeAndID()", this.Text, ex.Message, DateTime.Now, this);
 
                 Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
             }
@@ -218,7 +218,7 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("GetContractById()", this.Text, ex.Message, DateTime.Now, this);
+                Functions.LogError("GetContractById()", this.Text, ex.Message, DateTime.Now, this);
 
                 Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
             }
@@ -239,7 +239,7 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetCheckPaymentStatus()", this.Text, ex.Message, DateTime.Now, this);
+                Functions.LogError("M_GetCheckPaymentStatus()", this.Text, ex.Message, DateTime.Now, this);
 
                 Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
             }
@@ -534,7 +534,7 @@ namespace LEASING.UI.APP.Forms
                         }
                         catch (Exception ex)
                         {
-                            Functions.LogErrorIntoStoredProcedure("Cell Click : Hold Payment", this.Text, ex.Message, DateTime.Now, this);
+                            Functions.LogError("Cell Click : Hold Payment", this.Text, ex.Message, DateTime.Now, this);
 
                             Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
                         }

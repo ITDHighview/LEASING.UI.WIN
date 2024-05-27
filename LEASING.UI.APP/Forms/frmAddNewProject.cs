@@ -15,32 +15,37 @@ namespace LEASING.UI.APP.Forms
 {
     public partial class frmAddNewProject : Form
     {
-        ProjectContext ProjectContext = new ProjectContext();
-        LocationContext LocationContext = new LocationContext();
+        private ProjectContext _project;
+        private LocationContext _location;
         public frmAddNewProject()
         {
+            _project = new ProjectContext();
+            _location = new LocationContext();
             InitializeComponent();
         }
-        private string _strProjectFormMode;
-        public string strProjectFormMode
+        enum ModeStatus
+        {
+            READ,
+            NEW
+        }
+        private string _FormMode;
+        public string FormMode
         {
             get
             {
-                return _strProjectFormMode;
+                return _FormMode;
             }
             set
             {
-                _strProjectFormMode = value;
-                switch (_strProjectFormMode)
+                _FormMode = value;
+                switch (_FormMode)
                 {
                     case "NEW":
                         btnUndoProject.Enabled = true;
                         btnSaveProject.Enabled = true;
                         btnNewProject.Enabled = false;
-
                         EnableFields();
                         Emptyfields();
-
                         break;
                     case "READ":
                         btnUndoProject.Enabled = false;
@@ -48,9 +53,7 @@ namespace LEASING.UI.APP.Forms
                         btnNewProject.Enabled = true;
                         DisableFields();
                         Emptyfields();
-
                         break;
-
                     default:
                         break;
                 }
@@ -61,7 +64,6 @@ namespace LEASING.UI.APP.Forms
             txtProjectName.Enabled = true;
             txtProjectDescription.Enabled = true;
             txtProjectAddress.Enabled = true;
-
             ddLocationList.Enabled = true;
             ddlProjectType.Enabled = true;
             ddlCompanyList.Enabled = true;
@@ -71,7 +73,6 @@ namespace LEASING.UI.APP.Forms
             txtProjectName.Enabled = false;
             txtProjectDescription.Enabled = false;
             txtProjectAddress.Enabled = false;
-
             ddLocationList.Enabled = false;
             ddlProjectType.Enabled = false;
             ddlCompanyList.Enabled = false;
@@ -81,7 +82,6 @@ namespace LEASING.UI.APP.Forms
             txtProjectName.Text = string.Empty;
             txtProjectDescription.Text = string.Empty;
             txtProjectAddress.Text = string.Empty;
-
         }
         private bool IsProjectValid()
         {
@@ -138,7 +138,7 @@ namespace LEASING.UI.APP.Forms
             try
             {
                 dgvProjectList.DataSource = null;
-                using (DataSet dt = ProjectContext.GetProjectList())
+                using (DataSet dt = _project.GetProjectList())
                 {
                     if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
@@ -148,12 +148,9 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetProjectList()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_GetProjectList()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_GetProjectList()", ex.ToString());
             }
-
-
         }
         private void M_SaveProject()
         {
@@ -166,33 +163,31 @@ namespace LEASING.UI.APP.Forms
                 dto.Description = txtProjectDescription.Text;
                 dto.ProjectAddress = txtProjectAddress.Text;
                 dto.CompanyId = Convert.ToInt32(ddlCompanyList.SelectedValue);
-                dto.Message_Code = ProjectContext.SaveProject(dto);
+                dto.Message_Code = _project.SaveProject(dto);
                 if (dto.Message_Code.Equals("SUCCESS"))
                 {
                     Functions.MessageShow("New Project has been added successfully !");
-                    strProjectFormMode = "READ";
+                    this.FormMode = ModeStatus.READ.ToString();
                     M_GetProjectList();
                 }
                 else
                 {
                     Functions.MessageShow(dto.Message_Code);
-                    strProjectFormMode = "READ";
+                    this.FormMode = ModeStatus.READ.ToString();
                 }
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_SaveProject()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_SaveProject()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_SaveProject()", ex.ToString());
             }
-
         }
         private void M_SelectCompany()
         {
             try
             {
                 ddlCompanyList.DataSource = null;
-                using (DataSet dt = ProjectContext.GetSelectCompany())
+                using (DataSet dt = _project.GetSelectCompany())
                 {
                     if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
@@ -204,19 +199,16 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_SelectCompany()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_SelectCompany()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_SelectCompany()", ex.ToString());
             }
-
-
         }
         private void M_SelectLocation()
         {
             try
             {
                 ddLocationList.DataSource = null;
-                using (DataSet dt = LocationContext.GetSelectLocation())
+                using (DataSet dt = _location.GetSelectLocation())
                 {
                     if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
@@ -228,12 +220,9 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_SelectLocation()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_SelectLocation()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_SelectLocation()", ex.ToString());
             }
-
-
         }
 
         private void M_SelectProjectType()
@@ -241,7 +230,7 @@ namespace LEASING.UI.APP.Forms
             try
             {
                 ddlProjectType.DataSource = null;
-                using (DataSet dt = ProjectContext.GetSelectProjectType())
+                using (DataSet dt = _project.GetSelectProjectType())
                 {
                     if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
@@ -253,15 +242,13 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_SelectProjectType()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_SelectProjectType()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_SelectProjectType()", ex.ToString());
             }
-
         }
         private void frmAddNewProject_Load(object sender, EventArgs e)
         {
-            strProjectFormMode = "READ";
+            this.FormMode = ModeStatus.READ.ToString();
             M_SelectCompany();
             M_SelectProjectType();
             M_SelectLocation();
@@ -270,7 +257,7 @@ namespace LEASING.UI.APP.Forms
 
         private void btnSaveProject_Click(object sender, EventArgs e)
         {
-            if (strProjectFormMode == "NEW")
+            if (this.FormMode == ModeStatus.NEW.ToString())
             {
                 if (IsProjectValid())
                 {
@@ -284,12 +271,12 @@ namespace LEASING.UI.APP.Forms
 
         private void btnUndoProject_Click(object sender, EventArgs e)
         {
-            strProjectFormMode = "READ";
+            this.FormMode = ModeStatus.READ.ToString();
         }
 
         private void btnNewProject_Click(object sender, EventArgs e)
         {
-            strProjectFormMode = "NEW";
+            this.FormMode = ModeStatus.NEW.ToString();
         }
 
         private void dgvProjectList_CellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
@@ -312,7 +299,7 @@ namespace LEASING.UI.APP.Forms
                     if (MessageBox.Show("Are you sure you want to Deactivated the Project?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                     {
 
-                        var result = ProjectContext.DeActivateProject(Convert.ToInt32(dgvProjectList.CurrentRow.Cells["RecId"].Value));
+                        var result = _project.DeActivateProject(Convert.ToInt32(dgvProjectList.CurrentRow.Cells["RecId"].Value));
                         if (result.Equals("SUCCESS"))
                         {
                             MessageBox.Show("Project has been Deactivated successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);

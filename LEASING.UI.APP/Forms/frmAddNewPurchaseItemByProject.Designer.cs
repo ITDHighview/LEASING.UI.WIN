@@ -48,9 +48,11 @@
             this.btnSelectUnits = new Telerik.WinControls.UI.RadButton();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.btnNewProject = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnSaveProject = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnUndoProject = new System.Windows.Forms.ToolStripButton();
+            this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).BeginInit();
             this.radGroupBox3.SuspendLayout();
@@ -88,7 +90,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 249F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(737, 327);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(737, 280);
             this.tableLayoutPanel2.TabIndex = 3;
             // 
             // radGroupBox3
@@ -103,7 +105,7 @@
             this.radGroupBox3.Size = new System.Drawing.Size(731, 243);
             this.radGroupBox3.TabIndex = 0;
             this.radGroupBox3.Text = "PURCHASE DETAILS";
-            this.radGroupBox3.ThemeName = "Office2007Black";
+            this.radGroupBox3.ThemeName = "Office2007Silver";
             // 
             // tableLayoutPanel6
             // 
@@ -160,7 +162,7 @@
             this.txtTotal.NullText = "Type here....";
             this.txtTotal.Size = new System.Drawing.Size(136, 19);
             this.txtTotal.TabIndex = 1;
-            this.txtTotal.ThemeName = "Office2013Light";
+            this.txtTotal.ThemeName = "Office2007Silver";
             this.txtTotal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTotal_KeyPress);
             // 
             // radLabel2
@@ -180,7 +182,7 @@
             this.txtAmount.NullText = "Type here....";
             this.txtAmount.Size = new System.Drawing.Size(136, 19);
             this.txtAmount.TabIndex = 1;
-            this.txtAmount.ThemeName = "Office2013Light";
+            this.txtAmount.ThemeName = "Office2007Silver";
             this.txtAmount.TextChanged += new System.EventHandler(this.txtAmount_TextChanged);
             this.txtAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAmount_KeyPress);
             // 
@@ -202,7 +204,7 @@
             this.txtUnitAmount.NullText = "Type here....";
             this.txtUnitAmount.Size = new System.Drawing.Size(136, 19);
             this.txtUnitAmount.TabIndex = 1;
-            this.txtUnitAmount.ThemeName = "Office2013Light";
+            this.txtUnitAmount.ThemeName = "Office2007Silver";
             this.txtUnitAmount.TextChanged += new System.EventHandler(this.txtUnitAmount_TextChanged);
             this.txtUnitAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUnitAmount_KeyPress);
             // 
@@ -224,7 +226,7 @@
             this.txtRemarks.NullText = "Type here....";
             this.txtRemarks.Size = new System.Drawing.Size(590, 19);
             this.txtRemarks.TabIndex = 1;
-            this.txtRemarks.ThemeName = "Office2013Light";
+            this.txtRemarks.ThemeName = "Office2007Silver";
             // 
             // radLabel4
             // 
@@ -245,7 +247,7 @@
             this.dtpDatePurchase.TabIndex = 3;
             this.dtpDatePurchase.TabStop = false;
             this.dtpDatePurchase.Text = "6/14/2023";
-            this.dtpDatePurchase.ThemeName = "Office2013Light";
+            this.dtpDatePurchase.ThemeName = "Office2007Silver";
             this.dtpDatePurchase.Value = new System.DateTime(2023, 6, 14, 9, 44, 15, 740);
             // 
             // radLabel3
@@ -266,7 +268,7 @@
             this.txtDescription.NullText = "Type here....";
             this.txtDescription.Size = new System.Drawing.Size(590, 19);
             this.txtDescription.TabIndex = 1;
-            this.txtDescription.ThemeName = "Office2013Light";
+            this.txtDescription.ThemeName = "Office2007Silver";
             // 
             // radLabel7
             // 
@@ -285,7 +287,7 @@
             this.txtUnitNumber.NullText = "Type here....";
             this.txtUnitNumber.Size = new System.Drawing.Size(136, 19);
             this.txtUnitNumber.TabIndex = 1;
-            this.txtUnitNumber.ThemeName = "Office2013Light";
+            this.txtUnitNumber.ThemeName = "Office2007Silver";
             // 
             // btnSelectUnits
             // 
@@ -295,6 +297,7 @@
             this.btnSelectUnits.Size = new System.Drawing.Size(110, 19);
             this.btnSelectUnits.TabIndex = 4;
             this.btnSelectUnits.Text = "Select Units";
+            this.btnSelectUnits.ThemeName = "Office2007Silver";
             this.btnSelectUnits.Click += new System.EventHandler(this.btnSelectUnits_Click);
             // 
             // toolStrip2
@@ -303,6 +306,7 @@
             this.tableLayoutPanel2.SetColumnSpan(this.toolStrip2, 2);
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnNewProject,
+            this.toolStripSeparator1,
             this.btnSaveProject,
             this.toolStripSeparator2,
             this.btnUndoProject});
@@ -321,6 +325,11 @@
             this.btnNewProject.Size = new System.Drawing.Size(51, 22);
             this.btnNewProject.Text = "New";
             this.btnNewProject.Click += new System.EventHandler(this.btnNewProject_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // btnSaveProject
             // 
@@ -351,7 +360,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(737, 327);
+            this.ClientSize = new System.Drawing.Size(737, 280);
             this.Controls.Add(this.tableLayoutPanel2);
             this.DoubleBuffered = true;
             this.Name = "frmAddNewPurchaseItemByProject";
@@ -411,5 +420,7 @@
         private Telerik.WinControls.UI.RadLabel radLabel7;
         private Telerik.WinControls.UI.RadTextBox txtUnitNumber;
         private Telerik.WinControls.UI.RadButton btnSelectUnits;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme1;
     }
 }

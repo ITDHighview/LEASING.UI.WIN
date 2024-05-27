@@ -45,6 +45,7 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnUndoProject = new System.Windows.Forms.ToolStripButton();
             this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).BeginInit();
             this.radGroupBox3.SuspendLayout();
@@ -88,6 +89,7 @@
             this.radGroupBox3.Size = new System.Drawing.Size(714, 187);
             this.radGroupBox3.TabIndex = 0;
             this.radGroupBox3.Text = "COMPANY DETAILS";
+            this.radGroupBox3.ThemeName = "Office2007Silver";
             // 
             // tableLayoutPanel6
             // 
@@ -129,9 +131,9 @@
             this.txtCompanyName.Location = new System.Drawing.Point(113, 3);
             this.txtCompanyName.Name = "txtCompanyName";
             this.txtCompanyName.NullText = "Type here....";
-            this.txtCompanyName.Size = new System.Drawing.Size(299, 19);
+            this.txtCompanyName.Size = new System.Drawing.Size(299, 20);
             this.txtCompanyName.TabIndex = 1;
-            this.txtCompanyName.ThemeName = "Office2013Light";
+            this.txtCompanyName.ThemeName = "Office2007Silver";
             // 
             // radLabel3
             // 
@@ -148,9 +150,9 @@
             this.txtCompanyAddress.Location = new System.Drawing.Point(113, 28);
             this.txtCompanyAddress.Name = "txtCompanyAddress";
             this.txtCompanyAddress.NullText = "Type here....";
-            this.txtCompanyAddress.Size = new System.Drawing.Size(590, 19);
+            this.txtCompanyAddress.Size = new System.Drawing.Size(590, 20);
             this.txtCompanyAddress.TabIndex = 1;
-            this.txtCompanyAddress.ThemeName = "Office2013Light";
+            this.txtCompanyAddress.ThemeName = "Office2007Silver";
             // 
             // radLabel4
             // 
@@ -167,9 +169,9 @@
             this.txtCompanyTINNo.Location = new System.Drawing.Point(113, 53);
             this.txtCompanyTINNo.Name = "txtCompanyTINNo";
             this.txtCompanyTINNo.NullText = "Type Here....";
-            this.txtCompanyTINNo.Size = new System.Drawing.Size(299, 19);
+            this.txtCompanyTINNo.Size = new System.Drawing.Size(299, 20);
             this.txtCompanyTINNo.TabIndex = 1;
-            this.txtCompanyTINNo.ThemeName = "Office2013Light";
+            this.txtCompanyTINNo.ThemeName = "Office2007Silver";
             // 
             // radLabel1
             // 
@@ -186,9 +188,9 @@
             this.txtCompanyOwnerName.Location = new System.Drawing.Point(113, 78);
             this.txtCompanyOwnerName.Name = "txtCompanyOwnerName";
             this.txtCompanyOwnerName.NullText = "Type Here....";
-            this.txtCompanyOwnerName.Size = new System.Drawing.Size(299, 19);
+            this.txtCompanyOwnerName.Size = new System.Drawing.Size(299, 20);
             this.txtCompanyOwnerName.TabIndex = 1;
-            this.txtCompanyOwnerName.ThemeName = "Office2013Light";
+            this.txtCompanyOwnerName.ThemeName = "Office2007Silver";
             // 
             // toolStrip2
             // 
@@ -196,6 +198,7 @@
             this.tableLayoutPanel2.SetColumnSpan(this.toolStrip2, 2);
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnEditCompany,
+            this.toolStripSeparator1,
             this.btnSaveProject,
             this.toolStripSeparator2,
             this.btnUndoProject});
@@ -236,6 +239,11 @@
             this.btnUndoProject.Size = new System.Drawing.Size(56, 22);
             this.btnUndoProject.Text = "Undo";
             this.btnUndoProject.Click += new System.EventHandler(this.btnUndoProject_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // frmEditCompany
             // 
@@ -288,5 +296,6 @@
         private Telerik.WinControls.UI.RadTextBox txtCompanyOwnerName;
         private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme1;
         private Telerik.WinControls.UI.RadTextBox txtCompanyName;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }

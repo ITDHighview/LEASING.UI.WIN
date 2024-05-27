@@ -102,6 +102,7 @@
             this.radGroupBox1.Size = new System.Drawing.Size(764, 503);
             this.radGroupBox1.TabIndex = 2;
             this.radGroupBox1.Text = "PROJECT DETAILS";
+            this.radGroupBox1.ThemeName = "Office2007Silver";
             // 
             // tableLayoutPanel5
             // 
@@ -240,18 +241,18 @@
             this.txtProjectAddress.Location = new System.Drawing.Point(103, 128);
             this.txtProjectAddress.Name = "txtProjectAddress";
             this.txtProjectAddress.NullText = "Type Here....";
-            this.txtProjectAddress.Size = new System.Drawing.Size(344, 19);
+            this.txtProjectAddress.Size = new System.Drawing.Size(344, 20);
             this.txtProjectAddress.TabIndex = 1;
-            this.txtProjectAddress.ThemeName = "Office2013Light";
+            this.txtProjectAddress.ThemeName = "Office2007Silver";
             // 
             // txtDescription
             // 
             this.txtDescription.Location = new System.Drawing.Point(103, 103);
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.NullText = "Type Here....";
-            this.txtDescription.Size = new System.Drawing.Size(344, 19);
+            this.txtDescription.Size = new System.Drawing.Size(344, 20);
             this.txtDescription.TabIndex = 1;
-            this.txtDescription.ThemeName = "Office2013Light";
+            this.txtDescription.ThemeName = "Office2007Silver";
             // 
             // radLabel2
             // 
@@ -268,9 +269,9 @@
             this.txtProjectName.Location = new System.Drawing.Point(103, 78);
             this.txtProjectName.Name = "txtProjectName";
             this.txtProjectName.NullText = "Type here....";
-            this.txtProjectName.Size = new System.Drawing.Size(344, 19);
+            this.txtProjectName.Size = new System.Drawing.Size(344, 20);
             this.txtProjectName.TabIndex = 1;
-            this.txtProjectName.ThemeName = "Office2013Light";
+            this.txtProjectName.ThemeName = "Office2007Silver";
             // 
             // radLabel1
             // 
@@ -287,9 +288,9 @@
             this.ddLocationList.Location = new System.Drawing.Point(103, 53);
             this.ddLocationList.Name = "ddLocationList";
             this.ddLocationList.NullText = "Select Here...";
-            this.ddLocationList.Size = new System.Drawing.Size(241, 19);
+            this.ddLocationList.Size = new System.Drawing.Size(241, 20);
             this.ddLocationList.TabIndex = 5;
-            this.ddLocationList.ThemeName = "Office2013Light";
+            this.ddLocationList.ThemeName = "Office2007Silver";
             // 
             // radLabel3
             // 
@@ -316,9 +317,9 @@
             this.ddlProjectType.Location = new System.Drawing.Point(103, 28);
             this.ddlProjectType.Name = "ddlProjectType";
             this.ddlProjectType.NullText = "Select Here...";
-            this.ddlProjectType.Size = new System.Drawing.Size(241, 19);
+            this.ddlProjectType.Size = new System.Drawing.Size(241, 20);
             this.ddlProjectType.TabIndex = 5;
-            this.ddlProjectType.ThemeName = "Office2013Light";
+            this.ddlProjectType.ThemeName = "Office2007Silver";
             // 
             // radGroupBox2
             // 
@@ -331,6 +332,7 @@
             this.radGroupBox2.Size = new System.Drawing.Size(754, 302);
             this.radGroupBox2.TabIndex = 6;
             this.radGroupBox2.Text = "UNIT LIST";
+            this.radGroupBox2.ThemeName = "Office2007Silver";
             // 
             // dgvUnitList
             // 

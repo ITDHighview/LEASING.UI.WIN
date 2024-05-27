@@ -19,12 +19,9 @@ namespace LEASING.UI.APP.Forms
         ProjectContext ProjectContext = new ProjectContext();
         LocationContext LocationContext = new LocationContext();
         PurchaseItemContext PurchaseItemContext = new PurchaseItemContext();
-
         public int UnitID { get; set; }
         public int Recid { get; set; }
         public bool IsProceed = false;
-
-
         private string _strPurchaseFormMode;
         public string strPurchaseFormMode
         {
@@ -87,7 +84,6 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-
         public frmEditPurchaseItem()
         {
             InitializeComponent();
@@ -160,11 +156,9 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_getPurchaseItemInfoById()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_getPurchaseItemInfoById()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_getPurchaseItemInfoById()", ex.ToString());
             }
-
         }
         private void M_SelectProject()
         {
@@ -183,14 +177,10 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_SelectProject()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_SelectProject()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_SelectProject()", ex.ToString());
             }
-
-
         }
-
         private void M_SavePurchaseItem()
         {
             try
@@ -221,12 +211,9 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_SavePurchaseItem()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_SavePurchaseItem()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_SavePurchaseItem()", ex.ToString());
             }
-
-
         }
         private void M_GetTotal()
         {
@@ -234,14 +221,12 @@ namespace LEASING.UI.APP.Forms
             var rental = (txtUnitAmount.Text == "") ? 0 : (Convert.ToDecimal(txtUnitAmount.Text) * ((txtAmount.Text == "") ? 0 : Convert.ToDecimal(txtAmount.Text)));
             txtTotal.Text = Convert.ToString(rental);
         }
-
         private void frmEditPurchaseItem_Load(object sender, EventArgs e)
         {
             strPurchaseFormMode = "READ";
             M_SelectProject();
             M_getPurchaseItemInfoById();
         }
-
         private void btnSaveProject_Click(object sender, EventArgs e)
         {
             if (strPurchaseFormMode == "EDIT")
@@ -263,40 +248,33 @@ namespace LEASING.UI.APP.Forms
             }
 
         }
-
         private void btnEdit_Click(object sender, EventArgs e)
         {
             strPurchaseFormMode = "EDIT";
         }
-
         private void btnUndo_Click(object sender, EventArgs e)
         {
             strPurchaseFormMode = "READ";
         }
-
         private void txtAmount_TextChanged(object sender, EventArgs e)
         {
             M_GetTotal();
         }
-
         private void txtUnitAmount_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
         }
-
         private void txtAmount_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
         }
-
         private void txtTotal_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
         }
-
         private void btnSelectUnit_Click(object sender, EventArgs e)
         {
             frmSelectUnit forms = new frmSelectUnit();
@@ -308,7 +286,6 @@ namespace LEASING.UI.APP.Forms
                 txtUnitNumber.Text = forms.UnitNumber;
             }
         }
-
         private void txtUnitAmount_TextChanged(object sender, EventArgs e)
         {
             M_GetTotal();

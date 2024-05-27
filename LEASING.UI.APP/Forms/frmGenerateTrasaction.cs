@@ -35,9 +35,8 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetComputationList()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_GetComputationList()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_GetComputationList()", ex.ToString());
             }
 
 

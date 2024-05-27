@@ -31,6 +31,7 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
             this.dgvList = new Telerik.WinControls.UI.RadGridView();
+            this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
             this.radGroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvList)).BeginInit();
@@ -48,6 +49,7 @@
             this.radGroupBox1.Size = new System.Drawing.Size(228, 280);
             this.radGroupBox1.TabIndex = 0;
             this.radGroupBox1.Text = "Contract List";
+            this.radGroupBox1.ThemeName = "Office2007Silver";
             // 
             // dgvList
             // 
@@ -70,12 +72,14 @@
             this.dgvList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1});
             this.dgvList.Name = "dgvList";
+            this.dgvList.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.dgvList.ReadOnly = true;
             this.dgvList.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgvList.ShowGroupPanel = false;
             this.dgvList.Size = new System.Drawing.Size(224, 260);
             this.dgvList.TabIndex = 0;
             this.dgvList.Text = "radGridView1";
+            this.dgvList.ThemeName = "Office2007Silver";
             this.dgvList.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.dgvList_CellDoubleClick);
             // 
             // frmSelectClientReferencePaid
@@ -102,5 +106,6 @@
 
         private Telerik.WinControls.UI.RadGroupBox radGroupBox1;
         private Telerik.WinControls.UI.RadGridView dgvList;
+        private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme1;
     }
 }

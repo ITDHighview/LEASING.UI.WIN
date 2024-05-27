@@ -14,22 +14,28 @@ namespace LEASING.UI.APP.Forms
 {
     public partial class frmAddBankName : Form
     {
-       private PaymentContext _payment = new PaymentContext();
+        private PaymentContext _payment;
         public frmAddBankName()
         {
+            _payment = new PaymentContext();
             InitializeComponent();
         }
-        private string _strBankNameFormMode;
-        public string strBankNameFormMode
+        enum ModeStatus
+        {
+            NEW,
+            READ          
+        }
+        private string _FormMode;
+        public string FormMode
         {
             get
             {
-                return _strBankNameFormMode;
+                return _FormMode;
             }
             set
             {
-                _strBankNameFormMode = value;
-                switch (_strBankNameFormMode)
+                _FormMode = value;
+                switch (_FormMode)
                 {
                     case "NEW":
                         btnUndo.Enabled = true;
@@ -66,7 +72,7 @@ namespace LEASING.UI.APP.Forms
             //}
             return true;
         }
-        private void _saveBankName()
+        private void SaveBankName()
         {
             try
             {
@@ -74,8 +80,8 @@ namespace LEASING.UI.APP.Forms
                 if (result.Equals("SUCCESS"))
                 {
                     Functions.MessageShow("New Bank Name has been added successfully !");
-                    this.strBankNameFormMode = "READ";
-                    this._getBankNameBrowse();
+                    this.FormMode = ModeStatus.READ.ToString();
+                    this.GetBankNameBrowse();
                 }
                 else
                 {                   
@@ -84,12 +90,11 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("_saveBankName()", "Bank Name", ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : " + ex.ToString() + " Please check the [ErrorLog] ");
+                Functions.LogError("SaveBankName()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("SaveBankName()", ex.ToString());
             }
         }
-        private void _deleteBankName()
+        private void DeleteBankName()
         {
             try
             {
@@ -97,8 +102,8 @@ namespace LEASING.UI.APP.Forms
                 if (result.Equals("SUCCESS"))
                 {
                     Functions.MessageShow("Deleted successfully !");
-                    this.strBankNameFormMode = "READ";
-                    this._getBankNameBrowse();
+                    this.FormMode = ModeStatus.READ.ToString();
+                    this.GetBankNameBrowse();
                 }
                 else
                 {
@@ -107,13 +112,12 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("_deleteBankName()", "Bank Name", ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : " + ex.ToString() + " Please check the [ErrorLog] ");
+                Functions.LogError("DeleteBankName()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("DeleteBankName()", ex.ToString());
             }
         }
 
-        private void _getBankNameBrowse()
+        private void GetBankNameBrowse()
         {
             try
             {
@@ -128,35 +132,33 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("_getBankNameBrowse()", "Bank Name", ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : " + ex.ToString() + " Please check the [ErrorLog] ");
+                Functions.LogError("GetBankNameBrowse()", "Bank Name", ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("GetBankNameBrowse()", ex.ToString());
             }
-
         }
         private void frmAddBankName_Load(object sender, EventArgs e)
         {
-            this.strBankNameFormMode = "READ";
-            this._getBankNameBrowse();
+            this.FormMode = ModeStatus.READ.ToString();
+            this.GetBankNameBrowse();
         }
 
         private void btnNew_Click(object sender, EventArgs e)
         {
-            this.strBankNameFormMode = "NEW";
+            this.FormMode = ModeStatus.NEW.ToString();
         }
 
         private void btnUndo_Click(object sender, EventArgs e)
         {
-            strBankNameFormMode = "READ";
+            this.FormMode = ModeStatus.READ.ToString();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (this._isValid())
             {
-                if (MessageBox.Show("Are you sure you want to add this Bank Name ?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                if (Functions.MessageConfirm("Are you sure you want to add this Bank Name ?") == DialogResult.Yes)
                 {
-                    this._saveBankName();
+                    this.SaveBankName();
                 }
             }
         }
@@ -167,9 +169,9 @@ namespace LEASING.UI.APP.Forms
             {
                 if (this.dgvList.Columns[e.ColumnIndex].Name == "ColRemoved")
                 {
-                    if (MessageBox.Show("Are you sure you want to delete this Bank Name ?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                    if (Functions.MessageConfirm("Are you sure you want to delete this Bank Name ?") == DialogResult.Yes)
                     {
-                        this._deleteBankName();
+                        this.DeleteBankName();
                     }
                 }       
             }

@@ -85,9 +85,8 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetRateSettings()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_GetRateSettings()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_GetRateSettings()", ex.ToString());
             }
 
         }
@@ -112,9 +111,8 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_UpdateRates()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_UpdateRates()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_UpdateRates()", ex.ToString());
             }
 
 
@@ -165,16 +163,9 @@ namespace LEASING.UI.APP.Forms
             {
                 if (MessageBox.Show("Are you sure you want to update the following Rate?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                 {
-                    try
-                    {
+               
                         M_UpdateRates();
-                    }
-                    catch (Exception ex)
-                    {
-
-                        MessageBox.Show(ex.ToString(), "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                   
+               
                 }
             }
         }

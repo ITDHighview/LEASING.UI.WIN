@@ -15,18 +15,19 @@ namespace LEASING.UI.APP.Forms
 {
     public partial class frmCheckUnits : Form
     {
-        UnitContext UnitContext = new UnitContext();
-        public int Recid { get; set; }
+        private UnitContext _unit;
         public frmCheckUnits()
         {
+            _unit = new UnitContext();
             InitializeComponent();
         }
+        public int Recid { get; set; }
         private void M_GetUnitByProjectId()
         {
             try
             {
                 dgvUnitList.DataSource = null;
-                using (DataSet dt = UnitContext.GetUnitByProjectId(Recid))
+                using (DataSet dt = _unit.GetUnitByProjectId(Recid))
                 {
                     if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
@@ -36,18 +37,14 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetUnitByProjectId()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_GetUnitByProjectId()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_GetUnitByProjectId()", ex.ToString());
             }
-
-
         }
         private void frmCheckUnits_Load(object sender, EventArgs e)
         {
             M_GetUnitByProjectId();
         }
-
         private void dgvUnitList_CellFormatting(object sender, Telerik.WinControls.UI.CellFormattingEventArgs e)
         {
             if (!string.IsNullOrEmpty(Convert.ToString(this.dgvUnitList.Rows[e.RowIndex].Cells["UnitStatus"].Value)))
@@ -56,7 +53,6 @@ namespace LEASING.UI.APP.Forms
                 {
                     //e.CellElement.ForeColor = Color.Green;
                     //e.CellElement.Font = new Font("Tahoma", 7f, FontStyle.Bold);
-
                     e.CellElement.DrawFill = true;
                     e.CellElement.GradientStyle = GradientStyles.Solid;
                     e.CellElement.ForeColor = Color.Black;
@@ -75,7 +71,6 @@ namespace LEASING.UI.APP.Forms
                     e.CellElement.GradientStyle = GradientStyles.Solid;
                     e.CellElement.ForeColor = Color.Black;
                     e.CellElement.BackColor = Color.LightGreen;
-
                 }
                 else if (Convert.ToString(this.dgvUnitList.Rows[e.RowIndex].Cells["UnitStatus"].Value) == "NOT AVAILABLE")
                 {
@@ -91,7 +86,6 @@ namespace LEASING.UI.APP.Forms
                     e.CellElement.GradientStyle = GradientStyles.Solid;
                     e.CellElement.ForeColor = Color.White;
                     e.CellElement.BackColor = Color.Red;
-
                 }
             }
         }

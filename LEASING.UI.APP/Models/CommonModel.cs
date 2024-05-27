@@ -9,8 +9,10 @@ namespace LEASING.UI.APP.Models
     public class CommonModel
     {
         public string Message_Code { get; set; }
+        public string ErrorMessage { get; set; }
         public string ComputerName { get; set; }
         public int EncodedBy { get; set; }
         public int LastchangedBy { get; set; }
+        public string XMLData { get; set; }
     }
 }

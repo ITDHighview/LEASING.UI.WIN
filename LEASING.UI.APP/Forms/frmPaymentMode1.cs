@@ -128,11 +128,9 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetSelectPaymentMode()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_GetSelectPaymentMode()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_GetSelectPaymentMode()", ex.ToString());
             }
-
         }
         private void M_GetSelectBanknName()
         {
@@ -151,9 +149,8 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetSelectBanknName()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_GetSelectBanknName()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_GetSelectBanknName()", ex.ToString());
             }
 
         }
@@ -206,9 +203,8 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_CheckOrNumber()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_CheckOrNumber()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_CheckOrNumber()", ex.ToString());
             }
 
             return IsExist;
@@ -234,9 +230,8 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_CheckPRNumber()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_CheckPRNumber()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_CheckPRNumber()", ex.ToString());
             }
 
 

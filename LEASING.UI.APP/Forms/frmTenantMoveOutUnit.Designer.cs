@@ -92,6 +92,7 @@
             this.radGroupBox1.Size = new System.Drawing.Size(590, 307);
             this.radGroupBox1.TabIndex = 1;
             this.radGroupBox1.Text = "FOR CLOSE CONTRACT UNIT LIST ";
+            this.radGroupBox1.ThemeName = "Office2007Silver";
             // 
             // dgvList
             // 

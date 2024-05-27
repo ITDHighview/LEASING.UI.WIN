@@ -106,9 +106,8 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("_getMonthLedgerBrowseByContractIdClientNumber()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("_getMonthLedgerBrowseByContractIdClientNumber()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("_getMonthLedgerBrowseByContractIdClientNumber()", ex.ToString());
             }
 
 
@@ -137,9 +136,8 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("_getContractById()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("_getContractById()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("_getContractById()", ex.ToString());
             }
 
         }
@@ -190,9 +188,8 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("_generatePayment()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("_generatePayment()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("_generatePayment()", ex.ToString());
             }
 
         }

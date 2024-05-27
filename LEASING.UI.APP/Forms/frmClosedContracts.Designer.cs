@@ -56,6 +56,7 @@
             this.radGroupBox1.Size = new System.Drawing.Size(763, 338);
             this.radGroupBox1.TabIndex = 2;
             this.radGroupBox1.Text = "CONTRACT LIST";
+            this.radGroupBox1.ThemeName = "Office2007Silver";
             // 
             // dgvList
             // 
@@ -100,7 +101,7 @@
             gridViewTextBoxColumn3.FieldName = "InquiringClient";
             gridViewTextBoxColumn3.HeaderText = "Client";
             gridViewTextBoxColumn3.Name = "InquiringClient";
-            gridViewTextBoxColumn3.Width = 200;
+            gridViewTextBoxColumn3.Width = 220;
             gridViewTextBoxColumn4.FieldName = "Contract_Status";
             gridViewTextBoxColumn4.HeaderText = "Status";
             gridViewTextBoxColumn4.Name = "Contract_Status";

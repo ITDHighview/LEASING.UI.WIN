@@ -2,6 +2,7 @@
 using LEASING.UI.APP.Context;
 using LEASING.UI.APP.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,18 +17,102 @@ namespace LEASING.UI.APP.Forms
 {
     public partial class frmAddNewClient : Form
     {
-        ClientContext ClientContext = new ClientContext();
-        private string _strClientFormMode;
-        public string strClientFormMode
+        private ClientContext _client;
+        #region XML
+        private static string SetXMLTable(ref ArrayList xml)
+        {
+            StringBuilder strXML = new StringBuilder();
+            try
+            {
+                if (xml.Count > 0)
+                {
+                    strXML.Append("<Table1>");
+                    for (int iIndex = 0; iIndex < xml.Count; iIndex++)
+                    {
+                        strXML.Append("<c" + (iIndex + 1).ToString() + ">");
+                        strXML.Append(parseXML(xml[iIndex]));
+                        strXML.Append("</c" + (iIndex + 1).ToString() + ">");
+                    }
+                    strXML.Append("</Table1>");
+                    xml = new ArrayList();
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+            return strXML.ToString();
+        }
+        private static string parseXML(object strValue)
+        {
+            string retValue = string.Empty;
+            retValue = strValue.ToString();
+            try
+            {
+                if (retValue.Trim().Length > 0)
+                {
+                    retValue = retValue.Replace("&", "&amp;");
+                    retValue = retValue.Replace("<", "&lt;");
+                    retValue = retValue.Replace(">", "&gt;");
+                    retValue = retValue.Replace("\"", "&quot;");
+                    retValue = retValue.Replace("'", "&apos;");
+
+                    retValue = retValue.Trim();
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+            return retValue;
+        }
+        private string XMLData(ClientModel model)
+        {
+            StringBuilder sbClient = new StringBuilder();
+            ArrayList alClient = new ArrayList();
+            //this.dgvAdvancePayment.BeginEdit();      
+            alClient.Add(model.ClientType);
+            alClient.Add(model.ClientName);
+            alClient.Add(model.Age);
+            alClient.Add(model.PostalAddress);
+            alClient.Add(model.DateOfBirth);
+            alClient.Add(model.TelNumber);
+            alClient.Add(model.Gender);
+            alClient.Add(model.Nationality);
+            alClient.Add(model.Occupation);
+            alClient.Add(model.AnnualIncome);
+            alClient.Add(model.EmployerName);
+            alClient.Add(model.EmployerAddress);
+            alClient.Add(model.SpouseName);
+            alClient.Add(model.ChildrenNames);
+            alClient.Add(model.TotalPersons);
+            alClient.Add(model.MaidName);
+            alClient.Add(model.DriverName);
+            alClient.Add(model.NoVisitorsPerDay);
+            alClient.Add(1);
+            alClient.Add(Variables.UserID);
+            alClient.Add(Environment.MachineName);
+            alClient.Add(model.TIN_No);
+            sbClient.Append(SetXMLTable(ref alClient));
+            return sbClient.ToString();
+        }
+        #endregion
+        enum ModeStatus
+        {
+            NEW,
+            READ
+        }
+        private string _FormMode;
+        public string FormMode
         {
             get
             {
-                return _strClientFormMode;
+                return _FormMode;
             }
             set
             {
-                _strClientFormMode = value;
-                switch (_strClientFormMode)
+                _FormMode = value;
+                switch (_FormMode)
                 {
                     case "NEW":
                         btnUndo.Enabled = true;
@@ -35,7 +120,6 @@ namespace LEASING.UI.APP.Forms
                         btnNewProject.Enabled = false;
                         EnabledFields();
                         EmptyFields();
-
                         break;
                     case "READ":
                         btnUndo.Enabled = false;
@@ -43,8 +127,6 @@ namespace LEASING.UI.APP.Forms
                         btnNewProject.Enabled = true;
                         DisabledFields();
                         EmptyFields();
-
-
                         break;
 
                     default:
@@ -52,7 +134,6 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-
         private void EmptyFields()
         {
             ddlClientType.Text = string.Empty;
@@ -95,7 +176,6 @@ namespace LEASING.UI.APP.Forms
             txtnoofvisitorperday.Enabled = true;
             txtTinNo.Enabled = true;
         }
-
         private void IsCorporate()
         {
             txtname.Enabled = true;
@@ -139,9 +219,6 @@ namespace LEASING.UI.APP.Forms
             txtTinNo.Text = string.Empty;
 
         }
-
-
-
         private void DisabledFields()
         {
             ddlClientType.Enabled = false;
@@ -164,27 +241,24 @@ namespace LEASING.UI.APP.Forms
             txtnoofvisitorperday.Enabled = false;
             txtTinNo.Enabled = false;
         }
-        private bool IsClientValid()
+        private bool IsValid()
         {
-            if (string.IsNullOrEmpty(ddlClientType.Text))
+            if (string.IsNullOrEmpty(this.ddlClientType.Text))
             {
                 MessageBox.Show("Client Type cannot be empty !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return false;
             }
-            if (string.IsNullOrEmpty(txtname.Text))
+            if (string.IsNullOrEmpty(this.txtname.Text))
             {
                 MessageBox.Show("Name cannot be empty !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return false;
             }
-
             return true;
         }
-
-
-        private string GetClientTypeCode()
+        private string ClientTypeCode()
         {
             string Code = string.Empty;
-            switch (ddlClientType.Text)
+            switch (this.ddlClientType.Text)
             {
                 case "INDIVIDUAL":
                     Code = "INDV";
@@ -196,81 +270,81 @@ namespace LEASING.UI.APP.Forms
                     Code = "PART";
                     break;
             }
-
             return Code;
         }
-        private void M_SaveClient()
+        private void SaveClient()
         {
             try
             {
                 ClientModel dto = new ClientModel();
-                dto.ClientType = GetClientTypeCode();
-                dto.ClientName = txtname.Text;
-                dto.Age = txtage.Text == string.Empty ? 0 : Convert.ToInt32(txtage.Text);
-                dto.PostalAddress = txtpostaladdress.Text;
-                dto.DateOfBirth = dtpdob.Text;
-                dto.Gender = ddlgender.Text == "MALE" ? true : false;
-                dto.TelNumber = txttelno.Text;
-                dto.Nationality = txtnationality.Text;
-                dto.Occupation = txtoccupation.Text;
-                dto.AnnualIncome = txtannualincome.Text == string.Empty ? 0 : Convert.ToInt32(txtannualincome.Text);
-                dto.EmployerName = txtnameofemployer.Text;
-                dto.EmployerAddress = txtaddresstelephoneno.Text;
-                dto.SpouseName = txtspousename.Text;
-                dto.ChildrenNames = txtnameofchildren.Text;
-                dto.TotalPersons = txttotalnoofperson.Text == string.Empty ? 0 : Convert.ToInt32(txttotalnoofperson.Text);
-                dto.MaidName = txtnameofmaid.Text;
-                dto.DriverName = txtnameofdriver.Text;
-                dto.NoVisitorsPerDay = txtnoofvisitorperday.Text == string.Empty ? 0 : Convert.ToInt32(txtnoofvisitorperday.Text);
-                dto.BuildingSecretary = 1;
-                dto.EncodedBy = Variables.UserID;
-                dto.TIN_No = txtTinNo.Text.Trim();
-                dto.Message_Code = ClientContext.SaveClient(dto);
-                if (dto.Message_Code.Equals("SUCCESS"))
+                ClientModel results = new ClientModel();
+                dto.ClientType = this.ClientTypeCode();
+                dto.ClientName = this.txtname.Text;
+                dto.Age = Functions.ConvertStringToInt(this.txtage.Text);
+                dto.PostalAddress = this.txtpostaladdress.Text;
+                dto.DateOfBirth = this.dtpdob.Text;
+                dto.Gender = this.ddlgender.Text == "MALE" ? true : false;
+                dto.TelNumber = this.txttelno.Text;
+                dto.Nationality = this.txtnationality.Text;
+                dto.Occupation = this.txtoccupation.Text;
+                dto.AnnualIncome = Functions.ConvertStringToInt(this.txtannualincome.Text);
+                dto.EmployerName = this.txtnameofemployer.Text;
+                dto.EmployerAddress = this.txtaddresstelephoneno.Text;
+                dto.SpouseName = this.txtspousename.Text;
+                dto.ChildrenNames = this.txtnameofchildren.Text;
+                dto.TotalPersons = Functions.ConvertStringToInt(this.txttotalnoofperson.Text);
+                dto.MaidName = this.txtnameofmaid.Text;
+                dto.DriverName = this.txtnameofdriver.Text;
+                dto.NoVisitorsPerDay = Functions.ConvertStringToInt(this.txtnoofvisitorperday.Text);
+                dto.TIN_No = this.txtTinNo.Text;
+                dto.XMLData = this.XMLData(dto);
+
+                results = _client.SaveClient(dto);
+                if (results.Message_Code.Equals("SUCCESS"))
                 {
                     Functions.MessageShow("New Client  has been added successfully !");
-                    this.strClientFormMode = "READ";
-                    M_GetClientList();
-
+                    this.FormMode = ModeStatus.READ.ToString();
+                    this.ClientBrowse();             
                 }
                 else
                 {
-                    Functions.MessageShow(dto.Message_Code);
-                    this.strClientFormMode = "READ";
+                    Functions.MessageShow(results.Message_Code);
+                    this.FormMode = ModeStatus.READ.ToString();
+                }
+                if (results.ErrorMessage != null)
+                {
+                    Functions.ErrorShow("SaveClient()", results.ErrorMessage);
                 }
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_SaveClient()", "Client Form", ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : " + ex.ToString() + " Please check the [ErrorLog] ");
+                Functions.LogError("SaveClient()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("SaveClient()", ex.ToString());
             }
-
         }
         public frmAddNewClient()
         {
+            _client = new ClientContext();
             InitializeComponent();
         }
-        private void M_GetClientList()
+        private void ClientBrowse()
         {
             try
             {
-                dgvClientList.DataSource = null;
-                using (DataSet dt = ClientContext.GetClientList())
+                this.dgvClientList.DataSource = null;
+                using (DataSet dt = _client.GetClientList())
                 {
                     if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
-                        dgvClientList.DataSource = dt.Tables[0];
+                        this.dgvClientList.DataSource = dt.Tables[0];
                     }
                 }
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetClientList()", "Client Form", ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : " + ex.ToString() + " Please check the [ErrorLog] ");
+                Functions.LogError("ClientBrowse()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("ClientBrowse()", ex.ToString());
             }
-           
         }
         private void txtage_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -294,24 +368,24 @@ namespace LEASING.UI.APP.Forms
         }
         private void btnNewProject_Click(object sender, EventArgs e)
         {
-            strClientFormMode = "NEW";
+            this.FormMode = ModeStatus.NEW.ToString();
         }
         private void frmAddNewClient_Load(object sender, EventArgs e)
         {
-            strClientFormMode = "READ";
-            M_GetClientList();
+            this.FormMode = ModeStatus.READ.ToString();
+            this.ClientBrowse();
         }
         private void btnUndo_Click(object sender, EventArgs e)
         {
-            strClientFormMode = "READ";
+            this.FormMode = ModeStatus.READ.ToString();
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (IsClientValid())
+            if (this.IsValid())
             {
-                if (MessageBox.Show("Are you sure you want to add this client ?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                if (Functions.MessageConfirm("Are you sure you want to add this client ?") == DialogResult.Yes)
                 {
-                    M_SaveClient();
+                    this.SaveClient();
                 }
             }
         }
@@ -334,39 +408,21 @@ namespace LEASING.UI.APP.Forms
                     frmEditClient forms = new frmEditClient();
                     forms.ClientID = Convert.ToString(dgvClientList.CurrentRow.Cells["ClientID"].Value);
                     forms.ShowDialog();
-                    M_GetClientList();
-                    if (forms.IsProceed)
-                    {
-                        // M_GetProjectList();
-                    }
+                    this.ClientBrowse();
                 }
-                //else if (this.dgvClientList.Columns[e.ColumnIndex].Name == "coldelete")
-                //{
-
-                //    if (MessageBox.Show("Are you sure you want to delete the Project?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
-                //    {
-
-                //        var result = ProjectContext.DeleteProject(Convert.ToInt32(dgvProjectList.CurrentRow.Cells["RecId"].Value));
-                //        if (result.Equals("SUCCESS"))
-                //        {
-                //            MessageBox.Show("Project has been Deleted successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //            M_GetProjectList();
-                //        }
-                //    }
-                //}
             }
         }
         private void ddlClientType_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
         {
-            if (ddlClientType.SelectedIndex >= 0)
+            if (this.ddlClientType.SelectedIndex >= 0)
             {
-                if (ddlClientType.SelectedIndex == 1 || ddlClientType.SelectedIndex == 2)
+                if (this.ddlClientType.SelectedIndex == 1 || this.ddlClientType.SelectedIndex == 2)
                 {
-                    IsCorporate();
+                    this.IsCorporate();
                 }
                 else
                 {
-                    EnabledFields();
+                    this.EnabledFields();
                 }
             }
         }

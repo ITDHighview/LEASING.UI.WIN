@@ -54,6 +54,7 @@
             this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel11 = new Telerik.WinControls.UI.RadLabel();
             this.dtpRecieptDate = new Telerik.WinControls.UI.RadDateTimePicker();
+            this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnOk)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).BeginInit();
@@ -108,6 +109,7 @@
             this.btnOk.Size = new System.Drawing.Size(432, 38);
             this.btnOk.TabIndex = 3;
             this.btnOk.Text = "PROCEED >>>";
+            this.btnOk.ThemeName = "Office2007Silver";
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // radGroupBox2
@@ -121,6 +123,7 @@
             this.radGroupBox2.Size = new System.Drawing.Size(432, 350);
             this.radGroupBox2.TabIndex = 5;
             this.radGroupBox2.Text = "MODE DETAILS";
+            this.radGroupBox2.ThemeName = "Office2007Silver";
             // 
             // tableLayoutPanel2
             // 
@@ -187,6 +190,7 @@
             this.txtCompanyORNo.NullText = "Type here...";
             this.txtCompanyORNo.Size = new System.Drawing.Size(241, 24);
             this.txtCompanyORNo.TabIndex = 2;
+            this.txtCompanyORNo.ThemeName = "Office2007Silver";
             // 
             // radLabel2
             // 
@@ -218,6 +222,7 @@
             this.txtPRNo.Name = "txtPRNo";
             this.txtPRNo.Size = new System.Drawing.Size(241, 24);
             this.txtPRNo.TabIndex = 2;
+            this.txtPRNo.ThemeName = "Office2007Silver";
             this.txtPRNo.TextChanged += new System.EventHandler(this.txtPRNo_TextChanged);
             // 
             // ddlbankName
@@ -228,6 +233,7 @@
             this.ddlbankName.Name = "ddlbankName";
             this.ddlbankName.Size = new System.Drawing.Size(241, 24);
             this.ddlbankName.TabIndex = 4;
+            this.ddlbankName.ThemeName = "Office2007Silver";
             // 
             // txtReferrence
             // 
@@ -237,6 +243,7 @@
             this.txtReferrence.Name = "txtReferrence";
             this.txtReferrence.Size = new System.Drawing.Size(241, 24);
             this.txtReferrence.TabIndex = 2;
+            this.txtReferrence.ThemeName = "Office2007Silver";
             // 
             // ddlSelectMode
             // 
@@ -247,6 +254,7 @@
             this.ddlSelectMode.NullText = "SELECT";
             this.ddlSelectMode.Size = new System.Drawing.Size(121, 24);
             this.ddlSelectMode.TabIndex = 1;
+            this.ddlSelectMode.ThemeName = "Office2007Silver";
             this.ddlSelectMode.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.ddlSelectMode_SelectedIndexChanged);
             // 
             // radLabel3
@@ -290,6 +298,7 @@
             this.txtSerialNo.Name = "txtSerialNo";
             this.txtSerialNo.Size = new System.Drawing.Size(241, 24);
             this.txtSerialNo.TabIndex = 2;
+            this.txtSerialNo.ThemeName = "Office2007Silver";
             // 
             // radLabel6
             // 
@@ -310,6 +319,7 @@
             this.txtBankAccountNo.Name = "txtBankAccountNo";
             this.txtBankAccountNo.Size = new System.Drawing.Size(241, 24);
             this.txtBankAccountNo.TabIndex = 2;
+            this.txtBankAccountNo.ThemeName = "Office2007Silver";
             // 
             // radLabel5
             // 
@@ -330,6 +340,7 @@
             this.txtBankAccountName.Name = "txtBankAccountName";
             this.txtBankAccountName.Size = new System.Drawing.Size(241, 24);
             this.txtBankAccountName.TabIndex = 2;
+            this.txtBankAccountName.ThemeName = "Office2007Silver";
             // 
             // radLabel10
             // 
@@ -350,6 +361,7 @@
             this.txtBankBranch.Name = "txtBankBranch";
             this.txtBankBranch.Size = new System.Drawing.Size(241, 24);
             this.txtBankBranch.TabIndex = 2;
+            this.txtBankBranch.ThemeName = "Office2007Silver";
             // 
             // txtRemarks
             // 
@@ -359,6 +371,7 @@
             this.txtRemarks.Name = "txtRemarks";
             this.txtRemarks.Size = new System.Drawing.Size(241, 24);
             this.txtRemarks.TabIndex = 2;
+            this.txtRemarks.ThemeName = "Office2007Silver";
             // 
             // radLabel8
             // 
@@ -393,6 +406,7 @@
             this.dtpRecieptDate.TabIndex = 5;
             this.dtpRecieptDate.TabStop = false;
             this.dtpRecieptDate.Text = "4/24/2024";
+            this.dtpRecieptDate.ThemeName = "Office2007Silver";
             this.dtpRecieptDate.Value = new System.DateTime(2024, 4, 24, 13, 8, 48, 926);
             // 
             // frmPaymentMode1
@@ -469,5 +483,6 @@
         private Telerik.WinControls.UI.RadTextBox txtBankBranch;
         private Telerik.WinControls.UI.RadLabel radLabel11;
         private Telerik.WinControls.UI.RadDateTimePicker dtpRecieptDate;
+        private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme1;
     }
 }

@@ -16,9 +16,10 @@ namespace LEASING.UI.APP.Forms
 {
     public partial class frmClientRecieptTransaction : Form
     {
-        ComputationContext ComputationContext = new ComputationContext();
+      private  ComputationContext _computation;
         public frmClientRecieptTransaction()
         {
+            _computation = new ComputationContext();
             InitializeComponent();
         }
         private void M_GetContractList()
@@ -26,52 +27,43 @@ namespace LEASING.UI.APP.Forms
             try
             {
                 dgvContractList.DataSource = null;
-                using (DataSet dt = ComputationContext.GetContractList())
+                using (DataSet dt = _computation.GetContractList())
                 {
                     if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
                         dgvContractList.DataSource = dt.Tables[0];
                     }
-
                 }
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetContractList()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_GetContractList()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_GetContractList()", ex.ToString());
             }
-
-
         }
         private void M_GetContractList(string refid)
         {
             try
             {
                 dgvReceiptList.DataSource = null;
-                using (DataSet dt = ComputationContext.GetReceiptByRefId(refid))
+                using (DataSet dt = _computation.GetReceiptByRefId(refid))
                 {
                     if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
                         dgvReceiptList.DataSource = dt.Tables[0];
                     }
-
                 }
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetContractList()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_GetContractList()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_GetContractList()", ex.ToString());
             }
-
         }
-
         private void frmClientRecieptTransaction_Load(object sender, EventArgs e)
         {
             M_GetContractList();
         }
-
         private void dgvContractList_SelectionChanged(object sender, EventArgs e)
         {
             if (dgvContractList.Rows.Count > 0)
@@ -79,7 +71,6 @@ namespace LEASING.UI.APP.Forms
                 M_GetContractList(Convert.ToString(dgvContractList.CurrentRow.Cells["RefId"].Value));
             }
         }
-
         private string GetPaymentLevel()
         {
             if (Convert.ToString(dgvReceiptList.CurrentRow.Cells["Description"].Value) == "FIRST PAYMENT")
@@ -142,26 +133,9 @@ namespace LEASING.UI.APP.Forms
                             M_GetContractList();
                         }
                     }
-                    //else if (!string.IsNullOrEmpty(Convert.ToString(dgvReceiptList.CurrentRow.Cells["CompanyORNo"].Value)) && string.IsNullOrEmpty(Convert.ToString(dgvReceiptList.CurrentRow.Cells["CompanyPRNo"].Value)))
-                    //{
-                    //    IsNoOR = false;
-                    //}
-                    //else if (!string.IsNullOrEmpty(Convert.ToString(dgvReceiptList.CurrentRow.Cells["CompanyORNo"].Value)) && !string.IsNullOrEmpty(Convert.ToString(dgvReceiptList.CurrentRow.Cells["CompanyPRNo"].Value)))
-                    //{
-                    //    IsNoOR = false;
-                    //}
-
                 }
-                //else if (this.dgvList.Columns[e.ColumnIndex].Name == "ColLedger")
-                //{
-                //    frmClosedClientTransaction forms = new frmClosedClientTransaction();
-                //    forms.ComputationRecid = Convert.ToInt32(dgvList.CurrentRow.Cells["RecId"].Value);
-                //    forms.ClientId = Convert.ToString(dgvList.CurrentRow.Cells["ClientID"].Value);
-                //    forms.ShowDialog();
-                //}
             }
         }
-
         private void dgvReceiptList_CellFormatting(object sender, Telerik.WinControls.UI.CellFormattingEventArgs e)
         {
             if (e.CellElement.ColumnInfo is GridViewCommandColumn && !(e.CellElement.RowElement is GridTableHeaderRowElement))
@@ -197,7 +171,6 @@ namespace LEASING.UI.APP.Forms
                         element.Enabled = false;
                     }
                 }
-
             }
         }
     }

@@ -15,23 +15,29 @@ namespace LEASING.UI.APP.Forms
 {
     public partial class frmAddNewCompany : Form
     {
-        CompanyContext CompanyContext = new CompanyContext();
+        private CompanyContext _company;
        
         public frmAddNewCompany()
         {
+            _company = new CompanyContext();
             InitializeComponent();
         }
-        private string _strFormMode;
-        public string strFormMode
+        enum ModeStatus
+        {
+            READ,
+            NEW
+        }
+        private string _FormMode;
+        public string FormMode
         {
             get
             {
-                return _strFormMode;
+                return _FormMode;
             }
             set
             {
-                _strFormMode = value;
-                switch (_strFormMode)
+                _FormMode = value;
+                switch (_FormMode)
                 {
                     case "NEW":
                         btnUndoProject.Enabled = true;
@@ -62,8 +68,6 @@ namespace LEASING.UI.APP.Forms
             txtCompanyAddress.Enabled = true;
             txtCompanyTINNo.Enabled = true;
             txtCompanyOwnerName.Enabled = true;
-
-
         }
         private void DisableFields()
         {
@@ -71,8 +75,6 @@ namespace LEASING.UI.APP.Forms
             txtCompanyAddress.Enabled = false;
             txtCompanyTINNo.Enabled = false;
             txtCompanyOwnerName.Enabled = false;
-
-
         }
         private void Emptyfields()
         {
@@ -80,16 +82,15 @@ namespace LEASING.UI.APP.Forms
             txtCompanyAddress.Text = string.Empty;
             txtCompanyTINNo.Text = string.Empty;
             txtCompanyOwnerName.Text = string.Empty;
-
         }
         private bool IsValid()
         {
-            if (string.IsNullOrEmpty(txtCompanyName.Text))
+            if (string.IsNullOrEmpty(this.txtCompanyName.Text))
             {
                 Functions.MessageShow("Company Name cannot be empty !");
                 return false;
             }
-            if (string.IsNullOrEmpty(txtCompanyOwnerName.Text))
+            if (string.IsNullOrEmpty(this.txtCompanyOwnerName.Text))
             {
                 Functions.MessageShow("Company Owner Name cannot be empty !");
                 return false;
@@ -101,7 +102,7 @@ namespace LEASING.UI.APP.Forms
             try
             {
                 dgvCompanyList.DataSource = null;
-                using (DataSet dt = CompanyContext.GetCompanyList())
+                using (DataSet dt = _company.GetCompanyList())
                 {
                     if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
@@ -111,9 +112,8 @@ namespace LEASING.UI.APP.Forms
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_GetCompanyList()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_GetCompanyList()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_GetCompanyList()", ex.ToString());
             }
 
         }
@@ -126,32 +126,28 @@ namespace LEASING.UI.APP.Forms
                 dto.CompanyAddress = txtCompanyAddress.Text;
                 dto.CompanyTIN = txtCompanyTINNo.Text;
                 dto.CompanyOwnerName = txtCompanyOwnerName.Text;
-                dto.Message_Code = CompanyContext.SaveCompany(dto);
+                dto.Message_Code = _company.SaveCompany(dto);
                 if (dto.Message_Code.Equals("SUCCESS"))
                 {
                     Functions.MessageShow("New Company has been added successfully !");
-                    strFormMode = "READ";
+                    this.FormMode = ModeStatus.READ.ToString();
                     M_GetCompanyList();
                 }
                 else
                 {
                     Functions.MessageShow(dto.Message_Code);
-                    strFormMode = "READ";
+                    this.FormMode = ModeStatus.READ.ToString();
                 }
             }
             catch (Exception ex)
             {
-                Functions.LogErrorIntoStoredProcedure("M_SaveCompany()", this.Text, ex.Message, DateTime.Now, this);
-
-                Functions.MessageShow("An error occurred : (" + ex.ToString() + ") Please check the [ErrorLog] ");
+                Functions.LogError("M_SaveCompany()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("M_SaveCompany()", ex.ToString());
             }
-
         }
-
-
         private void frmAddNewProject_Load(object sender, EventArgs e)
         {
-            strFormMode = "READ";
+            this.FormMode = ModeStatus.READ.ToString();
 
 
             M_GetCompanyList();
@@ -159,7 +155,7 @@ namespace LEASING.UI.APP.Forms
 
         private void btnSaveProject_Click(object sender, EventArgs e)
         {
-            if (strFormMode == "NEW")
+            if (this.FormMode == ModeStatus.NEW.ToString())
             {
                 if (IsValid())
                 {
@@ -173,12 +169,12 @@ namespace LEASING.UI.APP.Forms
 
         private void btnUndoProject_Click(object sender, EventArgs e)
         {
-            strFormMode = "READ";
+            this.FormMode = ModeStatus.READ.ToString();
         }
 
         private void btnNewProject_Click(object sender, EventArgs e)
         {
-            strFormMode = "NEW";
+            this.FormMode = ModeStatus.READ.ToString();
         }
 
         private void dgvProjectList_CellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
@@ -197,17 +193,6 @@ namespace LEASING.UI.APP.Forms
                 }
                 else if (this.dgvCompanyList.Columns[e.ColumnIndex].Name == "coldelete")
                 {
-
-                    //if (MessageBox.Show("Are you sure you want to Deactivated the Project?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
-                    //{
-
-                    //    var result = ProjectContext.DeActivateProject(Convert.ToInt32(dgvCompanyList.CurrentRow.Cells["RecId"].Value));
-                    //    if (result.Equals("SUCCESS"))
-                    //    {
-                    //        MessageBox.Show("Project has been Deactivated successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //        M_GetProjectList();
-                    //    }
-                    //}
                 }
             }
         }

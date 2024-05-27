@@ -47,6 +47,7 @@ namespace LEASING.UI.APP.Forms
 
         private void frmGetSelectClient_Load(object sender, EventArgs e)
         {
+            Functions.EventCapturefrmName(this);
             M_GetClientFileList();
         }
 

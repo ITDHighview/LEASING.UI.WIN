@@ -137,6 +137,7 @@ namespace LEASING.UI.APP.Forms
         }
         private void frmEditLocation_Load(object sender, EventArgs e)
         {
+            Functions.EventCapturefrmName(this);
             strlocationFormMode = "READ";
             M_getLocationById();
         }

@@ -67,10 +67,10 @@ namespace LEASING.UI.APP.Forms
         }
         private void frmEditORNumber_Load(object sender, EventArgs e)
         {
+            Functions.EventCapturefrmName(this);
             txtORNumber.Focus();
             txtReceiptNumber.Text = RcptID;
-            txtReceiptNumber.Enabled = false;
-           
+            txtReceiptNumber.Enabled = false;          
         }
     }
 }

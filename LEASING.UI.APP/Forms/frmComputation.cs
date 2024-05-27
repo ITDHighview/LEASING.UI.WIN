@@ -584,8 +584,10 @@ namespace LEASING.UI.APP.Forms
                 dto.IsFullPayment = sIsFullPayment;
                 dto.IsRenewal = chkIsRenewal.Checked;
                 dto.Message_Code = ComputationContext.SaveComputation(dto);
+                Functions.ShowLoadingBar("Processing...");
                 if (dto.Message_Code.Equals("SUCCESS"))
                 {
+                   
                     MessageBox.Show("New Reference has been generated successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     strFormMode = "READ";
                     M_GetComputationList();
@@ -613,6 +615,7 @@ namespace LEASING.UI.APP.Forms
         }
         private void frmComputation_Load(object sender, EventArgs e)
         {
+            Functions.EventCapturefrmName(this);
             string sad = dtpFinishDate.Text;
             string fddf = dtpFinishDate.Value.ToString("MM/dd/yyyy");
             string asd = DateTime.Now.ToString("MM/dd/yyyy");

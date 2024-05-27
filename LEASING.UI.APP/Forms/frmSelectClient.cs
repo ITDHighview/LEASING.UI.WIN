@@ -167,7 +167,7 @@ namespace LEASING.UI.APP.Forms
                    this._Bank_Branch_,
                    this._Company_Original_Receipt_Date_,
                     out transactionNumber);
-
+                Functions.ShowLoadingBar("Processing...");
                 if (string.IsNullOrEmpty(result))
                 {
                     Functions.MessageShow("Response Empty.");
@@ -416,6 +416,7 @@ namespace LEASING.UI.APP.Forms
         }
         private void frmSelectClient_Load(object sender, EventArgs e)
         {
+            Functions.EventCapturefrmName(this);
             this.OnInitialized();
         }
     }

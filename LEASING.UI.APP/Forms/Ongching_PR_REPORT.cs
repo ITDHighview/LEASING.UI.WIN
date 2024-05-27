@@ -24,6 +24,7 @@ namespace LEASING.UI.APP.Forms
 
         private void Ongching_PR_REPORT_Load(object sender, EventArgs e)
         {
+            Functions.EventCapturefrmName(this);
             Functions.GetReceiptReport(Config.Ongching_PR_REPORT, this, Config.RecieptReportOption, sTranID, sMode, sPaymentLevel);
         }
     }

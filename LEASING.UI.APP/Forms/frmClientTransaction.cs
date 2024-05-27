@@ -261,7 +261,7 @@ namespace LEASING.UI.APP.Forms
                  out TranID,
                  out RecieptID
                  );
-
+                Functions.ShowLoadingBar("Processing...");
                 if (!result.Equals(_MSSG_SUCCESS_))
                 {
                     Functions.MessageShow(result);
@@ -615,7 +615,17 @@ namespace LEASING.UI.APP.Forms
             {
                 try
                 {
-                    string result = _payment.HoldPDCPayment(this.M_getXMLData(), this.CompanyORNo, this.CompanyPRNo, this.BankAccountName, this.BankAccountNumber, this.BankName, this.SerialNo, this.BankBranch, this.REF, this.ModeType);
+                    string result = _payment.HoldPDCPayment(this.M_getXMLData(), 
+                                                            this.CompanyORNo, 
+                                                            this.CompanyPRNo, 
+                                                            this.BankAccountName, 
+                                                            this.BankAccountNumber, 
+                                                            this.BankName, 
+                                                            this.SerialNo, 
+                                                            this.BankBranch, 
+                                                            this.REF, 
+                                                            this.ModeType);
+                    Functions.ShowLoadingBar("Processing...");
                     if (!string.IsNullOrEmpty(result))
                     {
                         if (result.Equals("SUCCESS"))
@@ -1143,6 +1153,7 @@ namespace LEASING.UI.APP.Forms
         }
         private void frmSelectClient_Load(object sender, EventArgs e)
         {
+            Functions.EventCapturefrmName(this);
             this.OnInitialized();
         }
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LEASING.UI.APP.Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,11 @@ namespace LEASING.UI.APP.Forms
         public frmPurchaseItemLogs()
         {
             InitializeComponent();
+        }
+
+        private void frmPurchaseItemLogs_Load(object sender, EventArgs e)
+        {
+            Functions.EventCapturefrmName(this);
         }
     }
 }

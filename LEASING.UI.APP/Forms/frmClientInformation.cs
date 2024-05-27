@@ -325,6 +325,7 @@ namespace LEASING.UI.APP.Forms
         }
         private void frmClientInformation_Load(object sender, EventArgs e)
         {
+            Functions.EventCapturefrmName(this);
             this.FormMode = ModeStatus.READ.ToString();
             //Functions.SecurityControls(this);
         }

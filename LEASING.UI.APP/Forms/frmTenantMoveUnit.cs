@@ -46,6 +46,7 @@ namespace LEASING.UI.APP.Forms
         }
         private void frmTenantMoveUnit_Load(object sender, EventArgs e)
         {
+            Functions.EventCapturefrmName(this);
             M_GetForMoveInUnitList();
         }
         private void btnRefresh_Click(object sender, EventArgs e)

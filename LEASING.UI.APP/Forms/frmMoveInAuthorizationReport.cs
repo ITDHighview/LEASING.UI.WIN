@@ -23,6 +23,7 @@ namespace LEASING.UI.APP.Forms
 
         private void frmMoveInAuthorizationReport_Load(object sender, EventArgs e)
         {
+            Functions.EventCapturefrmName(this);
             Functions.GetMoveInAthorizationReport(Config.MoveIn_AUTHORIZATION_REPORT, this, Config.RecieptReportOption, sRefId);
         }
     }

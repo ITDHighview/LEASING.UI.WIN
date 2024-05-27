@@ -62,6 +62,7 @@ namespace LEASING.UI.APP.Forms
         }
         private void frmClientRecieptTransaction_Load(object sender, EventArgs e)
         {
+            Functions.EventCapturefrmName(this);
             M_GetContractList();
         }
         private void dgvContractList_SelectionChanged(object sender, EventArgs e)

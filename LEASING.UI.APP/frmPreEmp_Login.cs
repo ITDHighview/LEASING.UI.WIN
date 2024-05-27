@@ -231,6 +231,7 @@ namespace LEASING.UI.APP.Forms
                             }
 
                             _frmMainDashboard = new frmMainDashboard();
+                            Functions.ShowLoadingBar("Loading...");
                             _frmMainDashboard.Show();
 
 

@@ -172,6 +172,7 @@ namespace LEASING.UI.APP.Forms
         }
         private void frmSelectClient_Load(object sender, EventArgs e)
         {
+            Functions.EventCapturefrmName(this);
             M_GetComputationById();
             M_GetClientTypeAndID();
             M_GetLedgerList();          

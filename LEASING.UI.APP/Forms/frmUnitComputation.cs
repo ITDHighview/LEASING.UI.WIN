@@ -439,6 +439,7 @@ namespace LEASING.UI.APP.Forms
         }
         private void frmComputation_Load(object sender, EventArgs e)
         {
+            Functions.EventCapturefrmName(this);
             dtpStartDate.Text = DateTime.Now.ToString("MM/dd/yyyy");
             dtpFinishDate.Text = DateTime.Now.ToString("MM/dd/yyyy");
             txtRental.ReadOnly = true;

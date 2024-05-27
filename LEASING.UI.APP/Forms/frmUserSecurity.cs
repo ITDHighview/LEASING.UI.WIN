@@ -205,6 +205,7 @@ namespace LEASING.UI.APP.Forms
         }
         private void frmUserSecurity_Load(object sender, EventArgs e)
         {
+            Functions.EventCapturefrmName(this);
             FormMode = "READ";
             M_GetFormList();
             M_GetUserList();

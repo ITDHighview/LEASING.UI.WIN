@@ -1,4 +1,5 @@
-﻿using LEASING.UI.APP.Context;
+﻿using LEASING.UI.APP.Common;
+using LEASING.UI.APP.Context;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -34,6 +35,7 @@ namespace LEASING.UI.APP.Forms
 
         private void frmInActiveProjectList_Load(object sender, EventArgs e)
         {
+            Functions.EventCapturefrmName(this);
             M_GetProjectList();
         }
 

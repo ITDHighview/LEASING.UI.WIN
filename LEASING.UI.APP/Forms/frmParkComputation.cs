@@ -606,6 +606,7 @@ namespace LEASING.UI.APP.Forms
                 dto.AdvancePaymentAmount = AdvancePaymentAmount;
                 dto.IsFullPayment = sIsFullPayment;
                 dto.Message_Code = ComputationContext.SaveComputationParking(dto);
+                Functions.ShowLoadingBar("Processing...");
                 if (dto.Message_Code.Equals("SUCCESS"))
                 {
                     MessageBox.Show("New Reference has been generated successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -626,6 +627,7 @@ namespace LEASING.UI.APP.Forms
         }
         private void frmComputation_Load(object sender, EventArgs e)
         {
+            Functions.EventCapturefrmName(this);
             dtpStartDate.Text = DateTime.Now.ToString("MM/dd/yyyy");
             dtpFinishDate.Text = DateTime.Now.ToString("MM/dd/yyyy");
             txtRental.ReadOnly = true;

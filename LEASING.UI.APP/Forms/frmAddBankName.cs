@@ -116,7 +116,6 @@ namespace LEASING.UI.APP.Forms
                 Functions.ErrorShow("DeleteBankName()", ex.ToString());
             }
         }
-
         private void GetBankNameBrowse()
         {
             try
@@ -128,7 +127,7 @@ namespace LEASING.UI.APP.Forms
                     {
                         dgvList.DataSource = dt.Tables[0];
                     }
-                }
+                }              
             }
             catch (Exception ex)
             {
@@ -138,20 +137,18 @@ namespace LEASING.UI.APP.Forms
         }
         private void frmAddBankName_Load(object sender, EventArgs e)
         {
+            Functions.EventCapturefrmName(this);
             this.FormMode = ModeStatus.READ.ToString();
             this.GetBankNameBrowse();
         }
-
         private void btnNew_Click(object sender, EventArgs e)
         {
             this.FormMode = ModeStatus.NEW.ToString();
         }
-
         private void btnUndo_Click(object sender, EventArgs e)
         {
             this.FormMode = ModeStatus.READ.ToString();
         }
-
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (this._isValid())
@@ -162,7 +159,6 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-
         private void dgvList_CellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)

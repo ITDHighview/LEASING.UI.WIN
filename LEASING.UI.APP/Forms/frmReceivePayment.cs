@@ -67,6 +67,7 @@ namespace LEASING.UI.APP.Forms
 
         private void frmReceivePayment_Load(object sender, EventArgs e)
         {
+            Functions.EventCapturefrmName(this);
             txtPaidAmount.Text = string.Empty;         
             if (!string.IsNullOrEmpty(Amount))
             {

@@ -85,6 +85,7 @@ namespace LEASING.UI.APP.Forms
 
         private void frmTenantMoveOutUnit_Load(object sender, EventArgs e)
         {
+            Functions.EventCapturefrmName(this);
             M_GetForMoveOutUnitList();
 
         }

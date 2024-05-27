@@ -22,6 +22,7 @@ namespace LEASING.UI.APP.Forms
 
         private void frmContractSingedWareHouseReport_Load(object sender, EventArgs e)
         {
+            Functions.EventCapturefrmName(this);
             Functions.GetContractSignedWareHouseReport(Config.CONTRACT_WAREHOUSE_REPORT, this, Config.RecieptReportOption, sRefID);
         }
     }

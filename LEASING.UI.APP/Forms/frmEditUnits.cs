@@ -553,6 +553,7 @@ namespace LEASING.UI.APP.Forms
         }
         private void frmEditUnits_Load(object sender, EventArgs e)
         {
+            Functions.EventCapturefrmName(this);
             strUnitFormMode = "READ";
             this.Text = string.Empty;
             //lblUnitStatus.Visible = false;

@@ -45,6 +45,7 @@ namespace LEASING.UI.APP.Forms
 
         private void frmPurchaseItemList_Load(object sender, EventArgs e)
         {
+            Functions.EventCapturefrmName(this);
             M_GetPurchaseItemList();
         }
     }

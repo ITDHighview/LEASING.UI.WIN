@@ -43,6 +43,7 @@ namespace LEASING.UI.APP.Forms
         }
         private void frmCheckClientUnits_Load(object sender, EventArgs e)
         {
+            Functions.EventCapturefrmName(this);
             M_GetClientUnitList();
         }
     }

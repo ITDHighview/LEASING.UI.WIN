@@ -127,6 +127,7 @@ namespace LEASING.UI.APP.Forms
         }
         private void frmResidentialRateSettings_Load(object sender, EventArgs e)
         {
+            Functions.EventCapturefrmName(this);
             this.strRateFormMode = "READ";
             this.GetRateSettings();
             M_GetVatAMount();

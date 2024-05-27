@@ -152,6 +152,7 @@ namespace LEASING.UI.APP.Forms
         }
         private void frmUserDashBoard_Load(object sender, EventArgs e)
         {
+            Functions.EventCapturefrmName(this);
             FormMode = "READ";
             M_GetUserList();
         }

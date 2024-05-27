@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LEASING.UI.APP.Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -135,7 +136,7 @@ namespace LEASING.UI.APP.Forms
         }
         private void frmRecieptSelection_Load(object sender, EventArgs e)
         {
-
+            Functions.EventCapturefrmName(this);
 
             chkNatureOR_Advance.IsChecked = true;
             chkNaturePR_Advance.IsChecked = true;

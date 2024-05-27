@@ -233,6 +233,7 @@ namespace LEASING.UI.APP.Forms
         }
         private void frmEditProject_Load(object sender, EventArgs e)
         {
+            Functions.EventCapturefrmName(this);
             strProjectFormMode = "READ";
             M_SelectLocation();
             M_SelectProjectType();

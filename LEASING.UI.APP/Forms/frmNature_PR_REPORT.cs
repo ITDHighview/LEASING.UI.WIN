@@ -24,6 +24,7 @@ namespace LEASING.UI.APP.Forms
 
         private void frmNature_PR_REPORT_Load(object sender, EventArgs e)
         {
+            Functions.EventCapturefrmName(this);
             Functions.GetReceiptReport(Config.Nature_PR_REPORT, this, Config.RecieptReportOption, sTranID, sMode, sPaymentLevel);
         }
     }

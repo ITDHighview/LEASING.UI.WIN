@@ -223,6 +223,7 @@ namespace LEASING.UI.APP.Forms
         }
         private void frmEditPurchaseItem_Load(object sender, EventArgs e)
         {
+            Functions.EventCapturefrmName(this);
             strPurchaseFormMode = "READ";
             M_SelectProject();
             M_getPurchaseItemInfoById();

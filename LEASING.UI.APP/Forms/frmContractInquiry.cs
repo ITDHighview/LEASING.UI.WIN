@@ -65,6 +65,7 @@ namespace LEASING.UI.APP.Forms
         }
         private void frmContractInquiry_Load(object sender, EventArgs e)
         {
+            Functions.EventCapturefrmName(this);
             //this.WindowState = FormWindowState.Maximized;
             pictureBox1.Image = Properties.Resources.tick_64;
 

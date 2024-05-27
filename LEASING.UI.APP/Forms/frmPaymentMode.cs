@@ -334,6 +334,7 @@ namespace LEASING.UI.APP.Forms
         }
         private void frmPaymentMode_Load(object sender, EventArgs e)
         {
+            Functions.EventCapturefrmName(this);
             this.OnInitialized();
         }
         private void ddlSelectMode_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)

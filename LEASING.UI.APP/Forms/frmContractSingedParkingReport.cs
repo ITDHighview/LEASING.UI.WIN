@@ -22,6 +22,7 @@ namespace LEASING.UI.APP.Forms
 
         private void frmContractSingedParkingReport_Load(object sender, EventArgs e)
         {
+            Functions.EventCapturefrmName(this);
             Functions.GetContractSignedParkingReport(Config.CONTRACT_PARKING_REPORT, this, Config.RecieptReportOption, sRefID);
         }
     }

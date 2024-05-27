@@ -473,6 +473,7 @@ namespace LEASING.UI.APP.Forms
         }
         private void frmAddNewUnits_Load(object sender, EventArgs e)
         {
+            Functions.EventCapturefrmName(this);
             this.FormMode = ModeStatus.READ.ToString();
             txtTotalRental.ReadOnly = true;
             ddlFloorType.Visible = false;

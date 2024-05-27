@@ -2,6 +2,7 @@
 using CrystalDecisions.Shared;
 using CrystalDecisions.Windows.Forms;
 using LEASING.UI.APP.Context;
+using LEASING.UI.APP.Forms;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -19,6 +20,27 @@ namespace LEASING.UI.APP.Common
 {
     public class Functions
     {
+        public static void ShowLoadingBar(string sLoadingTitle)
+        {
+
+            frmLoadingBar losding = new frmLoadingBar();
+            losding.LoadingTitle = sLoadingTitle;
+            losding.ShowDialog();
+        }
+        public static void EventCapturefrmName(Control _ctrl)
+        {
+            string vName = string.Empty;
+            if (_ctrl != null)
+            {
+                int len = _ctrl.GetType().ToString().Length - _ctrl.GetType().ToString().LastIndexOf('.');
+                vName = _ctrl.GetType().ToString().Substring(_ctrl.GetType().ToString().LastIndexOf('.') + 1, len - 1);
+            }
+            if (ConfigurationManager.AppSettings["CapturefrmName"] != "")
+            {
+                Functions.LogEvent("Capture frmName", vName);
+            }
+
+        }
         public static void SecurityControls(Control _ctrl)
         {
             DataTable dtTable = new DataTable();
@@ -791,6 +813,38 @@ namespace LEASING.UI.APP.Common
                         command.Parameters.AddWithValue("@ErrorMessage", errorMessage);
                         command.Parameters.AddWithValue("@LogDateTime", logDateTime);
 
+                        // Execute the stored procedure
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+        public static void LogEvent(string EventType, string EventMessage)
+        {
+            //Control _ctrl
+            //string vName = string.Empty;
+            //if (_ctrl != null)
+            //{
+            //    int len = _ctrl.GetType().ToString().Length - _ctrl.GetType().ToString().LastIndexOf('.');
+            //    vName = _ctrl.GetType().ToString().Substring(_ctrl.GetType().ToString().LastIndexOf('.') + 1, len - 1);
+            //}
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString()))
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand("sp_LogEvent", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        // Add parameters
+                        command.Parameters.AddWithValue("@EventType", EventType);
+                        command.Parameters.AddWithValue("@EventMessage", EventMessage);
+                        command.Parameters.AddWithValue("@UserId", Variables.UserID);
+                        command.Parameters.AddWithValue("@ComputerName", Environment.MachineName);
                         // Execute the stored procedure
                         command.ExecuteNonQuery();
                     }

@@ -43,6 +43,7 @@ namespace LEASING.UI.APP.Forms
         }
         private void frmCheckUnits_Load(object sender, EventArgs e)
         {
+            Functions.EventCapturefrmName(this);
             M_GetUnitByProjectId();
         }
         private void dgvUnitList_CellFormatting(object sender, Telerik.WinControls.UI.CellFormattingEventArgs e)

@@ -40,6 +40,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ReportViewer";
+            this.Load += new System.EventHandler(this.ReportViewer_Load);
             this.ResumeLayout(false);
 
         }

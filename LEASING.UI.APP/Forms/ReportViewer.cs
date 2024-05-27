@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LEASING.UI.APP.Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,6 +18,11 @@ namespace LEASING.UI.APP.Forms
             InitializeComponent();
             this.DoubleBuffered = true;
             SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer | ControlStyles.UserPaint, true);
+        }
+
+        private void ReportViewer_Load(object sender, EventArgs e)
+        {
+            Functions.EventCapturefrmName(this);
         }
     }
 }

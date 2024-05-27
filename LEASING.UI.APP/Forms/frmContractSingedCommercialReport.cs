@@ -22,6 +22,7 @@ namespace LEASING.UI.APP.Forms
 
         private void frmContractSingedCommercialReport_Load(object sender, EventArgs e)
         {
+            Functions.EventCapturefrmName(this);
             Functions.GetContractSignedCommercialReport(Config.CONTRACT_COMMERCIAL_REPORT, this, Config.RecieptReportOption, sRefID);
         }
     }

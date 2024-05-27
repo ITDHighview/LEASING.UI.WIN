@@ -43,6 +43,7 @@ namespace LEASING.UI.APP.Forms
         }
         private void frmContractSignedUnit_Load(object sender, EventArgs e)
         {
+            Functions.EventCapturefrmName(this);
             M_GetForContractSignedUnitList();
         }
         private void btnRefresh_Click(object sender, EventArgs e)

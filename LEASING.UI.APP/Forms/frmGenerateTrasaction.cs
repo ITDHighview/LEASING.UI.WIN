@@ -43,6 +43,7 @@ namespace LEASING.UI.APP.Forms
         }
         private void frmGenerateTrasaction_Load(object sender, EventArgs e)
         {
+            Functions.EventCapturefrmName(this);
             M_GetComputationList();
         }
         private void dgvList_CellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)

@@ -234,6 +234,7 @@ namespace LEASING.UI.APP.Forms
 
         private void frmEditUnitComputation_Load(object sender, EventArgs e)
         {
+            Functions.EventCapturefrmName(this);
             strFormMode = "READ";
             txtProjectType.ReadOnly = true;
             txtFloorType.ReadOnly = true;

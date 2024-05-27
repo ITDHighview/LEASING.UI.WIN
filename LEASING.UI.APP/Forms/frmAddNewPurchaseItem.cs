@@ -226,6 +226,7 @@ namespace LEASING.UI.APP.Forms
         }
         private void frmAddNewPurchaseItem_Load(object sender, EventArgs e)
         {
+            Functions.EventCapturefrmName(this);
             this.FormMode = ModeStatus.READ.ToString();
             lblEncodedBy.Text = "Encoded By :";
             lblLastChangedBy.Text = "Last Changed By :";

@@ -1,4 +1,5 @@
-﻿using LEASING.UI.APP.Context;
+﻿using LEASING.UI.APP.Common;
+using LEASING.UI.APP.Context;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -98,6 +99,7 @@ namespace LEASING.UI.APP.Forms
         }
         private void frmFormControls_Load(object sender, EventArgs e)
         {
+            Functions.EventCapturefrmName(this);
             radGroupBox1.Visible = false;
             toolStrip1.Visible = false;
             ClearFields();

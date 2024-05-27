@@ -41,6 +41,7 @@ namespace LEASING.UI.APP.Forms
         }
         private void frmClosedContracts_Load(object sender, EventArgs e)
         {
+            Functions.EventCapturefrmName(this);
             M_GetClosedContracts();
         }
         private void dgvList_CellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)

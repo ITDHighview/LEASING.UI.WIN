@@ -40,6 +40,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = " Purchase Item Logs";
+            this.Load += new System.EventHandler(this.frmPurchaseItemLogs_Load);
             this.ResumeLayout(false);
 
         }

@@ -351,6 +351,7 @@ namespace LEASING.UI.APP.Forms
         }
         private void frmEditClient_Load(object sender, EventArgs e)
         {
+            Functions.EventCapturefrmName(this);
             if (IsContractSigned)
             {
                 strClientFormMode = "IsContractSigned";

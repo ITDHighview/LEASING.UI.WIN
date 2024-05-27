@@ -136,10 +136,9 @@ namespace LEASING.UI.APP.Forms
         }
         private void frmAddNewProject_Load(object sender, EventArgs e)
         {
+            Functions.EventCapturefrmName(this);
             strFormMode = "READ";
-
             M_GetCompanyList();
-
         }
         private void btnSaveProject_Click(object sender, EventArgs e)
         {

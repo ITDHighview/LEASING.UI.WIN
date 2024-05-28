@@ -459,26 +459,45 @@ namespace LEASING.UI.APP.Forms
                 Functions.ErrorShow("M_GetUnitAvaibleById()", ex.ToString());
             }
         }
+
+        private decimal AddSecurityPayment(decimal rental,decimal SecurityPaymentMonthCount)
+        {
+            if (SecurityPaymentMonthCount > 0)
+            {
+                return rental * SecurityPaymentMonthCount;
+            }
+            return 0;
+        }
         private void M_GetTotalRental()
         {
             var rental = ((Functions.ConvertStringToDecimal(txtRental.Text)) + (Functions.ConvertStringToDecimal(txtSecAndMaintenance.Text)));
             txtTotalRental.Text = Convert.ToString(rental);
-            var rental2 = (rental * (Functions.ConvertStringToDecimal(txtSecurityPaymentMonthCount.Text)));
-            var rental3 =  (Functions.ConvertStringToDecimal(txtMonthsSecurityDeposit.Text));
-            if (rental2 > 0)
+            var rental2 = AddSecurityPayment(rental, Functions.ConvertStringToDecimal(txtSecurityPaymentMonthCount.Text));
+            //var rental2 = (rental * (Functions.ConvertStringToDecimal(txtSecurityPaymentMonthCount.Text)));+
+            if (!string.IsNullOrWhiteSpace(txtSecurityPaymentMonthCount.Text))
             {
                 txtMonthsSecurityDeposit.Text = Convert.ToString(rental2);
             }
+            else
+            {
+                txtMonthsSecurityDeposit.Text = string.Empty;
+            }
+            //var rental3 =  (Functions.ConvertStringToDecimal(txtMonthsSecurityDeposit.Text));
+           
+            //if (rental2 > 0)
+            //{
+            //    txtMonthsSecurityDeposit.Text = Convert.ToString(rental2);
+            //}
        
             
             var rentalfinal = (rental * dgvAdvancePayment.Rows.Count());
             if (sIsFullPayment)
             {
-                txtTotal.Text = Convert.ToString((Functions.ConvertStringToDecimal(txtTotalPostDatedAmount.Text)) + rental2 + rental3);
+                txtTotal.Text = Convert.ToString((Functions.ConvertStringToDecimal(txtTotalPostDatedAmount.Text)) + rental2);
             }
             else
             {
-                txtTotal.Text = Convert.ToString(rentalfinal + rental2 + rental3);
+                txtTotal.Text = Convert.ToString(rentalfinal + rental2);
             }
             AdvancePaymentAmount = rentalfinal;
         }

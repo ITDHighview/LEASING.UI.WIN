@@ -464,6 +464,14 @@ namespace LEASING.UI.APP.Forms
                 Functions.ErrorShow("M_GetUnitAvaibleById()", ex.ToString());
             }
         }
+        private decimal AddSecurityPayment(decimal rental, decimal SecurityPaymentMonthCount)
+        {
+            if (SecurityPaymentMonthCount > 0)
+            {
+                return rental * SecurityPaymentMonthCount;
+            }
+            return 0;
+        }
         private void M_GetTotalRental()
         {
 
@@ -850,6 +858,7 @@ namespace LEASING.UI.APP.Forms
         private void dtpFinishDate_ValueChanged(object sender, EventArgs e)
         {
         }
+
         private void btnGeneratePostdatedCountMonth_Click(object sender, EventArgs e)
         {
             if (IsComputationValidForCompute())

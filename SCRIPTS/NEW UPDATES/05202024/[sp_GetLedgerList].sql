@@ -7,7 +7,7 @@ GO
 -- Description:	<Description,,>
 --EXEC [sp_GetLedgerList] @ReferenceID =10000000, @ClientID='INDV10000000'
 -- =============================================
-ALTER PROCEDURE [dbo].[sp_GetLedgerList]
+CREATE OR ALTER PROCEDURE [dbo].[sp_GetLedgerList]
     @ReferenceID BIGINT       = NULL,
     @ClientID    VARCHAR(150) = NULL
 AS

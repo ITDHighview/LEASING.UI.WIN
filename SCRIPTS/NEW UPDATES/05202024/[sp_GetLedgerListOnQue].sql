@@ -6,7 +6,7 @@ GO
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-ALTER PROCEDURE [dbo].[sp_GetLedgerListOnQue]
+CREATE OR ALTER PROCEDURE [dbo].[sp_GetLedgerListOnQue]
     --@ReferenceID BIGINT = NULL,
     --@ClientID VARCHAR(50) = NULL
     @XML XML = NULL

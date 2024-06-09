@@ -646,6 +646,51 @@ namespace LEASING.UI.APP.Context
                 return dsRec;
             }
         }
+        public DataSet GetFirstPaymentByContractIdAndClientNumber(int ContractId, string ClientId)
+        {
+
+            SqlCommand _SqlCommand = null;
+            SqlParameter _SqlParameter;
+            SqlConnection _SqlConnection = null;
+
+
+            using (DataSet dsRec = new DataSet())
+            {
+                _SqlCommand = new SqlCommand();
+                _SqlCommand.CommandText = "sp_GetFirstPaymentByContractIdAndClientNumber";
+
+                _SqlParameter = new SqlParameter("@ReferenceID", ContractId);
+                _SqlCommand.Parameters.Add(_SqlParameter);
+                _SqlParameter = new SqlParameter("@ClientID", ClientId);
+                _SqlCommand.Parameters.Add(_SqlParameter);
+
+                try
+                {
+                    _SqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
+                    _SqlCommand.Connection = _SqlConnection;
+                    _SqlCommand.CommandType = CommandType.StoredProcedure;
+                    using (SqlDataAdapter dataAdaptor = new SqlDataAdapter(_SqlCommand))
+                    {
+                        dataAdaptor.Fill(dsRec);
+                    }
+                }
+                catch (Exception expCommon)
+                {
+                    return null;
+                }
+                finally
+                {
+                    if (_SqlConnection.State != ConnectionState.Closed)
+                    {
+                        _SqlConnection.Close();
+                    }
+                    _SqlParameter = null;
+                    _SqlCommand = null;
+                    _SqlConnection = null;
+                }
+                return dsRec;
+            }
+        }
         public DataSet GetReferenceByClientID(string ClientID)
         {
 

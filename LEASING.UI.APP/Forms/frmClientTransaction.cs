@@ -960,7 +960,7 @@ namespace LEASING.UI.APP.Forms
                     e.CellElement.ForeColor = Color.White;
                     e.CellElement.DrawFill = true;
                     e.CellElement.GradientStyle = GradientStyles.Solid;
-                    e.CellElement.BackColor = Color.Red;
+                    e.CellElement.BackColor = Color.OrangeRed;
                 }
                 else if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "HOLD")
                 {

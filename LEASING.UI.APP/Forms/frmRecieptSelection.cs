@@ -138,11 +138,15 @@ namespace LEASING.UI.APP.Forms
         {
             Functions.EventCapturefrmName(this);
 
-            chkNatureOR_Advance.IsChecked = true;
-            chkNaturePR_Advance.IsChecked = true;
-            chkOnchingOR_Advance.IsChecked = true;
-            chkOnchingPR_Advance.IsChecked = true;
+            chkNatureOR_Deposit.IsChecked = true;
+            chkNaturePR_Deposit.IsChecked = true;
+            chkOnchingOR_Deposit.IsChecked = true;
+            chkOnchingPR_Deposit.IsChecked = true;
 
+            chkNatureOR_Advance.Enabled = false;
+            chkNaturePR_Advance.Enabled = false;
+            chkOnchingOR_Advance.Enabled = false;
+            chkOnchingPR_Advance.Enabled = false;
             //if (IsNoOR)
             //{
             //    btnNATURE_OR.Enabled = false;

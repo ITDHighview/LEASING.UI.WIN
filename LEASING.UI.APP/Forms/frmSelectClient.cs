@@ -26,6 +26,7 @@ namespace LEASING.UI.APP.Forms
         public int contractId { get; set; }
         public string contractNumber { get; set; }
         public string clientNumber { get; set; }
+        public string XML { get; set; }
         public string transactionNumber = string.Empty;
 
         public int totalMonthlyRental { get; set; }         
@@ -128,7 +129,8 @@ namespace LEASING.UI.APP.Forms
                         this.totalMonthlyRental = Convert.ToInt32(dt.Tables[0].Rows[0]["TotalRent"]);
                         txtTwoMonAdv.Text = Convert.ToString(dt.Tables[0].Rows[0]["TwoMonAdvance"]);
                         txtThreeMonSecDep.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecDeposit"]);
-                        txtTotalForPayment.Text = Convert.ToString(dt.Tables[0].Rows[0]["TotalForPayment"]);
+                        txtTotalForPayment.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecDeposit"]);
+                        //txtTotalForPayment.Text = Convert.ToString(dt.Tables[0].Rows[0]["TotalForPayment"]);
                         txtAmountPaid.Text = Convert.ToString(dt.Tables[0].Rows[0]["TotalPayAMount"]);
                         txtBalanceAmount.Text = Convert.ToString(dt.Tables[0].Rows[0]["FirtsPaymentBalanceAmount"]);
                     }
@@ -165,7 +167,7 @@ namespace LEASING.UI.APP.Forms
                    this._Bank_Reference_Number_,
                    this.modeType,
                    this._Bank_Branch_,
-                   this._Company_Original_Receipt_Date_,
+                   this._Company_Original_Receipt_Date_,    
                     out transactionNumber);
                 Functions.ShowLoadingBar("Processing...");
                 if (string.IsNullOrEmpty(result))
@@ -251,6 +253,8 @@ namespace LEASING.UI.APP.Forms
         }
         private bool _initPayment(frmPaymentMode1 pForm)
         {
+            pForm.contractId = contractId;
+            pForm.clientNumber = clientNumber;
             pForm.ShowDialog();
             if (!pForm.IsProceed)
             {
@@ -268,7 +272,7 @@ namespace LEASING.UI.APP.Forms
             this._Bank_Branch_ = pForm.BankBranch;
             this.modeType = pForm.ModeType;
             this._Company_Original_Receipt_Date_ = pForm.RecieptDate;
-
+            //this.XML = pForm.XML;
             return true;
         }
         private void _recievePayment(frmReceivePayment pForm)
@@ -367,7 +371,8 @@ namespace LEASING.UI.APP.Forms
         {
             if (!string.IsNullOrEmpty(Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["Remarks"].Value)))
             {
-                if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["Remarks"].Value) == "FOR ADVANCE PAYMENT" || Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["Remarks"].Value) == "FOR SECURITY DEPOSIT")
+                //Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["Remarks"].Value) == "FOR ADVANCE PAYMENT" ||
+                if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["Remarks"].Value) == "FOR SECURITY DEPOSIT")
                 {
                     e.CellElement.ForeColor = Color.White;
                     //e.CellElement.Font = new Font("Tahoma", 7f, FontStyle.Bold);
@@ -376,7 +381,7 @@ namespace LEASING.UI.APP.Forms
                     e.CellElement.GradientStyle = GradientStyles.Solid;
                     e.CellElement.BackColor = Color.Green;
                 }
-                else if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["Remarks"].Value) == "FOR POST DATED CHECK")
+                else if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["Remarks"].Value) == "FOR ADVANCE PAYMENT" ||  Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["Remarks"].Value) == "FOR POST DATED CHECK")
                 {
                     e.CellElement.ForeColor = Color.Black;
 

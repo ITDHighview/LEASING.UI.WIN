@@ -1,6 +1,7 @@
 ﻿using LEASING.UI.APP.Common;
 using LEASING.UI.APP.Context;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,8 +15,18 @@ namespace LEASING.UI.APP.Forms
 {
     public partial class frmPaymentMode1 : Form
     {
-        PaymentContext PaymentContext = new PaymentContext();
+        private PaymentContext _payment;
+        private ComputationContext _contract;
+        public frmPaymentMode1()
+        {
+            _payment = new PaymentContext();
+            _contract = new ComputationContext();
+            InitializeComponent();
+        }
         public bool IsProceed = false;
+        public int contractId { get; set; }
+        public string clientNumber { get; set; }
+        //public string XML { get; set; }
         public string CompanyORNo { get; set; }
         public string CompanyPRNo { get; set; }
         public string BankAccountName { get; set; }
@@ -29,10 +40,7 @@ namespace LEASING.UI.APP.Forms
 
         public string RecieptDate { get; set; }
         public bool IsOR { get; set; } = false;
-        public frmPaymentMode1()
-        {
-            InitializeComponent();
-        }
+      
         private string _strPaymentmMode;
         public string strPaymentmMode
         {
@@ -116,7 +124,7 @@ namespace LEASING.UI.APP.Forms
             try
             {
                 ddlSelectMode.DataSource = null;
-                using (DataSet dt = PaymentContext.GetSelectPaymentMode())
+                using (DataSet dt = _payment.GetSelectPaymentMode())
                 {
                     if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
@@ -137,7 +145,7 @@ namespace LEASING.UI.APP.Forms
             try
             {
                 ddlbankName.DataSource = null;
-                using (DataSet dt = PaymentContext.GetBankNameBrowse())
+                using (DataSet dt = _payment.GetBankNameBrowse())
                 {
                     if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
@@ -154,7 +162,26 @@ namespace LEASING.UI.APP.Forms
             }
 
         }
+        //private void getFirstPaymentByContractIdAndClientNumber()
+        //{
+        //    try
+        //    {
+        //        dgvList.DataSource = null;
+        //        using (DataSet dt = _contract.GetFirstPaymentByContractIdAndClientNumber(this.contractId, this.clientNumber))
+        //        {
+        //            if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+        //            {
 
+        //                dgvList.DataSource = dt.Tables[0];
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Functions.LogError("getFirstPaymentByContractIdAndClientNumber()", this.Text, ex.ToString(), DateTime.Now, this);
+        //        Functions.ErrorShow("getFirstPaymentByContractIdAndClientNumber()", ex.ToString());
+        //    }
+        //}
 
         private bool IsValid()
         {
@@ -188,7 +215,7 @@ namespace LEASING.UI.APP.Forms
             bool IsExist = false;
             try
             {
-                using (DataSet dt = PaymentContext.GetCheckOrNumber(txtCompanyORNo.Text.Trim()))
+                using (DataSet dt = _payment.GetCheckOrNumber(txtCompanyORNo.Text.Trim()))
                 {
                     if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
@@ -215,7 +242,7 @@ namespace LEASING.UI.APP.Forms
             bool IsExist = false;
             try
             {
-                using (DataSet dt = PaymentContext.GetCheckPRNumber(txtPRNo.Text.Trim()))
+                using (DataSet dt = _payment.GetCheckPRNumber(txtPRNo.Text.Trim()))
                 {
                     if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
@@ -237,13 +264,82 @@ namespace LEASING.UI.APP.Forms
 
             return IsExist;
         }
+        #region XML
+        private static string SetXMLTable(ref ArrayList xml)
+        {
+            StringBuilder strXML = new StringBuilder();
+            try
+            {
+                if (xml.Count > 0)
+                {
+                    strXML.Append("<Table1>");
+                    for (int iIndex = 0; iIndex < xml.Count; iIndex++)
+                    {
+                        strXML.Append("<c" + (iIndex + 1).ToString() + ">");
+                        strXML.Append(parseXML(xml[iIndex]));
+                        strXML.Append("</c" + (iIndex + 1).ToString() + ">");
+                    }
+                    strXML.Append("</Table1>");
+                    xml = new ArrayList();
+                }
+            }
+            catch (Exception ex)
+            {
+                Functions.ErrorShow("parseXML()", ex.ToString());
+            }
+            return strXML.ToString();
+        }
+        private static string parseXML(object strValue)
+        {
+            string retValue = string.Empty;
+            retValue = strValue.ToString();
+            try
+            {
+                if (retValue.Trim().Length > 0)
+                {
+                    retValue = retValue.Replace("&", "&amp;");
+                    retValue = retValue.Replace("<", "&lt;");
+                    retValue = retValue.Replace(">", "&gt;");
+                    retValue = retValue.Replace("\"", "&quot;");
+                    retValue = retValue.Replace("'", "&apos;");
 
+                    retValue = retValue.Trim();
+                }
+            }
+            catch (Exception ex)
+            {
+                Functions.ErrorShow("parseXML()", ex.ToString());
+            }
+            return retValue;
+        }
+        //private string M_getXMLData()
+        //{
+        //    StringBuilder sbDoctorSchedule = new StringBuilder();
+        //    ArrayList alAdvancePayment = new ArrayList();
+        //    this.dgvList.BeginEdit();
+        //    for (int iRow = 0; iRow < dgvList.Rows.Count; iRow++)
+        //    {
+        //        //if (Convert.ToBoolean(this.dgvAdvancePayment.Rows[iRow].Cells["colCheck"].Value))
+        //        //{
+        //        //alDoctorSchedule.Add(Convert.ToString(vMasterRecordID));
+        //        alAdvancePayment.Add(Convert.ToString(this.dgvList.Rows[iRow].Cells["LedgAmount"].Value));
+        //        alAdvancePayment.Add(Convert.ToString(this.dgvList.Rows[iRow].Cells["LedgMonth"].Value));
+        //        alAdvancePayment.Add(Convert.ToString(this.dgvList.Rows[iRow].Cells["Remarks"].Value));
+        //        alAdvancePayment.Add(Convert.ToString(this.dgvList.Rows[iRow].Cells["ColOR"].Value));
+        //        alAdvancePayment.Add(Convert.ToString(this.dgvList.Rows[iRow].Cells["ColPR"].Value));
+        //        sbDoctorSchedule.Append(SetXMLTable(ref alAdvancePayment));
+        //        //}
+        //    }
+        //    return sbDoctorSchedule.ToString();
+        //}
+        #endregion
         private void frmPaymentMode_Load(object sender, EventArgs e)
         {
             Functions.EventCapturefrmName(this);
             ClearFields();
             M_GetSelectPaymentMode();
-            M_GetSelectBanknName();          
+            M_GetSelectBanknName();
+            //getFirstPaymentByContractIdAndClientNumber();
             ddlbankName.Text = string.Empty;
             ddlbankName.SelectedIndex = -1;
             this.dtpRecieptDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
@@ -274,6 +370,7 @@ namespace LEASING.UI.APP.Forms
                 REF = txtReferrence.Text;
                 BankBranch = txtBankBranch.Text;
                 this.RecieptDate = dtpRecieptDate.Text;
+                //this.XML = this.M_getXMLData();
                 this.Close();
             }
         }

@@ -86,9 +86,9 @@
             this.dgvList.MasterTemplate.AllowAddNewRow = false;
             this.dgvList.MasterTemplate.AllowColumnReorder = false;
             gridViewCommandColumn1.FieldName = "ColGenerate";
-            gridViewCommandColumn1.HeaderImage = global::LEASING.UI.APP.Properties.Resources.Bullet15_Arrow_Blue;
+            gridViewCommandColumn1.HeaderImage = global::LEASING.UI.APP.Properties.Resources.co_arrow_right_20;
             gridViewCommandColumn1.HeaderText = "";
-            gridViewCommandColumn1.Image = global::LEASING.UI.APP.Properties.Resources.Bullet15_Arrow_Blue;
+            gridViewCommandColumn1.Image = global::LEASING.UI.APP.Properties.Resources.co_arrow_right_20;
             gridViewCommandColumn1.IsPinned = true;
             gridViewCommandColumn1.Name = "ColGenerate";
             gridViewCommandColumn1.PinPosition = Telerik.WinControls.UI.PinnedColumnPosition.Left;

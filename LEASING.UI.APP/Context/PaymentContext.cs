@@ -39,7 +39,7 @@ namespace LEASING.UI.APP.Context
             string REF,
             string ModeType,
             string BankBranch,
-            string ReceiptDate,
+            string ReceiptDate,          
             out string TransID)
         {
             SqlCommand _sqlcmd = null;
@@ -84,6 +84,8 @@ namespace LEASING.UI.APP.Context
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@ReceiptDate", ReceiptDate);
             _sqlcmd.Parameters.Add(_sqlpara);
+            //_sqlpara = new SqlParameter("@XML", XML);
+            //_sqlcmd.Parameters.Add(_sqlpara);
             TransID = string.Empty;
             try
             {
@@ -97,8 +99,10 @@ namespace LEASING.UI.APP.Context
                 {
                     int sindex = _sqlreader.GetOrdinal("TranID");
                     if (!_sqlreader.IsDBNull(sindex))
-                        TransID = Convert.ToString(_sqlreader.GetString(sindex));
-
+                        TransID = Convert.ToString(_sqlreader.GetString(sindex));                  
+                }
+                if (_sqlreader.HasRows)
+                {
                     int index = _sqlreader.GetOrdinal("Message_Code");
                     if (!_sqlreader.IsDBNull(index))
                         return Convert.ToString(_sqlreader.GetString(index));
@@ -106,7 +110,7 @@ namespace LEASING.UI.APP.Context
             }
             catch (Exception expCommon)
             {
-                return "FAILED|" + Convert.ToString(expCommon.Message);
+                return "FAILED|" + Convert.ToString(expCommon.ToString());
             }
             finally
             {

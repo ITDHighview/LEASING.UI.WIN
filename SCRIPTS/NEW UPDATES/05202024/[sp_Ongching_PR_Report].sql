@@ -4,7 +4,7 @@ GO
 --SET QUOTED_IDENTIFIER ON|OFF
 --SET ANSI_NULLS ON|OFF
 --GO
-CREATE OR ALTER PROCEDURE [dbo].[sp_Ongching_PR_Report]
+CREATE OR ALTER    PROCEDURE [dbo].[sp_Ongching_PR_Report]
    @TranID       VARCHAR(20) = NULL,
     @Mode         VARCHAR(50) = NULL,
     @PaymentLevel VARCHAR(50) = NULL
@@ -88,7 +88,7 @@ AS
                                 BEGIN
                                     SELECT
                                         @combinedString
-                                        =
+                                        = 'RENTAL FOR '+
                                         (
                                             SELECT  TOP 1
                                                     UPPER(DATENAME(MONTH, MIN([tblPayment].[ForMonth]))) + ' '
@@ -136,7 +136,7 @@ AS
 
                                     SELECT
                                         @combinedString
-                                        =
+                                        = 'SECURITY & MAINTENANCE FOR'+
                                         (
                                             SELECT  TOP 1
                                                     UPPER(DATENAME(MONTH, MIN([tblPayment].[ForMonth]))) + ' '
@@ -189,7 +189,7 @@ AS
                                         --= '('
                                         --  + CAST(CAST([dbo].[fnGetTotalSecDepositAmountCount](@RefId) AS INT) AS VARCHAR(50))
                                         --  + ')MONTH-SECURITY DEPOSIT'
-                                        @combinedString = ' MONTH-SECURITY DEPOSIT '
+                                        @combinedString = ' SECURITY DEPOSIT '
 
                                 END
                             ELSE IF @Mode = 'ADV'
@@ -412,7 +412,7 @@ AS
                                     OUTER APPLY
                                     (
                                         SELECT
-                                            IIF(@IsFullPayment = 1, 'FULL PAYMENT', 'RENTAL FOR ' + @combinedString) AS [PAYMENT_FOR]
+                                            IIF(@IsFullPayment = 1, 'FULL PAYMENT', @combinedString) AS [PAYMENT_FOR]
                                     ) [PAYMENT]
                                 WHERE
                                     [TRANSACTION].[TranID] = @TranID
@@ -546,7 +546,7 @@ AS
                                     OUTER APPLY
                                     (
                                         SELECT
-                                            IIF(@IsFullPayment = 1, 'FULL PAYMENT', 'RENTAL FOR ' + @combinedString) AS [PAYMENT_FOR]
+                                            IIF(@IsFullPayment = 1, 'FULL PAYMENT', @combinedString) AS [PAYMENT_FOR]
                                     ) [PAYMENT]
                                 WHERE
                                     [TRANSACTION].[TranID] = @TranID
@@ -703,7 +703,7 @@ AS
                                     OUTER APPLY
                                     (
                                         SELECT
-                                            IIF(@IsFullPayment = 1, 'FULL PAYMENT', 'RENTAL FOR ' + @combinedString) AS [PAYMENT_FOR]
+                                            IIF(@IsFullPayment = 1, 'FULL PAYMENT', @combinedString) AS [PAYMENT_FOR]
                                     ) [PAYMENT]
                                 WHERE
                                     [TRANSACTION].[TranID] = @TranID;
@@ -831,7 +831,7 @@ AS
                                     OUTER APPLY
                                     (
                                         SELECT
-                                            IIF(@IsFullPayment = 1, 'FULL PAYMENT', 'RENTAL FOR ' + @combinedString) AS [PAYMENT_FOR]
+                                            IIF(@IsFullPayment = 1, 'FULL PAYMENT', @combinedString) AS [PAYMENT_FOR]
                                     ) [PAYMENT]
                                 WHERE
                                     [TRANSACTION].[TranID] = @TranID;

@@ -33,6 +33,7 @@
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn3 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn4 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn5 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn6 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
@@ -41,8 +42,8 @@
             Telerik.WinControls.UI.RadListDataItem radListDataItem2 = new Telerik.WinControls.UI.RadListDataItem();
             Telerik.WinControls.UI.RadListDataItem radListDataItem3 = new Telerik.WinControls.UI.RadListDataItem();
             Telerik.WinControls.UI.RadListDataItem radListDataItem4 = new Telerik.WinControls.UI.RadListDataItem();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn6 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn7 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn8 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
@@ -299,38 +300,44 @@
             // 
             this.dgvList.MasterTemplate.AllowAddNewRow = false;
             this.dgvList.MasterTemplate.AllowColumnReorder = false;
-            gridViewCommandColumn1.FieldName = "ColContract";
-            gridViewCommandColumn1.HeaderImage = global::LEASING.UI.APP.Properties.Resources._16_MyLogsBook;
+            gridViewCommandColumn1.FieldName = "ColAuthorization";
+            gridViewCommandColumn1.HeaderImage = global::LEASING.UI.APP.Properties.Resources._16x16_PinGreen;
             gridViewCommandColumn1.HeaderText = "";
-            gridViewCommandColumn1.Image = global::LEASING.UI.APP.Properties.Resources._16_MyLogsBook;
-            gridViewCommandColumn1.Name = "ColContract";
+            gridViewCommandColumn1.Image = global::LEASING.UI.APP.Properties.Resources._16x16_PinGreen;
+            gridViewCommandColumn1.Name = "ColAuthorization";
             gridViewCommandColumn1.Width = 30;
-            gridViewCommandColumn2.FieldName = "ColLedger";
+            gridViewCommandColumn2.FieldName = "ColContract";
             gridViewCommandColumn2.HeaderImage = global::LEASING.UI.APP.Properties.Resources._16_MyLogsBook;
             gridViewCommandColumn2.HeaderText = "";
             gridViewCommandColumn2.Image = global::LEASING.UI.APP.Properties.Resources._16_MyLogsBook;
-            gridViewCommandColumn2.IsVisible = false;
-            gridViewCommandColumn2.Name = "ColLedger";
+            gridViewCommandColumn2.Name = "ColContract";
             gridViewCommandColumn2.Width = 30;
-            gridViewCommandColumn3.FieldName = "ColViewFile";
-            gridViewCommandColumn3.HeaderImage = global::LEASING.UI.APP.Properties.Resources.attach;
+            gridViewCommandColumn3.FieldName = "ColLedger";
+            gridViewCommandColumn3.HeaderImage = global::LEASING.UI.APP.Properties.Resources._16_MyLogsBook;
             gridViewCommandColumn3.HeaderText = "";
-            gridViewCommandColumn3.Image = global::LEASING.UI.APP.Properties.Resources.attach;
-            gridViewCommandColumn3.Name = "ColViewFile";
+            gridViewCommandColumn3.Image = global::LEASING.UI.APP.Properties.Resources._16_MyLogsBook;
+            gridViewCommandColumn3.IsVisible = false;
+            gridViewCommandColumn3.Name = "ColLedger";
             gridViewCommandColumn3.Width = 30;
-            gridViewCommandColumn4.FieldName = "ColView";
-            gridViewCommandColumn4.HeaderImage = global::LEASING.UI.APP.Properties.Resources.magnifier;
+            gridViewCommandColumn4.FieldName = "ColViewFile";
+            gridViewCommandColumn4.HeaderImage = global::LEASING.UI.APP.Properties.Resources.attach;
             gridViewCommandColumn4.HeaderText = "";
-            gridViewCommandColumn4.Image = global::LEASING.UI.APP.Properties.Resources.magnifier;
-            gridViewCommandColumn4.IsVisible = false;
-            gridViewCommandColumn4.Name = "ColView";
+            gridViewCommandColumn4.Image = global::LEASING.UI.APP.Properties.Resources.attach;
+            gridViewCommandColumn4.Name = "ColViewFile";
             gridViewCommandColumn4.Width = 30;
-            gridViewCommandColumn5.FieldName = "ColShowReceipt";
-            gridViewCommandColumn5.HeaderImage = global::LEASING.UI.APP.Properties.Resources.print_16;
+            gridViewCommandColumn5.FieldName = "ColView";
+            gridViewCommandColumn5.HeaderImage = global::LEASING.UI.APP.Properties.Resources.magnifier;
             gridViewCommandColumn5.HeaderText = "";
-            gridViewCommandColumn5.Image = global::LEASING.UI.APP.Properties.Resources.print_16;
-            gridViewCommandColumn5.Name = "ColShowReceipt";
+            gridViewCommandColumn5.Image = global::LEASING.UI.APP.Properties.Resources.magnifier;
+            gridViewCommandColumn5.IsVisible = false;
+            gridViewCommandColumn5.Name = "ColView";
             gridViewCommandColumn5.Width = 30;
+            gridViewCommandColumn6.FieldName = "ColShowReceipt";
+            gridViewCommandColumn6.HeaderImage = global::LEASING.UI.APP.Properties.Resources.print_16;
+            gridViewCommandColumn6.HeaderText = "";
+            gridViewCommandColumn6.Image = global::LEASING.UI.APP.Properties.Resources.print_16;
+            gridViewCommandColumn6.Name = "ColShowReceipt";
+            gridViewCommandColumn6.Width = 30;
             gridViewTextBoxColumn1.FieldName = "RefId";
             gridViewTextBoxColumn1.HeaderText = "Contract ID";
             gridViewTextBoxColumn1.Name = "RefId";
@@ -353,6 +360,7 @@
             gridViewCommandColumn3,
             gridViewCommandColumn4,
             gridViewCommandColumn5,
+            gridViewCommandColumn6,
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
             gridViewTextBoxColumn3,
@@ -386,7 +394,7 @@
             this.txtage.MaxLength = 2;
             this.txtage.Name = "txtage";
             this.txtage.NullText = "0";
-            this.txtage.Size = new System.Drawing.Size(82, 20);
+            this.txtage.Size = new System.Drawing.Size(82, 19);
             this.txtage.TabIndex = 1;
             this.txtage.ThemeName = "Office2007Silver";
             // 
@@ -424,7 +432,7 @@
             this.txtnameofmaid.Location = new System.Drawing.Point(177, 353);
             this.txtnameofmaid.Name = "txtnameofmaid";
             this.txtnameofmaid.NullText = "Type here...";
-            this.txtnameofmaid.Size = new System.Drawing.Size(343, 20);
+            this.txtnameofmaid.Size = new System.Drawing.Size(343, 19);
             this.txtnameofmaid.TabIndex = 1;
             this.txtnameofmaid.ThemeName = "Office2007Silver";
             // 
@@ -444,7 +452,7 @@
             this.txttotalnoofperson.MaxLength = 3;
             this.txttotalnoofperson.Name = "txttotalnoofperson";
             this.txttotalnoofperson.NullText = "0";
-            this.txttotalnoofperson.Size = new System.Drawing.Size(74, 20);
+            this.txttotalnoofperson.Size = new System.Drawing.Size(74, 19);
             this.txttotalnoofperson.TabIndex = 1;
             this.txttotalnoofperson.ThemeName = "Office2007Silver";
             // 
@@ -463,7 +471,7 @@
             this.txtnameofchildren.Location = new System.Drawing.Point(177, 303);
             this.txtnameofchildren.Name = "txtnameofchildren";
             this.txtnameofchildren.NullText = "Type here...";
-            this.txtnameofchildren.Size = new System.Drawing.Size(343, 20);
+            this.txtnameofchildren.Size = new System.Drawing.Size(343, 19);
             this.txtnameofchildren.TabIndex = 1;
             this.txtnameofchildren.ThemeName = "Office2007Silver";
             // 
@@ -472,7 +480,7 @@
             this.txtoccupation.Location = new System.Drawing.Point(177, 178);
             this.txtoccupation.Name = "txtoccupation";
             this.txtoccupation.NullText = "Type here...";
-            this.txtoccupation.Size = new System.Drawing.Size(343, 20);
+            this.txtoccupation.Size = new System.Drawing.Size(343, 19);
             this.txtoccupation.TabIndex = 1;
             this.txtoccupation.ThemeName = "Office2007Silver";
             // 
@@ -491,7 +499,7 @@
             this.txttelno.Location = new System.Drawing.Point(177, 153);
             this.txttelno.Name = "txttelno";
             this.txttelno.NullText = "Type here...";
-            this.txttelno.Size = new System.Drawing.Size(343, 20);
+            this.txttelno.Size = new System.Drawing.Size(343, 19);
             this.txttelno.TabIndex = 1;
             this.txttelno.ThemeName = "Office2007Silver";
             // 
@@ -510,7 +518,7 @@
             this.dtpdob.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpdob.Location = new System.Drawing.Point(177, 128);
             this.dtpdob.Name = "dtpdob";
-            this.dtpdob.Size = new System.Drawing.Size(94, 20);
+            this.dtpdob.Size = new System.Drawing.Size(94, 19);
             this.dtpdob.TabIndex = 2;
             this.dtpdob.TabStop = false;
             this.dtpdob.Text = "7/5/2023";
@@ -543,7 +551,7 @@
             this.txtpostaladdress.Location = new System.Drawing.Point(177, 103);
             this.txtpostaladdress.Name = "txtpostaladdress";
             this.txtpostaladdress.NullText = "Type here...";
-            this.txtpostaladdress.Size = new System.Drawing.Size(744, 20);
+            this.txtpostaladdress.Size = new System.Drawing.Size(744, 19);
             this.txtpostaladdress.TabIndex = 1;
             this.txtpostaladdress.ThemeName = "Office2007Silver";
             // 
@@ -562,7 +570,7 @@
             this.txtname.Location = new System.Drawing.Point(177, 78);
             this.txtname.Name = "txtname";
             this.txtname.NullText = "Type here...";
-            this.txtname.Size = new System.Drawing.Size(343, 20);
+            this.txtname.Size = new System.Drawing.Size(343, 19);
             this.txtname.TabIndex = 1;
             this.txtname.ThemeName = "Office2007Silver";
             // 
@@ -602,7 +610,7 @@
             this.txtClienID.Location = new System.Drawing.Point(177, 28);
             this.txtClienID.Name = "txtClienID";
             this.txtClienID.NullText = "Type here...";
-            this.txtClienID.Size = new System.Drawing.Size(180, 20);
+            this.txtClienID.Size = new System.Drawing.Size(180, 19);
             this.txtClienID.TabIndex = 1;
             this.txtClienID.ThemeName = "Office2007Silver";
             this.txtClienID.TextChanged += new System.EventHandler(this.txtClienID_TextChanged);
@@ -627,7 +635,7 @@
             this.ddlClientType.Location = new System.Drawing.Point(177, 53);
             this.ddlClientType.Name = "ddlClientType";
             this.ddlClientType.NullText = "Select here...";
-            this.ddlClientType.Size = new System.Drawing.Size(125, 20);
+            this.ddlClientType.Size = new System.Drawing.Size(125, 19);
             this.ddlClientType.TabIndex = 3;
             this.ddlClientType.ThemeName = "Office2007Silver";
             // 
@@ -646,7 +654,7 @@
             this.txtnationality.Location = new System.Drawing.Point(663, 3);
             this.txtnationality.Name = "txtnationality";
             this.txtnationality.NullText = "Type here...";
-            this.txtnationality.Size = new System.Drawing.Size(125, 20);
+            this.txtnationality.Size = new System.Drawing.Size(125, 19);
             this.txtnationality.TabIndex = 1;
             this.txtnationality.ThemeName = "Office2007Silver";
             // 
@@ -669,7 +677,7 @@
             this.ddlgender.Location = new System.Drawing.Point(663, 28);
             this.ddlgender.Name = "ddlgender";
             this.ddlgender.NullText = "Select Here...";
-            this.ddlgender.Size = new System.Drawing.Size(125, 20);
+            this.ddlgender.Size = new System.Drawing.Size(125, 19);
             this.ddlgender.TabIndex = 3;
             this.ddlgender.ThemeName = "Office2007Silver";
             // 
@@ -689,7 +697,7 @@
             this.txtannualincome.MaxLength = 12;
             this.txtannualincome.Name = "txtannualincome";
             this.txtannualincome.NullText = "0.00";
-            this.txtannualincome.Size = new System.Drawing.Size(125, 20);
+            this.txtannualincome.Size = new System.Drawing.Size(125, 19);
             this.txtannualincome.TabIndex = 1;
             this.txtannualincome.ThemeName = "Office2007Silver";
             // 
@@ -708,7 +716,7 @@
             this.txtnameofdriver.Location = new System.Drawing.Point(663, 153);
             this.txtnameofdriver.Name = "txtnameofdriver";
             this.txtnameofdriver.NullText = "Type here...";
-            this.txtnameofdriver.Size = new System.Drawing.Size(262, 20);
+            this.txtnameofdriver.Size = new System.Drawing.Size(262, 19);
             this.txtnameofdriver.TabIndex = 1;
             this.txtnameofdriver.ThemeName = "Office2007Silver";
             // 
@@ -727,7 +735,7 @@
             this.txtspousename.Location = new System.Drawing.Point(177, 278);
             this.txtspousename.Name = "txtspousename";
             this.txtspousename.NullText = "Type here...";
-            this.txtspousename.Size = new System.Drawing.Size(343, 20);
+            this.txtspousename.Size = new System.Drawing.Size(343, 19);
             this.txtspousename.TabIndex = 1;
             this.txtspousename.ThemeName = "Office2007Silver";
             // 
@@ -746,7 +754,7 @@
             this.txtaddresstelephoneno.Location = new System.Drawing.Point(177, 253);
             this.txtaddresstelephoneno.Name = "txtaddresstelephoneno";
             this.txtaddresstelephoneno.NullText = "Type here...";
-            this.txtaddresstelephoneno.Size = new System.Drawing.Size(343, 20);
+            this.txtaddresstelephoneno.Size = new System.Drawing.Size(343, 19);
             this.txtaddresstelephoneno.TabIndex = 1;
             this.txtaddresstelephoneno.ThemeName = "Office2007Silver";
             // 
@@ -765,7 +773,7 @@
             this.txtnameofemployer.Location = new System.Drawing.Point(177, 228);
             this.txtnameofemployer.Name = "txtnameofemployer";
             this.txtnameofemployer.NullText = "Type here...";
-            this.txtnameofemployer.Size = new System.Drawing.Size(343, 20);
+            this.txtnameofemployer.Size = new System.Drawing.Size(343, 19);
             this.txtnameofemployer.TabIndex = 1;
             this.txtnameofemployer.ThemeName = "Office2007Silver";
             // 
@@ -784,7 +792,7 @@
             this.txtTinNo.Location = new System.Drawing.Point(177, 203);
             this.txtTinNo.Name = "txtTinNo";
             this.txtTinNo.NullText = "Type here...";
-            this.txtTinNo.Size = new System.Drawing.Size(343, 20);
+            this.txtTinNo.Size = new System.Drawing.Size(343, 19);
             this.txtTinNo.TabIndex = 1;
             this.txtTinNo.ThemeName = "Office2007Silver";
             // 
@@ -816,23 +824,23 @@
             // 
             this.dgvFileList.MasterTemplate.AllowAddNewRow = false;
             this.dgvFileList.MasterTemplate.AllowColumnReorder = false;
-            gridViewCommandColumn6.FieldName = "ColView";
-            gridViewCommandColumn6.HeaderImage = global::LEASING.UI.APP.Properties.Resources.magnifier;
-            gridViewCommandColumn6.HeaderText = "";
-            gridViewCommandColumn6.Image = global::LEASING.UI.APP.Properties.Resources.magnifier;
-            gridViewCommandColumn6.IsPinned = true;
-            gridViewCommandColumn6.Name = "ColView";
-            gridViewCommandColumn6.PinPosition = Telerik.WinControls.UI.PinnedColumnPosition.Left;
-            gridViewCommandColumn6.Width = 30;
-            gridViewCommandColumn7.FieldName = "ColDelete";
-            gridViewCommandColumn7.HeaderImage = global::LEASING.UI.APP.Properties.Resources._16_DeleteRed;
+            gridViewCommandColumn7.FieldName = "ColView";
+            gridViewCommandColumn7.HeaderImage = global::LEASING.UI.APP.Properties.Resources.magnifier;
             gridViewCommandColumn7.HeaderText = "";
-            gridViewCommandColumn7.Image = global::LEASING.UI.APP.Properties.Resources._16_DeleteRed;
+            gridViewCommandColumn7.Image = global::LEASING.UI.APP.Properties.Resources.magnifier;
             gridViewCommandColumn7.IsPinned = true;
-            gridViewCommandColumn7.IsVisible = false;
-            gridViewCommandColumn7.Name = "ColDelete";
+            gridViewCommandColumn7.Name = "ColView";
             gridViewCommandColumn7.PinPosition = Telerik.WinControls.UI.PinnedColumnPosition.Left;
             gridViewCommandColumn7.Width = 30;
+            gridViewCommandColumn8.FieldName = "ColDelete";
+            gridViewCommandColumn8.HeaderImage = global::LEASING.UI.APP.Properties.Resources._16_DeleteRed;
+            gridViewCommandColumn8.HeaderText = "";
+            gridViewCommandColumn8.Image = global::LEASING.UI.APP.Properties.Resources._16_DeleteRed;
+            gridViewCommandColumn8.IsPinned = true;
+            gridViewCommandColumn8.IsVisible = false;
+            gridViewCommandColumn8.Name = "ColDelete";
+            gridViewCommandColumn8.PinPosition = Telerik.WinControls.UI.PinnedColumnPosition.Left;
+            gridViewCommandColumn8.Width = 30;
             gridViewTextBoxColumn5.FieldName = "Id";
             gridViewTextBoxColumn5.HeaderText = "File ID";
             gridViewTextBoxColumn5.IsPinned = true;
@@ -856,8 +864,8 @@
             gridViewTextBoxColumn9.Name = "Notes";
             gridViewTextBoxColumn9.Width = 450;
             this.dgvFileList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewCommandColumn6,
             gridViewCommandColumn7,
+            gridViewCommandColumn8,
             gridViewTextBoxColumn5,
             gridViewTextBoxColumn6,
             gridViewTextBoxColumn7,

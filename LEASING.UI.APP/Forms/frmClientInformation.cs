@@ -415,6 +415,15 @@ namespace LEASING.UI.APP.Forms
                         this._getContractProjectTypeReport(Convert.ToString(dgvList.CurrentRow.Cells["RefId"].Value));
                     }
                 }
+                else if (this.dgvList.Columns[e.ColumnIndex].Name == "ColAuthorization")
+                    if (dgvList.Rows.Count > 0)
+                    {
+                        if (!string.IsNullOrEmpty(Convert.ToString(dgvList.CurrentRow.Cells["RefId"].Value)))
+                        {
+                            frmMoveInAuthorizationReport MoveIn = new frmMoveInAuthorizationReport(Convert.ToString(dgvList.CurrentRow.Cells["RefId"].Value));
+                            MoveIn.Show();
+                        }
+                    }
             }
         }
         private void btnPrintContract_Click(object sender, EventArgs e)
@@ -422,7 +431,7 @@ namespace LEASING.UI.APP.Forms
             if (dgvList.Rows.Count > 0)
             {
                 this._getContractProjectTypeReport(Convert.ToString(dgvList.CurrentRow.Cells["RefId"].Value));
-            }           
+            }
         }
     }
 }

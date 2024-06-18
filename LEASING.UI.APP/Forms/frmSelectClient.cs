@@ -28,7 +28,7 @@ namespace LEASING.UI.APP.Forms
         public string clientNumber { get; set; }
         public string XML { get; set; }
         public string transactionNumber = string.Empty;
-
+        public string TypeOf { get; set; }
         public int totalMonthlyRental { get; set; }         
         public bool IsProceed { get; set; }
 
@@ -133,6 +133,7 @@ namespace LEASING.UI.APP.Forms
                         //txtTotalForPayment.Text = Convert.ToString(dt.Tables[0].Rows[0]["TotalForPayment"]);
                         txtAmountPaid.Text = Convert.ToString(dt.Tables[0].Rows[0]["TotalPayAMount"]);
                         txtBalanceAmount.Text = Convert.ToString(dt.Tables[0].Rows[0]["FirtsPaymentBalanceAmount"]);
+                        TypeOf = Convert.ToString(dt.Tables[0].Rows[0]["TypeOf"]);
                     }
                 }
             }
@@ -192,6 +193,58 @@ namespace LEASING.UI.APP.Forms
             {
                 Functions.LogError("_generatePayment()", this.Text, ex.ToString(), DateTime.Now, this);
                 Functions.ErrorShow("_generatePayment()", ex.ToString());
+            }
+
+        }
+        private void _generatePaymentParking()
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(this.contractNumber))
+                {
+                    return;
+                }
+                var result = _payment.GenerateFirstPaymentParking(
+                   this.contractNumber,
+                   Functions.ConvertStringToDecimal(this.txtTotalForPayment.Text),
+                   this.receiveAmount,
+                   this.changeAmount,
+                   Functions.ConvertStringToDecimal(this.txtThreeMonSecDep.Text),
+                   this._Company_OR_Number_,
+                   this._Company_PR_Number_,
+                   this._Bank_Account_Name_,
+                   this._Bank_Account_Number_,
+                   this._Bank_Name_,
+                   this._Bank_Serial_No_,
+                   this.paymentRemarks,
+                   this._Bank_Reference_Number_,
+                   this.modeType,
+                   this._Bank_Branch_,
+                   this._Company_Original_Receipt_Date_,
+                    out transactionNumber);
+                Functions.ShowLoadingBar("Processing...");
+                if (string.IsNullOrEmpty(result))
+                {
+                    Functions.MessageShow("Response Empty.");
+                    return;
+                }
+
+                if (!result.Equals("SUCCESS"))
+                {
+                    Functions.MessageShow(result);
+                    return;
+                }
+
+                Functions.MessageShow($"PAYMENT {result}");
+
+                this.IsProceed = true;
+                this.btnGenerate.Enabled = false;
+                this.btnPrintReciept.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                Functions.LogError("_generatePaymentParking()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("_generatePaymentParking()", ex.ToString());
             }
 
         }
@@ -315,31 +368,41 @@ namespace LEASING.UI.APP.Forms
                 Functions.GetNotification("PAYMENT", "Payment Cancel");
                 return;
             }
-
-            var fPayment = new frmPaymentMode1();
-            if (!this._initPayment(fPayment))
+          
+            this._save();
+        }
+        private void _save()
+        {
+            if (this.TypeOf.Equals("PARKING"))
             {
-                return;
+                this._generatePaymentParking();
             }
-
-            var fReceivePayment = new frmReceivePayment();
-            this._recievePayment(fReceivePayment);
-
-            this._generatePayment();
-
-            if (this._checkTranIDContractNumberIsEmpty())
+            else
             {
-                Functions.MessageShow("No transaction code is generated, Please contact system administrator");
-                return;
-            }
+                var fPayment = new frmPaymentMode1();
+                if (!this._initPayment(fPayment))
+                {
+                    return;
+                }
 
-            if (!this.IsPartialPayment)
-            {
-                /*If Partial Payment Dont show Reciept Printing*/
-                var fReciept = new frmRecieptSelection(this.transactionNumber, this.contractNumber, this._getPaymentLevel());
-                this._initReciept(fReciept);
-            }
+                var fReceivePayment = new frmReceivePayment();
+                this._recievePayment(fReceivePayment);
 
+                this._generatePayment();
+
+                if (this._checkTranIDContractNumberIsEmpty())
+                {
+                    Functions.MessageShow("No transaction code is generated, Please contact system administrator");
+                    return;
+                }
+
+                if (!this.IsPartialPayment)
+                {
+                    /*If Partial Payment Dont show Reciept Printing*/
+                    var fReciept = new frmRecieptSelection(this.transactionNumber, this.contractNumber, this._getPaymentLevel());
+                    this._initReciept(fReciept);
+                }
+            }
         }
         #endregion
 

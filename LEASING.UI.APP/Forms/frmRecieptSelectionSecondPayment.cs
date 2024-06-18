@@ -26,6 +26,7 @@ namespace LEASING.UI.APP.Forms
         public string sRefId { get; set; } = string.Empty;
         public string sMode { get; set; } = string.Empty;
         public string sPaymentLevel { get; set; } = string.Empty;
+        public string sTypeOf { get; set; } = string.Empty;
         public bool IsNoOR = false;
 
         public frmRecieptSelectionSecondPayment(string TranID, string RefId, string PaymentLevel)
@@ -34,6 +35,7 @@ namespace LEASING.UI.APP.Forms
             sTranID = TranID.Trim();
             sRefId = RefId.Trim();
             sPaymentLevel = PaymentLevel.Trim();
+           
         }
         private string GetReceiptMode(RecieptType type)
         {
@@ -141,6 +143,21 @@ namespace LEASING.UI.APP.Forms
         {
             Functions.EventCapturefrmName(this);
 
+            if (sTypeOf.Equals("TYPE OF PARKING"))
+            {
+                chkNatureOR_Deposit.Enabled = false;
+                chkNaturePR_Deposit.Enabled = false;
+                chkOnchingOR_Deposit.Enabled = false;
+                chkOnchingPR_Deposit.Enabled = false;
+
+            }
+            else
+            {
+                chkNatureOR_Deposit.Enabled = true;
+                chkNaturePR_Deposit.Enabled = true;
+                chkOnchingOR_Deposit.Enabled = true;
+                chkOnchingPR_Deposit.Enabled = true;
+            }
             chkNatureOR_Advance.IsChecked = true;
             chkNaturePR_Advance.IsChecked = true;
             chkOnchingOR_Advance.IsChecked = true;

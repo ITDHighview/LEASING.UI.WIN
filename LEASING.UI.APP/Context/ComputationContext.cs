@@ -457,7 +457,7 @@ namespace LEASING.UI.APP.Context
                 return dsRec;
             }
         }
-        public DataSet GetPostDatedCountMonthParking(string FromDate, string EndDate, string rental, string SecAndMain)
+        public DataSet GetPostDatedCountMonthParking(string FromDate, string EndDate, string rental, string SecAndMain,string XML)
         {
 
             SqlCommand _SqlCommand = null;
@@ -482,8 +482,10 @@ namespace LEASING.UI.APP.Context
                 _SqlCommand.Parameters.Add(_SqlParameter);
                 _SqlParameter = new SqlParameter("@SecMainRental", SecAndMain);
                 _SqlCommand.Parameters.Add(_SqlParameter);
+                _SqlParameter = new SqlParameter("@XML", XML);
+                _SqlCommand.Parameters.Add(_SqlParameter);
 
-                
+
 
                 try
                 {

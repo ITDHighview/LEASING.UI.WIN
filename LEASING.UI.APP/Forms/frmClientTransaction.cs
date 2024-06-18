@@ -543,6 +543,7 @@ namespace LEASING.UI.APP.Forms
         private void InitReciept(frmRecieptSelectionSecondPayment pForm)
         {
             pForm.IsNoOR = string.IsNullOrEmpty(this.CompanyORNo) && !string.IsNullOrEmpty(this.CompanyPRNo);
+            pForm.sTypeOf = Convert.ToString(dgvTransactionList.CurrentRow.Cells["TypeOf"].Value);
             pForm.ShowDialog();
             if (!this.IsProceed)
             {

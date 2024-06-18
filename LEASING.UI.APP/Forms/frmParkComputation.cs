@@ -406,7 +406,7 @@ namespace LEASING.UI.APP.Forms
             try
             {
                 dgvpostdatedcheck.DataSource = null;
-                using (DataSet dt = ComputationContext.GetPostDatedCountMonthParking(dtpStartDate.Text, dtpFinishDate.Text, txtRental.Text, null))
+                using (DataSet dt = ComputationContext.GetPostDatedCountMonthParking(dtpStartDate.Text, dtpFinishDate.Text, txtRental.Text,null, M_getXMLData()))
                 {
                     if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {

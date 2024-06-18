@@ -584,7 +584,7 @@
             this.dgvPaymentList.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.dgvPaymentList.Location = new System.Drawing.Point(0, 0);
             // 
-            // dgvPaymentList
+            // 
             // 
             this.dgvPaymentList.MasterTemplate.AllowAddNewRow = false;
             this.dgvPaymentList.MasterTemplate.AllowColumnReorder = false;

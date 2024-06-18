@@ -29,7 +29,7 @@ namespace LEASING.UI.APP.Forms
         public string XML { get; set; }
         public string transactionNumber = string.Empty;
         public string TypeOf { get; set; }
-        public int totalMonthlyRental { get; set; }         
+        public int totalMonthlyRental { get; set; }
         public bool IsProceed { get; set; }
 
         public decimal receiveAmount { get; set; }
@@ -56,6 +56,14 @@ namespace LEASING.UI.APP.Forms
             this.FormLoadReadOnlyControls();
             this._getContractById();
             this._getMonthLedgerBrowseByContractIdClientNumber();
+            if (TypeOf.Equals("PARKING"))
+            {
+                this.btnGenerate.Text = "PROCEED >>>";
+            }
+            else
+            {
+                this.btnGenerate.Text = "PROCEED TO PAYMENT >>>";
+            }
         }
         private void FormLoadReadOnlyControls()
         {
@@ -168,7 +176,7 @@ namespace LEASING.UI.APP.Forms
                    this._Bank_Reference_Number_,
                    this.modeType,
                    this._Bank_Branch_,
-                   this._Company_Original_Receipt_Date_,    
+                   this._Company_Original_Receipt_Date_,
                     out transactionNumber);
                 Functions.ShowLoadingBar("Processing...");
                 if (string.IsNullOrEmpty(result))
@@ -235,7 +243,7 @@ namespace LEASING.UI.APP.Forms
                     return;
                 }
 
-                Functions.MessageShow($"PAYMENT {result}");
+                Functions.MessageShow($"Transaction {result}" + Environment.NewLine + "you can now proceed for contract approval and move in.");
 
                 this.IsProceed = true;
                 this.btnGenerate.Enabled = false;
@@ -361,14 +369,28 @@ namespace LEASING.UI.APP.Forms
             pForm.ShowDialog();
             this._getContractById();
         }
+        private string PaymentMessageConfirm()
+        {
+
+            if (TypeOf.Equals("PARKING"))
+            {
+                return "Are you sure you want to proceed this transaction?";
+            }
+            else
+            {
+                return "Are you sure you want to proceed  to this payment?";
+            }
+
+            return "Are you sure you want to proceed  to this payment?";
+        }
         private void _savePayment()
         {
-            if (Functions.MessageConfirm("Are you sure you want to proceed  to this payment?") == DialogResult.No)
+            if (Functions.MessageConfirm(this.PaymentMessageConfirm()) == DialogResult.No)
             {
                 Functions.GetNotification("PAYMENT", "Payment Cancel");
                 return;
             }
-          
+
             this._save();
         }
         private void _save()
@@ -444,7 +466,7 @@ namespace LEASING.UI.APP.Forms
                     e.CellElement.GradientStyle = GradientStyles.Solid;
                     e.CellElement.BackColor = Color.Green;
                 }
-                else if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["Remarks"].Value) == "FOR ADVANCE PAYMENT" ||  Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["Remarks"].Value) == "FOR POST DATED CHECK")
+                else if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["Remarks"].Value) == "FOR ADVANCE PAYMENT" || Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["Remarks"].Value) == "FOR POST DATED CHECK")
                 {
                     e.CellElement.ForeColor = Color.Black;
 

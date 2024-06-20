@@ -157,6 +157,11 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
+        private void InitProjectUnitBrowse()
+        {
+            this.ddlProject.SelectedIndex = 1;
+            this.ddlUnitStatus.SelectedIndex = 0;
+        }
 
         private void frmMainDashboard_Load(object sender, EventArgs e)
         {
@@ -164,6 +169,7 @@ namespace LEASING.UI.APP.Forms
             this.radMenuItemNotification.Text = "NOTIFICATION (0)";
             GetNotificationList();
             M_SelectProject();
+            this.InitProjectUnitBrowse();
 
 
             //radMenu7.Visible = false;

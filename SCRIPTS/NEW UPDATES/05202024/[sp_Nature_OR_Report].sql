@@ -18,6 +18,7 @@ AS
         SET NOCOUNT ON;
 
 
+
         CREATE TABLE [#tblRecieptReport]
             (
                 [client_no]          [VARCHAR](500)  NULL,
@@ -49,12 +50,26 @@ AS
                 [RENTAL_LESS_VAT]    [VARCHAR](150)  NULL,
                 [RENTAL_LESS_TAX]    [VARCHAR](150)  NULL
             )
-
+        DECLARE @RentalSandMLabel VARCHAR(150) = ''
+        DECLARE @UnitCategory VARCHAR(150) = ''
         DECLARE @combinedString VARCHAR(MAX);
         DECLARE @IsFullPayment BIT = 0;
         DECLARE @RefId VARCHAR(100) = '';
 
-
+        SELECT
+            @UnitCategory = [dbo].[fnGetUnitCategoryByUnitId]([tblUnitReference].[UnitId])
+        FROM
+            [dbo].[tblUnitReference]
+        WHERE
+            [tblUnitReference].[RefId] =
+            (
+                SELECT
+                    [tblTransaction].[RefId]
+                FROM
+                    [dbo].[tblTransaction]
+                WHERE
+                    [tblTransaction].[TranID] = @TranID
+            )
 
         BEGIN
             SELECT
@@ -91,9 +106,11 @@ AS
                             IF @Mode = 'REN'
                                AND @PaymentLevel = 'SECOND'
                                 BEGIN
+                                    SET @RentalSandMLabel = 'RENTAL'
                                     SELECT
                                         @combinedString
-                                        = 'RENTAL FOR '+
+                                        = 'RENTAL FOR '
+                                          +
                                         (
                                             SELECT  TOP 1
                                                     UPPER(DATENAME(MONTH, MIN([tblPayment].[ForMonth]))) + ' '
@@ -113,7 +130,7 @@ AS
                                                     AND [tblPayment].[Notes] = 'RENTAL NET OF VAT'
                                                     AND ISNULL([tblMonthLedger].[IsPaid], 0) = 1
                                         ) + ' TO '
-                                        +
+                                          +
                                         (
                                             SELECT  TOP 1
                                                     UPPER(DATENAME(MONTH, MAX([tblPayment].[ForMonth]))) + ' '
@@ -138,10 +155,11 @@ AS
                             IF @Mode = 'MAIN'
                                AND @PaymentLevel = 'SECOND'
                                 BEGIN
-
+                                    SET @RentalSandMLabel = 'S&M'
                                     SELECT
                                         @combinedString
-                                        = 'SECURITY & MAINTENANCE FOR'+
+                                        = 'SECURITY & MAINTENANCE FOR'
+                                          +
                                         (
                                             SELECT  TOP 1
                                                     UPPER(DATENAME(MONTH, MIN([tblPayment].[ForMonth]))) + ' '
@@ -161,7 +179,7 @@ AS
                                                     AND [tblPayment].[Notes] = 'SECURITY AND MAINTENANCE NET OF VAT'
                                                     AND ISNULL([tblMonthLedger].[IsPaid], 0) = 1
                                         ) + ' TO '
-                                        +
+                                          +
                                         (
                                             SELECT  TOP 1
                                                     UPPER(DATENAME(MONTH, MAX([tblPayment].[ForMonth]))) + ' '
@@ -189,6 +207,7 @@ AS
                             IF @Mode = 'SEC'
                                AND @PaymentLevel = 'FIRST'
                                 BEGIN
+                                    SET @RentalSandMLabel = 'RENTAL'
                                     SELECT
                                         --@combinedString
                                         --= '('
@@ -223,10 +242,11 @@ AS
                                     IF @Mode = 'REN'
                                        AND @PaymentLevel = 'SECOND'
                                         BEGIN
+                                            SET @RentalSandMLabel = 'RENTAL'
                                             SELECT
                                                     @combinedString
-                                                = 'RENTAL FOR '
-												--+ COALESCE(@combinedString + '-', '')
+                                                = IIF(@UnitCategory = 'PARKING', 'PS RENTAL FOR', 'RENTAL FOR ')
+                                                  --+ COALESCE(@combinedString + '-', '')
                                                   + UPPER(DATENAME(MONTH, [tblPayment].[ForMonth])) + ' '
                                                   + CAST(YEAR([tblPayment].[ForMonth]) AS VARCHAR(4))
                                                   + IIF(ISNULL([tblMonthLedger].[IsHold], 0) = 1, '(PARTIAL)', '')
@@ -248,10 +268,11 @@ AS
                                     IF @Mode = 'MAIN'
                                        AND @PaymentLevel = 'SECOND'
                                         BEGIN
+                                            SET @RentalSandMLabel = 'S&M'
                                             SELECT
                                                     @combinedString
                                                 = 'SECURITY & MAINTENANCE FOR '
-												--+ COALESCE(@combinedString + '-', '')
+                                                  --+ COALESCE(@combinedString + '-', '')
                                                   + UPPER(DATENAME(MONTH, [tblPayment].[ForMonth])) + ' '
                                                   + CAST(YEAR([tblPayment].[ForMonth]) AS VARCHAR(4))
                                                   + IIF(ISNULL([tblMonthLedger].[IsHold], 0) = 1, '(PARTIAL)', '')
@@ -852,6 +873,7 @@ AS
 
 
         SELECT
+            @RentalSandMLabel                                                                      AS [RentalSandMLabel],
             [#tblRecieptReport].[client_no],
             [#tblRecieptReport].[client_Name],
             [#tblRecieptReport].[client_Address],

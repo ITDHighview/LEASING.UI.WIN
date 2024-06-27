@@ -67,7 +67,7 @@ namespace LEASING.UI.APP.Forms
         }
 
         private void GetAnnouncement()
-        {           
+        {
             using (DataSet dt = AnnouncementContext.GetAnnouncement())
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
@@ -83,7 +83,7 @@ namespace LEASING.UI.APP.Forms
             if (txtAnnouncementMessage.Text.Trim() != GetAnnouncementCheck())
             {
                 AnnouncementTimer = Config.NotificationSeconds;
-            }        
+            }
         }
 
         private string GetAnnouncementCheck()
@@ -114,7 +114,7 @@ namespace LEASING.UI.APP.Forms
         private void M_GetUnitListByProjectAndStatus()
         {
             dgvUnitList.DataSource = null;
-            using (DataSet dt = OtherContext.GetUnitListByProjectAndStatus(Convert.ToInt32(ddlProject.SelectedValue), ddlUnitStatus.SelectedText))
+            using (DataSet dt = OtherContext.GetUnitListByProjectAndStatus(Convert.ToInt32(ddlProject.SelectedValue), ddlUnitStatus.SelectedText, ddlProject.SelectedText))
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                 {
@@ -147,7 +147,7 @@ namespace LEASING.UI.APP.Forms
         {
 
             ddlProject.DataSource = null;
-            using (DataSet dt = ProjectContext.GetSelectProject())
+            using (DataSet dt = ProjectContext.GetSelectProjectAll())
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                 {
@@ -159,7 +159,7 @@ namespace LEASING.UI.APP.Forms
         }
         private void InitProjectUnitBrowse()
         {
-            this.ddlProject.SelectedIndex = 1;
+            this.ddlProject.SelectedIndex = 0;
             this.ddlUnitStatus.SelectedIndex = 0;
         }
 
@@ -185,7 +185,7 @@ namespace LEASING.UI.APP.Forms
             lblStaffName.Text = Variables.FirstName;
             GetAnnouncement();
 
-         
+
             TimerCountDown.Start();
             //M_GetTotalCountLabel();
         }
@@ -507,7 +507,7 @@ namespace LEASING.UI.APP.Forms
             _frmPreEmp_Login.StartPosition = FormStartPosition.CenterScreen;
             _frmPreEmp_Login.ShowDialog();
             IsSwithUserLogOut = false;
-            
+
         }
         private void btnMyDashboard_Click(object sender, EventArgs e)
         {
@@ -636,6 +636,10 @@ namespace LEASING.UI.APP.Forms
         {
             if (ddlProject.SelectedIndex > 0)
             {
+                if (ddlProject.SelectedText == "--ALL--")
+                {
+                    ddlUnitStatus.SelectedText = "--ALL--";
+                }
                 M_GetUnitListByProjectAndStatus();
                 M_GetUnitListByProjectAndStatusCount();
             }
@@ -678,7 +682,7 @@ namespace LEASING.UI.APP.Forms
         private void TimerCountDown_Tick(object sender, EventArgs e)
         {
             M_GetAnnouncementCheck();
-            GetAnnouncement();         
+            GetAnnouncement();
             GetNotificationListDetails();
             //M_GetUnitListByProjectAndStatus();
             M_GetUnitListByProjectAndStatusCount();

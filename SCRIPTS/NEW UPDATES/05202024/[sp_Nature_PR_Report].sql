@@ -4,13 +4,14 @@ GO
 --SET QUOTED_IDENTIFIER ON|OFF
 --SET ANSI_NULLS ON|OFF
 --GO
-CREATE OR ALTER PROCEDURE [dbo].[sp_Nature_PR_Report]
+CREATE OR ALTER  PROCEDURE [dbo].[sp_Nature_PR_Report]
     @TranID       VARCHAR(20) = NULL,
     @Mode         VARCHAR(50) = NULL,
     @PaymentLevel VARCHAR(50) = NULL
 AS
      BEGIN
         SET NOCOUNT ON;
+
 
 
         CREATE TABLE [#tblRecieptReport]
@@ -45,11 +46,25 @@ AS
                 [RENTAL_LESS_TAX]    [VARCHAR](150)  NULL
             )
 
+        DECLARE @UnitCategory VARCHAR(150) = ''
         DECLARE @combinedString VARCHAR(MAX);
         DECLARE @IsFullPayment BIT = 0;
         DECLARE @RefId VARCHAR(100) = '';
 
-
+        SELECT
+            @UnitCategory = [dbo].[fnGetUnitCategoryByUnitId]([tblUnitReference].[UnitId])
+        FROM
+            [dbo].[tblUnitReference]
+        WHERE
+            [tblUnitReference].[RefId] =
+            (
+                SELECT
+                    [tblTransaction].[RefId]
+                FROM
+                    [dbo].[tblTransaction]
+                WHERE
+                    [tblTransaction].[TranID] = @TranID
+            )
 
         BEGIN
             SELECT
@@ -88,7 +103,8 @@ AS
                                 BEGIN
                                     SELECT
                                         @combinedString
-                                        = 'RENTAL FOR '+
+                                        = 'RENTAL FOR '
+                                          +
                                         (
                                             SELECT  TOP 1
                                                     UPPER(DATENAME(MONTH, MIN([tblPayment].[ForMonth]))) + ' '
@@ -108,7 +124,7 @@ AS
                                                     AND [tblPayment].[Notes] = 'RENTAL NET OF VAT'
                                                     AND ISNULL([tblMonthLedger].[IsPaid], 0) = 1
                                         ) + ' TO '
-                                        +
+                                          +
                                         (
                                             SELECT  TOP 1
                                                     UPPER(DATENAME(MONTH, MAX([tblPayment].[ForMonth]))) + ' '
@@ -136,7 +152,8 @@ AS
 
                                     SELECT
                                         @combinedString
-                                        = 'SECURITY & MAINTENANCE FOR'+
+                                        = 'SECURITY & MAINTENANCE FOR'
+                                          +
                                         (
                                             SELECT  TOP 1
                                                     UPPER(DATENAME(MONTH, MIN([tblPayment].[ForMonth]))) + ' '
@@ -156,7 +173,7 @@ AS
                                                     AND [tblPayment].[Notes] = 'SECURITY AND MAINTENANCE NET OF VAT'
                                                     AND ISNULL([tblMonthLedger].[IsPaid], 0) = 1
                                         ) + ' TO '
-                                        +
+                                          +
                                         (
                                             SELECT  TOP 1
                                                     UPPER(DATENAME(MONTH, MAX([tblPayment].[ForMonth]))) + ' '
@@ -220,8 +237,8 @@ AS
                                         BEGIN
                                             SELECT
                                                     @combinedString
-                                                = 'RENTAL FOR '
-												--+ COALESCE(@combinedString + '-', '')
+                                                = IIF(@UnitCategory = 'PARKING', 'PS RENTAL FOR', 'RENTAL FOR ')
+                                                  --+ COALESCE(@combinedString + '-', '')
                                                   + UPPER(DATENAME(MONTH, [tblPayment].[ForMonth])) + ' '
                                                   + CAST(YEAR([tblPayment].[ForMonth]) AS VARCHAR(4))
                                                   + IIF(ISNULL([tblMonthLedger].[IsHold], 0) = 1, '(PARTIAL)', '')
@@ -246,7 +263,7 @@ AS
                                             SELECT
                                                     @combinedString
                                                 = 'SECURITY & MAINTENANCE FOR '
-												--+ COALESCE(@combinedString + '-', '')
+                                                  --+ COALESCE(@combinedString + '-', '')
                                                   + UPPER(DATENAME(MONTH, [tblPayment].[ForMonth])) + ' '
                                                   + CAST(YEAR([tblPayment].[ForMonth]) AS VARCHAR(4))
                                                   + IIF(ISNULL([tblMonthLedger].[IsHold], 0) = 1, '(PARTIAL)', '')

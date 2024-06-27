@@ -92,7 +92,7 @@ namespace LEASING.UI.APP.Context
                 return dsRec;
             }
         }
-        public DataSet GetUnitListByProjectAndStatus(int ProjectId,string UnitStatus)
+        public DataSet GetUnitListByProjectAndStatus(int ProjectId,string UnitStatus,string ProjStatus)
         {
             SqlCommand _SqlCommand = null;
             SqlParameter _SqlParameter;
@@ -105,6 +105,9 @@ namespace LEASING.UI.APP.Context
                 _SqlCommand.Parameters.Add(_SqlParameter);
                 _SqlParameter = new SqlParameter("@UnitStatus", UnitStatus);
                 _SqlCommand.Parameters.Add(_SqlParameter);
+                _SqlParameter = new SqlParameter("@ProjStatus", ProjStatus);
+                _SqlCommand.Parameters.Add(_SqlParameter);
+                
                 try
                 {
                     _SqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());

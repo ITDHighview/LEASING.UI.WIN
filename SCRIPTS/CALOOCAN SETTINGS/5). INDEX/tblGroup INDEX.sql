@@ -1,3 +1,4 @@
+USE [LEASINGDB]
 ---[tblGroup]---
 
 CREATE INDEX [IdxtblGroup_GroupId]

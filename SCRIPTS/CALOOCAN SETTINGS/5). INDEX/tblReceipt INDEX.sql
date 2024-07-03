@@ -1,3 +1,4 @@
+USE [LEASINGDB]
 ---[tblReceipt]---
 
 CREATE INDEX [IdxtblReceipt_RecId]

@@ -30,7 +30,6 @@ namespace LEASING.UI.APP.Forms
                     dgvList.DataSource = dt.Tables[0];
                 }
             }
-
         }
 
         private void btnPrintReport_Click(object sender, EventArgs e)
@@ -43,12 +42,10 @@ namespace LEASING.UI.APP.Forms
 
         private void btnLoadReport_Click(object sender, EventArgs e)
         {
-
             if (dgvList.Rows.Count > 0)
             {
                 M_GetGeneralReport();
             }
-
         }
 
         private void GeneralReport_Load(object sender, EventArgs e)

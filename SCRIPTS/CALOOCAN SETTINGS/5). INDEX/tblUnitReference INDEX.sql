@@ -1,3 +1,4 @@
+USE [LEASINGDB]
 ---[tblUnitReference]---
 
 CREATE INDEX [IdxtblUnitReference_RecId]

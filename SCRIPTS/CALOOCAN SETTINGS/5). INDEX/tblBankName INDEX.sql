@@ -1,3 +1,4 @@
+USE [LEASINGDB]
 ---[tblBankName]---
 
 CREATE INDEX [IdxtblBankName_RecId]

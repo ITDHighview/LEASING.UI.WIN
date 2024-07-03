@@ -1,3 +1,4 @@
+USE [LEASINGDB]
 ---[tblGroupFormControls]---
 
 CREATE INDEX [IdxtblGroupFormControls_GroupControlId]

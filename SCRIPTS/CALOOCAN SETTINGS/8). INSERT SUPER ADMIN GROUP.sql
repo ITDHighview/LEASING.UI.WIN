@@ -1,9 +1,12 @@
+USE [LEASINGDB]
 INSERT INTO [dbo].[tblGroup]
-(
-    [GroupName],
-    [IsDelete]
-)
+    (
+        [GroupName],
+        [IsDelete]
+    )
 VALUES
-('SUPER ADMIN', 0);
+    (
+        'SUPER ADMIN', 0
+    );
 
 

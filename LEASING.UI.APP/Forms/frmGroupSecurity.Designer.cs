@@ -35,7 +35,6 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.btnEdit = new System.Windows.Forms.ToolStripButton();
             this.btnSave = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnRefresh = new System.Windows.Forms.ToolStripButton();
@@ -49,8 +48,8 @@
             this.ddlMenuName = new Telerik.WinControls.UI.RadDropDownList();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.txtControlName = new Telerik.WinControls.UI.RadTextBox();
-            this.txtControlDescription = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
+            this.txtControlDescription = new Telerik.WinControls.UI.RadTextBox();
             this.chkControlPermission = new Telerik.WinControls.UI.RadCheckBox();
             this.radGroupBox2 = new Telerik.WinControls.UI.RadGroupBox();
             this.dgvControlList = new Telerik.WinControls.UI.RadGridView();
@@ -68,8 +67,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.ddlMenuName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtControlName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtControlDescription)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtControlDescription)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkControlPermission)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).BeginInit();
             this.radGroupBox2.SuspendLayout();
@@ -97,7 +96,6 @@
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnEdit,
             this.btnSave,
             this.toolStripSeparator1,
             this.btnRefresh});
@@ -106,14 +104,6 @@
             this.toolStrip1.Size = new System.Drawing.Size(531, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.Image = ((System.Drawing.Image)(resources.GetObject("btnEdit.Image")));
-            this.btnEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(47, 22);
-            this.btnEdit.Text = "Edit";
             // 
             // btnSave
             // 
@@ -239,7 +229,7 @@
             this.radLabel4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radLabel4.Location = new System.Drawing.Point(7, 78);
             this.radLabel4.Name = "radLabel4";
-            this.radLabel4.Size = new System.Drawing.Size(95, 19);
+            this.radLabel4.Size = new System.Drawing.Size(95, 18);
             this.radLabel4.TabIndex = 0;
             this.radLabel4.Text = "Control Name :";
             // 
@@ -247,15 +237,8 @@
             // 
             this.txtControlName.Location = new System.Drawing.Point(108, 78);
             this.txtControlName.Name = "txtControlName";
-            this.txtControlName.Size = new System.Drawing.Size(150, 20);
+            this.txtControlName.Size = new System.Drawing.Size(150, 18);
             this.txtControlName.TabIndex = 2;
-            // 
-            // txtControlDescription
-            // 
-            this.txtControlDescription.Location = new System.Drawing.Point(108, 53);
-            this.txtControlDescription.Name = "txtControlDescription";
-            this.txtControlDescription.Size = new System.Drawing.Size(150, 20);
-            this.txtControlDescription.TabIndex = 2;
             // 
             // radLabel5
             // 
@@ -266,6 +249,13 @@
             this.radLabel5.Size = new System.Drawing.Size(80, 19);
             this.radLabel5.TabIndex = 0;
             this.radLabel5.Text = "Description :";
+            // 
+            // txtControlDescription
+            // 
+            this.txtControlDescription.Location = new System.Drawing.Point(108, 53);
+            this.txtControlDescription.Name = "txtControlDescription";
+            this.txtControlDescription.Size = new System.Drawing.Size(150, 19);
+            this.txtControlDescription.TabIndex = 2;
             // 
             // chkControlPermission
             // 
@@ -365,8 +355,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.ddlMenuName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtControlName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtControlDescription)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtControlDescription)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkControlPermission)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).EndInit();
             this.radGroupBox2.ResumeLayout(false);
@@ -380,7 +370,6 @@
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton btnEdit;
         private System.Windows.Forms.ToolStripButton btnSave;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton btnRefresh;

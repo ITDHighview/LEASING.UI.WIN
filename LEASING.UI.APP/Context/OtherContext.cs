@@ -137,7 +137,7 @@ namespace LEASING.UI.APP.Context
                 return dsRec;
             }
         }
-        public DataSet GetProjectStatusCount(int projectid)
+        public DataSet GetProjectStatusCount(int projectid, string UnitStatus, string ProjStatus)
         {
             SqlCommand _SqlCommand = null;
             SqlParameter _SqlParameter;
@@ -147,6 +147,10 @@ namespace LEASING.UI.APP.Context
                 _SqlCommand = new SqlCommand();
                 _SqlCommand.CommandText = "sp_GetProjectStatusCount";
                 _SqlParameter = new SqlParameter("@ProjectId", projectid);
+                _SqlCommand.Parameters.Add(_SqlParameter);
+                _SqlParameter = new SqlParameter("@UnitStatus", UnitStatus);
+                _SqlCommand.Parameters.Add(_SqlParameter);
+                _SqlParameter = new SqlParameter("@ProjStatus", ProjStatus);
                 _SqlCommand.Parameters.Add(_SqlParameter);
                 try
                 {

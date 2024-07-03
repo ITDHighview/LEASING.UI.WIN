@@ -1,3 +1,4 @@
+USE [LEASINGDB]
 ---[tblPermission]---
 
 CREATE INDEX [IdxtblPermission_PermissionId]

@@ -1,3 +1,4 @@
+USE [LEASINGDB]
 ---[tblProjPurchItem]---
 
 CREATE INDEX [IdxtblProjPurchItem_RecId]

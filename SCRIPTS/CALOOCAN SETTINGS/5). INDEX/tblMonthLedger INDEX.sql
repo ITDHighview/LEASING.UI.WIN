@@ -1,3 +1,4 @@
+USE [LEASINGDB]
 ---[tblMonthLedger]---
 
 CREATE INDEX [IdxtblMonthLedger_RecId]

@@ -19,6 +19,7 @@ namespace LEASING.UI.APP.Common
         const string CONTRACT_PARKING = "ContractSignedParking.rpt";
         const string CONTRACT_WAREHOUSE = "ContractSignedWareHouse.rpt";
         const string CONTRACT_COMMERCIAL = "ContractSignedCommercial.rpt";
+        const string GENERAL = "GeneralReport.rpt";
 
         public static string baseFolderPath = ConfigurationManager.AppSettings["ClientDocumentPath"].ToString();
 
@@ -38,6 +39,8 @@ namespace LEASING.UI.APP.Common
         public static string CONTRACT_PARKING_REPORT = ConfigurationManager.AppSettings["ReportPath"].ToString() + CONTRACT_PARKING;
         public static string CONTRACT_WAREHOUSE_REPORT = ConfigurationManager.AppSettings["ReportPath"].ToString() + CONTRACT_WAREHOUSE;
         public static string CONTRACT_COMMERCIAL_REPORT = ConfigurationManager.AppSettings["ReportPath"].ToString() + CONTRACT_COMMERCIAL;
+
+        public static string GENERAL_REPORT = ConfigurationManager.AppSettings["ReportPath"].ToString() + GENERAL;
 
         public static bool RecieptReportOption = Convert.ToBoolean(ConfigurationManager.AppSettings["RecieptReportOption"]);
         public static int NotificationSeconds = Convert.ToInt32(ConfigurationManager.AppSettings["NotificationSeconds"]);

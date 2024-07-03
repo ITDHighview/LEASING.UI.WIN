@@ -164,5 +164,10 @@ namespace LEASING.UI.APP.Forms
                 SaveControls();
             }
         }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

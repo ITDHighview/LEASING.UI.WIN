@@ -1,3 +1,4 @@
+USE [LEASINGDB]
 ---[tblMenu]---
 
 CREATE INDEX [IdxtblMenu_MenuId]

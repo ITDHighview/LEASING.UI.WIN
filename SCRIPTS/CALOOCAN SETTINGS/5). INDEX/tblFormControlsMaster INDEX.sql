@@ -1,3 +1,4 @@
+USE [LEASINGDB]
 ---[tblFormControlsMaster]---
 
 CREATE INDEX [IdxtblFormControlsMaster_ControlId]

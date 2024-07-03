@@ -1,3 +1,4 @@
+USE [LEASINGDB]
 ---[tblRatesSettings]---
 
 CREATE INDEX [IdxtblRatesSettings_RecId]

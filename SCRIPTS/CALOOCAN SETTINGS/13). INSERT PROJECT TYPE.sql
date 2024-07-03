@@ -1,20 +1,27 @@
+USE [LEASINGDB]
 INSERT INTO [dbo].[tblProjectType]
-(
-    [ProjectTypeName]
-)
+    (
+        [ProjectTypeName]
+    )
 VALUES
-('RESIDENTIAL');
+    (
+        'RESIDENTIAL'
+    );
 
 INSERT INTO [dbo].[tblProjectType]
-(
-    [ProjectTypeName]
-)
+    (
+        [ProjectTypeName]
+    )
 VALUES
-('WAREHOUSE');
+    (
+        'WAREHOUSE'
+    );
 
 INSERT INTO [dbo].[tblProjectType]
-(
-    [ProjectTypeName]
-)
+    (
+        [ProjectTypeName]
+    )
 VALUES
-('COMMERCIAL');
+    (
+        'COMMERCIAL'
+    );

@@ -130,7 +130,7 @@ namespace LEASING.UI.APP.Forms
             lblVacantCount.Text = "0";
             lblHoldCount.Text = "0";
 
-            using (DataSet dt = OtherContext.GetProjectStatusCount(Convert.ToInt32(ddlProject.SelectedValue)))
+            using (DataSet dt = OtherContext.GetProjectStatusCount(Convert.ToInt32(ddlProject.SelectedValue), ddlUnitStatus.SelectedText, ddlProject.SelectedText))
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                 {
@@ -634,11 +634,12 @@ namespace LEASING.UI.APP.Forms
 
         private void ddlProject_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
         {
-            if (ddlProject.SelectedIndex > 0)
+            if (ddlProject.SelectedIndex >= 0)
             {
                 if (ddlProject.SelectedText == "--ALL--")
                 {
-                    ddlUnitStatus.SelectedText = "--ALL--";
+                    ddlUnitStatus.Text  = "";
+                   ddlUnitStatus.Text = "--ALL--";
                 }
                 M_GetUnitListByProjectAndStatus();
                 M_GetUnitListByProjectAndStatusCount();
@@ -650,6 +651,7 @@ namespace LEASING.UI.APP.Forms
             if (ddlProject.SelectedIndex >= 0)
             {
                 M_GetUnitListByProjectAndStatus();
+                M_GetUnitListByProjectAndStatusCount();
             }
         }
 
@@ -701,6 +703,17 @@ namespace LEASING.UI.APP.Forms
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             M_GetUnitListByProjectAndStatus();
+        }
+
+        private void radMenuItemReports_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radMenuItemGeneralReport_Click(object sender, EventArgs e)
+        {
+            frmGeneralReportSetPreview frmReport = new frmGeneralReportSetPreview();
+            frmReport.ShowDialog();
         }
     }
 }

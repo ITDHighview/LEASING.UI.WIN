@@ -1,3 +1,4 @@
+USE [LEASINGDB]
 ---[tblLocationMstr]---
 
 CREATE INDEX [IdxtblLocationMstr_RecId]

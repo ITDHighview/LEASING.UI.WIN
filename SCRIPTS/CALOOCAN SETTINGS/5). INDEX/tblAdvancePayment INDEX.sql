@@ -1,4 +1,4 @@
-
+USE [LEASINGDB]
 ---[tblAdvancePayment]---
 
 CREATE INDEX [IdxtblAdvancePayment_RecId]

@@ -1,3 +1,4 @@
+USE [LEASINGDB]
 ---[tblFloorTypes]---
 
 CREATE INDEX [IdxtblFloorTypes_RecId]

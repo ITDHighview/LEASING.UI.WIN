@@ -1,3 +1,4 @@
+USE [LEASINGDB]
 ---[tblPaymentMode]---
 
 CREATE INDEX [IdxtblPaymentMode_RecId]

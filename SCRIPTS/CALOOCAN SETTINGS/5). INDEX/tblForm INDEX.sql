@@ -1,3 +1,4 @@
+USE [LEASINGDB]
 ---[tblForm]---
 
 CREATE INDEX [IdxtblForm_FormId]

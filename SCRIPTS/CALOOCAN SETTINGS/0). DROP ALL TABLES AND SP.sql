@@ -1,47 +1,69 @@
-USE LEASINGDB
+USE [LEASINGDB]
 
-declare @n char(1)
-set @n = char(10)
+DECLARE @n CHAR(1)
+SET @n = CHAR(10)
 
-declare @stmt nvarchar(max)
+DECLARE @stmt NVARCHAR(MAX)
 
 -- procedures
-select @stmt = isnull( @stmt + @n, '' ) +
-    'drop procedure [' + schema_name(schema_id) + '].[' + name + ']'
-from sys.procedures
+SELECT
+    @stmt
+    = ISNULL(@stmt + @n, '') + N'drop procedure [' + SCHEMA_NAME([procedures].[schema_id]) + N'].['
+      + [procedures].[name] + N']'
+FROM
+    [sys].[procedures]
 
 
 -- check constraints
-select @stmt = isnull( @stmt + @n, '' ) +
-'alter table [' + schema_name(schema_id) + '].[' + object_name( parent_object_id ) + ']    drop constraint [' + name + ']'
-from sys.check_constraints
+SELECT
+    @stmt
+    = ISNULL(@stmt + @n, '') + N'alter table [' + SCHEMA_NAME([check_constraints].[schema_id]) + N'].['
+      + OBJECT_NAME([check_constraints].[parent_object_id]) + N']    drop constraint [' + [check_constraints].[name]
+      + N']'
+FROM
+    [sys].[check_constraints]
 
 -- functions
-select @stmt = isnull( @stmt + @n, '' ) +
-    'drop function [' + schema_name(schema_id) + '].[' + name + ']'
-from sys.objects
-where type in ( 'FN', 'IF', 'TF' )
+SELECT
+    @stmt
+    = ISNULL(@stmt + @n, '') + N'drop function [' + SCHEMA_NAME([objects].[schema_id]) + N'].[' + [objects].[name]
+      + N']'
+FROM
+    [sys].[objects]
+WHERE
+    [objects].[type] IN (
+                            'FN', 'IF', 'TF'
+                        )
 
 -- views
-select @stmt = isnull( @stmt + @n, '' ) +
-    'drop view [' + schema_name(schema_id) + '].[' + name + ']'
-from sys.views
+SELECT
+    @stmt = ISNULL(@stmt + @n, '') + N'drop view [' + SCHEMA_NAME([views].[schema_id]) + N'].[' + [views].[name] + N']'
+FROM
+    [sys].[views]
 
 -- foreign keys
-select @stmt = isnull( @stmt + @n, '' ) +
-    'alter table [' + schema_name(schema_id) + '].[' + object_name( parent_object_id ) + '] drop constraint [' + name + ']'
-from sys.foreign_keys
+SELECT
+    @stmt
+    = ISNULL(@stmt + @n, '') + N'alter table [' + SCHEMA_NAME([foreign_keys].[schema_id]) + N'].['
+      + OBJECT_NAME([foreign_keys].[parent_object_id]) + N'] drop constraint [' + [foreign_keys].[name] + N']'
+FROM
+    [sys].[foreign_keys]
 
 -- tables
-select @stmt = isnull( @stmt + @n, '' ) +
-    'drop table [' + schema_name(schema_id) + '].[' + name + ']'
-from sys.tables
+SELECT
+    @stmt
+    = ISNULL(@stmt + @n, '') + N'drop table [' + SCHEMA_NAME([tables].[schema_id]) + N'].[' + [tables].[name] + N']'
+FROM
+    [sys].[tables]
 
 -- user defined types
-select @stmt = isnull( @stmt + @n, '' ) +
-    'drop type [' + schema_name(schema_id) + '].[' + name + ']'
-from sys.types
-where is_user_defined = 1
+SELECT
+    @stmt = ISNULL(@stmt + @n, '') + N'drop type [' + SCHEMA_NAME([types].[schema_id]) + N'].[' + [types].[name] + N']'
+FROM
+    [sys].[types]
+WHERE
+    [types].[is_user_defined] = 1
 
 
-exec sp_executesql @stmt
+EXEC [sys].[sp_executesql]
+    @stmt

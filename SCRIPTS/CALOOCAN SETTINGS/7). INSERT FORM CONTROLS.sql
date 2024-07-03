@@ -172,6 +172,12 @@ VALUES
     ),
     (
         54, 1, 7, 'radMenuItemGeneralReport', 'General Report', 0, 0, 0
+    ),
+    (
+        55, 1, 10, 'radMenuItemFloorTypes', 'Floor Type', 0, 0, 0
+    ),
+    (
+        56, 1, 11, 'radMenuItemSpecialControlPermission', 'Special Control Permission', 0, 0, 0
     )
 SET IDENTITY_INSERT [dbo].[tblFormControlsMaster] OFF;
 

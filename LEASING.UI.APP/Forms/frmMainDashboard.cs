@@ -712,8 +712,26 @@ namespace LEASING.UI.APP.Forms
 
         private void radMenuItemGeneralReport_Click(object sender, EventArgs e)
         {
+            TimerCountDown.Stop();
             frmGeneralReportSetPreview frmReport = new frmGeneralReportSetPreview();
             frmReport.ShowDialog();
+            TimerCountDown.Start();
+        }
+
+        private void radMenuItemFloorTypes_Click(object sender, EventArgs e)
+        {
+            TimerCountDown.Stop();
+            frmAddFloorType frmFloorType = new frmAddFloorType();
+            frmFloorType.ShowDialog();
+            TimerCountDown.Start();
+        }
+
+        private void radMenuItemSpecialControlPermission_Click(object sender, EventArgs e)
+        {
+            TimerCountDown.Stop();
+            frmSpecialControlPermission frmSpecialPermission = new frmSpecialControlPermission();
+            frmSpecialPermission.ShowDialog();
+            TimerCountDown.Start();
         }
     }
 }

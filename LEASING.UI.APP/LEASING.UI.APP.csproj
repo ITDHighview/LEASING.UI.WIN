@@ -163,6 +163,12 @@
     <Compile Include="Forms\frmAddBankName.Designer.cs">
       <DependentUpon>frmAddBankName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmAddFloorType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmAddFloorType.Designer.cs">
+      <DependentUpon>frmAddFloorType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmAddNewClient.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -451,6 +457,12 @@
     <Compile Include="Forms\frmSelectClientReferencePaid.Designer.cs">
       <DependentUpon>frmSelectClientReferencePaid.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmSpecialControlPermission.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmSpecialControlPermission.Designer.cs">
+      <DependentUpon>frmSpecialControlPermission.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmTenantMoveOutParking.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -672,6 +684,9 @@
     <EmbeddedResource Include="Forms\frmAddBankName.resx">
       <DependentUpon>frmAddBankName.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmAddFloorType.resx">
+      <DependentUpon>frmAddFloorType.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmAddNewClient.resx">
       <DependentUpon>frmAddNewClient.cs</DependentUpon>
     </EmbeddedResource>
@@ -815,6 +830,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmSelectClientReferencePaid.resx">
       <DependentUpon>frmSelectClientReferencePaid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmSpecialControlPermission.resx">
+      <DependentUpon>frmSpecialControlPermission.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmTenantMoveOutParking.resx">
       <DependentUpon>frmTenantMoveOutParking.cs</DependentUpon>

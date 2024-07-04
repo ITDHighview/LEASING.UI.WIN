@@ -157,7 +157,7 @@ namespace LEASING.UI.APP.Forms
         {
             if (this._isValid())
             {
-                if (Functions.MessageConfirm("Are you sure you want to add this Bank Name ?") == DialogResult.Yes)
+                if (Functions.MessageConfirm("Are you sure you want to add this Floor Type ?") == DialogResult.Yes)
                 {
                     this.SaveTypeName();
                 }

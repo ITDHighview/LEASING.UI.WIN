@@ -48,6 +48,22 @@ namespace LEASING.UI.APP.Forms
             Functions.EventCapturefrmName(this);
             M_GetContractList(ContractNumber);
         }
+        private string GetPaymentLevel()
+        {
+            if (Convert.ToString(dgvReceiptList.CurrentRow.Cells["Description"].Value) == "FIRST PAYMENT")
+            {
+                return "FIRST";
+            }
+            else if (Convert.ToString(dgvReceiptList.CurrentRow.Cells["Description"].Value) == "FULL PAYMENT")
+            {
+                return "FIRST";
+            }
+            else
+            {
+                return "SECOND";
+            }
+            return "";
+        }
         private void dgvReceiptList_CellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -69,10 +85,22 @@ namespace LEASING.UI.APP.Forms
                         IsNoOR = false;
                     }
 
-                    frmRecieptSelection forms = new frmRecieptSelection(Convert.ToString(dgvReceiptList.CurrentRow.Cells["TranID"].Value), Convert.ToString(dgvReceiptList.CurrentRow.Cells["RefId"].Value),"");
-                    forms.IsNoOR = IsNoOR;
+                    //frmRecieptSelection forms = new frmRecieptSelection(Convert.ToString(dgvReceiptList.CurrentRow.Cells["TranID"].Value), Convert.ToString(dgvReceiptList.CurrentRow.Cells["RefId"].Value),"");
+                    //forms.IsNoOR = IsNoOR;
 
-                    forms.ShowDialog();
+                    //forms.ShowDialog();
+                    if (this.GetPaymentLevel() == "FIRST")
+                    {
+                        frmRecieptSelection forms = new frmRecieptSelection(Convert.ToString(dgvReceiptList.CurrentRow.Cells["TranID"].Value), Convert.ToString(dgvReceiptList.CurrentRow.Cells["RefId"].Value), this.GetPaymentLevel());
+                        forms.IsNoOR = IsNoOR;
+                        forms.ShowDialog();
+                    }
+                    else
+                    {
+                        frmRecieptSelectionSecondPayment formsSecond = new frmRecieptSelectionSecondPayment(Convert.ToString(dgvReceiptList.CurrentRow.Cells["TranID"].Value), Convert.ToString(dgvReceiptList.CurrentRow.Cells["RefId"].Value), this.GetPaymentLevel());
+                        formsSecond.IsNoOR = IsNoOR;
+                        formsSecond.ShowDialog();
+                    }
                 }
                 else if (this.dgvReceiptList.Columns[e.ColumnIndex].Name == "ColEditOR")
                 {

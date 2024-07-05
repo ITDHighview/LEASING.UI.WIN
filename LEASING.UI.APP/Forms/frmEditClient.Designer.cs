@@ -97,6 +97,7 @@
             this.dgvFileList = new Telerik.WinControls.UI.RadGridView();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.btnNewProject = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnSave = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnUndo = new System.Windows.Forms.ToolStripButton();
@@ -105,7 +106,6 @@
             this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
             this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).BeginInit();
             this.radGroupBox3.SuspendLayout();
@@ -207,9 +207,11 @@
             this.tableLayoutPanel6.ColumnCount = 4;
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 174F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 355F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 118F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 117F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel6.Controls.Add(this.radLabel23, 0, 1);
+            this.tableLayoutPanel6.Controls.Add(this.txtnationality, 1, 4);
+            this.tableLayoutPanel6.Controls.Add(this.radLabel10, 0, 4);
             this.tableLayoutPanel6.Controls.Add(this.txtClienID, 1, 0);
             this.tableLayoutPanel6.Controls.Add(this.txtage, 3, 2);
             this.tableLayoutPanel6.Controls.Add(this.radLabel19, 0, 14);
@@ -220,25 +222,19 @@
             this.tableLayoutPanel6.Controls.Add(this.txtoccupation, 1, 6);
             this.tableLayoutPanel6.Controls.Add(this.radLabel9, 0, 5);
             this.tableLayoutPanel6.Controls.Add(this.txttelno, 1, 5);
-            this.tableLayoutPanel6.Controls.Add(this.radLabel4, 0, 4);
-            this.tableLayoutPanel6.Controls.Add(this.dtpdob, 1, 4);
             this.tableLayoutPanel6.Controls.Add(this.radLabel3, 0, 3);
             this.tableLayoutPanel6.Controls.Add(this.txtpostaladdress, 1, 3);
             this.tableLayoutPanel6.Controls.Add(this.radLabel1, 0, 2);
             this.tableLayoutPanel6.Controls.Add(this.txtname, 1, 2);
             this.tableLayoutPanel6.Controls.Add(this.radLabel22, 0, 15);
             this.tableLayoutPanel6.Controls.Add(this.btnUploadFile, 1, 15);
-            this.tableLayoutPanel6.Controls.Add(this.radLabel6, 2, 1);
             this.tableLayoutPanel6.Controls.Add(this.radLabel2, 2, 2);
             this.tableLayoutPanel6.Controls.Add(this.ddlClientType, 1, 1);
-            this.tableLayoutPanel6.Controls.Add(this.radLabel10, 2, 0);
-            this.tableLayoutPanel6.Controls.Add(this.txtnationality, 3, 0);
             this.tableLayoutPanel6.Controls.Add(this.radLabel12, 2, 4);
             this.tableLayoutPanel6.Controls.Add(this.txtannualincome, 3, 4);
             this.tableLayoutPanel6.Controls.Add(this.radLabel18, 2, 5);
             this.tableLayoutPanel6.Controls.Add(this.txtnameofdriver, 3, 5);
             this.tableLayoutPanel6.Controls.Add(this.radGroupBox1, 2, 6);
-            this.tableLayoutPanel6.Controls.Add(this.ddlgender, 3, 1);
             this.tableLayoutPanel6.Controls.Add(this.radLabel20, 0, 0);
             this.tableLayoutPanel6.Controls.Add(this.txttotalnoofperson, 1, 12);
             this.tableLayoutPanel6.Controls.Add(this.radLabel16, 0, 12);
@@ -252,6 +248,10 @@
             this.tableLayoutPanel6.Controls.Add(this.txtnameofemployer, 1, 8);
             this.tableLayoutPanel6.Controls.Add(this.txtTinNo, 1, 7);
             this.tableLayoutPanel6.Controls.Add(this.radLabel21, 0, 7);
+            this.tableLayoutPanel6.Controls.Add(this.radLabel6, 2, 0);
+            this.tableLayoutPanel6.Controls.Add(this.ddlgender, 3, 0);
+            this.tableLayoutPanel6.Controls.Add(this.radLabel4, 2, 1);
+            this.tableLayoutPanel6.Controls.Add(this.dtpdob, 3, 1);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel6.Location = new System.Drawing.Point(2, 18);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
@@ -290,17 +290,17 @@
             this.txtClienID.Location = new System.Drawing.Point(177, 3);
             this.txtClienID.Name = "txtClienID";
             this.txtClienID.NullText = "Type here...";
-            this.txtClienID.Size = new System.Drawing.Size(168, 20);
+            this.txtClienID.Size = new System.Drawing.Size(168, 19);
             this.txtClienID.TabIndex = 1;
             this.txtClienID.ThemeName = "Office2007Silver";
             // 
             // txtage
             // 
-            this.txtage.Location = new System.Drawing.Point(650, 53);
+            this.txtage.Location = new System.Drawing.Point(649, 53);
             this.txtage.MaxLength = 2;
             this.txtage.Name = "txtage";
             this.txtage.NullText = "0";
-            this.txtage.Size = new System.Drawing.Size(82, 20);
+            this.txtage.Size = new System.Drawing.Size(125, 20);
             this.txtage.TabIndex = 1;
             this.txtage.ThemeName = "Office2007Silver";
             // 
@@ -319,7 +319,7 @@
             this.txtnoofvisitorperday.Location = new System.Drawing.Point(177, 353);
             this.txtnoofvisitorperday.Name = "txtnoofvisitorperday";
             this.txtnoofvisitorperday.NullText = "0";
-            this.txtnoofvisitorperday.Size = new System.Drawing.Size(74, 20);
+            this.txtnoofvisitorperday.Size = new System.Drawing.Size(74, 19);
             this.txtnoofvisitorperday.TabIndex = 1;
             this.txtnoofvisitorperday.ThemeName = "Office2007Silver";
             // 
@@ -338,7 +338,7 @@
             this.txtnameofmaid.Location = new System.Drawing.Point(177, 328);
             this.txtnameofmaid.Name = "txtnameofmaid";
             this.txtnameofmaid.NullText = "Type here...";
-            this.txtnameofmaid.Size = new System.Drawing.Size(343, 20);
+            this.txtnameofmaid.Size = new System.Drawing.Size(343, 19);
             this.txtnameofmaid.TabIndex = 1;
             this.txtnameofmaid.ThemeName = "Office2007Silver";
             // 
@@ -357,7 +357,7 @@
             this.txtoccupation.Location = new System.Drawing.Point(177, 153);
             this.txtoccupation.Name = "txtoccupation";
             this.txtoccupation.NullText = "Type here...";
-            this.txtoccupation.Size = new System.Drawing.Size(343, 20);
+            this.txtoccupation.Size = new System.Drawing.Size(343, 19);
             this.txtoccupation.TabIndex = 1;
             this.txtoccupation.ThemeName = "Office2007Silver";
             // 
@@ -376,7 +376,7 @@
             this.txttelno.Location = new System.Drawing.Point(177, 128);
             this.txttelno.Name = "txttelno";
             this.txttelno.NullText = "Type here...";
-            this.txttelno.Size = new System.Drawing.Size(343, 20);
+            this.txttelno.Size = new System.Drawing.Size(343, 19);
             this.txttelno.TabIndex = 1;
             this.txttelno.ThemeName = "Office2007Silver";
             // 
@@ -384,7 +384,7 @@
             // 
             this.radLabel4.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.radLabel4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel4.Location = new System.Drawing.Point(83, 103);
+            this.radLabel4.Location = new System.Drawing.Point(555, 28);
             this.radLabel4.Name = "radLabel4";
             this.radLabel4.Size = new System.Drawing.Size(88, 19);
             this.radLabel4.TabIndex = 0;
@@ -393,14 +393,15 @@
             // dtpdob
             // 
             this.dtpdob.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpdob.Location = new System.Drawing.Point(177, 103);
+            this.dtpdob.Location = new System.Drawing.Point(649, 28);
             this.dtpdob.Name = "dtpdob";
-            this.dtpdob.Size = new System.Drawing.Size(94, 20);
+            this.dtpdob.Size = new System.Drawing.Size(125, 20);
             this.dtpdob.TabIndex = 2;
             this.dtpdob.TabStop = false;
             this.dtpdob.Text = "7/5/2023";
             this.dtpdob.ThemeName = "Office2007Silver";
             this.dtpdob.Value = new System.DateTime(2023, 7, 5, 21, 32, 28, 354);
+            this.dtpdob.ValueChanged += new System.EventHandler(this.dtpdob_ValueChanged);
             // 
             // radLabel3
             // 
@@ -418,7 +419,7 @@
             this.txtpostaladdress.Location = new System.Drawing.Point(177, 78);
             this.txtpostaladdress.Name = "txtpostaladdress";
             this.txtpostaladdress.NullText = "Type here...";
-            this.txtpostaladdress.Size = new System.Drawing.Size(748, 20);
+            this.txtpostaladdress.Size = new System.Drawing.Size(748, 19);
             this.txtpostaladdress.TabIndex = 1;
             this.txtpostaladdress.ThemeName = "Office2007Silver";
             // 
@@ -437,7 +438,7 @@
             this.txtname.Location = new System.Drawing.Point(177, 53);
             this.txtname.Name = "txtname";
             this.txtname.NullText = "Type here...";
-            this.txtname.Size = new System.Drawing.Size(343, 20);
+            this.txtname.Size = new System.Drawing.Size(343, 19);
             this.txtname.TabIndex = 1;
             this.txtname.ThemeName = "Office2007Silver";
             // 
@@ -467,7 +468,7 @@
             // 
             this.radLabel6.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.radLabel6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel6.Location = new System.Drawing.Point(589, 28);
+            this.radLabel6.Location = new System.Drawing.Point(588, 3);
             this.radLabel6.Name = "radLabel6";
             this.radLabel6.Size = new System.Drawing.Size(55, 19);
             this.radLabel6.TabIndex = 0;
@@ -477,7 +478,7 @@
             // 
             this.radLabel2.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.radLabel2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel2.Location = new System.Drawing.Point(608, 53);
+            this.radLabel2.Location = new System.Drawing.Point(607, 53);
             this.radLabel2.Name = "radLabel2";
             this.radLabel2.Size = new System.Drawing.Size(36, 19);
             this.radLabel2.TabIndex = 0;
@@ -492,7 +493,7 @@
             this.ddlClientType.Location = new System.Drawing.Point(177, 28);
             this.ddlClientType.Name = "ddlClientType";
             this.ddlClientType.NullText = "Select here...";
-            this.ddlClientType.Size = new System.Drawing.Size(125, 20);
+            this.ddlClientType.Size = new System.Drawing.Size(125, 19);
             this.ddlClientType.TabIndex = 3;
             this.ddlClientType.ThemeName = "Office2007Silver";
             this.ddlClientType.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.ddlClientType_SelectedIndexChanged);
@@ -501,7 +502,7 @@
             // 
             this.radLabel10.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.radLabel10.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel10.Location = new System.Drawing.Point(566, 3);
+            this.radLabel10.Location = new System.Drawing.Point(93, 103);
             this.radLabel10.Name = "radLabel10";
             this.radLabel10.Size = new System.Drawing.Size(78, 19);
             this.radLabel10.TabIndex = 0;
@@ -509,7 +510,7 @@
             // 
             // txtnationality
             // 
-            this.txtnationality.Location = new System.Drawing.Point(650, 3);
+            this.txtnationality.Location = new System.Drawing.Point(177, 103);
             this.txtnationality.Name = "txtnationality";
             this.txtnationality.NullText = "Type here...";
             this.txtnationality.Size = new System.Drawing.Size(125, 20);
@@ -520,7 +521,7 @@
             // 
             this.radLabel12.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.radLabel12.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel12.Location = new System.Drawing.Point(543, 103);
+            this.radLabel12.Location = new System.Drawing.Point(542, 103);
             this.radLabel12.Name = "radLabel12";
             this.radLabel12.Size = new System.Drawing.Size(101, 19);
             this.radLabel12.TabIndex = 0;
@@ -528,7 +529,7 @@
             // 
             // txtannualincome
             // 
-            this.txtannualincome.Location = new System.Drawing.Point(650, 103);
+            this.txtannualincome.Location = new System.Drawing.Point(649, 103);
             this.txtannualincome.MaxLength = 12;
             this.txtannualincome.Name = "txtannualincome";
             this.txtannualincome.NullText = "0.00";
@@ -540,7 +541,7 @@
             // 
             this.radLabel18.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.radLabel18.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel18.Location = new System.Drawing.Point(541, 128);
+            this.radLabel18.Location = new System.Drawing.Point(540, 128);
             this.radLabel18.Name = "radLabel18";
             this.radLabel18.Size = new System.Drawing.Size(103, 19);
             this.radLabel18.TabIndex = 0;
@@ -548,7 +549,7 @@
             // 
             // txtnameofdriver
             // 
-            this.txtnameofdriver.Location = new System.Drawing.Point(650, 128);
+            this.txtnameofdriver.Location = new System.Drawing.Point(649, 128);
             this.txtnameofdriver.Name = "txtnameofdriver";
             this.txtnameofdriver.NullText = "Type here...";
             this.txtnameofdriver.Size = new System.Drawing.Size(275, 20);
@@ -648,7 +649,7 @@
             radListDataItem4.Text = "FEMALE";
             this.ddlgender.Items.Add(radListDataItem3);
             this.ddlgender.Items.Add(radListDataItem4);
-            this.ddlgender.Location = new System.Drawing.Point(650, 28);
+            this.ddlgender.Location = new System.Drawing.Point(649, 3);
             this.ddlgender.Name = "ddlgender";
             this.ddlgender.NullText = "Select Here...";
             this.ddlgender.Size = new System.Drawing.Size(125, 20);
@@ -671,7 +672,7 @@
             this.txttotalnoofperson.MaxLength = 3;
             this.txttotalnoofperson.Name = "txttotalnoofperson";
             this.txttotalnoofperson.NullText = "0";
-            this.txttotalnoofperson.Size = new System.Drawing.Size(74, 20);
+            this.txttotalnoofperson.Size = new System.Drawing.Size(74, 19);
             this.txttotalnoofperson.TabIndex = 1;
             this.txttotalnoofperson.ThemeName = "Office2007Silver";
             // 
@@ -700,7 +701,7 @@
             this.txtnameofchildren.Location = new System.Drawing.Point(177, 278);
             this.txtnameofchildren.Name = "txtnameofchildren";
             this.txtnameofchildren.NullText = "Type here...";
-            this.txtnameofchildren.Size = new System.Drawing.Size(343, 20);
+            this.txtnameofchildren.Size = new System.Drawing.Size(343, 19);
             this.txtnameofchildren.TabIndex = 1;
             this.txtnameofchildren.ThemeName = "Office2007Silver";
             // 
@@ -719,7 +720,7 @@
             this.txtspousename.Location = new System.Drawing.Point(177, 253);
             this.txtspousename.Name = "txtspousename";
             this.txtspousename.NullText = "Type here...";
-            this.txtspousename.Size = new System.Drawing.Size(343, 20);
+            this.txtspousename.Size = new System.Drawing.Size(343, 19);
             this.txtspousename.TabIndex = 1;
             this.txtspousename.ThemeName = "Office2007Silver";
             // 
@@ -738,7 +739,7 @@
             this.txtaddresstelephoneno.Location = new System.Drawing.Point(177, 228);
             this.txtaddresstelephoneno.Name = "txtaddresstelephoneno";
             this.txtaddresstelephoneno.NullText = "Type here...";
-            this.txtaddresstelephoneno.Size = new System.Drawing.Size(343, 20);
+            this.txtaddresstelephoneno.Size = new System.Drawing.Size(343, 19);
             this.txtaddresstelephoneno.TabIndex = 1;
             this.txtaddresstelephoneno.ThemeName = "Office2007Silver";
             // 
@@ -757,7 +758,7 @@
             this.txtnameofemployer.Location = new System.Drawing.Point(177, 203);
             this.txtnameofemployer.Name = "txtnameofemployer";
             this.txtnameofemployer.NullText = "Type here...";
-            this.txtnameofemployer.Size = new System.Drawing.Size(343, 20);
+            this.txtnameofemployer.Size = new System.Drawing.Size(343, 19);
             this.txtnameofemployer.TabIndex = 1;
             this.txtnameofemployer.ThemeName = "Office2007Silver";
             // 
@@ -766,7 +767,7 @@
             this.txtTinNo.Location = new System.Drawing.Point(177, 178);
             this.txtTinNo.Name = "txtTinNo";
             this.txtTinNo.NullText = "Type here...";
-            this.txtTinNo.Size = new System.Drawing.Size(343, 20);
+            this.txtTinNo.Size = new System.Drawing.Size(343, 19);
             this.txtTinNo.TabIndex = 1;
             this.txtTinNo.ThemeName = "Office2007Silver";
             // 
@@ -893,6 +894,11 @@
             this.btnNewProject.Text = "Edit";
             this.btnNewProject.Click += new System.EventHandler(this.btnNewProject_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
             // btnSave
             // 
             this.btnSave.ForeColor = System.Drawing.Color.Black;
@@ -963,11 +969,6 @@
             this.radLabel7.TabIndex = 0;
             this.radLabel7.Text = "Encoded By : 12345 - N/A";
             this.radLabel7.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // frmEditClient
             // 

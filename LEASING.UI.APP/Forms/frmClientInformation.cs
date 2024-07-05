@@ -323,11 +323,25 @@ namespace LEASING.UI.APP.Forms
             }
             this._getClientInfo();
         }
+        private int CalculateAge(DateTime birthDate)
+        {
+            DateTime currentDate = DateTime.Now;
+            int age = currentDate.Year - birthDate.Year;
+            if (currentDate.Month < birthDate.Month || (currentDate.Month == birthDate.Month && currentDate.Day < birthDate.Day))
+            {
+                age--;
+            }
+            return age;
+        }
         private void frmClientInformation_Load(object sender, EventArgs e)
         {
             Functions.EventCapturefrmName(this);
             this.FormMode = ModeStatus.READ.ToString();
             //Functions.SecurityControls(this);
+            DateTime dtt = dtpdob.Value;
+            int age = CalculateAge(dtt);
+            txtage.Text = string.Empty;
+            txtage.Text = age.ToString();
         }
         private void btnUndo_Click(object sender, EventArgs e)
         {

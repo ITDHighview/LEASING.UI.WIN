@@ -205,8 +205,6 @@
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 131F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel6.Controls.Add(this.radGroupBox1, 2, 7);
-            this.tableLayoutPanel6.Controls.Add(this.radLabel2, 2, 2);
-            this.tableLayoutPanel6.Controls.Add(this.txtage, 3, 2);
             this.tableLayoutPanel6.Controls.Add(this.txtnoofvisitorperday, 1, 15);
             this.tableLayoutPanel6.Controls.Add(this.radLabel19, 0, 15);
             this.tableLayoutPanel6.Controls.Add(this.radLabel17, 0, 14);
@@ -219,8 +217,6 @@
             this.tableLayoutPanel6.Controls.Add(this.radLabel11, 0, 7);
             this.tableLayoutPanel6.Controls.Add(this.txttelno, 1, 6);
             this.tableLayoutPanel6.Controls.Add(this.radLabel9, 0, 6);
-            this.tableLayoutPanel6.Controls.Add(this.dtpdob, 1, 5);
-            this.tableLayoutPanel6.Controls.Add(this.radLabel4, 0, 5);
             this.tableLayoutPanel6.Controls.Add(this.radLabel3, 0, 4);
             this.tableLayoutPanel6.Controls.Add(this.txtpostaladdress, 1, 4);
             this.tableLayoutPanel6.Controls.Add(this.radLabel1, 0, 3);
@@ -247,6 +243,10 @@
             this.tableLayoutPanel6.Controls.Add(this.txtnameofemployer, 1, 9);
             this.tableLayoutPanel6.Controls.Add(this.radLabel8, 0, 8);
             this.tableLayoutPanel6.Controls.Add(this.txtTinNo, 1, 8);
+            this.tableLayoutPanel6.Controls.Add(this.radLabel2, 2, 3);
+            this.tableLayoutPanel6.Controls.Add(this.txtage, 3, 3);
+            this.tableLayoutPanel6.Controls.Add(this.radLabel4, 2, 2);
+            this.tableLayoutPanel6.Controls.Add(this.dtpdob, 3, 2);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel6.Location = new System.Drawing.Point(2, 18);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
@@ -382,7 +382,7 @@
             // 
             this.radLabel2.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.radLabel2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel2.Location = new System.Drawing.Point(621, 53);
+            this.radLabel2.Location = new System.Drawing.Point(621, 78);
             this.radLabel2.Name = "radLabel2";
             this.radLabel2.Size = new System.Drawing.Size(36, 19);
             this.radLabel2.TabIndex = 0;
@@ -390,11 +390,11 @@
             // 
             // txtage
             // 
-            this.txtage.Location = new System.Drawing.Point(663, 53);
+            this.txtage.Location = new System.Drawing.Point(663, 78);
             this.txtage.MaxLength = 2;
             this.txtage.Name = "txtage";
             this.txtage.NullText = "0";
-            this.txtage.Size = new System.Drawing.Size(82, 19);
+            this.txtage.Size = new System.Drawing.Size(125, 20);
             this.txtage.TabIndex = 1;
             this.txtage.ThemeName = "Office2007Silver";
             // 
@@ -516,9 +516,9 @@
             // dtpdob
             // 
             this.dtpdob.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpdob.Location = new System.Drawing.Point(177, 128);
+            this.dtpdob.Location = new System.Drawing.Point(663, 53);
             this.dtpdob.Name = "dtpdob";
-            this.dtpdob.Size = new System.Drawing.Size(94, 19);
+            this.dtpdob.Size = new System.Drawing.Size(125, 20);
             this.dtpdob.TabIndex = 2;
             this.dtpdob.TabStop = false;
             this.dtpdob.Text = "7/5/2023";
@@ -529,7 +529,7 @@
             // 
             this.radLabel4.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.radLabel4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel4.Location = new System.Drawing.Point(83, 128);
+            this.radLabel4.Location = new System.Drawing.Point(569, 53);
             this.radLabel4.Name = "radLabel4";
             this.radLabel4.Size = new System.Drawing.Size(88, 19);
             this.radLabel4.TabIndex = 0;

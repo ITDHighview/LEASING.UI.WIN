@@ -427,5 +427,23 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
+        private int CalculateAge(DateTime birthDate)
+        {           
+            DateTime currentDate = DateTime.Now;          
+            int age = currentDate.Year - birthDate.Year;        
+            if (currentDate.Month < birthDate.Month || (currentDate.Month == birthDate.Month && currentDate.Day < birthDate.Day))
+            {
+                age--;
+            }
+            return age;
+        }
+        private void dtpdob_ValueChanged(object sender, EventArgs e)
+        {
+            DateTime dtt = dtpdob.Value;           
+            int age = CalculateAge(dtt);           
+            txtage.Text = string.Empty;
+            txtage.Text = age.ToString();
+            //txtage.Focus();
+        }
     }
 }

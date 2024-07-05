@@ -374,6 +374,10 @@ namespace LEASING.UI.APP.Forms
             }
             M_GetClientFileList();
             M_GetReferenceByClientID();
+            DateTime dtt = dtpdob.Value;
+            int age = CalculateAge(dtt);
+            txtage.Text = string.Empty;
+            txtage.Text = age.ToString();
         }
         private void dgvFileList_CellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
@@ -540,6 +544,24 @@ namespace LEASING.UI.APP.Forms
                     EnabledFields();
                 }
             }
+        }
+        private int CalculateAge(DateTime birthDate)
+        {
+            DateTime currentDate = DateTime.Now;
+            int age = currentDate.Year - birthDate.Year;
+            if (currentDate.Month < birthDate.Month || (currentDate.Month == birthDate.Month && currentDate.Day < birthDate.Day))
+            {
+                age--;
+            }
+            return age;
+        }
+        private void dtpdob_ValueChanged(object sender, EventArgs e)
+        {
+            DateTime dtt = dtpdob.Value;
+            int age = CalculateAge(dtt);
+            txtage.Text = string.Empty;
+            txtage.Text = age.ToString();
+            //txtage.Focus();
         }
     }
 }

@@ -173,7 +173,7 @@ namespace LEASING.UI.APP.Forms
 
         private void btnNewProject_Click(object sender, EventArgs e)
         {
-            this.FormMode = ModeStatus.READ.ToString();
+            this.FormMode = ModeStatus.NEW.ToString();
         }
 
         private void dgvProjectList_CellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)

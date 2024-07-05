@@ -94,28 +94,28 @@ namespace LEASING.UI.APP.Forms
                 Functions.ErrorShow("SaveTypeName()", ex.ToString());
             }
         }
-        //private void DeleteTypeName()
-        //{
-        //    try
-        //    {
-        //        string result = _payment.DeleteBankName(Convert.ToString(dgvList.CurrentRow.Cells["BankName"].Value));
-        //        if (result.Equals("SUCCESS"))
-        //        {
-        //            Functions.MessageShow("Deleted successfully !");
-        //            this.FormMode = ModeStatus.READ.ToString();
-        //            this.GetBankNameBrowse();
-        //        }
-        //        else
-        //        {
-        //            Functions.MessageShow(result);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Functions.LogError("DeleteTypeName()", this.Text, ex.ToString(), DateTime.Now, this);
-        //        Functions.ErrorShow("DeleteTypeName()", ex.ToString());
-        //    }
-        //}
+        private void DeleteTypeName()
+        {
+            try
+            {
+                string result = _unit.DeleteFloorType(Convert.ToString(dgvList.CurrentRow.Cells["FloorTypeName"].Value));
+                if (result.Equals("SUCCESS"))
+                {
+                    Functions.MessageShow("Deleted successfully !");
+                    this.FormMode = ModeStatus.READ.ToString();
+                    this.GetTypeNameBrowse();
+                }
+                else
+                {
+                    Functions.MessageShow(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                Functions.LogError("DeleteTypeName()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("DeleteTypeName()", ex.ToString());
+            }
+        }
         private void GetTypeNameBrowse()
         {
             try
@@ -172,7 +172,7 @@ namespace LEASING.UI.APP.Forms
                 {
                     if (Functions.MessageConfirm("Are you sure you want to delete this Floor Type ?") == DialogResult.Yes)
                     {
-                        //this.DeleteTypeName();
+                        this.DeleteTypeName();
                     }
                 }
             }

@@ -786,6 +786,153 @@ namespace LEASING.UI.APP.Common
             dtTable = null;
             dvView = null;
         }
+        public static void SpecialSecurityControls(Control _ctrl)
+        {
+            DataTable dtTable = new DataTable();
+            DataView dvView;
+            using (SecurityControlContext mngrSecurityManager = new SecurityControlContext())
+            {
+                using (DataSet ds = mngrSecurityManager.GetSpecialControls(Variables.UserID))
+                {
+                    if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+                        dtTable = ds.Tables[0];
+                }
+            }
+
+            int len = _ctrl.GetType().ToString().Length - _ctrl.GetType().ToString().LastIndexOf('.');
+            string vName = _ctrl.GetType().ToString().Substring(_ctrl.GetType().ToString().LastIndexOf('.') + 1, len - 1);
+
+            if (vName == "frmClientInformation")
+            {
+                #region CLIENT
+                dvView = new DataView(dtTable);
+                dvView.RowFilter = "FormName = '" + vName + "'";
+
+                if (dvView.Count > 0)
+                {
+                    foreach (Control ctrl in _ctrl.Controls)
+                    {
+                        string ControlNames = ctrl.Name;
+                        string controlTypes = ctrl.GetType().ToString();
+
+                        switch (ctrl.Name)
+                        {
+                            //case "toolStripDownload":
+                            //    ctrl.Visible = Convert.ToBoolean(dvView[0]["Permission"]);
+                            //    break;
+                            //case "toolStrip1":
+                            //    System.Windows.Forms.ToolStrip toolstrip = (System.Windows.Forms.ToolStrip)ctrl;
+
+                            //    for (int iAllPages = 0; iAllPages < dvView.Count; iAllPages++)
+                            //    {
+                            //        for (int iControls = 0; iControls < toolstrip.Items.Count; iControls++)
+                            //        {
+                            //            if (Convert.ToString(dvView[iAllPages]["ControlName"]) == toolstrip.Items[iControls].Name)
+                            //            {
+                            //                toolstrip.Items[iControls].Visible = Convert.ToBoolean(dvView[iAllPages]["Permission"]);
+                            //            }
+                            //        }
+                            //    }
+                            //    break;
+
+
+
+                            case "tableLayoutPanel2":
+                                System.Windows.Forms.TableLayoutPanel TableLayoutPanel = (System.Windows.Forms.TableLayoutPanel)ctrl;
+
+                                for (int iAllPages = 0; iAllPages < dvView.Count; iAllPages++)
+                                {
+
+                                    foreach (Control control in TableLayoutPanel.Controls)
+                                    {
+                                        if (control is ToolStrip)
+                                        {
+                                            ToolStrip ToolStrip = (ToolStrip)control;
+                                            switch (ToolStrip.Name)
+                                            {
+                                                case "toolStrip2":
+                                                    for (int iControls = 0; iControls < ToolStrip.Items.Count; iControls++)
+                                                    {
+                                                        if (Convert.ToString(dvView[iAllPages]["ControlName"]) == ToolStrip.Items[iControls].Name)
+                                                        {
+                                                            ToolStrip.Items[iControls].Visible = Convert.ToBoolean(dvView[iAllPages]["Permission"]);
+                                                        }
+                                                    }
+                                                    break;
+                                            }
+                                        }
+                                        else if (control is RadGroupBox)
+                                        {
+                                            RadGroupBox RadGroupBox = (RadGroupBox)control;
+
+                                            switch (RadGroupBox.Name)
+                                            {
+                                                case "radGroupBox3":
+                                                    foreach (Control RadGroupBoxcontrols in RadGroupBox.Controls)
+                                                    {
+                                                        if (RadGroupBoxcontrols is TableLayoutPanel)
+                                                        {
+                                                            TableLayoutPanel TableLayoutPanels = (TableLayoutPanel)RadGroupBoxcontrols;
+                                                            switch (TableLayoutPanels.Name)
+                                                            {
+                                                                case "tableLayoutPanel6":
+
+                                                                    foreach (Control controls in TableLayoutPanels.Controls)
+                                                                    {
+                                                                        if (controls is RadButton)
+                                                                        {
+                                                                            RadButton RadButton = (RadButton)controls;
+                                                                            switch (RadButton.Name)
+                                                                            {
+                                                                                case "btnSelectClient":
+                                                                                    if (Convert.ToString(dvView[iAllPages]["ControlName"]) == RadButton.Name)
+                                                                                    {
+                                                                                        RadButton.Visible = Convert.ToBoolean(dvView[iAllPages]["Permission"]);
+                                                                                    }
+                                                                                    break;
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                    break;
+                                                            }
+
+                                                        }
+                                                    }
+                                                    break;
+                                            }
+
+                                        }
+                                    }
+                                }
+                                break;
+
+                                //case "dtgvCandidates":
+                                //    Telerik.WinControls.UI.RadGridView gridView = (Telerik.WinControls.UI.RadGridView)ctrl;
+                                //    for (int iAllPages = 0; iAllPages < dvView.Count; iAllPages++)
+                                //    {
+                                //        for (int iColumns = 0; iColumns < gridView.Columns.Count; iColumns++)
+                                //        {
+                                //            if (Convert.ToString(dvView[iAllPages]["ControlName"]) == gridView.Columns[iColumns].Name)
+                                //                gridView.Columns[iColumns].IsVisible = Convert.ToBoolean(dvView[iAllPages]["Permission"]);
+
+
+                                //            if (Convert.ToString(dvView[iAllPages]["ControlName"]) == "colExams")
+                                //                Variables.SecurityExamination = Convert.ToBoolean(dvView[iAllPages]["Permission"]);
+
+                                //            if (Convert.ToString(dvView[iAllPages]["ControlName"]) == "colReSend")
+                                //                Variables.SecurityReSending = Convert.ToBoolean(dvView[iAllPages]["Permission"]);
+                                //        }
+                                //    }
+                                //    break;
+                        }
+                    }
+                }
+                #endregion
+            }
+           
+            dtTable = null;
+            dvView = null;
+        }
         public static void LogError(string procedureName, string FormName, string errorMessage, DateTime logDateTime, Control _ctrl)
         {
             string vName = string.Empty;

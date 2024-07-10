@@ -35,6 +35,7 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.txtContractId = new Telerik.WinControls.UI.RadTextBox();
@@ -142,13 +143,12 @@
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 523F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 346F));
             this.tableLayoutPanel1.Controls.Add(this.radLabel1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.radLabel2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.radGroupBox1, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.radGroupBox2, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.radGroupBox3, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.btnAdvanceSearch, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -166,10 +166,11 @@
             this.radLabel1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.radLabel1.Controls.Add(this.txtContractId);
             this.radLabel1.Controls.Add(this.radLabel9);
+            this.radLabel1.Controls.Add(this.btnAdvanceSearch);
             this.radLabel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radLabel1.Location = new System.Drawing.Point(3, 3);
             this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(479, 27);
+            this.radLabel1.Size = new System.Drawing.Size(656, 27);
             this.radLabel1.TabIndex = 0;
             // 
             // txtContractId
@@ -515,7 +516,7 @@
             this.radGroupBox2.HeaderText = "Ledger";
             this.radGroupBox2.Location = new System.Drawing.Point(3, 299);
             this.radGroupBox2.Name = "radGroupBox2";
-            this.radGroupBox2.Size = new System.Drawing.Size(479, 445);
+            this.radGroupBox2.Size = new System.Drawing.Size(656, 445);
             this.radGroupBox2.TabIndex = 3;
             this.radGroupBox2.Text = "Ledger";
             this.radGroupBox2.ThemeName = "Office2007Silver";
@@ -535,7 +536,7 @@
             this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(475, 425);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(652, 425);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
             // dgvLedgerList
@@ -573,23 +574,27 @@
             gridViewTextBoxColumn1.FieldName = "seq";
             gridViewTextBoxColumn1.HeaderText = "seq";
             gridViewTextBoxColumn1.Name = "seq";
-            gridViewTextBoxColumn1.Width = 44;
+            gridViewTextBoxColumn1.Width = 56;
             gridViewTextBoxColumn2.FieldName = "LedgMonth";
             gridViewTextBoxColumn2.HeaderText = "Month";
             gridViewTextBoxColumn2.Name = "LedgMonth";
-            gridViewTextBoxColumn2.Width = 133;
+            gridViewTextBoxColumn2.Width = 155;
             gridViewTextBoxColumn3.FieldName = "LedgAmount";
             gridViewTextBoxColumn3.HeaderText = "Amount";
             gridViewTextBoxColumn3.Name = "LedgAmount";
-            gridViewTextBoxColumn3.Width = 133;
-            gridViewTextBoxColumn4.FieldName = "PaymentStatus";
-            gridViewTextBoxColumn4.HeaderText = "Status";
-            gridViewTextBoxColumn4.Name = "PaymentStatus";
+            gridViewTextBoxColumn3.Width = 155;
+            gridViewTextBoxColumn4.FieldName = "Remarks";
+            gridViewTextBoxColumn4.HeaderText = "Remarks";
+            gridViewTextBoxColumn4.Name = "Remarks";
             gridViewTextBoxColumn4.Width = 162;
-            gridViewTextBoxColumn5.FieldName = "Recid";
-            gridViewTextBoxColumn5.HeaderText = "Recid";
-            gridViewTextBoxColumn5.IsVisible = false;
-            gridViewTextBoxColumn5.Name = "Recid";
+            gridViewTextBoxColumn5.FieldName = "PaymentStatus";
+            gridViewTextBoxColumn5.HeaderText = "Status";
+            gridViewTextBoxColumn5.Name = "PaymentStatus";
+            gridViewTextBoxColumn5.Width = 121;
+            gridViewTextBoxColumn6.FieldName = "Recid";
+            gridViewTextBoxColumn6.HeaderText = "Recid";
+            gridViewTextBoxColumn6.IsVisible = false;
+            gridViewTextBoxColumn6.Name = "Recid";
             this.dgvLedgerList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewCommandColumn1,
             gridViewCommandColumn2,
@@ -597,14 +602,15 @@
             gridViewTextBoxColumn2,
             gridViewTextBoxColumn3,
             gridViewTextBoxColumn4,
-            gridViewTextBoxColumn5});
+            gridViewTextBoxColumn5,
+            gridViewTextBoxColumn6});
             this.dgvLedgerList.MasterTemplate.ShowRowHeaderColumn = false;
             this.dgvLedgerList.Name = "dgvLedgerList";
             this.dgvLedgerList.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.dgvLedgerList.ReadOnly = true;
             this.dgvLedgerList.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgvLedgerList.ShowGroupPanel = false;
-            this.dgvLedgerList.Size = new System.Drawing.Size(470, 379);
+            this.dgvLedgerList.Size = new System.Drawing.Size(646, 379);
             this.dgvLedgerList.TabIndex = 1;
             this.dgvLedgerList.Text = "radGridView1";
             this.dgvLedgerList.ThemeName = "Office2007Silver";
@@ -639,9 +645,9 @@
             this.radGroupBox3.Controls.Add(this.tableLayoutPanel3);
             this.radGroupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radGroupBox3.HeaderText = "Unit Information";
-            this.radGroupBox3.Location = new System.Drawing.Point(488, 299);
+            this.radGroupBox3.Location = new System.Drawing.Point(665, 299);
             this.radGroupBox3.Name = "radGroupBox3";
-            this.radGroupBox3.Size = new System.Drawing.Size(517, 445);
+            this.radGroupBox3.Size = new System.Drawing.Size(340, 445);
             this.radGroupBox3.TabIndex = 3;
             this.radGroupBox3.Text = "Unit Information";
             this.radGroupBox3.ThemeName = "Office2007Silver";
@@ -662,7 +668,7 @@
             this.tableLayoutPanel3.Controls.Add(this.radLabel19, 0, 4);
             this.tableLayoutPanel3.Controls.Add(this.lblBaseRental, 1, 4);
             this.tableLayoutPanel3.Controls.Add(this.lblFloorType, 1, 3);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(109, 126);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(21, 126);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 5;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
@@ -791,9 +797,9 @@
             // btnAdvanceSearch
             // 
             this.btnAdvanceSearch.Image = global::LEASING.UI.APP.Properties.Resources.magnifier;
-            this.btnAdvanceSearch.Location = new System.Drawing.Point(488, 3);
+            this.btnAdvanceSearch.Location = new System.Drawing.Point(350, 3);
             this.btnAdvanceSearch.Name = "btnAdvanceSearch";
-            this.btnAdvanceSearch.Size = new System.Drawing.Size(145, 24);
+            this.btnAdvanceSearch.Size = new System.Drawing.Size(126, 24);
             this.btnAdvanceSearch.TabIndex = 4;
             this.btnAdvanceSearch.Text = "Advance Search";
             this.btnAdvanceSearch.Click += new System.EventHandler(this.btnAdvanceSearch_Click);

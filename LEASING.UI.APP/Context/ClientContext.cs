@@ -815,6 +815,92 @@ namespace LEASING.UI.APP.Context
                 return dsRec;
             }
         }
+        public DataSet GetClientBrowse()
+        {
+
+            SqlCommand _SqlCommand = null;
+            //SqlParameter _SqlParameter;
+            SqlConnection _SqlConnection = null;
+
+
+            using (DataSet dsRec = new DataSet())
+            {
+                _SqlCommand = new SqlCommand();
+                _SqlCommand.CommandText = "sp_GetClientBrowse";
+
+                //_SqlParameter = new SqlParameter("@ClientID", ClientID);
+                //_SqlCommand.Parameters.Add(_SqlParameter);
+
+                try
+                {
+                    _SqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
+                    _SqlCommand.Connection = _SqlConnection;
+                    _SqlCommand.CommandType = CommandType.StoredProcedure;
+                    using (SqlDataAdapter dataAdaptor = new SqlDataAdapter(_SqlCommand))
+                    {
+                        dataAdaptor.Fill(dsRec);
+                    }
+                }
+                catch (Exception expCommon)
+                {
+                    return null;
+                }
+                finally
+                {
+                    if (_SqlConnection.State != ConnectionState.Closed)
+                    {
+                        _SqlConnection.Close();
+                    }
+                    //_SqlParameter = null;
+                    _SqlCommand = null;
+                    _SqlConnection = null;
+                }
+                return dsRec;
+            }
+        }
+        public DataSet GetContratBrowseByClientID(string clientId)
+        {
+
+            SqlCommand _SqlCommand = null;
+            SqlParameter _SqlParameter;
+            SqlConnection _SqlConnection = null;
+
+
+            using (DataSet dsRec = new DataSet())
+            {
+                _SqlCommand = new SqlCommand();
+                _SqlCommand.CommandText = "sp_GetContratBrowseByClientID";
+
+                _SqlParameter = new SqlParameter("@ClientID", clientId);
+                _SqlCommand.Parameters.Add(_SqlParameter);
+
+                try
+                {
+                    _SqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
+                    _SqlCommand.Connection = _SqlConnection;
+                    _SqlCommand.CommandType = CommandType.StoredProcedure;
+                    using (SqlDataAdapter dataAdaptor = new SqlDataAdapter(_SqlCommand))
+                    {
+                        dataAdaptor.Fill(dsRec);
+                    }
+                }
+                catch (Exception expCommon)
+                {
+                    return null;
+                }
+                finally
+                {
+                    if (_SqlConnection.State != ConnectionState.Closed)
+                    {
+                        _SqlConnection.Close();
+                    }
+                    _SqlParameter = null;
+                    _SqlCommand = null;
+                    _SqlConnection = null;
+                }
+                return dsRec;
+            }
+        }
 
         //       <connectionStrings>
         //	<add name = "TESTCONNECTION" connectionString="Data Source=DESKTOP-BTI8OA8;Initial Catalog=BiometrikDb;connect timeout=200;Integrated Security=false;Connection Timeout=60;User Id=histestuser;Password=histestuser"/>

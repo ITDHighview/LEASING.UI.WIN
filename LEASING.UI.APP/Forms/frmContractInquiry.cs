@@ -239,6 +239,13 @@ namespace LEASING.UI.APP.Forms
         {
             frmContractInquiryAdvanceSearch fmrAdvSearch = new frmContractInquiryAdvanceSearch();
             fmrAdvSearch.ShowDialog();
+            if (fmrAdvSearch.IsProceed)
+            {
+                this.txtContractId.Text = string.Empty;
+                this.txtContractId.Text = fmrAdvSearch.ContractID;
+                M_GetContractDetailsInquiry();
+                M_GetLedgerList();
+            }
         }
     }
 }

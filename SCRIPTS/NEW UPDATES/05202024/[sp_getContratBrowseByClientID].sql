@@ -12,7 +12,7 @@ AS
             [tblUnitReference].[UnitNo],
             [tblUnitReference].[StatDate],
             [tblUnitReference].[FinishDate],
-            [tblUnitReference].[TransactionDate],
+            CONVERT(VARCHAR(150),[tblUnitReference].[TransactionDate],103) AS [TransactionDate],
             [tblUnitReference].[Rental],
             [tblUnitReference].[SecAndMaintenance],
             [tblUnitReference].[TotalRent],

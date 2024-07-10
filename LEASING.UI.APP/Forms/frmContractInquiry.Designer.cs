@@ -81,6 +81,7 @@
             this.radLabel19 = new Telerik.WinControls.UI.RadLabel();
             this.lblBaseRental = new Telerik.WinControls.UI.RadLabel();
             this.lblFloorType = new Telerik.WinControls.UI.RadLabel();
+            this.btnAdvanceSearch = new Telerik.WinControls.UI.RadButton();
             this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
@@ -134,18 +135,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel19)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblBaseRental)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblFloorType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAdvanceSearch)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 522F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 523F));
             this.tableLayoutPanel1.Controls.Add(this.radLabel1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.radLabel2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.radGroupBox1, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.radGroupBox2, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.radGroupBox3, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.btnAdvanceSearch, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -166,7 +169,7 @@
             this.radLabel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radLabel1.Location = new System.Drawing.Point(3, 3);
             this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(480, 27);
+            this.radLabel1.Size = new System.Drawing.Size(479, 27);
             this.radLabel1.TabIndex = 0;
             // 
             // txtContractId
@@ -512,7 +515,7 @@
             this.radGroupBox2.HeaderText = "Ledger";
             this.radGroupBox2.Location = new System.Drawing.Point(3, 299);
             this.radGroupBox2.Name = "radGroupBox2";
-            this.radGroupBox2.Size = new System.Drawing.Size(480, 445);
+            this.radGroupBox2.Size = new System.Drawing.Size(479, 445);
             this.radGroupBox2.TabIndex = 3;
             this.radGroupBox2.Text = "Ledger";
             this.radGroupBox2.ThemeName = "Office2007Silver";
@@ -532,7 +535,7 @@
             this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(476, 425);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(475, 425);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
             // dgvLedgerList
@@ -636,9 +639,9 @@
             this.radGroupBox3.Controls.Add(this.tableLayoutPanel3);
             this.radGroupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radGroupBox3.HeaderText = "Unit Information";
-            this.radGroupBox3.Location = new System.Drawing.Point(489, 299);
+            this.radGroupBox3.Location = new System.Drawing.Point(488, 299);
             this.radGroupBox3.Name = "radGroupBox3";
-            this.radGroupBox3.Size = new System.Drawing.Size(516, 445);
+            this.radGroupBox3.Size = new System.Drawing.Size(517, 445);
             this.radGroupBox3.TabIndex = 3;
             this.radGroupBox3.Text = "Unit Information";
             this.radGroupBox3.ThemeName = "Office2007Silver";
@@ -659,7 +662,7 @@
             this.tableLayoutPanel3.Controls.Add(this.radLabel19, 0, 4);
             this.tableLayoutPanel3.Controls.Add(this.lblBaseRental, 1, 4);
             this.tableLayoutPanel3.Controls.Add(this.lblFloorType, 1, 3);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(111, 126);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(109, 126);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 5;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
@@ -667,14 +670,14 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(286, 146);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(301, 155);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
             // radLabel15
             // 
             this.radLabel15.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.radLabel15.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel15.Location = new System.Drawing.Point(37, 6);
+            this.radLabel15.Location = new System.Drawing.Point(43, 6);
             this.radLabel15.Name = "radLabel15";
             this.radLabel15.Size = new System.Drawing.Size(62, 19);
             this.radLabel15.TabIndex = 2;
@@ -684,7 +687,7 @@
             // 
             this.radLabel16.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.radLabel16.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel16.Location = new System.Drawing.Point(7, 34);
+            this.radLabel16.Location = new System.Drawing.Point(13, 34);
             this.radLabel16.Name = "radLabel16";
             this.radLabel16.Size = new System.Drawing.Size(92, 19);
             this.radLabel16.TabIndex = 2;
@@ -694,7 +697,7 @@
             // 
             this.radLabel17.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.radLabel17.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel17.Location = new System.Drawing.Point(57, 62);
+            this.radLabel17.Location = new System.Drawing.Point(63, 62);
             this.radLabel17.Name = "radLabel17";
             this.radLabel17.Size = new System.Drawing.Size(42, 19);
             this.radLabel17.TabIndex = 2;
@@ -704,9 +707,9 @@
             // 
             this.radLabel18.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.radLabel18.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel18.Location = new System.Drawing.Point(18, 90);
+            this.radLabel18.Location = new System.Drawing.Point(30, 90);
             this.radLabel18.Name = "radLabel18";
-            this.radLabel18.Size = new System.Drawing.Size(81, 19);
+            this.radLabel18.Size = new System.Drawing.Size(75, 19);
             this.radLabel18.TabIndex = 2;
             this.radLabel18.Text = "Floor Type :";
             // 
@@ -716,11 +719,11 @@
             this.lblUnitNo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblUnitNo.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUnitNo.ForeColor = System.Drawing.Color.Black;
-            this.lblUnitNo.Location = new System.Drawing.Point(108, 6);
+            this.lblUnitNo.Location = new System.Drawing.Point(114, 6);
             this.lblUnitNo.Name = "lblUnitNo";
-            this.lblUnitNo.Size = new System.Drawing.Size(172, 19);
+            this.lblUnitNo.Size = new System.Drawing.Size(181, 19);
             this.lblUnitNo.TabIndex = 2;
-            this.lblUnitNo.Text = "02";
+            this.lblUnitNo.Text = "N/A";
             this.lblUnitNo.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblProjectName
@@ -729,11 +732,11 @@
             this.lblProjectName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblProjectName.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblProjectName.ForeColor = System.Drawing.Color.Black;
-            this.lblProjectName.Location = new System.Drawing.Point(108, 34);
+            this.lblProjectName.Location = new System.Drawing.Point(114, 34);
             this.lblProjectName.Name = "lblProjectName";
-            this.lblProjectName.Size = new System.Drawing.Size(172, 19);
+            this.lblProjectName.Size = new System.Drawing.Size(181, 19);
             this.lblProjectName.TabIndex = 2;
-            this.lblProjectName.Text = "Ohayo Mansion";
+            this.lblProjectName.Text = "N/A";
             this.lblProjectName.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblType
@@ -742,18 +745,18 @@
             this.lblType.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblType.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblType.ForeColor = System.Drawing.Color.Black;
-            this.lblType.Location = new System.Drawing.Point(108, 62);
+            this.lblType.Location = new System.Drawing.Point(114, 62);
             this.lblType.Name = "lblType";
-            this.lblType.Size = new System.Drawing.Size(172, 19);
+            this.lblType.Size = new System.Drawing.Size(181, 19);
             this.lblType.TabIndex = 2;
-            this.lblType.Text = "Unit";
+            this.lblType.Text = "N/A";
             this.lblType.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // radLabel19
             // 
             this.radLabel19.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.radLabel19.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel19.Location = new System.Drawing.Point(18, 119);
+            this.radLabel19.Location = new System.Drawing.Point(24, 124);
             this.radLabel19.Name = "radLabel19";
             this.radLabel19.Size = new System.Drawing.Size(81, 19);
             this.radLabel19.TabIndex = 2;
@@ -763,13 +766,13 @@
             // 
             this.lblBaseRental.AutoSize = false;
             this.lblBaseRental.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblBaseRental.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBaseRental.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBaseRental.ForeColor = System.Drawing.Color.DarkRed;
-            this.lblBaseRental.Location = new System.Drawing.Point(108, 118);
+            this.lblBaseRental.Location = new System.Drawing.Point(114, 118);
             this.lblBaseRental.Name = "lblBaseRental";
-            this.lblBaseRental.Size = new System.Drawing.Size(172, 22);
+            this.lblBaseRental.Size = new System.Drawing.Size(181, 31);
             this.lblBaseRental.TabIndex = 2;
-            this.lblBaseRental.Text = "1500";
+            this.lblBaseRental.Text = "0";
             this.lblBaseRental.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblFloorType
@@ -778,12 +781,22 @@
             this.lblFloorType.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblFloorType.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFloorType.ForeColor = System.Drawing.Color.Black;
-            this.lblFloorType.Location = new System.Drawing.Point(108, 90);
+            this.lblFloorType.Location = new System.Drawing.Point(114, 90);
             this.lblFloorType.Name = "lblFloorType";
-            this.lblFloorType.Size = new System.Drawing.Size(172, 19);
+            this.lblFloorType.Size = new System.Drawing.Size(181, 19);
             this.lblFloorType.TabIndex = 2;
-            this.lblFloorType.Text = "1 BR";
+            this.lblFloorType.Text = "N/A";
             this.lblFloorType.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnAdvanceSearch
+            // 
+            this.btnAdvanceSearch.Image = global::LEASING.UI.APP.Properties.Resources.magnifier;
+            this.btnAdvanceSearch.Location = new System.Drawing.Point(488, 3);
+            this.btnAdvanceSearch.Name = "btnAdvanceSearch";
+            this.btnAdvanceSearch.Size = new System.Drawing.Size(145, 24);
+            this.btnAdvanceSearch.TabIndex = 4;
+            this.btnAdvanceSearch.Text = "Advance Search";
+            this.btnAdvanceSearch.Click += new System.EventHandler(this.btnAdvanceSearch_Click);
             // 
             // frmContractInquiry
             // 
@@ -854,6 +867,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel19)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblBaseRental)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblFloorType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAdvanceSearch)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -907,5 +921,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private Telerik.WinControls.UI.RadLabel radLabel20;
         private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme1;
+        private Telerik.WinControls.UI.RadButton btnAdvanceSearch;
     }
 }

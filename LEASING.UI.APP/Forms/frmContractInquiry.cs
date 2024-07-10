@@ -234,5 +234,11 @@ namespace LEASING.UI.APP.Forms
                 ClearFields();
             }
         }
+
+        private void btnAdvanceSearch_Click(object sender, EventArgs e)
+        {
+            frmContractInquiryAdvanceSearch fmrAdvSearch = new frmContractInquiryAdvanceSearch();
+            fmrAdvSearch.ShowDialog();
+        }
     }
 }

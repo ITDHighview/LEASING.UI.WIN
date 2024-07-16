@@ -384,11 +384,41 @@ namespace LEASING.UI.APP.Forms
                 this.TotalRentalParking();
             }
         }
-        private void TotalRentalUnit()
+
+        private void TotalRentalNoRoundOffUnit()
         {
             var tax = (Functions.ConvertStringToDecimal(txtBaseRentalTax.Text));
             var totalrental = ((this.chkNonVat.Checked == true ? Functions.ConvertStringToDecimal(txtBaseRental.Text) : Functions.ConvertStringToDecimal(txtBaseRentalWithVatAmount.Text)) + Functions.ConvertStringToDecimal(txtSecAndMainWithVatAmount.Text));
             var result = (totalrental - tax);
+            if (Functions.ConvertStringToDecimal(txtBaseRental.Text) > 0)
+            {
+                txtTotalRental.Text = result.ToString("#,##0.00");
+            }
+            else
+            {
+                txtTotalRental.Text = "0.00";
+            }
+        }
+        private void TotalRentalUnit()
+        {
+            var tax = (Functions.ConvertStringToDecimal(txtBaseRentalTax.Text));
+            var totalrental = ((this.chkNonVat.Checked == true ? Functions.ConvertStringToDecimal(txtBaseRental.Text) : Functions.ConvertStringToDecimal(txtBaseRentalWithVatAmount.Text)) + Functions.ConvertStringToDecimal(txtSecAndMainWithVatAmount.Text));
+            var result = Math.Round(totalrental - tax);
+            if (Functions.ConvertStringToDecimal(txtBaseRental.Text) > 0)
+            {
+                txtTotalRental.Text = result.ToString("#,##0.00");
+            }
+            else
+            {
+                txtTotalRental.Text = "0.00";
+            }
+        }
+        private void TotalRentalNoRoundOffParking()
+        {
+            decimal tax = Functions.ConvertStringToDecimal(txtBaseRentalTax.Text);
+            //var totalrental = Functions.ConvertStringToDecimal(txtBaseRentalWithVatAmount.Text);
+            decimal totalrental = this.chkNonVat.Checked == true ? Functions.ConvertStringToDecimal(txtBaseRental.Text) : Functions.ConvertStringToDecimal(txtBaseRentalWithVatAmount.Text);
+            decimal result = (totalrental - tax);
             if (Functions.ConvertStringToDecimal(txtBaseRental.Text) > 0)
             {
                 txtTotalRental.Text = result.ToString("#,##0.00");
@@ -403,7 +433,7 @@ namespace LEASING.UI.APP.Forms
             decimal tax = Functions.ConvertStringToDecimal(txtBaseRentalTax.Text);
             //var totalrental = Functions.ConvertStringToDecimal(txtBaseRentalWithVatAmount.Text);
             decimal totalrental = this.chkNonVat.Checked == true ? Functions.ConvertStringToDecimal(txtBaseRental.Text) : Functions.ConvertStringToDecimal(txtBaseRentalWithVatAmount.Text);
-            decimal result = (totalrental - tax);
+            decimal result = Math.Round(totalrental - tax);
             if (Functions.ConvertStringToDecimal(txtBaseRental.Text) > 0)
             {
                 txtTotalRental.Text = result.ToString("#,##0.00");
@@ -649,6 +679,7 @@ namespace LEASING.UI.APP.Forms
                 UnitUpdate.Tax = this.WithHoldingTaxParam;
                 UnitUpdate.TaxAmount = Functions.ConvertStringToDecimal(this.txtBaseRentalTax.Text);
                 UnitUpdate.UnitStatus = ddlUnitStatList.Text == "" ? "VACANT" : ddlUnitStatList.Text;
+                UnitUpdate.IsNotRoundOff = this.IsNotRoundOff;
                 UnitUpdate.Message_Code = UnitContext.EditUnit(UnitUpdate);
                 if (UnitUpdate.Message_Code.Equals("SUCCESS"))
                 {
@@ -849,6 +880,33 @@ namespace LEASING.UI.APP.Forms
             this._toggleNonCusaMaintenance();
             this.M_GetSecAndMainVatAMount();
             this.M_GetSecAndMainWithVatAMount();
+        }
+        bool IsNotRoundOff = true;
+        private void btnTotalMonthlyRoundNoOff_Click(object sender, EventArgs e)
+        {
+            IsNotRoundOff = !IsNotRoundOff;
+            if (!chkIsParking.Checked)
+            {
+                if (IsNotRoundOff)
+                {
+                    TotalRentalUnit();
+                }
+                else
+                {
+                    TotalRentalNoRoundOffUnit();
+                }
+            }
+            else
+            {
+                if (IsNotRoundOff)
+                {
+                    TotalRentalParking();
+                }
+                else
+                {
+                    TotalRentalNoRoundOffParking();
+                }
+            }
         }
     }
 }

@@ -73,6 +73,8 @@ namespace LEASING.UI.APP.Context
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@TaxAmount", model.TaxAmount);
             _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@IsNotRoundOff", model.IsNotRoundOff);
+            _sqlcmd.Parameters.Add(_sqlpara);
 
             try
             {
@@ -171,6 +173,8 @@ namespace LEASING.UI.APP.Context
             _sqlpara = new SqlParameter("@ComputerName", Environment.MachineName);
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@UnitStatus", model.UnitStatus);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@IsNotRoundOff", model.IsNotRoundOff);
             _sqlcmd.Parameters.Add(_sqlpara);
 
             try

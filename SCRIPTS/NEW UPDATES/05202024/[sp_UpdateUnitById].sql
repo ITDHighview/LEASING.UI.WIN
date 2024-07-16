@@ -6,7 +6,7 @@ GO
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE OR ALTER   PROCEDURE [dbo].[sp_UpdateUnitById]
+CREATE OR ALTER PROCEDURE [dbo].[sp_UpdateUnitById]
     @RecId                   INT,
     @ProjectId               INT            = NULL,
     @IsParking               BIT            = NULL,
@@ -32,7 +32,8 @@ CREATE OR ALTER   PROCEDURE [dbo].[sp_UpdateUnitById]
     @TaxAmount               DECIMAL(18, 2) = NULL,
     @LastChangedBy           INT            = NULL,
     @ComputerName            VARCHAR(20)    = NULL,
-    @UnitStatus              VARCHAR(300)   = NULL
+    @UnitStatus              VARCHAR(300)   = NULL,
+    @IsNotRoundOff           BIT            = NULL
 AS
     BEGIN
         DECLARE @Message_Code VARCHAR(100) = '';
@@ -64,7 +65,8 @@ AS
             [tblUnitMstr].[LastChangedBy] = @LastChangedBy,
             [tblUnitMstr].[LastChangedDate] = GETDATE(),
             [tblUnitMstr].[ComputerName] = @ComputerName,
-            [tblUnitMstr].[UnitStatus] = @UnitStatus
+            [tblUnitMstr].[UnitStatus] = @UnitStatus,
+            [tblUnitMstr].[IsNotRoundOff] = @IsNotRoundOff
         WHERE
             [tblUnitMstr].[RecId] = @RecId
             AND [tblUnitMstr].[UnitStatus] = 'VACANT'

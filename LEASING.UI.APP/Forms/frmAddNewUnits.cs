@@ -37,7 +37,7 @@ namespace LEASING.UI.APP.Forms
             READ,
             NEW
         }
-        
+
         bool isResidential = false;
         bool isWarehouse = false;
         bool isCommercial = false;
@@ -379,6 +379,21 @@ namespace LEASING.UI.APP.Forms
         {
             return (Functions.ConvertStringToDecimal(txtBaseRental.Text) + Functions.ConvertStringToDecimal(txtBaseRentalVatAmount.Text));
         }
+
+        private void TotalRentalNoRoundOffUnit()
+        {
+            var tax = (Functions.ConvertStringToDecimal(txtBaseRentalTax.Text));
+            var totalrental = ((this.chkNonVat.Checked == true ? Functions.ConvertStringToDecimal(txtBaseRental.Text) : Functions.ConvertStringToDecimal(txtBaseRentalWithVatAmount.Text)) + Functions.ConvertStringToDecimal(txtSecAndMainWithVatAmount.Text));
+            var result = (totalrental - tax);
+            if (Functions.ConvertStringToDecimal(txtBaseRental.Text) > 0)
+            {
+                txtTotalRental.Text = result.ToString("#,##0.00");
+            }
+            else
+            {
+                txtTotalRental.Text = "0.00";
+            }
+        }
         private void TotalRentalUnit()
         {
             var tax = (Functions.ConvertStringToDecimal(txtBaseRentalTax.Text));
@@ -399,6 +414,21 @@ namespace LEASING.UI.APP.Forms
             //var totalrental = Functions.ConvertStringToDecimal(txtBaseRentalWithVatAmount.Text);
             decimal totalrental = this.chkNonVat.Checked == true ? Functions.ConvertStringToDecimal(txtBaseRental.Text) : Functions.ConvertStringToDecimal(txtBaseRentalWithVatAmount.Text);
             decimal result = Math.Round(totalrental - tax);
+            if (Functions.ConvertStringToDecimal(txtBaseRental.Text) > 0)
+            {
+                txtTotalRental.Text = result.ToString("#,##0.00");
+            }
+            else
+            {
+                txtTotalRental.Text = "0.00";
+            }
+        }
+        private void TotalRentalNoRoundOffParking()
+        {
+            decimal tax = Functions.ConvertStringToDecimal(txtBaseRentalTax.Text);
+            //var totalrental = Functions.ConvertStringToDecimal(txtBaseRentalWithVatAmount.Text);
+            decimal totalrental = this.chkNonVat.Checked == true ? Functions.ConvertStringToDecimal(txtBaseRental.Text) : Functions.ConvertStringToDecimal(txtBaseRentalWithVatAmount.Text);
+            decimal result = (totalrental - tax);
             if (Functions.ConvertStringToDecimal(txtBaseRental.Text) > 0)
             {
                 txtTotalRental.Text = result.ToString("#,##0.00");
@@ -599,7 +629,7 @@ namespace LEASING.UI.APP.Forms
                 UnitNew.Vat = Functions.ConvertStringToDecimal(this.txtBaseRentalVatPercentage.Text);
                 UnitNew.Tax = this.WithHoldingTaxParam;
                 UnitNew.TaxAmount = Functions.ConvertStringToDecimal(this.txtBaseRentalTax.Text);
-
+                UnitNew.IsNotRoundOff = this.IsNotRoundOff;
                 UnitNew.Message_Code = _unit.SaveUnit(UnitNew);
                 if (UnitNew.Message_Code.Equals("SUCCESS"))
                 {
@@ -873,6 +903,34 @@ namespace LEASING.UI.APP.Forms
             this._toggleNonCusaMaintenance();
             this.M_GetSecAndMainVatAMount();
             this.M_GetSecAndMainWithVatAMount();
+        }
+
+        bool IsNotRoundOff = true;
+        private void btnTotalMonthlyRoundNoOff_Click(object sender, EventArgs e)
+        {
+            IsNotRoundOff = !IsNotRoundOff;
+            if (!chkIsParking.Checked)
+            {
+                if (IsNotRoundOff)
+                {
+                    TotalRentalUnit();
+                }
+                else
+                {
+                    TotalRentalNoRoundOffUnit();
+                }
+            }
+            else
+            {
+                if (IsNotRoundOff)
+                {
+                    TotalRentalParking();
+                }
+                else
+                {
+                    TotalRentalNoRoundOffParking();
+                }
+            }
         }
     }
 }

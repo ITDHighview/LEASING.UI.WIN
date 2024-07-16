@@ -91,6 +91,7 @@
             this.radGroupBox10 = new Telerik.WinControls.UI.RadGroupBox();
             this.chkIsParking = new Telerik.WinControls.UI.RadCheckBox();
             this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
+            this.btnTotalMonthlyRoundNoOff = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
             this.radGroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).BeginInit();
@@ -156,6 +157,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox10)).BeginInit();
             this.radGroupBox10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chkIsParking)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnTotalMonthlyRoundNoOff)).BeginInit();
             this.SuspendLayout();
             // 
             // radGroupBox1
@@ -166,7 +168,7 @@
             this.radGroupBox1.HeaderText = "";
             this.radGroupBox1.Location = new System.Drawing.Point(0, 0);
             this.radGroupBox1.Name = "radGroupBox1";
-            this.radGroupBox1.Size = new System.Drawing.Size(1149, 295);
+            this.radGroupBox1.Size = new System.Drawing.Size(1149, 331);
             this.radGroupBox1.TabIndex = 4;
             // 
             // radGroupBox2
@@ -177,7 +179,7 @@
             this.radGroupBox2.HeaderText = "INFORMATION";
             this.radGroupBox2.Location = new System.Drawing.Point(2, 18);
             this.radGroupBox2.Name = "radGroupBox2";
-            this.radGroupBox2.Size = new System.Drawing.Size(1145, 275);
+            this.radGroupBox2.Size = new System.Drawing.Size(1145, 311);
             this.radGroupBox2.TabIndex = 4;
             this.radGroupBox2.Text = "INFORMATION";
             this.radGroupBox2.ThemeName = "Office2007Silver";
@@ -200,10 +202,11 @@
             this.tableLayoutPanel5.Controls.Add(this.radGroupBox7, 4, 7);
             this.tableLayoutPanel5.Controls.Add(this.radGroupBox8, 5, 7);
             this.tableLayoutPanel5.Controls.Add(this.radGroupBox10, 2, 7);
+            this.tableLayoutPanel5.Controls.Add(this.btnTotalMonthlyRoundNoOff, 5, 10);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(2, 18);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 10;
+            this.tableLayoutPanel5.RowCount = 11;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
@@ -214,9 +217,10 @@
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 39F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(1141, 255);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(1141, 291);
             this.tableLayoutPanel5.TabIndex = 0;
             // 
             // toolStrip1
@@ -292,7 +296,7 @@
             this.radGroupBox9.Location = new System.Drawing.Point(3, 28);
             this.radGroupBox9.Name = "radGroupBox9";
             this.tableLayoutPanel5.SetRowSpan(this.radGroupBox9, 9);
-            this.radGroupBox9.Size = new System.Drawing.Size(445, 224);
+            this.radGroupBox9.Size = new System.Drawing.Size(445, 221);
             this.radGroupBox9.TabIndex = 1;
             this.radGroupBox9.Text = "UNIT DETAILS";
             this.radGroupBox9.ThemeName = "Office2007Silver";
@@ -331,7 +335,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(441, 204);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(441, 201);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // radLabel4
@@ -369,7 +373,7 @@
             this.txtType.Location = new System.Drawing.Point(140, 28);
             this.txtType.Name = "txtType";
             this.txtType.NullText = "Type here...";
-            this.txtType.Size = new System.Drawing.Size(120, 20);
+            this.txtType.Size = new System.Drawing.Size(120, 19);
             this.txtType.TabIndex = 6;
             this.txtType.ThemeName = "Office2007Silver";
             // 
@@ -408,7 +412,7 @@
             this.ddlFloorType.Location = new System.Drawing.Point(140, 78);
             this.ddlFloorType.Name = "ddlFloorType";
             this.ddlFloorType.NullText = "Select here...";
-            this.ddlFloorType.Size = new System.Drawing.Size(184, 20);
+            this.ddlFloorType.Size = new System.Drawing.Size(184, 19);
             this.ddlFloorType.TabIndex = 5;
             this.ddlFloorType.ThemeName = "Office2007Silver";
             // 
@@ -427,7 +431,7 @@
             this.txtUnitNumber.Location = new System.Drawing.Point(140, 103);
             this.txtUnitNumber.Name = "txtUnitNumber";
             this.txtUnitNumber.NullText = "Type here...";
-            this.txtUnitNumber.Size = new System.Drawing.Size(120, 20);
+            this.txtUnitNumber.Size = new System.Drawing.Size(120, 19);
             this.txtUnitNumber.TabIndex = 6;
             this.txtUnitNumber.ThemeName = "Office2007Silver";
             // 
@@ -447,7 +451,7 @@
             this.txtFloorNumber.MaxLength = 2;
             this.txtFloorNumber.Name = "txtFloorNumber";
             this.txtFloorNumber.NullText = "Type here...";
-            this.txtFloorNumber.Size = new System.Drawing.Size(120, 20);
+            this.txtFloorNumber.Size = new System.Drawing.Size(120, 19);
             this.txtFloorNumber.TabIndex = 6;
             this.txtFloorNumber.ThemeName = "Office2007Silver";
             // 
@@ -467,7 +471,7 @@
             this.txtUnitSequence.MaxLength = 2;
             this.txtUnitSequence.Name = "txtUnitSequence";
             this.txtUnitSequence.NullText = "Type here...";
-            this.txtUnitSequence.Size = new System.Drawing.Size(119, 20);
+            this.txtUnitSequence.Size = new System.Drawing.Size(119, 19);
             this.txtUnitSequence.TabIndex = 6;
             this.txtUnitSequence.ThemeName = "Office2007Silver";
             // 
@@ -475,7 +479,7 @@
             // 
             this.lblStat.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblStat.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStat.Location = new System.Drawing.Point(56, 180);
+            this.lblStat.Location = new System.Drawing.Point(56, 178);
             this.lblStat.Name = "lblStat";
             this.lblStat.Size = new System.Drawing.Size(78, 19);
             this.lblStat.TabIndex = 0;
@@ -791,7 +795,7 @@
             this.radGroupBox7.Location = new System.Drawing.Point(690, 178);
             this.radGroupBox7.Name = "radGroupBox7";
             this.tableLayoutPanel5.SetRowSpan(this.radGroupBox7, 3);
-            this.radGroupBox7.Size = new System.Drawing.Size(205, 74);
+            this.radGroupBox7.Size = new System.Drawing.Size(205, 71);
             this.radGroupBox7.TabIndex = 11;
             this.radGroupBox7.Text = "VAT Option";
             this.radGroupBox7.ThemeName = "Office2007Silver";
@@ -826,7 +830,7 @@
             this.radGroupBox8.Location = new System.Drawing.Point(901, 178);
             this.radGroupBox8.Name = "radGroupBox8";
             this.tableLayoutPanel5.SetRowSpan(this.radGroupBox8, 3);
-            this.radGroupBox8.Size = new System.Drawing.Size(237, 74);
+            this.radGroupBox8.Size = new System.Drawing.Size(237, 71);
             this.radGroupBox8.TabIndex = 12;
             this.radGroupBox8.Text = "TOTAL MONTHLY RENTAL";
             this.radGroupBox8.ThemeName = "Office2007Silver";
@@ -838,7 +842,7 @@
             this.txtTotalRental.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTotalRental.Location = new System.Drawing.Point(2, 18);
             this.txtTotalRental.Name = "txtTotalRental";
-            this.txtTotalRental.Size = new System.Drawing.Size(233, 54);
+            this.txtTotalRental.Size = new System.Drawing.Size(233, 51);
             this.txtTotalRental.TabIndex = 6;
             this.txtTotalRental.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtTotalRental.ThemeName = "Office2007Silver";
@@ -854,7 +858,7 @@
             this.radGroupBox10.Location = new System.Drawing.Point(454, 178);
             this.radGroupBox10.Name = "radGroupBox10";
             this.tableLayoutPanel5.SetRowSpan(this.radGroupBox10, 3);
-            this.radGroupBox10.Size = new System.Drawing.Size(230, 74);
+            this.radGroupBox10.Size = new System.Drawing.Size(230, 71);
             this.radGroupBox10.TabIndex = 13;
             this.radGroupBox10.Text = "IS PARKING UNIT";
             this.radGroupBox10.ThemeName = "Office2007Silver";
@@ -871,11 +875,22 @@
             this.chkIsParking.ThemeName = "Office2007Silver";
             this.chkIsParking.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.chkIsParking_ToggleStateChanged);
             // 
+            // btnTotalMonthlyRoundNoOff
+            // 
+            this.tableLayoutPanel5.SetColumnSpan(this.btnTotalMonthlyRoundNoOff, 2);
+            this.btnTotalMonthlyRoundNoOff.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnTotalMonthlyRoundNoOff.Location = new System.Drawing.Point(901, 255);
+            this.btnTotalMonthlyRoundNoOff.Name = "btnTotalMonthlyRoundNoOff";
+            this.btnTotalMonthlyRoundNoOff.Size = new System.Drawing.Size(237, 33);
+            this.btnTotalMonthlyRoundNoOff.TabIndex = 14;
+            this.btnTotalMonthlyRoundNoOff.Text = "No Round Off";
+            this.btnTotalMonthlyRoundNoOff.Click += new System.EventHandler(this.btnTotalMonthlyRoundNoOff_Click);
+            // 
             // frmEditUnits
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1149, 295);
+            this.ClientSize = new System.Drawing.Size(1149, 331);
             this.Controls.Add(this.radGroupBox1);
             this.DoubleBuffered = true;
             this.MaximizeBox = false;
@@ -958,6 +973,7 @@
             this.radGroupBox10.ResumeLayout(false);
             this.radGroupBox10.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chkIsParking)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnTotalMonthlyRoundNoOff)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1027,5 +1043,6 @@
         private Telerik.WinControls.UI.RadDropDownList ddlUnitStatList;
         private Telerik.WinControls.UI.RadCheckBox chkNonCusaMaintenance;
         private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme1;
+        private Telerik.WinControls.UI.RadButton btnTotalMonthlyRoundNoOff;
     }
 }

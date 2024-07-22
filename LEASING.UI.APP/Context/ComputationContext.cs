@@ -58,8 +58,12 @@ namespace LEASING.UI.APP.Context
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@IsRenewal", model.IsRenewal);
             _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@DiscountAmount", model.DiscountAmount);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@IsDiscounted", model.IsDiscounted);
+            _sqlcmd.Parameters.Add(_sqlpara);
 
-            
+
 
             try
             {

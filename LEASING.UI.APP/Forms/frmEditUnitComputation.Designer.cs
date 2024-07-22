@@ -88,8 +88,6 @@
             this.dtpContractCloseDate = new Telerik.WinControls.UI.RadDateTimePicker();
             this.radLabel30 = new Telerik.WinControls.UI.RadLabel();
             this.dtpLastPaymentDate = new Telerik.WinControls.UI.RadDateTimePicker();
-            this.radLabel20 = new Telerik.WinControls.UI.RadLabel();
-            this.txtMonthsSecurityDeposit = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel21 = new Telerik.WinControls.UI.RadLabel();
             this.txtTotal = new Telerik.WinControls.UI.RadTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
@@ -151,8 +149,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtpContractCloseDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel30)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpLastPaymentDate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel20)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMonthsSecurityDeposit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel21)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotal)).BeginInit();
             this.SuspendLayout();
@@ -234,8 +230,6 @@
             this.tableLayoutPanel1.Controls.Add(this.dtpContractCloseDate, 4, 15);
             this.tableLayoutPanel1.Controls.Add(this.radLabel30, 3, 5);
             this.tableLayoutPanel1.Controls.Add(this.dtpLastPaymentDate, 4, 5);
-            this.tableLayoutPanel1.Controls.Add(this.radLabel20, 0, 14);
-            this.tableLayoutPanel1.Controls.Add(this.txtMonthsSecurityDeposit, 1, 14);
             this.tableLayoutPanel1.Controls.Add(this.radLabel21, 0, 15);
             this.tableLayoutPanel1.Controls.Add(this.txtTotal, 1, 15);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -334,7 +328,7 @@
             this.tableLayoutPanel1.SetColumnSpan(this.txtProjectAddress, 2);
             this.txtProjectAddress.Location = new System.Drawing.Point(201, 78);
             this.txtProjectAddress.Name = "txtProjectAddress";
-            this.txtProjectAddress.Size = new System.Drawing.Size(324, 19);
+            this.txtProjectAddress.Size = new System.Drawing.Size(359, 20);
             this.txtProjectAddress.TabIndex = 4;
             // 
             // radLabel7
@@ -459,7 +453,7 @@
             // 
             this.txtRental.Location = new System.Drawing.Point(201, 250);
             this.txtRental.Name = "txtRental";
-            this.txtRental.Size = new System.Drawing.Size(190, 19);
+            this.txtRental.Size = new System.Drawing.Size(194, 20);
             this.txtRental.TabIndex = 4;
             this.txtRental.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRental_KeyPress);
             // 
@@ -477,7 +471,7 @@
             // 
             this.txtSecAndMaintenance.Location = new System.Drawing.Point(201, 275);
             this.txtSecAndMaintenance.Name = "txtSecAndMaintenance";
-            this.txtSecAndMaintenance.Size = new System.Drawing.Size(190, 19);
+            this.txtSecAndMaintenance.Size = new System.Drawing.Size(194, 20);
             this.txtSecAndMaintenance.TabIndex = 4;
             this.txtSecAndMaintenance.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSecAndMaintenance_KeyPress);
             // 
@@ -506,7 +500,7 @@
             // 
             this.txtTotalRental.Location = new System.Drawing.Point(201, 300);
             this.txtTotalRental.Name = "txtTotalRental";
-            this.txtTotalRental.Size = new System.Drawing.Size(153, 19);
+            this.txtTotalRental.Size = new System.Drawing.Size(194, 20);
             this.txtTotalRental.TabIndex = 4;
             this.txtTotalRental.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTotalRental_KeyPress);
             // 
@@ -514,7 +508,7 @@
             // 
             this.txtUnitNumber.Location = new System.Drawing.Point(201, 128);
             this.txtUnitNumber.Name = "txtUnitNumber";
-            this.txtUnitNumber.Size = new System.Drawing.Size(104, 19);
+            this.txtUnitNumber.Size = new System.Drawing.Size(194, 20);
             this.txtUnitNumber.TabIndex = 4;
             // 
             // txtProjectName
@@ -573,7 +567,7 @@
             this.dtpTransactionDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpTransactionDate.Location = new System.Drawing.Point(762, 53);
             this.dtpTransactionDate.Name = "dtpTransactionDate";
-            this.dtpTransactionDate.Size = new System.Drawing.Size(94, 19);
+            this.dtpTransactionDate.Size = new System.Drawing.Size(153, 20);
             this.dtpTransactionDate.TabIndex = 3;
             this.dtpTransactionDate.TabStop = false;
             this.dtpTransactionDate.Text = "7/31/2023";
@@ -724,21 +718,21 @@
             // 
             this.txtMoveinStatus.Location = new System.Drawing.Point(762, 200);
             this.txtMoveinStatus.Name = "txtMoveinStatus";
-            this.txtMoveinStatus.Size = new System.Drawing.Size(87, 19);
+            this.txtMoveinStatus.Size = new System.Drawing.Size(153, 20);
             this.txtMoveinStatus.TabIndex = 4;
             // 
             // txtMoveOutStatus
             // 
             this.txtMoveOutStatus.Location = new System.Drawing.Point(762, 250);
             this.txtMoveOutStatus.Name = "txtMoveOutStatus";
-            this.txtMoveOutStatus.Size = new System.Drawing.Size(87, 19);
+            this.txtMoveOutStatus.Size = new System.Drawing.Size(153, 20);
             this.txtMoveOutStatus.TabIndex = 4;
             // 
             // txtTerminationStatus
             // 
             this.txtTerminationStatus.Location = new System.Drawing.Point(762, 300);
             this.txtTerminationStatus.Name = "txtTerminationStatus";
-            this.txtTerminationStatus.Size = new System.Drawing.Size(94, 19);
+            this.txtTerminationStatus.Size = new System.Drawing.Size(153, 20);
             this.txtTerminationStatus.TabIndex = 4;
             // 
             // txtContractStatus
@@ -753,7 +747,7 @@
             this.dtpContractSignedDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpContractSignedDate.Location = new System.Drawing.Point(762, 175);
             this.dtpContractSignedDate.Name = "dtpContractSignedDate";
-            this.dtpContractSignedDate.Size = new System.Drawing.Size(94, 19);
+            this.dtpContractSignedDate.Size = new System.Drawing.Size(153, 20);
             this.dtpContractSignedDate.TabIndex = 3;
             this.dtpContractSignedDate.TabStop = false;
             this.dtpContractSignedDate.Text = "7/31/2023";
@@ -764,7 +758,7 @@
             this.dtpMoveInDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpMoveInDate.Location = new System.Drawing.Point(762, 225);
             this.dtpMoveInDate.Name = "dtpMoveInDate";
-            this.dtpMoveInDate.Size = new System.Drawing.Size(87, 19);
+            this.dtpMoveInDate.Size = new System.Drawing.Size(153, 20);
             this.dtpMoveInDate.TabIndex = 3;
             this.dtpMoveInDate.TabStop = false;
             this.dtpMoveInDate.Text = "7/31/2023";
@@ -775,7 +769,7 @@
             this.dtpMoveOutDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpMoveOutDate.Location = new System.Drawing.Point(762, 275);
             this.dtpMoveOutDate.Name = "dtpMoveOutDate";
-            this.dtpMoveOutDate.Size = new System.Drawing.Size(94, 19);
+            this.dtpMoveOutDate.Size = new System.Drawing.Size(153, 20);
             this.dtpMoveOutDate.TabIndex = 3;
             this.dtpMoveOutDate.TabStop = false;
             this.dtpMoveOutDate.Text = "7/31/2023";
@@ -786,7 +780,7 @@
             this.dtpTerminationDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpTerminationDate.Location = new System.Drawing.Point(762, 325);
             this.dtpTerminationDate.Name = "dtpTerminationDate";
-            this.dtpTerminationDate.Size = new System.Drawing.Size(94, 19);
+            this.dtpTerminationDate.Size = new System.Drawing.Size(153, 20);
             this.dtpTerminationDate.TabIndex = 3;
             this.dtpTerminationDate.TabStop = false;
             this.dtpTerminationDate.Text = "7/31/2023";
@@ -797,7 +791,7 @@
             this.dtpContractCloseDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpContractCloseDate.Location = new System.Drawing.Point(762, 375);
             this.dtpContractCloseDate.Name = "dtpContractCloseDate";
-            this.dtpContractCloseDate.Size = new System.Drawing.Size(94, 19);
+            this.dtpContractCloseDate.Size = new System.Drawing.Size(153, 20);
             this.dtpContractCloseDate.TabIndex = 3;
             this.dtpContractCloseDate.TabStop = false;
             this.dtpContractCloseDate.Text = "7/31/2023";
@@ -818,29 +812,11 @@
             this.dtpLastPaymentDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpLastPaymentDate.Location = new System.Drawing.Point(762, 128);
             this.dtpLastPaymentDate.Name = "dtpLastPaymentDate";
-            this.dtpLastPaymentDate.Size = new System.Drawing.Size(94, 19);
+            this.dtpLastPaymentDate.Size = new System.Drawing.Size(153, 20);
             this.dtpLastPaymentDate.TabIndex = 3;
             this.dtpLastPaymentDate.TabStop = false;
             this.dtpLastPaymentDate.Text = "7/31/2023";
             this.dtpLastPaymentDate.Value = new System.DateTime(2023, 7, 31, 9, 8, 50, 186);
-            // 
-            // radLabel20
-            // 
-            this.radLabel20.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.radLabel20.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel20.Location = new System.Drawing.Point(3, 350);
-            this.radLabel20.Name = "radLabel20";
-            this.radLabel20.Size = new System.Drawing.Size(192, 19);
-            this.radLabel20.TabIndex = 1;
-            this.radLabel20.Text = "3 MONTHS SECURITY DEPOSIT :";
-            // 
-            // txtMonthsSecurityDeposit
-            // 
-            this.txtMonthsSecurityDeposit.Location = new System.Drawing.Point(201, 350);
-            this.txtMonthsSecurityDeposit.Name = "txtMonthsSecurityDeposit";
-            this.txtMonthsSecurityDeposit.Size = new System.Drawing.Size(194, 19);
-            this.txtMonthsSecurityDeposit.TabIndex = 4;
-            this.txtMonthsSecurityDeposit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMonthsSecurityDeposit_KeyPress);
             // 
             // radLabel21
             // 
@@ -933,8 +909,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtpContractCloseDate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel30)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpLastPaymentDate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel20)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMonthsSecurityDeposit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel21)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotal)).EndInit();
             this.ResumeLayout(false);
@@ -975,8 +949,6 @@
         private Telerik.WinControls.UI.RadLabel lblVat;
         private Telerik.WinControls.UI.RadLabel radLabel15;
         private Telerik.WinControls.UI.RadTextBox txtTotalRental;
-        private Telerik.WinControls.UI.RadLabel radLabel20;
-        private Telerik.WinControls.UI.RadTextBox txtMonthsSecurityDeposit;
         private Telerik.WinControls.UI.RadLabel radLabel21;
         private Telerik.WinControls.UI.RadTextBox txtTotal;
         private Telerik.WinControls.UI.RadTextBox txtUnitNumber;

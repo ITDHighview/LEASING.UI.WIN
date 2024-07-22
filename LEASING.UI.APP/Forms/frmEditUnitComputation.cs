@@ -93,7 +93,7 @@ namespace LEASING.UI.APP.Forms
             txtSecAndMaintenance.Text = string.Empty;
             txtTotalRental.Text = string.Empty;
 
-            txtMonthsSecurityDeposit.Text = string.Empty;
+            //txtMonthsSecurityDeposit.Text = string.Empty;
             txtTotal.Text = string.Empty;
             txtPaymentStatus.Text = string.Empty;
             txtContractSignStatus.Text = string.Empty;
@@ -115,7 +115,7 @@ namespace LEASING.UI.APP.Forms
             txtSecAndMaintenance.Enabled = true;
             txtTotalRental.Enabled = true;
 
-            txtMonthsSecurityDeposit.Enabled = true;
+            //txtMonthsSecurityDeposit.Enabled = true;
             txtTotal.Enabled = true;
             txtProjectName.Enabled = true;
             txtUnitNumber.Enabled = true;
@@ -152,7 +152,7 @@ namespace LEASING.UI.APP.Forms
             txtSecAndMaintenance.Enabled = false;
             txtTotalRental.Enabled = false;
 
-            txtMonthsSecurityDeposit.Enabled = false;
+            //txtMonthsSecurityDeposit.Enabled = false;
             txtTotal.Enabled = false;
             dtpTransactionDate.Enabled = false;
             dtpStartDate.Enabled = false;
@@ -236,7 +236,7 @@ namespace LEASING.UI.APP.Forms
                         txtSecAndMaintenance.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecAndMaintenance"]);
                         txtTotalRental.Text = Convert.ToString(dt.Tables[0].Rows[0]["TotalRent"]);
 
-                        txtMonthsSecurityDeposit.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecDeposit"]);
+                        //txtMonthsSecurityDeposit.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecDeposit"]);
                         txtTotal.Text = Convert.ToString(dt.Tables[0].Rows[0]["Total"]);
 
                         dtpLastPaymentDate.Visible = false;
@@ -290,8 +290,8 @@ namespace LEASING.UI.APP.Forms
             txtFloorType.ReadOnly = true;
 
 
-            radLabel20.Visible = false;
-            txtMonthsSecurityDeposit.Visible = false;
+            //radLabel20.Visible = false;
+            //txtMonthsSecurityDeposit.Visible = false;
             radLabel21.Visible = false;
             txtTotal.Visible = false;
             //M_SelectProject();

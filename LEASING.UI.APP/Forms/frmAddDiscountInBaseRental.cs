@@ -65,7 +65,7 @@ namespace LEASING.UI.APP.Forms
         }
         private void getDiscountedBaseRentalWithVatAmount()
         {
-            this.vDiscounted_BaseRentalWithVatAmount = (this.vDiscounted_BaseRental+ this.vDiscounted_BaseRentalVatAmount);
+            this.vDiscounted_BaseRentalWithVatAmount = (this.vDiscounted_BaseRental + this.vDiscounted_BaseRentalVatAmount);
             txtUnit_BaseRentalWithVatAmount.Text = string.Empty;
             txtUnit_BaseRentalWithVatAmount.Text = this.vDiscounted_BaseRentalWithVatAmount.ToString("0.00");
         }
@@ -84,7 +84,7 @@ namespace LEASING.UI.APP.Forms
                 this.vContract_DiscountAmount = Functions.ConvertStringToDecimal(txtContract_DiscountAmount.Text);
                 this.Close();
             }
-    
+
         }
 
         private void frmAddDiscountInBaseRental_Load(object sender, EventArgs e)

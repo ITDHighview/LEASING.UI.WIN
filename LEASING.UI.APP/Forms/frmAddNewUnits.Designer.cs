@@ -28,21 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn3 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn4 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn14 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn15 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn16 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn17 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn18 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn19 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn20 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn21 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn22 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn23 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn24 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn25 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn26 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn2 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn12 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn13 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -88,8 +88,6 @@
             this.txtSecAndMainVatAmount = new Telerik.WinControls.UI.RadTextBox();
             this.txtSecAndMainVatPercentage = new Telerik.WinControls.UI.RadTextBox();
             this.txtSecAndMainAmount = new Telerik.WinControls.UI.RadTextBox();
-            this.radGroupBox2 = new Telerik.WinControls.UI.RadGroupBox();
-            this.dgvUnitList = new Telerik.WinControls.UI.RadGridView();
             this.radGroupBox4 = new Telerik.WinControls.UI.RadGroupBox();
             this.txtAreRateSqm = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel15 = new Telerik.WinControls.UI.RadLabel();
@@ -104,8 +102,12 @@
             this.txtTotalRental = new Telerik.WinControls.UI.RadTextBox();
             this.radGroupBox8 = new Telerik.WinControls.UI.RadGroupBox();
             this.chkIsParking = new Telerik.WinControls.UI.RadCheckBox();
-            this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
+            this.radGroupBox2 = new Telerik.WinControls.UI.RadGroupBox();
+            this.dgvUnitList = new Telerik.WinControls.UI.RadGridView();
             this.btnTotalMonthlyRoundNoOff = new Telerik.WinControls.UI.RadButton();
+            this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
+            this.chkNonTax = new Telerik.WinControls.UI.RadCheckBox();
+            this.btnOverrideSecAndMain = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
             this.radGroupBox1.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
@@ -149,10 +151,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtSecAndMainVatAmount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSecAndMainVatPercentage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSecAndMainAmount)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).BeginInit();
-            this.radGroupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvUnitList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvUnitList.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox4)).BeginInit();
             this.radGroupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtAreRateSqm)).BeginInit();
@@ -171,7 +169,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox8)).BeginInit();
             this.radGroupBox8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chkIsParking)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).BeginInit();
+            this.radGroupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUnitList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUnitList.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnTotalMonthlyRoundNoOff)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkNonTax)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnOverrideSecAndMain)).BeginInit();
             this.SuspendLayout();
             // 
             // radGroupBox1
@@ -605,6 +609,7 @@
             this.radGroupBox5.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
             this.radGroupBox5.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.tableLayoutPanel5.SetColumnSpan(this.radGroupBox5, 2);
+            this.radGroupBox5.Controls.Add(this.btnOverrideSecAndMain);
             this.radGroupBox5.Controls.Add(this.radLabel2);
             this.radGroupBox5.Controls.Add(this.radLabel16);
             this.radGroupBox5.Controls.Add(this.radLabel17);
@@ -699,129 +704,6 @@
             this.txtSecAndMainAmount.ThemeName = "Office2007Silver";
             this.txtSecAndMainAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSecAndMainAmount_KeyPress);
             // 
-            // radGroupBox2
-            // 
-            this.radGroupBox2.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.tableLayoutPanel5.SetColumnSpan(this.radGroupBox2, 7);
-            this.radGroupBox2.Controls.Add(this.dgvUnitList);
-            this.radGroupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radGroupBox2.HeaderText = "Unit List";
-            this.radGroupBox2.Location = new System.Drawing.Point(3, 290);
-            this.radGroupBox2.Name = "radGroupBox2";
-            this.radGroupBox2.Size = new System.Drawing.Size(1127, 320);
-            this.radGroupBox2.TabIndex = 7;
-            this.radGroupBox2.Text = "Unit List";
-            this.radGroupBox2.ThemeName = "Office2007Silver";
-            // 
-            // dgvUnitList
-            // 
-            this.dgvUnitList.BackColor = System.Drawing.SystemColors.Control;
-            this.dgvUnitList.Cursor = System.Windows.Forms.Cursors.Default;
-            this.dgvUnitList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvUnitList.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.dgvUnitList.ForeColor = System.Drawing.Color.Black;
-            this.dgvUnitList.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.dgvUnitList.Location = new System.Drawing.Point(2, 18);
-            // 
-            // dgvUnitList
-            // 
-            this.dgvUnitList.MasterTemplate.AllowAddNewRow = false;
-            this.dgvUnitList.MasterTemplate.AllowColumnReorder = false;
-            gridViewCommandColumn3.FieldName = "ColEdit";
-            gridViewCommandColumn3.HeaderImage = global::LEASING.UI.APP.Properties.Resources.co_folder_20;
-            gridViewCommandColumn3.HeaderText = "";
-            gridViewCommandColumn3.Image = global::LEASING.UI.APP.Properties.Resources.co_folder_20;
-            gridViewCommandColumn3.Name = "ColEdit";
-            gridViewCommandColumn3.Width = 30;
-            gridViewCommandColumn4.FieldName = "ColDeactivate";
-            gridViewCommandColumn4.HeaderImage = global::LEASING.UI.APP.Properties.Resources.co_delete_16;
-            gridViewCommandColumn4.HeaderText = "";
-            gridViewCommandColumn4.Image = global::LEASING.UI.APP.Properties.Resources.co_delete_16;
-            gridViewCommandColumn4.IsVisible = false;
-            gridViewCommandColumn4.Name = "ColDeactivate";
-            gridViewCommandColumn4.Width = 30;
-            gridViewTextBoxColumn14.FieldName = "RecId";
-            gridViewTextBoxColumn14.HeaderText = "ID";
-            gridViewTextBoxColumn14.Name = "RecId";
-            gridViewTextBoxColumn15.FieldName = "UnitStatus";
-            gridViewTextBoxColumn15.HeaderText = "Unit Status";
-            gridViewTextBoxColumn15.Name = "UnitStatus";
-            gridViewTextBoxColumn15.Width = 280;
-            gridViewTextBoxColumn16.FieldName = "UnitNo";
-            gridViewTextBoxColumn16.HeaderText = "Unit No";
-            gridViewTextBoxColumn16.Name = "UnitNo";
-            gridViewTextBoxColumn16.Width = 100;
-            gridViewTextBoxColumn17.FieldName = "ProjectName";
-            gridViewTextBoxColumn17.HeaderText = "Project Name";
-            gridViewTextBoxColumn17.Name = "ProjectName";
-            gridViewTextBoxColumn17.Width = 200;
-            gridViewTextBoxColumn18.FieldName = "DetailsofProperty";
-            gridViewTextBoxColumn18.HeaderText = "Details of Property";
-            gridViewTextBoxColumn18.Name = "DetailsofProperty";
-            gridViewTextBoxColumn18.Width = 200;
-            gridViewTextBoxColumn19.FieldName = "FloorType";
-            gridViewTextBoxColumn19.HeaderText = "Floor Type";
-            gridViewTextBoxColumn19.Name = "FloorType";
-            gridViewTextBoxColumn19.Width = 150;
-            gridViewTextBoxColumn20.FieldName = "FloorNo";
-            gridViewTextBoxColumn20.HeaderText = "Floor No.";
-            gridViewTextBoxColumn20.Name = "FloorNo";
-            gridViewTextBoxColumn20.Width = 80;
-            gridViewTextBoxColumn21.FieldName = "UnitDescription";
-            gridViewTextBoxColumn21.HeaderText = "Description";
-            gridViewTextBoxColumn21.Name = "UnitDescription";
-            gridViewTextBoxColumn21.Width = 150;
-            gridViewTextBoxColumn22.FieldName = "AreaSqm";
-            gridViewTextBoxColumn22.HeaderText = "Area Sqm.";
-            gridViewTextBoxColumn22.Name = "AreaSqm";
-            gridViewTextBoxColumn22.Width = 80;
-            gridViewTextBoxColumn23.FieldName = "AreaRateSqm";
-            gridViewTextBoxColumn23.HeaderText = "Area Rate Sqm.";
-            gridViewTextBoxColumn23.Name = "AreaRateSqm";
-            gridViewTextBoxColumn23.Width = 150;
-            gridViewTextBoxColumn24.FieldName = "TotalMonthlyRental";
-            gridViewTextBoxColumn24.HeaderText = "Total Monthly Rental";
-            gridViewTextBoxColumn24.Name = "TotalMonthlyRental";
-            gridViewTextBoxColumn24.Width = 150;
-            gridViewTextBoxColumn24.WrapText = true;
-            gridViewTextBoxColumn25.FieldName = "IsActive";
-            gridViewTextBoxColumn25.HeaderText = "Is Active";
-            gridViewTextBoxColumn25.IsVisible = false;
-            gridViewTextBoxColumn25.Name = "IsActive";
-            gridViewTextBoxColumn25.Width = 80;
-            gridViewTextBoxColumn26.FieldName = "UnitStat";
-            gridViewTextBoxColumn26.HeaderText = "column1";
-            gridViewTextBoxColumn26.IsVisible = false;
-            gridViewTextBoxColumn26.Name = "UnitStat";
-            this.dgvUnitList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewCommandColumn3,
-            gridViewCommandColumn4,
-            gridViewTextBoxColumn14,
-            gridViewTextBoxColumn15,
-            gridViewTextBoxColumn16,
-            gridViewTextBoxColumn17,
-            gridViewTextBoxColumn18,
-            gridViewTextBoxColumn19,
-            gridViewTextBoxColumn20,
-            gridViewTextBoxColumn21,
-            gridViewTextBoxColumn22,
-            gridViewTextBoxColumn23,
-            gridViewTextBoxColumn24,
-            gridViewTextBoxColumn25,
-            gridViewTextBoxColumn26});
-            this.dgvUnitList.MasterTemplate.EnableFiltering = true;
-            this.dgvUnitList.Name = "dgvUnitList";
-            this.dgvUnitList.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.dgvUnitList.ReadOnly = true;
-            this.dgvUnitList.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.dgvUnitList.ShowGroupPanel = false;
-            this.dgvUnitList.Size = new System.Drawing.Size(1123, 300);
-            this.dgvUnitList.TabIndex = 0;
-            this.dgvUnitList.Text = "radGridView1";
-            this.dgvUnitList.ThemeName = "Office2007Silver";
-            this.dgvUnitList.CellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.dgvUnitList_CellFormatting);
-            this.dgvUnitList.CellClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.dgvUnitList_CellClick);
-            // 
             // radGroupBox4
             // 
             this.radGroupBox4.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
@@ -910,6 +792,7 @@
             this.radGroupBox6.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
             this.radGroupBox6.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.radGroupBox6.Controls.Add(this.chkNonCusaMaintenance);
+            this.radGroupBox6.Controls.Add(this.chkNonTax);
             this.radGroupBox6.Controls.Add(this.chkNonVat);
             this.radGroupBox6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radGroupBox6.HeaderText = "Option";
@@ -925,8 +808,9 @@
             // 
             this.chkNonCusaMaintenance.Location = new System.Drawing.Point(8, 45);
             this.chkNonCusaMaintenance.Name = "chkNonCusaMaintenance";
-            this.chkNonCusaMaintenance.Size = new System.Drawing.Size(15, 15);
+            this.chkNonCusaMaintenance.Size = new System.Drawing.Size(69, 18);
             this.chkNonCusaMaintenance.TabIndex = 0;
+            this.chkNonCusaMaintenance.Text = "Non Cusa";
             this.chkNonCusaMaintenance.ThemeName = "Office2007Silver";
             this.chkNonCusaMaintenance.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.chkNonCusaMaintenance_ToggleStateChanged);
             // 
@@ -997,6 +881,129 @@
             this.chkIsParking.ThemeName = "Office2007Silver";
             this.chkIsParking.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.chkIsParking_ToggleStateChanged);
             // 
+            // radGroupBox2
+            // 
+            this.radGroupBox2.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this.tableLayoutPanel5.SetColumnSpan(this.radGroupBox2, 7);
+            this.radGroupBox2.Controls.Add(this.dgvUnitList);
+            this.radGroupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radGroupBox2.HeaderText = "Unit List";
+            this.radGroupBox2.Location = new System.Drawing.Point(3, 290);
+            this.radGroupBox2.Name = "radGroupBox2";
+            this.radGroupBox2.Size = new System.Drawing.Size(1127, 320);
+            this.radGroupBox2.TabIndex = 7;
+            this.radGroupBox2.Text = "Unit List";
+            this.radGroupBox2.ThemeName = "Office2007Silver";
+            // 
+            // dgvUnitList
+            // 
+            this.dgvUnitList.BackColor = System.Drawing.SystemColors.Control;
+            this.dgvUnitList.Cursor = System.Windows.Forms.Cursors.Default;
+            this.dgvUnitList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvUnitList.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.dgvUnitList.ForeColor = System.Drawing.Color.Black;
+            this.dgvUnitList.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.dgvUnitList.Location = new System.Drawing.Point(2, 18);
+            // 
+            // dgvUnitList
+            // 
+            this.dgvUnitList.MasterTemplate.AllowAddNewRow = false;
+            this.dgvUnitList.MasterTemplate.AllowColumnReorder = false;
+            gridViewCommandColumn1.FieldName = "ColEdit";
+            gridViewCommandColumn1.HeaderImage = global::LEASING.UI.APP.Properties.Resources.co_folder_20;
+            gridViewCommandColumn1.HeaderText = "";
+            gridViewCommandColumn1.Image = global::LEASING.UI.APP.Properties.Resources.co_folder_20;
+            gridViewCommandColumn1.Name = "ColEdit";
+            gridViewCommandColumn1.Width = 30;
+            gridViewCommandColumn2.FieldName = "ColDeactivate";
+            gridViewCommandColumn2.HeaderImage = global::LEASING.UI.APP.Properties.Resources.co_delete_16;
+            gridViewCommandColumn2.HeaderText = "";
+            gridViewCommandColumn2.Image = global::LEASING.UI.APP.Properties.Resources.co_delete_16;
+            gridViewCommandColumn2.IsVisible = false;
+            gridViewCommandColumn2.Name = "ColDeactivate";
+            gridViewCommandColumn2.Width = 30;
+            gridViewTextBoxColumn1.FieldName = "RecId";
+            gridViewTextBoxColumn1.HeaderText = "ID";
+            gridViewTextBoxColumn1.Name = "RecId";
+            gridViewTextBoxColumn2.FieldName = "UnitStatus";
+            gridViewTextBoxColumn2.HeaderText = "Unit Status";
+            gridViewTextBoxColumn2.Name = "UnitStatus";
+            gridViewTextBoxColumn2.Width = 280;
+            gridViewTextBoxColumn3.FieldName = "UnitNo";
+            gridViewTextBoxColumn3.HeaderText = "Unit No";
+            gridViewTextBoxColumn3.Name = "UnitNo";
+            gridViewTextBoxColumn3.Width = 100;
+            gridViewTextBoxColumn4.FieldName = "ProjectName";
+            gridViewTextBoxColumn4.HeaderText = "Project Name";
+            gridViewTextBoxColumn4.Name = "ProjectName";
+            gridViewTextBoxColumn4.Width = 200;
+            gridViewTextBoxColumn5.FieldName = "DetailsofProperty";
+            gridViewTextBoxColumn5.HeaderText = "Details of Property";
+            gridViewTextBoxColumn5.Name = "DetailsofProperty";
+            gridViewTextBoxColumn5.Width = 200;
+            gridViewTextBoxColumn6.FieldName = "FloorType";
+            gridViewTextBoxColumn6.HeaderText = "Floor Type";
+            gridViewTextBoxColumn6.Name = "FloorType";
+            gridViewTextBoxColumn6.Width = 150;
+            gridViewTextBoxColumn7.FieldName = "FloorNo";
+            gridViewTextBoxColumn7.HeaderText = "Floor No.";
+            gridViewTextBoxColumn7.Name = "FloorNo";
+            gridViewTextBoxColumn7.Width = 80;
+            gridViewTextBoxColumn8.FieldName = "UnitDescription";
+            gridViewTextBoxColumn8.HeaderText = "Description";
+            gridViewTextBoxColumn8.Name = "UnitDescription";
+            gridViewTextBoxColumn8.Width = 150;
+            gridViewTextBoxColumn9.FieldName = "AreaSqm";
+            gridViewTextBoxColumn9.HeaderText = "Area Sqm.";
+            gridViewTextBoxColumn9.Name = "AreaSqm";
+            gridViewTextBoxColumn9.Width = 80;
+            gridViewTextBoxColumn10.FieldName = "AreaRateSqm";
+            gridViewTextBoxColumn10.HeaderText = "Area Rate Sqm.";
+            gridViewTextBoxColumn10.Name = "AreaRateSqm";
+            gridViewTextBoxColumn10.Width = 150;
+            gridViewTextBoxColumn11.FieldName = "TotalMonthlyRental";
+            gridViewTextBoxColumn11.HeaderText = "Total Monthly Rental";
+            gridViewTextBoxColumn11.Name = "TotalMonthlyRental";
+            gridViewTextBoxColumn11.Width = 150;
+            gridViewTextBoxColumn11.WrapText = true;
+            gridViewTextBoxColumn12.FieldName = "IsActive";
+            gridViewTextBoxColumn12.HeaderText = "Is Active";
+            gridViewTextBoxColumn12.IsVisible = false;
+            gridViewTextBoxColumn12.Name = "IsActive";
+            gridViewTextBoxColumn12.Width = 80;
+            gridViewTextBoxColumn13.FieldName = "UnitStat";
+            gridViewTextBoxColumn13.HeaderText = "column1";
+            gridViewTextBoxColumn13.IsVisible = false;
+            gridViewTextBoxColumn13.Name = "UnitStat";
+            this.dgvUnitList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
+            gridViewCommandColumn1,
+            gridViewCommandColumn2,
+            gridViewTextBoxColumn1,
+            gridViewTextBoxColumn2,
+            gridViewTextBoxColumn3,
+            gridViewTextBoxColumn4,
+            gridViewTextBoxColumn5,
+            gridViewTextBoxColumn6,
+            gridViewTextBoxColumn7,
+            gridViewTextBoxColumn8,
+            gridViewTextBoxColumn9,
+            gridViewTextBoxColumn10,
+            gridViewTextBoxColumn11,
+            gridViewTextBoxColumn12,
+            gridViewTextBoxColumn13});
+            this.dgvUnitList.MasterTemplate.EnableFiltering = true;
+            this.dgvUnitList.Name = "dgvUnitList";
+            this.dgvUnitList.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this.dgvUnitList.ReadOnly = true;
+            this.dgvUnitList.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.dgvUnitList.ShowGroupPanel = false;
+            this.dgvUnitList.Size = new System.Drawing.Size(1123, 300);
+            this.dgvUnitList.TabIndex = 0;
+            this.dgvUnitList.Text = "radGridView1";
+            this.dgvUnitList.ThemeName = "Office2007Silver";
+            this.dgvUnitList.CellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.dgvUnitList_CellFormatting);
+            this.dgvUnitList.CellClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.dgvUnitList_CellClick);
+            // 
             // btnTotalMonthlyRoundNoOff
             // 
             this.tableLayoutPanel5.SetColumnSpan(this.btnTotalMonthlyRoundNoOff, 2);
@@ -1007,6 +1014,24 @@
             this.btnTotalMonthlyRoundNoOff.TabIndex = 14;
             this.btnTotalMonthlyRoundNoOff.Text = "No Round Off";
             this.btnTotalMonthlyRoundNoOff.Click += new System.EventHandler(this.btnTotalMonthlyRoundNoOff_Click);
+            // 
+            // chkNonTax
+            // 
+            this.chkNonTax.Location = new System.Drawing.Point(98, 22);
+            this.chkNonTax.Name = "chkNonTax";
+            this.chkNonTax.Size = new System.Drawing.Size(62, 18);
+            this.chkNonTax.TabIndex = 0;
+            this.chkNonTax.Text = "Non Tax";
+            this.chkNonTax.ThemeName = "Office2007Silver";
+            this.chkNonTax.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.chkNonTax_ToggleStateChanged);
+            // 
+            // btnOverrideSecAndMain
+            // 
+            this.btnOverrideSecAndMain.Location = new System.Drawing.Point(120, 120);
+            this.btnOverrideSecAndMain.Name = "btnOverrideSecAndMain";
+            this.btnOverrideSecAndMain.Size = new System.Drawing.Size(92, 20);
+            this.btnOverrideSecAndMain.TabIndex = 7;
+            this.btnOverrideSecAndMain.Text = "Override";
             // 
             // frmAddNewUnits
             // 
@@ -1068,10 +1093,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtSecAndMainVatAmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSecAndMainVatPercentage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSecAndMainAmount)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).EndInit();
-            this.radGroupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvUnitList.MasterTemplate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvUnitList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox4)).EndInit();
             this.radGroupBox4.ResumeLayout(false);
             this.radGroupBox4.PerformLayout();
@@ -1093,7 +1114,13 @@
             this.radGroupBox8.ResumeLayout(false);
             this.radGroupBox8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chkIsParking)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).EndInit();
+            this.radGroupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUnitList.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUnitList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnTotalMonthlyRoundNoOff)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkNonTax)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnOverrideSecAndMain)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1163,5 +1190,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private Telerik.WinControls.UI.RadCheckBox chkNonCusaMaintenance;
         private Telerik.WinControls.UI.RadButton btnTotalMonthlyRoundNoOff;
+        private Telerik.WinControls.UI.RadCheckBox chkNonTax;
+        private Telerik.WinControls.UI.RadButton btnOverrideSecAndMain;
     }
 }

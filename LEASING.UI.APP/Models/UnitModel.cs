@@ -34,7 +34,9 @@ namespace LEASING.UI.APP.Models
         public decimal BaseRentalTax { get; set; }
 
         public bool IsNonVat { get; set; }
+        public bool IsNonTax { get; set; }
 
+        public bool IsNonCusa { get; set; }
         public decimal TotalRental { get; set; }
 
         public decimal SecAndMainAmount { get; set; }

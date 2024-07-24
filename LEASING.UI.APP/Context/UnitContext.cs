@@ -50,7 +50,6 @@ namespace LEASING.UI.APP.Context
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@ComputerName", Environment.MachineName);
             _sqlcmd.Parameters.Add(_sqlpara);
-
             _sqlpara = new SqlParameter("@BaseRentalVatAmount", model.BaseRentalVatAmount);
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@BaseRentalWithVatAmount", model.BaseRentalWithVatAmount);
@@ -58,6 +57,10 @@ namespace LEASING.UI.APP.Context
             _sqlpara = new SqlParameter("@BaseRentalTax", model.BaseRentalTax);
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@IsNonVat", model.IsNonVat);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@IsNonTax", model.IsNonTax);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@IsNonCusa", model.IsNonCusa);
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@TotalRental", model.TotalRental);
             _sqlcmd.Parameters.Add(_sqlpara);
@@ -154,6 +157,10 @@ namespace LEASING.UI.APP.Context
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@IsNonVat", model.IsNonVat);
             _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@IsNonTax", model.IsNonTax);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@IsNonCusa", model.IsNonCusa);
+            _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@TotalRental", model.TotalRental);
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@SecAndMainAmount", model.SecAndMainAmount);
@@ -176,6 +183,7 @@ namespace LEASING.UI.APP.Context
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@IsNotRoundOff", model.IsNotRoundOff);
             _sqlcmd.Parameters.Add(_sqlpara);
+         
 
             try
             {

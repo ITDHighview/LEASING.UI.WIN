@@ -192,6 +192,9 @@ namespace LEASING.UI.APP.Forms
                         lblBaseRentalTax.Text = "TAX  : " + Convert.ToString(vWithHoldingTax) + "%";
                         txtBaseRentalTax.Text = Convert.ToString(dt.Tables[0].Rows[0]["TaxAmount"]);
                         chkNonVat.Checked = Convert.ToBoolean(dt.Tables[0].Rows[0]["IsNonVat"]);
+                        chkNonTax.Checked = Convert.ToBoolean(dt.Tables[0].Rows[0]["IsNonTax"]);
+                        chkNonCusaMaintenance.Checked = Convert.ToBoolean(dt.Tables[0].Rows[0]["IsNonCusa"]);
+                        this.IsNotRoundOff = Convert.ToBoolean(dt.Tables[0].Rows[0]["IsNotRoundOff"]);
                         txtSecAndMainVatPercentage.Text = Convert.ToString(dt.Tables[0].Rows[0]["Vat"]);
                         txtSecAndMainAmount.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecAndMainAmount"]);
                         this._secAndMainAmount = Convert.ToString(dt.Tables[0].Rows[0]["SecAndMainAmount"]);
@@ -242,6 +245,24 @@ namespace LEASING.UI.APP.Forms
 
             return true;
         }
+        private void ClearFields()
+        {
+
+            ddlProject.SelectedIndex = 0;
+            //ddlUnitStatus.SelectedIndex = 0;
+
+            txtAreSql.Text = string.Empty;
+            ddlFloorType.SelectedIndex = 0;
+            txtDetailsOfProperty.Text = string.Empty;
+            txtType.Text = string.Empty;
+            txtUnitNumber.Text = string.Empty;
+            txtFloorNumber.Text = string.Empty;
+            txtAreRateSqm.Text = string.Empty;
+            txtBaseRental.Text = string.Empty;
+            txtUnitSequence.Text = string.Empty;
+            //txtIsParking.Text = string.Empty;
+
+        }
         private void EnableFields()
         {
 
@@ -264,26 +285,15 @@ namespace LEASING.UI.APP.Forms
             //dgvUnitList.Enabled = true;
 
             //chkIsParking.Enabled = true;
+            ddlUnitStatList.Enabled = true;
             chkNonVat.Enabled = true;
+            chkNonTax.Enabled = true;
+            chkNonCusaMaintenance.Enabled = true;
+            btnOverrideSecAndMain.Enabled = true;
+            txtTotalRental.Enabled = true;
+            btnTotalMonthlyRoundNoOff.Enabled = true;
         }
-        private void ClearFields()
-        {
-
-            ddlProject.SelectedIndex = 0;
-            //ddlUnitStatus.SelectedIndex = 0;
-
-            txtAreSql.Text = string.Empty;
-            ddlFloorType.SelectedIndex = 0;
-            txtDetailsOfProperty.Text = string.Empty;
-            txtType.Text = string.Empty;
-            txtUnitNumber.Text = string.Empty;
-            txtFloorNumber.Text = string.Empty;
-            txtAreRateSqm.Text = string.Empty;
-            txtBaseRental.Text = string.Empty;
-            txtUnitSequence.Text = string.Empty;
-            //txtIsParking.Text = string.Empty;
-
-        }
+        
         private void DisEnableFields()
         {
 
@@ -309,12 +319,19 @@ namespace LEASING.UI.APP.Forms
             txtBaseRentalVatAmount.Enabled = false;
             txtBaseRentalWithVatAmount.Enabled = false;
             txtBaseRentalTax.Enabled = false;
-            chkNonVat.Enabled = false;
+           
             txtSecAndMainVatPercentage.Enabled = false;
             txtSecAndMainAmount.Enabled = false;
             txtSecAndMainVatAmount.Enabled = false;
             txtSecAndMainWithVatAmount.Enabled = false;
             txtTotalRental.Enabled = false;
+            ddlUnitStatList.Enabled = false;
+            chkNonVat.Enabled = false;
+            chkNonTax.Enabled = false;
+            chkNonCusaMaintenance.Enabled = false;
+            btnOverrideSecAndMain.Enabled = false;
+            txtTotalRental.Enabled = false;
+            btnTotalMonthlyRoundNoOff.Enabled = false;
         }
         private void M_SelectProject()
         {
@@ -358,6 +375,19 @@ namespace LEASING.UI.APP.Forms
                 Functions.ErrorShow("M_SelectFloortypes()", ex.ToString());
             }
         }
+        private string getBaseRentalVatAmount(bool nonVat)
+        {
+            if (nonVat == true)
+            {
+                return "0";
+            }
+            else
+            {
+                return Convert.ToString(this.RentalNetOfVat());
+            }
+
+            return "";
+        }
         private void M_GetBaseRentalVatAmount()
         {
             var AMount = (Functions.ConvertStringToDecimal(txtBaseRental.Text) * (chkNonVat.Checked == true ? 0 : Functions.ConvertStringToDecimal(txtBaseRentalVatPercentage.Text)) / 100);
@@ -368,7 +398,8 @@ namespace LEASING.UI.APP.Forms
             if (!chkIsParking.Checked)
             {
                 //var AMount = (Functions.ConvertStringToDecimal(txtBaseRental.Text) + Functions.ConvertStringToDecimal(txtBaseRentalVatAmount.Text));
-                txtBaseRentalWithVatAmount.Text = this.chkNonVat.Checked == true ? "0" : Convert.ToString(this.RentalNetOfVat());
+                //txtBaseRentalWithVatAmount.Text = this.chkNonVat.Checked == true ? "0" : Convert.ToString(this.RentalNetOfVat());
+                txtBaseRentalWithVatAmount.Text = this.getBaseRentalVatAmount(this.chkNonVat.Checked);
                 /*TAX*/
                 M_GetBaseRentalTaxAMount();
 
@@ -377,17 +408,30 @@ namespace LEASING.UI.APP.Forms
             else
             {
                 //var AMount = (Functions.ConvertStringToDecimal(txtBaseRental.Text) + Functions.ConvertStringToDecimal(txtBaseRentalVatAmount.Text));
-                txtBaseRentalWithVatAmount.Text = (this.chkNonVat.Checked == true ? "0" : Convert.ToString(this.RentalNetOfVat()));
+                //txtBaseRentalWithVatAmount.Text = (this.chkNonVat.Checked == true ? "0" : Convert.ToString(this.RentalNetOfVat()));
+                txtBaseRentalWithVatAmount.Text = this.getBaseRentalVatAmount(this.chkNonVat.Checked);
                 /*TAX*/
                 M_GetBaseRentalTaxAMount();
 
                 this.TotalRentalParking();
             }
         }
-
+        private decimal getTaxAmount(bool IsNonTax)
+        {
+            if (IsNonTax == true)
+            {
+                return 0;
+            }
+            else
+            {
+                return Functions.ConvertStringToDecimal(txtBaseRentalTax.Text);
+            }
+            return 0;
+        }
         private void TotalRentalNoRoundOffUnit()
         {
-            var tax = (Functions.ConvertStringToDecimal(txtBaseRentalTax.Text));
+            //var tax = (Functions.ConvertStringToDecimal(txtBaseRentalTax.Text));
+            var tax = this.getTaxAmount(this.chkNonTax.Checked);
             var totalrental = ((this.chkNonVat.Checked == true ? Functions.ConvertStringToDecimal(txtBaseRental.Text) : Functions.ConvertStringToDecimal(txtBaseRentalWithVatAmount.Text)) + Functions.ConvertStringToDecimal(txtSecAndMainWithVatAmount.Text));
             var result = (totalrental - tax);
             if (Functions.ConvertStringToDecimal(txtBaseRental.Text) > 0)
@@ -401,7 +445,8 @@ namespace LEASING.UI.APP.Forms
         }
         private void TotalRentalUnit()
         {
-            var tax = (Functions.ConvertStringToDecimal(txtBaseRentalTax.Text));
+            //var tax = (Functions.ConvertStringToDecimal(txtBaseRentalTax.Text));
+            var tax = this.getTaxAmount(this.chkNonTax.Checked);
             var totalrental = ((this.chkNonVat.Checked == true ? Functions.ConvertStringToDecimal(txtBaseRental.Text) : Functions.ConvertStringToDecimal(txtBaseRentalWithVatAmount.Text)) + Functions.ConvertStringToDecimal(txtSecAndMainWithVatAmount.Text));
             var result = Math.Round(totalrental - tax);
             if (Functions.ConvertStringToDecimal(txtBaseRental.Text) > 0)
@@ -413,9 +458,22 @@ namespace LEASING.UI.APP.Forms
                 txtTotalRental.Text = "0.00";
             }
         }
+        private string getBaseRentalTax(bool NonTax, decimal taxAmount)
+        {
+            if (NonTax == true)
+            {
+                return "0.00";
+            }
+            else
+            {
+                return taxAmount.ToString("0.00");
+            }
+            return "0.00";
+        }
         private void TotalRentalNoRoundOffParking()
         {
-            decimal tax = Functions.ConvertStringToDecimal(txtBaseRentalTax.Text);
+            //decimal tax = Functions.ConvertStringToDecimal(txtBaseRentalTax.Text);
+            var tax = this.getTaxAmount(this.chkNonTax.Checked);
             //var totalrental = Functions.ConvertStringToDecimal(txtBaseRentalWithVatAmount.Text);
             decimal totalrental = this.chkNonVat.Checked == true ? Functions.ConvertStringToDecimal(txtBaseRental.Text) : Functions.ConvertStringToDecimal(txtBaseRentalWithVatAmount.Text);
             decimal result = (totalrental - tax);
@@ -430,7 +488,8 @@ namespace LEASING.UI.APP.Forms
         }
         private void TotalRentalParking()
         {
-            decimal tax = Functions.ConvertStringToDecimal(txtBaseRentalTax.Text);
+            //decimal tax = Functions.ConvertStringToDecimal(txtBaseRentalTax.Text);
+            var tax = this.getTaxAmount(this.chkNonTax.Checked);
             //var totalrental = Functions.ConvertStringToDecimal(txtBaseRentalWithVatAmount.Text);
             decimal totalrental = this.chkNonVat.Checked == true ? Functions.ConvertStringToDecimal(txtBaseRental.Text) : Functions.ConvertStringToDecimal(txtBaseRentalWithVatAmount.Text);
             decimal result = Math.Round(totalrental - tax);
@@ -446,7 +505,8 @@ namespace LEASING.UI.APP.Forms
         private void M_GetBaseRentalTaxAMount()
         {
             var amount = (Functions.ConvertStringToDecimal(txtBaseRental.Text) * (vWithHoldingTax) / 100);
-            txtBaseRentalTax.Text = Convert.ToString(amount);
+            //txtBaseRentalTax.Text = Convert.ToString(amount);
+            txtBaseRentalTax.Text = this.getBaseRentalTax(this.chkNonTax.Checked, amount);
         }
         private decimal RentalNetOfVat()
         {
@@ -671,6 +731,8 @@ namespace LEASING.UI.APP.Forms
                 UnitUpdate.BaseRentalWithVatAmount = Functions.ConvertStringToDecimal(this.txtBaseRentalWithVatAmount.Text);
                 UnitUpdate.BaseRentalTax = Functions.ConvertStringToDecimal(this.txtBaseRentalTax.Text);
                 UnitUpdate.IsNonVat = this.chkNonVat.Checked;
+                UnitUpdate.IsNonTax = this.chkNonTax.Checked;
+                UnitUpdate.IsNonCusa = this.chkNonCusaMaintenance.Checked;
                 UnitUpdate.TotalRental = Functions.ConvertStringToDecimal(this.txtTotalRental.Text);
                 UnitUpdate.SecAndMainAmount = Functions.ConvertStringToDecimal(this.txtSecAndMainAmount.Text);
                 UnitUpdate.SecAndMainVatAmount = Functions.ConvertStringToDecimal(this.txtSecAndMainVatAmount.Text);
@@ -907,6 +969,11 @@ namespace LEASING.UI.APP.Forms
                     TotalRentalNoRoundOffParking();
                 }
             }
+        }
+
+        private void chkNonTax_ToggleStateChanged(object sender, Telerik.WinControls.UI.StateChangedEventArgs args)
+        {
+            M_GetBaseRentalWithVatAmount();
         }
     }
 }

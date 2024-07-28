@@ -52,7 +52,7 @@ namespace LEASING.UI.APP.Forms
                         btnEdit.Enabled = false;
                         EnableFields();
                         this.M_GetProjectTypeById();
-                        this.GetUnitStates();
+                        //this.GetUnitStates();
                         break;
                     case "READ":
                         btnUndo.Enabled = false;
@@ -196,7 +196,7 @@ namespace LEASING.UI.APP.Forms
                         chkNonCusaMaintenance.Checked = Convert.ToBoolean(dt.Tables[0].Rows[0]["IsNonCusa"]);
                         this.IsNotRoundOff = Convert.ToBoolean(dt.Tables[0].Rows[0]["IsNotRoundOff"]);
                         txtSecAndMainVatPercentage.Text = Convert.ToString(dt.Tables[0].Rows[0]["Vat"]);
-                        txtSecAndMainAmount.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecAndMainAmount"]);
+                        //txtSecAndMainAmount.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecAndMainAmount"]);
                         this._secAndMainAmount = Convert.ToString(dt.Tables[0].Rows[0]["SecAndMainAmount"]);
                         txtSecAndMainVatAmount.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecAndMainVatAmount"]);
                         txtSecAndMainWithVatAmount.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecAndMainWithVatAmount"]);
@@ -215,7 +215,19 @@ namespace LEASING.UI.APP.Forms
                             ddlUnitStatList.Visible = true;
                             lblStat.Visible = true;
                         }
-
+                        this.IsOverrideSecAndMain = Convert.ToBoolean(dt.Tables[0].Rows[0]["IsOverrideSecAndMain"]);
+                        if (this.IsOverrideSecAndMain == true)
+                        {
+                            btnOverrideSecAndMain.Text = "Revert";
+                            txtSecAndMainAmount.Enabled = this.IsOverrideSecAndMain;
+                            txtSecAndMainAmount.Text = this._secAndMainAmount;
+                        }
+                        else
+                        {
+                            btnOverrideSecAndMain.Text = "Override";
+                            txtSecAndMainAmount.Text = this._secAndMainAmount;
+                            txtSecAndMainAmount.Enabled = this.IsOverrideSecAndMain;
+                        }
                         //txtIsParking.Text = Convert.ToString(dt.Tables[0].Rows[0]["UnitDescription"]);
 
                     }
@@ -293,7 +305,7 @@ namespace LEASING.UI.APP.Forms
             txtTotalRental.Enabled = true;
             btnTotalMonthlyRoundNoOff.Enabled = true;
         }
-        
+
         private void DisEnableFields()
         {
 
@@ -319,7 +331,7 @@ namespace LEASING.UI.APP.Forms
             txtBaseRentalVatAmount.Enabled = false;
             txtBaseRentalWithVatAmount.Enabled = false;
             txtBaseRentalTax.Enabled = false;
-           
+
             txtSecAndMainVatPercentage.Enabled = false;
             txtSecAndMainAmount.Enabled = false;
             txtSecAndMainVatAmount.Enabled = false;
@@ -519,21 +531,21 @@ namespace LEASING.UI.APP.Forms
         }
         private void M_GetResendentialRateSettings()
         {
-            txtBaseRentalVatPercentage.Text = string.Empty;
+            //txtBaseRentalVatPercentage.Text = string.Empty;
             txtSecAndMainVatPercentage.Text = string.Empty;
             txtSecAndMainAmount.Text = string.Empty;
-            vWithHoldingTax = 0;
-            lblBaseRentalTax.Text = "TAX  : 0%";
+            //vWithHoldingTax = 0;
+            //lblBaseRentalTax.Text = "TAX  : 0%";
             try
             {
                 using (DataSet dt = RateSettingsContext.GetRESIDENTIALSettings())
                 {
                     if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
-                        txtBaseRentalVatPercentage.Text = Convert.ToString(dt.Tables[0].Rows[0]["GenVat"]);
+                        //txtBaseRentalVatPercentage.Text = Convert.ToString(dt.Tables[0].Rows[0]["GenVat"]);
                         txtSecAndMainVatPercentage.Text = String.Format("{0:0.00}", Convert.ToString(dt.Tables[0].Rows[0]["GenVat"]));
                         txtSecAndMainAmount.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecurityAndMaintenance"]);
-                        lblBaseRentalTax.Text = "TAX  : " + Convert.ToString(vWithHoldingTax) + "%";
+                        //lblBaseRentalTax.Text = "TAX  : " + Convert.ToString(vWithHoldingTax) + "%";
                     }
                 }
             }
@@ -545,23 +557,23 @@ namespace LEASING.UI.APP.Forms
         }
         private void M_GetWAREHOUSERateSettings()
         {
-            txtBaseRentalVatPercentage.Text = string.Empty;
+            //txtBaseRentalVatPercentage.Text = string.Empty;
             txtSecAndMainVatPercentage.Text = string.Empty;
             txtSecAndMainAmount.Text = string.Empty;
-            vWithHoldingTax = 0;
-            lblBaseRentalTax.Text = "TAX  : 0%";
+            //vWithHoldingTax = 0;
+            //lblBaseRentalTax.Text = "TAX  : 0%";
             try
             {
                 using (DataSet dt = RateSettingsContext.GetWAREHOUSESettings())
                 {
                     if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
-                        txtBaseRentalVatPercentage.Text = Convert.ToString(dt.Tables[0].Rows[0]["GenVat"]);
+                        //txtBaseRentalVatPercentage.Text = Convert.ToString(dt.Tables[0].Rows[0]["GenVat"]);
                         txtSecAndMainVatPercentage.Text = String.Format("{0:0.00}", Convert.ToString(dt.Tables[0].Rows[0]["GenVat"]));
                         txtSecAndMainAmount.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecurityAndMaintenance"]);
-                        vWithHoldingTax = Convert.ToInt32(dt.Tables[0].Rows[0]["WithHoldingTax"]);
-                        WithHoldingTaxParam = vWithHoldingTax;
-                        lblBaseRentalTax.Text = "TAX  : " + Convert.ToString(vWithHoldingTax) + "%";
+                        //vWithHoldingTax = Convert.ToInt32(dt.Tables[0].Rows[0]["WithHoldingTax"]);
+                        //WithHoldingTaxParam = vWithHoldingTax;
+                        //lblBaseRentalTax.Text = "TAX  : " + Convert.ToString(vWithHoldingTax) + "%";
                     }
                 }
             }
@@ -573,23 +585,23 @@ namespace LEASING.UI.APP.Forms
         }
         private void M_GetCOMMERCIALateSettings()
         {
-            txtBaseRentalVatPercentage.Text = string.Empty;
+            //txtBaseRentalVatPercentage.Text = string.Empty;
             txtSecAndMainVatPercentage.Text = string.Empty;
             txtSecAndMainAmount.Text = string.Empty;
-            vWithHoldingTax = 0;
-            lblBaseRentalTax.Text = "TAX  : 0%";
+            //vWithHoldingTax = 0;
+            //lblBaseRentalTax.Text = "TAX  : 0%";
             try
             {
                 using (DataSet dt = RateSettingsContext.GetCOMMERCIALSettings())
                 {
                     if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
-                        txtBaseRentalVatPercentage.Text = Convert.ToString(dt.Tables[0].Rows[0]["GenVat"]);
+                        //txtBaseRentalVatPercentage.Text = Convert.ToString(dt.Tables[0].Rows[0]["GenVat"]);
                         txtSecAndMainVatPercentage.Text = String.Format("{0:0.00}", Convert.ToString(dt.Tables[0].Rows[0]["GenVat"]));
                         txtSecAndMainAmount.Text = Convert.ToString(dt.Tables[0].Rows[0]["SecurityAndMaintenance"]);
-                        vWithHoldingTax = Convert.ToInt32(dt.Tables[0].Rows[0]["WithHoldingTax"]);
-                        WithHoldingTaxParam = vWithHoldingTax;
-                        lblBaseRentalTax.Text = "TAX  : " + Convert.ToString(vWithHoldingTax) + "%";
+                        //vWithHoldingTax = Convert.ToInt32(dt.Tables[0].Rows[0]["WithHoldingTax"]);
+                        //WithHoldingTaxParam = vWithHoldingTax;
+                        //lblBaseRentalTax.Text = "TAX  : " + Convert.ToString(vWithHoldingTax) + "%";
                     }
                 }
             }
@@ -618,19 +630,19 @@ namespace LEASING.UI.APP.Forms
                         {
                             isResidential = true;
                             chkNonCusaMaintenance.Text = "Non Sec/Maintenance";
-                            M_GetResendentialRateSettings();
+                            //M_GetResendentialRateSettings();
                         }
                         else if (Projecttype == "COMMERCIAL")
                         {
                             isCommercial = true;
                             chkNonCusaMaintenance.Text = "Non Cusa";
-                            M_GetCOMMERCIALateSettings();
+                            //M_GetCOMMERCIALateSettings();
                         }
                         else if (Projecttype == "WAREHOUSE")
                         {
                             isWarehouse = true;
                             chkNonCusaMaintenance.Text = "Non Cusa";
-                            M_GetWAREHOUSERateSettings();
+                            //M_GetWAREHOUSERateSettings();
                         }
                     }
                 }
@@ -646,23 +658,6 @@ namespace LEASING.UI.APP.Forms
             Functions.EventCapturefrmName(this);
             strUnitFormMode = "READ";
             this.Text = string.Empty;
-            //lblUnitStatus.Visible = false;
-            //ddlUnitStatus.Visible = false;
-
-            //if (ddlUnitStatus.Text == "RESERVED")
-            //{
-
-            //    btnUndo.Visible = false;
-            //    btnSave.Visible = false;
-            //    btnEdit.Visible = false;
-            //}
-            //else
-            //{
-            //    btnUndo.Visible = true;
-            //    btnSave.Visible = true;
-            //    btnEdit.Visible = true;
-            //}
-            //this.Text = "UNIT # ( " + txtUnitNumber.Text + " )-" + ddlUnitStatus.Text;
         }
         private void btnEdit_Click(object sender, EventArgs e)
         {
@@ -680,31 +675,40 @@ namespace LEASING.UI.APP.Forms
             }
             return "";
         }
-        private string SelectUnitStatus()
-        {
-            //if (this.ddlUnitStatus.Text == "--SELECT--")
-            //{
-            //    return "NONE";
-            //}
-            //else
-            //{
-            //    return this.ddlUnitStatus.Text;
-            //}
-            return "";
-        }
+
+        public decimal OverrideSecAndMainAmount { get; set; } = 0;
         private void _toggleNonCusaMaintenance()
         {
             if (chkNonCusaMaintenance.Checked == true)
             {
+                if (this.IsOverrideSecAndMain == true)
+                {
+                    this.OverrideSecAndMainAmount = Functions.ConvertStringToDecimal(txtSecAndMainAmount.Text);
+                }
+                else
+                {
+                    this.OverrideSecAndMainAmount = 0;
+                }
                 this.txtSecAndMainVatPercentage.Text = "0.00";
                 this.txtSecAndMainAmount.Text = "0.00";
                 this.txtSecAndMainVatAmount.Text = "0.00";
                 this.txtSecAndMainWithVatAmount.Text = "0.00";
+                btnOverrideSecAndMain.Visible = false;
+                txtSecAndMainAmount.Enabled = false;
             }
             else
             {
                 this.txtSecAndMainVatPercentage.Text = this._secAndMainVatPercentage;
-                this.txtSecAndMainAmount.Text = this._secAndMainAmount;
+                if (this.IsOverrideSecAndMain == true)
+                {
+                    this.txtSecAndMainAmount.Text = this.OverrideSecAndMainAmount.ToString("0.00");
+                }
+                else
+                {
+                    this.txtSecAndMainAmount.Text = this._secAndMainAmount;
+                }
+                btnOverrideSecAndMain.Visible = true;
+                txtSecAndMainAmount.Enabled = this.IsOverrideSecAndMain;
                 //this.txtSecAndMainVatAmount.Text = string.Empty;
                 //this.txtSecAndMainWithVatAmount.Text = string.Empty;
             }
@@ -742,6 +746,7 @@ namespace LEASING.UI.APP.Forms
                 UnitUpdate.TaxAmount = Functions.ConvertStringToDecimal(this.txtBaseRentalTax.Text);
                 UnitUpdate.UnitStatus = ddlUnitStatList.Text == "" ? "VACANT" : ddlUnitStatList.Text;
                 UnitUpdate.IsNotRoundOff = this.IsNotRoundOff;
+                UnitUpdate.IsOverrideSecAndMain = this.IsOverrideSecAndMain;
                 UnitUpdate.Message_Code = UnitContext.EditUnit(UnitUpdate);
                 if (UnitUpdate.Message_Code.Equals("SUCCESS"))
                 {
@@ -974,6 +979,47 @@ namespace LEASING.UI.APP.Forms
         private void chkNonTax_ToggleStateChanged(object sender, Telerik.WinControls.UI.StateChangedEventArgs args)
         {
             M_GetBaseRentalWithVatAmount();
+        }
+        public bool IsOverrideSecAndMain { get; set; } = false;
+        private void btnOverrideSecAndMain_Click(object sender, EventArgs e)
+        {
+            this.IsOverrideSecAndMain = !this.IsOverrideSecAndMain;
+            if (this.IsOverrideSecAndMain == true)
+            {
+                btnOverrideSecAndMain.Text = "Revert";
+                txtSecAndMainAmount.Enabled = this.IsOverrideSecAndMain;
+            }
+            else
+            {
+                btnOverrideSecAndMain.Text = "Override";
+
+                if (this.isResidential)
+                {
+                    M_GetResendentialRateSettings();
+                    M_GetSecAndMainVatAMount();
+                    M_GetSecAndMainWithVatAMount();
+                }
+                else if (this.isCommercial)
+                {
+                    M_GetCOMMERCIALateSettings();
+                    M_GetSecAndMainVatAMount();
+                    M_GetSecAndMainWithVatAMount();
+                }
+                else if (this.isWarehouse)
+                {
+                    M_GetWAREHOUSERateSettings();
+                    M_GetSecAndMainVatAMount();
+                    M_GetSecAndMainWithVatAMount();
+                }
+                //txtSecAndMainAmount.Text = this._secAndMainAmount;
+                txtSecAndMainAmount.Enabled = this.IsOverrideSecAndMain;
+            }
+        }
+
+        private void txtSecAndMainAmount_TextChanged(object sender, EventArgs e)
+        {
+            M_GetSecAndMainVatAMount();
+            M_GetSecAndMainWithVatAMount();
         }
     }
 }

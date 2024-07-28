@@ -68,6 +68,7 @@
             this.txtBaseRentalVatPercentage = new Telerik.WinControls.UI.RadTextBox();
             this.txtBaseRental = new Telerik.WinControls.UI.RadTextBox();
             this.radGroupBox5 = new Telerik.WinControls.UI.RadGroupBox();
+            this.btnOverrideSecAndMain = new Telerik.WinControls.UI.RadButton();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel16 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel17 = new Telerik.WinControls.UI.RadLabel();
@@ -85,6 +86,7 @@
             this.txtAreSql = new Telerik.WinControls.UI.RadTextBox();
             this.radGroupBox7 = new Telerik.WinControls.UI.RadGroupBox();
             this.chkNonCusaMaintenance = new Telerik.WinControls.UI.RadCheckBox();
+            this.chkNonTax = new Telerik.WinControls.UI.RadCheckBox();
             this.chkNonVat = new Telerik.WinControls.UI.RadCheckBox();
             this.radGroupBox8 = new Telerik.WinControls.UI.RadGroupBox();
             this.txtTotalRental = new Telerik.WinControls.UI.RadTextBox();
@@ -92,8 +94,6 @@
             this.chkIsParking = new Telerik.WinControls.UI.RadCheckBox();
             this.btnTotalMonthlyRoundNoOff = new Telerik.WinControls.UI.RadButton();
             this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
-            this.chkNonTax = new Telerik.WinControls.UI.RadCheckBox();
-            this.btnOverrideSecAndMain = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
             this.radGroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).BeginInit();
@@ -133,6 +133,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtBaseRental)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox5)).BeginInit();
             this.radGroupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnOverrideSecAndMain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel17)).BeginInit();
@@ -152,6 +153,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox7)).BeginInit();
             this.radGroupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chkNonCusaMaintenance)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkNonTax)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkNonVat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox8)).BeginInit();
             this.radGroupBox8.SuspendLayout();
@@ -160,8 +162,6 @@
             this.radGroupBox10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chkIsParking)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnTotalMonthlyRoundNoOff)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkNonTax)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnOverrideSecAndMain)).BeginInit();
             this.SuspendLayout();
             // 
             // radGroupBox1
@@ -637,6 +637,15 @@
             this.radGroupBox5.Text = "Sec & Maintenance";
             this.radGroupBox5.ThemeName = "Office2007Silver";
             // 
+            // btnOverrideSecAndMain
+            // 
+            this.btnOverrideSecAndMain.Location = new System.Drawing.Point(120, 120);
+            this.btnOverrideSecAndMain.Name = "btnOverrideSecAndMain";
+            this.btnOverrideSecAndMain.Size = new System.Drawing.Size(93, 20);
+            this.btnOverrideSecAndMain.TabIndex = 7;
+            this.btnOverrideSecAndMain.Text = "Override";
+            this.btnOverrideSecAndMain.Click += new System.EventHandler(this.btnOverrideSecAndMain_Click);
+            // 
             // radLabel2
             // 
             this.radLabel2.Anchor = System.Windows.Forms.AnchorStyles.Right;
@@ -708,6 +717,7 @@
             this.txtSecAndMainAmount.Size = new System.Drawing.Size(92, 20);
             this.txtSecAndMainAmount.TabIndex = 6;
             this.txtSecAndMainAmount.ThemeName = "Office2007Silver";
+            this.txtSecAndMainAmount.TextChanged += new System.EventHandler(this.txtSecAndMainAmount_TextChanged);
             // 
             // radGroupBox6
             // 
@@ -816,6 +826,16 @@
             this.chkNonCusaMaintenance.ThemeName = "Office2007Silver";
             this.chkNonCusaMaintenance.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.chkNonCusaMaintenance_ToggleStateChanged);
             // 
+            // chkNonTax
+            // 
+            this.chkNonTax.Location = new System.Drawing.Point(103, 21);
+            this.chkNonTax.Name = "chkNonTax";
+            this.chkNonTax.Size = new System.Drawing.Size(62, 18);
+            this.chkNonTax.TabIndex = 0;
+            this.chkNonTax.Text = "Non Tax";
+            this.chkNonTax.ThemeName = "Office2007Silver";
+            this.chkNonTax.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.chkNonTax_ToggleStateChanged);
+            // 
             // chkNonVat
             // 
             this.chkNonVat.Location = new System.Drawing.Point(8, 21);
@@ -893,24 +913,6 @@
             this.btnTotalMonthlyRoundNoOff.Text = "No Round Off";
             this.btnTotalMonthlyRoundNoOff.Click += new System.EventHandler(this.btnTotalMonthlyRoundNoOff_Click);
             // 
-            // chkNonTax
-            // 
-            this.chkNonTax.Location = new System.Drawing.Point(103, 21);
-            this.chkNonTax.Name = "chkNonTax";
-            this.chkNonTax.Size = new System.Drawing.Size(65, 18);
-            this.chkNonTax.TabIndex = 0;
-            this.chkNonTax.Text = "Non VAT";
-            this.chkNonTax.ThemeName = "Office2007Silver";
-            this.chkNonTax.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.chkNonTax_ToggleStateChanged);
-            // 
-            // btnOverrideSecAndMain
-            // 
-            this.btnOverrideSecAndMain.Location = new System.Drawing.Point(120, 120);
-            this.btnOverrideSecAndMain.Name = "btnOverrideSecAndMain";
-            this.btnOverrideSecAndMain.Size = new System.Drawing.Size(93, 20);
-            this.btnOverrideSecAndMain.TabIndex = 7;
-            this.btnOverrideSecAndMain.Text = "Override";
-            // 
             // frmEditUnits
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -969,6 +971,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox5)).EndInit();
             this.radGroupBox5.ResumeLayout(false);
             this.radGroupBox5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnOverrideSecAndMain)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel17)).EndInit();
@@ -990,6 +993,7 @@
             this.radGroupBox7.ResumeLayout(false);
             this.radGroupBox7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chkNonCusaMaintenance)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkNonTax)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkNonVat)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox8)).EndInit();
             this.radGroupBox8.ResumeLayout(false);
@@ -999,8 +1003,6 @@
             this.radGroupBox10.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chkIsParking)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnTotalMonthlyRoundNoOff)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkNonTax)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnOverrideSecAndMain)).EndInit();
             this.ResumeLayout(false);
 
         }

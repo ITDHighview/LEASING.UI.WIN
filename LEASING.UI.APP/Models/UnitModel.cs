@@ -48,7 +48,9 @@ namespace LEASING.UI.APP.Models
 
         public decimal Vat { get; set; }
 
-        public bool IsNotRoundOff { get; set; } 
+        public bool IsNotRoundOff { get; set; }
+        public bool IsOverrideSecAndMain { get; set; }
+        
 
 
 

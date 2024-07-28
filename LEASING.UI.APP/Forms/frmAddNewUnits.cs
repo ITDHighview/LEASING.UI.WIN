@@ -102,6 +102,7 @@ namespace LEASING.UI.APP.Forms
             vWithHoldingTax = 0;
             //lblSecAndMainTax.Text = "TAX  : 0%";
             lblBaseRentalTax.Text = "TAX  : 0%";
+          
             try
             {
                 using (DataSet dt = _rateSettings.GetRESIDENTIALSettings())
@@ -257,8 +258,8 @@ namespace LEASING.UI.APP.Forms
             chkIsParking.Checked = false;
             chkNonVat.Checked = false;
             chkNonTax.Checked = false;
-            chkNonCusaMaintenance.Checked = false;           
-            txtTotalRental.Text = "0.00";          
+            chkNonCusaMaintenance.Checked = false;
+            txtTotalRental.Text = "0.00";
         }
         private void EnableFields()
         {
@@ -280,7 +281,7 @@ namespace LEASING.UI.APP.Forms
             txtTotalRental.Enabled = true;
             btnTotalMonthlyRoundNoOff.Enabled = true;
         }
-       
+
         private void DisEnableFields()
         {
             ddlProject.Enabled = false;
@@ -537,19 +538,40 @@ namespace LEASING.UI.APP.Forms
                 this.TotalRentalParking();
             }
         }
+        public decimal OverrideSecAndMainAmount { get; set; } = 0;
         private void _toggleNonCusaMaintenance()
         {
+  
             if (chkNonCusaMaintenance.Checked == true)
             {
+                if (this.IsOverrideSecAndMain == true)
+                {
+                    this.OverrideSecAndMainAmount = Functions.ConvertStringToDecimal(txtSecAndMainAmount.Text);
+                }
+                else
+                {
+                    this.OverrideSecAndMainAmount = 0;
+                }
                 this.txtSecAndMainVatPercentage.Text = "0.00";
                 this.txtSecAndMainAmount.Text = "0.00";
                 this.txtSecAndMainVatAmount.Text = "0.00";
                 this.txtSecAndMainWithVatAmount.Text = "0.00";
+                btnOverrideSecAndMain.Visible = false;
+                txtSecAndMainAmount.Enabled = false;
             }
             else
             {
                 this.txtSecAndMainVatPercentage.Text = this._secAndMainVatPercentage;
-                this.txtSecAndMainAmount.Text = this._secAndMainAmount;
+                if (this.IsOverrideSecAndMain == true)
+                {
+                    this.txtSecAndMainAmount.Text = this.OverrideSecAndMainAmount.ToString("0.00");
+                }
+                else
+                {
+                    this.txtSecAndMainAmount.Text = this._secAndMainAmount;
+                }
+                btnOverrideSecAndMain.Visible = true;
+                txtSecAndMainAmount.Enabled = this.IsOverrideSecAndMain;
                 //this.txtSecAndMainVatAmount.Text = string.Empty;
                 //this.txtSecAndMainWithVatAmount.Text = string.Empty;
             }
@@ -574,7 +596,7 @@ namespace LEASING.UI.APP.Forms
                 this.TotalRentalParking();
             }
         }
-        private string getBaseRentalTax(bool NonTax,decimal taxAmount)
+        private string getBaseRentalTax(bool NonTax, decimal taxAmount)
         {
             if (NonTax == true)
             {
@@ -722,6 +744,7 @@ namespace LEASING.UI.APP.Forms
                 UnitNew.Tax = this.WithHoldingTaxParam;
                 UnitNew.TaxAmount = Functions.ConvertStringToDecimal(this.txtBaseRentalTax.Text);
                 UnitNew.IsNotRoundOff = this.IsNotRoundOff;
+                UnitNew.IsOverrideSecAndMain = this.IsOverrideSecAndMain;
                 UnitNew.Message_Code = _unit.SaveUnit(UnitNew);
                 if (UnitNew.Message_Code.Equals("SUCCESS"))
                 {
@@ -1028,6 +1051,30 @@ namespace LEASING.UI.APP.Forms
         private void chkNonTax_ToggleStateChanged(object sender, StateChangedEventArgs args)
         {
             M_GetBaseRentalWithVatAmount();
+        }
+
+        public bool IsOverrideSecAndMain { get; set; } = false;
+
+        private void btnOverrideSecAndMain_Click(object sender, EventArgs e)
+        {
+            this.IsOverrideSecAndMain = !this.IsOverrideSecAndMain;
+            if (this.IsOverrideSecAndMain == true)
+            {
+                btnOverrideSecAndMain.Text = "Revert";
+                txtSecAndMainAmount.Enabled = this.IsOverrideSecAndMain;
+            }
+            else
+            {
+                btnOverrideSecAndMain.Text = "Override";
+                txtSecAndMainAmount.Text = this._secAndMainAmount;
+                txtSecAndMainAmount.Enabled = this.IsOverrideSecAndMain;
+            }
+        }
+
+        private void txtSecAndMainAmount_TextChanged(object sender, EventArgs e)
+        {
+            M_GetSecAndMainVatAMount();
+            M_GetSecAndMainWithVatAMount();
         }
     }
 }

@@ -78,6 +78,9 @@ namespace LEASING.UI.APP.Context
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@IsNotRoundOff", model.IsNotRoundOff);
             _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@IsOverrideSecAndMain", model.IsOverrideSecAndMain);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            
 
             try
             {
@@ -183,7 +186,9 @@ namespace LEASING.UI.APP.Context
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@IsNotRoundOff", model.IsNotRoundOff);
             _sqlcmd.Parameters.Add(_sqlpara);
-         
+            _sqlpara = new SqlParameter("@IsOverrideSecAndMain", model.IsOverrideSecAndMain);
+            _sqlcmd.Parameters.Add(_sqlpara);
+
 
             try
             {

@@ -296,7 +296,8 @@ namespace LEASING.UI.APP.Forms
             this.M_GetSelectBanknName();
             this.M_GetLedgerListOnQue();
             this.M_GetLedgerListOnQueTotalAMount();
-            this.dtpRecieptDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
+            this.dtpRecieptDate.Text = DateTime.Now.ToString("MM/dd/yyyy");
+
             this.IsClearPDC = false;
             this.IsHold = true;
             //this.ddlbankName.Text = string.Empty;

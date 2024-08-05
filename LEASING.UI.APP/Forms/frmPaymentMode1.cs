@@ -342,7 +342,7 @@ namespace LEASING.UI.APP.Forms
             //getFirstPaymentByContractIdAndClientNumber();
             ddlbankName.Text = string.Empty;
             ddlbankName.SelectedIndex = -1;
-            this.dtpRecieptDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
+            this.dtpRecieptDate.Text = DateTime.Now.ToString("MM/dd/yyyy");
         }
 
         private void ddlSelectMode_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)

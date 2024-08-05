@@ -1,3 +1,4 @@
+USE [LEASINGDB]
 SET QUOTED_IDENTIFIER ON
 SET ANSI_NULLS ON
 GO
@@ -164,6 +165,7 @@ AS
                 (
                     [tblUnitMstr].[UnitStatus] = 'VACANT'
                     OR [tblUnitMstr].[UnitStatus] = 'DISABLED'
+                    OR [tblUnitMstr].[UnitStatus] = 'HOLD'
                 )
 
         IF (@@ROWCOUNT > 0)

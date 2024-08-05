@@ -81,7 +81,7 @@
             gridViewCommandColumn1.FieldName = "ColSelect";
             gridViewCommandColumn1.HeaderImage = global::LEASING.UI.APP.Properties.Resources._16_handIcon;
             gridViewCommandColumn1.HeaderText = "";
-            gridViewCommandColumn1.Image = global::LEASING.UI.APP.Properties.Resources.co_folder_20;
+            gridViewCommandColumn1.Image = global::LEASING.UI.APP.Properties.Resources._16_handIcon;
             gridViewCommandColumn1.Name = "ColSelect";
             gridViewCommandColumn1.Width = 30;
             gridViewTextBoxColumn1.FieldName = "RecId";

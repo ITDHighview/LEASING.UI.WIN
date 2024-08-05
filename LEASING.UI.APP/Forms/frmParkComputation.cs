@@ -449,12 +449,12 @@ namespace LEASING.UI.APP.Forms
             txtRental.Text = string.Empty;
             try
             {
-                using (DataSet dt = UnitContext.GetUnitAvailableById(Convert.ToInt32(ddlUnitNumber.SelectedValue)))
+                using (DataSet dt = UnitContext.GetUnitAvailableByIdParking(Convert.ToInt32(ddlUnitNumber.SelectedValue)))
                 {
                     if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
                         txtFloorType.Text = Convert.ToString(dt.Tables[0].Rows[0]["FloorType"]);
-                        txtRental.Text = Convert.ToString(dt.Tables[0].Rows[0]["Unit_BaseRental"]);
+                        txtRental.Text = Convert.ToString(dt.Tables[0].Rows[0]["Unit_BaseRentalWithVatAmount"]);
                     }
                 }
             }

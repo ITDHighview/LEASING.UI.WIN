@@ -28,24 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn2 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn3 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.RadListDataItem radListDataItem1 = new Telerik.WinControls.UI.RadListDataItem();
             Telerik.WinControls.UI.RadListDataItem radListDataItem2 = new Telerik.WinControls.UI.RadListDataItem();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn16 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn17 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn18 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn28 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn29 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn30 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn31 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.RadListDataItem radListDataItem3 = new Telerik.WinControls.UI.RadListDataItem();
-            Telerik.WinControls.UI.RadListDataItem radListDataItem4 = new Telerik.WinControls.UI.RadListDataItem();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn19 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn20 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn32 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn33 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn34 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn35 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn36 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn4 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn5 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.radGroupBox3 = new Telerik.WinControls.UI.RadGroupBox();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
@@ -472,10 +470,6 @@
             // 
             // ddlClientType
             // 
-            radListDataItem1.Text = "INDIVIDUAL";
-            radListDataItem2.Text = "CORPORATE";
-            this.ddlClientType.Items.Add(radListDataItem1);
-            this.ddlClientType.Items.Add(radListDataItem2);
             this.ddlClientType.Location = new System.Drawing.Point(177, 28);
             this.ddlClientType.Name = "ddlClientType";
             this.ddlClientType.NullText = "Select here...";
@@ -552,51 +546,51 @@
             // 
             this.dgvList.MasterTemplate.AllowAddNewRow = false;
             this.dgvList.MasterTemplate.AllowColumnReorder = false;
-            gridViewCommandColumn16.FieldName = "ColLedger";
-            gridViewCommandColumn16.HeaderImage = global::LEASING.UI.APP.Properties.Resources._16_MyLogsBook;
-            gridViewCommandColumn16.HeaderText = "";
-            gridViewCommandColumn16.Image = global::LEASING.UI.APP.Properties.Resources._16_MyLogsBook;
-            gridViewCommandColumn16.IsVisible = false;
-            gridViewCommandColumn16.Name = "ColLedger";
-            gridViewCommandColumn16.Width = 30;
-            gridViewCommandColumn17.FieldName = "ColViewFile";
-            gridViewCommandColumn17.HeaderImage = global::LEASING.UI.APP.Properties.Resources.attach;
-            gridViewCommandColumn17.HeaderText = "";
-            gridViewCommandColumn17.Image = global::LEASING.UI.APP.Properties.Resources.attach;
-            gridViewCommandColumn17.IsVisible = false;
-            gridViewCommandColumn17.Name = "ColViewFile";
-            gridViewCommandColumn17.Width = 30;
-            gridViewCommandColumn18.FieldName = "ColView";
-            gridViewCommandColumn18.HeaderImage = global::LEASING.UI.APP.Properties.Resources.magnifier;
-            gridViewCommandColumn18.HeaderText = "";
-            gridViewCommandColumn18.Image = global::LEASING.UI.APP.Properties.Resources.magnifier;
-            gridViewCommandColumn18.IsVisible = false;
-            gridViewCommandColumn18.Name = "ColView";
-            gridViewCommandColumn18.Width = 30;
-            gridViewTextBoxColumn28.FieldName = "RefId";
-            gridViewTextBoxColumn28.HeaderText = "Contract ID";
-            gridViewTextBoxColumn28.Name = "RefId";
-            gridViewTextBoxColumn28.Width = 230;
-            gridViewTextBoxColumn29.FieldName = "CLientReferenceStatus";
-            gridViewTextBoxColumn29.HeaderText = "Status";
-            gridViewTextBoxColumn29.Name = "CLientReferenceStatus";
-            gridViewTextBoxColumn29.Width = 150;
-            gridViewTextBoxColumn30.FieldName = "RecId";
-            gridViewTextBoxColumn30.HeaderText = "RecId";
-            gridViewTextBoxColumn30.IsVisible = false;
-            gridViewTextBoxColumn30.Name = "RecId";
-            gridViewTextBoxColumn31.FieldName = "ClientID";
-            gridViewTextBoxColumn31.HeaderText = "ClientID";
-            gridViewTextBoxColumn31.IsVisible = false;
-            gridViewTextBoxColumn31.Name = "ClientID";
+            gridViewCommandColumn1.FieldName = "ColLedger";
+            gridViewCommandColumn1.HeaderImage = global::LEASING.UI.APP.Properties.Resources._16_MyLogsBook;
+            gridViewCommandColumn1.HeaderText = "";
+            gridViewCommandColumn1.Image = global::LEASING.UI.APP.Properties.Resources._16_MyLogsBook;
+            gridViewCommandColumn1.IsVisible = false;
+            gridViewCommandColumn1.Name = "ColLedger";
+            gridViewCommandColumn1.Width = 30;
+            gridViewCommandColumn2.FieldName = "ColViewFile";
+            gridViewCommandColumn2.HeaderImage = global::LEASING.UI.APP.Properties.Resources.attach;
+            gridViewCommandColumn2.HeaderText = "";
+            gridViewCommandColumn2.Image = global::LEASING.UI.APP.Properties.Resources.attach;
+            gridViewCommandColumn2.IsVisible = false;
+            gridViewCommandColumn2.Name = "ColViewFile";
+            gridViewCommandColumn2.Width = 30;
+            gridViewCommandColumn3.FieldName = "ColView";
+            gridViewCommandColumn3.HeaderImage = global::LEASING.UI.APP.Properties.Resources.magnifier;
+            gridViewCommandColumn3.HeaderText = "";
+            gridViewCommandColumn3.Image = global::LEASING.UI.APP.Properties.Resources.magnifier;
+            gridViewCommandColumn3.IsVisible = false;
+            gridViewCommandColumn3.Name = "ColView";
+            gridViewCommandColumn3.Width = 30;
+            gridViewTextBoxColumn1.FieldName = "RefId";
+            gridViewTextBoxColumn1.HeaderText = "Contract ID";
+            gridViewTextBoxColumn1.Name = "RefId";
+            gridViewTextBoxColumn1.Width = 230;
+            gridViewTextBoxColumn2.FieldName = "CLientReferenceStatus";
+            gridViewTextBoxColumn2.HeaderText = "Status";
+            gridViewTextBoxColumn2.Name = "CLientReferenceStatus";
+            gridViewTextBoxColumn2.Width = 150;
+            gridViewTextBoxColumn3.FieldName = "RecId";
+            gridViewTextBoxColumn3.HeaderText = "RecId";
+            gridViewTextBoxColumn3.IsVisible = false;
+            gridViewTextBoxColumn3.Name = "RecId";
+            gridViewTextBoxColumn4.FieldName = "ClientID";
+            gridViewTextBoxColumn4.HeaderText = "ClientID";
+            gridViewTextBoxColumn4.IsVisible = false;
+            gridViewTextBoxColumn4.Name = "ClientID";
             this.dgvList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewCommandColumn16,
-            gridViewCommandColumn17,
-            gridViewCommandColumn18,
-            gridViewTextBoxColumn28,
-            gridViewTextBoxColumn29,
-            gridViewTextBoxColumn30,
-            gridViewTextBoxColumn31});
+            gridViewCommandColumn1,
+            gridViewCommandColumn2,
+            gridViewCommandColumn3,
+            gridViewTextBoxColumn1,
+            gridViewTextBoxColumn2,
+            gridViewTextBoxColumn3,
+            gridViewTextBoxColumn4});
             this.dgvList.MasterTemplate.EnableFiltering = true;
             this.dgvList.MasterTemplate.ShowRowHeaderColumn = false;
             this.dgvList.Name = "dgvList";
@@ -747,10 +741,10 @@
             // 
             // ddlgender
             // 
-            radListDataItem3.Text = "MALE";
-            radListDataItem4.Text = "FEMALE";
-            this.ddlgender.Items.Add(radListDataItem3);
-            this.ddlgender.Items.Add(radListDataItem4);
+            radListDataItem1.Text = "MALE";
+            radListDataItem2.Text = "FEMALE";
+            this.ddlgender.Items.Add(radListDataItem1);
+            this.ddlgender.Items.Add(radListDataItem2);
             this.ddlgender.Location = new System.Drawing.Point(649, 3);
             this.ddlgender.Name = "ddlgender";
             this.ddlgender.NullText = "Select Here...";
@@ -809,52 +803,52 @@
             // 
             this.dgvFileList.MasterTemplate.AllowAddNewRow = false;
             this.dgvFileList.MasterTemplate.AllowColumnReorder = false;
-            gridViewCommandColumn19.FieldName = "ColView";
-            gridViewCommandColumn19.HeaderImage = global::LEASING.UI.APP.Properties.Resources.magnifier;
-            gridViewCommandColumn19.HeaderText = "";
-            gridViewCommandColumn19.Image = global::LEASING.UI.APP.Properties.Resources.magnifier;
-            gridViewCommandColumn19.IsPinned = true;
-            gridViewCommandColumn19.Name = "ColView";
-            gridViewCommandColumn19.PinPosition = Telerik.WinControls.UI.PinnedColumnPosition.Left;
-            gridViewCommandColumn19.Width = 30;
-            gridViewCommandColumn20.FieldName = "ColDelete";
-            gridViewCommandColumn20.HeaderImage = global::LEASING.UI.APP.Properties.Resources._16_DeleteRed;
-            gridViewCommandColumn20.HeaderText = "";
-            gridViewCommandColumn20.Image = global::LEASING.UI.APP.Properties.Resources._16_DeleteRed;
-            gridViewCommandColumn20.IsPinned = true;
-            gridViewCommandColumn20.Name = "ColDelete";
-            gridViewCommandColumn20.PinPosition = Telerik.WinControls.UI.PinnedColumnPosition.Left;
-            gridViewCommandColumn20.Width = 30;
-            gridViewTextBoxColumn32.FieldName = "Id";
-            gridViewTextBoxColumn32.HeaderText = "File ID";
-            gridViewTextBoxColumn32.IsPinned = true;
-            gridViewTextBoxColumn32.Name = "Id";
-            gridViewTextBoxColumn32.PinPosition = Telerik.WinControls.UI.PinnedColumnPosition.Left;
-            gridViewTextBoxColumn33.FieldName = "Files";
-            gridViewTextBoxColumn33.HeaderText = "File Name";
-            gridViewTextBoxColumn33.Name = "Files";
-            gridViewTextBoxColumn33.Width = 200;
-            gridViewTextBoxColumn34.FieldName = "FileNames";
-            gridViewTextBoxColumn34.HeaderText = "Description";
-            gridViewTextBoxColumn34.Name = "FileNames";
-            gridViewTextBoxColumn34.Width = 300;
-            gridViewTextBoxColumn35.FieldName = "FilePath";
-            gridViewTextBoxColumn35.HeaderText = "File Path";
-            gridViewTextBoxColumn35.IsVisible = false;
-            gridViewTextBoxColumn35.Name = "FilePath";
-            gridViewTextBoxColumn35.Width = 300;
-            gridViewTextBoxColumn36.FieldName = "Notes";
-            gridViewTextBoxColumn36.HeaderText = "Notes";
-            gridViewTextBoxColumn36.Name = "Notes";
-            gridViewTextBoxColumn36.Width = 450;
+            gridViewCommandColumn4.FieldName = "ColView";
+            gridViewCommandColumn4.HeaderImage = global::LEASING.UI.APP.Properties.Resources.magnifier;
+            gridViewCommandColumn4.HeaderText = "";
+            gridViewCommandColumn4.Image = global::LEASING.UI.APP.Properties.Resources.magnifier;
+            gridViewCommandColumn4.IsPinned = true;
+            gridViewCommandColumn4.Name = "ColView";
+            gridViewCommandColumn4.PinPosition = Telerik.WinControls.UI.PinnedColumnPosition.Left;
+            gridViewCommandColumn4.Width = 30;
+            gridViewCommandColumn5.FieldName = "ColDelete";
+            gridViewCommandColumn5.HeaderImage = global::LEASING.UI.APP.Properties.Resources._16_DeleteRed;
+            gridViewCommandColumn5.HeaderText = "";
+            gridViewCommandColumn5.Image = global::LEASING.UI.APP.Properties.Resources._16_DeleteRed;
+            gridViewCommandColumn5.IsPinned = true;
+            gridViewCommandColumn5.Name = "ColDelete";
+            gridViewCommandColumn5.PinPosition = Telerik.WinControls.UI.PinnedColumnPosition.Left;
+            gridViewCommandColumn5.Width = 30;
+            gridViewTextBoxColumn5.FieldName = "Id";
+            gridViewTextBoxColumn5.HeaderText = "File ID";
+            gridViewTextBoxColumn5.IsPinned = true;
+            gridViewTextBoxColumn5.Name = "Id";
+            gridViewTextBoxColumn5.PinPosition = Telerik.WinControls.UI.PinnedColumnPosition.Left;
+            gridViewTextBoxColumn6.FieldName = "Files";
+            gridViewTextBoxColumn6.HeaderText = "File Name";
+            gridViewTextBoxColumn6.Name = "Files";
+            gridViewTextBoxColumn6.Width = 200;
+            gridViewTextBoxColumn7.FieldName = "FileNames";
+            gridViewTextBoxColumn7.HeaderText = "Description";
+            gridViewTextBoxColumn7.Name = "FileNames";
+            gridViewTextBoxColumn7.Width = 300;
+            gridViewTextBoxColumn8.FieldName = "FilePath";
+            gridViewTextBoxColumn8.HeaderText = "File Path";
+            gridViewTextBoxColumn8.IsVisible = false;
+            gridViewTextBoxColumn8.Name = "FilePath";
+            gridViewTextBoxColumn8.Width = 300;
+            gridViewTextBoxColumn9.FieldName = "Notes";
+            gridViewTextBoxColumn9.HeaderText = "Notes";
+            gridViewTextBoxColumn9.Name = "Notes";
+            gridViewTextBoxColumn9.Width = 450;
             this.dgvFileList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewCommandColumn19,
-            gridViewCommandColumn20,
-            gridViewTextBoxColumn32,
-            gridViewTextBoxColumn33,
-            gridViewTextBoxColumn34,
-            gridViewTextBoxColumn35,
-            gridViewTextBoxColumn36});
+            gridViewCommandColumn4,
+            gridViewCommandColumn5,
+            gridViewTextBoxColumn5,
+            gridViewTextBoxColumn6,
+            gridViewTextBoxColumn7,
+            gridViewTextBoxColumn8,
+            gridViewTextBoxColumn9});
             this.dgvFileList.MasterTemplate.EnableFiltering = true;
             this.dgvFileList.Name = "dgvFileList";
             this.dgvFileList.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);

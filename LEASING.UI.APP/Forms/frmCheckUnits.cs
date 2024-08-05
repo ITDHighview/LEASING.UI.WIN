@@ -90,5 +90,31 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
+        public bool IsProceed = false;
+        public int UnitRecId = 0;
+        private void dgvUnitList_CellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                if (this.dgvUnitList.Columns[e.ColumnIndex].Name == "ColSelect")
+                {
+                    if (Convert.ToString(dgvUnitList.CurrentRow.Cells["UnitStat"].Value)== "VACANT")
+                    {
+                        if (Functions.MessageConfirm("Are you sure you want to select this UNIT ?") == DialogResult.Yes)
+                        {
+                            this.IsProceed = true;
+                            this.UnitRecId = Convert.ToInt32(dgvUnitList.CurrentRow.Cells["RecId"].Value);
+                            this.Close();
+                        }
+
+                    }
+                    else
+                    {
+                        Functions.MessageShow("Only VACANT Unit is Available for selection");
+                    }
+                   
+                }
+            }
+        }
     }
 }

@@ -362,13 +362,16 @@ namespace LEASING.UI.APP.Forms
         }
         private void btnAddUnits_Click(object sender, EventArgs e)
         {
-            frmAddNewUnitsByProject frmAddNewUnitsByProject = new frmAddNewUnitsByProject();
-            frmAddNewUnitsByProject.RecId = Recid;
-            frmAddNewUnitsByProject.ShowDialog();
-            if (frmAddNewUnitsByProject.IsProceed)
-            {
+            //frmAddNewUnitsByProject frmAddNewUnitsByProject = new frmAddNewUnitsByProject();
+            //frmAddNewUnitsByProject.RecId = Recid;
+            frmAddNewUnits frmUnits = new frmAddNewUnits();
+            frmUnits.ProjectRecId = Recid;
+            frmUnits.ShowDialog();
+            //frmAddNewUnitsByProject.ShowDialog();
+            //if (frmAddNewUnitsByProject.IsProceed)
+            //{
                 M_GetUnitByProjectId();
-            }
+            
         }
     }
 }

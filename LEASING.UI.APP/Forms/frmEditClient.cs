@@ -158,6 +158,27 @@ namespace LEASING.UI.APP.Forms
         {
             InitializeComponent();
         }
+        private void getClientTypeSelectList()
+        {
+            try
+            {
+                this.ddlClientType.DataSource = null;
+                using (DataSet dt = ClientContext.GetClientTypeSelectList())
+                {
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        this.ddlClientType.ValueMember = "ClientType";
+                        this.ddlClientType.DisplayMember = "ClientType";
+                        this.ddlClientType.DataSource = dt.Tables[0];
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Functions.LogError("getClientTypeSelectList()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("getClientTypeSelectList()", ex.ToString());
+            }
+        }
         private void M_GetClientFileList()
         {
             try
@@ -352,6 +373,7 @@ namespace LEASING.UI.APP.Forms
         private void frmEditClient_Load(object sender, EventArgs e)
         {
             Functions.EventCapturefrmName(this);
+            this.getClientTypeSelectList();
             if (IsContractSigned)
             {
                 strClientFormMode = "IsContractSigned";
@@ -445,7 +467,7 @@ namespace LEASING.UI.APP.Forms
             {
                 ClientModel dto = new ClientModel();
                 dto.ClientID = txtClienID.Text.Trim();
-                dto.ClientType = ddlClientType.Text == "INDIVIDUAL" ? "INDV" : "CORP";
+                dto.ClientType = ddlClientType.Text;
                 dto.ClientName = txtname.Text;
                 dto.Age = txtage.Text == "" ? 0 : Convert.ToInt32(txtage.Text);
                 dto.PostalAddress = txtpostaladdress.Text;

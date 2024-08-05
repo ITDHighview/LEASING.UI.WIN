@@ -255,30 +255,30 @@ namespace LEASING.UI.APP.Forms
             }
             return true;
         }
-        private string ClientTypeCode()
-        {
-            string Code = string.Empty;
-            switch (this.ddlClientType.Text)
-            {
-                case "INDIVIDUAL":
-                    Code = "INDV";
-                    break;
-                case "CORPORATE":
-                    Code = "CORP";
-                    break;
-                case "PARTNERSHIP":
-                    Code = "PART";
-                    break;
-            }
-            return Code;
-        }
+        //private string ClientTypeCode()
+        //{
+        //    string Code = string.Empty;
+        //    switch (this.ddlClientType.Text)
+        //    {
+        //        case "INDIVIDUAL":
+        //            Code = "INDV";
+        //            break;
+        //        case "CORPORATE":
+        //            Code = "CORP";
+        //            break;
+        //        case "PARTNERSHIP":
+        //            Code = "PART";
+        //            break;
+        //    }
+        //    return Code;
+        //}
         private void SaveClient()
         {
             try
             {
                 ClientModel dto = new ClientModel();
                 ClientModel results = new ClientModel();
-                dto.ClientType = this.ClientTypeCode();
+                dto.ClientType = this.ddlClientType.Text;
                 dto.ClientName = this.txtname.Text;
                 dto.Age = Functions.ConvertStringToInt(this.txtage.Text);
                 dto.PostalAddress = this.txtpostaladdress.Text;
@@ -346,6 +346,27 @@ namespace LEASING.UI.APP.Forms
                 Functions.ErrorShow("ClientBrowse()", ex.ToString());
             }
         }
+        private void getClientTypeSelectList()
+        {
+            try
+            {
+                this.ddlClientType.DataSource = null;
+                using (DataSet dt = _client.GetClientTypeSelectList())
+                {
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        this.ddlClientType.ValueMember = "ClientType";
+                        this.ddlClientType.DisplayMember = "ClientType";
+                        this.ddlClientType.DataSource = dt.Tables[0];
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Functions.LogError("getClientTypeSelectList()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("getClientTypeSelectList()", ex.ToString());
+            }
+        }
         private void txtage_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9\b]"))
@@ -374,6 +395,7 @@ namespace LEASING.UI.APP.Forms
         {
             Functions.EventCapturefrmName(this);
             this.FormMode = ModeStatus.READ.ToString();
+            this.getClientTypeSelectList();
             this.ClientBrowse();
         }
         private void btnUndo_Click(object sender, EventArgs e)

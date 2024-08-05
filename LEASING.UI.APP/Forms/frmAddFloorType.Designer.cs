@@ -31,6 +31,7 @@
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn2 = new Telerik.WinControls.UI.GridViewCommandColumn();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnNew = new System.Windows.Forms.ToolStripButton();
@@ -70,7 +71,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 68F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(313, 417);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(345, 417);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // toolStrip1
@@ -83,7 +84,7 @@
             this.btnUndo});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(313, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(345, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -133,7 +134,7 @@
             this.radGroupBox1.HeaderText = "Details";
             this.radGroupBox1.Location = new System.Drawing.Point(3, 28);
             this.radGroupBox1.Name = "radGroupBox1";
-            this.radGroupBox1.Size = new System.Drawing.Size(307, 62);
+            this.radGroupBox1.Size = new System.Drawing.Size(339, 62);
             this.radGroupBox1.TabIndex = 1;
             this.radGroupBox1.Text = "Details";
             this.radGroupBox1.ThemeName = "Office2007Silver";
@@ -164,7 +165,7 @@
             this.radGroupBox2.HeaderText = "List";
             this.radGroupBox2.Location = new System.Drawing.Point(3, 96);
             this.radGroupBox2.Name = "radGroupBox2";
-            this.radGroupBox2.Size = new System.Drawing.Size(307, 318);
+            this.radGroupBox2.Size = new System.Drawing.Size(339, 318);
             this.radGroupBox2.TabIndex = 2;
             this.radGroupBox2.Text = "List";
             this.radGroupBox2.ThemeName = "Office2007Silver";
@@ -184,12 +185,11 @@
             this.dgvList.MasterTemplate.AllowAddNewRow = false;
             this.dgvList.MasterTemplate.AllowColumnReorder = false;
             this.dgvList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
+            gridViewCommandColumn1.DefaultText = "Edit";
             gridViewCommandColumn1.FieldName = "ColRemoved";
-            gridViewCommandColumn1.HeaderImage = global::LEASING.UI.APP.Properties.Resources.Remove1;
-            gridViewCommandColumn1.HeaderText = "";
-            gridViewCommandColumn1.Image = global::LEASING.UI.APP.Properties.Resources.Remove1;
+            gridViewCommandColumn1.HeaderText = "Opt";
             gridViewCommandColumn1.Name = "ColRemoved";
-            gridViewCommandColumn1.Width = 40;
+            gridViewCommandColumn1.Width = 38;
             gridViewTextBoxColumn1.FieldName = "RecId";
             gridViewTextBoxColumn1.HeaderText = "ID";
             gridViewTextBoxColumn1.IsVisible = false;
@@ -198,19 +198,23 @@
             gridViewTextBoxColumn2.FieldName = "FloorTypeName";
             gridViewTextBoxColumn2.HeaderText = "Type Name";
             gridViewTextBoxColumn2.Name = "FloorTypeName";
-            gridViewTextBoxColumn2.Width = 263;
+            gridViewTextBoxColumn2.Width = 254;
+            gridViewCommandColumn2.FieldName = "ColEdit";
+            gridViewCommandColumn2.HeaderText = "";
+            gridViewCommandColumn2.Name = "ColEdit";
+            gridViewCommandColumn2.Width = 44;
             this.dgvList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewCommandColumn1,
             gridViewTextBoxColumn1,
-            gridViewTextBoxColumn2});
+            gridViewTextBoxColumn2,
+            gridViewCommandColumn2});
             this.dgvList.MasterTemplate.EnableFiltering = true;
             this.dgvList.MasterTemplate.ShowRowHeaderColumn = false;
             this.dgvList.Name = "dgvList";
             this.dgvList.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.dgvList.ReadOnly = true;
             this.dgvList.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgvList.ShowGroupPanel = false;
-            this.dgvList.Size = new System.Drawing.Size(303, 298);
+            this.dgvList.Size = new System.Drawing.Size(335, 298);
             this.dgvList.TabIndex = 0;
             this.dgvList.Text = "radGridView1";
             this.dgvList.ThemeName = "Office2007Silver";
@@ -220,7 +224,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(313, 417);
+            this.ClientSize = new System.Drawing.Size(345, 417);
             this.Controls.Add(this.tableLayoutPanel1);
             this.DoubleBuffered = true;
             this.MaximizeBox = false;

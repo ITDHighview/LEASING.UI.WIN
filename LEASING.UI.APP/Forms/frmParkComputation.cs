@@ -454,7 +454,7 @@ namespace LEASING.UI.APP.Forms
                     if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
                         txtFloorType.Text = Convert.ToString(dt.Tables[0].Rows[0]["FloorType"]);
-                        txtRental.Text = Convert.ToString(dt.Tables[0].Rows[0]["BaseRental"]);
+                        txtRental.Text = Convert.ToString(dt.Tables[0].Rows[0]["Unit_BaseRental"]);
                     }
                 }
             }
@@ -829,6 +829,7 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
+        public int UnitRecId { get; set; } = 0;
         private void btnCheckunits_Click(object sender, EventArgs e)
         {
             if (ddlProject.SelectedIndex >= 0)
@@ -837,6 +838,24 @@ namespace LEASING.UI.APP.Forms
                 forms.Recid = Convert.ToInt32(ddlProject.SelectedValue);
                 forms.Text = ddlProject.Text + " - " + " UNIT/PARKING LIST";
                 forms.ShowDialog();
+                if (forms.IsProceed == true)
+                {
+                    this.UnitRecId = forms.Recid;
+                    ddlUnitNumber.SelectedValue = this.UnitRecId;
+
+                    if (this.UnitRecId > 0)
+                    {
+                        //btnAddDiscount.Text = "Add Discount";
+                        //ClearFieldsForUnit();
+                        M_GetUnitAvaibleById();
+                        M_GetTotalRental();
+                    }
+                    else
+                    {
+                        txtFloorType.Text = string.Empty;
+                        txtRental.Text = string.Empty;
+                    }
+                }
             }
             else
             {

@@ -75,9 +75,9 @@
             gridViewTextBoxColumn2.HeaderText = "Unit No";
             gridViewTextBoxColumn2.Name = "UnitNo";
             gridViewTextBoxColumn2.Width = 100;
-            gridViewTextBoxColumn3.FieldName = "DetailsofProperty";
-            gridViewTextBoxColumn3.HeaderText = "Details of Property";
-            gridViewTextBoxColumn3.Name = "DetailsofProperty";
+            gridViewTextBoxColumn3.FieldName = "UnitDescription";
+            gridViewTextBoxColumn3.HeaderText = "Type";
+            gridViewTextBoxColumn3.Name = "UnitDescription";
             gridViewTextBoxColumn3.Width = 200;
             this.dgvList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,

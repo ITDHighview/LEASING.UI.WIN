@@ -160,7 +160,11 @@ AS
             [tblUnitMstr].[IsOverrideSecAndMain] = @IsOverrideSecAndMain
         WHERE
             [tblUnitMstr].[RecId] = @RecId
-            AND [tblUnitMstr].[UnitStatus] = 'VACANT'
+            AND
+                (
+                    [tblUnitMstr].[UnitStatus] = 'VACANT'
+                    OR [tblUnitMstr].[UnitStatus] = 'DISABLED'
+                )
 
         IF (@@ROWCOUNT > 0)
             BEGIN

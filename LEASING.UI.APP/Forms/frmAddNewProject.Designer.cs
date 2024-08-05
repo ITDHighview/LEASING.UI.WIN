@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn5 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn6 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn13 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn14 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn15 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn16 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn17 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn18 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn2 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.lblFoot = new Telerik.WinControls.UI.RadLabel();
             this.lblLastChangedBy = new Telerik.WinControls.UI.RadLabel();
@@ -59,13 +59,13 @@
             this.dgvProjectList = new Telerik.WinControls.UI.RadGridView();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.btnNewProject = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnSaveProject = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnUndoProject = new System.Windows.Forms.ToolStripButton();
             this.btnLogs = new System.Windows.Forms.ToolStripButton();
             this.btnCheckDeactivatedlist = new System.Windows.Forms.ToolStripButton();
             this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lblFoot)).BeginInit();
             this.lblFoot.SuspendLayout();
@@ -231,7 +231,7 @@
             this.txtProjectDescription.Location = new System.Drawing.Point(103, 103);
             this.txtProjectDescription.Name = "txtProjectDescription";
             this.txtProjectDescription.NullText = "Type Here....";
-            this.txtProjectDescription.Size = new System.Drawing.Size(590, 20);
+            this.txtProjectDescription.Size = new System.Drawing.Size(590, 19);
             this.txtProjectDescription.TabIndex = 1;
             this.txtProjectDescription.ThemeName = "Office2007Silver";
             // 
@@ -250,7 +250,7 @@
             this.txtProjectName.Location = new System.Drawing.Point(103, 78);
             this.txtProjectName.Name = "txtProjectName";
             this.txtProjectName.NullText = "Type here....";
-            this.txtProjectName.Size = new System.Drawing.Size(590, 20);
+            this.txtProjectName.Size = new System.Drawing.Size(590, 19);
             this.txtProjectName.TabIndex = 1;
             this.txtProjectName.ThemeName = "Office2007Silver";
             // 
@@ -269,7 +269,7 @@
             this.ddLocationList.Location = new System.Drawing.Point(103, 53);
             this.ddLocationList.Name = "ddLocationList";
             this.ddLocationList.NullText = "Select Here...";
-            this.ddLocationList.Size = new System.Drawing.Size(257, 20);
+            this.ddLocationList.Size = new System.Drawing.Size(257, 19);
             this.ddLocationList.TabIndex = 2;
             this.ddLocationList.ThemeName = "Office2007Silver";
             // 
@@ -288,7 +288,7 @@
             this.ddlProjectType.Location = new System.Drawing.Point(103, 28);
             this.ddlProjectType.Name = "ddlProjectType";
             this.ddlProjectType.NullText = "Select Here...";
-            this.ddlProjectType.Size = new System.Drawing.Size(150, 20);
+            this.ddlProjectType.Size = new System.Drawing.Size(150, 19);
             this.ddlProjectType.TabIndex = 2;
             this.ddlProjectType.ThemeName = "Office2007Silver";
             // 
@@ -307,7 +307,7 @@
             this.ddlCompanyList.Location = new System.Drawing.Point(103, 3);
             this.ddlCompanyList.Name = "ddlCompanyList";
             this.ddlCompanyList.NullText = "Select Here...";
-            this.ddlCompanyList.Size = new System.Drawing.Size(257, 20);
+            this.ddlCompanyList.Size = new System.Drawing.Size(257, 19);
             this.ddlCompanyList.TabIndex = 2;
             this.ddlCompanyList.ThemeName = "Office2007Silver";
             // 
@@ -349,62 +349,62 @@
             // 
             this.dgvProjectList.MasterTemplate.AllowAddNewRow = false;
             this.dgvProjectList.MasterTemplate.AllowColumnReorder = false;
-            gridViewCommandColumn5.FieldName = "coledit";
-            gridViewCommandColumn5.HeaderImage = global::LEASING.UI.APP.Properties.Resources.co_folder_20;
-            gridViewCommandColumn5.HeaderText = "";
-            gridViewCommandColumn5.Image = global::LEASING.UI.APP.Properties.Resources.co_folder_20;
-            gridViewCommandColumn5.IsPinned = true;
-            gridViewCommandColumn5.Name = "coledit";
-            gridViewCommandColumn5.PinPosition = Telerik.WinControls.UI.PinnedColumnPosition.Left;
-            gridViewCommandColumn5.Width = 30;
-            gridViewCommandColumn6.FieldName = "coldelete";
-            gridViewCommandColumn6.HeaderImage = global::LEASING.UI.APP.Properties.Resources.co_delete_16;
-            gridViewCommandColumn6.HeaderText = "";
-            gridViewCommandColumn6.Image = global::LEASING.UI.APP.Properties.Resources.co_delete_16;
-            gridViewCommandColumn6.IsPinned = true;
-            gridViewCommandColumn6.Name = "coldelete";
-            gridViewCommandColumn6.PinPosition = Telerik.WinControls.UI.PinnedColumnPosition.Left;
-            gridViewCommandColumn6.Width = 30;
-            gridViewTextBoxColumn13.FieldName = "RecId";
-            gridViewTextBoxColumn13.HeaderText = "PROJECT ID";
-            gridViewTextBoxColumn13.IsPinned = true;
-            gridViewTextBoxColumn13.Name = "RecId";
-            gridViewTextBoxColumn13.PinPosition = Telerik.WinControls.UI.PinnedColumnPosition.Left;
-            gridViewTextBoxColumn13.WrapText = true;
-            gridViewTextBoxColumn14.EnableExpressionEditor = false;
-            gridViewTextBoxColumn14.FieldName = "LocationName";
-            gridViewTextBoxColumn14.HeaderText = "Location";
-            gridViewTextBoxColumn14.Name = "LocationName";
-            gridViewTextBoxColumn14.Width = 150;
-            gridViewTextBoxColumn15.FieldName = "ProjectAddress";
-            gridViewTextBoxColumn15.HeaderText = "Address";
-            gridViewTextBoxColumn15.Name = "ProjectAddress";
-            gridViewTextBoxColumn15.Width = 300;
-            gridViewTextBoxColumn16.EnableExpressionEditor = false;
-            gridViewTextBoxColumn16.FieldName = "ProjectName";
-            gridViewTextBoxColumn16.HeaderText = "Name";
-            gridViewTextBoxColumn16.Name = "ProjectName";
-            gridViewTextBoxColumn16.Width = 300;
-            gridViewTextBoxColumn17.EnableExpressionEditor = false;
-            gridViewTextBoxColumn17.FieldName = "Descriptions";
-            gridViewTextBoxColumn17.HeaderText = "Descriptions";
-            gridViewTextBoxColumn17.Name = "Descriptions";
-            gridViewTextBoxColumn17.Width = 200;
-            gridViewTextBoxColumn18.EnableExpressionEditor = false;
-            gridViewTextBoxColumn18.FieldName = "IsActive";
-            gridViewTextBoxColumn18.HeaderText = "Status";
-            gridViewTextBoxColumn18.IsVisible = false;
-            gridViewTextBoxColumn18.Name = "IsActive";
-            gridViewTextBoxColumn18.Width = 100;
+            gridViewCommandColumn1.FieldName = "coledit";
+            gridViewCommandColumn1.HeaderImage = global::LEASING.UI.APP.Properties.Resources.co_folder_20;
+            gridViewCommandColumn1.HeaderText = "";
+            gridViewCommandColumn1.Image = global::LEASING.UI.APP.Properties.Resources.co_folder_20;
+            gridViewCommandColumn1.IsPinned = true;
+            gridViewCommandColumn1.Name = "coledit";
+            gridViewCommandColumn1.PinPosition = Telerik.WinControls.UI.PinnedColumnPosition.Left;
+            gridViewCommandColumn1.Width = 30;
+            gridViewCommandColumn2.FieldName = "coldelete";
+            gridViewCommandColumn2.HeaderImage = global::LEASING.UI.APP.Properties.Resources.co_delete_16;
+            gridViewCommandColumn2.HeaderText = "";
+            gridViewCommandColumn2.Image = global::LEASING.UI.APP.Properties.Resources.co_delete_16;
+            gridViewCommandColumn2.IsPinned = true;
+            gridViewCommandColumn2.Name = "coldelete";
+            gridViewCommandColumn2.PinPosition = Telerik.WinControls.UI.PinnedColumnPosition.Left;
+            gridViewCommandColumn2.Width = 30;
+            gridViewTextBoxColumn1.FieldName = "RecId";
+            gridViewTextBoxColumn1.HeaderText = "PROJECT ID";
+            gridViewTextBoxColumn1.IsPinned = true;
+            gridViewTextBoxColumn1.Name = "RecId";
+            gridViewTextBoxColumn1.PinPosition = Telerik.WinControls.UI.PinnedColumnPosition.Left;
+            gridViewTextBoxColumn1.WrapText = true;
+            gridViewTextBoxColumn2.EnableExpressionEditor = false;
+            gridViewTextBoxColumn2.FieldName = "LocationName";
+            gridViewTextBoxColumn2.HeaderText = "Location";
+            gridViewTextBoxColumn2.Name = "LocationName";
+            gridViewTextBoxColumn2.Width = 150;
+            gridViewTextBoxColumn3.FieldName = "ProjectAddress";
+            gridViewTextBoxColumn3.HeaderText = "Address";
+            gridViewTextBoxColumn3.Name = "ProjectAddress";
+            gridViewTextBoxColumn3.Width = 300;
+            gridViewTextBoxColumn4.EnableExpressionEditor = false;
+            gridViewTextBoxColumn4.FieldName = "ProjectName";
+            gridViewTextBoxColumn4.HeaderText = "Name";
+            gridViewTextBoxColumn4.Name = "ProjectName";
+            gridViewTextBoxColumn4.Width = 300;
+            gridViewTextBoxColumn5.EnableExpressionEditor = false;
+            gridViewTextBoxColumn5.FieldName = "Descriptions";
+            gridViewTextBoxColumn5.HeaderText = "Descriptions";
+            gridViewTextBoxColumn5.Name = "Descriptions";
+            gridViewTextBoxColumn5.Width = 200;
+            gridViewTextBoxColumn6.EnableExpressionEditor = false;
+            gridViewTextBoxColumn6.FieldName = "IsActive";
+            gridViewTextBoxColumn6.HeaderText = "Status";
+            gridViewTextBoxColumn6.IsVisible = false;
+            gridViewTextBoxColumn6.Name = "IsActive";
+            gridViewTextBoxColumn6.Width = 100;
             this.dgvProjectList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewCommandColumn5,
-            gridViewCommandColumn6,
-            gridViewTextBoxColumn13,
-            gridViewTextBoxColumn14,
-            gridViewTextBoxColumn15,
-            gridViewTextBoxColumn16,
-            gridViewTextBoxColumn17,
-            gridViewTextBoxColumn18});
+            gridViewCommandColumn1,
+            gridViewCommandColumn2,
+            gridViewTextBoxColumn1,
+            gridViewTextBoxColumn2,
+            gridViewTextBoxColumn3,
+            gridViewTextBoxColumn4,
+            gridViewTextBoxColumn5,
+            gridViewTextBoxColumn6});
             this.dgvProjectList.MasterTemplate.EnableFiltering = true;
             this.dgvProjectList.MasterTemplate.ShowRowHeaderColumn = false;
             this.dgvProjectList.Name = "dgvProjectList";
@@ -445,6 +445,11 @@
             this.btnNewProject.Text = "New";
             this.btnNewProject.Click += new System.EventHandler(this.btnNewProject_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
             // btnSaveProject
             // 
             this.btnSaveProject.Image = global::LEASING.UI.APP.Properties.Resources.save_16;
@@ -476,6 +481,7 @@
             this.btnLogs.Name = "btnLogs";
             this.btnLogs.Size = new System.Drawing.Size(52, 22);
             this.btnLogs.Text = "Logs";
+            this.btnLogs.Visible = false;
             // 
             // btnCheckDeactivatedlist
             // 
@@ -485,12 +491,8 @@
             this.btnCheckDeactivatedlist.Name = "btnCheckDeactivatedlist";
             this.btnCheckDeactivatedlist.Size = new System.Drawing.Size(136, 22);
             this.btnCheckDeactivatedlist.Text = "In-Active Project List";
+            this.btnCheckDeactivatedlist.Visible = false;
             this.btnCheckDeactivatedlist.Click += new System.EventHandler(this.btnCheckDeactivatedlist_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // frmAddNewProject
             // 

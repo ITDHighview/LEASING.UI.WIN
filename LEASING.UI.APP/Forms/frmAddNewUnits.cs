@@ -22,7 +22,7 @@ namespace LEASING.UI.APP.Forms
         private FloorTypeContext _floorType;
         private UnitContext _unit;
         private RateSettingsContext _rateSettings;
-
+        public int ProjectRecId { get; set; } = 0;
         public frmAddNewUnits()
         {
             _project = new ProjectContext();
@@ -35,7 +35,8 @@ namespace LEASING.UI.APP.Forms
         enum ModeStatus
         {
             READ,
-            NEW
+            NEW,
+            NEWWithID
         }
 
         bool isResidential = false;
@@ -74,6 +75,13 @@ namespace LEASING.UI.APP.Forms
                         ddlFloorType.SelectedIndex = 0;
                         ClearFields();
                         break;
+                    case "NEWWithID":
+                        btnUndo.Enabled = false;
+                        btnSave.Enabled = true;
+                        btnNew.Enabled = false;
+                        //DisEnableFields();
+                        ClearFieldsWithID();
+                        break;
                     default:
                         break;
                 }
@@ -102,7 +110,7 @@ namespace LEASING.UI.APP.Forms
             vWithHoldingTax = 0;
             //lblSecAndMainTax.Text = "TAX  : 0%";
             lblBaseRentalTax.Text = "TAX  : 0%";
-          
+
             try
             {
                 using (DataSet dt = _rateSettings.GetRESIDENTIALSettings())
@@ -261,6 +269,24 @@ namespace LEASING.UI.APP.Forms
             chkNonCusaMaintenance.Checked = false;
             txtTotalRental.Text = "0.00";
         }
+        private void ClearFieldsWithID()
+        {
+
+            txtAreSql.Text = string.Empty;
+            ddlFloorType.SelectedIndex = 0;
+            txtDetailsOfProperty.Text = string.Empty;
+            txtType.Text = string.Empty;
+            txtUnitNumber.Text = string.Empty;
+            txtFloorNumber.Text = string.Empty;
+            txtAreRateSqm.Text = string.Empty;
+            txtBaseRental.Text = string.Empty;
+            txtUnitSequence.Text = string.Empty;
+            chkIsParking.Checked = false;
+            chkNonVat.Checked = false;
+            chkNonTax.Checked = false;
+            chkNonCusaMaintenance.Checked = false;
+            txtTotalRental.Text = "0.00";
+        }
         private void EnableFields()
         {
             ddlProject.Enabled = true;
@@ -353,7 +379,7 @@ namespace LEASING.UI.APP.Forms
             txtType.Text = string.Empty;
             try
             {
-                using (DataSet dt = _project.GetProjectTypeById(Convert.ToInt32(ddlProject.SelectedValue)))
+                using (DataSet dt = _project.GetProjectTypeById(this.ProjectRecId > 0 ? this.ProjectRecId : Convert.ToInt32(ddlProject.SelectedValue)))
                 {
                     if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
@@ -541,7 +567,7 @@ namespace LEASING.UI.APP.Forms
         public decimal OverrideSecAndMainAmount { get; set; } = 0;
         private void _toggleNonCusaMaintenance()
         {
-  
+
             if (chkNonCusaMaintenance.Checked == true)
             {
                 if (this.IsOverrideSecAndMain == true)
@@ -616,11 +642,57 @@ namespace LEASING.UI.APP.Forms
         private void frmAddNewUnits_Load(object sender, EventArgs e)
         {
             Functions.EventCapturefrmName(this);
-            this.FormMode = ModeStatus.READ.ToString();
-            txtTotalRental.ReadOnly = true;
-            ddlFloorType.Visible = false;
-            lblFloorType.Visible = false;
-            M_SelectProject();
+
+            if (ProjectRecId > 0)
+            {
+                this.FormMode = ModeStatus.NEWWithID.ToString();
+                txtTotalRental.ReadOnly = true;
+                ddlFloorType.Visible = false;
+                lblFloorType.Visible = false;
+                M_SelectProject();
+                this.ddlProject.SelectedValue = ProjectRecId;
+                ddlProject.Enabled = false;
+                vWithHoldingTax = 0;
+                txtBaseRentalTax.Text = string.Empty;
+                M_GetProjectTypeById();
+                ddlFloorType.Visible = true;
+                lblFloorType.Visible = true;
+                M_SelectFloortypes();
+                if (isResidential)
+                {
+                    M_GetResendentialRateSettings();
+                    M_GetSecAndMainVatAMount();
+                    M_GetSecAndMainWithVatAMount();
+                    M_GetBaseRentalVatAmount();
+                    M_GetBaseRentalWithVatAmount();
+                }
+                else if (isCommercial)
+                {
+                    M_GetCOMMERCIALateSettings();
+                    M_GetSecAndMainVatAMount();
+                    M_GetSecAndMainWithVatAMount();
+                    M_GetBaseRentalVatAmount();
+                    M_GetBaseRentalWithVatAmount();
+                }
+                else if (isWarehouse)
+                {
+                    M_GetWAREHOUSERateSettings();
+                    M_GetSecAndMainVatAMount();
+                    M_GetSecAndMainWithVatAMount();
+                    M_GetBaseRentalVatAmount();
+                    M_GetBaseRentalWithVatAmount();
+                }
+            }
+            else
+            {
+                this.FormMode = ModeStatus.READ.ToString();
+                txtTotalRental.ReadOnly = true;
+                ddlFloorType.Visible = false;
+                lblFloorType.Visible = false;
+                M_SelectProject();
+                ddlProject.Enabled = true;
+            }
+
             M_GetUnitList();
             M_ForDisableOnlyFields();
             txtType.ReadOnly = true;
@@ -719,7 +791,7 @@ namespace LEASING.UI.APP.Forms
             try
             {
                 UnitModel UnitNew = new UnitModel();
-                UnitNew.ProjectId = Convert.ToInt32(this.ddlProject.SelectedValue);
+                UnitNew.ProjectId = this.ProjectRecId > 0 ? this.ProjectRecId : Convert.ToInt32(this.ddlProject.SelectedValue);
                 UnitNew.UnitNo = this.txtUnitNumber.Text;
                 UnitNew.IsParking = this.chkIsParking.Checked;
                 UnitNew.FloorNo = Functions.ConvertStringToInt(this.txtFloorNumber.Text);

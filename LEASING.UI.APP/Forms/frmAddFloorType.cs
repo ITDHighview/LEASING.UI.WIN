@@ -94,6 +94,28 @@ namespace LEASING.UI.APP.Forms
                 Functions.ErrorShow("SaveTypeName()", ex.ToString());
             }
         }
+        private void UpdateTypeName()
+        {
+            try
+            {
+                string result = _unit.UpdateFloorTypeInfo(Convert.ToInt32(dgvList.CurrentRow.Cells["RecId"].Value), Convert.ToString(dgvList.CurrentRow.Cells["FloorTypeName"].Value));
+                if (result.Equals("SUCCESS"))
+                {
+                    Functions.MessageShow("Floor Type has been updated successfully !");
+                    this.FormMode = ModeStatus.READ.ToString();
+                    this.GetTypeNameBrowse();
+                }
+                else
+                {
+                    Functions.MessageShow(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                Functions.LogError("UpdateTypeName()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("UpdateTypeName()", ex.ToString());
+            }
+        }
         private void DeleteTypeName()
         {
             try
@@ -134,6 +156,13 @@ namespace LEASING.UI.APP.Forms
                 Functions.LogError("GetTypeNameBrowse()", this.Text, ex.ToString(), DateTime.Now, this);
                 Functions.ErrorShow("GetTypeNameBrowse()", ex.ToString());
             }
+            for (int i = 0; i < dgvList.Rows.Count; i++)
+            {
+                this.dgvList.Rows[i].Cells["FloorTypeName"].ReadOnly = true;
+                this.dgvList.Rows[i].Cells["ColRemoved"].Value = "Edit";
+                this.dgvList.Rows[i].Cells["ColEdit"].ColumnInfo.IsVisible = false;
+                this.dgvList.Rows[i].Cells["ColEdit"].Value = "???";
+            }
         }
 
         private void frmAddFloorType_Load(object sender, EventArgs e)
@@ -141,6 +170,8 @@ namespace LEASING.UI.APP.Forms
             Functions.EventCapturefrmName(this);
             this.FormMode = ModeStatus.READ.ToString();
             GetTypeNameBrowse();
+
+
         }
 
         private void btnNew_Click(object sender, EventArgs e)
@@ -164,15 +195,32 @@ namespace LEASING.UI.APP.Forms
             }
         }
 
+
+     
         private void dgvList_CellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
+            dgvList.EndEdit();
+
             if (e.RowIndex >= 0)
             {
                 if (this.dgvList.Columns[e.ColumnIndex].Name == "ColRemoved")
                 {
-                    if (Functions.MessageConfirm("Are you sure you want to delete this Floor Type ?") == DialogResult.Yes)
+                   
+                    this.dgvList.CurrentRow.Cells["FloorTypeName"].ReadOnly = false;
+                    this.dgvList.CurrentRow.Cells["ColRemoved"].ColumnInfo.IsVisible = false;
+                    this.dgvList.CurrentRow.Cells["ColEdit"].ColumnInfo.IsVisible = true;
+                    this.dgvList.CurrentRow.Cells["ColEdit"].Value = "Save";
+                    dgvList.Refresh();
+                }
+                else if (this.dgvList.Columns[e.ColumnIndex].Name == "ColEdit")
+                {
+                    if (Convert.ToString(this.dgvList.CurrentRow.Cells["ColEdit"].Value) == "Save")
                     {
-                        this.DeleteTypeName();
+                        this.UpdateTypeName();
+                        this.dgvList.CurrentRow.Cells["FloorTypeName"].ReadOnly = true;
+                        this.dgvList.CurrentRow.Cells["ColEdit"].Value = "???";
+                        this.dgvList.CurrentRow.Cells["ColEdit"].ColumnInfo.IsVisible = false;
+                        this.dgvList.CurrentRow.Cells["ColRemoved"].ColumnInfo.IsVisible = true;
                     }
                 }
             }

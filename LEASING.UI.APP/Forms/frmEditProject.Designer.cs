@@ -99,7 +99,7 @@
             this.radGroupBox1.HeaderText = "PROJECT DETAILS";
             this.radGroupBox1.Location = new System.Drawing.Point(0, 0);
             this.radGroupBox1.Name = "radGroupBox1";
-            this.radGroupBox1.Size = new System.Drawing.Size(764, 503);
+            this.radGroupBox1.Size = new System.Drawing.Size(1008, 747);
             this.radGroupBox1.TabIndex = 2;
             this.radGroupBox1.Text = "PROJECT DETAILS";
             this.radGroupBox1.ThemeName = "Office2007Silver";
@@ -134,7 +134,7 @@
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(760, 483);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(1004, 727);
             this.tableLayoutPanel5.TabIndex = 0;
             // 
             // toolStrip1
@@ -152,7 +152,7 @@
             this.btnNewPurchaseItems});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(760, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1004, 25);
             this.toolStrip1.TabIndex = 4;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -187,6 +187,7 @@
             this.btnLogs.Name = "btnLogs";
             this.btnLogs.Size = new System.Drawing.Size(52, 22);
             this.btnLogs.Text = "Logs";
+            this.btnLogs.Visible = false;
             // 
             // btnPuchaseItemList
             // 
@@ -241,7 +242,7 @@
             this.txtProjectAddress.Location = new System.Drawing.Point(103, 128);
             this.txtProjectAddress.Name = "txtProjectAddress";
             this.txtProjectAddress.NullText = "Type Here....";
-            this.txtProjectAddress.Size = new System.Drawing.Size(344, 20);
+            this.txtProjectAddress.Size = new System.Drawing.Size(344, 19);
             this.txtProjectAddress.TabIndex = 1;
             this.txtProjectAddress.ThemeName = "Office2007Silver";
             // 
@@ -250,7 +251,7 @@
             this.txtDescription.Location = new System.Drawing.Point(103, 103);
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.NullText = "Type Here....";
-            this.txtDescription.Size = new System.Drawing.Size(344, 20);
+            this.txtDescription.Size = new System.Drawing.Size(344, 19);
             this.txtDescription.TabIndex = 1;
             this.txtDescription.ThemeName = "Office2007Silver";
             // 
@@ -269,7 +270,7 @@
             this.txtProjectName.Location = new System.Drawing.Point(103, 78);
             this.txtProjectName.Name = "txtProjectName";
             this.txtProjectName.NullText = "Type here....";
-            this.txtProjectName.Size = new System.Drawing.Size(344, 20);
+            this.txtProjectName.Size = new System.Drawing.Size(344, 19);
             this.txtProjectName.TabIndex = 1;
             this.txtProjectName.ThemeName = "Office2007Silver";
             // 
@@ -288,7 +289,7 @@
             this.ddLocationList.Location = new System.Drawing.Point(103, 53);
             this.ddLocationList.Name = "ddLocationList";
             this.ddLocationList.NullText = "Select Here...";
-            this.ddLocationList.Size = new System.Drawing.Size(241, 20);
+            this.ddLocationList.Size = new System.Drawing.Size(241, 19);
             this.ddLocationList.TabIndex = 5;
             this.ddLocationList.ThemeName = "Office2007Silver";
             // 
@@ -317,7 +318,7 @@
             this.ddlProjectType.Location = new System.Drawing.Point(103, 28);
             this.ddlProjectType.Name = "ddlProjectType";
             this.ddlProjectType.NullText = "Select Here...";
-            this.ddlProjectType.Size = new System.Drawing.Size(241, 20);
+            this.ddlProjectType.Size = new System.Drawing.Size(241, 19);
             this.ddlProjectType.TabIndex = 5;
             this.ddlProjectType.ThemeName = "Office2007Silver";
             // 
@@ -326,10 +327,11 @@
             this.radGroupBox2.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
             this.tableLayoutPanel5.SetColumnSpan(this.radGroupBox2, 2);
             this.radGroupBox2.Controls.Add(this.dgvUnitList);
+            this.radGroupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radGroupBox2.HeaderText = "UNIT LIST";
             this.radGroupBox2.Location = new System.Drawing.Point(3, 178);
             this.radGroupBox2.Name = "radGroupBox2";
-            this.radGroupBox2.Size = new System.Drawing.Size(754, 302);
+            this.radGroupBox2.Size = new System.Drawing.Size(998, 546);
             this.radGroupBox2.TabIndex = 6;
             this.radGroupBox2.Text = "UNIT LIST";
             this.radGroupBox2.ThemeName = "Office2007Silver";
@@ -358,6 +360,7 @@
             gridViewCommandColumn2.HeaderImage = global::LEASING.UI.APP.Properties.Resources.co_delete_16;
             gridViewCommandColumn2.HeaderText = "";
             gridViewCommandColumn2.Image = global::LEASING.UI.APP.Properties.Resources.co_delete_16;
+            gridViewCommandColumn2.IsVisible = false;
             gridViewCommandColumn2.Name = "ColDeActivate";
             gridViewCommandColumn2.Width = 30;
             gridViewTextBoxColumn1.FieldName = "RecId";
@@ -436,7 +439,7 @@
             this.dgvUnitList.ReadOnly = true;
             this.dgvUnitList.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgvUnitList.ShowGroupPanel = false;
-            this.dgvUnitList.Size = new System.Drawing.Size(750, 282);
+            this.dgvUnitList.Size = new System.Drawing.Size(994, 526);
             this.dgvUnitList.TabIndex = 1;
             this.dgvUnitList.Text = "radGridView1";
             this.dgvUnitList.ThemeName = "Office2007Silver";
@@ -450,7 +453,7 @@
             this.btnAddUnits});
             this.toolStrip2.Location = new System.Drawing.Point(0, 150);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(760, 25);
+            this.toolStrip2.Size = new System.Drawing.Size(1004, 25);
             this.toolStrip2.TabIndex = 7;
             this.toolStrip2.Text = "toolStrip2";
             // 
@@ -467,7 +470,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(764, 503);
+            this.ClientSize = new System.Drawing.Size(1008, 747);
             this.Controls.Add(this.radGroupBox1);
             this.DoubleBuffered = true;
             this.Name = "frmEditProject";

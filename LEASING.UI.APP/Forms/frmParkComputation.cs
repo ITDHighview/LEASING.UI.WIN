@@ -406,7 +406,7 @@ namespace LEASING.UI.APP.Forms
             try
             {
                 dgvpostdatedcheck.DataSource = null;
-                using (DataSet dt = ComputationContext.GetPostDatedCountMonthParking(dtpStartDate.Text, dtpFinishDate.Text, txtRental.Text,null, M_getXMLData()))
+                using (DataSet dt = ComputationContext.GetPostDatedCountMonthParking(dtpStartDate.Text, dtpFinishDate.Text, txtRental.Text, null, M_getXMLData()))
                 {
                     if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
@@ -581,6 +581,18 @@ namespace LEASING.UI.APP.Forms
             }
             return sbDoctorSchedule.ToString();
         }
+        private decimal getFinalTotal()
+        {
+            if (dgvAdvancePayment.Rows.Count() > 0)
+            {
+                return Functions.ConvertStringToDecimal(txtTotal.Text);
+            }
+            else if (dgvAdvancePayment.Rows.Count() <= 0)
+            {
+                return Functions.ConvertStringToDecimal(txtRental.Text);
+            }
+            return 0;
+        }
         #endregion
         private void M_Save()
         {
@@ -600,15 +612,14 @@ namespace LEASING.UI.APP.Forms
                 dto.TotalRent = Functions.ConvertStringToDecimal(txtRental.Text);
                 //dto.SecDeposit = txtMonthsSecurityDeposit.Text == string.Empty ? 0 : decimal.Parse(txtMonthsSecurityDeposit.Text);
                 dto.IsRenewal = chkIsRenewal.Checked;
-                if (sIsFullPayment)
-                {
-                    dto.Total = Functions.ConvertStringToDecimal(txtTotal.Text);
-                }
-                else
-                {
-                    dto.Total = Functions.ConvertStringToDecimal(txtRental.Text);
-                }
-
+                //if (sIsFullPayment)
+                //{
+                dto.Total = this.getFinalTotal();
+                //}
+                //else
+                //{
+                //    dto.Total = Functions.ConvertStringToDecimal(txtRental.Text);
+                //}
                 dto.EncodedBy = Variables.UserID;
                 dto.XML = M_getXMLData();
                 dto.AdvancePaymentAmount = AdvancePaymentAmount;
@@ -729,7 +740,7 @@ namespace LEASING.UI.APP.Forms
         }
         private void btnNewComputation_Click(object sender, EventArgs e)
         {
-          
+
             if (MessageBox.Show("Would you like to pay it as full?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
             {
                 sIsFullPayment = true;

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -413,12 +414,12 @@ namespace LEASING.UI.APP.Forms
         private void M_GetCalculationAreaTotal()
         {
             var result = Math.Round(Functions.ConvertStringToDecimal(txtAreSql.Text) * Functions.ConvertStringToDecimal(txtAreRateSqm.Text));
-            txtAreaTotalAmount.Text = result.ToString("0.00");
+            txtAreaTotalAmount.Text = result.ToString("#,##0.00");
         }
         private void M_GetBaseRentalVatAmount()
         {
-            var AMount = (Functions.ConvertStringToDecimal(txtBaseRental.Text) * (chkNonVat.Checked == true ? 0 : Functions.ConvertStringToDecimal(txtBaseRentalVatPercentage.Text)) / 100);
-            txtBaseRentalVatAmount.Text = Convert.ToString(AMount);
+            var result = (Functions.ConvertStringToDecimal(txtBaseRental.Text) * (chkNonVat.Checked == true ? 0 : Functions.ConvertStringToDecimal(txtBaseRentalVatPercentage.Text)) / 100);
+            txtBaseRentalVatAmount.Text = result.ToString("#,##0.00");
         }
         private decimal RentalNetOfVat()
         {
@@ -532,11 +533,11 @@ namespace LEASING.UI.APP.Forms
         {
             if (nonVat == true)
             {
-                return "0";
+                return "0.00";
             }
             else
             {
-                return Convert.ToString(this.RentalNetOfVat());
+                return (this.RentalNetOfVat()).ToString("#,##0.00");
             }
 
             return "";
@@ -590,7 +591,7 @@ namespace LEASING.UI.APP.Forms
                 this.txtSecAndMainVatPercentage.Text = this._secAndMainVatPercentage;
                 if (this.IsOverrideSecAndMain == true)
                 {
-                    this.txtSecAndMainAmount.Text = this.OverrideSecAndMainAmount.ToString("0.00");
+                    this.txtSecAndMainAmount.Text = this.OverrideSecAndMainAmount.ToString("#,##0.00");
                 }
                 else
                 {
@@ -606,13 +607,13 @@ namespace LEASING.UI.APP.Forms
         private void M_GetSecAndMainVatAMount()
         {
 
-            var AMount = (Functions.ConvertStringToDecimal(txtSecAndMainAmount.Text) * Functions.ConvertStringToDecimal(txtSecAndMainVatPercentage.Text) / 100);
-            txtSecAndMainVatAmount.Text = AMount.ToString("0.00");
+            var result = (Functions.ConvertStringToDecimal(txtSecAndMainAmount.Text) * Functions.ConvertStringToDecimal(txtSecAndMainVatPercentage.Text) / 100);
+            txtSecAndMainVatAmount.Text = result.ToString("#,##0.00");
         }
         private void M_GetSecAndMainWithVatAMount()
         {
-            var AMount = (Functions.ConvertStringToDecimal(txtSecAndMainAmount.Text) + Functions.ConvertStringToDecimal(txtSecAndMainVatAmount.Text));
-            txtSecAndMainWithVatAmount.Text = AMount.ToString("0.00");
+            var result = (Functions.ConvertStringToDecimal(txtSecAndMainAmount.Text) + Functions.ConvertStringToDecimal(txtSecAndMainVatAmount.Text));
+            txtSecAndMainWithVatAmount.Text = result.ToString("#,##0.00");
             if (!chkIsParking.Checked)
             {
                 this.TotalRentalUnit();
@@ -630,7 +631,7 @@ namespace LEASING.UI.APP.Forms
             }
             else
             {
-                return taxAmount.ToString("0.00");
+                return taxAmount.ToString("#,##0.00");
             }
             return "0.00";
         }
@@ -690,7 +691,7 @@ namespace LEASING.UI.APP.Forms
                 ddlFloorType.Visible = false;
                 lblFloorType.Visible = false;
                 M_SelectProject();
-                ddlProject.Enabled = true;
+                //ddlProject.Enabled = false;
             }
 
             M_GetUnitList();
@@ -972,8 +973,19 @@ namespace LEASING.UI.APP.Forms
         {
             M_GetCalculationAreaTotal();
         }
+
         private void txtBaseRental_TextChanged(object sender, EventArgs e)
-        {
+        {// Remove any non-numeric characters except for decimal point
+            //string input = txtBaseRental.Text.Replace(",", "").Replace(" ", "").Trim();
+            //decimal value;
+            //if (decimal.TryParse(input, NumberStyles.Any, CultureInfo.InvariantCulture, out value))
+            //{
+            //    // Format the number with commas and two decimal places
+            //    txtBaseRental.TextChanged -= txtBaseRental_TextChanged; // Unsubscribe to avoid recursion
+            //    txtBaseRental.Text = value.ToString("N2"); // Format with commas and two decimal places
+            //    txtBaseRental.SelectionStart = txtBaseRental.Text.Length; // Set cursor to end
+            //    txtBaseRental.TextChanged += txtBaseRental_TextChanged; // Resubscribe
+            //}
             M_GetBaseRentalVatAmount();
             M_GetBaseRentalWithVatAmount();
         }
@@ -1147,6 +1159,82 @@ namespace LEASING.UI.APP.Forms
         {
             M_GetSecAndMainVatAMount();
             M_GetSecAndMainWithVatAMount();
+        }
+
+
+        private void txtBaseRental_Leave(object sender, EventArgs e)
+        {
+            // Remove any non-numeric characters except for decimal point
+            string input = txtBaseRental.Text.Replace(",", "").Trim();
+            decimal value;
+            if (decimal.TryParse(input, NumberStyles.Any, CultureInfo.InvariantCulture, out value))
+            {
+                // Format the number with commas and two decimal places
+                txtBaseRental.Text = value.ToString("N2"); // Format with commas and two decimal places
+            }
+
+        }
+
+        private void txtSecAndMainAmount_Leave(object sender, EventArgs e)
+        {
+            // Remove any non-numeric characters except for decimal point
+            string input = txtSecAndMainAmount.Text.Replace(",", "").Trim();
+            decimal value;
+            if (decimal.TryParse(input, NumberStyles.Any, CultureInfo.InvariantCulture, out value))
+            {
+                // Format the number with commas and two decimal places
+                txtSecAndMainAmount.Text = value.ToString("N2"); // Format with commas and two decimal places
+            }
+   
+        }
+
+
+        private void txtAreRateSqm_Leave(object sender, EventArgs e)
+        {
+            // Remove any non-numeric characters except for decimal point
+            string input = txtAreRateSqm.Text.Replace(",", "").Trim();
+            decimal value;
+            if (decimal.TryParse(input, NumberStyles.Any, CultureInfo.InvariantCulture, out value))
+            {
+                // Format the number with commas and two decimal places
+                txtAreRateSqm.Text = value.ToString("N2"); // Format with commas and two decimal places
+            }
+        }
+
+        private void txtAreRateSqm_MouseMove(object sender, MouseEventArgs e)
+        {
+            // Remove any non-numeric characters except for decimal point
+            string input = txtAreRateSqm.Text.Replace(",", "").Trim();
+            decimal value;
+            if (decimal.TryParse(input, NumberStyles.Any, CultureInfo.InvariantCulture, out value))
+            {
+                // Format the number with commas and two decimal places
+                txtAreRateSqm.Text = value.ToString("N2"); // Format with commas and two decimal places
+            }
+        }
+
+        private void txtBaseRental_MouseMove(object sender, MouseEventArgs e)
+        {
+            // Remove any non-numeric characters except for decimal point
+            string input = txtBaseRental.Text.Replace(",", "").Trim();
+            decimal value;
+            if (decimal.TryParse(input, NumberStyles.Any, CultureInfo.InvariantCulture, out value))
+            {
+                // Format the number with commas and two decimal places
+                txtBaseRental.Text = value.ToString("N2"); // Format with commas and two decimal places
+            }
+        }
+
+        private void txtSecAndMainAmount_MouseMove(object sender, MouseEventArgs e)
+        {
+            // Remove any non-numeric characters except for decimal point
+            string input = txtSecAndMainAmount.Text.Replace(",", "").Trim();
+            decimal value;
+            if (decimal.TryParse(input, NumberStyles.Any, CultureInfo.InvariantCulture, out value))
+            {
+                // Format the number with commas and two decimal places
+                txtSecAndMainAmount.Text = value.ToString("N2"); // Format with commas and two decimal places
+            }
         }
     }
 }

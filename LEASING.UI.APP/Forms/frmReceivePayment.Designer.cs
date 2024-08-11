@@ -126,6 +126,8 @@
             this.txtReceiveAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtReceiveAmount.ThemeName = "Office2007Silver";
             this.txtReceiveAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtReceiveAmount_KeyPress);
+            this.txtReceiveAmount.Leave += new System.EventHandler(this.txtReceiveAmount_Leave);
+            this.txtReceiveAmount.MouseMove += new System.Windows.Forms.MouseEventHandler(this.txtReceiveAmount_MouseMove);
             // 
             // frmReceivePayment
             // 

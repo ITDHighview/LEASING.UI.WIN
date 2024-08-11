@@ -373,7 +373,6 @@ namespace LEASING.UI.APP.Context
                 return dsRec;
             }
         }
-
         public DataSet GetUnitByProjectId(int projectid)
         {
 
@@ -388,6 +387,53 @@ namespace LEASING.UI.APP.Context
                 _SqlCommand.CommandText = "sp_GetUnitByProjectId";
 
                 _SqlParameter = new SqlParameter("@ProjectId", projectid);
+                _SqlCommand.Parameters.Add(_SqlParameter);
+  
+
+                try
+                {
+                    _SqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
+                    _SqlCommand.Connection = _SqlConnection;
+                    _SqlCommand.CommandType = CommandType.StoredProcedure;
+                    using (SqlDataAdapter dataAdaptor = new SqlDataAdapter(_SqlCommand))
+                    {
+                        dataAdaptor.Fill(dsRec);
+                    }
+                }
+                catch (Exception expCommon)
+                {
+                    return null;
+                }
+                finally
+                {
+                    if (_SqlConnection.State != ConnectionState.Closed)
+                    {
+                        _SqlConnection.Close();
+                    }
+                    //_SqlParameter = null;
+                    _SqlCommand = null;
+                    _SqlConnection = null;
+                }
+                return dsRec;
+            }
+        }
+        public DataSet GetCheckUnits(int projectid,string untitype)
+        {
+
+            SqlCommand _SqlCommand = null;
+            SqlParameter _SqlParameter;
+            SqlConnection _SqlConnection = null;
+
+
+            using (DataSet dsRec = new DataSet())
+            {
+                _SqlCommand = new SqlCommand();
+                _SqlCommand.CommandText = "sp_GetCheckUnits";
+
+                _SqlParameter = new SqlParameter("@ProjectId", projectid);
+                _SqlCommand.Parameters.Add(_SqlParameter);
+                /*VALUE : UNIT,PARKING*/
+                _SqlParameter = new SqlParameter("@UnitType", untitype);
                 _SqlCommand.Parameters.Add(_SqlParameter);
 
                 try
@@ -475,6 +521,8 @@ namespace LEASING.UI.APP.Context
 
                 _SqlParameter = new SqlParameter("@ProjectId", projectid);
                 _SqlCommand.Parameters.Add(_SqlParameter);
+                //_SqlParameter = new SqlParameter("@UnitId", UnitId);
+                //_SqlCommand.Parameters.Add(_SqlParameter);
 
                 try
                 {

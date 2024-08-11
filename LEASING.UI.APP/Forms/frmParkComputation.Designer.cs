@@ -28,30 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn22 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn23 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn24 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn4 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn5 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn6 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn25 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn26 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn27 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn28 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn29 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn30 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn31 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn32 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn33 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn34 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn35 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn36 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn37 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn38 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn39 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn40 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn41 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn42 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn2 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn3 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn12 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn13 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn14 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn15 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn16 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn17 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn18 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn19 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn20 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn21 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.radGroupBox4 = new Telerik.WinControls.UI.RadGroupBox();
             this.dgvAdvancePayment = new Telerik.WinControls.UI.RadGridView();
@@ -87,22 +87,22 @@
             this.ddlProject = new Telerik.WinControls.UI.RadDropDownList();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.txtProjectType = new Telerik.WinControls.UI.RadTextBox();
+            this.lblVat = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
+            this.chkIsRenewal = new Telerik.WinControls.UI.RadCheckBox();
             this.radGroupBox3 = new Telerik.WinControls.UI.RadGroupBox();
             this.dgvpostdatedcheck = new Telerik.WinControls.UI.RadGridView();
+            this.radGroupBox5 = new Telerik.WinControls.UI.RadGroupBox();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
+            this.btnGeneratePostdatedCountMonth = new Telerik.WinControls.UI.RadButton();
             this.txtTotalPostDatedAmount = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel13 = new Telerik.WinControls.UI.RadLabel();
             this.txtRental = new Telerik.WinControls.UI.RadTextBox();
-            this.lblVat = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.lblbl = new Telerik.WinControls.UI.RadLabel();
             this.txtTotal = new Telerik.WinControls.UI.RadTextBox();
-            this.btnGeneratePostdatedCountMonth = new Telerik.WinControls.UI.RadButton();
-            this.chkIsRenewal = new Telerik.WinControls.UI.RadCheckBox();
             this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
             this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
-            this.radGroupBox5 = new Telerik.WinControls.UI.RadGroupBox();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox4)).BeginInit();
             this.radGroupBox4.SuspendLayout();
@@ -133,25 +133,25 @@
             ((System.ComponentModel.ISupportInitialize)(this.ddlProject)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtProjectType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblVat)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkIsRenewal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).BeginInit();
             this.radGroupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvpostdatedcheck)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvpostdatedcheck.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTotalPostDatedAmount)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRental)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblVat)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblbl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTotal)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnGeneratePostdatedCountMonth)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkIsRenewal)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
-            this.radGroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox5)).BeginInit();
             this.radGroupBox5.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnGeneratePostdatedCountMonth)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTotalPostDatedAmount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRental)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblbl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTotal)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
+            this.radGroupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -252,26 +252,26 @@
             this.dgvAdvancePayment.MasterTemplate.AllowAddNewRow = false;
             this.dgvAdvancePayment.MasterTemplate.AllowColumnReorder = false;
             this.dgvAdvancePayment.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn22.EnableExpressionEditor = false;
-            gridViewTextBoxColumn22.FieldName = "RecId";
-            gridViewTextBoxColumn22.HeaderText = "RecId";
-            gridViewTextBoxColumn22.IsVisible = false;
-            gridViewTextBoxColumn22.Name = "RecId";
-            gridViewTextBoxColumn22.Width = 30;
-            gridViewTextBoxColumn23.EnableExpressionEditor = false;
-            gridViewTextBoxColumn23.FieldName = "Months";
-            gridViewTextBoxColumn23.HeaderText = "Month";
-            gridViewTextBoxColumn23.Name = "Months";
-            gridViewTextBoxColumn23.Width = 145;
-            gridViewTextBoxColumn24.EnableExpressionEditor = false;
-            gridViewTextBoxColumn24.FieldName = "Amount";
-            gridViewTextBoxColumn24.HeaderText = "Amount";
-            gridViewTextBoxColumn24.Name = "Amount";
-            gridViewTextBoxColumn24.Width = 143;
+            gridViewTextBoxColumn1.EnableExpressionEditor = false;
+            gridViewTextBoxColumn1.FieldName = "RecId";
+            gridViewTextBoxColumn1.HeaderText = "RecId";
+            gridViewTextBoxColumn1.IsVisible = false;
+            gridViewTextBoxColumn1.Name = "RecId";
+            gridViewTextBoxColumn1.Width = 30;
+            gridViewTextBoxColumn2.EnableExpressionEditor = false;
+            gridViewTextBoxColumn2.FieldName = "Months";
+            gridViewTextBoxColumn2.HeaderText = "Month";
+            gridViewTextBoxColumn2.Name = "Months";
+            gridViewTextBoxColumn2.Width = 145;
+            gridViewTextBoxColumn3.EnableExpressionEditor = false;
+            gridViewTextBoxColumn3.FieldName = "Amount";
+            gridViewTextBoxColumn3.HeaderText = "Amount";
+            gridViewTextBoxColumn3.Name = "Amount";
+            gridViewTextBoxColumn3.Width = 143;
             this.dgvAdvancePayment.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn22,
-            gridViewTextBoxColumn23,
-            gridViewTextBoxColumn24});
+            gridViewTextBoxColumn1,
+            gridViewTextBoxColumn2,
+            gridViewTextBoxColumn3});
             this.dgvAdvancePayment.MasterTemplate.ShowRowHeaderColumn = false;
             this.dgvAdvancePayment.Name = "dgvAdvancePayment";
             this.dgvAdvancePayment.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
@@ -395,7 +395,7 @@
             this.txtProjectAddress.Location = new System.Drawing.Point(201, 78);
             this.txtProjectAddress.Name = "txtProjectAddress";
             this.txtProjectAddress.NullText = "Generated";
-            this.txtProjectAddress.Size = new System.Drawing.Size(417, 20);
+            this.txtProjectAddress.Size = new System.Drawing.Size(417, 19);
             this.txtProjectAddress.TabIndex = 4;
             this.txtProjectAddress.ThemeName = "Office2007Silver";
             // 
@@ -414,7 +414,7 @@
             this.txtClient.Location = new System.Drawing.Point(201, 103);
             this.txtClient.Name = "txtClient";
             this.txtClient.NullText = "Type here...";
-            this.txtClient.Size = new System.Drawing.Size(192, 20);
+            this.txtClient.Size = new System.Drawing.Size(192, 19);
             this.txtClient.TabIndex = 4;
             this.txtClient.ThemeName = "Office2007Silver";
             // 
@@ -433,7 +433,7 @@
             this.ddlUnitNumber.Location = new System.Drawing.Point(201, 128);
             this.ddlUnitNumber.Name = "ddlUnitNumber";
             this.ddlUnitNumber.NullText = "--SELECT--";
-            this.ddlUnitNumber.Size = new System.Drawing.Size(124, 20);
+            this.ddlUnitNumber.Size = new System.Drawing.Size(124, 19);
             this.ddlUnitNumber.TabIndex = 2;
             this.ddlUnitNumber.ThemeName = "Office2007Silver";
             this.ddlUnitNumber.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.ddlUnitNumber_SelectedIndexChanged);
@@ -453,7 +453,7 @@
             this.txtFloorType.Location = new System.Drawing.Point(201, 153);
             this.txtFloorType.Name = "txtFloorType";
             this.txtFloorType.NullText = "Generated";
-            this.txtFloorType.Size = new System.Drawing.Size(124, 20);
+            this.txtFloorType.Size = new System.Drawing.Size(124, 16);
             this.txtFloorType.TabIndex = 4;
             this.txtFloorType.ThemeName = "Office2007Silver";
             // 
@@ -483,7 +483,7 @@
             this.dtpStartDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpStartDate.Location = new System.Drawing.Point(201, 200);
             this.dtpStartDate.Name = "dtpStartDate";
-            this.dtpStartDate.Size = new System.Drawing.Size(82, 20);
+            this.dtpStartDate.Size = new System.Drawing.Size(82, 19);
             this.dtpStartDate.TabIndex = 3;
             this.dtpStartDate.TabStop = false;
             this.dtpStartDate.Text = "7/31/2023";
@@ -505,7 +505,7 @@
             this.dtpFinishDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpFinishDate.Location = new System.Drawing.Point(201, 225);
             this.dtpFinishDate.Name = "dtpFinishDate";
-            this.dtpFinishDate.Size = new System.Drawing.Size(82, 20);
+            this.dtpFinishDate.Size = new System.Drawing.Size(82, 19);
             this.dtpFinishDate.TabIndex = 3;
             this.dtpFinishDate.TabStop = false;
             this.dtpFinishDate.Text = "7/31/2023";
@@ -540,114 +540,114 @@
             // 
             this.dgvList.MasterTemplate.AllowAddNewRow = false;
             this.dgvList.MasterTemplate.AllowColumnReorder = false;
-            gridViewCommandColumn4.FieldName = "ColGenerate";
-            gridViewCommandColumn4.HeaderImage = global::LEASING.UI.APP.Properties.Resources.co_arrow_right_20;
-            gridViewCommandColumn4.HeaderText = "";
-            gridViewCommandColumn4.Image = global::LEASING.UI.APP.Properties.Resources.co_arrow_right_20;
-            gridViewCommandColumn4.IsPinned = true;
-            gridViewCommandColumn4.Name = "ColGenerate";
-            gridViewCommandColumn4.PinPosition = Telerik.WinControls.UI.PinnedColumnPosition.Left;
-            gridViewCommandColumn4.Width = 30;
-            gridViewCommandColumn5.FieldName = "ColEdit";
-            gridViewCommandColumn5.HeaderImage = global::LEASING.UI.APP.Properties.Resources.co_folder_20;
-            gridViewCommandColumn5.HeaderText = "";
-            gridViewCommandColumn5.Image = global::LEASING.UI.APP.Properties.Resources.co_folder_20;
-            gridViewCommandColumn5.IsPinned = true;
-            gridViewCommandColumn5.Name = "ColEdit";
-            gridViewCommandColumn5.PinPosition = Telerik.WinControls.UI.PinnedColumnPosition.Left;
-            gridViewCommandColumn5.Width = 30;
-            gridViewCommandColumn6.FieldName = "ColRemoved";
-            gridViewCommandColumn6.HeaderImage = global::LEASING.UI.APP.Properties.Resources.co_delete_16;
-            gridViewCommandColumn6.HeaderText = "";
-            gridViewCommandColumn6.Image = global::LEASING.UI.APP.Properties.Resources.co_delete_16;
-            gridViewCommandColumn6.IsPinned = true;
-            gridViewCommandColumn6.Name = "ColRemoved";
-            gridViewCommandColumn6.PinPosition = Telerik.WinControls.UI.PinnedColumnPosition.Left;
-            gridViewCommandColumn6.Width = 30;
-            gridViewTextBoxColumn25.FieldName = "RefId";
-            gridViewTextBoxColumn25.HeaderText = "ID";
-            gridViewTextBoxColumn25.Name = "RefId";
-            gridViewTextBoxColumn25.Width = 100;
-            gridViewTextBoxColumn26.FieldName = "TransactionDate";
-            gridViewTextBoxColumn26.HeaderText = "Transaction Date";
-            gridViewTextBoxColumn26.Name = "TransactionDate";
-            gridViewTextBoxColumn26.Width = 120;
-            gridViewTextBoxColumn27.FieldName = "InquiringClient";
-            gridViewTextBoxColumn27.HeaderText = "Inquiring Client";
-            gridViewTextBoxColumn27.Name = "InquiringClient";
-            gridViewTextBoxColumn27.Width = 250;
-            gridViewTextBoxColumn28.FieldName = "ClientMobile";
-            gridViewTextBoxColumn28.HeaderText = " Mobile";
-            gridViewTextBoxColumn28.Name = "ClientMobile";
-            gridViewTextBoxColumn28.Width = 200;
-            gridViewTextBoxColumn29.FieldName = "UnitNo";
-            gridViewTextBoxColumn29.HeaderText = "Unit No";
-            gridViewTextBoxColumn29.Name = "UnitNo";
-            gridViewTextBoxColumn29.Width = 60;
-            gridViewTextBoxColumn30.FieldName = "StatDate";
-            gridViewTextBoxColumn30.HeaderText = "Stat Date";
-            gridViewTextBoxColumn30.Name = "StatDate";
-            gridViewTextBoxColumn30.Width = 120;
-            gridViewTextBoxColumn31.FieldName = "FinishDate";
-            gridViewTextBoxColumn31.HeaderText = "Finish Date";
-            gridViewTextBoxColumn31.Name = "FinishDate";
-            gridViewTextBoxColumn31.Width = 120;
-            gridViewTextBoxColumn32.FieldName = "Rental";
-            gridViewTextBoxColumn32.HeaderText = "Rental";
-            gridViewTextBoxColumn32.IsVisible = false;
-            gridViewTextBoxColumn32.Name = "Rental";
-            gridViewTextBoxColumn32.Width = 100;
-            gridViewTextBoxColumn33.FieldName = "SecAndMaintenance";
-            gridViewTextBoxColumn33.HeaderText = "Sec And Maintenance";
-            gridViewTextBoxColumn33.IsVisible = false;
-            gridViewTextBoxColumn33.Name = "SecAndMaintenance";
-            gridViewTextBoxColumn33.Width = 120;
-            gridViewTextBoxColumn33.WrapText = true;
-            gridViewTextBoxColumn34.FieldName = "TotalRent";
-            gridViewTextBoxColumn34.HeaderText = "Total Rent";
-            gridViewTextBoxColumn34.IsVisible = false;
-            gridViewTextBoxColumn34.Name = "TotalRent";
-            gridViewTextBoxColumn34.Width = 100;
-            gridViewTextBoxColumn35.FieldName = "Total";
-            gridViewTextBoxColumn35.HeaderText = "Total";
-            gridViewTextBoxColumn35.IsVisible = false;
-            gridViewTextBoxColumn35.Name = "Total";
-            gridViewTextBoxColumn35.Width = 100;
-            gridViewTextBoxColumn36.FieldName = "RecId";
-            gridViewTextBoxColumn36.HeaderText = "RecId";
-            gridViewTextBoxColumn36.IsVisible = false;
-            gridViewTextBoxColumn36.Name = "RecId";
-            gridViewTextBoxColumn37.FieldName = "UnitId";
-            gridViewTextBoxColumn37.HeaderText = "UnitId";
-            gridViewTextBoxColumn37.IsVisible = false;
-            gridViewTextBoxColumn37.Name = "UnitId";
-            gridViewTextBoxColumn38.FieldName = "ProjectName";
-            gridViewTextBoxColumn38.HeaderText = "ProjectName";
-            gridViewTextBoxColumn38.IsVisible = false;
-            gridViewTextBoxColumn38.Name = "ProjectName";
-            gridViewTextBoxColumn39.FieldName = "TypeOf";
-            gridViewTextBoxColumn39.HeaderText = "";
-            gridViewTextBoxColumn39.IsVisible = false;
-            gridViewTextBoxColumn39.Name = "TypeOf";
+            gridViewCommandColumn1.FieldName = "ColGenerate";
+            gridViewCommandColumn1.HeaderImage = global::LEASING.UI.APP.Properties.Resources.co_arrow_right_20;
+            gridViewCommandColumn1.HeaderText = "";
+            gridViewCommandColumn1.Image = global::LEASING.UI.APP.Properties.Resources.co_arrow_right_20;
+            gridViewCommandColumn1.IsPinned = true;
+            gridViewCommandColumn1.Name = "ColGenerate";
+            gridViewCommandColumn1.PinPosition = Telerik.WinControls.UI.PinnedColumnPosition.Left;
+            gridViewCommandColumn1.Width = 30;
+            gridViewCommandColumn2.FieldName = "ColEdit";
+            gridViewCommandColumn2.HeaderImage = global::LEASING.UI.APP.Properties.Resources.co_folder_20;
+            gridViewCommandColumn2.HeaderText = "";
+            gridViewCommandColumn2.Image = global::LEASING.UI.APP.Properties.Resources.co_folder_20;
+            gridViewCommandColumn2.IsPinned = true;
+            gridViewCommandColumn2.Name = "ColEdit";
+            gridViewCommandColumn2.PinPosition = Telerik.WinControls.UI.PinnedColumnPosition.Left;
+            gridViewCommandColumn2.Width = 30;
+            gridViewCommandColumn3.FieldName = "ColRemoved";
+            gridViewCommandColumn3.HeaderImage = global::LEASING.UI.APP.Properties.Resources.co_delete_16;
+            gridViewCommandColumn3.HeaderText = "";
+            gridViewCommandColumn3.Image = global::LEASING.UI.APP.Properties.Resources.co_delete_16;
+            gridViewCommandColumn3.IsPinned = true;
+            gridViewCommandColumn3.Name = "ColRemoved";
+            gridViewCommandColumn3.PinPosition = Telerik.WinControls.UI.PinnedColumnPosition.Left;
+            gridViewCommandColumn3.Width = 30;
+            gridViewTextBoxColumn4.FieldName = "RefId";
+            gridViewTextBoxColumn4.HeaderText = "ID";
+            gridViewTextBoxColumn4.Name = "RefId";
+            gridViewTextBoxColumn4.Width = 100;
+            gridViewTextBoxColumn5.FieldName = "TransactionDate";
+            gridViewTextBoxColumn5.HeaderText = "Transaction Date";
+            gridViewTextBoxColumn5.Name = "TransactionDate";
+            gridViewTextBoxColumn5.Width = 120;
+            gridViewTextBoxColumn6.FieldName = "InquiringClient";
+            gridViewTextBoxColumn6.HeaderText = "Inquiring Client";
+            gridViewTextBoxColumn6.Name = "InquiringClient";
+            gridViewTextBoxColumn6.Width = 250;
+            gridViewTextBoxColumn7.FieldName = "ClientMobile";
+            gridViewTextBoxColumn7.HeaderText = " Mobile";
+            gridViewTextBoxColumn7.Name = "ClientMobile";
+            gridViewTextBoxColumn7.Width = 200;
+            gridViewTextBoxColumn8.FieldName = "UnitNo";
+            gridViewTextBoxColumn8.HeaderText = "Unit No";
+            gridViewTextBoxColumn8.Name = "UnitNo";
+            gridViewTextBoxColumn8.Width = 60;
+            gridViewTextBoxColumn9.FieldName = "StatDate";
+            gridViewTextBoxColumn9.HeaderText = "Stat Date";
+            gridViewTextBoxColumn9.Name = "StatDate";
+            gridViewTextBoxColumn9.Width = 120;
+            gridViewTextBoxColumn10.FieldName = "FinishDate";
+            gridViewTextBoxColumn10.HeaderText = "Finish Date";
+            gridViewTextBoxColumn10.Name = "FinishDate";
+            gridViewTextBoxColumn10.Width = 120;
+            gridViewTextBoxColumn11.FieldName = "Rental";
+            gridViewTextBoxColumn11.HeaderText = "Rental";
+            gridViewTextBoxColumn11.IsVisible = false;
+            gridViewTextBoxColumn11.Name = "Rental";
+            gridViewTextBoxColumn11.Width = 100;
+            gridViewTextBoxColumn12.FieldName = "SecAndMaintenance";
+            gridViewTextBoxColumn12.HeaderText = "Sec And Maintenance";
+            gridViewTextBoxColumn12.IsVisible = false;
+            gridViewTextBoxColumn12.Name = "SecAndMaintenance";
+            gridViewTextBoxColumn12.Width = 120;
+            gridViewTextBoxColumn12.WrapText = true;
+            gridViewTextBoxColumn13.FieldName = "TotalRent";
+            gridViewTextBoxColumn13.HeaderText = "Total Rent";
+            gridViewTextBoxColumn13.IsVisible = false;
+            gridViewTextBoxColumn13.Name = "TotalRent";
+            gridViewTextBoxColumn13.Width = 100;
+            gridViewTextBoxColumn14.FieldName = "Total";
+            gridViewTextBoxColumn14.HeaderText = "Total";
+            gridViewTextBoxColumn14.IsVisible = false;
+            gridViewTextBoxColumn14.Name = "Total";
+            gridViewTextBoxColumn14.Width = 100;
+            gridViewTextBoxColumn15.FieldName = "RecId";
+            gridViewTextBoxColumn15.HeaderText = "RecId";
+            gridViewTextBoxColumn15.IsVisible = false;
+            gridViewTextBoxColumn15.Name = "RecId";
+            gridViewTextBoxColumn16.FieldName = "UnitId";
+            gridViewTextBoxColumn16.HeaderText = "UnitId";
+            gridViewTextBoxColumn16.IsVisible = false;
+            gridViewTextBoxColumn16.Name = "UnitId";
+            gridViewTextBoxColumn17.FieldName = "ProjectName";
+            gridViewTextBoxColumn17.HeaderText = "ProjectName";
+            gridViewTextBoxColumn17.IsVisible = false;
+            gridViewTextBoxColumn17.Name = "ProjectName";
+            gridViewTextBoxColumn18.FieldName = "TypeOf";
+            gridViewTextBoxColumn18.HeaderText = "";
+            gridViewTextBoxColumn18.IsVisible = false;
+            gridViewTextBoxColumn18.Name = "TypeOf";
             this.dgvList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewCommandColumn4,
-            gridViewCommandColumn5,
-            gridViewCommandColumn6,
-            gridViewTextBoxColumn25,
-            gridViewTextBoxColumn26,
-            gridViewTextBoxColumn27,
-            gridViewTextBoxColumn28,
-            gridViewTextBoxColumn29,
-            gridViewTextBoxColumn30,
-            gridViewTextBoxColumn31,
-            gridViewTextBoxColumn32,
-            gridViewTextBoxColumn33,
-            gridViewTextBoxColumn34,
-            gridViewTextBoxColumn35,
-            gridViewTextBoxColumn36,
-            gridViewTextBoxColumn37,
-            gridViewTextBoxColumn38,
-            gridViewTextBoxColumn39});
+            gridViewCommandColumn1,
+            gridViewCommandColumn2,
+            gridViewCommandColumn3,
+            gridViewTextBoxColumn4,
+            gridViewTextBoxColumn5,
+            gridViewTextBoxColumn6,
+            gridViewTextBoxColumn7,
+            gridViewTextBoxColumn8,
+            gridViewTextBoxColumn9,
+            gridViewTextBoxColumn10,
+            gridViewTextBoxColumn11,
+            gridViewTextBoxColumn12,
+            gridViewTextBoxColumn13,
+            gridViewTextBoxColumn14,
+            gridViewTextBoxColumn15,
+            gridViewTextBoxColumn16,
+            gridViewTextBoxColumn17,
+            gridViewTextBoxColumn18});
             this.dgvList.MasterTemplate.EnableFiltering = true;
             this.dgvList.MasterTemplate.ShowRowHeaderColumn = false;
             this.dgvList.Name = "dgvList";
@@ -697,7 +697,7 @@
             // 
             this.ddlProject.Location = new System.Drawing.Point(201, 28);
             this.ddlProject.Name = "ddlProject";
-            this.ddlProject.Size = new System.Drawing.Size(194, 20);
+            this.ddlProject.Size = new System.Drawing.Size(194, 19);
             this.ddlProject.TabIndex = 2;
             this.ddlProject.ThemeName = "Office2007Silver";
             this.ddlProject.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.ddlProject_SelectedIndexChanged);
@@ -717,9 +717,45 @@
             this.txtProjectType.Location = new System.Drawing.Point(201, 53);
             this.txtProjectType.Name = "txtProjectType";
             this.txtProjectType.NullText = "Generated";
-            this.txtProjectType.Size = new System.Drawing.Size(133, 20);
+            this.txtProjectType.Size = new System.Drawing.Size(133, 19);
             this.txtProjectType.TabIndex = 4;
             this.txtProjectType.ThemeName = "Office2007Silver";
+            // 
+            // lblVat
+            // 
+            this.lblVat.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lblVat.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.lblVat.Location = new System.Drawing.Point(401, 275);
+            this.lblVat.Name = "lblVat";
+            this.lblVat.Size = new System.Drawing.Size(116, 19);
+            this.lblVat.TabIndex = 1;
+            this.lblVat.Text = "INCLUSIVE OF VAT";
+            // 
+            // radLabel3
+            // 
+            this.radLabel3.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.radLabel3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel3.Location = new System.Drawing.Point(201, 175);
+            this.radLabel3.Name = "radLabel3";
+            this.radLabel3.Size = new System.Drawing.Size(92, 19);
+            this.radLabel3.TabIndex = 1;
+            this.radLabel3.Text = "(MM/dd/yyyy)";
+            // 
+            // chkIsRenewal
+            // 
+            this.chkIsRenewal.AutoSize = false;
+            this.tableLayoutPanel1.SetColumnSpan(this.chkIsRenewal, 2);
+            this.chkIsRenewal.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chkIsRenewal.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
+            this.chkIsRenewal.ForeColor = System.Drawing.Color.DarkRed;
+            this.chkIsRenewal.Location = new System.Drawing.Point(401, 28);
+            this.chkIsRenewal.Name = "chkIsRenewal";
+            this.chkIsRenewal.Size = new System.Drawing.Size(217, 19);
+            this.chkIsRenewal.TabIndex = 11;
+            this.chkIsRenewal.Text = "Is Renewal";
+            this.chkIsRenewal.ThemeName = "Office2007Silver";
+            this.chkIsRenewal.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.chkIsRenewal_ToggleStateChanged);
             // 
             // radGroupBox3
             // 
@@ -750,22 +786,22 @@
             // 
             this.dgvpostdatedcheck.MasterTemplate.AllowAddNewRow = false;
             this.dgvpostdatedcheck.MasterTemplate.AllowColumnReorder = false;
-            gridViewTextBoxColumn40.FieldName = "Seq";
-            gridViewTextBoxColumn40.HeaderText = "Seq";
-            gridViewTextBoxColumn40.Name = "Seq";
-            gridViewTextBoxColumn40.Width = 80;
-            gridViewTextBoxColumn41.FieldName = "Dates";
-            gridViewTextBoxColumn41.HeaderText = "Date";
-            gridViewTextBoxColumn41.Name = "Dates";
-            gridViewTextBoxColumn41.Width = 200;
-            gridViewTextBoxColumn42.FieldName = "Rental";
-            gridViewTextBoxColumn42.HeaderText = "Rental";
-            gridViewTextBoxColumn42.Name = "Rental";
-            gridViewTextBoxColumn42.Width = 100;
+            gridViewTextBoxColumn19.FieldName = "Seq";
+            gridViewTextBoxColumn19.HeaderText = "Seq";
+            gridViewTextBoxColumn19.Name = "Seq";
+            gridViewTextBoxColumn19.Width = 80;
+            gridViewTextBoxColumn20.FieldName = "Dates";
+            gridViewTextBoxColumn20.HeaderText = "Date";
+            gridViewTextBoxColumn20.Name = "Dates";
+            gridViewTextBoxColumn20.Width = 200;
+            gridViewTextBoxColumn21.FieldName = "Rental";
+            gridViewTextBoxColumn21.HeaderText = "Rental";
+            gridViewTextBoxColumn21.Name = "Rental";
+            gridViewTextBoxColumn21.Width = 100;
             this.dgvpostdatedcheck.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn40,
-            gridViewTextBoxColumn41,
-            gridViewTextBoxColumn42});
+            gridViewTextBoxColumn19,
+            gridViewTextBoxColumn20,
+            gridViewTextBoxColumn21});
             this.dgvpostdatedcheck.MasterTemplate.ShowRowHeaderColumn = false;
             this.dgvpostdatedcheck.Name = "dgvpostdatedcheck";
             this.dgvpostdatedcheck.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
@@ -775,129 +811,6 @@
             this.dgvpostdatedcheck.Size = new System.Drawing.Size(380, 321);
             this.dgvpostdatedcheck.TabIndex = 0;
             this.dgvpostdatedcheck.ThemeName = "Office2007Silver";
-            // 
-            // radLabel1
-            // 
-            this.radLabel1.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.radLabel1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel1.Location = new System.Drawing.Point(117, 3);
-            this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(81, 19);
-            this.radLabel1.TabIndex = 1;
-            this.radLabel1.Text = "Total Check :";
-            // 
-            // txtTotalPostDatedAmount
-            // 
-            this.txtTotalPostDatedAmount.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtTotalPostDatedAmount.Location = new System.Drawing.Point(204, 3);
-            this.txtTotalPostDatedAmount.Name = "txtTotalPostDatedAmount";
-            this.txtTotalPostDatedAmount.NullText = "0";
-            this.txtTotalPostDatedAmount.Size = new System.Drawing.Size(173, 20);
-            this.txtTotalPostDatedAmount.TabIndex = 4;
-            this.txtTotalPostDatedAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtTotalPostDatedAmount.ThemeName = "Office2007Silver";
-            this.txtTotalPostDatedAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTotalPostDatedAmount_KeyPress);
-            // 
-            // radLabel13
-            // 
-            this.radLabel13.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.radLabel13.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel13.Location = new System.Drawing.Point(145, 250);
-            this.radLabel13.Name = "radLabel13";
-            this.radLabel13.Size = new System.Drawing.Size(50, 19);
-            this.radLabel13.TabIndex = 1;
-            this.radLabel13.Text = "Rental :";
-            // 
-            // txtRental
-            // 
-            this.txtRental.Location = new System.Drawing.Point(201, 250);
-            this.txtRental.Name = "txtRental";
-            this.txtRental.NullText = "0";
-            this.txtRental.Size = new System.Drawing.Size(124, 20);
-            this.txtRental.TabIndex = 4;
-            this.txtRental.ThemeName = "Office2007Silver";
-            this.txtRental.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRental_KeyPress);
-            // 
-            // lblVat
-            // 
-            this.lblVat.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lblVat.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.lblVat.Location = new System.Drawing.Point(401, 275);
-            this.lblVat.Name = "lblVat";
-            this.lblVat.Size = new System.Drawing.Size(116, 19);
-            this.lblVat.TabIndex = 1;
-            this.lblVat.Text = "INCLUSIVE OF VAT";
-            // 
-            // radLabel3
-            // 
-            this.radLabel3.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.radLabel3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel3.Location = new System.Drawing.Point(201, 175);
-            this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(92, 19);
-            this.radLabel3.TabIndex = 1;
-            this.radLabel3.Text = "(MM/dd/yyyy)";
-            // 
-            // lblbl
-            // 
-            this.lblbl.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.lblbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblbl.Location = new System.Drawing.Point(61, 275);
-            this.lblbl.Name = "lblbl";
-            this.lblbl.Size = new System.Drawing.Size(134, 19);
-            this.lblbl.TabIndex = 1;
-            this.lblbl.Text = "Total Amount to pay :";
-            // 
-            // txtTotal
-            // 
-            this.txtTotal.Location = new System.Drawing.Point(201, 275);
-            this.txtTotal.Name = "txtTotal";
-            this.txtTotal.NullText = "0";
-            this.txtTotal.Size = new System.Drawing.Size(124, 20);
-            this.txtTotal.TabIndex = 4;
-            this.txtTotal.ThemeName = "Office2007Silver";
-            this.txtTotal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTotal_KeyPress);
-            // 
-            // btnGeneratePostdatedCountMonth
-            // 
-            this.btnGeneratePostdatedCountMonth.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnGeneratePostdatedCountMonth.Image = global::LEASING.UI.APP.Properties.Resources.co_arrow_right_20;
-            this.btnGeneratePostdatedCountMonth.Location = new System.Drawing.Point(204, 28);
-            this.btnGeneratePostdatedCountMonth.Name = "btnGeneratePostdatedCountMonth";
-            this.btnGeneratePostdatedCountMonth.Size = new System.Drawing.Size(173, 18);
-            this.btnGeneratePostdatedCountMonth.TabIndex = 6;
-            this.btnGeneratePostdatedCountMonth.Text = "Compute";
-            this.btnGeneratePostdatedCountMonth.ThemeName = "Office2007Silver";
-            this.btnGeneratePostdatedCountMonth.Click += new System.EventHandler(this.btnGeneratePostdatedCountMonth_Click);
-            // 
-            // chkIsRenewal
-            // 
-            this.chkIsRenewal.AutoSize = false;
-            this.tableLayoutPanel1.SetColumnSpan(this.chkIsRenewal, 2);
-            this.chkIsRenewal.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chkIsRenewal.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
-            this.chkIsRenewal.ForeColor = System.Drawing.Color.DarkRed;
-            this.chkIsRenewal.Location = new System.Drawing.Point(401, 28);
-            this.chkIsRenewal.Name = "chkIsRenewal";
-            this.chkIsRenewal.Size = new System.Drawing.Size(217, 19);
-            this.chkIsRenewal.TabIndex = 11;
-            this.chkIsRenewal.Text = "Is Renewal";
-            this.chkIsRenewal.ThemeName = "Office2007Silver";
-            this.chkIsRenewal.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.chkIsRenewal_ToggleStateChanged);
-            // 
-            // radGroupBox1
-            // 
-            this.radGroupBox1.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.radGroupBox1.Controls.Add(this.tableLayoutPanel1);
-            this.radGroupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radGroupBox1.HeaderText = "COMPUTATION DETAILS";
-            this.radGroupBox1.Location = new System.Drawing.Point(0, 0);
-            this.radGroupBox1.Name = "radGroupBox1";
-            this.radGroupBox1.Size = new System.Drawing.Size(1011, 747);
-            this.radGroupBox1.TabIndex = 1;
-            this.radGroupBox1.Text = "COMPUTATION DETAILS";
-            this.radGroupBox1.ThemeName = "Office2007Silver";
             // 
             // radGroupBox5
             // 
@@ -918,7 +831,7 @@
             // 
             this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 201F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 8F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 179F));
             this.tableLayoutPanel2.Controls.Add(this.radLabel1, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnGeneratePostdatedCountMonth, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.txtTotalPostDatedAmount, 1, 0);
@@ -930,6 +843,93 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 15F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(380, 49);
             this.tableLayoutPanel2.TabIndex = 0;
+            // 
+            // radLabel1
+            // 
+            this.radLabel1.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.radLabel1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel1.Location = new System.Drawing.Point(117, 3);
+            this.radLabel1.Name = "radLabel1";
+            this.radLabel1.Size = new System.Drawing.Size(81, 19);
+            this.radLabel1.TabIndex = 1;
+            this.radLabel1.Text = "Total Check :";
+            // 
+            // btnGeneratePostdatedCountMonth
+            // 
+            this.btnGeneratePostdatedCountMonth.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnGeneratePostdatedCountMonth.Image = global::LEASING.UI.APP.Properties.Resources.co_arrow_right_20;
+            this.btnGeneratePostdatedCountMonth.Location = new System.Drawing.Point(204, 28);
+            this.btnGeneratePostdatedCountMonth.Name = "btnGeneratePostdatedCountMonth";
+            this.btnGeneratePostdatedCountMonth.Size = new System.Drawing.Size(173, 18);
+            this.btnGeneratePostdatedCountMonth.TabIndex = 6;
+            this.btnGeneratePostdatedCountMonth.Text = "Compute";
+            this.btnGeneratePostdatedCountMonth.ThemeName = "Office2007Silver";
+            this.btnGeneratePostdatedCountMonth.Click += new System.EventHandler(this.btnGeneratePostdatedCountMonth_Click);
+            // 
+            // txtTotalPostDatedAmount
+            // 
+            this.txtTotalPostDatedAmount.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtTotalPostDatedAmount.Location = new System.Drawing.Point(204, 3);
+            this.txtTotalPostDatedAmount.Name = "txtTotalPostDatedAmount";
+            this.txtTotalPostDatedAmount.NullText = "0";
+            this.txtTotalPostDatedAmount.Size = new System.Drawing.Size(173, 19);
+            this.txtTotalPostDatedAmount.TabIndex = 4;
+            this.txtTotalPostDatedAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtTotalPostDatedAmount.ThemeName = "Office2007Silver";
+            this.txtTotalPostDatedAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTotalPostDatedAmount_KeyPress);
+            // 
+            // radLabel13
+            // 
+            this.radLabel13.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.radLabel13.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel13.Location = new System.Drawing.Point(145, 250);
+            this.radLabel13.Name = "radLabel13";
+            this.radLabel13.Size = new System.Drawing.Size(50, 19);
+            this.radLabel13.TabIndex = 1;
+            this.radLabel13.Text = "Rental :";
+            // 
+            // txtRental
+            // 
+            this.txtRental.Location = new System.Drawing.Point(201, 250);
+            this.txtRental.Name = "txtRental";
+            this.txtRental.NullText = "0";
+            this.txtRental.Size = new System.Drawing.Size(124, 19);
+            this.txtRental.TabIndex = 4;
+            this.txtRental.ThemeName = "Office2007Silver";
+            this.txtRental.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRental_KeyPress);
+            // 
+            // lblbl
+            // 
+            this.lblbl.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lblbl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblbl.Location = new System.Drawing.Point(61, 275);
+            this.lblbl.Name = "lblbl";
+            this.lblbl.Size = new System.Drawing.Size(134, 19);
+            this.lblbl.TabIndex = 1;
+            this.lblbl.Text = "Total Amount to pay :";
+            // 
+            // txtTotal
+            // 
+            this.txtTotal.Location = new System.Drawing.Point(201, 275);
+            this.txtTotal.Name = "txtTotal";
+            this.txtTotal.NullText = "0";
+            this.txtTotal.Size = new System.Drawing.Size(124, 19);
+            this.txtTotal.TabIndex = 4;
+            this.txtTotal.ThemeName = "Office2007Silver";
+            this.txtTotal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTotal_KeyPress);
+            // 
+            // radGroupBox1
+            // 
+            this.radGroupBox1.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this.radGroupBox1.Controls.Add(this.tableLayoutPanel1);
+            this.radGroupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radGroupBox1.HeaderText = "COMPUTATION DETAILS";
+            this.radGroupBox1.Location = new System.Drawing.Point(0, 0);
+            this.radGroupBox1.Name = "radGroupBox1";
+            this.radGroupBox1.Size = new System.Drawing.Size(1011, 747);
+            this.radGroupBox1.TabIndex = 1;
+            this.radGroupBox1.Text = "COMPUTATION DETAILS";
+            this.radGroupBox1.ThemeName = "Office2007Silver";
             // 
             // frmParkComputation
             // 
@@ -977,26 +977,26 @@
             ((System.ComponentModel.ISupportInitialize)(this.ddlProject)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtProjectType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblVat)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkIsRenewal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).EndInit();
             this.radGroupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvpostdatedcheck.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvpostdatedcheck)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTotalPostDatedAmount)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRental)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblVat)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblbl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTotal)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnGeneratePostdatedCountMonth)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkIsRenewal)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).EndInit();
-            this.radGroupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox5)).EndInit();
             this.radGroupBox5.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnGeneratePostdatedCountMonth)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTotalPostDatedAmount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRental)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblbl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTotal)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).EndInit();
+            this.radGroupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

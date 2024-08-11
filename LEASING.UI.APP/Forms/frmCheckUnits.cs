@@ -10,30 +10,43 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Telerik.WinControls;
+using Telerik.WinControls.UI;
 
 namespace LEASING.UI.APP.Forms
 {
     public partial class frmCheckUnits : Form
     {
         private UnitContext _unit;
+        public int Recid { get; set; }
+        public string UnitType { get; set; } = string.Empty;
         public frmCheckUnits()
         {
             _unit = new UnitContext();
             InitializeComponent();
         }
-        public int Recid { get; set; }
+        private DataTable ValidateDataTable(DataSet dt)
+        {
+            DataTable dTable = new DataTable();
+            if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+            {
+                dTable = dt.Tables[0];
+            }
+            return dTable;
+        }
+        private void SetGridDataItem(RadGridView dgv, DataSet Context)
+        {
+            dgv.DataSource = null;
+            using (DataSet dt = Context)
+            {
+                dgv.DataSource = this.ValidateDataTable(dt);
+            }
+        }
+       
         private void M_GetUnitByProjectId()
         {
             try
             {
-                dgvUnitList.DataSource = null;
-                using (DataSet dt = _unit.GetUnitByProjectId(Recid))
-                {
-                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
-                    {
-                        dgvUnitList.DataSource = dt.Tables[0];
-                    }
-                }
+                this.SetGridDataItem(this.dgvUnitList, _unit.GetCheckUnits(this.Recid, this.UnitType));
             }
             catch (Exception ex)
             {
@@ -66,12 +79,13 @@ namespace LEASING.UI.APP.Forms
                     e.CellElement.ForeColor = Color.Black;
                     e.CellElement.BackColor = Color.LightSkyBlue;
                 }
-                else if (Convert.ToString(this.dgvUnitList.Rows[e.RowIndex].Cells["UnitStatus"].Value) == "OCCUPIED")
+                else if (Convert.ToString(this.dgvUnitList.Rows[e.RowIndex].Cells["UnitStat"].Value) == "MOVE-IN")
                 {
                     e.CellElement.DrawFill = true;
                     e.CellElement.GradientStyle = GradientStyles.Solid;
-                    e.CellElement.ForeColor = Color.Black;
-                    e.CellElement.BackColor = Color.LightGreen;
+                    e.CellElement.ForeColor = Color.White;
+                    e.CellElement.BackColor = Color.Green;
+
                 }
                 else if (Convert.ToString(this.dgvUnitList.Rows[e.RowIndex].Cells["UnitStatus"].Value) == "NOT AVAILABLE")
                 {
@@ -88,7 +102,40 @@ namespace LEASING.UI.APP.Forms
                     e.CellElement.ForeColor = Color.White;
                     e.CellElement.BackColor = Color.Red;
                 }
-            }
+                if (e.CellElement.ColumnInfo is GridViewCommandColumn && !(e.CellElement.RowElement is GridTableHeaderRowElement))
+                {
+                    GridViewCommandColumn column = (GridViewCommandColumn)e.CellElement.ColumnInfo;
+                    RadButtonElement element = (RadButtonElement)e.CellElement.Children[0];
+                    (element.Children[2] as Telerik.WinControls.Primitives.BorderPrimitive).Visibility =
+                    Telerik.WinControls.ElementVisibility.Collapsed;
+                    element.DisplayStyle = DisplayStyle.Image;
+                    element.ImageAlignment = ContentAlignment.MiddleCenter;
+                    element.Enabled = true;
+                    element.Alignment = ContentAlignment.MiddleCenter;
+                    element.Visibility = ElementVisibility.Visible;
+                    if (column.Name == "ColSelect")
+                    {
+                        if (Convert.ToString(this.dgvUnitList.Rows[e.RowIndex].Cells["UnitStatus"].Value) == "VACANT")
+                        {
+                            //element.ImageAlignment = ContentAlignment.MiddleCenter;
+                            //element.TextImageRelation = TextImageRelation.TextBeforeImage;
+                            //element.Text = "Un-Map";
+                            element.Image = Properties.Resources._16_handIcon;
+                            //element.ToolTipText = "This button is disabled";
+                            element.Enabled = true;
+                        }
+                        else
+                        {
+                            //element.ImageAlignment = ContentAlignment.MiddleCenter;
+                            //element.TextImageRelation = TextImageRelation.TextBeforeImage;
+                            //element.Text = "Un-Map";
+                            element.Image = Properties.Resources.block_16;
+                            element.ToolTipText = "This button is disabled";
+                            element.Enabled = false;
+                        }
+                    }
+                }
+                }
         }
         public bool IsProceed = false;
         public int UnitRecId = 0;

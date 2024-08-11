@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -511,12 +512,20 @@ namespace LEASING.UI.APP.Forms
                 Functions.ErrorShow("M_GetComputationList()", ex.ToString());
             }
         }
+
+        private string RentalNoCommaFormat(string rental)
+        {
+            decimal value = decimal.Parse(rental, NumberStyles.Currency, CultureInfo.InvariantCulture);
+
+            // Format the decimal to a string with only the decimal point
+            return value.ToString("0.00", CultureInfo.InvariantCulture);
+        }
         private void M_GetPostDatedCountMonth()
         {
             try
             {
                 dgvpostdatedcheck.DataSource = null;
-                using (DataSet dt = ComputationContext.GetPostDatedCountMonth(dtpStartDate.Text, dtpFinishDate.Text, txtRental.Text, txtSecAndMaintenance.Text, M_getXMLData()))
+                using (DataSet dt = ComputationContext.GetPostDatedCountMonth(dtpStartDate.Text, dtpFinishDate.Text, this.RentalNoCommaFormat(txtRental.Text), this.RentalNoCommaFormat(txtSecAndMaintenance.Text), M_getXMLData()))
                 {
                     if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
@@ -577,7 +586,7 @@ namespace LEASING.UI.APP.Forms
                         this.vUnit_TaxAmount = Convert.ToDecimal(dt.Tables[0].Rows[0]["Unit_TaxAmount"]);
                         this.vUnit_TotalMonthlyRental = Convert.ToDecimal(dt.Tables[0].Rows[0]["Unit_TotalRental"]);
                         this.vUnit_TotalRentalAmount = (Convert.ToDecimal(dt.Tables[0].Rows[0]["Unit_BaseRentalWithVatAmount"]) - this.vUnit_TaxAmount);
-                        txtRental.Text = Convert.ToString(this.vUnit_TotalRentalAmount);
+                        txtRental.Text = this.vUnit_TotalRentalAmount.ToString("N2");
                     }
                 }
             }
@@ -610,11 +619,11 @@ namespace LEASING.UI.APP.Forms
         {
             if (isDiscounted)
             {
-                txtTotalRental.Text = this.NewTotalMontlyRental.ToString();
+                txtTotalRental.Text = this.NewTotalMontlyRental.ToString("N2");
             }
             else
             {
-                txtTotalRental.Text = this.vUnit_TotalMonthlyRental.ToString();
+                txtTotalRental.Text = this.vUnit_TotalMonthlyRental.ToString("N2");
             }
         }
         private decimal getFinalTotalAmount(bool isDiscounted)
@@ -638,7 +647,7 @@ namespace LEASING.UI.APP.Forms
             //var rental2 = (rental * (Functions.ConvertStringToDecimal(txtSecurityPaymentMonthCount.Text)));+
             if (!string.IsNullOrWhiteSpace(txtSecurityPaymentMonthCount.Text))
             {
-                txtMonthsSecurityDeposit.Text = Convert.ToString(rental2);
+                txtMonthsSecurityDeposit.Text = rental2.ToString("N2");
             }
             else
             {
@@ -655,11 +664,11 @@ namespace LEASING.UI.APP.Forms
             var rentalfinal = this.getFinalTotalAmount(this.IsDiscounted);
             if (sIsFullPayment)
             {
-                txtTotal.Text = Convert.ToString((Functions.ConvertStringToDecimal(txtTotalPostDatedAmount.Text)) + rental2);
+                txtTotal.Text = ((Functions.ConvertStringToDecimal(txtTotalPostDatedAmount.Text)) + rental2).ToString("N2"); ;
             }
             else
             {
-                txtTotal.Text = Convert.ToString(rentalfinal + rental2);
+                txtTotal.Text = (rentalfinal + rental2).ToString("N2"); ;
             }
             AdvancePaymentAmount = rentalfinal;
         }
@@ -1006,12 +1015,12 @@ namespace LEASING.UI.APP.Forms
                 frmCheckUnits forms = new frmCheckUnits();
                 forms.Recid = Convert.ToInt32(ddlProject.SelectedValue);
                 forms.Text = ddlProject.Text + " - " + " UNIT/PARKING LIST";
+                forms.UnitType = "UNIT";
                 forms.ShowDialog();
                 if (forms.IsProceed == true)
                 {
-                    this.UnitRecId = forms.Recid;
+                    this.UnitRecId = forms.UnitRecId;
                     ddlUnitNumber.SelectedValue = this.UnitRecId;
-
                     if (this.UnitRecId > 0)
                     {
                         btnAddDiscount.Text = "Add Discount";
@@ -1055,7 +1064,7 @@ namespace LEASING.UI.APP.Forms
                 //txtTotalPostDatedAmount.Text = string.Empty;
                 M_GetPostDatedCountMonth();
                 var TotalPostDatedAmount = (dgvpostdatedcheck.Rows.Count() < 0) ? 0 : (Convert.ToDecimal(dgvpostdatedcheck.Rows.Count().ToString()) * ((txtTotalRental.Text == "") ? 0 : Convert.ToDecimal(txtTotalRental.Text)));
-                txtTotalPostDatedAmount.Text = TotalPostDatedAmount.ToString();
+                txtTotalPostDatedAmount.Text = TotalPostDatedAmount.ToString("N2");
                 M_GetTotalRental();
                 txtTotal.Focus();
             }
@@ -1089,7 +1098,7 @@ namespace LEASING.UI.APP.Forms
 
                 M_GetPostDatedCountMonth();
                 var TotalPostDatedAmount = (dgvpostdatedcheck.Rows.Count() < 0) ? 0 : (Convert.ToDecimal(dgvpostdatedcheck.Rows.Count().ToString()) * ((txtTotalRental.Text == "") ? 0 : Convert.ToDecimal(txtTotalRental.Text)));
-                txtTotalPostDatedAmount.Text = TotalPostDatedAmount.ToString();
+                txtTotalPostDatedAmount.Text = TotalPostDatedAmount.ToString("N2");
                 IsComputed = true;
                 txtTotal.Focus();
             }
@@ -1103,7 +1112,7 @@ namespace LEASING.UI.APP.Forms
                 txtTotalPostDatedAmount.Text = string.Empty;
                 M_GetPostDatedCountMonth();
                 var TotalPostDatedAmount = (dgvpostdatedcheck.Rows.Count() < 0) ? 0 : (Convert.ToDecimal(dgvpostdatedcheck.Rows.Count().ToString()) * ((txtTotalRental.Text == "") ? 0 : Convert.ToDecimal(txtTotalRental.Text)));
-                txtTotalPostDatedAmount.Text = TotalPostDatedAmount.ToString();
+                txtTotalPostDatedAmount.Text = TotalPostDatedAmount.ToString("N2");
             }
             else
             {
@@ -1161,7 +1170,7 @@ namespace LEASING.UI.APP.Forms
         {
             txtTotalRental.Text = string.Empty;
             this.NewTotalMontlyRental = Functions.ConvertStringToDecimal(txtRental.Text) + Functions.ConvertStringToDecimal(txtSecAndMaintenance.Text);
-            txtTotalRental.Text = this.NewTotalMontlyRental.ToString();
+            txtTotalRental.Text = this.NewTotalMontlyRental.ToString("N2");
         }
         public bool IsDiscounted = false;
         private void btnAddDiscount_Click(object sender, EventArgs e)
@@ -1191,7 +1200,7 @@ namespace LEASING.UI.APP.Forms
                         this.IsDiscounted = frmdiscount.IsDiscounted;
                         this.vContract_DiscountAmount = frmdiscount.vContract_DiscountAmount;
                         txtRental.Text = string.Empty;
-                        txtRental.Text = frmdiscount.vDiscounted_TotalRentalAmount.ToString("0.00");
+                        txtRental.Text = frmdiscount.vDiscounted_TotalRentalAmount.ToString("N2");
                         this.getDiscountedTotalMonthlyRental();
                         btnAddDiscount.Text = "Revert Base Rental";
                         M_GetTotalRental();
@@ -1206,8 +1215,8 @@ namespace LEASING.UI.APP.Forms
                         btnAddDiscount.Text = "Add Discount";
                         txtRental.Text = string.Empty;
                         txtTotalRental.Text = string.Empty;
-                        txtRental.Text = vUnit_TotalRentalAmount.ToString("0.00");
-                        txtTotalRental.Text = vUnit_TotalMonthlyRental.ToString("0.00");
+                        txtRental.Text = vUnit_TotalRentalAmount.ToString("N2");
+                        txtTotalRental.Text = vUnit_TotalMonthlyRental.ToString("N2");
                         txtTotalPostDatedAmount.Text = string.Empty;
                         dgvpostdatedcheck.DataSource = null;
                         dgvAdvancePayment.DataSource = null;

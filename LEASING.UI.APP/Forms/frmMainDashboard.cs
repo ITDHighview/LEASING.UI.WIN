@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Telerik.WinControls;
+using Telerik.WinControls.UI;
 
 namespace LEASING.UI.APP.Forms
 {
@@ -21,7 +22,7 @@ namespace LEASING.UI.APP.Forms
         AnnouncementContext AnnouncementContext = new AnnouncementContext();
         frmPreEmp_Login _frmPreEmp_Login;
         private bool IsSwithUserLogOut = false;
-        int AnnouncementTimer = 0;
+
         int NotificationTImer = 0;
         int seconds = 0;
         public frmMainDashboard()
@@ -40,6 +41,23 @@ namespace LEASING.UI.APP.Forms
             }
 
         }
+        private DataTable ValidateDataTable(DataSet dt)
+        {
+            DataTable dTable = new DataTable();
+            if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+            {
+                dTable = dt.Tables[0];
+            }
+            return dTable;
+        }
+        private void SetGridDataItem(RadGridView dgv, DataSet Context)
+        {
+            dgv.DataSource = null;
+            using (DataSet dt = Context)
+            {
+                dgv.DataSource = this.ValidateDataTable(dt);
+            }
+        }
         //private void M_GetTotalCountLabel()
         //{
 
@@ -54,17 +72,17 @@ namespace LEASING.UI.APP.Forms
         //        }
         //    }
         //}
-        private void GetNotificationList()
-        {
-            using (DataSet dt = OtherContext.GetNotificationList())
-            {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
-                {
-                    this.radMenuItemNotification.Text = "NOTIFICATION (0)";
-                    this.radMenuItemNotification.Text = "NOTIFICATION (" + Convert.ToString(dt.Tables[0].Rows.Count) + ")";
-                }
-            }
-        }
+        //private void GetNotificationList()
+        //{
+        //    using (DataSet dt = OtherContext.GetNotificationList())
+        //    {
+        //        if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+        //        {
+        //            this.radMenuItemNotification.Text = "NOTIFICATION (0)";
+        //            this.radMenuItemNotification.Text = "NOTIFICATION (" + Convert.ToString(dt.Tables[0].Rows.Count) + ")";
+        //        }
+        //    }
+        //}
 
         private void GetAnnouncement()
         {
@@ -78,6 +96,7 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
+        int AnnouncementTimer = 0;
         private void M_GetAnnouncementCheck()
         {
             if (txtAnnouncementMessage.Text.Trim() != GetAnnouncementCheck())
@@ -100,28 +119,10 @@ namespace LEASING.UI.APP.Forms
         }
 
 
-        private void GetNotificationListDetails()
-        {
-            dgvNotificationList.DataSource = null;
-            using (DataSet dt = OtherContext.GetNotificationList())
-            {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
-                {
-                    dgvNotificationList.DataSource = dt.Tables[0];
-                }
-            }
-        }
-        private void M_GetUnitListByProjectAndStatus()
-        {
-            dgvUnitList.DataSource = null;
-            using (DataSet dt = OtherContext.GetUnitListByProjectAndStatus(Convert.ToInt32(ddlProject.SelectedValue), ddlUnitStatus.SelectedText, ddlProject.SelectedText))
-            {
-                if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
-                {
-                    dgvUnitList.DataSource = dt.Tables[0];
-                }
-            }
-        }
+        private void GetNotificationListDetails() => this.SetGridDataItem(this.dgvNotificationList, OtherContext.GetNotificationList());
+        private void M_GetUnitListByProjectAndStatus()=> this.SetGridDataItem(this.dgvUnitList, OtherContext.GetUnitListByProjectAndStatus(Convert.ToInt32(ddlProject.SelectedValue), 
+                                                                                                                                            ddlUnitStatus.SelectedText, 
+                                                                                                                                            ddlProject.SelectedText));
         private void M_GetUnitListByProjectAndStatusCount()
         {
             lblNotAvailableCount.Text = "0";
@@ -166,8 +167,8 @@ namespace LEASING.UI.APP.Forms
         private void frmMainDashboard_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
-            this.radMenuItemNotification.Text = "NOTIFICATION (0)";
-            GetNotificationList();
+            //this.radMenuItemNotification.Text = "NOTIFICATION (0)";
+            //GetNotificationList();
             M_SelectProject();
             this.InitProjectUnitBrowse();
 
@@ -638,8 +639,8 @@ namespace LEASING.UI.APP.Forms
             {
                 if (ddlProject.SelectedText == "--ALL--")
                 {
-                    ddlUnitStatus.Text  = "";
-                   ddlUnitStatus.Text = "--ALL--";
+                    ddlUnitStatus.Text = "";
+                    ddlUnitStatus.Text = "--ALL--";
                 }
                 M_GetUnitListByProjectAndStatus();
                 M_GetUnitListByProjectAndStatusCount();
@@ -686,7 +687,7 @@ namespace LEASING.UI.APP.Forms
             M_GetAnnouncementCheck();
             GetAnnouncement();
             GetNotificationListDetails();
-            //M_GetUnitListByProjectAndStatus();
+            M_GetUnitListByProjectAndStatus();
             M_GetUnitListByProjectAndStatusCount();
             if (AnnouncementTimer > 0)
             {
@@ -732,6 +733,11 @@ namespace LEASING.UI.APP.Forms
             frmSpecialControlPermission frmSpecialPermission = new frmSpecialControlPermission();
             frmSpecialPermission.ShowDialog();
             TimerCountDown.Start();
+        }
+
+        private void btnRefreshUnitList_Click(object sender, EventArgs e)
+        {
+            M_GetUnitListByProjectAndStatus();
         }
     }
 }

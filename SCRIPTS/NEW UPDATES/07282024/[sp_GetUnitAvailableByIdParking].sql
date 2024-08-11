@@ -22,9 +22,11 @@ AS
                 [tblUnitMstr].[Vat]                                                                      AS [Unit_Vat],
                 [tblUnitMstr].[BaseRental]                                                               AS [Unit_BaseRental],
                 [tblUnitMstr].[BaseRentalVatAmount]                                                      AS [Unit_BaseRentalVatAmount],
-                IIF(ISNULL([tblUnitMstr].[IsNonVat], 0) = 0,
-                [tblUnitMstr].[BaseRentalWithVatAmount],
-                [tblUnitMstr].[BaseRental])                                                              AS [Unit_BaseRentalWithVatAmount],
+                FORMAT(
+                          IIF(ISNULL([tblUnitMstr].[IsNonVat], 0) = 0,
+                          [tblUnitMstr].[BaseRentalWithVatAmount],
+                          [tblUnitMstr].[BaseRental]), 'N2'
+                      )                                                                                  AS [Unit_BaseRentalWithVatAmount],
                 [tblUnitMstr].[TotalRental]                                                              AS [Unit_TotalRental],
                 [tblUnitMstr].[Tax]                                                                      AS [Unit_Tax],
                 [tblUnitMstr].[BaseRentalTax]                                                            AS [Unit_TaxAmount]

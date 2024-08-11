@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -535,6 +536,30 @@ namespace LEASING.UI.APP.Forms
             this.radLabel8.Visible = true;
             this.txtRemarks.Visible = true;
             btnOk.Text = "PROCEED PAYMENT>>>";
+        }
+
+        private void txtReceiveAmount_Leave(object sender, EventArgs e)
+        {
+            // Remove any non-numeric characters except for decimal point
+            string input = txtReceiveAmount.Text.Replace(",", "").Trim();
+            decimal value;
+            if (decimal.TryParse(input, NumberStyles.Any, CultureInfo.InvariantCulture, out value))
+            {
+                // Format the number with commas and two decimal places
+                txtReceiveAmount.Text = value.ToString("N2"); // Format with commas and two decimal places
+            }
+        }
+
+        private void txtReceiveAmount_MouseMove(object sender, MouseEventArgs e)
+        {
+            // Remove any non-numeric characters except for decimal point
+            string input = txtReceiveAmount.Text.Replace(",", "").Trim();
+            decimal value;
+            if (decimal.TryParse(input, NumberStyles.Any, CultureInfo.InvariantCulture, out value))
+            {
+                // Format the number with commas and two decimal places
+                txtReceiveAmount.Text = value.ToString("N2"); // Format with commas and two decimal places
+            }
         }
     }
 }

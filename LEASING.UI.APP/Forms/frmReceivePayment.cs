@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -40,7 +41,7 @@ namespace LEASING.UI.APP.Forms
             }
             return true;
         }
-    
+
         private void btnOK_Click(object sender, EventArgs e)
         {
             if (IsValid())
@@ -61,17 +62,25 @@ namespace LEASING.UI.APP.Forms
                         IsProceed = true;
                         this.Close();
                     }
-                }                                         
-            }           
+                }
+            }
         }
 
         private void frmReceivePayment_Load(object sender, EventArgs e)
         {
             Functions.EventCapturefrmName(this);
-            txtPaidAmount.Text = string.Empty;         
+            txtPaidAmount.Text = string.Empty;
             if (!string.IsNullOrEmpty(Amount))
             {
-                txtPaidAmount.Text = Amount;
+
+                string input = Amount.Replace(",", "").Trim();
+                decimal value;
+                if (decimal.TryParse(input, NumberStyles.Any, CultureInfo.InvariantCulture, out value))
+                {
+                    // Format the number with commas and two decimal places
+                    txtPaidAmount.Text = value.ToString("N2"); // Format with commas and two decimal places
+                }
+
             }
             txtPaidAmount.ReadOnly = true;
         }
@@ -92,6 +101,28 @@ namespace LEASING.UI.APP.Forms
         {
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
                 e.Handled = true;
+        }
+
+        private void txtReceiveAmount_Leave(object sender, EventArgs e)
+        {
+            string input = txtReceiveAmount.Text.Replace(",", "").Trim();
+            decimal value;
+            if (decimal.TryParse(input, NumberStyles.Any, CultureInfo.InvariantCulture, out value))
+            {
+                // Format the number with commas and two decimal places
+                txtReceiveAmount.Text = value.ToString("N2"); // Format with commas and two decimal places
+            }
+        }
+
+        private void txtReceiveAmount_MouseMove(object sender, MouseEventArgs e)
+        {
+            string input = txtReceiveAmount.Text.Replace(",", "").Trim();
+            decimal value;
+            if (decimal.TryParse(input, NumberStyles.Any, CultureInfo.InvariantCulture, out value))
+            {
+                // Format the number with commas and two decimal places
+                txtReceiveAmount.Text = value.ToString("N2"); // Format with commas and two decimal places
+            }
         }
     }
 }

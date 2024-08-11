@@ -804,7 +804,7 @@ namespace LEASING.UI.APP.Forms
             this._contractNumber = string.Empty;
             this._clientId = string.Empty;
             this.txtClientName.Text = string.Empty;
-
+            this.txtTotalPay.Text = string.Empty;
             frmGetSelectClient clientSearch = new frmGetSelectClient();
             clientSearch.ShowDialog();
             if (!clientSearch.IsProceed)

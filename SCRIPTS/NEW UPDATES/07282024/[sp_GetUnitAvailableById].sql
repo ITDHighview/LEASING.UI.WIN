@@ -18,7 +18,7 @@ AS
                 [tblProjectMstr].[ProjectType],
                 [tblUnitMstr].[RecId],
                 IIF([tblUnitMstr].[FloorType] = '--SELECT--', '', ISNULL([tblUnitMstr].[FloorType], '')) AS [FloorType],
-                [tblUnitMstr].[SecAndMainWithVatAmount]                                                  AS [SecurityAndMaintenance],
+                FORMAT(ISNULL([tblUnitMstr].[SecAndMainWithVatAmount], 0), 'N2')                         AS [SecurityAndMaintenance],
                 [tblUnitMstr].[Vat]                                                                      AS [Unit_Vat],
                 [tblUnitMstr].[BaseRental]                                                               AS [Unit_BaseRental],
                 [tblUnitMstr].[BaseRentalVatAmount]                                                      AS [Unit_BaseRentalVatAmount],

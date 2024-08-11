@@ -12,12 +12,12 @@ AS
     BEGIN
 
         SELECT
-                [tblClientMstr].[ClientName]                            AS [Client],
-                [tblUnitReference].[ClientID]                           AS [ClientID],
-                [tblUnitReference].[RefId]                              AS [ContractID],
-                CONVERT(VARCHAR(15), [tblMonthLedger].[LedgMonth], 107) AS [ForMonth],
-                CAST([tblMonthLedger].[LedgAmount] AS DECIMAL(18, 2))   AS [Amount],
-                'HOLD'                                                  AS [Status]
+                [tblClientMstr].[ClientName]                                        AS [Client],
+                [tblUnitReference].[ClientID]                                       AS [ClientID],
+                [tblUnitReference].[RefId]                                          AS [ContractID],
+                CONVERT(VARCHAR(15), [tblMonthLedger].[LedgMonth], 107)             AS [ForMonth],
+                FORMAT(CAST([tblMonthLedger].[LedgAmount] AS DECIMAL(18, 2)), 'N2') AS [Amount],
+                'HOLD'                                                              AS [Status]
         FROM
                 [dbo].[tblUnitReference] WITH (NOLOCK)
             LEFT JOIN
@@ -31,12 +31,12 @@ AS
                 AND CONVERT(VARCHAR(10), [tblMonthLedger].[LedgMonth], 103) > CONVERT(VARCHAR(10), GETDATE(), 103)
         UNION
         SELECT
-                [tblClientMstr].[ClientName]                            AS [Client],
-                [tblUnitReference].[ClientID]                           AS [ClientID],
-                [tblUnitReference].[RefId]                              AS [ContractID],
-                CONVERT(VARCHAR(15), [tblMonthLedger].[LedgMonth], 107) AS [ForMonth],
-                CAST([tblMonthLedger].[LedgAmount] AS DECIMAL(18, 2))   AS [Amount],
-                'DUE'                                                   AS [Status]
+                [tblClientMstr].[ClientName]                                        AS [Client],
+                [tblUnitReference].[ClientID]                                       AS [ClientID],
+                [tblUnitReference].[RefId]                                          AS [ContractID],
+                CONVERT(VARCHAR(15), [tblMonthLedger].[LedgMonth], 107)             AS [ForMonth],
+                FORMAT(CAST([tblMonthLedger].[LedgAmount] AS DECIMAL(18, 2)), 'N2') AS [Amount],
+                'DUE'                                                               AS [Status]
         FROM
                 [dbo].[tblUnitReference] WITH (NOLOCK)
             LEFT JOIN
@@ -54,7 +54,7 @@ AS
                 OR
                     (
                         ISNULL([tblMonthLedger].[IsHold], 0) = 0
-                        AND ISNULL([tblMonthLedger].[IsPaid], 0) = 1
+                        AND ISNULL([tblMonthLedger].[IsPaid], 0) = 0
                         AND CONVERT(VARCHAR(10), GETDATE(), 103) = CONVERT(VARCHAR(10), [tblMonthLedger].[LedgMonth], 103)
                     )
     --UNION

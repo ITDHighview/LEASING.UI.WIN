@@ -123,16 +123,16 @@ AS
         SELECT
             ROW_NUMBER() OVER (ORDER BY
                                    [tblMonthLedger].[LedgMonth] ASC
-                              )                                                               [seq],
+                              )                                                                                          [seq],
             [tblMonthLedger].[Recid],
             [tblMonthLedger].[ReferenceID],
             [tblMonthLedger].[ClientID],
             --[tblMonthLedger].[LedgAmount]  + ISNULL([tblMonthLedger].[PenaltyAmount], 0) AS [LedgAmount],
-            [tblMonthLedger].[LedgRentalAmount] + ISNULL([tblMonthLedger].[PenaltyAmount], 0) AS [LedgAmount],
-            ISNULL([tblMonthLedger].[PenaltyAmount], 0)                                       AS [PenaltyAmount],
-            ISNULL([tblMonthLedger].[TransactionID], '')                                      AS [TransactionID],
-            CONVERT(VARCHAR(20), [tblMonthLedger].[LedgMonth], 107)                           AS [LedgMonth],
-            [tblMonthLedger].[Remarks]                                                        AS [Remarks],
+            FORMAT((ISNULL([tblMonthLedger].[LedgRentalAmount], 0) + ISNULL([tblMonthLedger].[PenaltyAmount], 0)), 'N2') AS [LedgAmount],
+            FORMAT(ISNULL([tblMonthLedger].[PenaltyAmount], 0), 'N2')                                                    AS [PenaltyAmount],
+            ISNULL([tblMonthLedger].[TransactionID], '')                                                                 AS [TransactionID],
+            CONVERT(VARCHAR(20), [tblMonthLedger].[LedgMonth], 107)                                                      AS [LedgMonth],
+            [tblMonthLedger].[Remarks]                                                                                   AS [Remarks],
             --IIF(ISNULL(IsPaid, 0) = 1,
             --    'PAID',
             --    IIF(CONVERT(VARCHAR(20), LedgMonth, 107) = CONVERT(VARCHAR(20), GETDATE(), 107), 'FOR PAYMENT', 'PENDING')) As PaymentStatus,
@@ -165,7 +165,7 @@ AS
                     'FOR PAYMENT'
                 ELSE
                     'PENDING'
-            END                                                                               AS [PaymentStatus],
+            END                                                                                                          AS [PaymentStatus],
             --IIF(
             --    [tblMonthLedger].[BalanceAmount] <= 0
             --    AND [tblMonthLedger].[IsPaid] = 0,
@@ -181,8 +181,8 @@ AS
                 ([tblMonthLedger].[ActualAmount]
                  - (ISNULL([tblMonthLedger].[BalanceAmount], 0) + ISNULL([tblMonthLedger].[PenaltyAmount], 0))
                 ),
-                0)                                                                            AS [AmountPaid],
-            CAST(ABS(ISNULL([tblMonthLedger].[BalanceAmount], 0)) AS DECIMAL(18, 2))          AS [BalanceAmount]
+                0)                                                                                                       AS [AmountPaid],
+            FORMAT(CAST(ABS(ISNULL([tblMonthLedger].[BalanceAmount], 0)) AS DECIMAL(18, 2)), 'N2')                       AS [BalanceAmount]
 
         --'0.00' [PenaltyAmount]
         FROM

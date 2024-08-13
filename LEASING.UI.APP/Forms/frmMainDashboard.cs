@@ -687,7 +687,7 @@ namespace LEASING.UI.APP.Forms
             M_GetAnnouncementCheck();
             GetAnnouncement();
             GetNotificationListDetails();
-            M_GetUnitListByProjectAndStatus();
+            //M_GetUnitListByProjectAndStatus();
             M_GetUnitListByProjectAndStatusCount();
             if (AnnouncementTimer > 0)
             {

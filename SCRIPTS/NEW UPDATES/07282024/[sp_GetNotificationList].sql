@@ -22,13 +22,18 @@ AS
                 [dbo].[tblUnitReference] WITH (NOLOCK)
             LEFT JOIN
                 [dbo].[tblMonthLedger] WITH (NOLOCK)
-                    ON [tblUnitReference].[RecId] = [tblMonthLedger].[ReferenceID]
-            INNER JOIN
+                    ON  [tblMonthLedger].[ReferenceID] = [tblUnitReference].[RecId]
+            LEFT JOIN
                 [dbo].[tblClientMstr] WITH (NOLOCK)
-                    ON [tblUnitReference].[ClientID] = [tblClientMstr].[ClientID]
+                    ON  [tblClientMstr].[ClientID] = [tblUnitReference].[ClientID] 
         WHERE
                 ISNULL([tblMonthLedger].[IsHold], 0) = 1
-                AND CONVERT(VARCHAR(10), [tblMonthLedger].[LedgMonth], 103) > CONVERT(VARCHAR(10), GETDATE(), 103)
+                
+                --AND ISNULL([tblUnitReference].[IsSignedContract], 0) = 1
+                --AND ISNULL([tblUnitReference].[IsUnitMove], 0) = 1
+                AND ISNULL([tblUnitReference].[IsTerminated], 0) = 0
+        --AND ISNULL([tblUnitReference].[IsUnitMoveOut], 0) = 0
+        --AND CONVERT(VARCHAR(10), [tblMonthLedger].[LedgMonth], 103) >= CONVERT(VARCHAR(10), GETDATE(), 103)
         UNION
         SELECT
                 [tblClientMstr].[ClientName]                                                                                 AS [Client],
@@ -41,30 +46,32 @@ AS
                 [dbo].[tblUnitReference] WITH (NOLOCK)
             LEFT JOIN
                 [dbo].[tblMonthLedger] WITH (NOLOCK)
-                    ON [tblUnitReference].[RecId] = [tblMonthLedger].[ReferenceID]
-            INNER JOIN
+                    ON  [tblMonthLedger].[ReferenceID] = [tblUnitReference].[RecId] 
+            LEFT JOIN
                 [dbo].[tblClientMstr] WITH (NOLOCK)
-                    ON [tblUnitReference].[ClientID] = [tblClientMstr].[ClientID]
+                    ON  [tblClientMstr].[ClientID] = [tblUnitReference].[ClientID]
         WHERE
-                (
-                    ISNULL([tblMonthLedger].[IsHold], 0) = 1
-                    AND ISNULL([tblMonthLedger].[IsPaid], 0) = 0
-                    AND ISNULL([tblUnitReference].[IsSignedContract], 0) = 1
-                    AND ISNULL([tblUnitReference].[IsUnitMove], 0) = 1
-                    AND ISNULL([tblUnitReference].[IsTerminated], 0) = 0
-                    AND ISNULL([tblUnitReference].[IsUnitMoveOut], 0) = 0
-                    AND CONVERT(VARCHAR(10), GETDATE(), 103) = CONVERT(VARCHAR(10), [tblMonthLedger].[LedgMonth], 103)
-                )
-                OR
-                    (
-                        ISNULL([tblMonthLedger].[IsHold], 0) = 0
-                        AND ISNULL([tblMonthLedger].[IsPaid], 0) = 1
-                        AND ISNULL([tblUnitReference].[IsSignedContract], 0) = 1
-                        AND ISNULL([tblUnitReference].[IsUnitMove], 0) = 1
-                        AND ISNULL([tblUnitReference].[IsTerminated], 0) = 0
-                        AND ISNULL([tblUnitReference].[IsUnitMoveOut], 0) = 0
-                        AND CONVERT(VARCHAR(10), GETDATE(), 103) = CONVERT(VARCHAR(10), [tblMonthLedger].[LedgMonth], 103)
-                    )
+                
+                 ISNULL([tblMonthLedger].[IsPaid], 0) = 0
+                --AND ISNULL([tblUnitReference].[IsSignedContract], 0) = 1
+                --AND ISNULL([tblUnitReference].[IsUnitMove], 0) = 1
+                AND ISNULL([tblUnitReference].[IsTerminated], 0) = 0
+                --AND ISNULL([tblUnitReference].[IsUnitMoveOut], 0) = 0
+                AND CONVERT(DATE,[tblMonthLedger].[LedgMonth],103) <= CONVERT(DATE,GETDATE(),103)
+
+    --AND CONVERT(VARCHAR(10), [tblMonthLedger].[LedgMonth], 103) < CONVERT(VARCHAR(10), GETDATE(), 103)
+
+
+    --OR
+    --    (
+    --        ISNULL([tblMonthLedger].[IsHold], 0) = 0
+    --        AND ISNULL([tblMonthLedger].[IsPaid], 0) = 1
+    --        AND ISNULL([tblUnitReference].[IsSignedContract], 0) = 1
+    --        AND ISNULL([tblUnitReference].[IsUnitMove], 0) = 1
+    --        AND ISNULL([tblUnitReference].[IsTerminated], 0) = 0
+    --        AND ISNULL([tblUnitReference].[IsUnitMoveOut], 0) = 0
+    --        AND CONVERT(VARCHAR(10), GETDATE(), 103) = CONVERT(VARCHAR(10), [tblMonthLedger].[LedgMonth], 103)
+    --    )
     --UNION
     --SELECT [tblClientMstr].[ClientName] AS [Client],
     --       [tblUnitReference].[ClientID] AS [ClientID],

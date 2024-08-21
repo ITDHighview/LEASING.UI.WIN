@@ -13,6 +13,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Telerik.WinControls.UI;
 
 namespace LEASING.UI.APP.Forms
 {
@@ -641,36 +642,29 @@ namespace LEASING.UI.APP.Forms
         private void M_GetTotalRental()
         {
             this.getFinalTotalRental(this.IsDiscounted);
-            //var rental = ((Functions.ConvertStringToDecimal(txtRental.Text)) + (Functions.ConvertStringToDecimal(txtSecAndMaintenance.Text)));
-            //txtTotalRental.Text = Convert.ToString(this.vUnit_TotalMonthlyRental);
-            var rental2 = AddSecurityPayment(this.IsDiscounted, Functions.ConvertStringToDecimal(txtSecurityPaymentMonthCount.Text));
-            //var rental2 = (rental * (Functions.ConvertStringToDecimal(txtSecurityPaymentMonthCount.Text)));+
-            if (!string.IsNullOrWhiteSpace(txtSecurityPaymentMonthCount.Text))
+            if (this.sIsFullPayment)
             {
-                txtMonthsSecurityDeposit.Text = rental2.ToString("N2");
+                this.txtTotal.Text = ((Functions.ConvertStringToDecimal(this.txtTotalPostDatedAmount.Text)) + this.getFinalSecurityAmount()).ToString("N2");
             }
             else
             {
-                txtMonthsSecurityDeposit.Text = string.Empty;
+                this.txtTotal.Text = (this.getFinalTotalAmount(this.IsDiscounted) + this.getFinalSecurityAmount()).ToString("N2");
             }
-            //var rental3 =  (Functions.ConvertStringToDecimal(txtMonthsSecurityDeposit.Text));
-
-            //if (rental2 > 0)
-            //{
-            //    txtMonthsSecurityDeposit.Text = Convert.ToString(rental2);
-            //}
-
-
-            var rentalfinal = this.getFinalTotalAmount(this.IsDiscounted);
-            if (sIsFullPayment)
+            this.AdvancePaymentAmount = this.getFinalTotalAmount(this.IsDiscounted);
+        }
+        private decimal getFinalSecurityAmount()
+        {
+            decimal amount = this.AddSecurityPayment(this.IsDiscounted, Functions.ConvertStringToDecimal(this.txtSecurityPaymentMonthCount.Text));
+            if (chkIsRenewal.Checked == true)
             {
-                txtTotal.Text = ((Functions.ConvertStringToDecimal(txtTotalPostDatedAmount.Text)) + rental2).ToString("N2"); ;
+                return Functions.ConvertStringToDecimal(this.txtMonthsSecurityDeposit.Text);
             }
             else
             {
-                txtTotal.Text = (rentalfinal + rental2).ToString("N2"); ;
+                txtMonthsSecurityDeposit.Text = amount.ToString("N2");
+                return amount;
             }
-            AdvancePaymentAmount = rentalfinal;
+            return 0;
         }
         private bool IsDuplicate(string Months)
         {
@@ -1131,39 +1125,31 @@ namespace LEASING.UI.APP.Forms
             if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9\b]"))
                 e.Handled = true;
         }
+
+
+        const string RENEWAL_CONTRACT = "<<<---RENEWAL CONTRACT--->>>";
+        const string NEW_CONTRACT = "<<<---NEW CONTRACT--->>>";
+
+        Color RenewalContract = Color.DarkSlateBlue;
+        Color NewContract = Color.Green;
+        private void SetContractState()
+        {          
+            txtSecurityPaymentMonthCount.Text = "0";
+            txtMonthsSecurityDeposit.Text = "0";
+
+            txtSecurityPaymentMonthCount.Enabled = !chkIsRenewal.Checked;
+            txtMonthsSecurityDeposit.ReadOnly = !chkIsRenewal.Checked;
+
+            this.lblContractState.Text = chkIsRenewal.Checked ? RENEWAL_CONTRACT : NEW_CONTRACT;
+            this.lblContractState.ForeColor = chkIsRenewal.Checked ? RenewalContract : NewContract;
+        }
         private void chkIsRenewal_ToggleStateChanged(object sender, Telerik.WinControls.UI.StateChangedEventArgs args)
         {
-            if (chkIsRenewal.CheckState == CheckState.Checked)
-            {
-                txtSecurityPaymentMonthCount.Text = "0";
-                txtSecurityPaymentMonthCount.Enabled = false;
-                txtMonthsSecurityDeposit.ReadOnly = false;
-                txtMonthsSecurityDeposit.Text = "0";
-
-                this.lblContractState.Text = "<<<---RENEWAL CONTRACT--->>>";
-                this.lblContractState.ForeColor = Color.DarkSlateBlue;
-            }
-            else
-            {
-                txtSecurityPaymentMonthCount.Text = "0";
-                txtSecurityPaymentMonthCount.Enabled = true;
-                txtMonthsSecurityDeposit.ReadOnly = true;
-                txtMonthsSecurityDeposit.Text = "0";
-
-                this.lblContractState.Text = "<<<---NEW CONTRACT--->>>";
-                this.lblContractState.ForeColor = Color.Green;
-            }
-
+            this.SetContractState();
         }
         private void txtMonthsSecurityDeposit_TextChanged(object sender, EventArgs e)
         {
-            if (chkIsRenewal.Checked == true)
-            {
-                //if (IsComputationValid())
-                //{
-                M_GetTotalRental();
-                //}
-            }
+            M_GetTotalRental();
         }
         public decimal NewTotalMontlyRental { get; set; } = 0;
         private void getDiscountedTotalMonthlyRental()
@@ -1228,6 +1214,33 @@ namespace LEASING.UI.APP.Forms
             }
 
 
+        }
+
+        private void txtMonthsSecurityDeposit_Leave(object sender, EventArgs e)
+        {
+            string input = txtMonthsSecurityDeposit.Text.Replace(",", "").Trim();
+            decimal value;
+            if (decimal.TryParse(input, NumberStyles.Any, CultureInfo.InvariantCulture, out value))
+            {
+                // Format the number with commas and two decimal places
+                txtMonthsSecurityDeposit.Text = value.ToString("N2"); // Format with commas and two decimal places
+            }
+        }
+
+        private void txtMonthsSecurityDeposit_MouseMove(object sender, MouseEventArgs e)
+        {
+            string input = txtMonthsSecurityDeposit.Text.Replace(",", "").Trim();
+            decimal value;
+            if (decimal.TryParse(input, NumberStyles.Any, CultureInfo.InvariantCulture, out value))
+            {
+                // Format the number with commas and two decimal places
+                txtMonthsSecurityDeposit.Text = value.ToString("N2"); // Format with commas and two decimal places
+            }
+        }
+
+        private void chkIsRenewal_CheckedChanged(object sender, EventArgs e)
+        {
+            this.SetContractState();
         }
     }
 }

@@ -188,13 +188,13 @@
             this.tableLayoutPanel1.Controls.Add(this.txtProjectType, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.lblVat, 2, 11);
             this.tableLayoutPanel1.Controls.Add(this.radLabel3, 1, 7);
-            this.tableLayoutPanel1.Controls.Add(this.chkIsRenewal, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.radGroupBox3, 4, 1);
             this.tableLayoutPanel1.Controls.Add(this.radGroupBox5, 4, 15);
             this.tableLayoutPanel1.Controls.Add(this.radLabel13, 0, 10);
             this.tableLayoutPanel1.Controls.Add(this.txtRental, 1, 10);
             this.tableLayoutPanel1.Controls.Add(this.lblbl, 0, 11);
             this.tableLayoutPanel1.Controls.Add(this.txtTotal, 1, 11);
+            this.tableLayoutPanel1.Controls.Add(this.chkIsRenewal, 2, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(2, 18);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -744,14 +744,12 @@
             // 
             // chkIsRenewal
             // 
-            this.chkIsRenewal.AutoSize = false;
-            this.tableLayoutPanel1.SetColumnSpan(this.chkIsRenewal, 2);
-            this.chkIsRenewal.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chkIsRenewal.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
+            this.chkIsRenewal.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.chkIsRenewal.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkIsRenewal.ForeColor = System.Drawing.Color.DarkRed;
-            this.chkIsRenewal.Location = new System.Drawing.Point(401, 28);
+            this.chkIsRenewal.Location = new System.Drawing.Point(453, 28);
             this.chkIsRenewal.Name = "chkIsRenewal";
-            this.chkIsRenewal.Size = new System.Drawing.Size(217, 19);
+            this.chkIsRenewal.Size = new System.Drawing.Size(82, 19);
             this.chkIsRenewal.TabIndex = 11;
             this.chkIsRenewal.Text = "Is Renewal";
             this.chkIsRenewal.ThemeName = "Office2007Silver";

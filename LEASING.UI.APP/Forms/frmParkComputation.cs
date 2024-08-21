@@ -985,27 +985,19 @@ namespace LEASING.UI.APP.Forms
                 MessageBox.Show("Please select a row to remove.");
             }
         }
+        const string RENEWAL_CONTRACT = "<<<---RENEWAL CONTRACT--->>>";
+        const string NEW_CONTRACT = "<<<---NEW CONTRACT--->>>";
 
+        Color RenewalContract = Color.DarkSlateBlue;
+        Color NewContract = Color.Green;
+        private void SetContractState()
+        {
+            this.lblContractState.Text = chkIsRenewal.Checked ? RENEWAL_CONTRACT : NEW_CONTRACT;
+            this.lblContractState.ForeColor = chkIsRenewal.Checked ? RenewalContract : NewContract;
+        }
         private void chkIsRenewal_ToggleStateChanged(object sender, Telerik.WinControls.UI.StateChangedEventArgs args)
         {
-            if (chkIsRenewal.Checked)
-            {
-                //txtSecurityPaymentMonthCount.Text = "0";
-                //txtSecurityPaymentMonthCount.Enabled = false;
-                //txtMonthsSecurityDeposit.Text = "0";
-                //txtMonthsSecurityDeposit.ReadOnly = false;
-                this.lblContractState.Text = "<<<---RENEWAL CONTRACT--->>>";
-                this.lblContractState.ForeColor = Color.DarkSlateBlue;
-            }
-            else
-            {
-                //txtSecurityPaymentMonthCount.Text = "0";
-                //txtSecurityPaymentMonthCount.Enabled = true;
-                //txtMonthsSecurityDeposit.Text = "0";
-                //txtMonthsSecurityDeposit.ReadOnly = true;
-                this.lblContractState.Text = "<<<---NEW CONTRACT--->>>";
-                this.lblContractState.ForeColor = Color.Green;
-            }
+            this.SetContractState();
         }
     }
 }

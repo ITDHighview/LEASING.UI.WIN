@@ -838,13 +838,14 @@ namespace LEASING.UI.APP.Forms
                 Functions.ErrorShow("M_SaveUnit()", ex.ToString());
             }
         }
+        private string SavingQuestionLabel() => this.FormMode == ModeStatus.NEWWithID.ToString() ? "Are you sure you want to add this Unit to this Project ?" : "Are you sure you want to add this Unit ?";
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (this.FormMode == ModeStatus.NEW.ToString())
+            if (this.FormMode == ModeStatus.NEW.ToString() || this.FormMode == ModeStatus.NEWWithID.ToString())
             {
                 if (this.IsUnitValid())
                 {
-                    if (MessageBox.Show("Are you sure you want to add this Unit ?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                    if (MessageBox.Show(this.SavingQuestionLabel(), "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                     {
                         this.M_SaveUnit();
                     }

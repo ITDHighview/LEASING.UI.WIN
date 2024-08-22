@@ -23,29 +23,29 @@ namespace LEASING.UI.APP.Forms
         #endregion
 
         #region Variables
-        public int contractId { get; set; }
-        public string contractNumber { get; set; }
-        public string clientNumber { get; set; }
-        public string XML { get; set; }
+        public int contractId { get; set; } = 0;
+        public string contractNumber { get; set; } = string.Empty;
+        public string clientNumber { get; set; } = string.Empty;
+        public string XML { get; set; } = string.Empty;
         public string transactionNumber = string.Empty;
-        public string TypeOf { get; set; }
-        public int totalMonthlyRental { get; set; }
-        public bool IsProceed { get; set; }
+        public string TypeOf { get; set; } = string.Empty;
+        public int totalMonthlyRental { get; set; } = 0;
+        public bool IsProceed { get; set; } = false;
 
-        public decimal receiveAmount { get; set; }
-        public decimal changeAmount { get; set; }
-        public string _Company_OR_Number_ { get; set; }
-        public string _Company_PR_Number_ { get; set; }
-        public string _Bank_Account_Name_ { get; set; }
-        public string _Bank_Branch_ { get; set; }
-        public string _Bank_Account_Number_ { get; set; }
-        public string _Bank_Name_ { get; set; }
-        public string _Bank_Serial_No_ { get; set; }
-        public string paymentRemarks { get; set; }
-        public string _Bank_Reference_Number_ { get; set; }
-        public string modeType { get; set; }
+        public decimal receiveAmount { get; set; } = 0;
+        public decimal changeAmount { get; set; } = 0;
+        public string _Company_OR_Number_ { get; set; } = string.Empty;
+        public string _Company_PR_Number_ { get; set; } = string.Empty;
+        public string _Bank_Account_Name_ { get; set; } = string.Empty;
+        public string _Bank_Branch_ { get; set; } = string.Empty;
+        public string _Bank_Account_Number_ { get; set; } = string.Empty;
+        public string _Bank_Name_ { get; set; } = string.Empty;
+        public string _Bank_Serial_No_ { get; set; } = string.Empty;
+        public string paymentRemarks { get; set; } = string.Empty;
+        public string _Bank_Reference_Number_ { get; set; } = string.Empty;
+        public string modeType { get; set; } = string.Empty;
         private bool IsPartialPayment = false;
-        public string _Company_Original_Receipt_Date_ { get; set; }
+        public string _Company_Original_Receipt_Date_ { get; set; } = string.Empty;
 
         #endregion
 
@@ -56,15 +56,13 @@ namespace LEASING.UI.APP.Forms
             this.FormLoadReadOnlyControls();
             this._getContractById();
             this._getMonthLedgerBrowseByContractIdClientNumber();
-            if (TypeOf.Equals("PARKING"))
-            {
-                this.btnGenerate.Text = "PROCEED >>>";
-            }
-            else
-            {
-                this.btnGenerate.Text = "PROCEED TO PAYMENT >>>";
-            }
+            this.btnGenerate.Text = this.btnGenerateLable();
         }
+
+        private string btnGenerateLableByTotalAmount() => Functions.ConvertStringToDecimal(this.txtTotalForPayment.Text) > 0 ? "PROCEED TO PAYMENT >>>" : "PROCEED >>>";
+        private string btnGenerateLable() =>
+                       this.TypeOf == "PARKING" ? "PROCEED >>>" : this.btnGenerateLableByTotalAmount();
+
         private void FormLoadReadOnlyControls()
         {
             txtTwoMonAdv.ReadOnly = true;
@@ -152,6 +150,8 @@ namespace LEASING.UI.APP.Forms
             }
 
         }
+        private string UnitPaymentResultLable() =>
+                       Functions.ConvertStringToDecimal(this.txtTotalForPayment.Text) > 0 ? "PAYMENT" : "SAVE";
         private void _generatePayment()
         {
             try
@@ -191,7 +191,7 @@ namespace LEASING.UI.APP.Forms
                     return;
                 }
 
-                Functions.MessageShow($"PAYMENT {result}");
+                Functions.MessageShow($"{this.UnitPaymentResultLable()} : {result}");
 
                 this.IsProceed = true;
                 this.btnGenerate.Enabled = false;
@@ -369,20 +369,11 @@ namespace LEASING.UI.APP.Forms
             pForm.ShowDialog();
             this._getContractById();
         }
-        private string PaymentMessageConfirm()
-        {
-
-            if (TypeOf.Equals("PARKING"))
-            {
-                return "Are you sure you want to proceed this transaction?";
-            }
-            else
-            {
-                return "Are you sure you want to proceed  to this payment?";
-            }
-
-            return "Are you sure you want to proceed  to this payment?";
-        }
+        private string PaymentMessageConfirmByPaymentAmount() =>
+            Functions.ConvertStringToDecimal(this.txtTotalForPayment.Text) > 0 ? "Are you sure you want to proceed  to this payment?" : "Are you sure you want to proceed this transaction?";
+        private string PaymentMessageConfirmLable() =>
+            this.TypeOf == "PARKING" ? "Are you sure you want to proceed this transaction?" : this.PaymentMessageConfirmByPaymentAmount();
+        private string PaymentMessageConfirm() => this.PaymentMessageConfirmLable();
         private void _savePayment()
         {
             if (Functions.MessageConfirm(this.PaymentMessageConfirm()) == DialogResult.No)
@@ -393,13 +384,9 @@ namespace LEASING.UI.APP.Forms
 
             this._save();
         }
-        private void _save()
+        private void _generatePaymentUnit()
         {
-            if (this.TypeOf.Equals("PARKING"))
-            {
-                this._generatePaymentParking();
-            }
-            else
+            if (Functions.ConvertStringToDecimal(this.txtTotalForPayment.Text) > 0)
             {
                 var fPayment = new frmPaymentMode1();
                 if (!this._initPayment(fPayment))
@@ -425,7 +412,25 @@ namespace LEASING.UI.APP.Forms
                     this._initReciept(fReciept);
                 }
             }
+            else
+            {
+                this._generatePayment();
+            }
+
+
         }
+        private void _save()
+        {
+            if (this.TypeOf == "PARKING")
+            {
+                this._generatePaymentParking();
+            }
+            else
+            {
+                this._generatePaymentUnit();
+            }
+        }
+
         #endregion
 
         #region Buttons

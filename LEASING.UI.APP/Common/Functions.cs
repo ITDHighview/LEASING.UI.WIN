@@ -1421,7 +1421,7 @@ namespace LEASING.UI.APP.Common
 
         public static int ConvertStringToInt(string amountString)
         {
-            if (string.IsNullOrEmpty(amountString))
+            if (string.IsNullOrEmpty(amountString) || string.IsNullOrWhiteSpace(amountString) || amountString == "0" || amountString == "0.00")
             {
                 return 0;
             }
@@ -1430,7 +1430,7 @@ namespace LEASING.UI.APP.Common
 
         public static decimal ConvertStringToDecimal(string amountString)
         {
-            if (string.IsNullOrEmpty(amountString))
+            if (string.IsNullOrEmpty(amountString) || string.IsNullOrWhiteSpace(amountString)  || amountString == "0" || amountString == "0.00")
             {
                 return 0;
             }

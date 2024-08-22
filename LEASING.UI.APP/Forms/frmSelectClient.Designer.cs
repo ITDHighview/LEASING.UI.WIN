@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.radGroupBox2 = new Telerik.WinControls.UI.RadGroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -196,7 +196,7 @@
             this.txtAmountPaid.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAmountPaid.Location = new System.Drawing.Point(103, 53);
             this.txtAmountPaid.Name = "txtAmountPaid";
-            this.txtAmountPaid.Size = new System.Drawing.Size(149, 20);
+            this.txtAmountPaid.Size = new System.Drawing.Size(149, 19);
             this.txtAmountPaid.TabIndex = 4;
             this.txtAmountPaid.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtAmountPaid.ThemeName = "Office2007Silver";
@@ -215,11 +215,11 @@
             // radLabel5
             // 
             this.radLabel5.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.radLabel5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel5.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radLabel5.ForeColor = System.Drawing.Color.Green;
-            this.radLabel5.Location = new System.Drawing.Point(14, 53);
+            this.radLabel5.Location = new System.Drawing.Point(11, 53);
             this.radLabel5.Name = "radLabel5";
-            this.radLabel5.Size = new System.Drawing.Size(83, 19);
+            this.radLabel5.Size = new System.Drawing.Size(86, 18);
             this.radLabel5.TabIndex = 2;
             this.radLabel5.Text = "Amount Paid";
             // 
@@ -227,7 +227,7 @@
             // 
             this.txtClientName.Location = new System.Drawing.Point(103, 3);
             this.txtClientName.Name = "txtClientName";
-            this.txtClientName.Size = new System.Drawing.Size(179, 20);
+            this.txtClientName.Size = new System.Drawing.Size(179, 19);
             this.txtClientName.TabIndex = 8;
             this.txtClientName.ThemeName = "Office2007Silver";
             // 
@@ -293,7 +293,7 @@
             this.txtTwoMonAdv.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTwoMonAdv.Location = new System.Drawing.Point(154, 3);
             this.txtTwoMonAdv.Name = "txtTwoMonAdv";
-            this.txtTwoMonAdv.Size = new System.Drawing.Size(143, 20);
+            this.txtTwoMonAdv.Size = new System.Drawing.Size(143, 19);
             this.txtTwoMonAdv.TabIndex = 4;
             this.txtTwoMonAdv.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtTwoMonAdv.ThemeName = "Office2007Silver";
@@ -303,7 +303,7 @@
             this.txtThreeMonSecDep.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtThreeMonSecDep.Location = new System.Drawing.Point(154, 28);
             this.txtThreeMonSecDep.Name = "txtThreeMonSecDep";
-            this.txtThreeMonSecDep.Size = new System.Drawing.Size(143, 20);
+            this.txtThreeMonSecDep.Size = new System.Drawing.Size(143, 19);
             this.txtThreeMonSecDep.TabIndex = 4;
             this.txtThreeMonSecDep.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtThreeMonSecDep.ThemeName = "Office2007Silver";
@@ -311,13 +311,13 @@
             // radLabel8
             // 
             this.radLabel8.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.radLabel8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel8.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radLabel8.ForeColor = System.Drawing.Color.Purple;
-            this.radLabel8.Location = new System.Drawing.Point(20, 92);
+            this.radLabel8.Location = new System.Drawing.Point(15, 92);
             this.radLabel8.Name = "radLabel8";
-            this.radLabel8.Size = new System.Drawing.Size(128, 19);
+            this.radLabel8.Size = new System.Drawing.Size(133, 18);
             this.radLabel8.TabIndex = 2;
-            this.radLabel8.Text = "Total amount to pay:";
+            this.radLabel8.Text = "Total Amount to Pay";
             // 
             // txtTotalForPayment
             // 
@@ -347,7 +347,7 @@
             // 
             this.dtpFrom.Location = new System.Drawing.Point(103, 103);
             this.dtpFrom.Name = "dtpFrom";
-            this.dtpFrom.Size = new System.Drawing.Size(107, 20);
+            this.dtpFrom.Size = new System.Drawing.Size(107, 19);
             this.dtpFrom.TabIndex = 8;
             this.dtpFrom.ThemeName = "Office2007Silver";
             // 
@@ -355,18 +355,18 @@
             // 
             this.dtpTo.Location = new System.Drawing.Point(103, 128);
             this.dtpTo.Name = "dtpTo";
-            this.dtpTo.Size = new System.Drawing.Size(107, 20);
+            this.dtpTo.Size = new System.Drawing.Size(107, 18);
             this.dtpTo.TabIndex = 8;
             this.dtpTo.ThemeName = "Office2007Silver";
             // 
             // radLabel6
             // 
             this.radLabel6.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.radLabel6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel6.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radLabel6.ForeColor = System.Drawing.Color.DarkRed;
-            this.radLabel6.Location = new System.Drawing.Point(46, 78);
+            this.radLabel6.Location = new System.Drawing.Point(42, 78);
             this.radLabel6.Name = "radLabel6";
-            this.radLabel6.Size = new System.Drawing.Size(51, 19);
+            this.radLabel6.Size = new System.Drawing.Size(55, 18);
             this.radLabel6.TabIndex = 2;
             this.radLabel6.Text = "Balance";
             // 
@@ -375,7 +375,7 @@
             this.txtBalanceAmount.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBalanceAmount.Location = new System.Drawing.Point(103, 78);
             this.txtBalanceAmount.Name = "txtBalanceAmount";
-            this.txtBalanceAmount.Size = new System.Drawing.Size(149, 20);
+            this.txtBalanceAmount.Size = new System.Drawing.Size(149, 19);
             this.txtBalanceAmount.TabIndex = 4;
             this.txtBalanceAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtBalanceAmount.ThemeName = "Office2007Silver";
@@ -408,27 +408,27 @@
             this.dgvLedgerList.MasterTemplate.AllowAddNewRow = false;
             this.dgvLedgerList.MasterTemplate.AllowColumnReorder = false;
             this.dgvLedgerList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn1.FieldName = "seq";
-            gridViewTextBoxColumn1.HeaderText = "seq";
-            gridViewTextBoxColumn1.Name = "seq";
-            gridViewTextBoxColumn1.Width = 81;
-            gridViewTextBoxColumn2.FieldName = "LedgMonth";
-            gridViewTextBoxColumn2.HeaderText = "Month";
-            gridViewTextBoxColumn2.Name = "LedgMonth";
-            gridViewTextBoxColumn2.Width = 153;
-            gridViewTextBoxColumn3.FieldName = "LedgAmount";
-            gridViewTextBoxColumn3.HeaderText = "Due Amount";
-            gridViewTextBoxColumn3.Name = "LedgAmount";
-            gridViewTextBoxColumn3.Width = 153;
-            gridViewTextBoxColumn4.FieldName = "Remarks";
-            gridViewTextBoxColumn4.HeaderText = "Remarks";
-            gridViewTextBoxColumn4.Name = "Remarks";
-            gridViewTextBoxColumn4.Width = 203;
+            gridViewTextBoxColumn5.FieldName = "seq";
+            gridViewTextBoxColumn5.HeaderText = "seq";
+            gridViewTextBoxColumn5.Name = "seq";
+            gridViewTextBoxColumn5.Width = 81;
+            gridViewTextBoxColumn6.FieldName = "LedgMonth";
+            gridViewTextBoxColumn6.HeaderText = "Month";
+            gridViewTextBoxColumn6.Name = "LedgMonth";
+            gridViewTextBoxColumn6.Width = 153;
+            gridViewTextBoxColumn7.FieldName = "LedgAmount";
+            gridViewTextBoxColumn7.HeaderText = "Due Amount";
+            gridViewTextBoxColumn7.Name = "LedgAmount";
+            gridViewTextBoxColumn7.Width = 153;
+            gridViewTextBoxColumn8.FieldName = "Remarks";
+            gridViewTextBoxColumn8.HeaderText = "Remarks";
+            gridViewTextBoxColumn8.Name = "Remarks";
+            gridViewTextBoxColumn8.Width = 203;
             this.dgvLedgerList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn1,
-            gridViewTextBoxColumn2,
-            gridViewTextBoxColumn3,
-            gridViewTextBoxColumn4});
+            gridViewTextBoxColumn5,
+            gridViewTextBoxColumn6,
+            gridViewTextBoxColumn7,
+            gridViewTextBoxColumn8});
             this.dgvLedgerList.Name = "dgvLedgerList";
             this.dgvLedgerList.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.dgvLedgerList.ReadOnly = true;

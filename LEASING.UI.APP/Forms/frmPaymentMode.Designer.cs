@@ -248,6 +248,7 @@
             this.chkHold.TabIndex = 5;
             this.chkHold.Text = "HOLD";
             this.chkHold.ThemeName = "Office2007Silver";
+            this.chkHold.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.chkHold_ToggleStateChanged);
             this.chkHold.Click += new System.EventHandler(this.chkHold_Click);
             // 
             // chkClearPDC
@@ -260,6 +261,7 @@
             this.chkClearPDC.TabIndex = 5;
             this.chkClearPDC.Text = "CLEAR";
             this.chkClearPDC.ThemeName = "Office2007Silver";
+            this.chkClearPDC.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.chkClearPDC_ToggleStateChanged);
             this.chkClearPDC.Click += new System.EventHandler(this.chkClearPDC_Click);
             // 
             // dgvLedgerList

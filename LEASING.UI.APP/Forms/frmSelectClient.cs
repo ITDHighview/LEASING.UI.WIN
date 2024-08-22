@@ -191,8 +191,8 @@ namespace LEASING.UI.APP.Forms
                     return;
                 }
 
-                Functions.MessageShow($"{this.UnitPaymentResultLable()} : {result}");
-
+                Functions.MessageShow($"{this.UnitPaymentResultLable()} : {result}" + Environment.NewLine + "you can now proceed for contract approval and move in.");
+          
                 this.IsProceed = true;
                 this.btnGenerate.Enabled = false;
                 this.btnPrintReciept.Enabled = true;

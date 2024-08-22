@@ -34,8 +34,8 @@ namespace LEASING.UI.APP.Forms
         public bool IsOR { get; set; } = false;
 
         public bool IsPartialPayment = false;
-        public bool IsHold { get; set; } = false;
-        public bool IsClearPDC { get; set; } = false;
+        public bool IsHold  = false;
+        public bool IsClearPDC  = false;
         public string Amount = string.Empty;
         public int recid = 0;
         int DayCount = 0;
@@ -300,7 +300,8 @@ namespace LEASING.UI.APP.Forms
             this.dtpRecieptDate.Text = DateTime.Now.ToString("MM/dd/yyyy");
 
             this.IsClearPDC = false;
-            this.IsHold = true;
+            this.IsHold = false;
+
             //this.ddlbankName.Text = string.Empty;
             //this.ddlbankName.SelectedIndex = -1;
             //this.radGroupBoxPDCStatus.Visible = false;
@@ -309,27 +310,29 @@ namespace LEASING.UI.APP.Forms
         private string SelectModeOfPayment()
         {
             strPaymentmMode = Convert.ToString(ddlSelectMode.SelectedValue);
+            this.btnOk.Text = strPaymentmMode == "PDC" ? "SAVE TRANSACTION>>>" : "PROCEED PAYMENT>>>";
             if (strPaymentmMode == "PDC")
             {
                 this.radGroupBoxPDCStatus.Visible = true;
+
+                this.IsHold = true;
                 this.chkHold.IsChecked = true;
                 this.chkClearPDC.IsChecked = false;
+
                 this.radLabel8.Visible = false;
                 this.txtRemarks.Visible = false;
-                this.txtReceiveAmount.Text = txtPaidAmount.Text;
-                this.btnOk.Text = "SAVE TRANSACTION>>>";
+                this.txtReceiveAmount.Text = txtPaidAmount.Text;           
                 this.txtReceiveAmount.Focus();
             }
             else
             {
-                this.radGroupBoxPDCStatus.Visible = false;
+                this.IsHold = false;              
                 this.chkHold.IsChecked = false;
                 this.chkClearPDC.IsChecked = false;
-                this.radLabel8.Visible = true;
-                this.txtRemarks.Visible = true;
-                //this.txtReceiveAmount.Text = string.Empty;
-                this.btnOk.Text = "PROCEED PAYMENT>>>";
 
+                this.radGroupBoxPDCStatus.Visible = false;
+                this.radLabel8.Visible = true;
+                this.txtRemarks.Visible = true;             
                 this.txtReceiveAmount.Focus();
             }
             return strPaymentmMode;
@@ -338,6 +341,7 @@ namespace LEASING.UI.APP.Forms
         {
             Functions.EventCapturefrmName(this);
             this.OnInitialized();
+            
         }
         private void ddlSelectMode_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
         {
@@ -360,8 +364,8 @@ namespace LEASING.UI.APP.Forms
             this.PaymentRemarks = this.txtRemarks.Text;
             this.REF = this.txtReferrence.Text;
             this.BankBranch = this.txtBankBranch.Text;
-            //this.IsHold = chkHold.IsChecked;
-            //this.IsClearPDC = chkClearPDC.IsChecked;
+            //this.IsHold = chkHold.Checked;
+            //this.IsClearPDC = chkClearPDC.Checked;
             this.RecieptDate = dtpRecieptDate.Text;
 
         }
@@ -499,9 +503,6 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-
-
-
         private void dgvLedgerList_SelectionChanged(object sender, EventArgs e)
         {
             if (dgvLedgerList.Rows.Count >= 0 && Convert.ToString(dgvLedgerList.CurrentRow.Cells["PaymentStatus"].Value) == "HOLD")
@@ -521,8 +522,7 @@ namespace LEASING.UI.APP.Forms
         private void chkHold_Click(object sender, EventArgs e)
         {
             chkClearPDC.IsChecked = false;
-            IsClearPDC = false;
-            IsHold = true;
+           
             this.radLabel8.Visible = false;
             this.txtRemarks.Visible = false;
             btnOk.Text = "SAVE TRANSACTION>>>";
@@ -531,8 +531,7 @@ namespace LEASING.UI.APP.Forms
         private void chkClearPDC_Click(object sender, EventArgs e)
         {
             chkHold.IsChecked = false;
-            IsClearPDC = true;
-            IsHold = false;
+            
             this.radLabel8.Visible = true;
             this.txtRemarks.Visible = true;
             btnOk.Text = "PROCEED PAYMENT>>>";
@@ -560,6 +559,18 @@ namespace LEASING.UI.APP.Forms
                 // Format the number with commas and two decimal places
                 txtReceiveAmount.Text = value.ToString("N2"); // Format with commas and two decimal places
             }
+        }
+
+        private void chkClearPDC_ToggleStateChanged(object sender, Telerik.WinControls.UI.StateChangedEventArgs args)
+        {
+            this.IsHold = false;
+            this.IsClearPDC = true;
+        }
+
+        private void chkHold_ToggleStateChanged(object sender, Telerik.WinControls.UI.StateChangedEventArgs args)
+        {
+            this.IsHold = true;
+            this.IsClearPDC = false;
         }
     }
 }

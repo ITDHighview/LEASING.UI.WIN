@@ -70,7 +70,7 @@ namespace LEASING.UI.APP.Forms
         public int TotalRental { get; set; }
         public string AdvancePaymentAmount { get; set; }
 
-        public bool IsProceed { get; set; }
+
         public string FromDate { get; set; }
         public string Todate { get; set; }
         public int TotalAmount { get; set; }
@@ -187,14 +187,12 @@ namespace LEASING.UI.APP.Forms
         #endregion
         private decimal fn_ConvertStringToDecimal(string amountString)
         {
-            if (string.IsNullOrEmpty(amountString))
+            if (string.IsNullOrEmpty(amountString) || amountString == "0" || amountString == "0.00")
             {
                 return 0;
             }
             return decimal.Parse(amountString);
         }
-
-
         private void InitiliazedGridItem()
         {
             this.ItemTypeOf = Convert.ToString(dgvTransactionList.CurrentRow.Cells["TypeOf"].Value);
@@ -234,10 +232,6 @@ namespace LEASING.UI.APP.Forms
         {
             try
             {
-                if (!this.IsProceed)
-                {
-                    return;
-                }
 
                 this.InitiliazedGridItem();
 
@@ -265,7 +259,7 @@ namespace LEASING.UI.APP.Forms
                 if (!result.Equals(_MSSG_SUCCESS_))
                 {
                     Functions.MessageShow(result);
-                    this.IsProceed = false;
+
                     return;
                 }
 
@@ -283,9 +277,8 @@ namespace LEASING.UI.APP.Forms
                     return;
                 }
 
-
-                Functions.GetNotification("PAYMENT SUCCESS", $"Transaction ID : {TranID} generated");
-                Functions.GetNotification("PAYMENT SUCCESS", $"Reciept ID : {RecieptID} generated");
+                Functions.GetNotification("PAYMENT SUCCESS ", $" Transaction ID : {TranID} generated");
+                Functions.GetNotification("PAYMENT SUCCESS ", $" Reciept ID : {RecieptID} generated");
 
                 this.getContractById();
                 this.checkPaymentProgressStatus();
@@ -295,9 +288,6 @@ namespace LEASING.UI.APP.Forms
                 var fReciept = new frmRecieptSelectionSecondPayment(this.TranID, "", "SECOND");
                 this.InitReciept(fReciept);
 
-
-
-                this.IsProceed = true;
             }
             catch (Exception ex)
             {
@@ -423,15 +413,18 @@ namespace LEASING.UI.APP.Forms
                         if (Convert.ToString(dt.Tables[0].Rows[0]["PAYMENT_STATUS"]) == "IN-PROGRESS")
                         {
                             this.btnCloseContract.Enabled = false;
-                            this.btnTerminateContract.Visible = true;
                             this.btnTerminateContract.Enabled = true;
+                            this.btnTerminateContract.Visible = true;
+                            this.btnPayAll.Enabled = true;
                             this.btnPayAll.Visible = true;
                         }
                         else if (Convert.ToString(dt.Tables[0].Rows[0]["PAYMENT_STATUS"]) == "PAYMENT DONE")
                         {
-                            Functions.GetNotification("Payment Status", this.txtPaymentStatus.Text);
+                            //Functions.GetNotification("Payment Status", this.txtPaymentStatus.Text);
                             this.btnCloseContract.Enabled = true;
+                            this.btnTerminateContract.Enabled = false;
                             this.btnTerminateContract.Visible = false;
+                            this.btnPayAll.Enabled = false;
                             this.btnPayAll.Visible = false;
                         }
                     }
@@ -537,7 +530,7 @@ namespace LEASING.UI.APP.Forms
             this.IsHold = pForm.IsHold;
             this.IsClearPDC = pForm.IsClearPDC;
             this.RecieptDate = pForm.RecieptDate;
-            this.IsProceed = true;
+
             return true;
         }
         private void InitReciept(frmRecieptSelectionSecondPayment pForm)
@@ -545,11 +538,6 @@ namespace LEASING.UI.APP.Forms
             pForm.IsNoOR = string.IsNullOrEmpty(this.CompanyORNo) && !string.IsNullOrEmpty(this.CompanyPRNo);
             pForm.sTypeOf = Convert.ToString(dgvTransactionList.CurrentRow.Cells["TypeOf"].Value);
             pForm.ShowDialog();
-            if (!this.IsProceed)
-            {
-                return;
-            }
-
         }
         private bool IsGridCheckboxCheck()
         {
@@ -596,7 +584,8 @@ namespace LEASING.UI.APP.Forms
                     return;
                 }
 
-                Functions.MessageShow("TERMINATE CONTRACT SUCCESS");
+                Functions.MessageShow($"CONTRACT TERMINATION {result}");
+                Functions.GetNotification("CONTRACT TERMINATION "," You can now proceed for contract closing.");
             }
             catch (Exception ex)
             {
@@ -608,23 +597,23 @@ namespace LEASING.UI.APP.Forms
             this.checkPaymentProgressStatus();
             this.getPaymentBrowseByContractNumber();
             this.btnTerminateContract.Enabled = false;
+            this.btnPayAll.Enabled = false;
         }
-
         private void SaveTransaction()
         {
             if (Functions.MessageConfirm("Are you sure you want to hold the payment?") == DialogResult.Yes)
             {
                 try
                 {
-                    string result = _payment.HoldPDCPayment(this.M_getXMLData(), 
-                                                            this.CompanyORNo, 
-                                                            this.CompanyPRNo, 
-                                                            this.BankAccountName, 
-                                                            this.BankAccountNumber, 
-                                                            this.BankName, 
-                                                            this.SerialNo, 
-                                                            this.BankBranch, 
-                                                            this.REF, 
+                    string result = _payment.HoldPDCPayment(this.M_getXMLData(),
+                                                            this.CompanyORNo,
+                                                            this.CompanyPRNo,
+                                                            this.BankAccountName,
+                                                            this.BankAccountNumber,
+                                                            this.BankName,
+                                                            this.SerialNo,
+                                                            this.BankBranch,
+                                                            this.REF,
                                                             this.ModeType);
                     Functions.ShowLoadingBar("Processing...");
                     if (!string.IsNullOrEmpty(result))
@@ -649,87 +638,47 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
+        
+        private void ProceedToPayment()
+        {
+            var fPayment = new frmPaymentMode();
+            if (!this.InitPayment(fPayment))
+            {
+                return;
+            }
+
+            if (this.ModeType == "PDC")
+            {
+                if (this.IsHold == true && this.IsClearPDC == false)
+                {
+                    this.SaveTransaction();
+                }
+                else if(this.IsHold == false && this.IsClearPDC == true)
+                {
+                    this.GeneratePayment();
+                }
+            }
+            else
+            {
+                this.GeneratePayment();
+            }
+        }
+        private string SavePaymentConfirm() => this.IsGridCheckboxCheck() == true ? "Are you sure you want to pay the selected month?" : "Are you sure you want to pay it all?";
         private void SavePayment()
         {
             if (dgvLedgerList.Rows.Count <= 0)
             {
-                this.IsProceed = false;
                 return;
             }
 
-            #region PAY ONLY SELECTED
-
-            if (this.IsGridCheckboxCheck())
+            if (Functions.MessageConfirm(this.SavePaymentConfirm()) == DialogResult.No)
             {
-                if (Functions.MessageConfirm("Are you sure you want to pay the selected month?") == DialogResult.No)
-                {
-                    Functions.GetNotification("PAYMENT", "Payment Cancel");
-                    return;
-                }
-
-                var fPayment = new frmPaymentMode();
-                if (!this.InitPayment(fPayment))
-                {
-                    return;
-                }
-
-                if (this.ModeType == "PDC")
-                {
-                    if (this.IsHold == true)
-                    {
-                        this.SaveTransaction();
-                    }
-                    else if (this.IsClearPDC == true)
-                    {
-                        this.GeneratePayment();
-                    }
-                    else
-                    {
-                        this.GeneratePayment();
-                    }
-                }
-                else
-                {
-                    this.GeneratePayment();
-                }
-     
+                Functions.GetNotification("PAYMENT", "Payment Cancel");
+                return;
             }
-
-            #endregion
-
-            #region PAY ALL
-
-            else if (!this.IsGridCheckboxCheck())
-            {
-                if (Functions.MessageConfirm("Are you sure you want to pay it all?") == DialogResult.No)
-                {
-                    Functions.GetNotification("PAYMENT", "Payment Cancel");
-                    return;
-                }
-
-                var fPayment = new frmPaymentMode();
-                if (!this.InitPayment(fPayment))
-                {
-                    return;
-                }
-
-                if (this.IsHold == true)
-                {
-                    this.SaveTransaction();
-                }
-                else if (this.IsClearPDC == true)
-                {
-                    this.GeneratePayment();
-                }
-                else
-                {
-                    this.GeneratePayment();
-                }
-            }
-
-            #endregion
+            this.ProceedToPayment();
         }
-        private void CloseContract()
+        private void MoveOut()
         {
             if (Functions.MessageConfirm("Are you sure you want to Move-Out this CLient? ?") == DialogResult.No)
             {
@@ -752,12 +701,13 @@ namespace LEASING.UI.APP.Forms
                     return;
                 }
 
-                Functions.MessageShow("MOVE-OUT SUCCESS");
+                Functions.MessageShow($"MOVE-OUT {result}");
+                Functions.GetNotification("CLIENT MOVE-OUT ", " You can now proceed for contract closing.");
             }
             catch (Exception ex)
             {
-                Functions.LogError("CloseContract()", this.Text, ex.ToString(), DateTime.Now, this);
-                Functions.ErrorShow("CloseContract()", ex.ToString());
+                Functions.LogError("MoveOut()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("MoveOut()", ex.ToString());
             }
 
             this.getPaymentBrowseByContractNumber();
@@ -821,7 +771,7 @@ namespace LEASING.UI.APP.Forms
         }
         private void btnCloseContract_Click(object sender, EventArgs e)
         {
-            this.CloseContract();
+            this.MoveOut();
         }
         private void btnTerminateContract_Click(object sender, EventArgs e)
         {
@@ -969,7 +919,7 @@ namespace LEASING.UI.APP.Forms
                     e.CellElement.DrawFill = true;
                     e.CellElement.GradientStyle = GradientStyles.Solid;
                     e.CellElement.BackColor = Color.Red;
-                
+
                 }
 
                 if (e.CellElement.ColumnInfo is GridViewCommandColumn && !(e.CellElement.RowElement is GridTableHeaderRowElement))

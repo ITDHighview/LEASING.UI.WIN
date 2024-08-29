@@ -3,7 +3,7 @@ GO
 SET ANSI_NULLS ON
 GO
 --EXEC [sp_GenerateLedger] 
-CREATE PROCEDURE [dbo].[sp_GenerateLedger]
+CREATE   PROCEDURE [dbo].[sp_GenerateLedger]
     @FromDate          VARCHAR(10)    = NULL,
     @EndDate           VARCHAR(10)    = NULL,
     @LedgAmount        DECIMAL(18, 2) = NULL,
@@ -16,12 +16,12 @@ CREATE PROCEDURE [dbo].[sp_GenerateLedger]
     @UnitId            INT            = NULL,
     @IsRenewal         BIGINT         = 0
 AS
-    BEGIN TRY
+    BEGIN
 
         SET NOCOUNT ON;
         DECLARE @Message_Code VARCHAR(MAX) = '';
         DECLARE @ErrorMessage NVARCHAR(MAX) = N'';
-        BEGIN TRANSACTION
+       
         --DECLARE @StartDate VARCHAR(10) = '08/02/2023';
         --DECLARE @EndDate VARCHAR(10) = '05/02/2024';
         --SELECT DATEDIFF(MONTH, CONVERT(DATE, @StartDate, 101), CONVERT(DATE, @EndDate, 101)) AS NumberOfMonths;
@@ -46,7 +46,7 @@ AS
         DECLARE @Unit_Tax AS DECIMAL(18, 2) = 0;
         DECLARE @Unit_TaxAmount AS DECIMAL(18, 2) = 0;
 
-        BEGIN TRANSACTION
+
         SELECT
                 @ProjectType                  = [tblProjectMstr].[ProjectType],
                 @Unit_IsParking               = [tblUnitMstr].[IsParking],
@@ -190,6 +190,9 @@ AS
                         [#GeneratedMonths]
                     WHERE
                         @SecAndMaintenance IS NOT NULL
+
+
+
         IF (@@ROWCOUNT > 0)
             BEGIN
                 UPDATE
@@ -201,41 +204,33 @@ AS
                     [tblUnitReference].[ComputerName] = @ComputerName
                 WHERE
                     [tblUnitReference].[RecId] = @ComputationID;
-
-
                 SET @Message_Code = 'SUCCESS'
-                SET @ErrorMessage = N''
             END;
-        SELECT
-            @ErrorMessage AS [ErrorMessage],
-            @Message_Code AS [Message_Code];
 
 
-        COMMIT TRANSACTION
-
-    END TRY
-    BEGIN CATCH
-        IF @@TRANCOUNT > 0
-            ROLLBACK TRANSACTION
-        SET @Message_Code = 'ERROR'
         SET @ErrorMessage = ERROR_MESSAGE()
+        IF @ErrorMessage <> ''
+            BEGIN
 
-        INSERT INTO [dbo].[ErrorLog]
-            (
-                [ProcedureName],
-                [ErrorMessage],
-                [LogDateTime]
-            )
-        VALUES
-            (
-                'sp_GenerateLedger', @ErrorMessage, GETDATE()
-            );
-
+                INSERT INTO [dbo].[ErrorLog]
+                    (
+                        [ProcedureName],
+                        [ErrorMessage],
+                        [LogDateTime]
+                    )
+                VALUES
+                    (
+                        'sp_GenerateLedger', @ErrorMessage, GETDATE()
+                    );
+            END
         SELECT
             @ErrorMessage AS [ErrorMessage],
             @Message_Code AS [Message_Code];
-    END CATCH
-    DROP TABLE [#GeneratedMonths];
+        DROP TABLE [#GeneratedMonths];
+    END
+
+
+
 
 
 

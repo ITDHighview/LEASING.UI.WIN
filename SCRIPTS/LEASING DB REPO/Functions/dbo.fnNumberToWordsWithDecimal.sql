@@ -33,7 +33,7 @@ BEGIN
         IF @IntegerPart BETWEEN 1 AND 19
             SET @English = (SELECT Word FROM @Below20 WHERE ID = @IntegerPart)
         ELSE IF @IntegerPart BETWEEN 20 AND 99
-            SET @English = (SELECT Word FROM @Below100 WHERE ID = @IntegerPart / 10) + '-' + dbo.fnNumberToWords(@IntegerPart % 10)
+            SET @English = (SELECT Word FROM @Below100 WHERE ID = @IntegerPart / 10) + ' ' + dbo.fnNumberToWords(@IntegerPart % 10)
         ELSE
             SET @English = dbo.fnNumberToWords(@IntegerPart)
     END
@@ -48,17 +48,19 @@ BEGIN
         --                        THEN (SELECT Word FROM @Below100 WHERE ID = @DecimalPart / 10) + '-' + dbo.fnNumberToWords(@DecimalPart % 10)
         --                    ELSE dbo.fnNumberToWords(@DecimalPart)
         --                END)
-		        SET @English = @English + '  '
+		        SET @English = @English
+				  --SET @English = @English + ' '
                       + (CASE
                             WHEN @DecimalPart BETWEEN 1 AND 19
-                                THEN CAST(@DecimalPart AS VARCHAR(20))
+                                THEN (CAST(@DecimalPart AS VARCHAR(20))+ '/100')
                             WHEN @DecimalPart BETWEEN 20 AND 99
-                                THEN ('& '+ CASt(@DecimalPart AS VARCHAR(30))+ '/100') 
+                                THEN (CASt(@DecimalPart AS VARCHAR(30))+ '/100') 
+								 --THEN ('& '+ CASt(@DecimalPart AS VARCHAR(30))+ '/100')
                             ELSE ''
                         END)
 
     END
-
+	
     RETURN @English
 END
 GO

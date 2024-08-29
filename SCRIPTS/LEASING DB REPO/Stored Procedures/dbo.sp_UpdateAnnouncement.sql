@@ -8,17 +8,48 @@ GO
 --SET QUOTED_IDENTIFIER ON|OFF
 --SET ANSI_NULLS ON|OFF
 --GO
-CREATE PROCEDURE [dbo].[sp_UpdateAnnouncement] @Message AS NVARCHAR(MAX) = ''
+CREATE   PROCEDURE [dbo].[sp_UpdateAnnouncement] @Message AS NVARCHAR(MAX) = ''
 -- WITH ENCRYPTION, RECOMPILE, EXECUTE AS CALLER|SELF|OWNER| 'user_name'
 AS
-BEGIN
-    UPDATE [dbo].[tblAnnouncement]
-    SET [tblAnnouncement].[AnnounceMessage] = @Message
+    BEGIN
+        IF
+            (
+                SELECT
+                    COUNT(*)
+                FROM
+                    [dbo].[tblAnnouncement]
+            ) = 0
+            BEGIN
+                INSERT INTO [dbo].[tblAnnouncement]
+                    (
+                        [AnnounceMessage]
+                    )
+                VALUES
+                    (
+                        @Message -- AnnounceMessage - nvarchar(max)
+                    )
 
-	IF @@ROWCOUNT > 0
-	BEGIN
-	SELECT 'SUCCESS' AS Message_Code
-	END
+                IF @@ROWCOUNT > 0
+                    BEGIN
+                        SELECT
+                            'SUCCESS' AS [Message_Code]
+                    END
+            END
+        ELSE
+            BEGIN
+                UPDATE
+                    [dbo].[tblAnnouncement]
+                SET
+                    [tblAnnouncement].[AnnounceMessage] = @Message
 
-END
+                IF @@ROWCOUNT > 0
+                    BEGIN
+                        SELECT
+                            'SUCCESS' AS [Message_Code]
+                    END
+            END
+
+
+
+    END
 GO

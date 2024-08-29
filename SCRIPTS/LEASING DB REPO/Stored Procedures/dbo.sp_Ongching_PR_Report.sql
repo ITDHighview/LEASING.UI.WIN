@@ -5,13 +5,14 @@ GO
 --SET QUOTED_IDENTIFIER ON|OFF
 --SET ANSI_NULLS ON|OFF
 --GO
-CREATE PROCEDURE [dbo].[sp_Ongching_PR_Report]
+CREATE   PROCEDURE [dbo].[sp_Ongching_PR_Report]
    @TranID       VARCHAR(20) = NULL,
     @Mode         VARCHAR(50) = NULL,
     @PaymentLevel VARCHAR(50) = NULL
 AS
-    BEGIN
+     BEGIN
         SET NOCOUNT ON;
+
 
 
         CREATE TABLE [#tblRecieptReport]
@@ -46,11 +47,25 @@ AS
                 [RENTAL_LESS_TAX]    [VARCHAR](150)  NULL
             )
 
+        DECLARE @UnitCategory VARCHAR(150) = ''
         DECLARE @combinedString VARCHAR(MAX);
         DECLARE @IsFullPayment BIT = 0;
         DECLARE @RefId VARCHAR(100) = '';
 
-
+        SELECT
+            @UnitCategory = [dbo].[fnGetUnitCategoryByUnitId]([tblUnitReference].[UnitId])
+        FROM
+            [dbo].[tblUnitReference]
+        WHERE
+            [tblUnitReference].[RefId] =
+            (
+                SELECT
+                    [tblTransaction].[RefId]
+                FROM
+                    [dbo].[tblTransaction]
+                WHERE
+                    [tblTransaction].[TranID] = @TranID
+            )
 
         BEGIN
             SELECT
@@ -89,7 +104,8 @@ AS
                                 BEGIN
                                     SELECT
                                         @combinedString
-                                        =
+                                        = 'RENTAL FOR '
+                                          +
                                         (
                                             SELECT  TOP 1
                                                     UPPER(DATENAME(MONTH, MIN([tblPayment].[ForMonth]))) + ' '
@@ -109,7 +125,7 @@ AS
                                                     AND [tblPayment].[Notes] = 'RENTAL NET OF VAT'
                                                     AND ISNULL([tblMonthLedger].[IsPaid], 0) = 1
                                         ) + ' TO '
-                                        +
+                                          +
                                         (
                                             SELECT  TOP 1
                                                     UPPER(DATENAME(MONTH, MAX([tblPayment].[ForMonth]))) + ' '
@@ -137,7 +153,8 @@ AS
 
                                     SELECT
                                         @combinedString
-                                        =
+                                        = 'SECURITY & MAINTENANCE FOR'
+                                          +
                                         (
                                             SELECT  TOP 1
                                                     UPPER(DATENAME(MONTH, MIN([tblPayment].[ForMonth]))) + ' '
@@ -157,7 +174,7 @@ AS
                                                     AND [tblPayment].[Notes] = 'SECURITY AND MAINTENANCE NET OF VAT'
                                                     AND ISNULL([tblMonthLedger].[IsPaid], 0) = 1
                                         ) + ' TO '
-                                        +
+                                          +
                                         (
                                             SELECT  TOP 1
                                                     UPPER(DATENAME(MONTH, MAX([tblPayment].[ForMonth]))) + ' '
@@ -186,10 +203,11 @@ AS
                                AND @PaymentLevel = 'FIRST'
                                 BEGIN
                                     SELECT
-                                        @combinedString
-                                        = '('
-                                          + CAST(CAST([dbo].[fnGetTotalSecDepositAmountCount](@RefId) AS INT) AS VARCHAR(50))
-                                          + ')MONTH-SECURITY DEPOSIT'
+                                        --@combinedString
+                                        --= '('
+                                        --  + CAST(CAST([dbo].[fnGetTotalSecDepositAmountCount](@RefId) AS INT) AS VARCHAR(50))
+                                        --  + ')MONTH-SECURITY DEPOSIT'
+                                        @combinedString = ' SECURITY DEPOSIT '
 
                                 END
                             ELSE IF @Mode = 'ADV'
@@ -220,7 +238,8 @@ AS
                                         BEGIN
                                             SELECT
                                                     @combinedString
-                                                = COALESCE(@combinedString + '-', '')
+                                                = IIF(@UnitCategory = 'PARKING', 'PS RENTAL FOR', 'RENTAL FOR ')
+                                                  --+ COALESCE(@combinedString + '-', '')
                                                   + UPPER(DATENAME(MONTH, [tblPayment].[ForMonth])) + ' '
                                                   + CAST(YEAR([tblPayment].[ForMonth]) AS VARCHAR(4))
                                                   + IIF(ISNULL([tblMonthLedger].[IsHold], 0) = 1, '(PARTIAL)', '')
@@ -244,7 +263,8 @@ AS
                                         BEGIN
                                             SELECT
                                                     @combinedString
-                                                = COALESCE(@combinedString + '-', '')
+                                                = 'SECURITY & MAINTENANCE FOR '
+                                                  --+ COALESCE(@combinedString + '-', '')
                                                   + UPPER(DATENAME(MONTH, [tblPayment].[ForMonth])) + ' '
                                                   + CAST(YEAR([tblPayment].[ForMonth]) AS VARCHAR(4))
                                                   + IIF(ISNULL([tblMonthLedger].[IsHold], 0) = 1, '(PARTIAL)', '')
@@ -412,7 +432,7 @@ AS
                                     OUTER APPLY
                                     (
                                         SELECT
-                                            IIF(@IsFullPayment = 1, 'FULL PAYMENT', 'RENTAL FOR ' + @combinedString) AS [PAYMENT_FOR]
+                                            IIF(@IsFullPayment = 1, 'FULL PAYMENT', @combinedString) AS [PAYMENT_FOR]
                                     ) [PAYMENT]
                                 WHERE
                                     [TRANSACTION].[TranID] = @TranID
@@ -546,7 +566,7 @@ AS
                                     OUTER APPLY
                                     (
                                         SELECT
-                                            IIF(@IsFullPayment = 1, 'FULL PAYMENT', 'RENTAL FOR ' + @combinedString) AS [PAYMENT_FOR]
+                                            IIF(@IsFullPayment = 1, 'FULL PAYMENT', @combinedString) AS [PAYMENT_FOR]
                                     ) [PAYMENT]
                                 WHERE
                                     [TRANSACTION].[TranID] = @TranID
@@ -703,7 +723,7 @@ AS
                                     OUTER APPLY
                                     (
                                         SELECT
-                                            IIF(@IsFullPayment = 1, 'FULL PAYMENT', 'RENTAL FOR ' + @combinedString) AS [PAYMENT_FOR]
+                                            IIF(@IsFullPayment = 1, 'FULL PAYMENT', @combinedString) AS [PAYMENT_FOR]
                                     ) [PAYMENT]
                                 WHERE
                                     [TRANSACTION].[TranID] = @TranID;
@@ -831,7 +851,7 @@ AS
                                     OUTER APPLY
                                     (
                                         SELECT
-                                            IIF(@IsFullPayment = 1, 'FULL PAYMENT', 'RENTAL FOR ' + @combinedString) AS [PAYMENT_FOR]
+                                            IIF(@IsFullPayment = 1, 'FULL PAYMENT', @combinedString) AS [PAYMENT_FOR]
                                     ) [PAYMENT]
                                 WHERE
                                     [TRANSACTION].[TranID] = @TranID;
@@ -851,21 +871,21 @@ AS
             [#tblRecieptReport].[PR_No],
             [#tblRecieptReport].[OR_No],
             [#tblRecieptReport].[TIN_No],
-            CAST(convert(VARCHAR(15),[#tblRecieptReport].[TransactionDate],107)AS VARCHAR(150)) AS [TransactionDate],
+            CAST(CONVERT(VARCHAR(15), [#tblRecieptReport].[TransactionDate], 107) AS VARCHAR(150)) AS [TransactionDate],
             [#tblRecieptReport].[AmountInWords],
-            ISNULL([#tblRecieptReport].[PaymentFor], '')                                       AS [PaymentFor],
+            ISNULL([#tblRecieptReport].[PaymentFor], '')                                           AS [PaymentFor],
             --FORMAT(CAST([#TMP].[TotalAmountInDigit] AS DECIMAL(18, 2)), 'C', 'en-PH') AS [TotalAmountInDigit],
-            FORMAT(CAST([#tblRecieptReport].[TotalAmountInDigit] AS DECIMAL(18, 2)), 'N')      AS [TotalAmountInDigit],
+            FORMAT(CAST([#tblRecieptReport].[TotalAmountInDigit] AS DECIMAL(18, 2)), 'N')          AS [TotalAmountInDigit],
             --FORMAT(CAST([#TMP].[RENTAL] AS DECIMAL(18, 2)), 'C', 'en-PH') AS [RENTAL],
-            FORMAT(CAST([#tblRecieptReport].[RENTAL] AS DECIMAL(18, 2)), 'C', 'en-PH')         AS [RENTAL],
-            FORMAT(CAST([#tblRecieptReport].[VAT] AS DECIMAL(18, 2)), 'C', 'en-PH')            AS [VAT],
+            FORMAT(CAST([#tblRecieptReport].[RENTAL] AS DECIMAL(18, 2)), 'C', 'en-PH')             AS [RENTAL],
+            FORMAT(CAST([#tblRecieptReport].[VAT] AS DECIMAL(18, 2)), 'C', 'en-PH')                AS [VAT],
             [#tblRecieptReport].[VATPct],
-            FORMAT(CAST([#tblRecieptReport].[RENTAL] AS DECIMAL(18, 2)), 'C', 'en-PH')         AS [TOTAL],
+            FORMAT(CAST([#tblRecieptReport].[RENTAL] AS DECIMAL(18, 2)), 'C', 'en-PH')             AS [TOTAL],
             --FORMAT(CAST([tblRecieptReport].[LESSWITHHOLDING] AS DECIMAL(18, 2)), 'C', 'en-PH') AS [LESSWITHHOLDING],
-            [#tblRecieptReport].[LESSWITHHOLDING]                                              AS [LESSWITHHOLDING],
-            IIF([#tblRecieptReport].[LESSWITHHOLDING] <> '', 'LESS WITHHOLDING', '')           AS [LESSWITHHOLDING_label],
+            [#tblRecieptReport].[LESSWITHHOLDING]                                                  AS [LESSWITHHOLDING],
+            IIF([#tblRecieptReport].[LESSWITHHOLDING] <> '', 'LESS WITHHOLDING', '')               AS [LESSWITHHOLDING_label],
             --[#TMP].[LESSWITHHOLDING] AS [LESSWITHHOLDING],
-            FORMAT(CAST([#tblRecieptReport].[TOTALAMOUNTDUE] AS DECIMAL(18, 2)), 'C', 'en-PH') AS [TOTALAMOUNTDUE],
+            FORMAT(CAST([#tblRecieptReport].[TOTALAMOUNTDUE] AS DECIMAL(18, 2)), 'C', 'en-PH')     AS [TOTALAMOUNTDUE],
             [#tblRecieptReport].[BANKNAME],
             [#tblRecieptReport].[PDCCHECKSERIALNO],
             [#tblRecieptReport].[USER],
@@ -873,8 +893,8 @@ AS
             [#tblRecieptReport].[UnitNo],
             [#tblRecieptReport].[ProjectName],
             [#tblRecieptReport].[BankBranch],
-            ''                                                                                 AS [BankCheckDate],
-            ''                                                                                 AS [BankCheckAmount],
+            ''                                                                                     AS [BankCheckDate],
+            ''                                                                                     AS [BankCheckAmount],
             [#tblRecieptReport].[RENTAL_LESS_VAT],
             [#tblRecieptReport].[RENTAL_LESS_TAX]
         FROM

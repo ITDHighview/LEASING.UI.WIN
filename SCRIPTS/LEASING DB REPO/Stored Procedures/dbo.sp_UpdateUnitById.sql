@@ -33,10 +33,99 @@ CREATE   PROCEDURE [dbo].[sp_UpdateUnitById]
     @TaxAmount               DECIMAL(18, 2) = NULL,
     @LastChangedBy           INT            = NULL,
     @ComputerName            VARCHAR(20)    = NULL,
-    @UnitStatus              VARCHAR(300)   = NULL
+    @UnitStatus              VARCHAR(300)   = NULL,
+    @IsNotRoundOff           BIT            = NULL,
+    @IsNonTax                BIT            = NULL,
+    @IsNonCusa               BIT            = NULL,
+    @IsOverrideSecAndMain    BIT            = NULL
 AS
     BEGIN
         DECLARE @Message_Code VARCHAR(100) = '';
+
+        INSERT INTO [dbo].[tblPrevLogUnitMstr]
+            (
+                [RecId],
+                [ProjectId],
+                [UnitDescription],
+                [FloorNo],
+                [AreaSqm],
+                [AreaRateSqm],
+                [FloorType],
+                [BaseRental],
+                [GenVat],
+                [SecurityAndMaintenance],
+                [SecurityAndMaintenanceVat],
+                [UnitStatus],
+                [DetailsofProperty],
+                [UnitNo],
+                [UnitSequence],
+                [LogBy],
+                [LogDate],
+                [ComputerName],
+                [clientID],
+                [Tennant],
+                [IsParking],
+                [IsNonVat],
+                [BaseRentalVatAmount],
+                [BaseRentalWithVatAmount],
+                [BaseRentalTax],
+                [TotalRental],
+                [SecAndMainAmount],
+                [SecAndMainVatAmount],
+                [SecAndMainWithVatAmount],
+                [Vat],
+                [Tax],
+                [TaxAmount],
+                [AreaTotalAmount],
+                [IsNotRoundOff],
+                [IsNonTax],
+                [IsNonCusa],
+                [IsOverrideSecAndMain]
+            )
+                    SELECT
+                        [tblUnitMstr].[RecId],
+                        [tblUnitMstr].[ProjectId],
+                        [tblUnitMstr].[UnitDescription],
+                        [tblUnitMstr].[FloorNo],
+                        [tblUnitMstr].[AreaSqm],
+                        [tblUnitMstr].[AreaRateSqm],
+                        [tblUnitMstr].[FloorType],
+                        [tblUnitMstr].[BaseRental],
+                        [tblUnitMstr].[GenVat],
+                        [tblUnitMstr].[SecurityAndMaintenance],
+                        [tblUnitMstr].[SecurityAndMaintenanceVat],
+                        [tblUnitMstr].[UnitStatus],
+                        [tblUnitMstr].[DetailsofProperty],
+                        [tblUnitMstr].[UnitNo],
+                        [tblUnitMstr].[UnitSequence],
+                        @LastChangedBy,
+                        GETDATE(),
+                        @ComputerName,
+                        [tblUnitMstr].[clientID],
+                        [tblUnitMstr].[Tennant],
+                        [tblUnitMstr].[IsParking],
+                        [tblUnitMstr].[IsNonVat],
+                        [tblUnitMstr].[BaseRentalVatAmount],
+                        [tblUnitMstr].[BaseRentalWithVatAmount],
+                        [tblUnitMstr].[BaseRentalTax],
+                        [tblUnitMstr].[TotalRental],
+                        [tblUnitMstr].[SecAndMainAmount],
+                        [tblUnitMstr].[SecAndMainVatAmount],
+                        [tblUnitMstr].[SecAndMainWithVatAmount],
+                        [tblUnitMstr].[Vat],
+                        [tblUnitMstr].[Tax],
+                        [tblUnitMstr].[TaxAmount],
+                        [tblUnitMstr].[AreaTotalAmount],
+                        [tblUnitMstr].[IsNotRoundOff],
+                        [tblUnitMstr].[IsNonTax],
+                        [tblUnitMstr].[IsNonCusa],
+                        [tblUnitMstr].[IsOverrideSecAndMain]
+                    FROM
+                        [dbo].[tblUnitMstr]
+                    WHERE
+                        [tblUnitMstr].[RecId] = @RecId
+
+
         UPDATE
             [dbo].[tblUnitMstr]
         SET
@@ -65,10 +154,19 @@ AS
             [tblUnitMstr].[LastChangedBy] = @LastChangedBy,
             [tblUnitMstr].[LastChangedDate] = GETDATE(),
             [tblUnitMstr].[ComputerName] = @ComputerName,
-            [tblUnitMstr].[UnitStatus] = @UnitStatus
+            [tblUnitMstr].[UnitStatus] = @UnitStatus,
+            [tblUnitMstr].[IsNotRoundOff] = @IsNotRoundOff,
+            [tblUnitMstr].[IsNonTax] = @IsNonTax,
+            [tblUnitMstr].[IsNonCusa] = @IsNonCusa,
+            [tblUnitMstr].[IsOverrideSecAndMain] = @IsOverrideSecAndMain
         WHERE
             [tblUnitMstr].[RecId] = @RecId
-            AND [tblUnitMstr].[UnitStatus] = 'VACANT'
+            AND
+                (
+                    [tblUnitMstr].[UnitStatus] = 'VACANT'
+                    OR [tblUnitMstr].[UnitStatus] = 'DISABLED'
+                    OR [tblUnitMstr].[UnitStatus] = 'HOLD'
+                )
 
         IF (@@ROWCOUNT > 0)
             BEGIN

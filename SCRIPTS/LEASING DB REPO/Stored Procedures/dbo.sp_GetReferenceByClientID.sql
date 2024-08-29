@@ -8,7 +8,7 @@ GO
 -- Description:	<Description,,>
 --EXEC [sp_GetReferenceByClientID] 'INDV10000002'
 -- =============================================
-CREATE PROCEDURE [dbo].[sp_GetReferenceByClientID]
+CREATE   PROCEDURE [dbo].[sp_GetReferenceByClientID]
     -- Add the parameters for the stored procedure here
     @ClientID VARCHAR(50) = NULL
 AS
@@ -53,13 +53,44 @@ AS
                 --when ISNULL(IsUnitMove, 0) = 1 and ISNULL(IsSignedContract, 0) = 1  and  ISNULL(IsDone, 0) = 0 and  ISNULL(IsTerminated, 0) = 0 then
                 --    'MOVE-IN'
                 WHEN ISNULL([tblUnitReference].[IsDone], 0) = 1
+                     AND ISNULL([tblUnitReference].[IsUnitMoveOut], 0) = 1
                      AND ISNULL([tblUnitReference].[IsTerminated], 0) = 0
+                     AND ISNULL([tblUnitReference].[IsUnitMoveOut], 0) = 1
+                     AND ISNULL([tblUnitReference].[IsPaid], 0) = 1
+                     AND ISNULL([tblUnitReference].[IsSignedContract], 0) = 1
+                     AND ISNULL([tblUnitReference].[IsUnitMove], 0) = 1
                     THEN
-                    'CONTRACT DONE'
+                    'CLOSED'
+                                --'CONTRACT DONE'
                 WHEN ISNULL([tblUnitReference].[IsTerminated], 0) = 1
-                     AND ISNULL([tblUnitReference].[IsDone], 0) = 1
+                     AND
+                         (
+                             ISNULL([tblUnitReference].[IsDone], 0) = 1
+                             OR ISNULL([tblUnitReference].[IsDone], 0) = 0
+                         )
+                     AND ISNULL([tblUnitReference].[IsUnitMoveOut], 0) = 1
+                     AND ISNULL([tblUnitReference].[IsPaid], 0) = 1
+                     AND ISNULL([tblUnitReference].[IsSignedContract], 0) = 1
+                     AND ISNULL([tblUnitReference].[IsUnitMove], 0) = 1
                     THEN
-                    'CONTRACT TERMINATED'
+                    'TERMINATED'
+                                --'CONTRACT TERMINATED'
+                WHEN ISNULL([tblUnitReference].[IsPaid], 0) = 1
+                     AND ISNULL([tblUnitReference].[IsSignedContract], 0) = 0
+                     AND ISNULL([tblUnitReference].[IsUnitMove], 0) = 0
+                     AND ISNULL([tblUnitReference].[IsUnitMoveOut], 0) = 0
+                     AND ISNULL([tblUnitReference].[IsTerminated], 0) = 0
+                     AND ISNULL([tblUnitReference].[IsDone], 0) = 0
+                    THEN
+                    'GENERATED' --ledger generated
+                WHEN ISNULL([tblUnitReference].[IsPaid], 0) = 1
+                     AND ISNULL([tblUnitReference].[IsSignedContract], 0) = 1
+                     AND ISNULL([tblUnitReference].[IsUnitMove], 0) = 1
+                     AND ISNULL([tblUnitReference].[IsUnitMoveOut], 0) = 0
+                     AND ISNULL([tblUnitReference].[IsTerminated], 0) = 0
+                     AND ISNULL([tblUnitReference].[IsDone], 0) = 0
+                    THEN
+                    'ON-GOING'  --ledger generated           
                 ELSE
                     'ON-GOING'
             END                 AS [CLientReferenceStatus],

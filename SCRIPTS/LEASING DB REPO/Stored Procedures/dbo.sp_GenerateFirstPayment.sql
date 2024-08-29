@@ -7,7 +7,7 @@ GO
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE PROCEDURE [dbo].[sp_GenerateFirstPayment]
+CREATE   PROCEDURE [dbo].[sp_GenerateFirstPayment]
     -- Add the parameters for the stored procedure here
     @RefId             VARCHAR(50)    = NULL,
     @PaidAmount        DECIMAL(18, 2) = NULL,
@@ -24,11 +24,12 @@ CREATE PROCEDURE [dbo].[sp_GenerateFirstPayment]
     @SerialNo          VARCHAR(30)    = NULL,
     @PaymentRemarks    VARCHAR(100)   = NULL,
     @REF               VARCHAR(100)   = NULL,
-    @ReceiptDate       DATETIME       = NULL,
+    @ReceiptDate       VARCHAR(100)   = NULL,
     @BankBranch        VARCHAR(100)   = NULL,
     @ModeType          VARCHAR(20)    = NULL
+--@XML               XML            = NULL
 AS
-    BEGIN TRY
+    BEGIN
 
         SET NOCOUNT ON;
         DECLARE @Message_Code VARCHAR(MAX) = '';
@@ -36,11 +37,11 @@ AS
 
 
         DECLARE @TranRecId BIGINT = 0;
-        DECLARE @TranID VARCHAR(50) = '';
+        DECLARE @TranID VARCHAR(150) = '';
         DECLARE @RcptRecId BIGINT = 0;
         DECLARE @RcptID VARCHAR(50) = '';
-        DECLARE @ApplicableMonth1 DATE = NULL;
-        DECLARE @ApplicableMonth2 DATE = NULL;
+        --DECLARE @ApplicableMonth1 DATE = NULL;
+        --DECLARE @ApplicableMonth2 DATE = NULL;
         DECLARE @IsFullPayment BIT = 0;
         DECLARE @ActualAmount DECIMAL(18, 2) = NULL
         -- Insert statements for procedure here
@@ -52,44 +53,82 @@ AS
         WHERE
             [tblUnitReference].[RefId] = @RefId;
 
-        BEGIN TRANSACTION
+        --CREATE TABLE [#tmpPayments]
+        --    (
+        --        [LedgAmount] DECIMAL(18, 2),
+        --        [LedgMonth]  VARCHAR(20),
+        --        [Remarks]    VARCHAR(500),
+        --        [ColOR]      VARCHAR(500),
+        --        [ColPR]      VARCHAR(500)
+        --    )
+        --IF (@XML IS NOT NULL)
+        --    BEGIN
+        --        INSERT INTO [#tmpPayments]
+        --            (
+        --                [LedgAmount],
+        --                [LedgMonth],
+        --                [Remarks],
+        --                [ColOR],
+        --                [ColPR]
+        --            )
+        --                    SELECT
+        --                        [ParaValues].[data].[value]('c1[1]', 'DECIMAL(18,2)'),
+        --                        [ParaValues].[data].[value]('c2[1]', 'VARCHAR(150)'),
+        --                        [ParaValues].[data].[value]('c3[1]', 'VARCHAR(500)'),
+        --                        [ParaValues].[data].[value]('c4[1]', 'VARCHAR(150)'),
+        --                        [ParaValues].[data].[value]('c5[1]', 'VARCHAR(150)')
+        --                    FROM
+        --                        @XML.[nodes]('/Table1') AS [ParaValues]([data]);
+        --VALUES
+        --    (
+        --        @ClientType, @ClientName, @Age, @PostalAddress, @DateOfBirth, @TelNumber, @Gender, @Nationality,
+        --        @Occupation, @AnnualIncome, @EmployerName, @EmployerAddress, @SpouseName, @ChildrenNames,
+        --        @TotalPersons, @MaidName, @DriverName, @VisitorsPerDay, @BuildingSecretary, GETDATE(), @EncodedBy, 1,
+        --        @ComputerName, @TIN_No
+        --    );
+        --END;
 
-        INSERT INTO [dbo].[tblTransaction]
-            (
-                [RefId],
-                [PaidAmount],
-                [ReceiveAmount],
-                [ActualAmountPaid],
-                [ChangeAmount], ---Not Assigned
-                [Remarks],
-                [EncodedBy],
-                [EncodedDate],
-                [ComputerName],
-                [IsActive]
-            )
-        VALUES
-            (
-                @RefId, @PaidAmount, @ReceiveAmount, @ReceiveAmount, @ChangeAmount,
-                IIF(@IsFullPayment = 1,
-                    'FULL PAYMENT',
-                    IIF(@PaidAmount > @ReceiveAmount, 'PARTIAL - FIRST PAYMENT', 'FIRST PAYMENT')), @EncodedBy,
-                GETDATE(), @ComputerName, 1
-            );
+        ----Only With Collected Payment can generate transaction----
+        IF @PaidAmount > 0
+            BEGIN
+                INSERT INTO [dbo].[tblTransaction]
+                    (
+                        [RefId],
+                        [PaidAmount],
+                        [ReceiveAmount],
+                        [ActualAmountPaid],
+                        [ChangeAmount], ---Not Assigned
+                        [Remarks],
+                        [EncodedBy],
+                        [EncodedDate],
+                        [ComputerName],
+                        [IsActive]
+                    )
+                VALUES
+                    (
+                        @RefId, @PaidAmount, @ReceiveAmount, @ReceiveAmount, @ChangeAmount,
+                        IIF(@IsFullPayment = 1,
+                            'FULL PAYMENT',
+                            IIF(@PaidAmount > @ReceiveAmount, 'PARTIAL - FIRST PAYMENT', 'FIRST PAYMENT')), @EncodedBy,
+                        GETDATE(), @ComputerName, 1
+                    );
 
-        SET @TranRecId = @@IDENTITY;
-        SELECT
-            @TranID = [tblTransaction].[TranID]
-        FROM
-            [dbo].[tblTransaction]
-        WHERE
-            [tblTransaction].[RecId] = @TranRecId;
+                SET @TranRecId = @@IDENTITY;
+                SELECT
+                    @TranID = [tblTransaction].[TranID]
+                FROM
+                    [dbo].[tblTransaction]
+                WHERE
+                    [tblTransaction].[RecId] = @TranRecId;
 
-        SELECT
-            @ActualAmount = [tblTransaction].[ActualAmountPaid]
-        FROM
-            [dbo].[tblTransaction]
-        WHERE
-            [tblTransaction].[RecId] = @TranRecId
+                SELECT
+                    @ActualAmount = [tblTransaction].[ActualAmountPaid]
+                FROM
+                    [dbo].[tblTransaction]
+                WHERE
+                    [tblTransaction].[RecId] = @TranRecId
+            END
+
 
         --1). IF Paid Amount > Actual amount ---IS Partial Payment-
         --2). Create A flag in UnitReference As Partial Payment--- Only for First Payment
@@ -104,7 +143,7 @@ AS
                 IF @PaidAmount > @ActualAmount
                     BEGIN
 
-                        --PARTIAL PAYMENT
+                        ----PARTIAL PAYMENT----
 
                         UPDATE
                             [dbo].[tblUnitReference]
@@ -143,6 +182,7 @@ AS
                                 @BankAccountNumber, @BankName, @SerialNo, @REF, @BankBranch, @RefId, @ReceiptDate
                             );
 
+
                         SET @RcptRecId = @@IDENTITY;
                         SELECT
                             @RcptID = [tblReceipt].[RcptID]
@@ -173,175 +213,229 @@ AS
 
                     END
                 ELSE
+                    ----NORMAL PAYMENT----
                     BEGIN
-                        UPDATE
-                            [dbo].[tblUnitReference]
-                        SET
-                            [tblUnitReference].[FirtsPaymentBalanceAmount] = 0
-                        WHERE
-                            [tblUnitReference].[RefId] = @RefId
-                        INSERT INTO [dbo].[tblPayment]
-                            (
-                                [TranId],
-                                [RefId],
-                                [Amount],
-                                [ForMonth],
-                                [Remarks],
-                                [Notes],
-                                [EncodedBy],
-                                [EncodedDate],
-                                [ComputerName],
-                                [IsActive],
-                                [LedgeRecid]
-                            )
-                                    SELECT
-                                        @TranID                             AS [TranId],
-                                        @RefId                              AS [RefId],
-                                        [tblMonthLedger].[LedgRentalAmount] AS [Amount],
-                                        [tblMonthLedger].[LedgMonth]        AS [ForMonth],
-                                        'MONTHS ADVANCE'                    AS [Remarks],
-                                        [tblMonthLedger].[Remarks]          AS [Notes],
-                                        @EncodedBy,
-                                        GETDATE(), --Dated payed
-                                        @ComputerName,
-                                        1,
-                                        [tblMonthLedger].[Recid]
-                                    FROM
-                                        [dbo].[tblMonthLedger] WITH (NOLOCK)
-                                    WHERE
-                                        [tblMonthLedger].[ReferenceID] =
-                                        (
-                                            SELECT
-                                                [tblUnitReference].[RecId]
-                                            FROM
-                                                [dbo].[tblUnitReference] WITH (NOLOCK)
-                                            WHERE
-                                                [tblUnitReference].[RefId] = @RefId
-                                        )
-                                        AND [tblMonthLedger].[LedgMonth] IN
-                                                (
-                                                    SELECT
-                                                        [tblAdvancePayment].[Months]
-                                                    FROM
-                                                        [dbo].[tblAdvancePayment] WITH (NOLOCK)
-                                                    WHERE
-                                                        [tblAdvancePayment].[RefId] = @RefId
-                                                )
-                                        AND ISNULL([tblMonthLedger].[IsPaid], 0) = 0
-                                        AND ISNULL([tblMonthLedger].[TransactionID], '') = ''
-                                    UNION
-                                    SELECT
-                                        @TranID                  AS [TranId],
-                                        @RefId                   AS [RefId],
-                                        @SecAmountADV            AS [Amount],
-                                        CONVERT(DATE, GETDATE()) AS [ForMonth],
-                                        'SECURITY DEPOSIT'       AS [Remarks],
-                                        NULL,
-                                        @EncodedBy,
-                                        GETDATE(),
-                                        @ComputerName,
-                                        1,
-                                        0
 
-                        UPDATE
-                            [dbo].[tblUnitReference]
-                        SET
-                            [tblUnitReference].[IsPaid] = 1
-                        WHERE
-                            [tblUnitReference].[RefId] = @RefId;
-
-                        UPDATE
-                            [dbo].[tblMonthLedger]
-                        SET
-                            [tblMonthLedger].[IsPaid] = 1,
-                            [tblMonthLedger].[CompanyORNo] = @CompanyORNo,
-                            [tblMonthLedger].[CompanyPRNo] = @CompanyPRNo,
-                            [tblMonthLedger].[REF] = @REF,
-                            [tblMonthLedger].[BNK_ACCT_NAME] = @BankAccountName,
-                            [tblMonthLedger].[BNK_ACCT_NUMBER] = @BankAccountNumber,
-                            [tblMonthLedger].[BNK_NAME] = @BankName,
-                            [tblMonthLedger].[SERIAL_NO] = @SerialNo,
-                            [tblMonthLedger].[ModeType] = @ModeType,
-                            [tblMonthLedger].[BankBranch] = @BankBranch,
-                            [tblMonthLedger].[TransactionID] = @TranID
-                        WHERE
-                            [tblMonthLedger].[ReferenceID] =
-                            (
-                                SELECT
-                                    [tblUnitReference].[RecId]
-                                FROM
-                                    [dbo].[tblUnitReference] WITH (NOLOCK)
+                        IF @PaidAmount > 0
+                            BEGIN
+                                UPDATE
+                                    [dbo].[tblUnitReference]
+                                SET
+                                    [tblUnitReference].[FirtsPaymentBalanceAmount] = 0
                                 WHERE
                                     [tblUnitReference].[RefId] = @RefId
-                            )
-                            AND [tblMonthLedger].[LedgMonth] IN
+                                INSERT INTO [dbo].[tblPayment]
                                     (
-                                        SELECT
-                                            [tblAdvancePayment].[Months]
-                                        FROM
-                                            [dbo].[tblAdvancePayment] WITH (NOLOCK)
-                                        WHERE
-                                            [tblAdvancePayment].[RefId] = @RefId
+                                        [TranId],
+                                        [RefId],
+                                        [Amount],
+                                        [ForMonth],
+                                        [Remarks],
+                                        [Notes],
+                                        [EncodedBy],
+                                        [EncodedDate],
+                                        [ComputerName],
+                                        [IsActive],
+                                        [LedgeRecid]
                                     )
-                            AND ISNULL([tblMonthLedger].[IsPaid], 0) = 0
-                            AND ISNULL([tblMonthLedger].[TransactionID], '') = '';
+                                            --SELECT
+                                            --    @TranID                             AS [TranId],
+                                            --    @RefId                              AS [RefId],
+                                            --    [tblMonthLedger].[LedgRentalAmount] AS [Amount],
+                                            --    [tblMonthLedger].[LedgMonth]        AS [ForMonth],
+                                            --    'MONTHS ADVANCE'                    AS [Remarks],
+                                            --    [tblMonthLedger].[Remarks]          AS [Notes],
+                                            --    @EncodedBy,
+                                            --    GETDATE(), --Dated payed
+                                            --    @ComputerName,
+                                            --    1,
+                                            --    [tblMonthLedger].[Recid]
+                                            --FROM
+                                            --    [dbo].[tblMonthLedger] WITH (NOLOCK)
+                                            --WHERE
+                                            --    [tblMonthLedger].[ReferenceID] =
+                                            --    (
+                                            --        SELECT
+                                            --            [tblUnitReference].[RecId]
+                                            --        FROM
+                                            --            [dbo].[tblUnitReference] WITH (NOLOCK)
+                                            --        WHERE
+                                            --            [tblUnitReference].[RefId] = @RefId
+                                            --    )
+                                            --    AND [tblMonthLedger].[LedgMonth] IN
+                                            --            (
+                                            --                SELECT
+                                            --                    [tblAdvancePayment].[Months]
+                                            --                FROM
+                                            --                    [dbo].[tblAdvancePayment] WITH (NOLOCK)
+                                            --                WHERE
+                                            --                    [tblAdvancePayment].[RefId] = @RefId
+                                            --            )
+                                            --    AND ISNULL([tblMonthLedger].[IsPaid], 0) = 0
+                                            --    AND ISNULL([tblMonthLedger].[TransactionID], '') = ''
+                                            --UNION
+                                            SELECT
+                                                @TranID                  AS [TranId],
+                                                @RefId                   AS [RefId],
+                                                @SecAmountADV            AS [Amount],
+                                                CONVERT(DATE, GETDATE()) AS [ForMonth],
+                                                'SECURITY DEPOSIT'       AS [Remarks],
+                                                NULL,
+                                                @EncodedBy,
+                                                GETDATE(),
+                                                @ComputerName,
+                                                1,
+                                                0
+                                ----[tblUnitReference].[IsPaid] = 1 Means Contract is generated to ledger----
+                                UPDATE
+                                    [dbo].[tblUnitReference]
+                                SET
+                                    [tblUnitReference].[IsPaid] = 1
+                                WHERE
+                                    [tblUnitReference].[RefId] = @RefId;
 
-                        INSERT INTO [dbo].[tblReceipt]
-                            (
-                                [TranId],
-                                [Amount],
-                                [Description],
-                                [Remarks],
-                                [EncodedBy],
-                                [EncodedDate],
-                                [ComputerName],
-                                [IsActive],
-                                [PaymentMethod],
-                                [CompanyORNo],
-                                [CompanyPRNo],
-                                [BankAccountName],
-                                [BankAccountNumber],
-                                [BankName],
-                                [SerialNo],
-                                [REF],
-                                [BankBranch],
-                                [RefId],
-                                [ReceiptDate]
-                            )
-                        VALUES
-                            (
-                                @TranID, @PaidAmount, 'FIRST PAYMENT', @PaymentRemarks, @EncodedBy, GETDATE(),
-                                @ComputerName, 1, @ModeType, @CompanyORNo, @CompanyPRNo, @BankAccountName,
-                                @BankAccountNumber, @BankName, @SerialNo, @REF, @BankBranch, @RefId, @ReceiptDate
-                            );
+                                --UPDATE
+                                --    [dbo].[tblMonthLedger]
+                                --SET
+                                --    [tblMonthLedger].[IsPaid] = 1,
+                                --    [tblMonthLedger].[CompanyORNo] = @CompanyORNo,
+                                --    [tblMonthLedger].[CompanyPRNo] = @CompanyPRNo,
+                                --    [tblMonthLedger].[REF] = @REF,
+                                --    [tblMonthLedger].[BNK_ACCT_NAME] = @BankAccountName,
+                                --    [tblMonthLedger].[BNK_ACCT_NUMBER] = @BankAccountNumber,
+                                --    [tblMonthLedger].[BNK_NAME] = @BankName,
+                                --    [tblMonthLedger].[SERIAL_NO] = @SerialNo,
+                                --    [tblMonthLedger].[ModeType] = @ModeType,
+                                --    [tblMonthLedger].[BankBranch] = @BankBranch,
+                                --    [tblMonthLedger].[TransactionID] = @TranID
+                                --WHERE
+                                --    [tblMonthLedger].[ReferenceID] =
+                                --    (
+                                --        SELECT
+                                --            [tblUnitReference].[RecId]
+                                --        FROM
+                                --            [dbo].[tblUnitReference] WITH (NOLOCK)
+                                --        WHERE
+                                --            [tblUnitReference].[RefId] = @RefId
+                                --    )
+                                --    AND [tblMonthLedger].[LedgMonth] IN
+                                --            (
+                                --                SELECT
+                                --                    [tblAdvancePayment].[Months]
+                                --                FROM
+                                --                    [dbo].[tblAdvancePayment] WITH (NOLOCK)
+                                --                WHERE
+                                --                    [tblAdvancePayment].[RefId] = @RefId
+                                --            )
+                                --    AND ISNULL([tblMonthLedger].[IsPaid], 0) = 0
+                                --    AND ISNULL([tblMonthLedger].[TransactionID], '') = '';
 
-                        SET @RcptRecId = @@IDENTITY;
-                        SELECT
-                            @RcptID = [tblReceipt].[RcptID]
-                        FROM
-                            [dbo].[tblReceipt] WITH (NOLOCK)
-                        WHERE
-                            [tblReceipt].[RecId] = @RcptRecId;
+                                INSERT INTO [dbo].[tblReceipt]
+                                    (
+                                        [TranId],
+                                        [Amount],
+                                        [Description],
+                                        [Remarks],
+                                        [EncodedBy],
+                                        [EncodedDate],
+                                        [ComputerName],
+                                        [IsActive],
+                                        [PaymentMethod],
+                                        [CompanyORNo],
+                                        [CompanyPRNo],
+                                        [BankAccountName],
+                                        [BankAccountNumber],
+                                        [BankName],
+                                        [SerialNo],
+                                        [REF],
+                                        [BankBranch],
+                                        [RefId],
+                                        [ReceiptDate]
+                                    )
+                                VALUES
+                                    (
+                                        @TranID, @PaidAmount, 'FIRST PAYMENT', @PaymentRemarks, @EncodedBy, GETDATE(),
+                                        @ComputerName, 1, @ModeType, @CompanyORNo, @CompanyPRNo, @BankAccountName,
+                                        @BankAccountNumber, @BankName, @SerialNo, @REF, @BankBranch, @RefId,
+                                        @ReceiptDate
+                                    );
+                                --SELECT
+                                --    @TranID,
+                                --    [#tmpPayments].[LedgAmount],
+                                --    'FIRST PAYMENT',
+                                --    [#tmpPayments].[Remarks],
+                                --    @EncodedBy,
+                                --    GETDATE(),
+                                --    @ComputerName,
+                                --    1,
+                                --    @ModeType,
+                                --    [#tmpPayments].[ColOR],
+                                --    [#tmpPayments].[ColPR],
+                                --    @BankAccountName,
+                                --    @BankAccountNumber,
+                                --    @BankName,
+                                --    @SerialNo,
+                                --    @REF,
+                                --    @BankBranch,
+                                --    @RefId,
+                                --    @ReceiptDate
+                                --FROM
+                                --    [#tmpPayments]
 
-                        INSERT INTO [dbo].[tblPaymentMode]
-                            (
-                                [RcptID],
-                                [CompanyORNo],
-                                [CompanyPRNo],
-                                [REF],
-                                [BNK_ACCT_NAME],
-                                [BNK_ACCT_NUMBER],
-                                [BNK_NAME],
-                                [SERIAL_NO],
-                                [ModeType],
-                                [BankBranch],
-                                [ReceiptDate]
-                            )
-                        VALUES
-                            (
-                                @RcptID, @CompanyORNo, @CompanyPRNo, @REF, @BankAccountName, @BankAccountNumber,
-                                @BankName, @SerialNo, @ModeType, @BankBranch, @ReceiptDate
-                            );
+                                SET @RcptRecId = @@IDENTITY;
+                                SELECT
+                                    @RcptID = [tblReceipt].[RcptID]
+                                FROM
+                                    [dbo].[tblReceipt] WITH (NOLOCK)
+                                WHERE
+                                    [tblReceipt].[RecId] = @RcptRecId;
+
+                                INSERT INTO [dbo].[tblPaymentMode]
+                                    (
+                                        [RcptID],
+                                        [CompanyORNo],
+                                        [CompanyPRNo],
+                                        [REF],
+                                        [BNK_ACCT_NAME],
+                                        [BNK_ACCT_NUMBER],
+                                        [BNK_NAME],
+                                        [SERIAL_NO],
+                                        [ModeType],
+                                        [BankBranch],
+                                        [ReceiptDate]
+                                    )
+                                VALUES
+                                    (
+                                        @RcptID, @CompanyORNo, @CompanyPRNo, @REF, @BankAccountName,
+                                        @BankAccountNumber, @BankName, @SerialNo, @ModeType, @BankBranch, @ReceiptDate
+                                    );
+                            --SELECT
+                            --    @RcptID,
+                            --    [#tmpPayments].[ColOR],
+                            --    [#tmpPayments].[ColPR],
+                            --    @REF,
+                            --    @BankAccountName,
+                            --    @BankAccountNumber,
+                            --    @BankName,
+                            --    @SerialNo,
+                            --    @ModeType,
+                            --    @BankBranch,
+                            --    @ReceiptDate
+                            --FROM
+                            --    [#tmpPayments]
+                            END
+                        ELSE
+                            BEGIN
+                                ----[tblUnitReference].[IsPaid] = 1 Means Contract is generated to ledger----
+                                UPDATE
+                                    [dbo].[tblUnitReference]
+                                SET
+                                    [tblUnitReference].[IsPaid] = 1
+                                WHERE
+                                    [tblUnitReference].[RefId] = @RefId;
+                            END
+
+
                     END
             END
         ELSE IF @IsFullPayment = 1
@@ -459,37 +553,44 @@ AS
             BEGIN
 
                 SET @Message_Code = 'SUCCESS'
-                SET @ErrorMessage = N''
-            END;
 
-        SELECT
-            @ErrorMessage AS [ErrorMessage],
-            @Message_Code AS [Message_Code],
-            @RcptID       AS [ReceiptID],
-            @TranID       AS [TranID]
+            END
+        ELSE IF
+            (
+                SELECT
+                    ISNULL([tblUnitReference].[IsPaid], 0)
+                FROM
+                    [dbo].[tblUnitReference]
+                WHERE
+                    [tblUnitReference].[RefId] = @RefId
+            ) = 1
+            BEGIN
+                SET @Message_Code = 'SUCCESS'
+            END
 
-        COMMIT TRANSACTION;
-    END TRY
-    BEGIN CATCH
-        IF @@TRANCOUNT > 0
-            ROLLBACK TRANSACTION;
-        SET @Message_Code = 'ERROR'
+
         SET @ErrorMessage = ERROR_MESSAGE()
+        IF @ErrorMessage <> ''
+            BEGIN
 
-        INSERT INTO [dbo].[ErrorLog]
-            (
-                [ProcedureName],
-                [ErrorMessage],
-                [LogDateTime]
-            )
-        VALUES
-            (
-                'sp_GenerateFirstPayment', @ErrorMessage, GETDATE()
-            );
+                INSERT INTO [dbo].[ErrorLog]
+                    (
+                        [ProcedureName],
+                        [ErrorMessage],
+                        [LogDateTime]
+                    )
+                VALUES
+                    (
+                        'sp_GenerateFirstPayment', @ErrorMessage, GETDATE()
+                    );
+            END
         SELECT
             @ErrorMessage AS [ErrorMessage],
             @Message_Code AS [Message_Code],
             @RcptID       AS [ReceiptID],
             @TranID       AS [TranID]
-    END CATCH;
+
+
+    --DROP TABLE [#tmpPayments]
+    END
 GO

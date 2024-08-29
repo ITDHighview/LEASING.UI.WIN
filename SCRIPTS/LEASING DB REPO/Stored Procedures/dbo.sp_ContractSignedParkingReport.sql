@@ -26,13 +26,13 @@ AS
                 [tblUnitMstr].[UnitNo]                                                                                                                          AS [LeasedUnit],            ---UNIT NUMBER
                 [tblUnitMstr].[AreaSqm]                                                                                                                         AS [AreaOf],                ---UNIT AREA
 
-                CONVERT(VARCHAR(20), [tblUnitReference].[StatDate], 107)                                                                                        AS [YearStarting],
-                CONVERT(VARCHAR(20), [tblUnitReference].[FinishDate], 107)                                                                                      AS [YearEnding],
-                UPPER([dbo].[fnNumberToWordsWithDecimal]([tblUnitReference].[Unit_BaseRentalWithVatAmount])) + '('
+                [dbo].[fn_GetDateFullName]([tblUnitReference].[StatDate])                                                                                       AS [YearStarting],
+                [dbo].[fn_GetDateFullName]([tblUnitReference].[FinishDate])                                                                                     AS [YearEnding],
+                [dbo].[fnNumberToWordsWithDecimal]([tblUnitReference].[Unit_BaseRentalWithVatAmount]) + '('
                 + CAST([tblUnitReference].[Unit_BaseRentalWithVatAmount] AS VARCHAR(100)) + ')'                                                                 AS [RentalForLeased_AmountInWords],
-                UPPER([dbo].[fnNumberToWordsWithDecimal]([tblUnitReference].[Unit_SecAndMainWithVatAmount])) + '('
+                [dbo].[fnNumberToWordsWithDecimal]([tblUnitReference].[Unit_SecAndMainWithVatAmount]) + '('
                 + CAST([tblUnitReference].[Unit_SecAndMainWithVatAmount] AS VARCHAR(100)) + ')'                                                                 AS [AsShareInSecAndMaint_AmountInWords],
-                UPPER([dbo].[fnNumberToWordsWithDecimal]([tblUnitReference].[TotalRent])) + '('
+                [dbo].[fnNumberToWordsWithDecimal]([tblUnitReference].[TotalRent]) + '('
                 + CAST([tblUnitReference].[TotalRent] AS VARCHAR(100)) + ')'                                                                                    AS [TotalAmountInYear_AmountInWords],
                 CAST([tblUnitReference].[GenVat] AS VARCHAR(100)) + ' %'                                                                                        AS [VatPercentage_WithWords],
                 [tblClientMstr].[ClientName]                                                                                                                    AS [Lessee],
@@ -47,7 +47,7 @@ AS
                 CONCAT(CAST([tblUnitReference].[Unit_Vat] AS VARCHAR(150)), ' % VAT')                                                                           AS [TLableVAT],
                 CAST(CAST([tblUnitReference].[Unit_BaseRentalVatAmount] + [tblUnitReference].[Unit_SecAndMainVatAmount] AS DECIMAL(18, 2)) AS VARCHAR(150))     AS [TVAT],
                 CAST([tblUnitReference].[Unit_TotalRental] AS VARCHAR(150))                                                                                     AS [TTotalMonthlyRental],
-				CAST(DATENAME(DAY,[tblUnitReference].[StatDate])AS VARCHAR(150)) AS [DayOfMonth]
+                CAST(DATENAME(DAY, [tblUnitReference].[StatDate]) AS VARCHAR(150))                                                                              AS [DayOfMonth]
         FROM
                 [dbo].[tblUnitReference] WITH (NOLOCK)
             INNER JOIN

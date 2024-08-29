@@ -35,7 +35,11 @@ CREATE TABLE [dbo].[tblUnitMstr]
 [Vat] [decimal] (18, 2) NULL,
 [Tax] [decimal] (18, 2) NULL,
 [TaxAmount] [decimal] (18, 2) NULL,
-[AreaTotalAmount] [decimal] (18, 2) NULL
+[AreaTotalAmount] [decimal] (18, 2) NULL,
+[IsNotRoundOff] [bit] NULL,
+[IsNonTax] [bit] NULL,
+[IsNonCusa] [bit] NULL,
+[IsOverrideSecAndMain] [bit] NULL
 ) ON [PRIMARY]
 GO
 CREATE NONCLUSTERED INDEX [IdxtblUnitMstr_AreaRateSqm] ON [dbo].[tblUnitMstr] ([AreaRateSqm]) ON [PRIMARY]

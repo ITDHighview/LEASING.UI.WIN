@@ -8,7 +8,7 @@ GO
 -- Description:	<Description,,>
 --EXEC [sp_GetReferenceByClientID] 'INDV10000002'
 -- =============================================
-CREATE PROCEDURE [dbo].[sp_GetReferenceByClientIDpaid]
+CREATE   PROCEDURE [dbo].[sp_GetReferenceByClientIDpaid]
     -- Add the parameters for the stored procedure here
     @ClientID VARCHAR(50) = NULL
 AS
@@ -28,7 +28,7 @@ AS
             [tblUnitReference].[UnitNo],
             [tblUnitReference].[StatDate],
             [tblUnitReference].[FinishDate],
-            CONVERT(VARCHAR(20), [tblUnitReference].[TransactionDate], 107) as [TransactionDate],
+            CONVERT(VARCHAR(20), [tblUnitReference].[TransactionDate], 107)                            AS [TransactionDate],
             [tblUnitReference].[Rental],
             [tblUnitReference].[SecAndMaintenance],
             [tblUnitReference].[TotalRent],
@@ -59,8 +59,8 @@ AS
                     'CONTRACT TERMINATED'
                 ELSE
                     'ON-GOING'
-            END                                                                                                       AS [CLientReferenceStatus],
-            IIF(ISNULL([tblUnitReference].[SecDeposit], 0) = 0, 'TYPE OF PARKING', 'TYPE OF UNIT') AS [TypeOf]
+            END                                                                                        AS [CLientReferenceStatus],
+            IIF(ISNULL([tblUnitReference].[Unit_IsParking], 0) = 1, 'TYPE OF PARKING', 'TYPE OF UNIT') AS [TypeOf]
         FROM
             [dbo].[tblUnitReference]
         WHERE

@@ -35,15 +35,16 @@ AS
 
                 UPPER([dbo].[fnNumberToWordsWithDecimalMain]([tblUnitMstr].[AreaSqm]))                                      AS [AreaByWord],            ---UNIT AREA
 
-                CONVERT(VARCHAR(20), [tblUnitReference].[StatDate], 107)                                                    AS [YearStarting],
-                CONVERT(VARCHAR(20), [tblUnitReference].[FinishDate], 107)                                                  AS [YearEnding],
+
+                [dbo].[fn_GetDateFullName]([tblUnitReference].[StatDate])                                                   AS [YearStarting],
+                [dbo].[fn_GetDateFullName]([tblUnitReference].[FinishDate])                                                 AS [YearEnding],
                 CONVERT(VARCHAR(20), [tblUnitReference].[StatDate], 107) + ' - '
                 + CONVERT(VARCHAR(20), [tblUnitReference].[FinishDate], 107)                                                AS [PeriodCover],
-                UPPER([dbo].[fnNumberToWordsWithDecimal]([tblUnitReference].[TotalRent])) + ' PESOS ONLY ('
+                [dbo].[fnNumberToWordsWithDecimal]([tblUnitReference].[TotalRent]) + ' Pesos Only ('
                 + CAST([tblUnitReference].[TotalRent] AS VARCHAR(100)) + ')'                                                AS [RentalForLeased_AmountInWords],
-                UPPER([dbo].[fnNumberToWordsWithDecimal]([tblUnitReference].[SecAndMaintenance])) + '('
+                [dbo].[fnNumberToWordsWithDecimal]([tblUnitReference].[SecAndMaintenance]) + '('
                 + CAST([tblUnitReference].[SecAndMaintenance] AS VARCHAR(100)) + ')'                                        AS [AsShareInSecAndMaint_AmountInWords],
-                UPPER([dbo].[fnNumberToWordsWithDecimal]([tblUnitReference].[TotalRent])) + '('
+                [dbo].[fnNumberToWordsWithDecimal]([tblUnitReference].[TotalRent]) + '('
                 + CAST([tblUnitReference].[TotalRent] AS VARCHAR(100)) + ')'                                                AS [TotalAmountInYear_AmountInWords],
                 CAST([tblUnitReference].[Unit_Vat] AS VARCHAR(100)) + ' %'                                                  AS [VatPercentage_WithWords],
                 CAST([tblUnitReference].[PenaltyPct] AS VARCHAR(100)) + ' %'                                                AS [PenaltyPercentage_WithWords],

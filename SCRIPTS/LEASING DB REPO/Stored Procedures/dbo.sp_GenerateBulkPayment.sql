@@ -7,7 +7,7 @@ GO
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE PROCEDURE [dbo].[sp_GenerateBulkPayment]
+CREATE     PROCEDURE [dbo].[sp_GenerateBulkPayment]
     -- Add the parameters for the stored procedure here
     @RefId             VARCHAR(50)    = NULL,
     @PaidAmount        DECIMAL(18, 2) = NULL, ---Is Actual Amount From Payment Mode (Due Amount)
@@ -24,17 +24,16 @@ CREATE PROCEDURE [dbo].[sp_GenerateBulkPayment]
     @SerialNo          VARCHAR(30)    = NULL,
     @PaymentRemarks    VARCHAR(100)   = NULL,
     @REF               VARCHAR(100)   = NULL,
-    @ReceiptDate       DATETIME       = NULL,
+    @ReceiptDate       VARCHAR(100)   = NULL,
     @BankBranch        VARCHAR(100)   = NULL,
     @ModeType          VARCHAR(20)    = NULL,
     @XML               XML
 AS
-    BEGIN TRY
+    BEGIN
 
         SET NOCOUNT ON;
         DECLARE @Message_Code VARCHAR(MAX) = '';
-        DECLARE @ErrorMessage NVARCHAR(MAX) = N'';
-        BEGIN TRANSACTION
+        DECLARE @ErrorMessage NVARCHAR(MAX) = N'';     
         DECLARE @TranRecId BIGINT = 0
         DECLARE @TranID VARCHAR(50) = ''
         DECLARE @RcptRecId BIGINT = 0
@@ -90,7 +89,7 @@ AS
                     OR ISNULL([tblMonthLedger].[IsHold], 0) = 1
                 )
 
-        BEGIN TRANSACTION
+
 
         INSERT INTO [dbo].[tblTransaction]
             (
@@ -411,9 +410,24 @@ AS
            )
             BEGIN
 
-
                 SET @Message_Code = 'SUCCESS'
-                SET @ErrorMessage = N''
+            END
+
+
+        SET @ErrorMessage = ERROR_MESSAGE()
+        IF @ErrorMessage <> ''
+            BEGIN
+                INSERT INTO [dbo].[ErrorLog]
+                    (
+                        [ProcedureName],
+                        [ErrorMessage],
+                        [LogDateTime]
+                    )
+                VALUES
+                    (
+                        'sp_GenerateBulkPayment', @ErrorMessage, GETDATE()
+                    );
+
             END
 
         SELECT
@@ -422,31 +436,8 @@ AS
             @RcptID       AS [ReceiptID],
             @TranID       AS [TranID]
 
-        COMMIT TRANSACTION
-    END TRY
-    BEGIN CATCH
-        IF @@TRANCOUNT > 0
-            ROLLBACK TRANSACTION
-        SET @Message_Code = 'ERROR'
-        SET @ErrorMessage = ERROR_MESSAGE()
 
-        INSERT INTO [dbo].[ErrorLog]
-            (
-                [ProcedureName],
-                [ErrorMessage],
-                [LogDateTime]
-            )
-        VALUES
-            (
-                'sp_GenerateBulkPayment', @ErrorMessage, GETDATE()
-            );
-        SELECT
-            @ErrorMessage AS [ErrorMessage],
-            @Message_Code AS [Message_Code],
-            @RcptID       AS [ReceiptID],
-            @TranID       AS [TranID]
-    END CATCH
-    DROP TABLE [#tblBulkPostdatedMonth]
+        DROP TABLE [#tblBulkPostdatedMonth]
 
-
+    END
 GO

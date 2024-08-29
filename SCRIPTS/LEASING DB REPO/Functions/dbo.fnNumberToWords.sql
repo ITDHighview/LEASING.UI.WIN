@@ -2,7 +2,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_NULLS ON
 GO
-CREATE FUNCTION [dbo].[fnNumberToWords](@Number DECIMAL(17,2))
+CREATE   FUNCTION [dbo].[fnNumberToWords](@Number DECIMAL(17,2))
 RETURNS NVARCHAR(MAX)
 AS 
 BEGIN
@@ -13,18 +13,18 @@ BEGIN
 	DECLARE @tDict		TABLE (Num INT NOT NULL, Nam NVARCHAR(255) NOT NULL)
 	INSERT 
 	INTO	@tDict (Num, Nam)
-	VALUES	(1,'one'),(2,'two'),(3,'three'),(4,'four'),(5,'five'),(6,'six'),(7,'seven'),(8,'eight'),(9,'nine'),
-			(10,'ten'),(11,'eleven'),(12,'twelve'),(13,'thirteen'),(14,'fourteen'),(15,'fifteen'),(16,'sixteen'),(17,'seventeen'),(18,'eighteen'),(19,'nineteen'),
-			(20,'twenty'),(30,'thirty'),(40,'fourty'),(50,'fifty'),(60,'sixty'),(70,'seventy'),(80,'eighty'),(90,'ninety')
+	VALUES	(1,'One'),(2,'Two'),(3,'Three'),(4,'Four'),(5,'Five'),(6,'Six'),(7,'Seven'),(8,'Eight'),(9,'Nine'),
+			(10,'Ten'),(11,'Eleven'),(12,'Twelve'),(13,'Thirteen'),(14,'Fourteen'),(15,'Fifteen'),(16,'Sixteen'),(17,'Seventeen'),(18,'Eighteen'),(19,'Nineteen'),
+			(20,'Twenty'),(30,'Thirty'),(40,'Fourty'),(50,'Fifty'),(60,'Sixty'),(70,'Seventy'),(80,'Eighty'),(90,'Ninety')
 	
-	DECLARE @ZeroWord		NVARCHAR(10) = 'zero'
-	DECLARE @DotWord		NVARCHAR(10) = 'point'
-	DECLARE @AndWord		NVARCHAR(10) = 'and'
-	DECLARE @HundredWord	NVARCHAR(10) = 'hundred'
-	DECLARE @ThousandWord	NVARCHAR(10) = 'thousand'
-	DECLARE @MillionWord	NVARCHAR(10) = 'million'
-	DECLARE @BillionWord	NVARCHAR(10) = 'billion'
-	DECLARE @TrillionWord	NVARCHAR(10) = 'trillion'
+	DECLARE @ZeroWord		NVARCHAR(10) = 'Zero'
+	DECLARE @DotWord		NVARCHAR(10) = 'Point'
+	DECLARE @AndWord		NVARCHAR(10) = 'And'
+	DECLARE @HundredWord	NVARCHAR(10) = 'Hundred'
+	DECLARE @ThousandWord	NVARCHAR(10) = 'Thousand'
+	DECLARE @MillionWord	NVARCHAR(10) = 'Million'
+	DECLARE @BillionWord	NVARCHAR(10) = 'Billion'
+	DECLARE @TrillionWord	NVARCHAR(10) = 'Trillion'
 
 	-- decimal number	
 	DECLARE @vDecimalNum INT = (@Number - FLOOR(@Number)) * 100
@@ -83,7 +83,8 @@ BEGIN
 					-- greater than or equal 20
 					SELECT @vSubResult = Nam FROM @tDict WHERE Num = @v0Num 
 					SET @v00Num = FLOOR(@v00Num/10)*10
-					SELECT @vSubResult = FORMATMESSAGE('%s-%s', Nam, @vSubResult) FROM @tDict WHERE Num = @v00Num 
+					--SELECT @vSubResult = FORMATMESSAGE('%s-%s', Nam, @vSubResult) FROM @tDict WHERE Num = @v00Num 
+					SELECT @vSubResult = FORMATMESSAGE('%s %s', Nam, @vSubResult) FROM @tDict WHERE Num = @v00Num 
 				END
 
 				--000

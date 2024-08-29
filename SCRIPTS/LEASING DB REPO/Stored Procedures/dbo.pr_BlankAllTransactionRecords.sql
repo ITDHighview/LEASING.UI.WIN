@@ -6,49 +6,46 @@ GO
 /*
 	EXEC [pr_BlankAllTransactionRecords]
 */
-CREATE   PROC [dbo].[pr_BlankAllTransactionRecords]
+CREATE     PROC [dbo].[pr_BlankAllTransactionRecords]
 AS
     BEGIN
 
-        DELETE FROM
-        [dbo].[tblRecieptReport]
-        DBCC CHECKIDENT('[tblRecieptReport]', RESEED, 0);
 
-        DELETE FROM
+       TRUNCATE TABLE 
         [dbo].[tblUnitReference]
-        DBCC CHECKIDENT('[tblUnitReference]', RESEED, 0);
+        --DBCC CHECKIDENT('[tblUnitReference]', RESEED, 0);
 
-        DELETE FROM
+       TRUNCATE TABLE 
         [dbo].[tblTransaction]
-        DBCC CHECKIDENT('[tblTransaction]', RESEED, 0);
+        --DBCC CHECKIDENT('[tblTransaction]', RESEED, 0);
 
-        DELETE FROM
+        TRUNCATE TABLE 
         [dbo].[tblMonthLedger]
-        DBCC CHECKIDENT('[tblMonthLedger]', RESEED, 0);
+        --DBCC CHECKIDENT('[tblMonthLedger]', RESEED, 0);
 
-        DELETE FROM
+        TRUNCATE TABLE 
         [dbo].[tblReceipt]
-        DBCC CHECKIDENT('[tblReceipt]', RESEED, 0);
+        --DBCC CHECKIDENT('[tblReceipt]', RESEED, 0);
 
-        DELETE FROM
+        TRUNCATE TABLE 
         [dbo].[tblPayment]
-        DBCC CHECKIDENT('[tblPayment]', RESEED, 0);
+        --DBCC CHECKIDENT('[tblPayment]', RESEED, 0);
 
-        DELETE FROM
+        TRUNCATE TABLE 
         [dbo].[tblAdvancePayment]
-        DBCC CHECKIDENT('[tblAdvancePayment]', RESEED, 0);
+        --DBCC CHECKIDENT('[tblAdvancePayment]', RESEED, 0);
 
-        DELETE FROM
+       TRUNCATE TABLE 
         [dbo].[tblPaymentMode]
-        DBCC CHECKIDENT('[tblPaymentMode]', RESEED, 0);
+        --DBCC CHECKIDENT('[tblPaymentMode]', RESEED, 0);
 
-        DELETE FROM
+        TRUNCATE TABLE 
         [dbo].[LoggingEvent]
-        DBCC CHECKIDENT('[LoggingEvent]', RESEED, 0);
+        --DBCC CHECKIDENT('[LoggingEvent]', RESEED, 0);
 
-        DELETE FROM
+        TRUNCATE TABLE 
         [dbo].[ErrorLog]
-        DBCC CHECKIDENT('[ErrorLog]', RESEED, 0);
+        --DBCC CHECKIDENT('[ErrorLog]', RESEED, 0);
 
         UPDATE
             [dbo].[tblUnitMstr]

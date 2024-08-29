@@ -7,7 +7,7 @@ GO
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE PROCEDURE [dbo].[sp_SaveNewtUnit]
+CREATE   PROCEDURE [dbo].[sp_SaveNewtUnit]
     @ProjectId               INT            = NULL,
     @IsParking               BIT            = NULL,
     @FloorNo                 INT            = NULL,
@@ -30,6 +30,10 @@ CREATE PROCEDURE [dbo].[sp_SaveNewtUnit]
     @Vat                     DECIMAL(18, 2) = NULL,
     @Tax                     DECIMAL(18, 2) = NULL,
     @TaxAmount               DECIMAL(18, 2) = NULL,
+    @IsNotRoundOff           BIT            = NULL,
+    @IsNonTax                BIT            = NULL,
+    @IsNonCusa               BIT            = NULL,
+    @IsOverrideSecAndMain    BIT            = NULL,
     @EndodedBy               INT            = NULL,
     @ComputerName            VARCHAR(20)    = NULL
 AS
@@ -80,7 +84,11 @@ AS
                         [SecAndMainWithVatAmount],
                         [Vat],
                         [Tax],
-                        [TaxAmount]
+                        [TaxAmount],
+                        [IsNotRoundOff],
+                        [IsNonTax],
+                        [IsNonCusa],
+                        [IsOverrideSecAndMain]
                     )
                 VALUES
                     (
@@ -88,7 +96,7 @@ AS
                         @BaseRental, 'VACANT', @DetailsofProperty, @UnitNo, @UnitSequence, @EndodedBy, GETDATE(), 1,
                         @ComputerName, @BaseRentalVatAmount, @BaseRentalWithVatAmount, @BaseRentalTax, @IsNonVat,
                         @TotalRental, @SecAndMainAmount, @SecAndMainVatAmount, @SecAndMainWithVatAmount, @Vat, @Tax,
-                        @TaxAmount
+                        @TaxAmount, @IsNotRoundOff, @IsNonTax, @IsNonCusa, @IsOverrideSecAndMain
                     );
 
                 IF (@@ROWCOUNT > 0)

@@ -6,8 +6,9 @@ GO
 -- Author:		<Author,,Name>
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
+-- EXEC [sp_GetUnitByProjectId] @ProjectId = 1
 -- =============================================
-CREATE PROCEDURE [dbo].[sp_GetUnitByProjectId] @ProjectId INT
+CREATE   PROCEDURE [dbo].[sp_GetUnitByProjectId] @ProjectId INT
 AS
     BEGIN
 
@@ -36,7 +37,7 @@ AS
                         + [tblUnitReference].[InquiringClient]
                     ELSE
                         ISNULL([tblUnitMstr].[UnitStatus], '')
-                END                                                                          AS [UnitStatus],
+                END                                                                              AS [UnitStatus],
                 ISNULL([tblUnitMstr].[UnitStatus], '')                                           AS [UnitStat],
                 ISNULL([tblUnitMstr].[DetailsofProperty], '')                                    AS [DetailsofProperty],
                 ISNULL([tblUnitMstr].[UnitNo], '')                                               AS [UnitNo],

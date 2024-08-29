@@ -7,9 +7,9 @@ GO
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE   PROCEDURE [dbo].[sp_TEMPLATE]
+CREATE PROCEDURE [dbo].[sp_TEMPLATE]
 AS
-    BEGIN TRY
+    BEGIN
 
         SET NOCOUNT ON;
         DECLARE @Message_Code VARCHAR(MAX) = '';
@@ -20,43 +20,46 @@ AS
             BEGIN
 
                 SET @Message_Code = 'SUCCESS'
-                SET @ErrorMessage = N''
-            END;
+            END
 
 
-			  --SELECT
-     --       @ErrorMessage AS [ErrorMessage],
-     --       @Message_Code AS [Message_Code],
-     --       @RcptID       AS [ReceiptID],
-     --       @TranID       AS [TranID]
 
-        SELECT
-            @ErrorMessage AS [ErrorMessage],
-            @Message_Code AS [Message_Code];
-
-
-        COMMIT TRANSACTION
-
-    END TRY
-    BEGIN CATCH
-        IF @@TRANCOUNT > 0
-            ROLLBACK TRANSACTION
-        SET @Message_Code = 'ERROR'
         SET @ErrorMessage = ERROR_MESSAGE()
+        IF @ErrorMessage <> ''
+            BEGIN
 
-        INSERT INTO [dbo].[ErrorLog]
-            (
-                [ProcedureName],
-                [ErrorMessage],
-                [LogDateTime]
-            )
-        VALUES
-            (
-                'sp_TEMPLATE', @ErrorMessage, GETDATE()
-            );
+                INSERT INTO [dbo].[ErrorLog]
+                    (
+                        [ProcedureName],
+                        [ErrorMessage],
+                        [LogDateTime]
+                    )
+                VALUES
+                    (
+                        'sp_TEMPLATE', @ErrorMessage, GETDATE()
+                    );
 
+
+            END
         SELECT
             @ErrorMessage AS [ErrorMessage],
             @Message_Code AS [Message_Code];
-    END CATCH
+    END
+
+
+
+
+
+--SELECT
+--       @ErrorMessage AS [ErrorMessage],
+--       @Message_Code AS [Message_Code],
+--       @RcptID       AS [ReceiptID],
+--       @TranID       AS [TranID]
+
+
+
+
+
+
+
 GO

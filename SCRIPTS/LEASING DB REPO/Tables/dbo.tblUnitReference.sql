@@ -58,8 +58,29 @@ CREATE TABLE [dbo].[tblUnitReference]
 [Unit_AreaTotalAmount] [decimal] (18, 2) NULL,
 [Unit_AreaSqm] [decimal] (18, 2) NULL,
 [Unit_AreaRateSqm] [decimal] (18, 2) NULL,
-[IsRenewal] [bit] NULL
+[IsRenewal] [bit] NULL,
+[DiscountAmount] [decimal] (18, 2) NULL,
+[IsDiscounted] [bit] NULL
 ) ON [PRIMARY]
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_NULLS ON
+GO
+CREATE   TRIGGER [dbo].[tr_tblUnitReference]
+ON [dbo].[tblUnitReference]
+FOR INSERT
+AS
+BEGIN
+
+    UPDATE [dbo].[tblUnitReference]
+    SET [tblUnitReference].[RefId] = 'REF' + CONVERT([VARCHAR](5000), [Inserted].[RecId])
+    FROM [dbo].[tblUnitReference]
+        INNER JOIN [Inserted]
+            ON [Inserted].[RecId] = [tblUnitReference].[RecId]
+    WHERE [Inserted].[RecId] = [tblUnitReference].[RecId]
+
+END
 GO
 CREATE NONCLUSTERED INDEX [IdxtblUnitReference_AdvancePaymentAmount] ON [dbo].[tblUnitReference] ([AdvancePaymentAmount]) ON [PRIMARY]
 GO

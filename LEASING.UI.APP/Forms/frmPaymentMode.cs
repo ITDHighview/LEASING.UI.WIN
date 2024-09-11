@@ -228,22 +228,22 @@ namespace LEASING.UI.APP.Forms
                     MessageBox.Show("Please Provide OR Number or PR Number", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return false;
                 }
-                if (!string.IsNullOrEmpty(txtCompanyORNo.Text.Trim()))
-                {
-                    if (this.IsORExist())
-                    {
-                        MessageBox.Show("This OR Number: " + txtCompanyORNo.Text.Trim() + " is already exist!", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        return false;
-                    }
-                }
-                if (!string.IsNullOrEmpty(txtPRNo.Text.Trim()))
-                {
-                    if (this.IsPRExist())
-                    {
-                        MessageBox.Show("This PR Number: " + txtPRNo.Text.Trim() + " is already exist!", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        return false;
-                    }
-                }
+                //if (!string.IsNullOrEmpty(txtCompanyORNo.Text.Trim()))
+                //{
+                //    if (this.IsORExist())
+                //    {
+                //        MessageBox.Show("This OR Number: " + txtCompanyORNo.Text.Trim() + " is already exist!", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //        return false;
+                //    }
+                //}
+                //if (!string.IsNullOrEmpty(txtPRNo.Text.Trim()))
+                //{
+                //    if (this.IsPRExist())
+                //    {
+                //        MessageBox.Show("This PR Number: " + txtPRNo.Text.Trim() + " is already exist!", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //        return false;
+                //    }
+                //}
             }
 
 

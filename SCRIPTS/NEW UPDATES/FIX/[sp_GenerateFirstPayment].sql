@@ -158,7 +158,6 @@ AS
                                 [TranId],
                                 [Amount],
                                 [Description],
-                                [Remarks],
                                 [EncodedBy],
                                 [EncodedDate],
                                 [ComputerName],
@@ -173,13 +172,15 @@ AS
                                 [REF],
                                 [BankBranch],
                                 [RefId],
-                                [ReceiptDate]
+                                [ReceiptDate],
+                                [PaymentRemarks]
                             )
                         VALUES
                             (
-                                @TranID, @ReceiveAmount, 'PARTIAL - FIRST PAYMENT', @PaymentRemarks, @EncodedBy,
-                                GETDATE(), @ComputerName, 1, @ModeType, @CompanyORNo, @CompanyPRNo, @BankAccountName,
-                                @BankAccountNumber, @BankName, @SerialNo, @REF, @BankBranch, @RefId, @ReceiptDate
+                                @TranID, @ReceiveAmount, 'PARTIAL - FIRST PAYMENT', @EncodedBy, GETDATE(),
+                                @ComputerName, 1, @ModeType, @CompanyORNo, @CompanyPRNo, @BankAccountName,
+                                @BankAccountNumber, @BankName, @SerialNo, @REF, @BankBranch, @RefId, @ReceiptDate,
+                                @PaymentRemarks
                             );
 
 
@@ -203,12 +204,13 @@ AS
                                 [SERIAL_NO],
                                 [ModeType],
                                 [BankBranch],
-                                [ReceiptDate]
+                                [ReceiptDate],
+                                [PaymentRemarks]
                             )
                         VALUES
                             (
                                 @RcptID, @CompanyORNo, @CompanyPRNo, @REF, @BankAccountName, @BankAccountNumber,
-                                @BankName, @SerialNo, @ModeType, @BankBranch, @ReceiptDate
+                                @BankName, @SerialNo, @ModeType, @BankBranch, @ReceiptDate, @PaymentRemarks
                             );
 
                     END
@@ -335,7 +337,6 @@ AS
                                         [TranId],
                                         [Amount],
                                         [Description],
-                                        [Remarks],
                                         [EncodedBy],
                                         [EncodedDate],
                                         [ComputerName],
@@ -350,14 +351,14 @@ AS
                                         [REF],
                                         [BankBranch],
                                         [RefId],
-                                        [ReceiptDate]
+                                        [ReceiptDate],
+                                        [PaymentRemarks]
                                     )
                                 VALUES
                                     (
-                                        @TranID, @PaidAmount, 'FIRST PAYMENT', @PaymentRemarks, @EncodedBy, GETDATE(),
-                                        @ComputerName, 1, @ModeType, @CompanyORNo, @CompanyPRNo, @BankAccountName,
-                                        @BankAccountNumber, @BankName, @SerialNo, @REF, @BankBranch, @RefId,
-                                        @ReceiptDate
+                                        @TranID, @PaidAmount, 'FIRST PAYMENT', @EncodedBy, GETDATE(), @ComputerName, 1,
+                                        @ModeType, @CompanyORNo, @CompanyPRNo, @BankAccountName, @BankAccountNumber,
+                                        @BankName, @SerialNo, @REF, @BankBranch, @RefId, @ReceiptDate, @PaymentRemarks
                                     );
                                 --SELECT
                                 --    @TranID,
@@ -402,12 +403,14 @@ AS
                                         [SERIAL_NO],
                                         [ModeType],
                                         [BankBranch],
-                                        [ReceiptDate]
+                                        [ReceiptDate],
+                                        [PaymentRemarks]
                                     )
                                 VALUES
                                     (
                                         @RcptID, @CompanyORNo, @CompanyPRNo, @REF, @BankAccountName,
-                                        @BankAccountNumber, @BankName, @SerialNo, @ModeType, @BankBranch, @ReceiptDate
+                                        @BankAccountNumber, @BankName, @SerialNo, @ModeType, @BankBranch, @ReceiptDate,
+                                        @PaymentRemarks
                                     );
                             --SELECT
                             --    @RcptID,
@@ -491,7 +494,6 @@ AS
                             [TranId],
                             [Amount],
                             [Description],
-                            [Remarks],
                             [EncodedBy],
                             [EncodedDate],
                             [ComputerName],
@@ -506,13 +508,14 @@ AS
                             [REF],
                             [BankBranch],
                             [RefId],
-                            [ReceiptDate]
+                            [ReceiptDate],
+                            [PaymentRemarks]
                         )
                     VALUES
                         (
-                            @TranID, @PaidAmount, 'FULL PAYMENT', @PaymentRemarks, @EncodedBy, GETDATE(),
-                            @ComputerName, 1, @ModeType, @CompanyORNo, @CompanyPRNo, @BankAccountName,
-                            @BankAccountNumber, @BankName, @SerialNo, @REF, @BankBranch, @RefId, @ReceiptDate
+                            @TranID, @PaidAmount, 'FULL PAYMENT', @EncodedBy, GETDATE(), @ComputerName, 1, @ModeType,
+                            @CompanyORNo, @CompanyPRNo, @BankAccountName, @BankAccountNumber, @BankName, @SerialNo,
+                            @REF, @BankBranch, @RefId, @ReceiptDate, @PaymentRemarks
                         );
 
                     SET @RcptRecId = @@IDENTITY;
@@ -535,12 +538,13 @@ AS
                             [SERIAL_NO],
                             [ModeType],
                             [BankBranch],
-                            [ReceiptDate]
+                            [ReceiptDate],
+                            [PaymentRemarks]
                         )
                     VALUES
                         (
                             @RcptID, @CompanyORNo, @CompanyPRNo, @REF, @BankAccountName, @BankAccountNumber, @BankName,
-                            @SerialNo, @ModeType, @BankBranch, @ReceiptDate
+                            @SerialNo, @ModeType, @BankBranch, @ReceiptDate, @PaymentRemarks
                         );
                 END
 

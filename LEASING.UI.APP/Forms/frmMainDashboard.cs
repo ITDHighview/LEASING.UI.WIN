@@ -120,8 +120,8 @@ namespace LEASING.UI.APP.Forms
 
 
         private void GetNotificationListDetails() => this.SetGridDataItem(this.dgvNotificationList, OtherContext.GetNotificationList());
-        private void M_GetUnitListByProjectAndStatus()=> this.SetGridDataItem(this.dgvUnitList, OtherContext.GetUnitListByProjectAndStatus(Convert.ToInt32(ddlProject.SelectedValue), 
-                                                                                                                                            ddlUnitStatus.SelectedText, 
+        private void M_GetUnitListByProjectAndStatus() => this.SetGridDataItem(this.dgvUnitList, OtherContext.GetUnitListByProjectAndStatus(Convert.ToInt32(ddlProject.SelectedValue),
+                                                                                                                                            ddlUnitStatus.SelectedText,
                                                                                                                                             ddlProject.SelectedText));
         private void M_GetUnitListByProjectAndStatusCount()
         {
@@ -171,7 +171,9 @@ namespace LEASING.UI.APP.Forms
             //GetNotificationList();
             M_SelectProject();
             this.InitProjectUnitBrowse();
-
+            this.M_GetUnitListByProjectAndStatus();
+            M_GetUnitListByProjectAndStatusCount();
+            this.GetNotificationListDetails();
 
             //radMenu7.Visible = false;
             //radPanel7.Visible = false;
@@ -254,6 +256,11 @@ namespace LEASING.UI.APP.Forms
             TimerCountDown.Stop();
             frmAddNewUnits forms = new frmAddNewUnits();
             forms.ShowDialog();
+            M_SelectProject();
+            this.InitProjectUnitBrowse();
+            this.M_GetUnitListByProjectAndStatus();
+            M_GetUnitListByProjectAndStatusCount();
+            this.GetNotificationListDetails();
             TimerCountDown.Start();
         }
         private void radMenuItem1_Click(object sender, EventArgs e)
@@ -321,6 +328,11 @@ namespace LEASING.UI.APP.Forms
             TimerCountDown.Stop();
             frmClientTransaction forms = new frmClientTransaction();
             forms.ShowDialog();
+            M_SelectProject();
+            this.InitProjectUnitBrowse();
+            this.M_GetUnitListByProjectAndStatus();
+            M_GetUnitListByProjectAndStatusCount();
+            this.GetNotificationListDetails();
             TimerCountDown.Start();
         }
         private void radMenuItemComputation_Click(object sender, EventArgs e)
@@ -377,6 +389,11 @@ namespace LEASING.UI.APP.Forms
             TimerCountDown.Stop();
             frmComputation forms = new frmComputation();
             forms.ShowDialog();
+            M_SelectProject();
+            this.InitProjectUnitBrowse();
+            this.M_GetUnitListByProjectAndStatus();
+            M_GetUnitListByProjectAndStatusCount();
+            this.GetNotificationListDetails();
             TimerCountDown.Start();
         }
         private void radMenuItemGenerateComputationParking2_Click(object sender, EventArgs e)
@@ -384,6 +401,11 @@ namespace LEASING.UI.APP.Forms
             TimerCountDown.Stop();
             frmParkComputation forms = new frmParkComputation();
             forms.ShowDialog();
+            M_SelectProject();
+            this.InitProjectUnitBrowse();
+            this.M_GetUnitListByProjectAndStatus();
+            M_GetUnitListByProjectAndStatusCount();
+            this.GetNotificationListDetails();
             TimerCountDown.Start();
 
         }
@@ -686,9 +708,9 @@ namespace LEASING.UI.APP.Forms
         {
             M_GetAnnouncementCheck();
             GetAnnouncement();
-            GetNotificationListDetails();
+            //GetNotificationListDetails();
             //M_GetUnitListByProjectAndStatus();
-            M_GetUnitListByProjectAndStatusCount();
+            //M_GetUnitListByProjectAndStatusCount();
             if (AnnouncementTimer > 0)
             {
                 Functions.GetNotification("New Announcement", txtAnnouncementMessage.Text);
@@ -737,7 +759,10 @@ namespace LEASING.UI.APP.Forms
 
         private void btnRefreshUnitList_Click(object sender, EventArgs e)
         {
-            M_GetUnitListByProjectAndStatus();
+            this.M_GetUnitListByProjectAndStatus();
+            this.M_GetUnitListByProjectAndStatusCount();
+            this.GetNotificationListDetails();
+
         }
     }
 }

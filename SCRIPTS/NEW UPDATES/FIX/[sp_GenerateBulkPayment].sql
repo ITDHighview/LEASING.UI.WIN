@@ -7,7 +7,7 @@ GO
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE OR ALTER   PROCEDURE [dbo].[sp_GenerateBulkPayment]
+CREATE OR ALTER PROCEDURE [dbo].[sp_GenerateBulkPayment]
     -- Add the parameters for the stored procedure here
     @RefId             VARCHAR(50)    = NULL,
     @PaidAmount        DECIMAL(18, 2) = NULL, ---Is Actual Amount From Payment Mode (Due Amount)
@@ -33,7 +33,7 @@ AS
 
         SET NOCOUNT ON;
         DECLARE @Message_Code VARCHAR(MAX) = '';
-        DECLARE @ErrorMessage NVARCHAR(MAX) = N'';     
+        DECLARE @ErrorMessage NVARCHAR(MAX) = N'';
         DECLARE @TranRecId BIGINT = 0
         DECLARE @TranID VARCHAR(50) = ''
         DECLARE @RcptRecId BIGINT = 0
@@ -351,7 +351,6 @@ AS
                 [TranId],
                 [Amount],
                 [Description],
-                [Remarks],
                 [EncodedBy],
                 [EncodedDate],
                 [ComputerName],
@@ -366,13 +365,14 @@ AS
                 [REF],
                 [BankBranch],
                 [RefId],
-                [ReceiptDate]
+                [ReceiptDate],
+                [PaymentRemarks]
             )
         VALUES
             (
-                @TranID, @ReceiveAmount, 'FOLLOW-UP PAYMENT', @PaymentRemarks, @EncodedBy, GETDATE(), @ComputerName, 1,
-                @ModeType, @CompanyORNo, @CompanyPRNo, @BankAccountName, @BankAccountNumber, @BankName, @SerialNo,
-                @REF, @BankBranch, @RefId, @ReceiptDate
+                @TranID, @ReceiveAmount, 'FOLLOW-UP PAYMENT', @EncodedBy, GETDATE(), @ComputerName, 1, @ModeType,
+                @CompanyORNo, @CompanyPRNo, @BankAccountName, @BankAccountNumber, @BankName, @SerialNo, @REF,
+                @BankBranch, @RefId, @ReceiptDate, @PaymentRemarks
             );
 
         SET @RcptRecId = @@IDENTITY
@@ -395,12 +395,13 @@ AS
                 [SERIAL_NO],
                 [ModeType],
                 [BankBranch],
-                [ReceiptDate]
+                [ReceiptDate],
+                [PaymentRemarks]
             )
         VALUES
             (
                 @RcptID, @CompanyORNo, @CompanyPRNo, @REF, @BankAccountName, @BankAccountNumber, @BankName, @SerialNo,
-                @ModeType, @BankBranch, @ReceiptDate
+                @ModeType, @BankBranch, @ReceiptDate, @PaymentRemarks
             );
 
 

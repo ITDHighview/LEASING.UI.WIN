@@ -915,23 +915,23 @@ namespace LEASING.UI.APP.Forms
                 {
                     MessageBox.Show("Please select Project name.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
-                if (string.IsNullOrEmpty(txtClient.Text) || string.IsNullOrEmpty(ClientId))
+                else if (string.IsNullOrEmpty(txtClient.Text) || string.IsNullOrEmpty(ClientId))
                 {
                     MessageBox.Show("Please select Client", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
-                if (ddlUnitNumber.SelectedIndex == -1)
+                else if (ddlUnitNumber.SelectedIndex == -1)
                 {
                     MessageBox.Show("No available unit for this project, please contact admin.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
-                if (string.IsNullOrEmpty(txtRental.Text) || txtRental.Text == "0")
+                else if (string.IsNullOrEmpty(txtRental.Text) || txtRental.Text == "0")
                 {
                     MessageBox.Show("Unit rental is not declared, please contact admin.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
-                if (!IsMoreThanSixMonths(Convert.ToDateTime(dtpStartDate.Text), Convert.ToDateTime(dtpFinishDate.Text)))
+                else if (!IsMoreThanSixMonths(Convert.ToDateTime(dtpStartDate.Text), Convert.ToDateTime(dtpFinishDate.Text)))
                 {
                     MessageBox.Show("Lease period is out of range", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                if (!IsComputed)
+                else if (!IsComputed)
                 {
                     MessageBox.Show("Please execute the computation", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -1060,22 +1060,22 @@ namespace LEASING.UI.APP.Forms
                 MessageBox.Show("Please select Project name.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
             }
-            if (string.IsNullOrEmpty(txtClient.Text) || string.IsNullOrEmpty(ClientId))
+            else if (string.IsNullOrEmpty(txtClient.Text) || string.IsNullOrEmpty(ClientId))
             {
                 MessageBox.Show("Please select Client", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
             }
-            if (ddlUnitNumber.SelectedIndex == -1)
+            else if (ddlUnitNumber.SelectedIndex == -1)
             {
                 MessageBox.Show("No available unit for this project, please contact admin.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
             }
-            if (string.IsNullOrEmpty(txtRental.Text) || txtRental.Text == "0")
+            else if (string.IsNullOrEmpty(txtRental.Text) || txtRental.Text == "0")
             {
                 MessageBox.Show("Unit rental is not declared, please contact admin.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
             }
-            if (!IsMoreThanSixMonths(Convert.ToDateTime(dtpStartDate.Text), Convert.ToDateTime(dtpFinishDate.Text)))
+            else if (!IsMoreThanSixMonths(Convert.ToDateTime(dtpStartDate.Text), Convert.ToDateTime(dtpFinishDate.Text)))
             {
                 MessageBox.Show("Lease period is out of range", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -1105,22 +1105,22 @@ namespace LEASING.UI.APP.Forms
                 MessageBox.Show("Please select Project name.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
             }
-            if (string.IsNullOrEmpty(txtClient.Text) || string.IsNullOrEmpty(ClientId))
+            else if (string.IsNullOrEmpty(txtClient.Text) || string.IsNullOrEmpty(ClientId))
             {
                 MessageBox.Show("Please select Client", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
             }
-            if (ddlUnitNumber.SelectedIndex == -1)
+            else if (ddlUnitNumber.SelectedIndex == -1)
             {
                 MessageBox.Show("No available unit for this project, please contact admin.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
             }
-            if (string.IsNullOrEmpty(txtRental.Text) || txtRental.Text == "0")
+            else if (string.IsNullOrEmpty(txtRental.Text) || txtRental.Text == "0")
             {
                 MessageBox.Show("Unit rental is not declared, please contact admin.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
             }
-            if (!IsMoreThanSixMonths(Convert.ToDateTime(dtpStartDate.Text), Convert.ToDateTime(dtpFinishDate.Text)))
+            else if (!IsMoreThanSixMonths(Convert.ToDateTime(dtpStartDate.Text), Convert.ToDateTime(dtpFinishDate.Text)))
             {
                 MessageBox.Show("Lease period is out of range", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -1181,27 +1181,27 @@ namespace LEASING.UI.APP.Forms
                 MessageBox.Show("Please select Project name.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
             }
-            if (string.IsNullOrEmpty(txtClient.Text) || string.IsNullOrEmpty(ClientId))
+            else if (string.IsNullOrEmpty(txtClient.Text) || string.IsNullOrEmpty(ClientId))
             {
                 MessageBox.Show("Please select Client", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
             }
-            if (ddlUnitNumber.SelectedIndex == -1)
+            else if (ddlUnitNumber.SelectedIndex == -1)
             {
                 MessageBox.Show("No available unit for this project, please contact admin.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
             }
-            if (string.IsNullOrEmpty(txtRental.Text) || txtRental.Text == "0")
+            else if (string.IsNullOrEmpty(txtRental.Text) || txtRental.Text == "0")
             {
                 MessageBox.Show("Unit rental is not declared, please contact admin.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
             }
-            if (!IsMoreThanSixMonths(Convert.ToDateTime(dtpStartDate.Text), Convert.ToDateTime(dtpFinishDate.Text)))
+            else if (!IsMoreThanSixMonths(Convert.ToDateTime(dtpStartDate.Text), Convert.ToDateTime(dtpFinishDate.Text)))
             {
                 MessageBox.Show("Lease period is out of range", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
-            if (!IsComputed)
+            else if (!IsComputed)
             {
                 MessageBox.Show("Please execute the computation", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }

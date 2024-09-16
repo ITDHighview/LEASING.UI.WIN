@@ -88,7 +88,7 @@ namespace LEASING.UI.APP.Forms
                         btnNewComputation.Enabled = true;
 
                         //ddlProject.SelectedIndex = 0;
-                        ddlUnitNumber.SelectedIndex = 0;
+                        //ddlUnitNumber.SelectedIndex = 0;
                         DisableFields();
                         //data.Clear();
                         txtTotalPostDatedAmount.Text = string.Empty;
@@ -108,140 +108,140 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-        public bool IsComputationValid()
-        {
-            if (ddlProject.SelectedText == "--SELECT--")
-            {
-                MessageBox.Show("Please select Project name.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return false;
-            }
-            if (string.IsNullOrEmpty(txtClient.Text) || string.IsNullOrEmpty(ClientId))
-            {
-                MessageBox.Show("Please select Client", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return false;
-            }
-            if (ddlUnitNumber.SelectedIndex == -1)
-            {
-                MessageBox.Show("No available unit for this project, please contact admin.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return false;
-            }
-            if (string.IsNullOrEmpty(txtRental.Text) || txtRental.Text == "0")
-            {
-                MessageBox.Show("Unit rental is not declared, please contact admin.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return false;
-            }
-            if (!IsMoreThanSixMonths(Convert.ToDateTime(dtpStartDate.Text), Convert.ToDateTime(dtpFinishDate.Text)))
-            {
-                MessageBox.Show("Lease period is out of range", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return false;
-            }
-            if (!IsComputed)
-            {
-                MessageBox.Show("Please execute the computation", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return false;
-            }
+        //public bool IsComputationValid()
+        //{
+        //    if (ddlProject.SelectedText == "--SELECT--")
+        //    {
+        //        MessageBox.Show("Please select Project name.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        //        return false;
+        //    }
+        //    if (string.IsNullOrEmpty(txtClient.Text) || string.IsNullOrEmpty(ClientId))
+        //    {
+        //        MessageBox.Show("Please select Client", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        //        return false;
+        //    }
+        //    if (ddlUnitNumber.SelectedIndex == -1)
+        //    {
+        //        MessageBox.Show("No available unit for this project, please contact admin.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        //        return false;
+        //    }
+        //    if (string.IsNullOrEmpty(txtRental.Text) || txtRental.Text == "0")
+        //    {
+        //        MessageBox.Show("Unit rental is not declared, please contact admin.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        //        return false;
+        //    }
+        //    if (!IsMoreThanSixMonths(Convert.ToDateTime(dtpStartDate.Text), Convert.ToDateTime(dtpFinishDate.Text)))
+        //    {
+        //        MessageBox.Show("Lease period is out of range", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //        return false;
+        //    }
+        //    if (!IsComputed)
+        //    {
+        //        MessageBox.Show("Please execute the computation", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //        return false;
+        //    }
 
 
-            return true;
-        }
-        public bool IsComputationValidForDiscount()
-        {
-            if (ddlProject.SelectedText == "--SELECT--")
-            {
-                MessageBox.Show("Please select Project name.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return false;
-            }
-            if (string.IsNullOrEmpty(txtClient.Text))
-            {
-                MessageBox.Show("Please select Client", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return false;
-            }
-            if (string.IsNullOrEmpty(ClientId))
-            {
-                MessageBox.Show("please select client", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return false;
-            }
-            if (ddlUnitNumber.SelectedIndex == -1)
-            {
-                MessageBox.Show("No available unit for this project, please contact admin.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return false;
-            }
-            //if (string.IsNullOrEmpty(txtRental.Text))
-            //{
-            //    MessageBox.Show("unit rental is not declared, please contact admin.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            //    return false;
-            //}
-            //if (txtRental.Text == "0")
-            //{
-            //    MessageBox.Show("unit rental is not declared, please contact admin.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            //    return false;
-            //}
-            if (!IsMoreThanSixMonths(Convert.ToDateTime(dtpStartDate.Text), Convert.ToDateTime(dtpFinishDate.Text)))
-            {
-                MessageBox.Show("Lease period is out of range", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return false;
-            }
+        //    return true;
+        //}
+        //public bool IsComputationValidForDiscount()
+        //{
+        //    if (ddlProject.SelectedText == "--SELECT--")
+        //    {
+        //        MessageBox.Show("Please select Project name.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        //        return false;
+        //    }
+        //    if (string.IsNullOrEmpty(txtClient.Text))
+        //    {
+        //        MessageBox.Show("Please select Client", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        //        return false;
+        //    }
+        //    if (string.IsNullOrEmpty(ClientId))
+        //    {
+        //        MessageBox.Show("please select client", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //        return false;
+        //    }
+        //    if (ddlUnitNumber.SelectedIndex == -1)
+        //    {
+        //        MessageBox.Show("No available unit for this project, please contact admin.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        //        return false;
+        //    }
+        //    //if (string.IsNullOrEmpty(txtRental.Text))
+        //    //{
+        //    //    MessageBox.Show("unit rental is not declared, please contact admin.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        //    //    return false;
+        //    //}
+        //    //if (txtRental.Text == "0")
+        //    //{
+        //    //    MessageBox.Show("unit rental is not declared, please contact admin.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        //    //    return false;
+        //    //}
+        //    if (!IsMoreThanSixMonths(Convert.ToDateTime(dtpStartDate.Text), Convert.ToDateTime(dtpFinishDate.Text)))
+        //    {
+        //        MessageBox.Show("Lease period is out of range", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //        return false;
+        //    }
 
-            return true;
-        }
-        public bool IsComputationValidForCompute()
-        {
-            if (ddlProject.SelectedText == "--SELECT--")
-            {
-                MessageBox.Show("Please select Project name.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return false;
-            }
-            if (string.IsNullOrEmpty(txtClient.Text) || string.IsNullOrEmpty(ClientId))
-            {
-                MessageBox.Show("Please select Client", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return false;
-            }
-            if (ddlUnitNumber.SelectedIndex == -1)
-            {
-                MessageBox.Show("No available unit for this project, please contact admin.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return false;
-            }
-            if (string.IsNullOrEmpty(txtRental.Text) || txtRental.Text == "0")
-            {
-                MessageBox.Show("Unit rental is not declared, please contact admin.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return false;
-            }
-            if (!IsMoreThanSixMonths(Convert.ToDateTime(dtpStartDate.Text), Convert.ToDateTime(dtpFinishDate.Text)))
-            {
-                MessageBox.Show("Lease period is out of range", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return false;
-            }
-            return true;
-        }
-        public bool IsComputationValidForAdvancePayment()
-        {
-            if (ddlProject.SelectedText == "--SELECT--")
-            {
-                MessageBox.Show("Please select Project name.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return false;
-            }
-            if (string.IsNullOrEmpty(txtClient.Text) || string.IsNullOrEmpty(ClientId))
-            {
-                MessageBox.Show("Please select Client", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return false;
-            }
-            if (ddlUnitNumber.SelectedIndex == -1)
-            {
-                MessageBox.Show("No available unit for this project, please contact admin.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return false;
-            }
-            if (string.IsNullOrEmpty(txtRental.Text) || txtRental.Text == "0")
-            {
-                MessageBox.Show("Unit rental is not declared, please contact admin.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return false;
-            }
-            if (!IsMoreThanSixMonths(Convert.ToDateTime(dtpStartDate.Text), Convert.ToDateTime(dtpFinishDate.Text)))
-            {
-                MessageBox.Show("Lease period is out of range", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return false;
-            }
-            return true;
-        }
+        //    return true;
+        //}
+        //public bool IsComputationValidForCompute()
+        //{
+        //    if (ddlProject.SelectedText == "--SELECT--")
+        //    {
+        //        MessageBox.Show("Please select Project name.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        //        return false;
+        //    }
+        //    if (string.IsNullOrEmpty(txtClient.Text) || string.IsNullOrEmpty(ClientId))
+        //    {
+        //        MessageBox.Show("Please select Client", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        //        return false;
+        //    }
+        //    if (ddlUnitNumber.SelectedIndex == -1)
+        //    {
+        //        MessageBox.Show("No available unit for this project, please contact admin.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        //        return false;
+        //    }
+        //    if (string.IsNullOrEmpty(txtRental.Text) || txtRental.Text == "0")
+        //    {
+        //        MessageBox.Show("Unit rental is not declared, please contact admin.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        //        return false;
+        //    }
+        //    if (!IsMoreThanSixMonths(Convert.ToDateTime(dtpStartDate.Text), Convert.ToDateTime(dtpFinishDate.Text)))
+        //    {
+        //        MessageBox.Show("Lease period is out of range", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //        return false;
+        //    }
+        //    return true;
+        //}
+        //public bool IsComputationValidForAdvancePayment()
+        //{
+        //    if (ddlProject.SelectedText == "--SELECT--")
+        //    {
+        //        MessageBox.Show("Please select Project name.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        //        return false;
+        //    }
+        //    if (string.IsNullOrEmpty(txtClient.Text) || string.IsNullOrEmpty(ClientId))
+        //    {
+        //        MessageBox.Show("Please select Client", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        //        return false;
+        //    }
+        //    if (ddlUnitNumber.SelectedIndex == -1)
+        //    {
+        //        MessageBox.Show("No available unit for this project, please contact admin.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        //        return false;
+        //    }
+        //    if (string.IsNullOrEmpty(txtRental.Text) || txtRental.Text == "0")
+        //    {
+        //        MessageBox.Show("Unit rental is not declared, please contact admin.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        //        return false;
+        //    }
+        //    if (!IsMoreThanSixMonths(Convert.ToDateTime(dtpStartDate.Text), Convert.ToDateTime(dtpFinishDate.Text)))
+        //    {
+        //        MessageBox.Show("Lease period is out of range", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //        return false;
+        //    }
+        //    return true;
+        //}
         private void ClearFieldsForUnit()
         {
             //txtProjectAddress.Text = string.Empty;
@@ -825,15 +825,15 @@ namespace LEASING.UI.APP.Forms
 
         private void ddlUnitNumber_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
         {
-                   
-                if (ddlUnitNumber.SelectedIndex >= 0)
-                {
-                    btnAddDiscount.Text = "Add Discount";
-                    ClearFieldsForUnit();
-                    M_GetUnitAvaibleById();
-                    M_GetTotalRental();
-                }
-            
+
+            if (ddlUnitNumber.SelectedIndex >= 0)
+            {
+                btnAddDiscount.Text = "Add Discount";
+                ClearFieldsForUnit();
+                M_GetUnitAvaibleById();
+                M_GetTotalRental();
+            }
+
 
             //else
             //{
@@ -909,7 +909,33 @@ namespace LEASING.UI.APP.Forms
         {
             if (strFormMode == "NEW")
             {
-                if (IsComputationValid())
+                //if (IsComputationValid())
+                //{
+                if (ddlProject.SelectedText == "--SELECT--")
+                {
+                    MessageBox.Show("Please select Project name.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                if (string.IsNullOrEmpty(txtClient.Text) || string.IsNullOrEmpty(ClientId))
+                {
+                    MessageBox.Show("Please select Client", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                if (ddlUnitNumber.SelectedIndex == -1)
+                {
+                    MessageBox.Show("No available unit for this project, please contact admin.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                if (string.IsNullOrEmpty(txtRental.Text) || txtRental.Text == "0")
+                {
+                    MessageBox.Show("Unit rental is not declared, please contact admin.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                if (!IsMoreThanSixMonths(Convert.ToDateTime(dtpStartDate.Text), Convert.ToDateTime(dtpFinishDate.Text)))
+                {
+                    MessageBox.Show("Lease period is out of range", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                if (!IsComputed)
+                {
+                    MessageBox.Show("Please execute the computation", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
                 {
                     if (MessageBox.Show("Are you sure you want to generate this Reference ?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                     {
@@ -924,6 +950,7 @@ namespace LEASING.UI.APP.Forms
                         }
                     }
                 }
+                //}
             }
         }
         private void dgvList_CellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
@@ -1026,7 +1053,34 @@ namespace LEASING.UI.APP.Forms
         }
         private void btnGeneratePostdatedCountMonth_Click(object sender, EventArgs e)
         {
-            if (IsComputationValidForCompute())
+            //if (IsComputationValidForCompute())
+            //{
+            if (ddlProject.SelectedText == "--SELECT--")
+            {
+                MessageBox.Show("Please select Project name.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+            }
+            if (string.IsNullOrEmpty(txtClient.Text) || string.IsNullOrEmpty(ClientId))
+            {
+                MessageBox.Show("Please select Client", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+            }
+            if (ddlUnitNumber.SelectedIndex == -1)
+            {
+                MessageBox.Show("No available unit for this project, please contact admin.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+            }
+            if (string.IsNullOrEmpty(txtRental.Text) || txtRental.Text == "0")
+            {
+                MessageBox.Show("Unit rental is not declared, please contact admin.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+            }
+            if (!IsMoreThanSixMonths(Convert.ToDateTime(dtpStartDate.Text), Convert.ToDateTime(dtpFinishDate.Text)))
+            {
+                MessageBox.Show("Lease period is out of range", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+            else
             {
                 IsComputed = true;
                 seq = 0;
@@ -1037,12 +1091,41 @@ namespace LEASING.UI.APP.Forms
                 M_GetTotalRental();
                 txtTotal.Focus();
             }
+
+            //}
         }
         private void btnAddAdvancePayment_Click(object sender, EventArgs e)
         {
             string selectedDate = string.Empty;
 
-            if (IsComputationValidForAdvancePayment())
+            //if (IsComputationValidForAdvancePayment())
+            //{
+            if (ddlProject.SelectedText == "--SELECT--")
+            {
+                MessageBox.Show("Please select Project name.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+            }
+            if (string.IsNullOrEmpty(txtClient.Text) || string.IsNullOrEmpty(ClientId))
+            {
+                MessageBox.Show("Please select Client", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+            }
+            if (ddlUnitNumber.SelectedIndex == -1)
+            {
+                MessageBox.Show("No available unit for this project, please contact admin.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+            }
+            if (string.IsNullOrEmpty(txtRental.Text) || txtRental.Text == "0")
+            {
+                MessageBox.Show("Unit rental is not declared, please contact admin.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+            }
+            if (!IsMoreThanSixMonths(Convert.ToDateTime(dtpStartDate.Text), Convert.ToDateTime(dtpFinishDate.Text)))
+            {
+                MessageBox.Show("Lease period is out of range", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+            else
             {
                 frmPostDatedCheckMonthsList PostDatedCheckMonthsList = new frmPostDatedCheckMonthsList(dtpStartDate.Text, dtpFinishDate.Text, M_getXMLData());
                 PostDatedCheckMonthsList.ShowDialog();
@@ -1071,6 +1154,9 @@ namespace LEASING.UI.APP.Forms
                 IsComputed = true;
                 txtTotal.Focus();
             }
+
+
+            //}
         }
         private void btnRemovedAdvancePayment_Click(object sender, EventArgs e)
         {
@@ -1089,15 +1175,40 @@ namespace LEASING.UI.APP.Forms
             }
         }
         private void txtSecurityPaymentMonthCount_TextChanged(object sender, EventArgs e)
-        {     
+        {
+            if (ddlProject.SelectedText == "--SELECT--")
+            {
+                MessageBox.Show("Please select Project name.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+            }
+            if (string.IsNullOrEmpty(txtClient.Text) || string.IsNullOrEmpty(ClientId))
+            {
+                MessageBox.Show("Please select Client", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+            }
+            if (ddlUnitNumber.SelectedIndex == -1)
+            {
+                MessageBox.Show("No available unit for this project, please contact admin.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+            }
             if (string.IsNullOrEmpty(txtRental.Text) || txtRental.Text == "0")
             {
                 MessageBox.Show("Unit rental is not declared, please contact admin.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+            }
+            if (!IsMoreThanSixMonths(Convert.ToDateTime(dtpStartDate.Text), Convert.ToDateTime(dtpFinishDate.Text)))
+            {
+                MessageBox.Show("Lease period is out of range", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+            if (!IsComputed)
+            {
+                MessageBox.Show("Please execute the computation", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
                 M_GetTotalRental();
-            }                     
+            }
         }
         private void txtSecurityPaymentMonthCount_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -1112,7 +1223,7 @@ namespace LEASING.UI.APP.Forms
         Color RenewalContract = Color.DarkSlateBlue;
         Color NewContract = Color.Green;
         private void SetContractState()
-        {          
+        {
             txtSecurityPaymentMonthCount.Text = "0";
             txtMonthsSecurityDeposit.Text = "0";
 
@@ -1140,7 +1251,29 @@ namespace LEASING.UI.APP.Forms
         public bool IsDiscounted = false;
         private void btnAddDiscount_Click(object sender, EventArgs e)
         {
-            if (IsComputationValidForDiscount())
+            //if (IsComputationValidForDiscount())
+            //{
+            if (ddlProject.SelectedText == "--SELECT--")
+            {
+                MessageBox.Show("Please select Project name.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            if (string.IsNullOrEmpty(txtClient.Text))
+            {
+                MessageBox.Show("Please select Client", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            if (string.IsNullOrEmpty(ClientId))
+            {
+                MessageBox.Show("please select client", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            if (ddlUnitNumber.SelectedIndex == -1)
+            {
+                MessageBox.Show("No available unit for this project, please contact admin.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            if (!IsMoreThanSixMonths(Convert.ToDateTime(dtpStartDate.Text), Convert.ToDateTime(dtpFinishDate.Text)))
+            {
+                MessageBox.Show("Lease period is out of range", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
             {
                 if (btnAddDiscount.Text == "Add Discount")
                 {
@@ -1169,7 +1302,6 @@ namespace LEASING.UI.APP.Forms
                         this.getDiscountedTotalMonthlyRental();
                         btnAddDiscount.Text = "Revert Base Rental";
                         M_GetTotalRental();
-
                     }
                 }
                 else
@@ -1188,11 +1320,9 @@ namespace LEASING.UI.APP.Forms
                         txtSecurityPaymentMonthCount.Text = string.Empty;
                         dataTable.Rows.Clear();
                     }
-
                 }
+                //}
             }
-
-
         }
 
         private void txtMonthsSecurityDeposit_Leave(object sender, EventArgs e)

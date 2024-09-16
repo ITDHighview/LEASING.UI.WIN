@@ -78,7 +78,9 @@ namespace LEASING.UI.APP.Forms
                         ClearFields();
                         EnableFields();
                         dgvpostdatedcheck.DataSource = null;
-
+                        ddlProject.SelectedIndex = 0;
+                        dtpStartDate.Text = DateTime.Now.ToString("MM/dd/yyyy");
+                        dtpFinishDate.Text = DateTime.Now.ToString("MM/dd/yyyy");
                         break;
                     case "READ":
                         btnUndo.Enabled = false;
@@ -106,21 +108,16 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-        private bool IsComputationValid()
+        public bool IsComputationValid()
         {
             if (ddlProject.SelectedText == "--SELECT--")
             {
                 MessageBox.Show("Please select Project name.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return false;
             }
-            if (string.IsNullOrEmpty(txtClient.Text))
+            if (string.IsNullOrEmpty(txtClient.Text) || string.IsNullOrEmpty(ClientId))
             {
                 MessageBox.Show("Please select Client", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return false;
-            }
-            if (string.IsNullOrEmpty(ClientId))
-            {
-                MessageBox.Show("please select client", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return false;
             }
             if (ddlUnitNumber.SelectedIndex == -1)
@@ -128,14 +125,9 @@ namespace LEASING.UI.APP.Forms
                 MessageBox.Show("No available unit for this project, please contact admin.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return false;
             }
-            if (string.IsNullOrEmpty(txtRental.Text))
+            if (string.IsNullOrEmpty(txtRental.Text) || txtRental.Text == "0")
             {
-                MessageBox.Show("unit rental is not declared, please contact admin.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return false;
-            }
-            if (txtRental.Text == "0")
-            {
-                MessageBox.Show("unit rental is not declared, please contact admin.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Unit rental is not declared, please contact admin.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return false;
             }
             if (!IsMoreThanSixMonths(Convert.ToDateTime(dtpStartDate.Text), Convert.ToDateTime(dtpFinishDate.Text)))
@@ -152,7 +144,7 @@ namespace LEASING.UI.APP.Forms
 
             return true;
         }
-        private bool IsComputationValidForDiscount()
+        public bool IsComputationValidForDiscount()
         {
             if (ddlProject.SelectedText == "--SELECT--")
             {
@@ -192,21 +184,16 @@ namespace LEASING.UI.APP.Forms
 
             return true;
         }
-        private bool IsComputationValidForCompute()
+        public bool IsComputationValidForCompute()
         {
             if (ddlProject.SelectedText == "--SELECT--")
             {
                 MessageBox.Show("Please select Project name.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return false;
             }
-            if (string.IsNullOrEmpty(txtClient.Text))
+            if (string.IsNullOrEmpty(txtClient.Text) || string.IsNullOrEmpty(ClientId))
             {
                 MessageBox.Show("Please select Client", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return false;
-            }
-            if (string.IsNullOrEmpty(ClientId))
-            {
-                MessageBox.Show("please select client", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return false;
             }
             if (ddlUnitNumber.SelectedIndex == -1)
@@ -214,14 +201,9 @@ namespace LEASING.UI.APP.Forms
                 MessageBox.Show("No available unit for this project, please contact admin.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return false;
             }
-            if (string.IsNullOrEmpty(txtRental.Text))
+            if (string.IsNullOrEmpty(txtRental.Text) || txtRental.Text == "0")
             {
-                MessageBox.Show("unit rental is not declared, please contact admin.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return false;
-            }
-            if (txtRental.Text == "0")
-            {
-                MessageBox.Show("unit rental is not declared, please contact admin.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Unit rental is not declared, please contact admin.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return false;
             }
             if (!IsMoreThanSixMonths(Convert.ToDateTime(dtpStartDate.Text), Convert.ToDateTime(dtpFinishDate.Text)))
@@ -231,21 +213,16 @@ namespace LEASING.UI.APP.Forms
             }
             return true;
         }
-        private bool IsComputationValidForAdvancePayment()
+        public bool IsComputationValidForAdvancePayment()
         {
             if (ddlProject.SelectedText == "--SELECT--")
             {
                 MessageBox.Show("Please select Project name.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return false;
             }
-            if (string.IsNullOrEmpty(txtClient.Text))
+            if (string.IsNullOrEmpty(txtClient.Text) || string.IsNullOrEmpty(ClientId))
             {
                 MessageBox.Show("Please select Client", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return false;
-            }
-            if (string.IsNullOrEmpty(ClientId))
-            {
-                MessageBox.Show("please select client", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return false;
             }
             if (ddlUnitNumber.SelectedIndex == -1)
@@ -253,17 +230,11 @@ namespace LEASING.UI.APP.Forms
                 MessageBox.Show("No available unit for this project, please contact admin.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return false;
             }
-            if (string.IsNullOrEmpty(txtRental.Text))
+            if (string.IsNullOrEmpty(txtRental.Text) || txtRental.Text == "0")
             {
-                MessageBox.Show("unit rental is not declared, please contact admin.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Unit rental is not declared, please contact admin.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return false;
             }
-            if (txtRental.Text == "0")
-            {
-                MessageBox.Show("unit rental is not declared, please contact admin.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return false;
-            }
-
             if (!IsMoreThanSixMonths(Convert.ToDateTime(dtpStartDate.Text), Convert.ToDateTime(dtpFinishDate.Text)))
             {
                 MessageBox.Show("Lease period is out of range", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -293,7 +264,7 @@ namespace LEASING.UI.APP.Forms
             txtSecAndMaintenance.Text = string.Empty;
             txtTotalRental.Text = string.Empty;
             txtMonthsSecurityDeposit.Text = string.Empty;
-            txtTotal.Text = string.Empty;
+            //txtTotal.Text = string.Empty;
 
             //ClientId = string.Empty;
             txtTotalPostDatedAmount.Text = string.Empty;
@@ -802,9 +773,9 @@ namespace LEASING.UI.APP.Forms
         private void frmComputation_Load(object sender, EventArgs e)
         {
             Functions.EventCapturefrmName(this);
-            string sad = dtpFinishDate.Text;
-            string fddf = dtpFinishDate.Value.ToString("MM/dd/yyyy");
-            string asd = DateTime.Now.ToString("MM/dd/yyyy");
+            //string sad = dtpFinishDate.Text;
+            //string fddf = dtpFinishDate.Value.ToString("MM/dd/yyyy");
+            //string asd = DateTime.Now.ToString("MM/dd/yyyy");
             dtpStartDate.Text = DateTime.Now.ToString("MM/dd/yyyy");
             dtpFinishDate.Text = DateTime.Now.ToString("MM/dd/yyyy");
 
@@ -851,20 +822,24 @@ namespace LEASING.UI.APP.Forms
 
             }
         }
+
         private void ddlUnitNumber_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
         {
-            if (ddlUnitNumber.SelectedIndex >= 0)
-            {
-                btnAddDiscount.Text = "Add Discount";
-                ClearFieldsForUnit();
-                M_GetUnitAvaibleById();
-                M_GetTotalRental();
-            }
-            else
-            {
-                txtFloorType.Text = string.Empty;
-                txtRental.Text = string.Empty;
-            }
+                   
+                if (ddlUnitNumber.SelectedIndex >= 0)
+                {
+                    btnAddDiscount.Text = "Add Discount";
+                    ClearFieldsForUnit();
+                    M_GetUnitAvaibleById();
+                    M_GetTotalRental();
+                }
+            
+
+            //else
+            //{
+            //    txtFloorType.Text = string.Empty;
+            //    txtRental.Text = string.Empty;
+            //}
         }
         private void txtRental_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -1114,11 +1089,15 @@ namespace LEASING.UI.APP.Forms
             }
         }
         private void txtSecurityPaymentMonthCount_TextChanged(object sender, EventArgs e)
-        {
-            if (IsComputationValid())
+        {     
+            if (string.IsNullOrEmpty(txtRental.Text) || txtRental.Text == "0")
+            {
+                MessageBox.Show("Unit rental is not declared, please contact admin.", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
             {
                 M_GetTotalRental();
-            }
+            }                     
         }
         private void txtSecurityPaymentMonthCount_KeyPress(object sender, KeyPressEventArgs e)
         {

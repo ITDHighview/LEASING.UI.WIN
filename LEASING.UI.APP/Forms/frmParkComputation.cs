@@ -78,7 +78,9 @@ namespace LEASING.UI.APP.Forms
                         ClearFields();
                         EnableFields();
                         dgvpostdatedcheck.DataSource = null;
-
+                        ddlProject.SelectedIndex = 0;
+                        dtpStartDate.Text = DateTime.Now.ToString("MM/dd/yyyy");
+                        dtpFinishDate.Text = DateTime.Now.ToString("MM/dd/yyyy");
                         break;
                     case "READ":
                         btnUndo.Enabled = false;

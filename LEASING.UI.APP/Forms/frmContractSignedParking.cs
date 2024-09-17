@@ -14,12 +14,14 @@ namespace LEASING.UI.APP.Forms
 {
     public partial class frmContractSignedParking : Form
     {
+        private ClientContext _client;
         PaymentContext PaymentContext = new PaymentContext();
         ClientContext ClientContext = new ClientContext();
         public bool IsContractSigned { get; set; } = true;
         public string ReferenceId { get; set; } = string.Empty;
         public frmContractSignedParking()
         {
+            _client = new ClientContext();
             InitializeComponent();
         }
         private void M_GetForContractSignedParkingList()
@@ -39,6 +41,46 @@ namespace LEASING.UI.APP.Forms
             {
                 Functions.LogError("M_GetForContractSignedParkingList()", this.Text, ex.ToString(), DateTime.Now, this);
                 Functions.ErrorShow("M_GetForContractSignedParkingList()", ex.ToString());
+            }
+        }
+        private void _getContractProjectTypeReport(string refid)
+        {
+            try
+            {
+                using (DataSet dt = _client.GetCheckContractProjectType(refid))
+                {
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        if (Convert.ToString(dt.Tables[0].Rows[0]["UnitType"]) == "UNIT")
+                        {
+                            if (Convert.ToString(dt.Tables[0].Rows[0]["ProjectType"]) == "RESIDENTIAL")
+                            {
+                                frmContractSingedResidentialReport contractResidential = new frmContractSingedResidentialReport(refid);
+                                contractResidential.Show();
+                            }
+                            else if (Convert.ToString(dt.Tables[0].Rows[0]["ProjectType"]) == "COMMERCIAL")
+                            {
+                                frmContractSingedCommercialReport contractCommercial = new frmContractSingedCommercialReport(refid);
+                                contractCommercial.Show();
+                            }
+                            else
+                            {
+                                frmContractSingedWareHouseReport contractWareHouse = new frmContractSingedWareHouseReport(refid);
+                                contractWareHouse.Show();
+                            }
+                        }
+                        else
+                        {
+                            frmContractSingedParkingReport parking = new frmContractSingedParkingReport(refid);
+                            parking.Show();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Functions.LogError("_getContractProjectTypeReport()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("_getContractProjectTypeReport()", ex.ToString());
             }
         }
         private void dgvList_CellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
@@ -83,6 +125,13 @@ namespace LEASING.UI.APP.Forms
                     frmEditUnitComputation forms = new frmEditUnitComputation();
                     forms.Recid = Convert.ToInt32(dgvList.CurrentRow.Cells["RecId"].Value);
                     forms.ShowDialog();
+                }
+                else if (this.dgvList.Columns[e.ColumnIndex].Name == "ColContract")
+                {
+                    if (dgvList.Rows.Count > 0)
+                    {
+                        this._getContractProjectTypeReport(Convert.ToString(dgvList.CurrentRow.Cells["RefId"].Value));
+                    }
                 }
             }
         }

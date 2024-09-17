@@ -361,11 +361,13 @@ AS
                                           + [tblUnitReference].[Unit_SecAndMainVatAmount]
                                          )
                                          * CAST([dbo].[fnGetAdvanceMonthCount]([dbo].[tblUnitReference].[RefId]) AS DECIMAL(18, 2)) AS VARCHAR(150))      AS [VAT_AMOUNT],
-                                    CAST(CAST([tblUnitReference].[Unit_Vat] AS INT) AS VARCHAR(10)) + '% VAT'                                             AS [VATPct],
+                                    CAST(CAST(IIF(ISNULL([tblUnitReference].[Unit_IsNonVat], 0) = 1,
+                                                  0,
+                                                  [tblUnitReference].[Unit_Vat]) AS INT) AS VARCHAR(10)) + '% VAT'                                        AS [VATPct],
                                     IIF(@IsFullPayment = 0,
                                         [tblUnitReference].[AdvancePaymentAmount],
                                         [tblUnitReference].[Total])                                                                                       AS [TOTAL],
-                                    IIF([tblUnitReference].[Unit_Tax] = 0,
+                                    IIF([tblUnitReference].[Unit_TaxAmount] = 0,
                                         '',
                                         CAST([tblUnitReference].[Unit_BaseRentalTax]
                                              * CAST([dbo].[fnGetAdvanceMonthCount]([dbo].[tblUnitReference].[RefId]) AS DECIMAL(18, 2)) AS VARCHAR(150))) AS [LESSWITHHOLDING],
@@ -383,7 +385,7 @@ AS
                                     [RECEIPT].[BankAccountNumber]                                                                                         AS [BankAccountNumber],
                                     [RECEIPT].[BankAccountName]                                                                                           AS [BankAccountName],
                                     CAST(CAST(IIF(@IsFullPayment = 0,
-                                                  IIF([tblUnitReference].[Unit_Tax] > 0,
+                                                  IIF([tblUnitReference].[Unit_TaxAmount] > 0,
                                                       ([tblUnitReference].[AdvancePaymentAmount]
                                                        + CAST([tblUnitReference].[Unit_BaseRentalTax]
                                                               * [dbo].[fnGetAdvanceMonthCount]([dbo].[tblUnitReference].[RefId]) AS DECIMAL(18, 2))
@@ -507,9 +509,11 @@ AS
                                                + [tblUnitReference].[Unit_SecAndMainVatAmount]
                                               )
                                               * [dbo].[fnGetTotalSecDepositAmountCount]([dbo].[tblUnitReference].[RefId]) AS DECIMAL(18, 2)) AS VARCHAR(150))      AS [VAT],
-                                    CAST(CAST([tblUnitReference].[Unit_Vat] AS INT) AS VARCHAR(10)) + '% VAT'                                                      AS [VATPct],
+                                    CAST(CAST(IIF(ISNULL([tblUnitReference].[Unit_IsNonVat], 0) = 1,
+                                                  0,
+                                                  [tblUnitReference].[Unit_Vat]) AS INT) AS VARCHAR(10)) + '% VAT'                                                 AS [VATPct],
                                     [tblUnitReference].[SecDeposit]                                                                                                AS [TOTAL],
-                                    IIF([tblUnitReference].[Unit_Tax] = 0,
+                                    IIF([tblUnitReference].[Unit_TaxAmount] = 0,
                                         '',
                                         CAST(CAST([tblUnitReference].[Unit_TaxAmount]
                                                   * [dbo].[fnGetTotalSecDepositAmountCount]([dbo].[tblUnitReference].[RefId]) AS DECIMAL(18, 2)) AS VARCHAR(150))) AS [LESSWITHHOLDING],
@@ -526,7 +530,7 @@ AS
                                     [RECEIPT].[BankBranch]                                                                                                         AS [BankBranch],
                                     [RECEIPT].[BankAccountNumber]                                                                                                  AS [BankAccountNumber],
                                     [RECEIPT].[BankAccountName]                                                                                                    AS [BankAccountName],
-                                    CAST(CAST(IIF([tblUnitReference].[Unit_Tax] > 0,
+                                    CAST(CAST(IIF([tblUnitReference].[Unit_TaxAmount] > 0,
                                                   ([tblUnitReference].[SecDeposit]
                                                    + CAST([tblUnitReference].[Unit_BaseRentalTax]
                                                           * [dbo].[fnGetTotalSecDepositAmountCount]([dbo].[tblUnitReference].[RefId]) AS DECIMAL(18, 2))
@@ -631,60 +635,53 @@ AS
                             [RENTAL_LESS_TAX]
                         )
                                 SELECT
-                                    [CLIENT].[client_no]                                                      AS [client_no],
-                                    [CLIENT].[client_Name]                                                    AS [client_Name],
-                                    [CLIENT].[client_Address]                                                 AS [client_Address],
-                                    [RECEIPT].[PR_No]                                                         AS [PR_No],
-                                    [RECEIPT].[OR_No]                                                         AS [OR_No],
-                                    [CLIENT].[TIN_No]                                                         AS [TIN_No],
-                                    [RECEIPT].[TransactionDate]                                               AS [TransactionDate],
-                                    UPPER([dbo].[fnNumberToWordsWithDecimal]([TRANSACTION].[ReceiveAmount]))  AS [AmountInWords],
-                                    [PAYMENT].[PAYMENT_FOR]                                                   AS [PaymentFor],
-                                    [TRANSACTION].[ReceiveAmount]                                             AS [TotalAmountInDigit],
+                                    [CLIENT].[client_no]                                                           AS [client_no],
+                                    [CLIENT].[client_Name]                                                         AS [client_Name],
+                                    [CLIENT].[client_Address]                                                      AS [client_Address],
+                                    [RECEIPT].[PR_No]                                                              AS [PR_No],
+                                    [RECEIPT].[OR_No]                                                              AS [OR_No],
+                                    [CLIENT].[TIN_No]                                                              AS [TIN_No],
+                                    [RECEIPT].[TransactionDate]                                                    AS [TransactionDate],
+                                    UPPER([dbo].[fnNumberToWordsWithDecimal]([TRANSACTION].[ReceiveAmount]))       AS [AmountInWords],
+                                    [PAYMENT].[PAYMENT_FOR]                                                        AS [PaymentFor],
+                                    [TRANSACTION].[ReceiveAmount]                                                  AS [TotalAmountInDigit],
                                     [TRANSACTION].[ReceiveAmount]
                                     - [dbo].[fnGetBaseRentalTotalVatAmount](
                                                                                [dbo].[tblUnitReference].[RefId],
                                                                                [TRANSACTION].[AmountToPay],
                                                                                [TRANSACTION].[ReceiveAmount]
-                                                                           )                                  AS [RENTAL],
-                                    --CAST(CAST((([tblUnitReference].[Unit_Vat] * [TRANSACTION].[ReceiveAmount])
-                                    --           / 100
-                                    --          ) AS DECIMAL(18, 2)) AS VARCHAR(30))                           AS [VAT],
+                                                                           )                                       AS [RENTAL],
                                     CAST([dbo].[fnGetBaseRentalTotalVatAmount](
                                                                                   [dbo].[tblUnitReference].[RefId],
                                                                                   [TRANSACTION].[AmountToPay],
                                                                                   [TRANSACTION].[ReceiveAmount]
-                                                                              ) AS VARCHAR(150))              AS [VAT],
-                                    CAST(CAST([tblUnitReference].[Unit_Vat] AS INT) AS VARCHAR(10)) + '% VAT' AS [VATPct],
-                                    [TRANSACTION].[ReceiveAmount]                                             AS [TOTAL],
-                                    --IIF([tblUnitReference].[Unit_Tax] > 0,
-                                    --    CAST(CAST((([tblUnitReference].[Unit_Tax] * [TRANSACTION].[ReceiveAmount])
-                                    --               / 100
-                                    --              ) AS DECIMAL(18, 2)) AS VARCHAR(30)),
-                                    --    '0.00')                                                              AS [LESSWITHHOLDING],
-
-                                    IIF([tblUnitReference].[Unit_Tax] = 0,
+                                                                              ) AS VARCHAR(150))                   AS [VAT],
+                                    CAST(CAST(IIF(ISNULL([tblUnitReference].[Unit_IsNonVat], 0) = 1,
+                                                  0,
+                                                  [tblUnitReference].[Unit_Vat]) AS INT) AS VARCHAR(10)) + '% VAT' AS [VATPct],
+                                    [TRANSACTION].[ReceiveAmount]                                                  AS [TOTAL],
+                                    IIF([tblUnitReference].[Unit_TaxAmount] = 0,
                                         '',
                                         CAST([dbo].[fnGetBaseRentalTotalTaxAmount](
                                                                                       [dbo].[tblUnitReference].[RefId],
                                                                                       [TRANSACTION].[AmountToPay],
                                                                                       [TRANSACTION].[ReceiveAmount]
-                                                                                  ) AS VARCHAR(150)))         AS [LESSWITHHOLDING],
-                                    [TRANSACTION].[ReceiveAmount]                                             AS [TOTALAMOUNTDUE],
-                                    [RECEIPT].[BankName]                                                      AS [BANKNAME],
-                                    [RECEIPT].[PDC_CHECK_SERIAL]                                              AS [PDCCHECKSERIALNO],
-                                    [TRANSACTION].[USER]                                                      AS [USER],
-                                    GETDATE()                                                                 AS [EncodedDate],
-                                    @TranID                                                                   AS [TRANID],
-                                    @Mode                                                                     AS [Mode],
-                                    @PaymentLevel                                                             AS [PaymentLevel],
-                                    [tblUnitReference].[UnitNo]                                               AS [UnitNo],
-                                    [dbo].[fnGetProjectNameById]([tblUnitReference].[ProjectId])              AS [ProjectName],
-                                    [RECEIPT].[BankBranch]                                                    AS [BankBranch],
-                                    [RECEIPT].[BankAccountNumber]                                             AS [BankAccountNumber],
-                                    [RECEIPT].[BankAccountName]                                               AS [BankAccountName],
-                                    '0'                                                                       AS [RENTAL_LESS_VAT],
-                                    '0'                                                                       AS [RENTAL_LESS_TAX]
+                                                                                  ) AS VARCHAR(150)))              AS [LESSWITHHOLDING],
+                                    [TRANSACTION].[ReceiveAmount]                                                  AS [TOTALAMOUNTDUE],
+                                    [RECEIPT].[BankName]                                                           AS [BANKNAME],
+                                    [RECEIPT].[PDC_CHECK_SERIAL]                                                   AS [PDCCHECKSERIALNO],
+                                    [TRANSACTION].[USER]                                                           AS [USER],
+                                    GETDATE()                                                                      AS [EncodedDate],
+                                    @TranID                                                                        AS [TRANID],
+                                    @Mode                                                                          AS [Mode],
+                                    @PaymentLevel                                                                  AS [PaymentLevel],
+                                    [tblUnitReference].[UnitNo]                                                    AS [UnitNo],
+                                    [dbo].[fnGetProjectNameById]([tblUnitReference].[ProjectId])                   AS [ProjectName],
+                                    [RECEIPT].[BankBranch]                                                         AS [BankBranch],
+                                    [RECEIPT].[BankAccountNumber]                                                  AS [BankAccountNumber],
+                                    [RECEIPT].[BankAccountName]                                                    AS [BankAccountName],
+                                    '0'                                                                            AS [RENTAL_LESS_VAT],
+                                    '0'                                                                            AS [RENTAL_LESS_TAX]
                                 FROM
                                     [dbo].[tblUnitReference]
                                     CROSS APPLY
@@ -789,41 +786,52 @@ AS
                             [RENTAL_LESS_TAX]
                         )
                                 SELECT
-                                    [CLIENT].[client_no]                                                                                                 AS [client_no],
-                                    [CLIENT].[client_Name]                                                                                               AS [client_Name],
-                                    [CLIENT].[client_Address]                                                                                            AS [client_Address],
-                                    [RECEIPT].[PR_No]                                                                                                    AS [PR_No],
-                                    [RECEIPT].[OR_No]                                                                                                    AS [OR_No],
-                                    [CLIENT].[TIN_No]                                                                                                    AS [TIN_No],
-                                    [RECEIPT].[TransactionDate]                                                                                          AS [TransactionDate],
-                                    UPPER([dbo].[fnNumberToWordsWithDecimal]([TRANSACTION].[ReceiveAmount]))                                             AS [AmountInWords],
-                                    [PAYMENT].[PAYMENT_FOR]                                                                                              AS [PaymentFor],
-                                    [TRANSACTION].[ReceiveAmount]                                                                                        AS [TotalAmountInDigit],
+                                    [CLIENT].[client_no]                                                           AS [client_no],
+                                    [CLIENT].[client_Name]                                                         AS [client_Name],
+                                    [CLIENT].[client_Address]                                                      AS [client_Address],
+                                    [RECEIPT].[PR_No]                                                              AS [PR_No],
+                                    [RECEIPT].[OR_No]                                                              AS [OR_No],
+                                    [CLIENT].[TIN_No]                                                              AS [TIN_No],
+                                    [RECEIPT].[TransactionDate]                                                    AS [TransactionDate],
+                                    UPPER([dbo].[fnNumberToWordsWithDecimal]([TRANSACTION].[ReceiveAmount]))       AS [AmountInWords],
+                                    [PAYMENT].[PAYMENT_FOR]                                                        AS [PaymentFor],
+                                    [TRANSACTION].[ReceiveAmount]                                                  AS [TotalAmountInDigit],
                                     [TRANSACTION].[ReceiveAmount]
-                                    - CAST((([tblUnitReference].[Unit_Vat] * [TRANSACTION].[ReceiveAmount]) / 100) AS DECIMAL(18, 2))                    AS [RENTAL],
-                                    CAST(CAST((([tblUnitReference].[Unit_Vat] * [TRANSACTION].[ReceiveAmount]) / 100) AS DECIMAL(18, 2)) AS VARCHAR(30)) AS [VAT], --TAX WILL FOLLOW
-                                    CAST(CAST([tblUnitReference].[Unit_Vat] AS INT) AS VARCHAR(10)) + '% VAT'                                            AS [VATPct],
-                                    [TRANSACTION].[ReceiveAmount]                                                                                        AS [TOTAL],
-                                    IIF([tblUnitReference].[Unit_Tax] > 0,
+                                    - CAST(((IIF(ISNULL([tblUnitReference].[Unit_IsNonVat], 0) = 1,
+                                                 0,
+                                                 [tblUnitReference].[Unit_Vat]) * [TRANSACTION].[ReceiveAmount]
+                                            ) / 100
+                                           ) AS DECIMAL(18, 2))                                                    AS [RENTAL],
+                                    CAST(CAST(((IIF(ISNULL([tblUnitReference].[Unit_IsNonVat], 0) = 1,
+                                                    0,
+                                                    [tblUnitReference].[Unit_Vat]) * [TRANSACTION].[ReceiveAmount]
+                                               )
+                                               / 100
+                                              ) AS DECIMAL(18, 2)) AS VARCHAR(30))                                 AS [VAT], --TAX WILL FOLLOW
+                                    CAST(CAST(IIF(ISNULL([tblUnitReference].[Unit_IsNonVat], 0) = 1,
+                                                  0,
+                                                  [tblUnitReference].[Unit_Vat]) AS INT) AS VARCHAR(10)) + '% VAT' AS [VATPct],
+                                    [TRANSACTION].[ReceiveAmount]                                                  AS [TOTAL],
+                                    IIF([tblUnitReference].[Unit_TaxAmount] > 0,
                                         CAST(CAST((([tblUnitReference].[Unit_Tax] * [TRANSACTION].[ReceiveAmount])
                                                    / 100
                                                   ) AS DECIMAL(18, 2)) AS VARCHAR(30)),
-                                        '')                                                                                                              AS [LESSWITHHOLDING],
-                                    [TRANSACTION].[ReceiveAmount]                                                                                        AS [TOTALAMOUNTDUE],
-                                    [RECEIPT].[BankName]                                                                                                 AS [BANKNAME],
-                                    [RECEIPT].[PDC_CHECK_SERIAL]                                                                                         AS [PDCCHECKSERIALNO],
-                                    [TRANSACTION].[USER]                                                                                                 AS [USER],
-                                    GETDATE()                                                                                                            AS [EncodedDate],
-                                    @TranID                                                                                                              AS [TRANID],
-                                    @Mode                                                                                                                AS [Mode],
-                                    @PaymentLevel                                                                                                        AS [PaymentLevel],
-                                    [tblUnitReference].[UnitNo]                                                                                          AS [UnitNo],
-                                    [dbo].[fnGetProjectNameById]([tblUnitReference].[ProjectId])                                                         AS [ProjectName],
-                                    [RECEIPT].[BankBranch]                                                                                               AS [BankBranch],
-                                    [RECEIPT].[BankAccountNumber]                                                                                        AS [BankAccountNumber],
-                                    [RECEIPT].[BankAccountName]                                                                                          AS [BankAccountName],
-                                    '0'                                                                                                                  AS [RENTAL_LESS_VAT],
-                                    '0'                                                                                                                  AS [RENTAL_LESS_TAX]
+                                        '')                                                                        AS [LESSWITHHOLDING],
+                                    [TRANSACTION].[ReceiveAmount]                                                  AS [TOTALAMOUNTDUE],
+                                    [RECEIPT].[BankName]                                                           AS [BANKNAME],
+                                    [RECEIPT].[PDC_CHECK_SERIAL]                                                   AS [PDCCHECKSERIALNO],
+                                    [TRANSACTION].[USER]                                                           AS [USER],
+                                    GETDATE()                                                                      AS [EncodedDate],
+                                    @TranID                                                                        AS [TRANID],
+                                    @Mode                                                                          AS [Mode],
+                                    @PaymentLevel                                                                  AS [PaymentLevel],
+                                    [tblUnitReference].[UnitNo]                                                    AS [UnitNo],
+                                    [dbo].[fnGetProjectNameById]([tblUnitReference].[ProjectId])                   AS [ProjectName],
+                                    [RECEIPT].[BankBranch]                                                         AS [BankBranch],
+                                    [RECEIPT].[BankAccountNumber]                                                  AS [BankAccountNumber],
+                                    [RECEIPT].[BankAccountName]                                                    AS [BankAccountName],
+                                    '0'                                                                            AS [RENTAL_LESS_VAT],
+                                    '0'                                                                            AS [RENTAL_LESS_TAX]
                                 FROM
                                     [dbo].[tblUnitReference]
                                     CROSS APPLY

@@ -28,34 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn2 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn3 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn4 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn5 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn6 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn9 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn10 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn11 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn12 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn13 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn14 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn12 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn13 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem5 = new Telerik.WinControls.UI.RadListDataItem();
+            Telerik.WinControls.UI.RadListDataItem radListDataItem6 = new Telerik.WinControls.UI.RadListDataItem();
             Telerik.WinControls.UI.RadListDataItem radListDataItem1 = new Telerik.WinControls.UI.RadListDataItem();
             Telerik.WinControls.UI.RadListDataItem radListDataItem2 = new Telerik.WinControls.UI.RadListDataItem();
-            Telerik.WinControls.UI.RadListDataItem radListDataItem3 = new Telerik.WinControls.UI.RadListDataItem();
-            Telerik.WinControls.UI.RadListDataItem radListDataItem4 = new Telerik.WinControls.UI.RadListDataItem();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn7 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn8 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn15 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn16 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn14 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn15 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn16 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn17 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn18 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.radGroupBox3 = new Telerik.WinControls.UI.RadGroupBox();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
             this.dgvList = new Telerik.WinControls.UI.RadGridView();
-            this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
-            this.txtage = new Telerik.WinControls.UI.RadTextBox();
             this.txtnoofvisitorperday = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel19 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel17 = new Telerik.WinControls.UI.RadLabel();
@@ -68,8 +66,6 @@
             this.radLabel11 = new Telerik.WinControls.UI.RadLabel();
             this.txttelno = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
-            this.dtpdob = new Telerik.WinControls.UI.RadDateTimePicker();
-            this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.txtpostaladdress = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
@@ -96,6 +92,10 @@
             this.txtnameofemployer = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
             this.txtTinNo = new Telerik.WinControls.UI.RadTextBox();
+            this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
+            this.txtage = new Telerik.WinControls.UI.RadTextBox();
+            this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
+            this.dtpdob = new Telerik.WinControls.UI.RadDateTimePicker();
             this.radGroupBox4 = new Telerik.WinControls.UI.RadGroupBox();
             this.dgvFileList = new Telerik.WinControls.UI.RadGridView();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
@@ -113,8 +113,6 @@
             this.radGroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvList.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtnoofvisitorperday)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel19)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel17)).BeginInit();
@@ -127,8 +125,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txttelno)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtpdob)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtpostaladdress)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
@@ -155,6 +151,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtnameofemployer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTinNo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpdob)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox4)).BeginInit();
             this.radGroupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFileList)).BeginInit();
@@ -300,71 +300,71 @@
             // 
             this.dgvList.MasterTemplate.AllowAddNewRow = false;
             this.dgvList.MasterTemplate.AllowColumnReorder = false;
-            gridViewCommandColumn1.FieldName = "ColAuthorization";
-            gridViewCommandColumn1.HeaderImage = global::LEASING.UI.APP.Properties.Resources._16x16_PinGreen;
-            gridViewCommandColumn1.HeaderText = "";
-            gridViewCommandColumn1.Image = global::LEASING.UI.APP.Properties.Resources._16x16_PinGreen;
-            gridViewCommandColumn1.Name = "ColAuthorization";
-            gridViewCommandColumn1.Width = 30;
-            gridViewCommandColumn2.FieldName = "ColContract";
-            gridViewCommandColumn2.HeaderImage = global::LEASING.UI.APP.Properties.Resources._16_MyLogsBook;
-            gridViewCommandColumn2.HeaderText = "";
-            gridViewCommandColumn2.Image = global::LEASING.UI.APP.Properties.Resources._16_MyLogsBook;
-            gridViewCommandColumn2.Name = "ColContract";
-            gridViewCommandColumn2.Width = 30;
-            gridViewCommandColumn3.FieldName = "ColLedger";
-            gridViewCommandColumn3.HeaderImage = global::LEASING.UI.APP.Properties.Resources._16_MyLogsBook;
-            gridViewCommandColumn3.HeaderText = "";
-            gridViewCommandColumn3.Image = global::LEASING.UI.APP.Properties.Resources._16_MyLogsBook;
-            gridViewCommandColumn3.IsVisible = false;
-            gridViewCommandColumn3.Name = "ColLedger";
-            gridViewCommandColumn3.Width = 30;
-            gridViewCommandColumn4.FieldName = "ColViewFile";
-            gridViewCommandColumn4.HeaderImage = global::LEASING.UI.APP.Properties.Resources.attach;
-            gridViewCommandColumn4.HeaderText = "";
-            gridViewCommandColumn4.Image = global::LEASING.UI.APP.Properties.Resources.attach;
-            gridViewCommandColumn4.Name = "ColViewFile";
-            gridViewCommandColumn4.Width = 30;
-            gridViewCommandColumn5.FieldName = "ColView";
-            gridViewCommandColumn5.HeaderImage = global::LEASING.UI.APP.Properties.Resources.magnifier;
-            gridViewCommandColumn5.HeaderText = "";
-            gridViewCommandColumn5.Image = global::LEASING.UI.APP.Properties.Resources.magnifier;
-            gridViewCommandColumn5.IsVisible = false;
-            gridViewCommandColumn5.Name = "ColView";
-            gridViewCommandColumn5.Width = 30;
-            gridViewCommandColumn6.FieldName = "ColShowReceipt";
-            gridViewCommandColumn6.HeaderImage = global::LEASING.UI.APP.Properties.Resources.print_16;
-            gridViewCommandColumn6.HeaderText = "";
-            gridViewCommandColumn6.Image = global::LEASING.UI.APP.Properties.Resources.print_16;
-            gridViewCommandColumn6.Name = "ColShowReceipt";
-            gridViewCommandColumn6.Width = 30;
-            gridViewTextBoxColumn1.FieldName = "RefId";
-            gridViewTextBoxColumn1.HeaderText = "Contract ID";
-            gridViewTextBoxColumn1.Name = "RefId";
-            gridViewTextBoxColumn1.Width = 170;
-            gridViewTextBoxColumn2.FieldName = "CLientReferenceStatus";
-            gridViewTextBoxColumn2.HeaderText = "Status";
-            gridViewTextBoxColumn2.Name = "CLientReferenceStatus";
-            gridViewTextBoxColumn2.Width = 130;
-            gridViewTextBoxColumn3.FieldName = "RecId";
-            gridViewTextBoxColumn3.HeaderText = "RecId";
-            gridViewTextBoxColumn3.IsVisible = false;
-            gridViewTextBoxColumn3.Name = "RecId";
-            gridViewTextBoxColumn4.FieldName = "ClientID";
-            gridViewTextBoxColumn4.HeaderText = "ClientID";
-            gridViewTextBoxColumn4.IsVisible = false;
-            gridViewTextBoxColumn4.Name = "ClientID";
+            gridViewCommandColumn9.FieldName = "ColAuthorization";
+            gridViewCommandColumn9.HeaderImage = global::LEASING.UI.APP.Properties.Resources._16x16_PinGreen;
+            gridViewCommandColumn9.HeaderText = "";
+            gridViewCommandColumn9.Image = global::LEASING.UI.APP.Properties.Resources._16x16_PinGreen;
+            gridViewCommandColumn9.Name = "ColAuthorization";
+            gridViewCommandColumn9.Width = 30;
+            gridViewCommandColumn10.FieldName = "ColContract";
+            gridViewCommandColumn10.HeaderImage = global::LEASING.UI.APP.Properties.Resources._16_MyLogsBook;
+            gridViewCommandColumn10.HeaderText = "";
+            gridViewCommandColumn10.Image = global::LEASING.UI.APP.Properties.Resources._16_MyLogsBook;
+            gridViewCommandColumn10.Name = "ColContract";
+            gridViewCommandColumn10.Width = 30;
+            gridViewCommandColumn11.FieldName = "ColLedger";
+            gridViewCommandColumn11.HeaderImage = global::LEASING.UI.APP.Properties.Resources._16_MyLogsBook;
+            gridViewCommandColumn11.HeaderText = "";
+            gridViewCommandColumn11.Image = global::LEASING.UI.APP.Properties.Resources._16_MyLogsBook;
+            gridViewCommandColumn11.IsVisible = false;
+            gridViewCommandColumn11.Name = "ColLedger";
+            gridViewCommandColumn11.Width = 30;
+            gridViewCommandColumn12.FieldName = "ColViewFile";
+            gridViewCommandColumn12.HeaderImage = global::LEASING.UI.APP.Properties.Resources.attach;
+            gridViewCommandColumn12.HeaderText = "";
+            gridViewCommandColumn12.Image = global::LEASING.UI.APP.Properties.Resources.attach;
+            gridViewCommandColumn12.Name = "ColViewFile";
+            gridViewCommandColumn12.Width = 30;
+            gridViewCommandColumn13.FieldName = "ColView";
+            gridViewCommandColumn13.HeaderImage = global::LEASING.UI.APP.Properties.Resources.magnifier;
+            gridViewCommandColumn13.HeaderText = "";
+            gridViewCommandColumn13.Image = global::LEASING.UI.APP.Properties.Resources.magnifier;
+            gridViewCommandColumn13.IsVisible = false;
+            gridViewCommandColumn13.Name = "ColView";
+            gridViewCommandColumn13.Width = 30;
+            gridViewCommandColumn14.FieldName = "ColShowReceipt";
+            gridViewCommandColumn14.HeaderImage = global::LEASING.UI.APP.Properties.Resources.print_16;
+            gridViewCommandColumn14.HeaderText = "";
+            gridViewCommandColumn14.Image = global::LEASING.UI.APP.Properties.Resources.print_16;
+            gridViewCommandColumn14.Name = "ColShowReceipt";
+            gridViewCommandColumn14.Width = 30;
+            gridViewTextBoxColumn10.FieldName = "RefId";
+            gridViewTextBoxColumn10.HeaderText = "Contract ID";
+            gridViewTextBoxColumn10.Name = "RefId";
+            gridViewTextBoxColumn10.Width = 170;
+            gridViewTextBoxColumn11.FieldName = "CLientReferenceStatus";
+            gridViewTextBoxColumn11.HeaderText = "Status";
+            gridViewTextBoxColumn11.Name = "CLientReferenceStatus";
+            gridViewTextBoxColumn11.Width = 130;
+            gridViewTextBoxColumn12.FieldName = "RecId";
+            gridViewTextBoxColumn12.HeaderText = "RecId";
+            gridViewTextBoxColumn12.IsVisible = false;
+            gridViewTextBoxColumn12.Name = "RecId";
+            gridViewTextBoxColumn13.FieldName = "ClientID";
+            gridViewTextBoxColumn13.HeaderText = "ClientID";
+            gridViewTextBoxColumn13.IsVisible = false;
+            gridViewTextBoxColumn13.Name = "ClientID";
             this.dgvList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewCommandColumn1,
-            gridViewCommandColumn2,
-            gridViewCommandColumn3,
-            gridViewCommandColumn4,
-            gridViewCommandColumn5,
-            gridViewCommandColumn6,
-            gridViewTextBoxColumn1,
-            gridViewTextBoxColumn2,
-            gridViewTextBoxColumn3,
-            gridViewTextBoxColumn4});
+            gridViewCommandColumn9,
+            gridViewCommandColumn10,
+            gridViewCommandColumn11,
+            gridViewCommandColumn12,
+            gridViewCommandColumn13,
+            gridViewCommandColumn14,
+            gridViewTextBoxColumn10,
+            gridViewTextBoxColumn11,
+            gridViewTextBoxColumn12,
+            gridViewTextBoxColumn13});
             this.dgvList.MasterTemplate.EnableFiltering = true;
             this.dgvList.MasterTemplate.ShowRowHeaderColumn = false;
             this.dgvList.Name = "dgvList";
@@ -377,26 +377,6 @@
             this.dgvList.Text = "radGridView1";
             this.dgvList.ThemeName = "Office2007Silver";
             this.dgvList.CellClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.dgvList_CellClick);
-            // 
-            // radLabel2
-            // 
-            this.radLabel2.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.radLabel2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel2.Location = new System.Drawing.Point(621, 78);
-            this.radLabel2.Name = "radLabel2";
-            this.radLabel2.Size = new System.Drawing.Size(36, 19);
-            this.radLabel2.TabIndex = 0;
-            this.radLabel2.Text = "Age :";
-            // 
-            // txtage
-            // 
-            this.txtage.Location = new System.Drawing.Point(663, 78);
-            this.txtage.MaxLength = 2;
-            this.txtage.Name = "txtage";
-            this.txtage.NullText = "0";
-            this.txtage.Size = new System.Drawing.Size(125, 20);
-            this.txtage.TabIndex = 1;
-            this.txtage.ThemeName = "Office2007Silver";
             // 
             // txtnoofvisitorperday
             // 
@@ -513,28 +493,6 @@
             this.radLabel9.TabIndex = 0;
             this.radLabel9.Text = "Tel. No. :";
             // 
-            // dtpdob
-            // 
-            this.dtpdob.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpdob.Location = new System.Drawing.Point(663, 53);
-            this.dtpdob.Name = "dtpdob";
-            this.dtpdob.Size = new System.Drawing.Size(125, 20);
-            this.dtpdob.TabIndex = 2;
-            this.dtpdob.TabStop = false;
-            this.dtpdob.Text = "7/5/2023";
-            this.dtpdob.ThemeName = "Office2007Silver";
-            this.dtpdob.Value = new System.DateTime(2023, 7, 5, 21, 32, 28, 354);
-            // 
-            // radLabel4
-            // 
-            this.radLabel4.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.radLabel4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel4.Location = new System.Drawing.Point(569, 53);
-            this.radLabel4.Name = "radLabel4";
-            this.radLabel4.Size = new System.Drawing.Size(88, 19);
-            this.radLabel4.TabIndex = 0;
-            this.radLabel4.Text = "Date of Birth :";
-            // 
             // radLabel3
             // 
             this.radLabel3.Anchor = System.Windows.Forms.AnchorStyles.Right;
@@ -628,10 +586,10 @@
             // 
             // ddlClientType
             // 
-            radListDataItem1.Text = "INDIVIDUAL";
-            radListDataItem2.Text = "CORPORATE";
-            this.ddlClientType.Items.Add(radListDataItem1);
-            this.ddlClientType.Items.Add(radListDataItem2);
+            radListDataItem5.Text = "INDIVIDUAL";
+            radListDataItem6.Text = "CORPORATE";
+            this.ddlClientType.Items.Add(radListDataItem5);
+            this.ddlClientType.Items.Add(radListDataItem6);
             this.ddlClientType.Location = new System.Drawing.Point(177, 53);
             this.ddlClientType.Name = "ddlClientType";
             this.ddlClientType.NullText = "Select here...";
@@ -670,10 +628,10 @@
             // 
             // ddlgender
             // 
-            radListDataItem3.Text = "MALE";
-            radListDataItem4.Text = "FEMALE";
-            this.ddlgender.Items.Add(radListDataItem3);
-            this.ddlgender.Items.Add(radListDataItem4);
+            radListDataItem1.Text = "MALE";
+            radListDataItem2.Text = "FEMALE";
+            this.ddlgender.Items.Add(radListDataItem1);
+            this.ddlgender.Items.Add(radListDataItem2);
             this.ddlgender.Location = new System.Drawing.Point(663, 28);
             this.ddlgender.Name = "ddlgender";
             this.ddlgender.NullText = "Select Here...";
@@ -796,6 +754,48 @@
             this.txtTinNo.TabIndex = 1;
             this.txtTinNo.ThemeName = "Office2007Silver";
             // 
+            // radLabel2
+            // 
+            this.radLabel2.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.radLabel2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel2.Location = new System.Drawing.Point(621, 78);
+            this.radLabel2.Name = "radLabel2";
+            this.radLabel2.Size = new System.Drawing.Size(36, 19);
+            this.radLabel2.TabIndex = 0;
+            this.radLabel2.Text = "Age :";
+            // 
+            // txtage
+            // 
+            this.txtage.Location = new System.Drawing.Point(663, 78);
+            this.txtage.MaxLength = 2;
+            this.txtage.Name = "txtage";
+            this.txtage.NullText = "0";
+            this.txtage.Size = new System.Drawing.Size(125, 19);
+            this.txtage.TabIndex = 1;
+            this.txtage.ThemeName = "Office2007Silver";
+            // 
+            // radLabel4
+            // 
+            this.radLabel4.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.radLabel4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel4.Location = new System.Drawing.Point(569, 53);
+            this.radLabel4.Name = "radLabel4";
+            this.radLabel4.Size = new System.Drawing.Size(88, 19);
+            this.radLabel4.TabIndex = 0;
+            this.radLabel4.Text = "Date of Birth :";
+            // 
+            // dtpdob
+            // 
+            this.dtpdob.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpdob.Location = new System.Drawing.Point(663, 53);
+            this.dtpdob.Name = "dtpdob";
+            this.dtpdob.Size = new System.Drawing.Size(125, 19);
+            this.dtpdob.TabIndex = 2;
+            this.dtpdob.TabStop = false;
+            this.dtpdob.Text = "7/5/2023";
+            this.dtpdob.ThemeName = "Office2007Silver";
+            this.dtpdob.Value = new System.DateTime(2023, 7, 5, 21, 32, 28, 354);
+            // 
             // radGroupBox4
             // 
             this.radGroupBox4.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
@@ -824,53 +824,53 @@
             // 
             this.dgvFileList.MasterTemplate.AllowAddNewRow = false;
             this.dgvFileList.MasterTemplate.AllowColumnReorder = false;
-            gridViewCommandColumn7.FieldName = "ColView";
-            gridViewCommandColumn7.HeaderImage = global::LEASING.UI.APP.Properties.Resources.magnifier;
-            gridViewCommandColumn7.HeaderText = "";
-            gridViewCommandColumn7.Image = global::LEASING.UI.APP.Properties.Resources.magnifier;
-            gridViewCommandColumn7.IsPinned = true;
-            gridViewCommandColumn7.Name = "ColView";
-            gridViewCommandColumn7.PinPosition = Telerik.WinControls.UI.PinnedColumnPosition.Left;
-            gridViewCommandColumn7.Width = 30;
-            gridViewCommandColumn8.FieldName = "ColDelete";
-            gridViewCommandColumn8.HeaderImage = global::LEASING.UI.APP.Properties.Resources._16_DeleteRed;
-            gridViewCommandColumn8.HeaderText = "";
-            gridViewCommandColumn8.Image = global::LEASING.UI.APP.Properties.Resources._16_DeleteRed;
-            gridViewCommandColumn8.IsPinned = true;
-            gridViewCommandColumn8.IsVisible = false;
-            gridViewCommandColumn8.Name = "ColDelete";
-            gridViewCommandColumn8.PinPosition = Telerik.WinControls.UI.PinnedColumnPosition.Left;
-            gridViewCommandColumn8.Width = 30;
-            gridViewTextBoxColumn5.FieldName = "Id";
-            gridViewTextBoxColumn5.HeaderText = "File ID";
-            gridViewTextBoxColumn5.IsPinned = true;
-            gridViewTextBoxColumn5.Name = "Id";
-            gridViewTextBoxColumn5.PinPosition = Telerik.WinControls.UI.PinnedColumnPosition.Left;
-            gridViewTextBoxColumn6.FieldName = "Files";
-            gridViewTextBoxColumn6.HeaderText = "File Name";
-            gridViewTextBoxColumn6.Name = "Files";
-            gridViewTextBoxColumn6.Width = 200;
-            gridViewTextBoxColumn7.FieldName = "FileNames";
-            gridViewTextBoxColumn7.HeaderText = "Description";
-            gridViewTextBoxColumn7.Name = "FileNames";
-            gridViewTextBoxColumn7.Width = 300;
-            gridViewTextBoxColumn8.FieldName = "FilePath";
-            gridViewTextBoxColumn8.HeaderText = "File Path";
-            gridViewTextBoxColumn8.IsVisible = false;
-            gridViewTextBoxColumn8.Name = "FilePath";
-            gridViewTextBoxColumn8.Width = 300;
-            gridViewTextBoxColumn9.FieldName = "Notes";
-            gridViewTextBoxColumn9.HeaderText = "Notes";
-            gridViewTextBoxColumn9.Name = "Notes";
-            gridViewTextBoxColumn9.Width = 450;
+            gridViewCommandColumn15.FieldName = "ColView";
+            gridViewCommandColumn15.HeaderImage = global::LEASING.UI.APP.Properties.Resources.magnifier;
+            gridViewCommandColumn15.HeaderText = "";
+            gridViewCommandColumn15.Image = global::LEASING.UI.APP.Properties.Resources.magnifier;
+            gridViewCommandColumn15.IsPinned = true;
+            gridViewCommandColumn15.Name = "ColView";
+            gridViewCommandColumn15.PinPosition = Telerik.WinControls.UI.PinnedColumnPosition.Left;
+            gridViewCommandColumn15.Width = 30;
+            gridViewCommandColumn16.FieldName = "ColDelete";
+            gridViewCommandColumn16.HeaderImage = global::LEASING.UI.APP.Properties.Resources._16_DeleteRed;
+            gridViewCommandColumn16.HeaderText = "";
+            gridViewCommandColumn16.Image = global::LEASING.UI.APP.Properties.Resources._16_DeleteRed;
+            gridViewCommandColumn16.IsPinned = true;
+            gridViewCommandColumn16.IsVisible = false;
+            gridViewCommandColumn16.Name = "ColDelete";
+            gridViewCommandColumn16.PinPosition = Telerik.WinControls.UI.PinnedColumnPosition.Left;
+            gridViewCommandColumn16.Width = 30;
+            gridViewTextBoxColumn14.FieldName = "Id";
+            gridViewTextBoxColumn14.HeaderText = "File ID";
+            gridViewTextBoxColumn14.IsPinned = true;
+            gridViewTextBoxColumn14.Name = "Id";
+            gridViewTextBoxColumn14.PinPosition = Telerik.WinControls.UI.PinnedColumnPosition.Left;
+            gridViewTextBoxColumn15.FieldName = "Files";
+            gridViewTextBoxColumn15.HeaderText = "File Name";
+            gridViewTextBoxColumn15.Name = "Files";
+            gridViewTextBoxColumn15.Width = 200;
+            gridViewTextBoxColumn16.FieldName = "FileNames";
+            gridViewTextBoxColumn16.HeaderText = "Description";
+            gridViewTextBoxColumn16.Name = "FileNames";
+            gridViewTextBoxColumn16.Width = 300;
+            gridViewTextBoxColumn17.FieldName = "FilePath";
+            gridViewTextBoxColumn17.HeaderText = "File Path";
+            gridViewTextBoxColumn17.IsVisible = false;
+            gridViewTextBoxColumn17.Name = "FilePath";
+            gridViewTextBoxColumn17.Width = 300;
+            gridViewTextBoxColumn18.FieldName = "Notes";
+            gridViewTextBoxColumn18.HeaderText = "Notes";
+            gridViewTextBoxColumn18.Name = "Notes";
+            gridViewTextBoxColumn18.Width = 450;
             this.dgvFileList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewCommandColumn7,
-            gridViewCommandColumn8,
-            gridViewTextBoxColumn5,
-            gridViewTextBoxColumn6,
-            gridViewTextBoxColumn7,
-            gridViewTextBoxColumn8,
-            gridViewTextBoxColumn9});
+            gridViewCommandColumn15,
+            gridViewCommandColumn16,
+            gridViewTextBoxColumn14,
+            gridViewTextBoxColumn15,
+            gridViewTextBoxColumn16,
+            gridViewTextBoxColumn17,
+            gridViewTextBoxColumn18});
             this.dgvFileList.MasterTemplate.EnableFiltering = true;
             this.dgvFileList.Name = "dgvFileList";
             this.dgvFileList.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
@@ -966,8 +966,6 @@
             this.radGroupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvList.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtnoofvisitorperday)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel19)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel17)).EndInit();
@@ -980,8 +978,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txttelno)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtpdob)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtpostaladdress)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
@@ -1008,6 +1004,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtnameofemployer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTinNo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpdob)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox4)).EndInit();
             this.radGroupBox4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvFileList.MasterTemplate)).EndInit();

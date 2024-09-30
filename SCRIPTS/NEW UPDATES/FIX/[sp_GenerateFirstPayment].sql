@@ -43,11 +43,13 @@ AS
         --DECLARE @ApplicableMonth1 DATE = NULL;
         --DECLARE @ApplicableMonth2 DATE = NULL;
         DECLARE @IsFullPayment BIT = 0;
-        DECLARE @ActualAmount DECIMAL(18, 2) = NULL
+        DECLARE @ActualAmount DECIMAL(18, 2) = 0
+        DECLARE @WaterAndElectricityDeposit DECIMAL(18, 2) = 0
         -- Insert statements for procedure here
 
         SELECT
-            @IsFullPayment = ISNULL([tblUnitReference].[IsFullPayment], 0)
+            @IsFullPayment              = ISNULL([tblUnitReference].[IsFullPayment], 0),
+            @WaterAndElectricityDeposit = ISNULL([tblUnitReference].[WaterAndElectricityDeposit], 0)
         FROM
             [dbo].[tblUnitReference]
         WHERE
@@ -173,14 +175,18 @@ AS
                                 [BankBranch],
                                 [RefId],
                                 [ReceiptDate],
-                                [PaymentRemarks]
+                                [PaymentRemarks],
+                                [Remarks]
                             )
                         VALUES
                             (
                                 @TranID, @ReceiveAmount, 'PARTIAL - FIRST PAYMENT', @EncodedBy, GETDATE(),
                                 @ComputerName, 1, @ModeType, @CompanyORNo, @CompanyPRNo, @BankAccountName,
                                 @BankAccountNumber, @BankName, @SerialNo, @REF, @BankBranch, @RefId, @ReceiptDate,
-                                @PaymentRemarks
+                                @PaymentRemarks,
+                                IIF(@WaterAndElectricityDeposit > 0,
+                                    'SECURITY DEPOSIT RENT, WATER & ELECTRIC',
+                                    'SECURITY DEPOSIT RENT')
                             );
 
 
@@ -282,7 +288,9 @@ AS
                                                 @SecAmountADV            AS [Amount],
                                                 CONVERT(DATE, GETDATE()) AS [ForMonth],
                                                 'SECURITY DEPOSIT'       AS [Remarks],
-                                                NULL,
+                                                IIF(@WaterAndElectricityDeposit > 0,
+                                                    'SECURITY DEPOSIT RENT, WATER & ELECTRIC',
+                                                    'SECURITY DEPOSIT RENT'),
                                                 @EncodedBy,
                                                 GETDATE(),
                                                 @ComputerName,
@@ -352,13 +360,17 @@ AS
                                         [BankBranch],
                                         [RefId],
                                         [ReceiptDate],
-                                        [PaymentRemarks]
+                                        [PaymentRemarks],
+                                        [Remarks]
                                     )
                                 VALUES
                                     (
                                         @TranID, @PaidAmount, 'FIRST PAYMENT', @EncodedBy, GETDATE(), @ComputerName, 1,
                                         @ModeType, @CompanyORNo, @CompanyPRNo, @BankAccountName, @BankAccountNumber,
-                                        @BankName, @SerialNo, @REF, @BankBranch, @RefId, @ReceiptDate, @PaymentRemarks
+                                        @BankName, @SerialNo, @REF, @BankBranch, @RefId, @ReceiptDate, @PaymentRemarks,
+                                        IIF(@WaterAndElectricityDeposit > 0,
+                                            'SECURITY DEPOSIT RENT, WATER & ELECTRIC',
+                                            'SECURITY DEPOSIT RENT')
                                     );
                                 --SELECT
                                 --    @TranID,
@@ -509,13 +521,17 @@ AS
                             [BankBranch],
                             [RefId],
                             [ReceiptDate],
-                            [PaymentRemarks]
+                            [PaymentRemarks],
+                            [Remarks]
                         )
                     VALUES
                         (
                             @TranID, @PaidAmount, 'FULL PAYMENT', @EncodedBy, GETDATE(), @ComputerName, 1, @ModeType,
                             @CompanyORNo, @CompanyPRNo, @BankAccountName, @BankAccountNumber, @BankName, @SerialNo,
-                            @REF, @BankBranch, @RefId, @ReceiptDate, @PaymentRemarks
+                            @REF, @BankBranch, @RefId, @ReceiptDate, @PaymentRemarks,
+                            IIF(@WaterAndElectricityDeposit > 0,
+                                'SECURITY DEPOSIT RENT, WATER & ELECTRIC',
+                                'SECURITY DEPOSIT RENT')
                         );
 
                     SET @RcptRecId = @@IDENTITY;

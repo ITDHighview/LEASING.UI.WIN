@@ -178,6 +178,12 @@ VALUES
     ),
     (
         56, 1, 11, 'radMenuItemSpecialControlPermission', 'Special Control Permission', 0, 0, 0
+    ),
+    (
+        57, 1, 10, 'radMenuItemOtherPaymentType', 'Other Payment Type', 0, 0, 0
+    ),
+	 (
+        58, 1, 8, 'radMenuItemOtherPayment', 'Other Payment ', 0, 0, 0
     )
 SET IDENTITY_INSERT [dbo].[tblFormControlsMaster] OFF;
 

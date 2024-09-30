@@ -72,6 +72,7 @@
             this.radMenuItemWareHouseSettings2 = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItemAnnouncement = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItemFloorTypes = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItemOtherPaymentType = new Telerik.WinControls.UI.RadMenuItem();
             this.radPanel10 = new Telerik.WinControls.UI.RadPanel();
             this.radMenu9 = new Telerik.WinControls.UI.RadMenu();
             this.radMenuItemPurchaseItem = new Telerik.WinControls.UI.RadMenuItem();
@@ -99,6 +100,7 @@
             this.radMenuItemTransactions = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItemLedger = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuItemReciept = new Telerik.WinControls.UI.RadMenuItem();
+            this.radMenuItemOtherPayment = new Telerik.WinControls.UI.RadMenuItem();
             this.radPanel4 = new Telerik.WinControls.UI.RadPanel();
             this.radMenu4 = new Telerik.WinControls.UI.RadMenu();
             this.radMenuItemReports = new Telerik.WinControls.UI.RadMenuItem();
@@ -392,7 +394,8 @@
             this.radMenuItemBankName,
             this.radMenuItemRates2,
             this.radMenuItemAnnouncement,
-            this.radMenuItemFloorTypes});
+            this.radMenuItemFloorTypes,
+            this.radMenuItemOtherPaymentType});
             this.radMenuItemAdministrative.Name = "radMenuItemAdministrative";
             this.radMenuItemAdministrative.Text = "ADMINISTRATIVE";
             this.radMenuItemAdministrative.Click += new System.EventHandler(this.radMenuItemAdministrative_Click);
@@ -504,6 +507,15 @@
             this.radMenuItemFloorTypes.Name = "radMenuItemFloorTypes";
             this.radMenuItemFloorTypes.Text = "Floor Type";
             this.radMenuItemFloorTypes.Click += new System.EventHandler(this.radMenuItemFloorTypes_Click);
+            // 
+            // radMenuItemOtherPaymentType
+            // 
+            this.radMenuItemOtherPaymentType.AccessibleDescription = "radMenuItemOtherPaymentType";
+            this.radMenuItemOtherPaymentType.AccessibleName = "radMenuItemOtherPaymentType";
+            this.radMenuItemOtherPaymentType.Image = global::LEASING.UI.APP.Properties.Resources.gear_16;
+            this.radMenuItemOtherPaymentType.Name = "radMenuItemOtherPaymentType";
+            this.radMenuItemOtherPaymentType.Text = "Other Payment Type";
+            this.radMenuItemOtherPaymentType.Click += new System.EventHandler(this.radMenuItemOtherPaymentType_Click);
             // 
             // radPanel10
             // 
@@ -758,7 +770,8 @@
             this.radMenuItemPayments.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.radMenuItemTransactions,
             this.radMenuItemLedger,
-            this.radMenuItemReciept});
+            this.radMenuItemReciept,
+            this.radMenuItemOtherPayment});
             this.radMenuItemPayments.Name = "radMenuItemPayments";
             this.radMenuItemPayments.Text = "PAYMENTS";
             this.radMenuItemPayments.Click += new System.EventHandler(this.radMenuItem3_Click);
@@ -789,6 +802,15 @@
             this.radMenuItemReciept.Name = "radMenuItemReciept";
             this.radMenuItemReciept.Text = "Reciept";
             this.radMenuItemReciept.Click += new System.EventHandler(this.radMenuItemReciept_Click);
+            // 
+            // radMenuItemOtherPayment
+            // 
+            this.radMenuItemOtherPayment.AccessibleDescription = "radMenuItemOtherPayment";
+            this.radMenuItemOtherPayment.AccessibleName = "radMenuItemOtherPayment";
+            this.radMenuItemOtherPayment.Image = global::LEASING.UI.APP.Properties.Resources.wallet_16;
+            this.radMenuItemOtherPayment.Name = "radMenuItemOtherPayment";
+            this.radMenuItemOtherPayment.Text = "Other Payment";
+            this.radMenuItemOtherPayment.Click += new System.EventHandler(this.radMenuItemOtherPayment_Click);
             // 
             // radPanel4
             // 
@@ -1798,5 +1820,7 @@
         private Telerik.WinControls.UI.RadMenuItem radMenuItemSpecialControlPermission;
         private Telerik.WinControls.UI.RadButton btnRefreshUnitList;
         private Telerik.WinControls.UI.RadMenu radMenu1;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemOtherPaymentType;
+        private Telerik.WinControls.UI.RadMenuItem radMenuItemOtherPayment;
     }
 }

@@ -446,6 +446,8 @@ namespace LEASING.UI.APP.Forms
             TimerCountDown.Stop();
             frmTenantMoveUnit forms = new frmTenantMoveUnit();
             forms.ShowDialog();
+            this.M_GetUnitListByProjectAndStatus();
+            M_GetUnitListByProjectAndStatusCount();
             TimerCountDown.Start();
         }
         private void radMenuItemContractSignedParking_Click(object sender, EventArgs e)
@@ -464,6 +466,8 @@ namespace LEASING.UI.APP.Forms
             TimerCountDown.Stop();
             frmTenantMoveParking forms = new frmTenantMoveParking();
             forms.ShowDialog();
+            this.M_GetUnitListByProjectAndStatus();
+            M_GetUnitListByProjectAndStatusCount();
             TimerCountDown.Start();
         }
         private void radMenuItemUser_Click(object sender, EventArgs e)
@@ -763,6 +767,18 @@ namespace LEASING.UI.APP.Forms
             this.M_GetUnitListByProjectAndStatusCount();
             this.GetNotificationListDetails();
 
+        }
+
+        private void radMenuItemOtherPayment_Click(object sender, EventArgs e)
+        {
+            frmOtherPayment frmOtherPayment = new frmOtherPayment();
+            frmOtherPayment.ShowDialog();
+        }
+
+        private void radMenuItemOtherPaymentType_Click(object sender, EventArgs e)
+        {
+            frmOtherPaymentType frmOtherPaymentType = new frmOtherPaymentType();
+            frmOtherPaymentType.ShowDialog();
         }
     }
 }

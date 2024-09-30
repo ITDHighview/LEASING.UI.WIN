@@ -55,12 +55,30 @@ AS
                                         [tblUnitReference].[RecId] = @ReferenceID
                                 )                                    AS [LedgAmount],
                                 CONVERT(VARCHAR(20), GETDATE(), 107) AS [LedgMonth],
-                                'FOR SECURITY DEPOSIT'               AS [Remarks]
+                                'FOR SECURITY DEPOSIT (RENT)'        AS [Remarks]
                             FROM
                                 [dbo].[tblUnitReference] WITH (NOLOCK)
                             WHERE
                                 [tblUnitReference].[RecId] = @ReferenceID
                                 AND ISNULL([tblUnitReference].[SecDeposit], 0) > 0
+                            UNION
+                            SELECT
+                                0                                         AS [seq],
+                                (
+                                    SELECT
+                                        [tblUnitReference].[WaterAndElectricityDeposit]
+                                    FROM
+                                        [dbo].[tblUnitReference] WITH (NOLOCK)
+                                    WHERE
+                                        [tblUnitReference].[RecId] = @ReferenceID
+                                )                                         AS [LedgAmount],
+                                CONVERT(VARCHAR(20), GETDATE(), 107)      AS [LedgMonth],
+                                'FOR SECURITY DEPOSIT (WATER & ELECTRIC)' AS [Remarks]
+                            FROM
+                                [dbo].[tblUnitReference] WITH (NOLOCK)
+                            WHERE
+                                [tblUnitReference].[RecId] = @ReferenceID
+                                AND ISNULL([tblUnitReference].[WaterAndElectricityDeposit], 0) > 0
                             UNION
                             SELECT
                                 0                                                       [seq],
@@ -95,12 +113,30 @@ AS
                                         [tblUnitReference].[RecId] = @ReferenceID
                                 )                                    AS [LedgAmount],
                                 CONVERT(VARCHAR(20), GETDATE(), 107) AS [LedgMonth],
-                                'FOR SECURITY DEPOSIT'               AS [Remarks]
+                                'FOR SECURITY DEPOSIT (RENT)'        AS [Remarks]
                             FROM
                                 [dbo].[tblUnitReference] WITH (NOLOCK)
                             WHERE
                                 [tblUnitReference].[RecId] = @ReferenceID
                                 AND ISNULL([tblUnitReference].[SecDeposit], 0) > 0
+                            UNION
+                            SELECT
+                                0                                         AS [seq],
+                                (
+                                    SELECT
+                                        [tblUnitReference].[WaterAndElectricityDeposit]
+                                    FROM
+                                        [dbo].[tblUnitReference] WITH (NOLOCK)
+                                    WHERE
+                                        [tblUnitReference].[RecId] = @ReferenceID
+                                )                                         AS [LedgAmount],
+                                CONVERT(VARCHAR(20), GETDATE(), 107)      AS [LedgMonth],
+                                'FOR SECURITY DEPOSIT (WATER & ELECTRIC)' AS [Remarks]
+                            FROM
+                                [dbo].[tblUnitReference] WITH (NOLOCK)
+                            WHERE
+                                [tblUnitReference].[RecId] = @ReferenceID
+                                AND ISNULL([tblUnitReference].[WaterAndElectricityDeposit], 0) > 0
                             UNION
                             SELECT
                                 0                                                       [seq],

@@ -430,6 +430,7 @@ namespace LEASING.UI.APP.Forms
                     }
                 }
                 else if (this.dgvList.Columns[e.ColumnIndex].Name == "ColAuthorization")
+                {
                     if (dgvList.Rows.Count > 0)
                     {
                         if (!string.IsNullOrEmpty(Convert.ToString(dgvList.CurrentRow.Cells["RefId"].Value)))
@@ -438,6 +439,7 @@ namespace LEASING.UI.APP.Forms
                             MoveIn.Show();
                         }
                     }
+                }
             }
         }
         private void btnPrintContract_Click(object sender, EventArgs e)

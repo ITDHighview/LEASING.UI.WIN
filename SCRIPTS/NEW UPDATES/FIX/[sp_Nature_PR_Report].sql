@@ -217,7 +217,7 @@ AS
                                         --  + ')MONTH-SECURITY DEPOSIT'
                                         @combinedString
                                         = IIF(@WaterAndElectricityDeposit > 0,
-                                              ' SECURITY DEPOSIT RENT, WATER & ELCTRIC ',
+                                              ' SECURITY DEPOSIT RENT, WATER & ELECTRIC ',
                                               ' SECURITY DEPOSIT RENT ')
 
                                 END
@@ -504,7 +504,14 @@ AS
                                     [RECEIPT].[OR_No]                                                                                                              AS [OR_No],
                                     [CLIENT].[TIN_No]                                                                                                              AS [TIN_No],
                                     [RECEIPT].[TransactionDate]                                                                                                    AS [TransactionDate],
-                                    UPPER([dbo].[fnNumberToWordsWithDecimal]([tblUnitReference].[SecDeposit]))                                                     AS [AmountInWords],
+                                    UPPER([dbo].[fnNumberToWordsWithDecimal]((ISNULL([tblUnitReference].[SecDeposit], 0)
+                                                                              + ISNULL(
+                                                                                          [tblUnitReference].[WaterAndElectricityDeposit],
+                                                                                          0
+                                                                                      )
+                                                                             )
+                                                                            )
+                                         )                                                                                                                         AS [AmountInWords],
                                     [PAYMENT].[PAYMENT_FOR]                                                                                                        AS [PaymentFor],
                                     ISNULL([tblUnitReference].[SecDeposit], 0)
                                     + ISNULL([tblUnitReference].[WaterAndElectricityDeposit], 0)                                                                   AS [TotalAmountInDigit],

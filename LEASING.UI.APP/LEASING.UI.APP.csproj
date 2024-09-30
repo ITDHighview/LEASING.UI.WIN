@@ -410,6 +410,18 @@
     <Compile Include="Forms\frmNotification.Designer.cs">
       <DependentUpon>frmNotification.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmOtherPayment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmOtherPayment.Designer.cs">
+      <DependentUpon>frmOtherPayment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmOtherPaymentType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmOtherPaymentType.Designer.cs">
+      <DependentUpon>frmOtherPaymentType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmParkComputation.cs">
       <SubType>Form</SubType>
     </Compile>

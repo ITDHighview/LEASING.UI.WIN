@@ -192,7 +192,7 @@ namespace LEASING.UI.APP.Forms
                 }
 
                 Functions.MessageShow($"{this.UnitPaymentResultLable()} : {result}" + Environment.NewLine + "you can now proceed for contract approval and move in.");
-          
+
                 this.IsProceed = true;
                 this.btnGenerate.Enabled = false;
                 this.btnPrintReciept.Enabled = true;
@@ -462,7 +462,7 @@ namespace LEASING.UI.APP.Forms
             if (!string.IsNullOrEmpty(Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["Remarks"].Value)))
             {
                 //Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["Remarks"].Value) == "FOR ADVANCE PAYMENT" ||
-                if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["Remarks"].Value) == "FOR SECURITY DEPOSIT")
+                if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["Remarks"].Value).Contains("FOR SECURITY DEPOSIT"))
                 {
                     e.CellElement.ForeColor = Color.White;
                     //e.CellElement.Font = new Font("Tahoma", 7f, FontStyle.Bold);

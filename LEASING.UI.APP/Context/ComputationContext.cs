@@ -44,6 +44,8 @@ namespace LEASING.UI.APP.Context
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@SecDeposit", model.SecDeposit);
             _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@WaterAndElectricityDeposit", model.WaterAndElectricityDeposit);
+            _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@Total", model.Total);
             _sqlcmd.Parameters.Add(_sqlpara);   
             _sqlpara = new SqlParameter("@EncodedBy", model.EncodedBy);

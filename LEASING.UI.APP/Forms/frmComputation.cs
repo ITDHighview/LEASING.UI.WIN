@@ -264,6 +264,7 @@ namespace LEASING.UI.APP.Forms
             txtSecAndMaintenance.Text = string.Empty;
             txtTotalRental.Text = string.Empty;
             txtMonthsSecurityDeposit.Text = string.Empty;
+            txtWaterAndElectricityDepositAmount.Text = string.Empty;
             //txtTotal.Text = string.Empty;
 
             //ClientId = string.Empty;
@@ -285,6 +286,7 @@ namespace LEASING.UI.APP.Forms
             txtTotalRental.Text = string.Empty;
 
             txtMonthsSecurityDeposit.Text = string.Empty;
+            txtWaterAndElectricityDepositAmount.Text = string.Empty;
             txtTotal.Text = string.Empty;
             ClientId = string.Empty;
             txtTotalPostDatedAmount.Text = string.Empty;
@@ -315,6 +317,7 @@ namespace LEASING.UI.APP.Forms
             txtSecAndMaintenance.Text = string.Empty;
             txtTotalRental.Text = string.Empty;
             txtMonthsSecurityDeposit.Text = string.Empty;
+            txtWaterAndElectricityDepositAmount.Text = string.Empty;
             txtTotal.Text = string.Empty;
 
             //ClientId = string.Empty;
@@ -337,6 +340,7 @@ namespace LEASING.UI.APP.Forms
             txtTotalRental.Enabled = true;
 
             txtMonthsSecurityDeposit.Enabled = true;
+            txtWaterAndElectricityDepositAmount.Enabled = true;
             txtTotal.Enabled = true;
             ddlProject.Enabled = true;
             ddlUnitNumber.Enabled = true;
@@ -374,6 +378,7 @@ namespace LEASING.UI.APP.Forms
             txtTotalRental.Enabled = false;
 
             txtMonthsSecurityDeposit.Enabled = false;
+            txtWaterAndElectricityDepositAmount.Enabled = false;
             txtTotal.Enabled = false;
 
             dtpStartDate.Enabled = false;
@@ -619,7 +624,7 @@ namespace LEASING.UI.APP.Forms
             }
             else
             {
-                this.txtTotal.Text = (this.getFinalTotalAmount(this.IsDiscounted) + this.getFinalSecurityAmount()).ToString("N2");
+                this.txtTotal.Text = (this.getFinalTotalAmount(this.IsDiscounted) + this.getFinalSecurityAmount()).ToString("N2") + this.getFinalWaterAndElectricityAmount().ToString("N2");
             }
             this.AdvancePaymentAmount = this.getFinalTotalAmount(this.IsDiscounted);
         }
@@ -636,6 +641,11 @@ namespace LEASING.UI.APP.Forms
                 return amount;
             }
             return 0;
+        }
+        private decimal getFinalWaterAndElectricityAmount()
+        {
+            decimal amount = Functions.ConvertStringToDecimal(this.txtWaterAndElectricityDepositAmount.Text);
+            return amount;
         }
         private bool IsDuplicate(string Months)
         {
@@ -732,6 +742,7 @@ namespace LEASING.UI.APP.Forms
                 dto.SecAndMaintenance = Functions.ConvertStringToDecimal(txtSecAndMaintenance.Text);
                 dto.TotalRent = Functions.ConvertStringToDecimal(txtTotalRental.Text);
                 dto.SecDeposit = Functions.ConvertStringToDecimal(txtMonthsSecurityDeposit.Text);
+                dto.WaterAndElectricityDeposit = Functions.ConvertStringToDecimal(txtWaterAndElectricityDepositAmount.Text);
                 dto.Total = Functions.ConvertStringToDecimal(txtTotal.Text);
                 dto.EncodedBy = Variables.UserID;
                 dto.XML = M_getXMLData();
@@ -1350,6 +1361,40 @@ namespace LEASING.UI.APP.Forms
         private void chkIsRenewal_CheckedChanged(object sender, EventArgs e)
         {
             this.SetContractState();
+        }
+
+        private void txtWaterAndElectricityDepositAmount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
+                e.Handled = true;
+        }
+
+        private void txtWaterAndElectricityDepositAmount_Leave(object sender, EventArgs e)
+        {
+
+            string input = txtWaterAndElectricityDepositAmount.Text.Replace(",", "").Trim();
+            decimal value;
+            if (decimal.TryParse(input, NumberStyles.Any, CultureInfo.InvariantCulture, out value))
+            {
+                // Format the number with commas and two decimal places
+                txtWaterAndElectricityDepositAmount.Text = value.ToString("N2"); // Format with commas and two decimal places
+            }
+        }
+
+        private void txtWaterAndElectricityDepositAmount_MouseMove(object sender, MouseEventArgs e)
+        {
+            string input = txtWaterAndElectricityDepositAmount.Text.Replace(",", "").Trim();
+            decimal value;
+            if (decimal.TryParse(input, NumberStyles.Any, CultureInfo.InvariantCulture, out value))
+            {
+                // Format the number with commas and two decimal places
+                txtWaterAndElectricityDepositAmount.Text = value.ToString("N2"); // Format with commas and two decimal places
+            }
+        }
+
+        private void txtWaterAndElectricityDepositAmount_TextChanged(object sender, EventArgs e)
+        {
+            M_GetTotalRental();
         }
     }
 }

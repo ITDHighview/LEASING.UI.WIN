@@ -22,6 +22,8 @@ namespace LEASING.UI.APP.Models
         public decimal SecAndMaintenance { get; set; }
         public decimal TotalRent { get; set; }
         public decimal SecDeposit { get; set; }
+        public decimal WaterAndElectricityDeposit { get; set; }
+        
         public decimal Total { get; set; }
         public bool IsActive { get; set; }
         public string ClientID { get; set; }

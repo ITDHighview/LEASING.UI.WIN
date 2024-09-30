@@ -3,27 +3,28 @@ SET QUOTED_IDENTIFIER ON
 SET ANSI_NULLS ON
 GO
 CREATE OR ALTER PROCEDURE [dbo].[sp_SaveComputation]
-    @ProjectId            INT,
-    @InquiringClient      VARCHAR(500),
-    @ClientMobile         VARCHAR(50),
-    @UnitId               INT,
-    @UnitNo               VARCHAR(50),
-    @StatDate             VARCHAR(10),
-    @FinishDate           VARCHAR(10),
-    @Rental               DECIMAL(18, 2) NULL,
-    @SecAndMaintenance    DECIMAL(18, 2),
-    @TotalRent            DECIMAL(18, 2),
-    @SecDeposit           DECIMAL(18, 2),
-    @Total                DECIMAL(18, 2),
-    @EncodedBy            INT,
-    @ComputerName         VARCHAR(30),
-    @ClientID             VARCHAR(50),
-    @XML                  XML,
-    @AdvancePaymentAmount DECIMAL(18, 2),
-    @IsFullPayment        BIT = 0,
-    @IsRenewal            BIT = 0,
-    @DiscountAmount       DECIMAL(18, 2),
-    @IsDiscounted         BIT = 0
+    @ProjectId                  INT,
+    @InquiringClient            VARCHAR(500),
+    @ClientMobile               VARCHAR(50),
+    @UnitId                     INT,
+    @UnitNo                     VARCHAR(50),
+    @StatDate                   VARCHAR(10),
+    @FinishDate                 VARCHAR(10),
+    @Rental                     DECIMAL(18, 2) NULL,
+    @SecAndMaintenance          DECIMAL(18, 2),
+    @TotalRent                  DECIMAL(18, 2),
+    @SecDeposit                 DECIMAL(18, 2),
+    @WaterAndElectricityDeposit DECIMAL(18, 2),
+    @Total                      DECIMAL(18, 2),
+    @EncodedBy                  INT,
+    @ComputerName               VARCHAR(30),
+    @ClientID                   VARCHAR(50),
+    @XML                        XML,
+    @AdvancePaymentAmount       DECIMAL(18, 2),
+    @IsFullPayment              BIT = 0,
+    @IsRenewal                  BIT = 0,
+    @DiscountAmount             DECIMAL(18, 2),
+    @IsDiscounted               BIT = 0
 AS
     BEGIN
         SET NOCOUNT ON;
@@ -126,6 +127,7 @@ AS
                 [SecAndMaintenance],
                 [TotalRent],
                 [SecDeposit],
+                [WaterAndElectricityDeposit],
                 [Total],
                 [EncodedBy],
                 [EncodedDate],
@@ -160,12 +162,12 @@ AS
         VALUES
             (
                 @ProjectId, @InquiringClient, @ClientMobile, @UnitId, @UnitNo, @StatDate, @FinishDate, GETDATE(),
-                @Rental, @SecAndMaintenance, @TotalRent, @SecDeposit, @Total, @EncodedBy, GETDATE(), 1, @ComputerName,
-                @ClientID, @GenVat, @WithHoldingTax, @PenaltyPct, @AdvancePaymentAmount, @IsFullPayment,
-                @Unit_IsNonVat, @Unit_AreaSqm, @Unit_AreaRateSqm, @Unit_AreaTotalAmount, @Unit_BaseRentalVatAmount,
-                @Unit_BaseRentalWithVatAmount, @Unit_BaseRentalTax, @Unit_TotalRental, @Unit_SecAndMainAmount,
-                @Unit_SecAndMainVatAmount, @Unit_SecAndMainWithVatAmount, @Unit_Vat, @Unit_Tax, @Unit_TaxAmount,
-                @Unit_IsParking, @ProjectType, @IsRenewal, @DiscountAmount, @IsDiscounted
+                @Rental, @SecAndMaintenance, @TotalRent, @SecDeposit, @WaterAndElectricityDeposit, @Total, @EncodedBy,
+                GETDATE(), 1, @ComputerName, @ClientID, @GenVat, @WithHoldingTax, @PenaltyPct, @AdvancePaymentAmount,
+                @IsFullPayment, @Unit_IsNonVat, @Unit_AreaSqm, @Unit_AreaRateSqm, @Unit_AreaTotalAmount,
+                @Unit_BaseRentalVatAmount, @Unit_BaseRentalWithVatAmount, @Unit_BaseRentalTax, @Unit_TotalRental,
+                @Unit_SecAndMainAmount, @Unit_SecAndMainVatAmount, @Unit_SecAndMainWithVatAmount, @Unit_Vat, @Unit_Tax,
+                @Unit_TaxAmount, @Unit_IsParking, @ProjectType, @IsRenewal, @DiscountAmount, @IsDiscounted
             );
         SET @ComputationID = SCOPE_IDENTITY();
 

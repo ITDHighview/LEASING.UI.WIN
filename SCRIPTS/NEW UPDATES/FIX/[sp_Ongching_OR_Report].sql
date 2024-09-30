@@ -53,26 +53,30 @@ AS
         DECLARE @combinedString VARCHAR(MAX);
         DECLARE @IsFullPayment BIT = 0;
         DECLARE @RefId VARCHAR(100) = '';
+        DECLARE @WaterAndElectricityDeposit DECIMAL(18, 2) = 0
 
-        SELECT
-            @UnitCategory = [dbo].[fnGetUnitCategoryByUnitId]([tblUnitReference].[UnitId])
-        FROM
-            [dbo].[tblUnitReference]
-        WHERE
-            [tblUnitReference].[RefId] =
-            (
-                SELECT
-                    [tblTransaction].[RefId]
-                FROM
-                    [dbo].[tblTransaction]
-                WHERE
-                    [tblTransaction].[TranID] = @TranID
-            )
+        --SELECT
+        --    @UnitCategory = [dbo].[fnGetUnitCategoryByUnitId]([tblUnitReference].[UnitId])
+        --FROM
+        --    [dbo].[tblUnitReference]
+        --WHERE
+        --    [tblUnitReference].[RefId] =
+        --    (
+        --        SELECT
+        --            [tblTransaction].[RefId]
+        --        FROM
+        --            [dbo].[tblTransaction]
+        --        WHERE
+        --            [tblTransaction].[TranID] = @TranID
+        --    )
 
         BEGIN
+
             SELECT
-                @IsFullPayment = ISNULL([tblUnitReference].[IsFullPayment], 0),
-                @RefId         = [tblUnitReference].[RefId]
+                @IsFullPayment              = ISNULL([tblUnitReference].[IsFullPayment], 0),
+                @RefId                      = [tblUnitReference].[RefId],
+                @UnitCategory               = [dbo].[fnGetUnitCategoryByUnitId]([tblUnitReference].[UnitId]),
+                @WaterAndElectricityDeposit = [tblUnitReference].[WaterAndElectricityDeposit]
             FROM
                 [dbo].[tblUnitReference]
             WHERE
@@ -85,7 +89,7 @@ AS
                     WHERE
                            [tblTransaction].[TranID] = @TranID
                 );
-
+            ---------------------------------------------------------------------------------------------------------------------------------
             IF @IsFullPayment = 0
                 BEGIN
                     IF
@@ -211,7 +215,10 @@ AS
                                         --= '('
                                         --  + CAST(CAST([dbo].[fnGetTotalSecDepositAmountCount](@RefId) AS INT) AS VARCHAR(50))
                                         --  + ')MONTH-SECURITY DEPOSIT'
-                                        @combinedString = ' SECURITY DEPOSIT '
+                                        @combinedString
+                                        = IIF(@WaterAndElectricityDeposit > 0,
+                                              ' SECURITY DEPOSIT RENT, WATER & ELCTRIC ',
+                                              ' SECURITY DEPOSIT RENT ')
 
                                 END
                             ELSE IF @Mode = 'ADV'
@@ -499,8 +506,11 @@ AS
                                     [RECEIPT].[TransactionDate]                                                                                                    AS [TransactionDate],
                                     UPPER([dbo].[fnNumberToWordsWithDecimal]([tblUnitReference].[SecDeposit]))                                                     AS [AmountInWords],
                                     [PAYMENT].[PAYMENT_FOR]                                                                                                        AS [PaymentFor],
-                                    [tblUnitReference].[SecDeposit]                                                                                                AS [TotalAmountInDigit],
-                                    [tblUnitReference].[SecDeposit]
+                                    ISNULL([tblUnitReference].[SecDeposit], 0)
+                                    + ISNULL([tblUnitReference].[WaterAndElectricityDeposit], 0)                                                                   AS [TotalAmountInDigit],
+                                    (ISNULL([tblUnitReference].[SecDeposit], 0)
+                                     + ISNULL([tblUnitReference].[WaterAndElectricityDeposit], 0)
+                                    )
                                     - CAST(([tblUnitReference].[Unit_BaseRentalVatAmount]
                                             + [tblUnitReference].[Unit_SecAndMainVatAmount]
                                            )
@@ -512,12 +522,14 @@ AS
                                     CAST(CAST(IIF(ISNULL([tblUnitReference].[Unit_IsNonVat], 0) = 1,
                                                   0,
                                                   [tblUnitReference].[Unit_Vat]) AS INT) AS VARCHAR(10)) + '% VAT'                                                 AS [VATPct],
-                                    [tblUnitReference].[SecDeposit]                                                                                                AS [TOTAL],
+                                    ISNULL([tblUnitReference].[SecDeposit], 0)
+                                    + ISNULL([tblUnitReference].[WaterAndElectricityDeposit], 0)                                                                   AS [TOTAL],
                                     IIF([tblUnitReference].[Unit_TaxAmount] = 0,
                                         '',
                                         CAST(CAST([tblUnitReference].[Unit_TaxAmount]
                                                   * [dbo].[fnGetTotalSecDepositAmountCount]([dbo].[tblUnitReference].[RefId]) AS DECIMAL(18, 2)) AS VARCHAR(150))) AS [LESSWITHHOLDING],
-                                    [tblUnitReference].[SecDeposit]                                                                                                AS [TOTALAMOUNTDUE],
+                                    ISNULL([tblUnitReference].[SecDeposit], 0)
+                                    + ISNULL([tblUnitReference].[WaterAndElectricityDeposit], 0)                                                                   AS [TOTALAMOUNTDUE],
                                     [RECEIPT].[BankName]                                                                                                           AS [BANKNAME],
                                     [RECEIPT].[PDC_CHECK_SERIAL]                                                                                                   AS [PDCCHECKSERIALNO],
                                     [TRANSACTION].[USER]                                                                                                           AS [USER],
@@ -531,7 +543,8 @@ AS
                                     [RECEIPT].[BankAccountNumber]                                                                                                  AS [BankAccountNumber],
                                     [RECEIPT].[BankAccountName]                                                                                                    AS [BankAccountName],
                                     CAST(CAST(IIF([tblUnitReference].[Unit_TaxAmount] > 0,
-                                                  ([tblUnitReference].[SecDeposit]
+                                                  (ISNULL([tblUnitReference].[SecDeposit], 0)
+                                                   + ISNULL([tblUnitReference].[WaterAndElectricityDeposit], 0)
                                                    + CAST([tblUnitReference].[Unit_BaseRentalTax]
                                                           * [dbo].[fnGetTotalSecDepositAmountCount]([dbo].[tblUnitReference].[RefId]) AS DECIMAL(18, 2))
                                                   ),
@@ -540,7 +553,9 @@ AS
                                                  + [tblUnitReference].[Unit_SecAndMainVatAmount]
                                                 )
                                                 * [dbo].[fnGetTotalSecDepositAmountCount]([dbo].[tblUnitReference].[RefId]) AS DECIMAL(18, 2)) AS VARCHAR(150))    AS [RENTAL_LESS_VAT],
-                                    CAST(CAST([tblUnitReference].[SecDeposit] AS DECIMAL(18, 2)) AS VARCHAR(150))                                                  AS [RENTAL_LESS_TAX]
+                                    CAST(CAST((ISNULL([tblUnitReference].[SecDeposit], 0)
+                                               + ISNULL([tblUnitReference].[WaterAndElectricityDeposit], 0)
+                                              ) AS DECIMAL(18, 2)) AS VARCHAR(150))                                                                                AS [RENTAL_LESS_TAX]
                                 FROM
                                     [dbo].[tblUnitReference]
                                     CROSS APPLY

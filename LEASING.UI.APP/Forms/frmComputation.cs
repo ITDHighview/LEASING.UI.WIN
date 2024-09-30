@@ -624,7 +624,7 @@ namespace LEASING.UI.APP.Forms
             }
             else
             {
-                this.txtTotal.Text = (this.getFinalTotalAmount(this.IsDiscounted) + this.getFinalSecurityAmount()).ToString("N2") + this.getFinalWaterAndElectricityAmount().ToString("N2");
+                this.txtTotal.Text = (this.getFinalTotalAmount(this.IsDiscounted) + this.getFinalSecurityAmount() + this.getFinalWaterAndElectricityAmount()).ToString("N2");
             }
             this.AdvancePaymentAmount = this.getFinalTotalAmount(this.IsDiscounted);
         }

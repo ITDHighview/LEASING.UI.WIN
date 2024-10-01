@@ -55,28 +55,28 @@ namespace LEASING.UI.APP.Forms
             }      
             return true;
         }     
-        private void M_sp_GenerateFirstPayment()
-        {
-            var result = PaymentContext.GeneratePaymentParking(RefId,
-                Convert.ToString(dgvLedgerList.CurrentRow.Cells["LedgAmount"].Value) == string.Empty ? 0 : decimal.Parse(Convert.ToString(dgvLedgerList.CurrentRow.Cells["LedgAmount"].Value)),
-                ReceiveAmount,
-                ChangeAmount,
-                CompanyORNo,
-                CompanyPRNo,
-                BankAccountName,
-                BankAccountNumber,
-                BankName,
-                SerialNo,
-                PaymentRemarks,
-                REF,
-                ModeType,
-                Convert.ToInt32(dgvLedgerList.CurrentRow.Cells["Recid"].Value));
-            if (result.Equals("SUCCESS"))
-            {
-                MessageBox.Show("PAYMENT SUCCESS", "System Message", MessageBoxButtons.OK);
-                IsProceed = true;
-            }
-        }
+        //private void M_sp_GenerateFirstPayment()
+        //{
+        //    var result = PaymentContext.GeneratePaymentParking(RefId,
+        //        Convert.ToString(dgvLedgerList.CurrentRow.Cells["LedgAmount"].Value) == string.Empty ? 0 : decimal.Parse(Convert.ToString(dgvLedgerList.CurrentRow.Cells["LedgAmount"].Value)),
+        //        ReceiveAmount,
+        //        ChangeAmount,
+        //        CompanyORNo,
+        //        CompanyPRNo,
+        //        BankAccountName,
+        //        BankAccountNumber,
+        //        BankName,
+        //        SerialNo,
+        //        PaymentRemarks,
+        //        REF,
+        //        ModeType,
+        //        Convert.ToInt32(dgvLedgerList.CurrentRow.Cells["Recid"].Value));
+        //    if (result.Equals("SUCCESS"))
+        //    {
+        //        MessageBox.Show("PAYMENT SUCCESS", "System Message", MessageBoxButtons.OK);
+        //        IsProceed = true;
+        //    }
+        //}
         private void M_GetLedgerList()
         {
 

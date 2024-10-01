@@ -59,7 +59,8 @@ AS
         DECLARE @IsFullPayment BIT = 0;
         DECLARE @RefId VARCHAR(100) = '';
         DECLARE @WaterAndElectricityDeposit DECIMAL(18, 2) = 0
-
+        DECLARE @SecDeposit DECIMAL(18, 2) = 0
+        DECLARE @DepositState VARCHAR(500);
         --SELECT
         --    @UnitCategory = [dbo].[fnGetUnitCategoryByUnitId]([tblUnitReference].[UnitId])
         --FROM
@@ -81,7 +82,8 @@ AS
                 @IsFullPayment              = ISNULL([tblUnitReference].[IsFullPayment], 0),
                 @RefId                      = [tblUnitReference].[RefId],
                 @UnitCategory               = [dbo].[fnGetUnitCategoryByUnitId]([tblUnitReference].[UnitId]),
-                @WaterAndElectricityDeposit = [tblUnitReference].[WaterAndElectricityDeposit]
+                @WaterAndElectricityDeposit = ISNULL([tblUnitReference].[WaterAndElectricityDeposit], 0),
+                @SecDeposit                 = ISNULL([tblUnitReference].[SecDeposit], 0)
             FROM
                 [dbo].[tblUnitReference]
             WHERE
@@ -94,6 +96,21 @@ AS
                     WHERE
                            [tblTransaction].[TranID] = @TranID
                 );
+
+            IF @SecDeposit > 0
+               AND @WaterAndElectricityDeposit = 0
+                BEGIN
+                    SET @DepositState = ' SECURITY DEPOSIT RENT '
+                END
+            ELSE IF @SecDeposit = 0
+                    AND @WaterAndElectricityDeposit > 0
+                BEGIN
+                    SET @DepositState = ' SECURITY DEPOSIT WATER & ELECTRIC '
+                END
+            ELSE
+                BEGIN
+                    SET @DepositState = ' SECURITY DEPOSIT RENT, WATER & ELECTRIC '
+                END
             ---------------------------------------------------------------------------------------------------------------------------------
             IF @IsFullPayment = 0
                 BEGIN
@@ -220,10 +237,7 @@ AS
                                         --= '('
                                         --  + CAST(CAST([dbo].[fnGetTotalSecDepositAmountCount](@RefId) AS INT) AS VARCHAR(50))
                                         --  + ')MONTH-SECURITY DEPOSIT'
-                                        @combinedString
-                                        = IIF(@WaterAndElectricityDeposit > 0,
-                                              ' SECURITY DEPOSIT RENT, WATER & ELECTRIC ',
-                                              ' SECURITY DEPOSIT RENT ')
+                                        @combinedString = @DepositState
 
                                 END
                             ELSE IF @Mode = 'ADV'
@@ -351,7 +365,11 @@ AS
                                     [RECEIPT].[PR_No]                                                                                                     AS [PR_No],
                                     [RECEIPT].[OR_No]                                                                                                     AS [OR_No],
                                     [CLIENT].[TIN_No]                                                                                                     AS [TIN_No],
-                                    [RECEIPT].[TransactionDate]                                                                                           AS [TransactionDate],
+                                    IIF(
+                                        ISNULL([RECEIPT].[ModeType], '') = 'PDC'
+                                        OR ISNULL([RECEIPT].[ModeType], '') = 'DC',
+                                        [RECEIPT].[CheckDate],
+                                        [RECEIPT].[TransactionDate])                                                                                      AS [TransactionDate],
                                     UPPER([dbo].[fnNumberToWordsWithDecimal](IIF(@IsFullPayment = 0,
                                                                                  [tblUnitReference].[AdvancePaymentAmount],
                                                                                  [tblUnitReference].[Total])
@@ -449,7 +467,9 @@ AS
                                             [tblReceipt].[BankAccountName]   AS [BankAccountName],
                                             [tblReceipt].[SerialNo]          AS [PDC_CHECK_SERIAL],
                                             [tblReceipt].[TranId],
-                                            [tblReceipt].[ReceiptDate]       AS [TransactionDate]
+                                            [tblReceipt].[ReceiptDate]       AS [TransactionDate],
+                                            [tblReceipt].[CheckDate]         AS [CheckDate],
+                                            [tblReceipt].[PaymentMethod]     AS [ModeType]
                                         FROM
                                             [dbo].[tblReceipt]
                                         WHERE
@@ -508,7 +528,11 @@ AS
                                     [RECEIPT].[PR_No]                                                                                                              AS [PR_No],
                                     [RECEIPT].[OR_No]                                                                                                              AS [OR_No],
                                     [CLIENT].[TIN_No]                                                                                                              AS [TIN_No],
-                                    [RECEIPT].[TransactionDate]                                                                                                    AS [TransactionDate],
+                                    IIF(
+                                        ISNULL([RECEIPT].[ModeType], '') = 'PDC'
+                                        OR ISNULL([RECEIPT].[ModeType], '') = 'DC',
+                                        [RECEIPT].[CheckDate],
+                                        [RECEIPT].[TransactionDate])                                                                                               AS [TransactionDate],
                                     UPPER([dbo].[fnNumberToWordsWithDecimal]((ISNULL([tblUnitReference].[SecDeposit], 0)
                                                                               + ISNULL(
                                                                                           [tblUnitReference].[WaterAndElectricityDeposit],
@@ -606,7 +630,9 @@ AS
                                             [tblReceipt].[BankAccountName]   AS [BankAccountName],
                                             [tblReceipt].[SerialNo]          AS [PDC_CHECK_SERIAL],
                                             [tblReceipt].[TranId],
-                                            [tblReceipt].[ReceiptDate]       AS [TransactionDate]
+                                            [tblReceipt].[ReceiptDate]       AS [TransactionDate],
+                                            [tblReceipt].[CheckDate]         AS [CheckDate],
+                                            [tblReceipt].[PaymentMethod]     AS [ModeType]
                                         FROM
                                             [dbo].[tblReceipt]
                                         WHERE
@@ -668,7 +694,11 @@ AS
                                     [RECEIPT].[PR_No]                                                              AS [PR_No],
                                     [RECEIPT].[OR_No]                                                              AS [OR_No],
                                     [CLIENT].[TIN_No]                                                              AS [TIN_No],
-                                    [RECEIPT].[TransactionDate]                                                    AS [TransactionDate],
+                                    IIF(
+                                        ISNULL([RECEIPT].[ModeType], '') = 'PDC'
+                                        OR ISNULL([RECEIPT].[ModeType], '') = 'DC',
+                                        [RECEIPT].[CheckDate],
+                                        [RECEIPT].[TransactionDate])                                               AS [TransactionDate],
                                     UPPER([dbo].[fnNumberToWordsWithDecimal]([TRANSACTION].[ReceiveAmount]))       AS [AmountInWords],
                                     [PAYMENT].[PAYMENT_FOR]                                                        AS [PaymentFor],
                                     [TRANSACTION].[ReceiveAmount]                                                  AS [TotalAmountInDigit],
@@ -762,7 +792,9 @@ AS
                                             [tblReceipt].[BankAccountName]   AS [BankAccountName],
                                             [tblReceipt].[SerialNo]          AS [PDC_CHECK_SERIAL],
                                             [tblReceipt].[TranId],
-                                            [tblReceipt].[ReceiptDate]       AS [TransactionDate]
+                                            [tblReceipt].[ReceiptDate]       AS [TransactionDate],
+                                            [tblReceipt].[CheckDate]         AS [CheckDate],
+                                            [tblReceipt].[PaymentMethod]     AS [ModeType]
                                         FROM
                                             [dbo].[tblReceipt]
                                         WHERE
@@ -819,7 +851,11 @@ AS
                                     [RECEIPT].[PR_No]                                                              AS [PR_No],
                                     [RECEIPT].[OR_No]                                                              AS [OR_No],
                                     [CLIENT].[TIN_No]                                                              AS [TIN_No],
-                                    [RECEIPT].[TransactionDate]                                                    AS [TransactionDate],
+                                    IIF(
+                                        ISNULL([RECEIPT].[ModeType], '') = 'PDC'
+                                        OR ISNULL([RECEIPT].[ModeType], '') = 'DC',
+                                        [RECEIPT].[CheckDate],
+                                        [RECEIPT].[TransactionDate])                                               AS [TransactionDate],
                                     UPPER([dbo].[fnNumberToWordsWithDecimal]([TRANSACTION].[ReceiveAmount]))       AS [AmountInWords],
                                     [PAYMENT].[PAYMENT_FOR]                                                        AS [PaymentFor],
                                     [TRANSACTION].[ReceiveAmount]                                                  AS [TotalAmountInDigit],
@@ -907,7 +943,9 @@ AS
                                             [tblReceipt].[BankAccountName]   AS [BankAccountName],
                                             [tblReceipt].[SerialNo]          AS [PDC_CHECK_SERIAL],
                                             [tblReceipt].[TranId],
-                                            [tblReceipt].[ReceiptDate]       AS [TransactionDate]
+                                            [tblReceipt].[ReceiptDate]       AS [TransactionDate],
+                                            [tblReceipt].[CheckDate]         AS [CheckDate],
+                                            [tblReceipt].[PaymentMethod]     AS [ModeType]
                                         FROM
                                             [dbo].[tblReceipt]
                                         WHERE

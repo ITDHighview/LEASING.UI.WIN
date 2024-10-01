@@ -24,6 +24,7 @@ CREATE OR ALTER PROCEDURE [dbo].[sp_GenerateBulkPayment]
     @SerialNo          VARCHAR(30)    = NULL,
     @PaymentRemarks    VARCHAR(100)   = NULL,
     @REF               VARCHAR(100)   = NULL,
+    @CheckDate         VARCHAR(100)   = NULL,
     @ReceiptDate       VARCHAR(100)   = NULL,
     @BankBranch        VARCHAR(100)   = NULL,
     @ModeType          VARCHAR(20)    = NULL,
@@ -201,7 +202,10 @@ AS
                                     [tblMonthLedger].[ModeType] = @ModeType,
                                     [tblMonthLedger].[BankBranch] = @BankBranch,
                                     [tblMonthLedger].[BalanceAmount] = 0,
-                                    [tblMonthLedger].[TransactionID] = @TranID
+                                    [tblMonthLedger].[TransactionID] = @TranID,
+                                    [tblMonthLedger].[CheckDate] = @CheckDate,
+                                    [tblMonthLedger].[ReceiptDate] = @ReceiptDate,
+                                    [tblMonthLedger].[PaymentRemarks] = @PaymentRemarks
                                 WHERE
                                     [tblMonthLedger].[LedgMonth] = @ForMonth
                                     AND
@@ -271,7 +275,10 @@ AS
                                     [tblMonthLedger].[ModeType] = @ModeType,
                                     [tblMonthLedger].[BankBranch] = @BankBranch,
                                     [tblMonthLedger].[BalanceAmount] = ABS(@ActualAmount - @AmountToDeduct),
-                                    [tblMonthLedger].[TransactionID] = @TranID --- TRN WILL CHANGE IF ALWAYS A PAYMENT FOR BALANCE AMOUNT
+                                    [tblMonthLedger].[TransactionID] = @TranID, --- TRN WILL CHANGE IF ALWAYS A PAYMENT FOR BALANCE AMOUNT
+                                    [tblMonthLedger].[CheckDate] = @CheckDate,
+                                    [tblMonthLedger].[ReceiptDate] = @ReceiptDate,
+                                    [tblMonthLedger].[PaymentRemarks] = @PaymentRemarks
                                 WHERE
                                     [tblMonthLedger].[LedgMonth] = @ForMonth
                                     AND
@@ -366,13 +373,14 @@ AS
                 [BankBranch],
                 [RefId],
                 [ReceiptDate],
-                [PaymentRemarks]
+                [PaymentRemarks],
+                [CheckDate]
             )
         VALUES
             (
                 @TranID, @ReceiveAmount, 'FOLLOW-UP PAYMENT', @EncodedBy, GETDATE(), @ComputerName, 1, @ModeType,
                 @CompanyORNo, @CompanyPRNo, @BankAccountName, @BankAccountNumber, @BankName, @SerialNo, @REF,
-                @BankBranch, @RefId, @ReceiptDate, @PaymentRemarks
+                @BankBranch, @RefId, @ReceiptDate, @PaymentRemarks, @CheckDate
             );
 
         SET @RcptRecId = @@IDENTITY
@@ -396,12 +404,13 @@ AS
                 [ModeType],
                 [BankBranch],
                 [ReceiptDate],
-                [PaymentRemarks]
+                [PaymentRemarks],
+                [CheckDate]
             )
         VALUES
             (
                 @RcptID, @CompanyORNo, @CompanyPRNo, @REF, @BankAccountName, @BankAccountNumber, @BankName, @SerialNo,
-                @ModeType, @BankBranch, @ReceiptDate, @PaymentRemarks
+                @ModeType, @BankBranch, @ReceiptDate, @PaymentRemarks, @CheckDate
             );
 
 

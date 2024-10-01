@@ -40,6 +40,7 @@ namespace LEASING.UI.APP.Forms
         public int recid = 0;
         int DayCount = 0;
         public string RecieptDate { get; set; }
+        public string CheckDate { get; set; }
 
         public frmPaymentMode()
         {
@@ -298,6 +299,7 @@ namespace LEASING.UI.APP.Forms
             this.M_GetLedgerListOnQue();
             this.M_GetLedgerListOnQueTotalAMount();
             this.dtpRecieptDate.Text = DateTime.Now.ToString("MM/dd/yyyy");
+            this.dtpCheckDate.Text = DateTime.Now.ToString("MM/dd/yyyy");
 
             this.IsClearPDC = false;
             this.IsHold = false;
@@ -367,7 +369,7 @@ namespace LEASING.UI.APP.Forms
             //this.IsHold = chkHold.Checked;
             //this.IsClearPDC = chkClearPDC.Checked;
             this.RecieptDate = dtpRecieptDate.Text;
-
+            this.CheckDate = dtpCheckDate.Text;
         }
         private void SavePaymentInfo()
         {

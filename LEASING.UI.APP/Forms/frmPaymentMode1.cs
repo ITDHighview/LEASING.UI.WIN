@@ -39,6 +39,7 @@ namespace LEASING.UI.APP.Forms
         public string ModeType { get; set; }
 
         public string RecieptDate { get; set; }
+        public string CheckDate { get; set; }
         public bool IsOR { get; set; } = false;
       
         private string _strPaymentmMode;
@@ -343,6 +344,7 @@ namespace LEASING.UI.APP.Forms
             ddlbankName.Text = string.Empty;
             ddlbankName.SelectedIndex = -1;
             this.dtpRecieptDate.Text = DateTime.Now.ToString("MM/dd/yyyy");
+            this.dtpCheckDate.Text = DateTime.Now.ToString("MM/dd/yyyy");
         }
 
         private void ddlSelectMode_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
@@ -370,6 +372,7 @@ namespace LEASING.UI.APP.Forms
                 REF = txtReferrence.Text;
                 BankBranch = txtBankBranch.Text;
                 this.RecieptDate = dtpRecieptDate.Text;
+                this.CheckDate = dtpCheckDate.Text;
                 //this.XML = this.M_getXMLData();
                 this.Close();
             }

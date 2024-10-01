@@ -46,6 +46,7 @@ namespace LEASING.UI.APP.Forms
         public string modeType { get; set; } = string.Empty;
         private bool IsPartialPayment = false;
         public string _Company_Original_Receipt_Date_ { get; set; } = string.Empty;
+        public string _Company_Check_Date_ { get; set; } = string.Empty;
 
         #endregion
 
@@ -177,6 +178,7 @@ namespace LEASING.UI.APP.Forms
                    this.modeType,
                    this._Bank_Branch_,
                    this._Company_Original_Receipt_Date_,
+                   this._Company_Check_Date_,
                     out transactionNumber);
                 Functions.ShowLoadingBar("Processing...");
                 if (string.IsNullOrEmpty(result))
@@ -229,6 +231,7 @@ namespace LEASING.UI.APP.Forms
                    this.modeType,
                    this._Bank_Branch_,
                    this._Company_Original_Receipt_Date_,
+                   this._Company_Check_Date_,
                     out transactionNumber);
                 Functions.ShowLoadingBar("Processing...");
                 if (string.IsNullOrEmpty(result))
@@ -333,6 +336,7 @@ namespace LEASING.UI.APP.Forms
             this._Bank_Branch_ = pForm.BankBranch;
             this.modeType = pForm.ModeType;
             this._Company_Original_Receipt_Date_ = pForm.RecieptDate;
+            this._Company_Check_Date_ = pForm.CheckDate;
             //this.XML = pForm.XML;
             return true;
         }

@@ -1,3 +1,4 @@
+USE [LEASINGDB]
 SET QUOTED_IDENTIFIER ON
 SET ANSI_NULLS ON
 GO
@@ -23,7 +24,8 @@ CREATE OR ALTER PROCEDURE [dbo].[sp_GenerateFirstPaymentParking]
     @SerialNo          VARCHAR(30)    = NULL,
     @PaymentRemarks    VARCHAR(100)   = NULL,
     @REF               VARCHAR(100)   = NULL,
-    @ReceiptDate       DATETIME       = NULL,
+    @ReceiptDate       VARCHAR(100)   = NULL,
+    @CheckDate         VARCHAR(100)   = NULL,
     @BankBranch        VARCHAR(100)   = NULL,
     @ModeType          VARCHAR(20)    = NULL
 --@XML               XML            = NULL
@@ -151,7 +153,6 @@ AS
                                 [TranId],
                                 [Amount],
                                 [Description],
-                                [Remarks],
                                 [EncodedBy],
                                 [EncodedDate],
                                 [ComputerName],
@@ -166,13 +167,17 @@ AS
                                 [REF],
                                 [BankBranch],
                                 [RefId],
-                                [ReceiptDate]
+                                [ReceiptDate],
+                                [PaymentRemarks],
+                                [Remarks],
+                                [CheckDate]
                             )
                         VALUES
                             (
-                                @TranID, @ReceiveAmount, 'PARTIAL - FIRST PAYMENT', @PaymentRemarks, @EncodedBy,
-                                GETDATE(), @ComputerName, 1, @ModeType, @CompanyORNo, @CompanyPRNo, @BankAccountName,
-                                @BankAccountNumber, @BankName, @SerialNo, @REF, @BankBranch, @RefId, @ReceiptDate
+                                @TranID, @ReceiveAmount, 'PARTIAL - FIRST PAYMENT', @EncodedBy, GETDATE(),
+                                @ComputerName, 1, @ModeType, @CompanyORNo, @CompanyPRNo, @BankAccountName,
+                                @BankAccountNumber, @BankName, @SerialNo, @REF, @BankBranch, @RefId, @ReceiptDate,
+                                @PaymentRemarks, 'RENTAL', @CheckDate
                             );
 
 
@@ -196,12 +201,14 @@ AS
                                 [SERIAL_NO],
                                 [ModeType],
                                 [BankBranch],
-                                [ReceiptDate]
+                                [ReceiptDate],
+                                [PaymentRemarks],
+                                [CheckDate]
                             )
                         VALUES
                             (
                                 @RcptID, @CompanyORNo, @CompanyPRNo, @REF, @BankAccountName, @BankAccountNumber,
-                                @BankName, @SerialNo, @ModeType, @BankBranch, @ReceiptDate
+                                @BankName, @SerialNo, @ModeType, @BankBranch, @ReceiptDate, @PaymentRemarks, @CheckDate
                             );
 
                     END
@@ -418,18 +425,12 @@ AS
 
 
                 BEGIN
+
                     UPDATE
                         [dbo].[tblUnitReference]
                     SET
+                        [tblUnitReference].[IsPaid] = 1,
                         [tblUnitReference].[FirtsPaymentBalanceAmount] = 0
-                    WHERE
-                        [tblUnitReference].[RefId] = @RefId
-
-
-                    UPDATE
-                        [dbo].[tblUnitReference]
-                    SET
-                        [tblUnitReference].[IsPaid] = 1
                     WHERE
                         [tblUnitReference].[RefId] = @RefId;
 
@@ -447,7 +448,10 @@ AS
                         [tblMonthLedger].[SERIAL_NO] = @SerialNo,
                         [tblMonthLedger].[ModeType] = @ModeType,
                         [tblMonthLedger].[BankBranch] = @BankBranch,
-                        [tblMonthLedger].[TransactionID] = @TranID
+                        [tblMonthLedger].[TransactionID] = @TranID,
+                        [tblMonthLedger].[CheckDate] = @CheckDate,
+                        [tblMonthLedger].[ReceiptDate] = @ReceiptDate,
+                        [tblMonthLedger].[PaymentRemarks] = @PaymentRemarks
                     WHERE
                         [tblMonthLedger].[ReferenceID] =
                         (
@@ -466,7 +470,6 @@ AS
                             [TranId],
                             [Amount],
                             [Description],
-                            [Remarks],
                             [EncodedBy],
                             [EncodedDate],
                             [ComputerName],
@@ -481,13 +484,16 @@ AS
                             [REF],
                             [BankBranch],
                             [RefId],
-                            [ReceiptDate]
+                            [ReceiptDate],
+                            [PaymentRemarks],
+                            [Remarks],
+                            [CheckDate]
                         )
                     VALUES
                         (
-                            @TranID, @PaidAmount, 'FULL PAYMENT', @PaymentRemarks, @EncodedBy, GETDATE(),
-                            @ComputerName, 1, @ModeType, @CompanyORNo, @CompanyPRNo, @BankAccountName,
-                            @BankAccountNumber, @BankName, @SerialNo, @REF, @BankBranch, @RefId, @ReceiptDate
+                            @TranID, @PaidAmount, 'FULL PAYMENT', @EncodedBy, GETDATE(), @ComputerName, 1, @ModeType,
+                            @CompanyORNo, @CompanyPRNo, @BankAccountName, @BankAccountNumber, @BankName, @SerialNo,
+                            @REF, @BankBranch, @RefId, @ReceiptDate, @PaymentRemarks, 'RENTAL', @CheckDate
                         );
 
                     SET @RcptRecId = @@IDENTITY;
@@ -510,12 +516,14 @@ AS
                             [SERIAL_NO],
                             [ModeType],
                             [BankBranch],
-                            [ReceiptDate]
+                            [ReceiptDate],
+                            [PaymentRemarks],
+                            [CheckDate]
                         )
                     VALUES
                         (
                             @RcptID, @CompanyORNo, @CompanyPRNo, @REF, @BankAccountName, @BankAccountNumber, @BankName,
-                            @SerialNo, @ModeType, @BankBranch, @ReceiptDate
+                            @SerialNo, @ModeType, @BankBranch, @ReceiptDate, @PaymentRemarks, @CheckDate
                         );
                 END
 

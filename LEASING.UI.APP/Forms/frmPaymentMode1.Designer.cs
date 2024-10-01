@@ -55,6 +55,8 @@
             this.radLabel11 = new Telerik.WinControls.UI.RadLabel();
             this.dtpRecieptDate = new Telerik.WinControls.UI.RadDateTimePicker();
             this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
+            this.radLabel12 = new Telerik.WinControls.UI.RadLabel();
+            this.dtpCheckDate = new Telerik.WinControls.UI.RadDateTimePicker();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnOk)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).BeginInit();
@@ -82,6 +84,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpRecieptDate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpCheckDate)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -95,16 +99,16 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 365F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 269F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 419F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 215F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(441, 411);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(441, 468);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // btnOk
             // 
             this.btnOk.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOk.Location = new System.Drawing.Point(3, 368);
+            this.btnOk.Location = new System.Drawing.Point(3, 422);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(435, 40);
             this.btnOk.TabIndex = 3;
@@ -120,7 +124,7 @@
             this.radGroupBox2.HeaderText = "MODE DETAILS";
             this.radGroupBox2.Location = new System.Drawing.Point(3, 3);
             this.radGroupBox2.Name = "radGroupBox2";
-            this.radGroupBox2.Size = new System.Drawing.Size(435, 359);
+            this.radGroupBox2.Size = new System.Drawing.Size(435, 413);
             this.radGroupBox2.TabIndex = 5;
             this.radGroupBox2.Text = "MODE DETAILS";
             this.radGroupBox2.ThemeName = "Office2007Silver";
@@ -149,14 +153,16 @@
             this.tableLayoutPanel2.Controls.Add(this.txtBankAccountName, 1, 6);
             this.tableLayoutPanel2.Controls.Add(this.radLabel10, 0, 5);
             this.tableLayoutPanel2.Controls.Add(this.txtBankBranch, 1, 5);
-            this.tableLayoutPanel2.Controls.Add(this.txtRemarks, 1, 10);
-            this.tableLayoutPanel2.Controls.Add(this.radLabel8, 0, 10);
-            this.tableLayoutPanel2.Controls.Add(this.radLabel11, 0, 9);
-            this.tableLayoutPanel2.Controls.Add(this.dtpRecieptDate, 1, 9);
+            this.tableLayoutPanel2.Controls.Add(this.radLabel11, 0, 10);
+            this.tableLayoutPanel2.Controls.Add(this.dtpRecieptDate, 1, 10);
+            this.tableLayoutPanel2.Controls.Add(this.radLabel8, 0, 11);
+            this.tableLayoutPanel2.Controls.Add(this.txtRemarks, 1, 11);
+            this.tableLayoutPanel2.Controls.Add(this.radLabel12, 0, 9);
+            this.tableLayoutPanel2.Controls.Add(this.dtpCheckDate, 1, 9);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(2, 18);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 12;
+            this.tableLayoutPanel2.RowCount = 13;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
@@ -167,9 +173,10 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(431, 339);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(431, 393);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // radLabel1
@@ -368,7 +375,7 @@
             // 
             this.txtRemarks.AutoSize = false;
             this.txtRemarks.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRemarks.Location = new System.Drawing.Point(180, 303);
+            this.txtRemarks.Location = new System.Drawing.Point(180, 333);
             this.txtRemarks.Name = "txtRemarks";
             this.txtRemarks.Size = new System.Drawing.Size(241, 24);
             this.txtRemarks.TabIndex = 2;
@@ -379,7 +386,7 @@
             this.radLabel8.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.radLabel8.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radLabel8.ForeColor = System.Drawing.Color.DarkRed;
-            this.radLabel8.Location = new System.Drawing.Point(87, 303);
+            this.radLabel8.Location = new System.Drawing.Point(87, 333);
             this.radLabel8.Name = "radLabel8";
             this.radLabel8.Size = new System.Drawing.Size(87, 24);
             this.radLabel8.TabIndex = 0;
@@ -390,7 +397,7 @@
             this.radLabel11.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.radLabel11.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radLabel11.ForeColor = System.Drawing.Color.DarkRed;
-            this.radLabel11.Location = new System.Drawing.Point(57, 273);
+            this.radLabel11.Location = new System.Drawing.Point(57, 303);
             this.radLabel11.Name = "radLabel11";
             this.radLabel11.Size = new System.Drawing.Size(117, 24);
             this.radLabel11.TabIndex = 0;
@@ -401,7 +408,7 @@
             this.dtpRecieptDate.AutoSize = false;
             this.dtpRecieptDate.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpRecieptDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpRecieptDate.Location = new System.Drawing.Point(180, 273);
+            this.dtpRecieptDate.Location = new System.Drawing.Point(180, 303);
             this.dtpRecieptDate.Name = "dtpRecieptDate";
             this.dtpRecieptDate.Size = new System.Drawing.Size(164, 24);
             this.dtpRecieptDate.TabIndex = 5;
@@ -410,11 +417,36 @@
             this.dtpRecieptDate.ThemeName = "Office2007Silver";
             this.dtpRecieptDate.Value = new System.DateTime(2024, 4, 24, 13, 8, 48, 926);
             // 
+            // radLabel12
+            // 
+            this.radLabel12.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.radLabel12.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel12.ForeColor = System.Drawing.Color.DarkRed;
+            this.radLabel12.Location = new System.Drawing.Point(68, 273);
+            this.radLabel12.Name = "radLabel12";
+            this.radLabel12.Size = new System.Drawing.Size(106, 24);
+            this.radLabel12.TabIndex = 0;
+            this.radLabel12.Text = "Check Date.  :";
+            // 
+            // dtpCheckDate
+            // 
+            this.dtpCheckDate.AutoSize = false;
+            this.dtpCheckDate.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpCheckDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpCheckDate.Location = new System.Drawing.Point(180, 273);
+            this.dtpCheckDate.Name = "dtpCheckDate";
+            this.dtpCheckDate.Size = new System.Drawing.Size(164, 24);
+            this.dtpCheckDate.TabIndex = 5;
+            this.dtpCheckDate.TabStop = false;
+            this.dtpCheckDate.Text = "4/24/2024";
+            this.dtpCheckDate.ThemeName = "Office2007Silver";
+            this.dtpCheckDate.Value = new System.DateTime(2024, 4, 24, 13, 8, 48, 926);
+            // 
             // frmPaymentMode1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(441, 411);
+            this.ClientSize = new System.Drawing.Size(441, 468);
             this.Controls.Add(this.tableLayoutPanel1);
             this.DoubleBuffered = true;
             this.MaximizeBox = false;
@@ -452,6 +484,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpRecieptDate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtpCheckDate)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -485,5 +519,7 @@
         private Telerik.WinControls.UI.RadLabel radLabel11;
         private Telerik.WinControls.UI.RadDateTimePicker dtpRecieptDate;
         private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme1;
+        private Telerik.WinControls.UI.RadLabel radLabel12;
+        private Telerik.WinControls.UI.RadDateTimePicker dtpCheckDate;
     }
 }

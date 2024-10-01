@@ -95,6 +95,7 @@ namespace LEASING.UI.APP.Forms
         public bool IsHold { get; set; } = false;
         public bool IsClearPDC { get; set; } = false;
         public string RecieptDate { get; set; }
+        public string CheckDate { get; set; }
         #endregion
 
         #region Call Methods
@@ -252,6 +253,7 @@ namespace LEASING.UI.APP.Forms
                 this.M_getXMLData(),
                 this.BankBranch,
                 this.RecieptDate,
+                this.CheckDate,
                  out TranID,
                  out RecieptID
                  );
@@ -530,7 +532,7 @@ namespace LEASING.UI.APP.Forms
             this.IsHold = pForm.IsHold;
             this.IsClearPDC = pForm.IsClearPDC;
             this.RecieptDate = pForm.RecieptDate;
-
+            this.CheckDate = pForm.CheckDate;
             return true;
         }
         private void InitReciept(frmRecieptSelectionSecondPayment pForm)

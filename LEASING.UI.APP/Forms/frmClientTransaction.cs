@@ -730,6 +730,28 @@ namespace LEASING.UI.APP.Forms
             this.txtPaymentStatus.ReadOnly = true;
             this.txtTotalPay.ReadOnly = true;
         }
+        private void GetOtherPaymentHistoryBrowse()
+        {
+            try
+            {
+                dgvOtherPaymentHistory.DataSource = null;
+                using (DataSet dt = _payment.GetOtherPaymentBrowseByClientID(this._clientId))
+                {
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        dgvOtherPaymentHistory.DataSource = dt.Tables[0];
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Functions.LogError("GetOtherPaymentBrowse()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("GetOtherPaymentBrowse()", ex.ToString());
+            }
+
+
+        }
 
         #endregion
 
@@ -770,6 +792,7 @@ namespace LEASING.UI.APP.Forms
             this.getContractById();
             this.checkPaymentProgressStatus();
             this.getPaymentBrowseByContractNumber();
+            this.GetOtherPaymentHistoryBrowse();
         }
         private void btnCloseContract_Click(object sender, EventArgs e)
         {

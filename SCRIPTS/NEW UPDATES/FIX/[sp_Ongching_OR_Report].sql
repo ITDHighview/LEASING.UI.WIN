@@ -5,12 +5,12 @@ GO
 --SET QUOTED_IDENTIFIER ON|OFF
 --SET ANSI_NULLS ON|OFF
 --GO
-CREATE OR ALTER PROCEDURE [dbo].[sp_Ongching_OR_Report]
+CREATE OR ALTER   PROCEDURE [dbo].[sp_Ongching_OR_Report]
     @TranID       VARCHAR(20) = NULL,
     @Mode         VARCHAR(50) = NULL,
     @PaymentLevel VARCHAR(50) = NULL
 AS
-   BEGIN
+    BEGIN
         SET NOCOUNT ON;
 
 
@@ -360,11 +360,7 @@ AS
                                     [RECEIPT].[PR_No]                                                                                                     AS [PR_No],
                                     [RECEIPT].[OR_No]                                                                                                     AS [OR_No],
                                     [CLIENT].[TIN_No]                                                                                                     AS [TIN_No],
-                                    IIF(
-                                        ISNULL([RECEIPT].[ModeType], '') = 'PDC'
-                                        OR ISNULL([RECEIPT].[ModeType], '') = 'DC',
-                                        [RECEIPT].[CheckDate],
-                                        [RECEIPT].[TransactionDate])                                                                                      AS [TransactionDate],
+                                    [RECEIPT].[TransactionDate]                                                                                           AS [TransactionDate],
                                     UPPER([dbo].[fnNumberToWordsWithDecimal](IIF(@IsFullPayment = 0,
                                                                                  [tblUnitReference].[AdvancePaymentAmount],
                                                                                  [tblUnitReference].[Total])
@@ -523,11 +519,7 @@ AS
                                     [RECEIPT].[PR_No]                                                                                                              AS [PR_No],
                                     [RECEIPT].[OR_No]                                                                                                              AS [OR_No],
                                     [CLIENT].[TIN_No]                                                                                                              AS [TIN_No],
-                                    IIF(
-                                        ISNULL([RECEIPT].[ModeType], '') = 'PDC'
-                                        OR ISNULL([RECEIPT].[ModeType], '') = 'DC',
-                                        [RECEIPT].[CheckDate],
-                                        [RECEIPT].[TransactionDate])                                                                                               AS [TransactionDate],
+                                    [RECEIPT].[TransactionDate]                                                                                                    AS [TransactionDate],
                                     UPPER([dbo].[fnNumberToWordsWithDecimal]((ISNULL([tblUnitReference].[SecDeposit], 0)
                                                                               + ISNULL(
                                                                                           [tblUnitReference].[WaterAndElectricityDeposit],
@@ -689,11 +681,7 @@ AS
                                     [RECEIPT].[PR_No]                                                              AS [PR_No],
                                     [RECEIPT].[OR_No]                                                              AS [OR_No],
                                     [CLIENT].[TIN_No]                                                              AS [TIN_No],
-                                    IIF(
-                                        ISNULL([RECEIPT].[ModeType], '') = 'PDC'
-                                        OR ISNULL([RECEIPT].[ModeType], '') = 'DC',
-                                        [RECEIPT].[CheckDate],
-                                        [RECEIPT].[TransactionDate])                                               AS [TransactionDate],
+                                    [RECEIPT].[TransactionDate]                                                    AS [TransactionDate],
                                     UPPER([dbo].[fnNumberToWordsWithDecimal]([TRANSACTION].[ReceiveAmount]))       AS [AmountInWords],
                                     [PAYMENT].[PAYMENT_FOR]                                                        AS [PaymentFor],
                                     [TRANSACTION].[ReceiveAmount]                                                  AS [TotalAmountInDigit],
@@ -846,11 +834,7 @@ AS
                                     [RECEIPT].[PR_No]                                                              AS [PR_No],
                                     [RECEIPT].[OR_No]                                                              AS [OR_No],
                                     [CLIENT].[TIN_No]                                                              AS [TIN_No],
-                                    IIF(
-                                        ISNULL([RECEIPT].[ModeType], '') = 'PDC'
-                                        OR ISNULL([RECEIPT].[ModeType], '') = 'DC',
-                                        [RECEIPT].[CheckDate],
-                                        [RECEIPT].[TransactionDate])                                               AS [TransactionDate],
+                                    [RECEIPT].[TransactionDate]                                                    AS [TransactionDate],
                                     UPPER([dbo].[fnNumberToWordsWithDecimal]([TRANSACTION].[ReceiveAmount]))       AS [AmountInWords],
                                     [PAYMENT].[PAYMENT_FOR]                                                        AS [PaymentFor],
                                     [TRANSACTION].[ReceiveAmount]                                                  AS [TotalAmountInDigit],

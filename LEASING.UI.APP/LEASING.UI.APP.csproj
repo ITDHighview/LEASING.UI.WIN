@@ -697,6 +697,8 @@
     <Compile Include="Models\CompanyModel.cs" />
     <Compile Include="Models\ComputationModel.cs" />
     <Compile Include="Models\LocationModel.cs" />
+    <Compile Include="Models\OtherPaymentTypeModel.cs" />
+    <Compile Include="Models\PaymentModel.cs" />
     <Compile Include="Models\ProjectModel.cs" />
     <Compile Include="Models\PurchaseItemModel.cs" />
     <Compile Include="Models\Reports.cs" />
@@ -831,6 +833,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmNotification.resx">
       <DependentUpon>frmNotification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmOtherPayment.resx">
+      <DependentUpon>frmOtherPayment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmOtherPaymentType.resx">
+      <DependentUpon>frmOtherPaymentType.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmParkComputation.resx">
       <DependentUpon>frmParkComputation.cs</DependentUpon>

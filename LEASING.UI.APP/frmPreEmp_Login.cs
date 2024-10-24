@@ -18,7 +18,7 @@ namespace LEASING.UI.APP.Forms
 {
     public partial class frmPreEmp_Login : Form
     {
-        private frmMainDashboard _frmMainDashboard;
+        private MainDashboard _frmMainDashboard;
         private Form _MDIMain;
         private int iLoginCount = 1;
         private int LoginUserID = 0;
@@ -230,7 +230,7 @@ namespace LEASING.UI.APP.Forms
                                 _frmMainDashboard = null;
                             }
 
-                            _frmMainDashboard = new frmMainDashboard();
+                            _frmMainDashboard = new MainDashboard();
                             Functions.ShowLoadingBar("Loading...");
                             _frmMainDashboard.Show();
 
@@ -269,7 +269,7 @@ namespace LEASING.UI.APP.Forms
                     _frmMainDashboard = null;
                 }
 
-                _frmMainDashboard = new frmMainDashboard();
+                _frmMainDashboard = new MainDashboard();
                 _frmMainDashboard.Show();
 
 

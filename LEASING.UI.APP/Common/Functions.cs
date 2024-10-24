@@ -23,7 +23,7 @@ namespace LEASING.UI.APP.Common
         public static void ShowLoadingBar(string sLoadingTitle)
         {
 
-            frmLoadingBar losding = new frmLoadingBar();
+            LoadingBar losding = new LoadingBar();
             losding.LoadingTitle = sLoadingTitle;
             losding.ShowDialog();
         }

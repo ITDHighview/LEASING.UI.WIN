@@ -32,5 +32,26 @@ namespace LEASING.UI.APP.Models
         public decimal OtherPaymentTaxPCT { get; set; }
         public decimal OtherPaymentTaxAmount { get; set; }
         public bool OtherPaymentTaxIsApplied { get; set; }
+        public int UnitId { get; set; }
+        public string TransID { get; set; }
+
+        public decimal PaidAmount { get; set; }
+        public decimal ReceiveAmount { get; set; }
+        public decimal ChangeAmount { get; set; }
+        public decimal SecAmount { get; set; }
+        public string CompanyORNo { get; set; }
+        public string CompanyPRNo { get; set; }
+        public string BankAccountName { get; set; }
+        public string BankAccountNumber { get; set; }
+        public string BankName { get; set; }
+        public string SerialNo { get; set; }
+        public string PaymentRemarks { get; set; }
+        public string REF { get; set; }
+        public string ModeType { get; set; }
+        public string BankBranch { get; set; }
+        public string ReceiptDate { get; set; }
+        public string CheckDate { get; set; }
+
+
     }
 }

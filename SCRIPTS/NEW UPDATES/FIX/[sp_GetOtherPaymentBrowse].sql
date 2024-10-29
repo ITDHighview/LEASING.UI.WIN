@@ -1,9 +1,6 @@
 USE [LEASINGDB]
-GO
-/****** Object:  StoredProcedure [dbo].[sp_GetClientTypeAndID]    Script Date: 10/15/2024 12:44:04 PM ******/
-SET ANSI_NULLS ON
-GO
 SET QUOTED_IDENTIFIER ON
+SET ANSI_NULLS ON
 GO
 -- =============================================
 -- Author:		<Author,,Name>
@@ -17,33 +14,39 @@ AS
         SET NOCOUNT ON;
 
         SELECT
-            [tblPayment].[RecId],
-            [tblPayment].[PayID]                                       AS PaymentID,
-            [tblPayment].[TranId],
-            --[tblPayment].[Amount],
-            [tblPayment].[ForMonth],
-            [tblPayment].[Remarks],
-            [tblPayment].[EncodedBy],
-            [tblPayment].[EncodedDate]                                 AS PaymentDate,
-            [tblPayment].[LastChangedBy],
-            [tblPayment].[LastChangedDate],
-            [tblPayment].[ComputerName],
-            [tblPayment].[IsActive],
-            [tblPayment].[RefId],
-            [tblPayment].[Notes],
-            [tblPayment].[LedgeRecid],
-            [tblPayment].[ClientID]                                    AS Client,
-            [tblPayment].[OtherPaymentTypeName]                        AS PaymentType,
-            FORMAT(ISNULL([tblPayment].[OtherPaymentAmount], 0), 'N2') AS Amount,
-            [tblPayment].[OtherPaymentVatPCT],
-            [tblPayment].[OtherPaymentVatAmount],
-            [tblPayment].[OtherPaymentIsVatApplied],
-            [tblPayment].[OtherPaymentTaxPCT],
-            [tblPayment].[OtherPaymentTaxAmount],
-            [tblPayment].[OtherPaymentTaxIsApplied]
+                [tblPayment].[RecId],
+                [tblPayment].[PayID]                                       AS [PaymentID],
+                [tblPayment].[TranId],
+                --[tblPayment].[Amount],
+                [tblPayment].[ForMonth],
+                [tblPayment].[Remarks],
+                [tblPayment].[EncodedBy],
+                [tblPayment].[EncodedDate]                                 AS [PaymentDate],
+                [tblPayment].[LastChangedBy],
+                [tblPayment].[LastChangedDate],
+                [tblPayment].[ComputerName],
+                [tblPayment].[IsActive],
+                [tblPayment].[RefId],
+                [tblPayment].[Notes],
+                [tblPayment].[LedgeRecid],
+                [tblPayment].[ClientID]                                    AS [Client],
+                [tblPayment].[OtherPaymentTypeName]                        AS [PaymentType],
+                FORMAT(ISNULL([tblPayment].[OtherPaymentAmount], 0), 'N2') AS [Amount],
+                [tblPayment].[OtherPaymentVatPCT],
+                [tblPayment].[OtherPaymentVatAmount],
+                [tblPayment].[OtherPaymentIsVatApplied],
+                [tblPayment].[OtherPaymentTaxPCT],
+                [tblPayment].[OtherPaymentTaxAmount],
+                [tblPayment].[OtherPaymentTaxIsApplied],
+                [tblUnitMstr].[UnitNo]                                     AS [UnitId]
         FROM
-            [dbo].[tblPayment]
+                [dbo].[tblPayment]
+            INNER JOIN
+                [dbo].[tblUnitMstr]
+                    ON [tblUnitMstr].[RecId] = [tblPayment].[UnitId]
         WHERE
-            [tblPayment].[Remarks] = 'OTHER PAYMENT'
+                [tblPayment].[Remarks] = 'OTHER PAYMENT'
 
     END;
+GO
+

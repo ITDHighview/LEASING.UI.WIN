@@ -170,6 +170,18 @@
     <Compile Include="Forms\AddDiscountInBaseRental.Designer.cs">
       <DependentUpon>AddDiscountInBaseRental.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\OtherPaymentReceiveCollection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\OtherPaymentReceiveCollection.Designer.cs">
+      <DependentUpon>OtherPaymentReceiveCollection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\OtherPaymentModeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\OtherPaymentModeForm.Designer.cs">
+      <DependentUpon>OtherPaymentModeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FloorTypeSetupRegistrationForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -212,6 +224,12 @@
     <Compile Include="Forms\LocationRegistrationForm.Designer.cs">
       <DependentUpon>LocationRegistrationForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\PrintReceiptOtherPaymentCategory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PrintReceiptOtherPaymentCategory.Designer.cs">
+      <DependentUpon>PrintReceiptOtherPaymentCategory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ProjectRegistrationForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -248,17 +266,17 @@
     <Compile Include="Forms\AdminAnnouncement.Designer.cs">
       <DependentUpon>AdminAnnouncement.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\CheckClientUnitsBrowse.cs">
+    <Compile Include="Forms\ClientUnitsBrowse.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\CheckClientUnitsBrowse.Designer.cs">
-      <DependentUpon>CheckClientUnitsBrowse.cs</DependentUpon>
+    <Compile Include="Forms\ClientUnitsBrowse.Designer.cs">
+      <DependentUpon>ClientUnitsBrowse.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\CheckUnitsBrowse.cs">
+    <Compile Include="Forms\UnitsBrowse.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\CheckUnitsBrowse.Designer.cs">
-      <DependentUpon>CheckUnitsBrowse.cs</DependentUpon>
+    <Compile Include="Forms\UnitsBrowse.Designer.cs">
+      <DependentUpon>UnitsBrowse.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\ViewClientInfo.cs">
       <SubType>Form</SubType>
@@ -452,11 +470,11 @@
     <Compile Include="Forms\ParkingComputationInquiry.Designer.cs">
       <DependentUpon>ParkingComputationInquiry.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\PrintRecieptCategory.cs">
+    <Compile Include="Forms\PrintReceiptFirstPaymentCategory.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\PrintRecieptCategory.Designer.cs">
-      <DependentUpon>PrintRecieptCategory.cs</DependentUpon>
+    <Compile Include="Forms\PrintReceiptFirstPaymentCategory.Designer.cs">
+      <DependentUpon>PrintReceiptFirstPaymentCategory.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\PrintReceiptSecondPaymentCategory.cs">
       <SubType>Form</SubType>
@@ -672,6 +690,12 @@
     <EmbeddedResource Include="Forms\AddDiscountInBaseRental.resx">
       <DependentUpon>AddDiscountInBaseRental.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\OtherPaymentReceiveCollection.resx">
+      <DependentUpon>OtherPaymentReceiveCollection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\OtherPaymentModeForm.resx">
+      <DependentUpon>OtherPaymentModeForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FloorTypeSetupRegistrationForm.resx">
       <DependentUpon>FloorTypeSetupRegistrationForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -693,6 +717,9 @@
     <EmbeddedResource Include="Forms\LocationRegistrationForm.resx">
       <DependentUpon>LocationRegistrationForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PrintReceiptOtherPaymentCategory.resx">
+      <DependentUpon>PrintReceiptOtherPaymentCategory.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ProjectRegistrationForm.resx">
       <DependentUpon>ProjectRegistrationForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -711,11 +738,11 @@
     <EmbeddedResource Include="Forms\AdminAnnouncement.resx">
       <DependentUpon>AdminAnnouncement.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\CheckClientUnitsBrowse.resx">
-      <DependentUpon>CheckClientUnitsBrowse.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\ClientUnitsBrowse.resx">
+      <DependentUpon>ClientUnitsBrowse.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\CheckUnitsBrowse.resx">
-      <DependentUpon>CheckUnitsBrowse.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\UnitsBrowse.resx">
+      <DependentUpon>UnitsBrowse.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ViewClientInfo.resx">
       <DependentUpon>ViewClientInfo.cs</DependentUpon>
@@ -813,8 +840,8 @@
     <EmbeddedResource Include="Forms\ParkingComputationInquiry.resx">
       <DependentUpon>ParkingComputationInquiry.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\PrintRecieptCategory.resx">
-      <DependentUpon>PrintRecieptCategory.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\PrintReceiptFirstPaymentCategory.resx">
+      <DependentUpon>PrintReceiptFirstPaymentCategory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\PrintReceiptSecondPaymentCategory.resx">
       <DependentUpon>PrintReceiptSecondPaymentCategory.cs</DependentUpon>

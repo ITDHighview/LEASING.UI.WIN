@@ -31,9 +31,11 @@ namespace LEASING.UI.APP.Forms
         public string TypeOf { get; set; } = string.Empty;
         public int totalMonthlyRental { get; set; } = 0;
         public bool IsProceed { get; set; } = false;
-
+        private bool IsPartialPayment = false;
         public decimal receiveAmount { get; set; } = 0;
         public decimal changeAmount { get; set; } = 0;
+
+        #region ModeOfPayment
         public string _Company_OR_Number_ { get; set; } = string.Empty;
         public string _Company_PR_Number_ { get; set; } = string.Empty;
         public string _Bank_Account_Name_ { get; set; } = string.Empty;
@@ -41,12 +43,14 @@ namespace LEASING.UI.APP.Forms
         public string _Bank_Account_Number_ { get; set; } = string.Empty;
         public string _Bank_Name_ { get; set; } = string.Empty;
         public string _Bank_Serial_No_ { get; set; } = string.Empty;
-        public string paymentRemarks { get; set; } = string.Empty;
+        public string _PaymentRemarks_ { get; set; } = string.Empty;
         public string _Bank_Reference_Number_ { get; set; } = string.Empty;
-        public string modeType { get; set; } = string.Empty;
-        private bool IsPartialPayment = false;
+        public string _ModeType_ { get; set; } = string.Empty;
         public string _Company_Original_Receipt_Date_ { get; set; } = string.Empty;
         public string _Company_Check_Date_ { get; set; } = string.Empty;
+        #endregion
+
+
 
         #endregion
 
@@ -173,9 +177,9 @@ namespace LEASING.UI.APP.Forms
                    this._Bank_Account_Number_,
                    this._Bank_Name_,
                    this._Bank_Serial_No_,
-                   this.paymentRemarks,
+                   this._PaymentRemarks_,
                    this._Bank_Reference_Number_,
-                   this.modeType,
+                   this._ModeType_,
                    this._Bank_Branch_,
                    this._Company_Original_Receipt_Date_,
                    this._Company_Check_Date_,
@@ -226,9 +230,9 @@ namespace LEASING.UI.APP.Forms
                    this._Bank_Account_Number_,
                    this._Bank_Name_,
                    this._Bank_Serial_No_,
-                   this.paymentRemarks,
+                   this._PaymentRemarks_,
                    this._Bank_Reference_Number_,
-                   this.modeType,
+                   this._ModeType_,
                    this._Bank_Branch_,
                    this._Company_Original_Receipt_Date_,
                    this._Company_Check_Date_,
@@ -265,7 +269,7 @@ namespace LEASING.UI.APP.Forms
             {
                 return;
             }
-            CheckClientUnitsBrowse unitTaken = new CheckClientUnitsBrowse();
+            ClientUnitsBrowse unitTaken = new ClientUnitsBrowse();
             unitTaken.ClientId = this.clientNumber;
             unitTaken.ShowDialog();
         }
@@ -276,7 +280,7 @@ namespace LEASING.UI.APP.Forms
         }
         private void _showPrintReceiptForm()
         {
-            PrintRecieptCategory receipt = new PrintRecieptCategory(this.transactionNumber, this.contractNumber, this._getPaymentLevel());
+            PrintReceiptFirstPaymentCategory receipt = new PrintReceiptFirstPaymentCategory(this.transactionNumber, this.contractNumber, this._getPaymentLevel());
             using (DataSet dt = _payment.CheckIfOrIsEmpty(this.transactionNumber))
             {
                 if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
@@ -331,10 +335,10 @@ namespace LEASING.UI.APP.Forms
             this._Bank_Account_Number_ = pForm.BankAccountNumber;
             this._Bank_Name_ = pForm.BankName;
             this._Bank_Serial_No_ = pForm.SerialNo;
-            this.paymentRemarks = pForm.PaymentRemarks;
+            this._PaymentRemarks_ = pForm.PaymentRemarks;
             this._Bank_Reference_Number_ = pForm.REF;
             this._Bank_Branch_ = pForm.BankBranch;
-            this.modeType = pForm.ModeType;
+            this._ModeType_ = pForm.ModeType;
             this._Company_Original_Receipt_Date_ = pForm.RecieptDate;
             this._Company_Check_Date_ = pForm.CheckDate;
             //this.XML = pForm.XML;
@@ -359,7 +363,7 @@ namespace LEASING.UI.APP.Forms
             this.receiveAmount = Functions.ConvertStringToDecimal(pForm.txtReceiveAmount.Text);
             this.changeAmount = 0;
         }
-        private void _initReciept(PrintRecieptCategory pForm)
+        private void _initReciept(PrintReceiptFirstPaymentCategory pForm)
         {
             if (string.IsNullOrEmpty(this._Company_OR_Number_) && !string.IsNullOrEmpty(this._Company_PR_Number_))
             {
@@ -412,7 +416,7 @@ namespace LEASING.UI.APP.Forms
                 if (!this.IsPartialPayment)
                 {
                     /*If Partial Payment Dont show Reciept Printing*/
-                    var fReciept = new PrintRecieptCategory(this.transactionNumber, this.contractNumber, this._getPaymentLevel());
+                    var fReciept = new PrintReceiptFirstPaymentCategory(this.transactionNumber, this.contractNumber, this._getPaymentLevel());
                     this._initReciept(fReciept);
                 }
             }

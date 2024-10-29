@@ -35,6 +35,7 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn2 = new Telerik.WinControls.UI.GridViewCommandColumn();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -47,6 +48,7 @@
             this.btnSearchClient = new Telerik.WinControls.UI.RadButton();
             this.chkIsTaxApplied = new Telerik.WinControls.UI.RadCheckBox();
             this.chkIsVatApplied = new Telerik.WinControls.UI.RadCheckBox();
+            this.ddlUnitList = new Telerik.WinControls.UI.RadDropDownList();
             this.ddlTypeName = new Telerik.WinControls.UI.RadDropDownList();
             this.txtTaxAmount = new Telerik.WinControls.UI.RadTextBox();
             this.txtTaxPCT = new Telerik.WinControls.UI.RadTextBox();
@@ -59,12 +61,15 @@
             this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.txtClient = new Telerik.WinControls.UI.RadLabel();
             this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.radGroupBox2 = new Telerik.WinControls.UI.RadGroupBox();
             this.dgvList = new Telerik.WinControls.UI.RadGridView();
+            this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
+            this.txtTotalAmount = new Telerik.WinControls.UI.RadTextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
@@ -72,6 +77,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnSearchClient)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkIsTaxApplied)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkIsVatApplied)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlUnitList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlTypeName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTaxAmount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTaxPCT)).BeginInit();
@@ -84,6 +90,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtClient)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
@@ -92,6 +99,8 @@
             this.radGroupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvList.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTotalAmount)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -109,7 +118,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 240F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(840, 500);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(994, 500);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // toolStrip1
@@ -122,7 +131,7 @@
             this.btnUndo});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(840, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(994, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -169,18 +178,22 @@
             this.radGroupBox1.Controls.Add(this.btnSearchClient);
             this.radGroupBox1.Controls.Add(this.chkIsTaxApplied);
             this.radGroupBox1.Controls.Add(this.chkIsVatApplied);
+            this.radGroupBox1.Controls.Add(this.ddlUnitList);
             this.radGroupBox1.Controls.Add(this.ddlTypeName);
             this.radGroupBox1.Controls.Add(this.txtTaxAmount);
             this.radGroupBox1.Controls.Add(this.txtTaxPCT);
             this.radGroupBox1.Controls.Add(this.txtVatAmount);
             this.radGroupBox1.Controls.Add(this.txtVatPCT);
+            this.radGroupBox1.Controls.Add(this.txtTotalAmount);
             this.radGroupBox1.Controls.Add(this.txtAmount);
             this.radGroupBox1.Controls.Add(this.txtClientID);
             this.radGroupBox1.Controls.Add(this.txtClientName);
             this.radGroupBox1.Controls.Add(this.radLabel7);
+            this.radGroupBox1.Controls.Add(this.radLabel9);
             this.radGroupBox1.Controls.Add(this.radLabel5);
             this.radGroupBox1.Controls.Add(this.radLabel8);
             this.radGroupBox1.Controls.Add(this.radLabel3);
+            this.radGroupBox1.Controls.Add(this.radLabel4);
             this.radGroupBox1.Controls.Add(this.txtClient);
             this.radGroupBox1.Controls.Add(this.radLabel6);
             this.radGroupBox1.Controls.Add(this.radLabel2);
@@ -189,7 +202,7 @@
             this.radGroupBox1.HeaderText = "Details";
             this.radGroupBox1.Location = new System.Drawing.Point(3, 28);
             this.radGroupBox1.Name = "radGroupBox1";
-            this.radGroupBox1.Size = new System.Drawing.Size(834, 234);
+            this.radGroupBox1.Size = new System.Drawing.Size(988, 234);
             this.radGroupBox1.TabIndex = 1;
             this.radGroupBox1.Text = "Details";
             this.radGroupBox1.ThemeName = "Office2007Silver";
@@ -220,9 +233,18 @@
             this.chkIsVatApplied.TabIndex = 3;
             this.chkIsVatApplied.ToggleStateChanged += new Telerik.WinControls.UI.StateChangedEventHandler(this.chkIsVatApplied_ToggleStateChanged);
             // 
+            // ddlUnitList
+            // 
+            this.ddlUnitList.Location = new System.Drawing.Point(126, 72);
+            this.ddlUnitList.Name = "ddlUnitList";
+            this.ddlUnitList.NullText = "Select here...";
+            this.ddlUnitList.Size = new System.Drawing.Size(206, 20);
+            this.ddlUnitList.TabIndex = 2;
+            this.ddlUnitList.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.ddlTypeName_SelectedIndexChanged);
+            // 
             // ddlTypeName
             // 
-            this.ddlTypeName.Location = new System.Drawing.Point(126, 73);
+            this.ddlTypeName.Location = new System.Drawing.Point(126, 95);
             this.ddlTypeName.Name = "ddlTypeName";
             this.ddlTypeName.NullText = "Select here...";
             this.ddlTypeName.Size = new System.Drawing.Size(206, 20);
@@ -337,10 +359,19 @@
             this.radLabel3.TabIndex = 0;
             this.radLabel3.Text = "Tax % :";
             // 
+            // radLabel4
+            // 
+            this.radLabel4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel4.Location = new System.Drawing.Point(8, 70);
+            this.radLabel4.Name = "radLabel4";
+            this.radLabel4.Size = new System.Drawing.Size(89, 19);
+            this.radLabel4.TabIndex = 0;
+            this.radLabel4.Text = "Unit Number :";
+            // 
             // txtClient
             // 
             this.txtClient.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtClient.Location = new System.Drawing.Point(8, 49);
+            this.txtClient.Location = new System.Drawing.Point(9, 49);
             this.txtClient.Name = "txtClient";
             this.txtClient.Size = new System.Drawing.Size(85, 19);
             this.txtClient.TabIndex = 0;
@@ -369,7 +400,7 @@
             // radLabel1
             // 
             this.radLabel1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel1.Location = new System.Drawing.Point(8, 72);
+            this.radLabel1.Location = new System.Drawing.Point(8, 94);
             this.radLabel1.Name = "radLabel1";
             this.radLabel1.Size = new System.Drawing.Size(79, 19);
             this.radLabel1.TabIndex = 0;
@@ -383,7 +414,7 @@
             this.radGroupBox2.HeaderText = "List";
             this.radGroupBox2.Location = new System.Drawing.Point(3, 268);
             this.radGroupBox2.Name = "radGroupBox2";
-            this.radGroupBox2.Size = new System.Drawing.Size(834, 229);
+            this.radGroupBox2.Size = new System.Drawing.Size(988, 229);
             this.radGroupBox2.TabIndex = 2;
             this.radGroupBox2.Text = "List";
             this.radGroupBox2.ThemeName = "Office2007Silver";
@@ -411,7 +442,7 @@
             gridViewTextBoxColumn1.FieldName = "PaymentDate";
             gridViewTextBoxColumn1.HeaderText = "Payment Date";
             gridViewTextBoxColumn1.Name = "PaymentDate";
-            gridViewTextBoxColumn1.Width = 120;
+            gridViewTextBoxColumn1.Width = 150;
             gridViewTextBoxColumn2.FieldName = "PaymentID";
             gridViewTextBoxColumn2.HeaderText = "Payment ID";
             gridViewTextBoxColumn2.Name = "PaymentID";
@@ -420,18 +451,22 @@
             gridViewTextBoxColumn3.HeaderText = "Transaction ID";
             gridViewTextBoxColumn3.Name = "TranId";
             gridViewTextBoxColumn3.Width = 120;
-            gridViewTextBoxColumn4.FieldName = "Amount";
-            gridViewTextBoxColumn4.HeaderText = "Amount";
-            gridViewTextBoxColumn4.Name = "Amount";
-            gridViewTextBoxColumn4.Width = 100;
-            gridViewTextBoxColumn5.FieldName = "Client";
-            gridViewTextBoxColumn5.HeaderText = "Client";
-            gridViewTextBoxColumn5.Name = "Client";
-            gridViewTextBoxColumn5.Width = 250;
-            gridViewTextBoxColumn6.FieldName = "PaymentType";
-            gridViewTextBoxColumn6.HeaderText = "Payment Type";
-            gridViewTextBoxColumn6.Name = "PaymentType";
-            gridViewTextBoxColumn6.Width = 120;
+            gridViewTextBoxColumn4.FieldName = "UnitId";
+            gridViewTextBoxColumn4.HeaderText = "Unit Number";
+            gridViewTextBoxColumn4.Name = "UnitId";
+            gridViewTextBoxColumn4.Width = 130;
+            gridViewTextBoxColumn5.FieldName = "Amount";
+            gridViewTextBoxColumn5.HeaderText = "Amount";
+            gridViewTextBoxColumn5.Name = "Amount";
+            gridViewTextBoxColumn5.Width = 100;
+            gridViewTextBoxColumn6.FieldName = "Client";
+            gridViewTextBoxColumn6.HeaderText = "Client";
+            gridViewTextBoxColumn6.Name = "Client";
+            gridViewTextBoxColumn6.Width = 250;
+            gridViewTextBoxColumn7.FieldName = "PaymentType";
+            gridViewTextBoxColumn7.HeaderText = "Payment Type";
+            gridViewTextBoxColumn7.Name = "PaymentType";
+            gridViewTextBoxColumn7.Width = 120;
             gridViewCommandColumn2.FieldName = "ColEdit";
             gridViewCommandColumn2.HeaderText = "";
             gridViewCommandColumn2.IsVisible = false;
@@ -445,6 +480,7 @@
             gridViewTextBoxColumn4,
             gridViewTextBoxColumn5,
             gridViewTextBoxColumn6,
+            gridViewTextBoxColumn7,
             gridViewCommandColumn2});
             this.dgvList.MasterTemplate.EnableFiltering = true;
             this.dgvList.MasterTemplate.ShowRowHeaderColumn = false;
@@ -452,22 +488,42 @@
             this.dgvList.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.dgvList.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgvList.ShowGroupPanel = false;
-            this.dgvList.Size = new System.Drawing.Size(830, 209);
+            this.dgvList.Size = new System.Drawing.Size(984, 209);
             this.dgvList.TabIndex = 0;
             this.dgvList.Text = "radGridView1";
             this.dgvList.ThemeName = "Office2007Silver";
             // 
-            // frmOtherPayment
+            // radLabel9
+            // 
+            this.radLabel9.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLabel9.ForeColor = System.Drawing.Color.Green;
+            this.radLabel9.Location = new System.Drawing.Point(342, 202);
+            this.radLabel9.Name = "radLabel9";
+            this.radLabel9.Size = new System.Drawing.Size(94, 19);
+            this.radLabel9.TabIndex = 0;
+            this.radLabel9.Text = "Total Amount :";
+            // 
+            // txtTotalAmount
+            // 
+            this.txtTotalAmount.Location = new System.Drawing.Point(468, 202);
+            this.txtTotalAmount.Name = "txtTotalAmount";
+            this.txtTotalAmount.NullText = "0.00";
+            this.txtTotalAmount.Size = new System.Drawing.Size(206, 20);
+            this.txtTotalAmount.TabIndex = 1;
+            this.txtTotalAmount.ThemeName = "Office2007Silver";
+            this.txtTotalAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAmount_KeyPress);
+            // 
+            // OtherPaymentCollection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(840, 500);
+            this.ClientSize = new System.Drawing.Size(994, 500);
             this.Controls.Add(this.tableLayoutPanel1);
             this.DoubleBuffered = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmOtherPayment";
+            this.Name = "OtherPaymentCollection";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Other Payment";
@@ -482,6 +538,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnSearchClient)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkIsTaxApplied)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkIsVatApplied)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlUnitList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlTypeName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTaxAmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTaxPCT)).EndInit();
@@ -494,6 +551,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtClient)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
@@ -502,6 +560,8 @@
             this.radGroupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvList.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTotalAmount)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -537,5 +597,9 @@
         private Telerik.WinControls.UI.RadTextBox txtClientName;
         private Telerik.WinControls.UI.RadLabel radLabel8;
         private Telerik.WinControls.UI.RadLabel txtClient;
+        private Telerik.WinControls.UI.RadDropDownList ddlUnitList;
+        private Telerik.WinControls.UI.RadLabel radLabel4;
+        private Telerik.WinControls.UI.RadTextBox txtTotalAmount;
+        private Telerik.WinControls.UI.RadLabel radLabel9;
     }
 }

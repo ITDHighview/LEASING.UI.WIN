@@ -17,6 +17,23 @@ CREATE OR ALTER PROCEDURE [dbo].[sp_SaveOtherPayment]
     @OtherPaymentTaxPCT       DECIMAL(18, 2) = NULL,
     @OtherPaymentTaxAmount    DECIMAL(18, 2) = NULL,
     @OtherPaymentTaxIsApplied BIT            = NULL,
+    @UnitId                   INT            = NULL,
+    @RefId                    VARCHAR(50)    = NULL,
+    @PaidAmount               DECIMAL(18, 2) = NULL,
+    @ReceiveAmount            DECIMAL(18, 2) = NULL,
+    @ChangeAmount             DECIMAL(18, 2) = NULL,
+    @CompanyORNo              VARCHAR(30)    = NULL,
+    @CompanyPRNo              VARCHAR(30)    = NULL,
+    @BankAccountName          VARCHAR(30)    = NULL,
+    @BankAccountNumber        VARCHAR(30)    = NULL,
+    @BankName                 VARCHAR(30)    = NULL,
+    @SerialNo                 VARCHAR(30)    = NULL,
+    @PaymentRemarks           VARCHAR(100)   = NULL,
+    @REF                      VARCHAR(100)   = NULL,
+    @ReceiptDate              VARCHAR(100)   = NULL,
+    @CheckDate                VARCHAR(100)   = NULL,
+    @BankBranch               VARCHAR(100)   = NULL,
+    @ModeType                 VARCHAR(20)    = NULL,
     @EncodedBy                INT            = NULL,
     @ComputerName             VARCHAR(50)    = NULL
 AS
@@ -38,6 +55,7 @@ AS
             BEGIN
                 INSERT INTO [dbo].[tblTransaction]
                     (
+                        [RefId],
                         [OtherPaymentClientID],
                         [PaidAmount],
                         [ReceiveAmount],
@@ -51,8 +69,8 @@ AS
                     )
                 VALUES
                     (
-                        @ClientID, @OtherPaymentAmount, @OtherPaymentAmount, @OtherPaymentAmount, NULL,
-                        'OTHER PAYMENT', @EncodedBy, GETDATE(), @ComputerName, 1
+                        @RefId, @ClientID, @PaidAmount, @ReceiveAmount, @ReceiveAmount, @ChangeAmount, 'OTHER PAYMENT',
+                        @EncodedBy, GETDATE(), @ComputerName, 1
                     );
 
                 SET @TranRecId = @@IDENTITY;
@@ -69,6 +87,7 @@ AS
             INSERT INTO [dbo].[tblPayment]
                 (
                     [TranId],
+                    [RefId],
                     [Remarks],
                     [EncodedBy],
                     [EncodedDate],
@@ -76,6 +95,7 @@ AS
                     [IsActive],
                     [Notes],
                     [ClientID],
+                    [UnitId],
                     [OtherPaymentTypeName],
                     [OtherPaymentAmount],
                     [OtherPaymentVatPCT],
@@ -87,7 +107,7 @@ AS
                 )
             VALUES
                 (
-                    @TranID,                                                  -- TranId - varchar(500)    
+                    @TranID, @RefId,                                          -- TranId - varchar(500)    
                     'OTHER PAYMENT',                                          -- Remarks - varchar(500)
                     @EncodedBy,                                               -- EncodedBy - int
                     GETDATE(),                                                -- EncodedDate - datetime      
@@ -95,6 +115,7 @@ AS
                     1,                                                        -- IsActive - bit      
                     CONCAT('OTHER PAYMENT - ', UPPER(@OtherPaymentTypeName)), -- Notes - varchar(200) 
                     @ClientID,                                                -- ClientID - varchar(500)
+                    @UnitId,                                                  -- UnitId - int
                     @OtherPaymentTypeName,                                    -- OtherPaymentTypeName - varchar(150)
                     @OtherPaymentAmount,                                      -- OtherPaymentAmount - decimal(18, 2)
                     @OtherPaymentVatPCT,                                      -- OtherPaymentVatPCT - decimal(18, 2)
@@ -113,12 +134,28 @@ AS
                     [EncodedBy],
                     [EncodedDate],
                     [ComputerName],
-                    [IsActive]
+                    [IsActive],
+                    [PaymentMethod],
+                    [CompanyORNo],
+                    [CompanyPRNo],
+                    [BankAccountName],
+                    [BankAccountNumber],
+                    [BankName],
+                    [SerialNo],
+                    [REF],
+                    [BankBranch],
+                    [RefId],
+                    [ReceiptDate],
+                    [PaymentRemarks],
+                    [Remarks],
+                    [CheckDate]
                 )
             VALUES
                 (
-                    @TranID, @OtherPaymentAmount, CONCAT('OTHER PAYMENT - ', UPPER(@OtherPaymentTypeName)), @EncodedBy,
-                    GETDATE(), @ComputerName, 1
+                    @TranID, @OtherPaymentAmount, 'OTHER PAYMENT', @EncodedBy,
+                    GETDATE(), @ComputerName, 1, @ModeType, @CompanyORNo, @CompanyPRNo, @BankAccountName,
+                    @BankAccountNumber, @BankName, @SerialNo, @REF, @BankBranch, @RefId, @ReceiptDate, @PaymentRemarks,
+                    CONCAT('OTHER PAYMENT - ', UPPER(@OtherPaymentTypeName)), @CheckDate
                 )
 
             SET @RcptRecId = @@IDENTITY;
@@ -128,6 +165,31 @@ AS
                 [dbo].[tblReceipt] WITH (NOLOCK)
             WHERE
                 [tblReceipt].[RecId] = @RcptRecId;
+
+            INSERT INTO [dbo].[tblPaymentMode]
+                (
+                    [RcptID],
+                    [CompanyORNo],
+                    [CompanyPRNo],
+                    [REF],
+                    [BNK_ACCT_NAME],
+                    [BNK_ACCT_NUMBER],
+                    [BNK_NAME],
+                    [SERIAL_NO],
+                    [ModeType],
+                    [BankBranch],
+                    [ReceiptDate],
+                    [PaymentRemarks],
+                    [CheckDate]
+                )
+            VALUES
+                (
+                    @RcptID, @CompanyORNo, @CompanyPRNo, @REF, @BankAccountName, @BankAccountNumber, @BankName,
+                    @SerialNo, @ModeType, @BankBranch, @ReceiptDate, @PaymentRemarks, @CheckDate
+                );
+
+
+
             IF (@@ROWCOUNT > 0)
                 BEGIN
                     SET @Message_Code = 'SUCCESS'
@@ -138,7 +200,9 @@ AS
 
         SELECT
             @ErrorMessage AS [ErrorMessage],
-            @Message_Code AS [Message_Code];
+            @Message_Code AS [Message_Code],
+            @RcptID       AS [ReceiptID],
+            @TranID       AS [TranID]
 
         COMMIT TRANSACTION
 

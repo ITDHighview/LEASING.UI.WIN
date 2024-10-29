@@ -350,6 +350,14 @@ namespace LEASING.UI.APP.Forms
         private void ddlSelectMode_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
         {         
             strPaymentmMode = Convert.ToString(ddlSelectMode.SelectedValue);
+            if (strPaymentmMode == "PDC" || strPaymentmMode == "DC")
+            {
+                this.dtpCheckDate.Enabled = true;
+            }
+            else
+            {
+                this.dtpCheckDate.Enabled = false;
+            }
         }
 
         private void btnOk_Click(object sender, EventArgs e)
@@ -372,8 +380,7 @@ namespace LEASING.UI.APP.Forms
                 REF = txtReferrence.Text;
                 BankBranch = txtBankBranch.Text;
                 this.RecieptDate = dtpRecieptDate.Text;
-                this.CheckDate = dtpCheckDate.Text;
-                //this.XML = this.M_getXMLData();
+                this.CheckDate = Convert.ToString(ddlSelectMode.SelectedValue) == "PDC" || Convert.ToString(ddlSelectMode.SelectedValue) == "DC" ? string.Empty : dtpCheckDate.Text;
                 this.Close();
             }
         }

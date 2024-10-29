@@ -82,9 +82,13 @@ namespace LEASING.UI.APP.Forms
             {
                 return "FIRST";
             }
-            else
+            else if (Convert.ToString(dgvReceiptList.CurrentRow.Cells["Description"].Value) == "FOLLOW-UP PAYMENT")
             {
                 return "SECOND";
+            }
+            else
+            {
+                return "OTHER";
             }
             return "";
         }
@@ -111,15 +115,21 @@ namespace LEASING.UI.APP.Forms
 
                     if (this.GetPaymentLevel() == "FIRST")
                     {
-                        PrintRecieptCategory forms = new PrintRecieptCategory(Convert.ToString(dgvReceiptList.CurrentRow.Cells["TranID"].Value), Convert.ToString(dgvReceiptList.CurrentRow.Cells["RefId"].Value), this.GetPaymentLevel());
-                        forms.IsNoOR = IsNoOR;
-                        forms.ShowDialog();
+                        PrintReceiptFirstPaymentCategory first = new PrintReceiptFirstPaymentCategory(Convert.ToString(dgvReceiptList.CurrentRow.Cells["TranID"].Value), Convert.ToString(dgvReceiptList.CurrentRow.Cells["RefId"].Value), this.GetPaymentLevel());
+                        first.IsNoOR = IsNoOR;
+                        first.ShowDialog();
+                    }
+                    else if(this.GetPaymentLevel() == "SECOND")
+                    {
+                        PrintReceiptSecondPaymentCategory second = new PrintReceiptSecondPaymentCategory(Convert.ToString(dgvReceiptList.CurrentRow.Cells["TranID"].Value), Convert.ToString(dgvReceiptList.CurrentRow.Cells["RefId"].Value), this.GetPaymentLevel());
+                        second.IsNoOR = IsNoOR;
+                        second.ShowDialog();
                     }
                     else
                     {
-                        PrintReceiptSecondPaymentCategory formsSecond = new PrintReceiptSecondPaymentCategory(Convert.ToString(dgvReceiptList.CurrentRow.Cells["TranID"].Value), Convert.ToString(dgvReceiptList.CurrentRow.Cells["RefId"].Value), this.GetPaymentLevel());
-                        formsSecond.IsNoOR = IsNoOR;
-                        formsSecond.ShowDialog();
+                        PrintReceiptOtherPaymentCategory other = new PrintReceiptOtherPaymentCategory(Convert.ToString(dgvReceiptList.CurrentRow.Cells["TranID"].Value), Convert.ToString(dgvReceiptList.CurrentRow.Cells["RefId"].Value), this.GetPaymentLevel());
+                        other.IsNoOR = IsNoOR;
+                        other.ShowDialog();
                     }
                 }
                 else if (this.dgvReceiptList.Columns[e.ColumnIndex].Name == "ColEditOR")

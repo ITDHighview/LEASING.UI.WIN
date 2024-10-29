@@ -91,7 +91,7 @@ namespace LEASING.UI.APP.Forms
                     //forms.ShowDialog();
                     if (this.GetPaymentLevel() == "FIRST")
                     {
-                        PrintRecieptCategory forms = new PrintRecieptCategory(Convert.ToString(dgvReceiptList.CurrentRow.Cells["TranID"].Value), Convert.ToString(dgvReceiptList.CurrentRow.Cells["RefId"].Value), this.GetPaymentLevel());
+                        PrintReceiptFirstPaymentCategory forms = new PrintReceiptFirstPaymentCategory(Convert.ToString(dgvReceiptList.CurrentRow.Cells["TranID"].Value), Convert.ToString(dgvReceiptList.CurrentRow.Cells["RefId"].Value), this.GetPaymentLevel());
                         forms.IsNoOR = IsNoOR;
                         forms.ShowDialog();
                     }

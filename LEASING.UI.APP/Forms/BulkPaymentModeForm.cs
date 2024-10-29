@@ -34,8 +34,8 @@ namespace LEASING.UI.APP.Forms
         public bool IsOR { get; set; } = false;
 
         public bool IsPartialPayment = false;
-        public bool IsHold  = false;
-        public bool IsClearPDC  = false;
+        public bool IsHold = false;
+        public bool IsClearPDC = false;
         public string Amount = string.Empty;
         public int recid = 0;
         int DayCount = 0;
@@ -323,27 +323,34 @@ namespace LEASING.UI.APP.Forms
 
                 this.radLabel8.Visible = false;
                 this.txtRemarks.Visible = false;
-                this.txtReceiveAmount.Text = txtPaidAmount.Text;           
+                this.txtReceiveAmount.Text = txtPaidAmount.Text;
                 this.txtReceiveAmount.Focus();
+                this.dtpCheckDate.Enabled = true;
+            }
+            else if (strPaymentmMode == "DC")
+            {
+                this.dtpCheckDate.Enabled = true;
             }
             else
             {
-                this.IsHold = false;              
+                this.IsHold = false;
                 this.chkHold.IsChecked = false;
                 this.chkClearPDC.IsChecked = false;
 
                 this.radGroupBoxPDCStatus.Visible = false;
                 this.radLabel8.Visible = true;
-                this.txtRemarks.Visible = true;             
+                this.txtRemarks.Visible = true;
                 this.txtReceiveAmount.Focus();
+                this.dtpCheckDate.Enabled = false;
             }
+
             return strPaymentmMode;
         }
         private void frmPaymentMode_Load(object sender, EventArgs e)
         {
             Functions.EventCapturefrmName(this);
             this.OnInitialized();
-            
+
         }
         private void ddlSelectMode_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
         {
@@ -369,7 +376,7 @@ namespace LEASING.UI.APP.Forms
             //this.IsHold = chkHold.Checked;
             //this.IsClearPDC = chkClearPDC.Checked;
             this.RecieptDate = dtpRecieptDate.Text;
-            this.CheckDate = dtpCheckDate.Text;
+            this.CheckDate = this.SelectModeOfPayment() == "PDC" || this.SelectModeOfPayment() == "DC" ? string.Empty : dtpCheckDate.Text;
         }
         private void SavePaymentInfo()
         {
@@ -434,7 +441,7 @@ namespace LEASING.UI.APP.Forms
             {
                 return "Are you sure you want to proceed the payment?.";
             }
-           
+
 
             return "";
         }
@@ -524,7 +531,7 @@ namespace LEASING.UI.APP.Forms
         private void chkHold_Click(object sender, EventArgs e)
         {
             chkClearPDC.IsChecked = false;
-           
+
             this.radLabel8.Visible = false;
             this.txtRemarks.Visible = false;
             btnOk.Text = "SAVE TRANSACTION>>>";
@@ -533,7 +540,7 @@ namespace LEASING.UI.APP.Forms
         private void chkClearPDC_Click(object sender, EventArgs e)
         {
             chkHold.IsChecked = false;
-            
+
             this.radLabel8.Visible = true;
             this.txtRemarks.Visible = true;
             btnOk.Text = "PROCEED PAYMENT>>>";

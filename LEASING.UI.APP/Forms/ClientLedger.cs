@@ -764,7 +764,7 @@ namespace LEASING.UI.APP.Forms
                 return;
             }
 
-            CheckClientUnitsBrowse CheckClientUnits = new CheckClientUnitsBrowse();
+            ClientUnitsBrowse CheckClientUnits = new ClientUnitsBrowse();
             CheckClientUnits.ClientId = this._clientId;
             CheckClientUnits.ShowDialog();
         }
@@ -886,7 +886,7 @@ namespace LEASING.UI.APP.Forms
                 {
                     if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "PAID")
                     {
-                        PrintRecieptCategory frmRecieptSelection = new PrintRecieptCategory(Convert.ToString(dgvLedgerList.CurrentRow.Cells["TransactionID"].Value), "", this.GetPaymentLevel());
+                        PrintReceiptFirstPaymentCategory frmRecieptSelection = new PrintReceiptFirstPaymentCategory(Convert.ToString(dgvLedgerList.CurrentRow.Cells["TransactionID"].Value), "", this.GetPaymentLevel());
                         using (DataSet dt = _payment.CheckIfOrIsEmpty(Convert.ToString(dgvLedgerList.CurrentRow.Cells["TransactionID"].Value)))
                         {
                             if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)

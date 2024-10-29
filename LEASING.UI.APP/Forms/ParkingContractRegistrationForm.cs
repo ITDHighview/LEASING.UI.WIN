@@ -893,7 +893,7 @@ namespace LEASING.UI.APP.Forms
         {
             if (ddlProject.SelectedIndex >= 0)
             {
-                CheckUnitsBrowse forms = new CheckUnitsBrowse();
+                UnitsBrowse forms = new UnitsBrowse();
                 forms.Recid = Convert.ToInt32(ddlProject.SelectedValue);
                 forms.Text = ddlProject.Text + " - " + " UNIT/PARKING LIST";
                 forms.UnitType = "PARKING";

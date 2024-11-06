@@ -380,7 +380,7 @@ namespace LEASING.UI.APP.Forms
                 REF = txtReferrence.Text;
                 BankBranch = txtBankBranch.Text;
                 this.RecieptDate = dtpRecieptDate.Text;
-                this.CheckDate = Convert.ToString(ddlSelectMode.SelectedValue) == "PDC" || Convert.ToString(ddlSelectMode.SelectedValue) == "DC" ? string.Empty : dtpCheckDate.Text;
+                this.CheckDate = Convert.ToString(ddlSelectMode.SelectedValue) == "PDC" || Convert.ToString(ddlSelectMode.SelectedValue) == "DC" ?  dtpCheckDate.Text : null;
                 //this.XML = this.M_getXMLData();
                 this.Close();
             }

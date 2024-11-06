@@ -10,7 +10,7 @@ CREATE OR ALTER PROCEDURE [dbo].[sp_Ongching_PR_Report]
     @Mode         VARCHAR(50) = NULL,
     @PaymentLevel VARCHAR(50) = NULL
 AS
-    BEGIN
+   BEGIN
         SET NOCOUNT ON;
 
 
@@ -363,11 +363,11 @@ AS
                                     [RECEIPT].[OR_No]                                                                                                     AS [OR_No],
                                     [CLIENT].[TIN_No]                                                                                                     AS [TIN_No],
                                     [RECEIPT].[TransactionDate]                                                                                           AS [TransactionDate],
-                                    IIF(
-                                        ISNULL([RECEIPT].[ModeType], '') = 'PDC'
-                                        OR ISNULL([RECEIPT].[ModeType], '') = 'DC',
-                                        [RECEIPT].[CheckDate],
-                                        [RECEIPT].[TransactionDate])                                                                                      AS [CheckDate],
+                                    --IIF(
+                                    --    ISNULL([RECEIPT].[ModeType], '') = 'PDC'
+                                    --    OR ISNULL([RECEIPT].[ModeType], '') = 'DC',
+                                    [RECEIPT].[CheckDate],
+                                    --[RECEIPT].[TransactionDate])                                                                                      AS [CheckDate],
                                     UPPER([dbo].[fnNumberToWordsWithDecimal](IIF(@IsFullPayment = 0,
                                                                                  [tblUnitReference].[AdvancePaymentAmount],
                                                                                  [tblUnitReference].[Total])
@@ -528,11 +528,11 @@ AS
                                     [RECEIPT].[OR_No]                                                                                                              AS [OR_No],
                                     [CLIENT].[TIN_No]                                                                                                              AS [TIN_No],
                                     [RECEIPT].[TransactionDate]                                                                                                    AS [TransactionDate],
-                                    IIF(
-                                        ISNULL([RECEIPT].[ModeType], '') = 'PDC'
-                                        OR ISNULL([RECEIPT].[ModeType], '') = 'DC',
-                                        [RECEIPT].[CheckDate],
-                                        [RECEIPT].[TransactionDate])                                                                                               AS [CheckDate],
+                                    --IIF(
+                                    --    ISNULL([RECEIPT].[ModeType], '') = 'PDC'
+                                    --    OR ISNULL([RECEIPT].[ModeType], '') = 'DC',
+                                    [RECEIPT].[CheckDate],
+                                    --[RECEIPT].[TransactionDate])                                                                                               AS [CheckDate],
                                     UPPER([dbo].[fnNumberToWordsWithDecimal]((ISNULL([tblUnitReference].[SecDeposit], 0)
                                                                               + ISNULL(
                                                                                           [tblUnitReference].[WaterAndElectricityDeposit],
@@ -696,11 +696,11 @@ AS
                                     [RECEIPT].[OR_No]                                                              AS [OR_No],
                                     [CLIENT].[TIN_No]                                                              AS [TIN_No],
                                     [RECEIPT].[TransactionDate]                                                    AS [TransactionDate],
-                                    IIF(
-                                        ISNULL([RECEIPT].[ModeType], '') = 'PDC'
-                                        OR ISNULL([RECEIPT].[ModeType], '') = 'DC',
-                                        [RECEIPT].[CheckDate],
-                                        [RECEIPT].[TransactionDate])                                               AS [CheckDate],
+                                    --IIF(
+                                    --    ISNULL([RECEIPT].[ModeType], '') = 'PDC'
+                                    --    OR ISNULL([RECEIPT].[ModeType], '') = 'DC',
+                                    [RECEIPT].[CheckDate],
+                                    --[RECEIPT].[TransactionDate])                                               AS [CheckDate],
                                     UPPER([dbo].[fnNumberToWordsWithDecimal]([TRANSACTION].[ReceiveAmount]))       AS [AmountInWords],
                                     [PAYMENT].[PAYMENT_FOR]                                                        AS [PaymentFor],
                                     [TRANSACTION].[ReceiveAmount]                                                  AS [TotalAmountInDigit],
@@ -855,11 +855,11 @@ AS
                                     [RECEIPT].[OR_No]                                                              AS [OR_No],
                                     [CLIENT].[TIN_No]                                                              AS [TIN_No],
                                     [RECEIPT].[TransactionDate]                                                    AS [TransactionDate],
-                                    IIF(
-                                        ISNULL([RECEIPT].[ModeType], '') = 'PDC'
-                                        OR ISNULL([RECEIPT].[ModeType], '') = 'DC',
-                                        [RECEIPT].[CheckDate],
-                                        [RECEIPT].[TransactionDate])                                               AS [CheckDate],
+                                                                                                                             --IIF(
+                                                                                                                             --    ISNULL([RECEIPT].[ModeType], '') = 'PDC'
+                                                                                                                             --    OR ISNULL([RECEIPT].[ModeType], '') = 'DC',
+                                    [RECEIPT].[CheckDate],
+                                                                                                                             --[RECEIPT].[TransactionDate])                                               AS [CheckDate],
                                     UPPER([dbo].[fnNumberToWordsWithDecimal]([TRANSACTION].[ReceiveAmount]))       AS [AmountInWords],
                                     [PAYMENT].[PAYMENT_FOR]                                                        AS [PaymentFor],
                                     [TRANSACTION].[ReceiveAmount]                                                  AS [TotalAmountInDigit],

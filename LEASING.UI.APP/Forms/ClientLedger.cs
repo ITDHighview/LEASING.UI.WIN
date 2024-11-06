@@ -587,7 +587,7 @@ namespace LEASING.UI.APP.Forms
                 }
 
                 Functions.MessageShow($"CONTRACT TERMINATION {result}");
-                Functions.GetNotification("CONTRACT TERMINATION "," You can now proceed for contract closing.");
+                Functions.GetNotification("CONTRACT TERMINATION ", " You can now proceed for contract closing.");
             }
             catch (Exception ex)
             {
@@ -640,7 +640,7 @@ namespace LEASING.UI.APP.Forms
                 }
             }
         }
-        
+
         private void ProceedToPayment()
         {
             var fPayment = new BulkPaymentModeForm();
@@ -651,11 +651,11 @@ namespace LEASING.UI.APP.Forms
 
             if (this.ModeType == "PDC")
             {
-                if (this.IsHold == true && this.IsClearPDC == false)
+                if (this.IsClearPDC == false)
                 {
                     this.SaveTransaction();
                 }
-                else if(this.IsHold == false && this.IsClearPDC == true)
+                else if (this.IsClearPDC == true)
                 {
                     this.GeneratePayment();
                 }

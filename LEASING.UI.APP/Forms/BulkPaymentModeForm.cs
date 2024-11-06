@@ -376,7 +376,7 @@ namespace LEASING.UI.APP.Forms
             //this.IsHold = chkHold.Checked;
             //this.IsClearPDC = chkClearPDC.Checked;
             this.RecieptDate = dtpRecieptDate.Text;
-            this.CheckDate = this.SelectModeOfPayment() == "PDC" || this.SelectModeOfPayment() == "DC" ? string.Empty : dtpCheckDate.Text;
+            this.CheckDate = this.SelectModeOfPayment() == "PDC" || this.SelectModeOfPayment() == "DC" ? dtpCheckDate.Text : null;
         }
         private void SavePaymentInfo()
         {

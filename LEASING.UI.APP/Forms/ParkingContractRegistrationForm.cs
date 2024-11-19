@@ -1011,11 +1011,13 @@ namespace LEASING.UI.APP.Forms
             }
             else
             {
-                PostDatedCheckMonthsList PostDatedCheckMonthsList = new PostDatedCheckMonthsList(dtpStartDate.Text, dtpFinishDate.Text, M_getXMLData());
+                PostDatedCheckMonthsList PostDatedCheckMonthsList = new PostDatedCheckMonthsList(dtpStartDate.Text, dtpFinishDate.Text, M_getXMLData(), txtRental.Text);
                 PostDatedCheckMonthsList.ShowDialog();
+                decimal MonthlyRentalFromSelectedMonth = 0;
                 if (PostDatedCheckMonthsList.isProceed)
                 {
                     selectedDate = Convert.ToDateTime(PostDatedCheckMonthsList.SelectedDate).ToString("MM/dd/yyyy");
+                    MonthlyRentalFromSelectedMonth = PostDatedCheckMonthsList.sMonthlyRental;
                 }
                 if (string.IsNullOrEmpty(selectedDate))
                 {
@@ -1027,7 +1029,7 @@ namespace LEASING.UI.APP.Forms
                     return;
                 }
 
-                dataTable.Rows.Add(selectedDate.ToString(), txtRental.Text);
+                dataTable.Rows.Add(selectedDate.ToString(), MonthlyRentalFromSelectedMonth);
                 dgvAdvancePayment.DataSource = dataTable;
                 M_GetTotalRental();
                 txtTotalPostDatedAmount.Text = string.Empty;

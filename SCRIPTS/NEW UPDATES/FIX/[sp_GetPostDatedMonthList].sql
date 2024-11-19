@@ -6,15 +6,13 @@ GO
 -- Author:		<Author,,Name>
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
--- EXEC [sp_GetPostDatedCountMonth] @FromDate = '07/17/2024',@EndDate = '07/29/2025',@Rental = '1000', @SecMainRental = '1500', @XML = ''
 -- =============================================
-CREATE OR ALTER PROCEDURE [dbo].[sp_GetPostDatedCountMonth]
+CREATE OR ALTER PROCEDURE [dbo].[sp_GetPostDatedMonthList]
     -- Add the parameters for the stored procedure here
-    @FromDate      VARCHAR(10) = NULL,
-    @EndDate       VARCHAR(10) = NULL,
-    @Rental        VARCHAR(10) = NULL,
-    @SecMainRental VARCHAR(10) = NULL,
-    @XML           XML
+    @FromDate VARCHAR(10) = NULL,
+    @EndDate  VARCHAR(10) = NULL,
+    --@Rental   VARCHAR(10) = NULL,
+    @XML      XML
 AS
     BEGIN
         -- SET NOCOUNT ON added to prevent extra result sets from
@@ -112,11 +110,8 @@ AS
         SELECT
             ROW_NUMBER() OVER (ORDER BY
                                    [#GeneratedMonths].[Month] ASC
-                              )                                                                    [seq],
-            CONVERT(VARCHAR(20), [#GeneratedMonths].[Month], 107)                                  AS [Dates],
-            @Rental                                                                                AS [Rental],
-            @SecMainRental                                                                         AS [SecMainRental],
-            FORMAT(CAST(@Rental AS DECIMAL(18, 2)) + CAST(@SecMainRental AS DECIMAL(18, 2)), 'N2') AS [TotalRental]
+                              )                                   [seq],
+            CONVERT(VARCHAR(20), [#GeneratedMonths].[Month], 107) AS [Dates]
         FROM
             [#GeneratedMonths];
 

@@ -12,6 +12,12 @@ AS
     BEGIN
 
         SET NOCOUNT ON;
+        CREATE TABLE [#tempAdvancePaymentRecId]
+            (
+                [RecId]            [BIGINT] IDENTITY(1, 1),
+                [MonthLedgerRecId] [BIGINT]
+            )
+
         CREATE TABLE [#tblBulkAmount]
             (
                 [LedgAmount] DECIMAL(18, 2)
@@ -31,6 +37,39 @@ AS
                             FROM
                                 @XML.[nodes]('/Table1') AS [ParaValues]([data])
             END
+
+
+        INSERT INTO [#tempAdvancePaymentRecId]
+            (
+                [MonthLedgerRecId]
+            )
+                    SELECT
+                            [tblMonthLedger].[Recid]
+                    FROM
+                            [dbo].[tblAdvancePayment]
+                        INNER JOIN
+                            [dbo].[tblMonthLedger]
+                                ON [tblMonthLedger].[LedgMonth] = [tblAdvancePayment].[Months]
+                                   AND CONCAT('REF', CAST([tblMonthLedger].[ReferenceID] AS VARCHAR(150))) = [tblAdvancePayment].[RefId]
+                    WHERE
+                            [tblMonthLedger].[Recid] IN
+                                (
+                                    SELECT
+                                        [#tblBulkPostdatedMonth].[Recid]
+                                    FROM
+                                        [#tblBulkPostdatedMonth]
+                                )
+        DELETE FROM
+        [#tblBulkPostdatedMonth]
+        WHERE
+            [#tblBulkPostdatedMonth].[Recid] IN
+                (
+                    SELECT
+                        [#tempAdvancePaymentRecId].[RecId]
+                    FROM
+                        [#tempAdvancePaymentRecId]
+                )
+
 
         INSERT INTO [#tblBulkAmount]
             (
@@ -54,6 +93,24 @@ AS
                                 FROM
                                     [#tblBulkPostdatedMonth]
                             )
+                    UNION
+                    SELECT
+                            ISNULL([tblAdvancePayment].[Amount], 0)
+                    FROM
+                            [dbo].[tblAdvancePayment]
+                        INNER JOIN
+                            [dbo].[tblMonthLedger]
+                                ON [tblMonthLedger].[LedgMonth] = [tblAdvancePayment].[Months]
+                                   AND CONCAT('REF', CAST([tblMonthLedger].[ReferenceID] AS VARCHAR(150))) = [tblAdvancePayment].[RefId]
+                    WHERE
+                            [tblMonthLedger].[Recid] IN
+                                (
+                                    SELECT
+                                        [#tempAdvancePaymentRecId].[RecId]
+                                    FROM
+                                        [#tempAdvancePaymentRecId]
+                                )
+
 
 
         SELECT
@@ -63,6 +120,8 @@ AS
 
         DROP TABLE [#tblBulkPostdatedMonth]
         DROP TABLE [#tblBulkAmount]
+
+        DROP TABLE [#tempAdvancePaymentRecId]
     END;
 GO
 

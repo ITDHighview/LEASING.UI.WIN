@@ -139,26 +139,45 @@ AS
                                 AND ISNULL([tblUnitReference].[WaterAndElectricityDeposit], 0) > 0
                             UNION
                             SELECT
-                                0                                                       [seq],
-                                [tblMonthLedger].[LedgRentalAmount],
-                                CONVERT(VARCHAR(20), [tblMonthLedger].[LedgMonth], 107) AS [LedgMonth],
-                                IIF(
-                                    [tblMonthLedger].[LedgMonth] IN
-                                        (
-                                            SELECT
-                                                [tblAdvancePayment].[Months]
-                                            FROM
-                                                [dbo].[tblAdvancePayment] WITH (NOLOCK)
-                                            WHERE
-                                                [tblAdvancePayment].[RefId] = @RefId
-                                        ),
-                                    'FOR ADVANCE PAYMENT',
-                                    'FOR POST DATED CHECK')                             AS [Remarks]
+                                    0                                                       [seq],
+                                    --[tblMonthLedger].[LedgRentalAmount],
+                                    IIF(
+                                        [tblMonthLedger].[LedgMonth] IN
+                                            (
+                                                SELECT
+                                                    [tblAdvancePayment].[Months]
+                                                FROM
+                                                    [dbo].[tblAdvancePayment] WITH (NOLOCK)
+                                                WHERE
+                                                    [tblAdvancePayment].[RefId] = @RefId
+                                            ),
+                                        ISNULL([tblAdvancePayment].[Amount], 0),
+                                        [tblMonthLedger].[LedgRentalAmount]),
+                                    CONVERT(VARCHAR(20), [tblMonthLedger].[LedgMonth], 107) AS [LedgMonth],
+                                    IIF(
+                                        [tblMonthLedger].[LedgMonth] IN
+                                            (
+                                                SELECT
+                                                    [tblAdvancePayment].[Months]
+                                                FROM
+                                                    [dbo].[tblAdvancePayment] WITH (NOLOCK)
+                                                WHERE
+                                                    [tblAdvancePayment].[RefId] = @RefId
+                                            ),
+                                        'FOR ADVANCE PAYMENT',
+                                        'FOR POST DATED CHECK')                             AS [Remarks]
                             FROM
-                                [dbo].[tblMonthLedger] WITH (NOLOCK)
+                                    [dbo].[tblMonthLedger] WITH (NOLOCK)
+                                LEFT JOIN
+                                    [dbo].[tblAdvancePayment]
+                                        ON [tblAdvancePayment].[Months] = [tblMonthLedger].[LedgMonth]
+                                           AND [tblAdvancePayment].[RefId] = CONCAT(
+                                                                                       'REF',
+                                                                                       CAST([tblMonthLedger].[ReferenceID] AS VARCHAR(150))
+                                                                                   )
                             WHERE
-                                [tblMonthLedger].[ReferenceID] = @ReferenceID
-                                AND [tblMonthLedger].[ClientID] = @ClientID
+                                    [tblMonthLedger].[ReferenceID] = @ReferenceID
+                                    AND [tblMonthLedger].[ClientID] = @ClientID
                             ORDER BY
                                 [seq] ASC;
             END;

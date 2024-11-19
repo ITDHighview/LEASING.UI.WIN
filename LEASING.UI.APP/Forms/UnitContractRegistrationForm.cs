@@ -624,9 +624,9 @@ namespace LEASING.UI.APP.Forms
             }
             else
             {
-                this.txtTotal.Text = (this.getFinalTotalAmount(this.IsDiscounted) + this.getFinalSecurityAmount() + this.getFinalWaterAndElectricityAmount()).ToString("N2");
+                this.txtTotal.Text = (this.getTotalAmountFromSelectedMonth(dataTable) + this.getFinalSecurityAmount() + this.getFinalWaterAndElectricityAmount()).ToString("N2");
             }
-            this.AdvancePaymentAmount = this.getFinalTotalAmount(this.IsDiscounted);
+            this.AdvancePaymentAmount = this.getTotalAmountFromSelectedMonth(dataTable);
         }
         private decimal getFinalSecurityAmount()
         {
@@ -719,6 +719,7 @@ namespace LEASING.UI.APP.Forms
                 //{
                 //alDoctorSchedule.Add(Convert.ToString(vMasterRecordID));
                 alAdvancePayment.Add(Convert.ToString(this.dgvAdvancePayment.Rows[iRow].Cells["Months"].Value));
+                alAdvancePayment.Add(Convert.ToString(this.dgvAdvancePayment.Rows[iRow].Cells["Amount"].Value));
                 sbDoctorSchedule.Append(SetXMLTable(ref alAdvancePayment));
                 //}
             }
@@ -1105,6 +1106,31 @@ namespace LEASING.UI.APP.Forms
 
             //}
         }
+        private decimal getTotalAmountFromSelectedMonth(DataTable dt)
+        {
+            decimal grandTotal = 0;
+            foreach (DataRow row in dataTable.Rows)
+            {
+                string price = (string)row["Amount"];
+
+                grandTotal += Functions.ConvertStringToDecimal(price);
+            }
+            return grandTotal;
+        }
+        private string getTotalMonthlyRentalToSelectedMonth()
+        {
+            if (this.IsDiscounted)
+            {
+                return this.NewTotalMontlyRental.ToString("N2");
+            }
+            else
+            {
+                return txtTotalRental.Text;
+            }
+
+            return string.Empty;
+
+        }
         private void btnAddAdvancePayment_Click(object sender, EventArgs e)
         {
             string selectedDate = string.Empty;
@@ -1138,11 +1164,14 @@ namespace LEASING.UI.APP.Forms
             }
             else
             {
-                PostDatedCheckMonthsList PostDatedCheckMonthsList = new PostDatedCheckMonthsList(dtpStartDate.Text, dtpFinishDate.Text, M_getXMLData());
+
+                PostDatedCheckMonthsList PostDatedCheckMonthsList = new PostDatedCheckMonthsList(dtpStartDate.Text, dtpFinishDate.Text, M_getXMLData(), this.getTotalMonthlyRentalToSelectedMonth());
                 PostDatedCheckMonthsList.ShowDialog();
+                decimal MonthlyRentalFromSelectedMonth = 0;
                 if (PostDatedCheckMonthsList.isProceed)
                 {
                     selectedDate = Convert.ToDateTime(PostDatedCheckMonthsList.SelectedDate).ToString("MM/dd/yyyy");
+                    MonthlyRentalFromSelectedMonth = PostDatedCheckMonthsList.sMonthlyRental;
                 }
                 if (string.IsNullOrEmpty(selectedDate))
                 {
@@ -1154,7 +1183,7 @@ namespace LEASING.UI.APP.Forms
                     return;
                 }
 
-                dataTable.Rows.Add(selectedDate.ToString(), txtTotalRental.Text);
+                dataTable.Rows.Add(selectedDate.ToString(), MonthlyRentalFromSelectedMonth);
                 dgvAdvancePayment.DataSource = dataTable;
                 M_GetTotalRental();
                 txtTotalPostDatedAmount.Text = string.Empty;
@@ -1395,6 +1424,11 @@ namespace LEASING.UI.APP.Forms
         private void txtWaterAndElectricityDepositAmount_TextChanged(object sender, EventArgs e)
         {
             M_GetTotalRental();
+        }
+
+        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
         }
     }
 }

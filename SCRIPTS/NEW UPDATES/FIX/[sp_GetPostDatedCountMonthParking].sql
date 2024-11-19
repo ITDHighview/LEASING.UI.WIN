@@ -46,11 +46,43 @@ AS
                    CONVERT(DATE, @FromDate) AS [Month]
                UNION ALL
                SELECT
-                   DATEADD(MONTH, 1, [MonthsCTE].[Month])
+                   CASE
+                       WHEN DAY(DATEADD(MONTH, 1, [MonthsCTE].[Month])) < DAY(@FromDate)
+                           THEN
+                           CONVERT(
+                                      DATE,
+                                      IIF(MONTH([MonthsCTE].[Month]) = 2,
+                                          DATEADD(
+                                                     DAY, DAY(@FromDate) - 1,
+                                                     DATEADD(
+                                                                MONTH,
+                                                                MONTH(DATEADD(
+                                                                                 MONTH, 1,
+                                                                                 CONVERT(DATE, [MonthsCTE].[Month])
+                                                                             )
+                                                                     ) - 1,
+                                                                DATEADD(
+                                                                           YEAR,
+                                                                           YEAR(DATEADD(
+                                                                                           MONTH, 1,
+                                                                                           CONVERT(
+                                                                                                      DATE,
+                                                                                                      [MonthsCTE].[Month]
+                                                                                                  )
+                                                                                       )
+                                                                               ) - 1900, '1900-01-01'
+                                                                       )
+                                                            )
+                                                 ),
+                                          DATEADD(MONTH, 1, [MonthsCTE].[Month]))
+                                  )
+                       ELSE
+                           DATEADD(MONTH, 1, [MonthsCTE].[Month])
+                   END
                FROM
                    [MonthsCTE]
                WHERE
-                   DATEADD(MONTH, 1, [MonthsCTE].[Month]) <= DATEADD(MONTH, @MonthsCount - 1, CONVERT(DATE, @FromDate)))
+                   DATEADD(MONTH, 1, [MonthsCTE].[Month]) <= @EndDate)
         INSERT INTO [#GeneratedMonths]
             (
                 [Month]

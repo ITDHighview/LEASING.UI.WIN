@@ -605,7 +605,7 @@ namespace LEASING.UI.APP.Forms
 
             if (IsComputationValid())
             {
-                PostDatedCheckMonthsList PostDatedCheckMonthsList = new PostDatedCheckMonthsList(dtpStartDate.Text, dtpFinishDate.Text, M_getXMLData());
+                PostDatedCheckMonthsList PostDatedCheckMonthsList = new PostDatedCheckMonthsList(dtpStartDate.Text, dtpFinishDate.Text, M_getXMLData(), txtTotalRental.Text);
                 PostDatedCheckMonthsList.ShowDialog();
                 if (PostDatedCheckMonthsList.isProceed)
                 {

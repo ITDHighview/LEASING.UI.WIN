@@ -1,3 +1,4 @@
+USE [LEASINGDB]
 SET QUOTED_IDENTIFIER ON
 SET ANSI_NULLS ON
 GO
@@ -20,7 +21,7 @@ AS
         SET NOCOUNT ON;
         DECLARE @Message_Code VARCHAR(MAX) = '';
         DECLARE @ErrorMessage NVARCHAR(MAX) = N'';
-       
+
         --DECLARE @StartDate VARCHAR(10) = '08/02/2023';
         --DECLARE @EndDate VARCHAR(10) = '05/02/2024';
         --SELECT DATEDIFF(MONTH, CONVERT(DATE, @StartDate, 101), CONVERT(DATE, @EndDate, 101)) AS NumberOfMonths;
@@ -75,16 +76,67 @@ AS
             (
                 [Month] DATE
             );
+        --WITH [MonthsCTE]
+        --AS (   SELECT
+        --           CONVERT(DATE, @FromDate) AS [Month]
+        --       UNION ALL
+        --       SELECT
+        --           DATEADD(MONTH, 1, [MonthsCTE].[Month])
+        --       FROM
+        --           [MonthsCTE]
+        --       WHERE
+        --           DATEADD(MONTH, 1, [MonthsCTE].[Month]) <= DATEADD(MONTH, @MonthsCount - 1, CONVERT(DATE, @FromDate)))
+        --INSERT INTO [#GeneratedMonths]
+        --    (
+        --        [Month]
+        --    )
+        --            SELECT
+        --                [MonthsCTE].[Month]
+        --            FROM
+        --                [MonthsCTE];
+
         WITH [MonthsCTE]
         AS (   SELECT
                    CONVERT(DATE, @FromDate) AS [Month]
                UNION ALL
                SELECT
-                   DATEADD(MONTH, 1, [MonthsCTE].[Month])
+                   CASE
+                       WHEN DAY(DATEADD(MONTH, 1, [MonthsCTE].[Month])) < DAY(@FromDate)
+                           THEN
+                           CONVERT(
+                                      DATE,
+                                      IIF(MONTH([MonthsCTE].[Month]) = 2,
+                                          DATEADD(
+                                                     DAY, DAY(@FromDate) - 1,
+                                                     DATEADD(
+                                                                MONTH,
+                                                                MONTH(DATEADD(
+                                                                                 MONTH, 1,
+                                                                                 CONVERT(DATE, [MonthsCTE].[Month])
+                                                                             )
+                                                                     ) - 1,
+                                                                DATEADD(
+                                                                           YEAR,
+                                                                           YEAR(DATEADD(
+                                                                                           MONTH, 1,
+                                                                                           CONVERT(
+                                                                                                      DATE,
+                                                                                                      [MonthsCTE].[Month]
+                                                                                                  )
+                                                                                       )
+                                                                               ) - 1900, '1900-01-01'
+                                                                       )
+                                                            )
+                                                 ),
+                                          DATEADD(MONTH, 1, [MonthsCTE].[Month]))
+                                  )
+                       ELSE
+                           DATEADD(MONTH, 1, [MonthsCTE].[Month])
+                   END
                FROM
                    [MonthsCTE]
                WHERE
-                   DATEADD(MONTH, 1, [MonthsCTE].[Month]) <= DATEADD(MONTH, @MonthsCount - 1, CONVERT(DATE, @FromDate)))
+                   DATEADD(MONTH, 1, [MonthsCTE].[Month]) <= @EndDate)
         INSERT INTO [#GeneratedMonths]
             (
                 [Month]
@@ -92,9 +144,8 @@ AS
                     SELECT
                         [MonthsCTE].[Month]
                     FROM
-                        [MonthsCTE];
-
-
+                        [MonthsCTE]
+        OPTION (MAXRECURSION 0);
 
         INSERT INTO [dbo].[tblMonthLedger]
             (

@@ -55,16 +55,19 @@ AS
 
         CREATE TABLE [#tblAdvancePayment]
             (
-                [Months] VARCHAR(10)
+                [Months] VARCHAR(10),
+                [Amount] DECIMAL(18, 2)
             );
         IF (@XML IS NOT NULL)
             BEGIN
                 INSERT INTO [#tblAdvancePayment]
                     (
-                        [Months]
+                        [Months],
+                        [Amount]
                     )
                             SELECT
-                                [ParaValues].[data].[value]('c1[1]', 'VARCHAR(10)')
+                                [ParaValues].[data].[value]('c1[1]', 'VARCHAR(10)'),
+                                [ParaValues].[data].[value]('c1[2]', 'DECIMAL(18,2)')
                             FROM
                                 @XML.[nodes]('/Table1') AS [ParaValues]([data]);
             END;
@@ -188,7 +191,7 @@ AS
                             SELECT
                                 CONVERT(DATE, [#tblAdvancePayment].[Months]),
                                 @RefId,
-                                @TotalRent
+                                [#tblAdvancePayment].[Amount]
                             FROM
                                 [#tblAdvancePayment];
 

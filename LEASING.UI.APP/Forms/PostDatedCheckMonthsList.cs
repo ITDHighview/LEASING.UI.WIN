@@ -5,8 +5,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -20,12 +22,14 @@ namespace LEASING.UI.APP.Forms
         public string sEndDate { get; set; } = string.Empty;
         public string sXML { get; set; } = string.Empty;
         public string SelectedDate { get; set; } = string.Empty;
-        public PostDatedCheckMonthsList(string FromDate, string EndDate, string XML)
+        public decimal sMonthlyRental { get; set; } = 0;
+        public PostDatedCheckMonthsList(string FromDate, string EndDate, string XML, string monthlyRental)
         {
             InitializeComponent();
             sFromDate = FromDate;
             sEndDate = EndDate;
             sXML = XML;
+            txtMonthlyRental.Text = monthlyRental;
         }
 
         private void M_GetPostDatedMonthList()
@@ -61,8 +65,37 @@ namespace LEASING.UI.APP.Forms
             //{
             isProceed = true;
             SelectedDate = Convert.ToString(dgvList.CurrentRow.Cells["Dates"].Value);
+            sMonthlyRental = Functions.ConvertStringToDecimal(txtMonthlyRental.Text);
             this.Close();
             //}        
+        }
+
+        private void txtMonthlyRental_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Regex.IsMatch(Convert.ToString(e.KeyChar), "[0-9.\b]"))
+                e.Handled = true;
+        }
+
+        private void txtMonthlyRental_Leave(object sender, EventArgs e)
+        {
+            string input = txtMonthlyRental.Text.Replace(",", "").Trim();
+            decimal value;
+            if (decimal.TryParse(input, NumberStyles.Any, CultureInfo.InvariantCulture, out value))
+            {
+                // Format the number with commas and two decimal places
+                txtMonthlyRental.Text = value.ToString("N2"); // Format with commas and two decimal places
+            }
+        }
+
+        private void txtMonthlyRental_MouseMove(object sender, MouseEventArgs e)
+        {
+            string input = txtMonthlyRental.Text.Replace(",", "").Trim();
+            decimal value;
+            if (decimal.TryParse(input, NumberStyles.Any, CultureInfo.InvariantCulture, out value))
+            {
+                // Format the number with commas and two decimal places
+                txtMonthlyRental.Text = value.ToString("N2"); // Format with commas and two decimal places
+            }
         }
     }
 }

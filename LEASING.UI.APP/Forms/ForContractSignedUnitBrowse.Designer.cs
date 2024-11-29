@@ -32,6 +32,7 @@
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn2 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn3 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn4 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn5 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
@@ -62,7 +63,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(596, 338);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(648, 338);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // toolStrip1
@@ -71,7 +72,7 @@
             this.btnRefresh});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(596, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(648, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -92,7 +93,7 @@
             this.radGroupBox1.HeaderText = "FOR UPLOAD CONTRACT";
             this.radGroupBox1.Location = new System.Drawing.Point(3, 28);
             this.radGroupBox1.Name = "radGroupBox1";
-            this.radGroupBox1.Size = new System.Drawing.Size(590, 307);
+            this.radGroupBox1.Size = new System.Drawing.Size(642, 307);
             this.radGroupBox1.TabIndex = 1;
             this.radGroupBox1.Text = "FOR UPLOAD CONTRACT";
             this.radGroupBox1.ThemeName = "Office2007Silver";
@@ -111,30 +112,37 @@
             // 
             this.dgvList.MasterTemplate.AllowAddNewRow = false;
             this.dgvList.MasterTemplate.AllowColumnReorder = false;
-            gridViewCommandColumn1.FieldName = "ColByPass";
-            gridViewCommandColumn1.HeaderImage = global::LEASING.UI.APP.Properties.Resources.accept;
+            gridViewCommandColumn1.FieldName = "ColDecline";
+            gridViewCommandColumn1.HeaderImage = global::LEASING.UI.APP.Properties.Resources.block_16;
             gridViewCommandColumn1.HeaderText = "";
-            gridViewCommandColumn1.Image = global::LEASING.UI.APP.Properties.Resources.accept;
-            gridViewCommandColumn1.Name = "ColByPass";
+            gridViewCommandColumn1.Image = global::LEASING.UI.APP.Properties.Resources.block_16;
+            gridViewCommandColumn1.IsVisible = false;
+            gridViewCommandColumn1.Name = "ColDecline";
             gridViewCommandColumn1.Width = 30;
-            gridViewCommandColumn2.FieldName = "ColContract";
-            gridViewCommandColumn2.HeaderImage = global::LEASING.UI.APP.Properties.Resources._16_MyLogsBook;
+            gridViewCommandColumn2.FieldName = "ColByPass";
+            gridViewCommandColumn2.HeaderImage = global::LEASING.UI.APP.Properties.Resources.accept;
             gridViewCommandColumn2.HeaderText = "";
-            gridViewCommandColumn2.Image = global::LEASING.UI.APP.Properties.Resources._16_MyLogsBook;
-            gridViewCommandColumn2.Name = "ColContract";
+            gridViewCommandColumn2.Image = global::LEASING.UI.APP.Properties.Resources.accept;
+            gridViewCommandColumn2.Name = "ColByPass";
             gridViewCommandColumn2.Width = 30;
-            gridViewCommandColumn3.FieldName = "ColApproved";
-            gridViewCommandColumn3.HeaderImage = global::LEASING.UI.APP.Properties.Resources.attach;
+            gridViewCommandColumn3.FieldName = "ColContract";
+            gridViewCommandColumn3.HeaderImage = global::LEASING.UI.APP.Properties.Resources._16_MyLogsBook;
             gridViewCommandColumn3.HeaderText = "";
-            gridViewCommandColumn3.Image = global::LEASING.UI.APP.Properties.Resources.attach;
-            gridViewCommandColumn3.Name = "ColApproved";
+            gridViewCommandColumn3.Image = global::LEASING.UI.APP.Properties.Resources._16_MyLogsBook;
+            gridViewCommandColumn3.Name = "ColContract";
             gridViewCommandColumn3.Width = 30;
-            gridViewCommandColumn4.FieldName = "ColView";
-            gridViewCommandColumn4.HeaderImage = global::LEASING.UI.APP.Properties.Resources.magnifier;
+            gridViewCommandColumn4.FieldName = "ColApproved";
+            gridViewCommandColumn4.HeaderImage = global::LEASING.UI.APP.Properties.Resources.attach;
             gridViewCommandColumn4.HeaderText = "";
-            gridViewCommandColumn4.Image = global::LEASING.UI.APP.Properties.Resources.magnifier;
-            gridViewCommandColumn4.Name = "ColView";
+            gridViewCommandColumn4.Image = global::LEASING.UI.APP.Properties.Resources.attach;
+            gridViewCommandColumn4.Name = "ColApproved";
             gridViewCommandColumn4.Width = 30;
+            gridViewCommandColumn5.FieldName = "ColView";
+            gridViewCommandColumn5.HeaderImage = global::LEASING.UI.APP.Properties.Resources.magnifier;
+            gridViewCommandColumn5.HeaderText = "";
+            gridViewCommandColumn5.Image = global::LEASING.UI.APP.Properties.Resources.magnifier;
+            gridViewCommandColumn5.Name = "ColView";
+            gridViewCommandColumn5.Width = 30;
             gridViewTextBoxColumn1.FieldName = "RefId";
             gridViewTextBoxColumn1.HeaderText = "Contract ID";
             gridViewTextBoxColumn1.Name = "RefId";
@@ -156,6 +164,7 @@
             gridViewCommandColumn2,
             gridViewCommandColumn3,
             gridViewCommandColumn4,
+            gridViewCommandColumn5,
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
             gridViewTextBoxColumn3,
@@ -166,22 +175,22 @@
             this.dgvList.ReadOnly = true;
             this.dgvList.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgvList.ShowGroupPanel = false;
-            this.dgvList.Size = new System.Drawing.Size(586, 287);
+            this.dgvList.Size = new System.Drawing.Size(638, 287);
             this.dgvList.TabIndex = 0;
             this.dgvList.Text = "radGridView1";
             this.dgvList.ThemeName = "Office2007Silver";
             this.dgvList.CellClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.dgvList_CellClick);
             // 
-            // frmContractSignedUnit
+            // ForContractSignedUnitBrowse
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(596, 338);
+            this.ClientSize = new System.Drawing.Size(648, 338);
             this.Controls.Add(this.tableLayoutPanel1);
             this.DoubleBuffered = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmContractSignedUnit";
+            this.Name = "ForContractSignedUnitBrowse";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Contract Signed (Unit)";

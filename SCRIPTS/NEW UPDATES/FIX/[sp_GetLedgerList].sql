@@ -18,6 +18,7 @@ AS
         DECLARE @PenaltyPct DECIMAL(18, 2) = NULL
         DECLARE @RefId VARCHAR(150) = ''
 
+
         CREATE TABLE #tempAdvancePaymentFiltered
             (
                 id      [BIGINT] IDENTITY(1, 1),
@@ -209,89 +210,6 @@ AS
             [dbo].[tblUnitReference] WITH (NOLOCK)
         WHERE
             [tblUnitReference].[RecId] = @ReferenceID
-
-        /*Check if the penalty stop when it reach the specific date to penalty*/
-        --UPDATE
-        --    [dbo].[tblMonthLedger]
-        --SET
-        --    [tblMonthLedger].[PenaltyAmount] = IIF([tblMonthLedger].[PenaltyAmount] > 0,
-        --                                           [tblMonthLedger].[PenaltyAmount],
-        --                                           CASE
-        --                                               WHEN DATEDIFF(
-        --                                                                DAY, [tblMonthLedger].[LedgMonth],
-        --                                                                CAST(GETDATE() AS DATE)
-        --                                                            ) < 30
-        --                                                   THEN
-        --                                                   0
-        --                                               WHEN DATEDIFF(
-        --                                                                DAY, [tblMonthLedger].[LedgMonth],
-        --                                                                CAST(GETDATE() AS DATE)
-        --                                                            ) = 30
-        --                                                   THEN
-        --                                                   --CAST(((@TotalRent * @PenaltyPct) / 100) AS DECIMAL(18, 2))
-        --                                                   CAST((([tblMonthLedger].[LedgRentalAmount] * @PenaltyPct)
-        --                                                         / 100
-        --                                                        ) AS DECIMAL(18, 2))
-        --                                               WHEN DATEDIFF(
-        --                                                                DAY, [tblMonthLedger].[LedgMonth],
-        --                                                                CAST(GETDATE() AS DATE)
-        --                                                            ) >= 31
-        --                                                    AND DATEDIFF(
-        --                                                                    DAY, [tblMonthLedger].[LedgMonth],
-        --                                                                    CAST(GETDATE() AS DATE)
-        --                                                                --) <= 31 THEN
-        --                                                                ) <= 60
-        --                                                   THEN
-        --                                                   --CAST((((@TotalRent * @PenaltyPct) / 100) * 2) AS DECIMAL(18, 2))
-        --                                                   CAST(((([tblMonthLedger].[LedgRentalAmount] * @PenaltyPct)
-        --                                                          / 100
-        --                                                         ) * 2
-        --                                                        ) AS DECIMAL(18, 2))
-        --                                               WHEN DATEDIFF(
-        --                                                                DAY, [tblMonthLedger].[LedgMonth],
-        --                                                                CAST(GETDATE() AS DATE)
-        --                                                            ) = 60
-        --                                                   THEN
-        --                                                   --CAST((((@TotalRent * @PenaltyPct) / 100) * 3) AS DECIMAL(18, 2))
-        --                                                   CAST(((([tblMonthLedger].[LedgRentalAmount] * @PenaltyPct)
-        --                                                          / 100
-        --                                                         ) * 3
-        --                                                        ) AS DECIMAL(18, 2))
-        --                                               WHEN DATEDIFF(
-        --                                                                DAY, [tblMonthLedger].[LedgMonth],
-        --                                                                CAST(GETDATE() AS DATE)
-        --                                                            ) >= 61
-        --                                                   THEN
-        --                                                   --CAST((((@TotalRent * @PenaltyPct) / 100) * 4) AS DECIMAL(18, 2))
-        --                                                   CAST(((([tblMonthLedger].[LedgRentalAmount] * @PenaltyPct)
-        --                                                          / 100
-        --                                                         ) * 4
-        --                                                        ) AS DECIMAL(18, 2))
-        --                                               ELSE
-        --                                                   0
-        --                                           END)
-        --WHERE
-        --    [tblMonthLedger].[ReferenceID] = @ReferenceID
-        --    AND
-        --        (
-        --            ISNULL([tblMonthLedger].[IsPaid], 0) = 0
-        --            OR ISNULL([tblMonthLedger].[IsHold], 0) = 1
-        --        )
-        --    AND MONTH([tblMonthLedger].[EncodedDate]) > 4
-        --    AND YEAR([tblMonthLedger].[EncodedDate]) = 2024
-
-        --UPDATE
-        --    [dbo].[tblMonthLedger]
-        --SET
-        --    [tblMonthLedger].[ActualAmount] = [tblMonthLedger].[LedgRentalAmount]
-        --                                      + ISNULL([tblMonthLedger].[PenaltyAmount], 0)
-        --WHERE
-        --    [tblMonthLedger].[ReferenceID] = @ReferenceID
-        --    AND
-        --        (
-        --            ISNULL([tblMonthLedger].[IsPaid], 0) = 0
-        --            OR ISNULL([tblMonthLedger].[IsHold], 0) = 1
-        --        )
 
         INSERT INTO [#tempMonthLedger]
             (

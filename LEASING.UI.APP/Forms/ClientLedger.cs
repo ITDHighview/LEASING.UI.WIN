@@ -316,16 +316,39 @@ namespace LEASING.UI.APP.Forms
         }
         private void getLedgerBrowseByContractIdClientId()
         {
+            bool IsContractApplyMonthlyPenalty = false;
+            bool IsApplyMonthlyPenalty = false;
+           
+
+       
             try
             {
-                dgvLedgerList.DataSource = null;
-                using (DataSet dt = _contract.GetLedgerBrowseByContractIdClientId(this._contractId, this._clientId))
+                using (DataSet dt = _contract.GetIsContractApplyMonthlyPenalty(this._contractId))
                 {
                     if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
-                        dgvLedgerList.DataSource = dt.Tables[0];
+                        IsContractApplyMonthlyPenalty = Convert.ToBoolean(dt.Tables[0].Rows[0]["IsContractApplyMonthlyPenalty"]);
                     }
                 }
+
+                if (IsContractApplyMonthlyPenalty)
+                {
+                    if (Functions.MessageConfirm("Would you like to integrate penalty for this contract?") == DialogResult.Yes)
+                    {
+                        IsApplyMonthlyPenalty = true;
+                    }
+                }
+               
+                    dgvLedgerList.DataSource = null;
+                    using (DataSet dt = _contract.GetLedgerListWithPenaltyIntegration(this._contractId, this._clientId, IsApplyMonthlyPenalty))
+                    {
+                        if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                        {
+                            dgvLedgerList.DataSource = dt.Tables[0];
+                        }
+                    }
+                
+
             }
             catch (Exception ex)
             {

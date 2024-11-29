@@ -39,18 +39,16 @@ AS
         DECLARE @TranID VARCHAR(50) = ''
         DECLARE @RcptRecId BIGINT = 0
         DECLARE @RcptID VARCHAR(50) = ''
-        DECLARE @ApplicableMonth1 DATE = NULL
-        DECLARE @ApplicableMonth2 DATE = NULL
         DECLARE @IsFullPayment BIT = 0
         DECLARE @TotalRent DECIMAL(18, 2) = NULL
         DECLARE @PenaltyPct DECIMAL(18, 2) = NULL
-        DECLARE @ActualAmount DECIMAL(18, 2) = NULL
+        DECLARE @ActualAmountPaid DECIMAL(18, 2) = NULL
         DECLARE @AmountToDeduct DECIMAL(18, 2)
         DECLARE @ForMonth DATE
         DECLARE @RefRecId BIGINT = NULL
         DECLARE @ForMonthRecID BIGINT = NULL
 
-        DECLARE @ActualLedgeAMount BIGINT = NULL
+        DECLARE @MaintenanceAndRentalAmount DECIMAL(18, 2) = NULL
 
         CREATE TABLE [#tblBulkPostdatedMonth]
             (
@@ -77,18 +75,19 @@ AS
         WHERE
             [tblUnitReference].[RefId] = @RefId
 
-        UPDATE
-            [dbo].[tblMonthLedger]
-        SET
-            [tblMonthLedger].[ActualAmount] = [tblMonthLedger].[LedgRentalAmount]
-                                              + ISNULL([tblMonthLedger].[PenaltyAmount], 0)
-        WHERE
-            [tblMonthLedger].[ReferenceID] = @RefRecId
-            AND
-                (
-                    ISNULL([tblMonthLedger].[IsPaid], 0) = 0
-                    OR ISNULL([tblMonthLedger].[IsHold], 0) = 1
-                )
+        /*Related to old penalty integration*/
+        --UPDATE
+        --    [dbo].[tblMonthLedger]
+        --SET
+        --    [tblMonthLedger].[ActualAmount] = [tblMonthLedger].[LedgRentalAmount]
+        --                                      + ISNULL([tblMonthLedger].[PenaltyAmount], 0)
+        --WHERE
+        --    [tblMonthLedger].[ReferenceID] = @RefRecId
+        --    AND
+        --        (
+        --            ISNULL([tblMonthLedger].[IsPaid], 0) = 0
+        --            OR ISNULL([tblMonthLedger].[IsHold], 0) = 1
+        --        )
 
 
 
@@ -164,20 +163,24 @@ AS
             @AmountToDeduct,
             @ForMonth,
             @ForMonthRecID,
-            @ActualLedgeAMount
+            @MaintenanceAndRentalAmount
 
         WHILE @@FETCH_STATUS = 0
             BEGIN
 
 
                 SELECT
-                    @ActualAmount = [tblTransaction].[ActualAmountPaid]
+                    @ActualAmountPaid = [tblTransaction].[ActualAmountPaid]
                 FROM
                     [dbo].[tblTransaction]
                 WHERE
                     [tblTransaction].[RecId] = @TranRecId
-                IF @ActualAmount > 0
+
+
+                IF @ActualAmountPaid > 0
                     BEGIN
+
+
                         UPDATE
                             [dbo].[tblTransaction]
                         SET
@@ -185,7 +188,8 @@ AS
                         WHERE
                             [tblTransaction].[RecId] = @TranRecId
 
-                        IF @ActualAmount >= @AmountToDeduct
+
+                        IF @ActualAmountPaid >= @AmountToDeduct
                             BEGIN
                                 UPDATE
                                     [dbo].[tblMonthLedger]
@@ -259,7 +263,7 @@ AS
                                 END
 
                             END
-                        ELSE IF @ActualAmount < @AmountToDeduct
+                        ELSE IF @ActualAmountPaid < @AmountToDeduct
                             BEGIN
                                 UPDATE
                                     [dbo].[tblMonthLedger]
@@ -274,7 +278,7 @@ AS
                                     [tblMonthLedger].[SERIAL_NO] = @SerialNo,
                                     [tblMonthLedger].[ModeType] = @ModeType,
                                     [tblMonthLedger].[BankBranch] = @BankBranch,
-                                    [tblMonthLedger].[BalanceAmount] = ABS(@ActualAmount - @AmountToDeduct),
+                                    [tblMonthLedger].[BalanceAmount] = ABS(@ActualAmountPaid - @AmountToDeduct),
                                     [tblMonthLedger].[TransactionID] = @TranID, --- TRN WILL CHANGE IF ALWAYS A PAYMENT FOR BALANCE AMOUNT
                                     [tblMonthLedger].[CheckDate] = @CheckDate,
                                     [tblMonthLedger].[ReceiptDate] = @ReceiptDate,
@@ -303,14 +307,14 @@ AS
                                         [LedgeRecid]
                                     )
                                             SELECT
-                                                @TranID                                AS [TranId],
-                                                @RefId                                 AS [RefId],
+                                                @TranID                                    AS [TranId],
+                                                @RefId                                     AS [RefId],
                                                 [tblMonthLedger].[LedgRentalAmount]
-                                                - ABS(@ActualAmount - @AmountToDeduct) AS [Amount], ---THIS IS NOT A ACTUAL AMOUNT PAID  FOR FUTURE JOIN TRAN TO PAYMENT TRANID TO GET THE ACTUAL SUM PAYMENT                   
-                                                [tblMonthLedger].[LedgMonth]           AS [ForMonth],
-                                                'FOLLOW-UP PAYMENT'                    AS [Remarks],
+                                                - ABS(@ActualAmountPaid - @AmountToDeduct) AS [Amount], ---THIS IS NOT A ACTUAL AMOUNT PAID  FOR FUTURE JOIN TRAN TO PAYMENT TRANID TO GET THE ACTUAL SUM PAYMENT                   
+                                                [tblMonthLedger].[LedgMonth]               AS [ForMonth],
+                                                'FOLLOW-UP PAYMENT'                        AS [Remarks],
                                                 @EncodedBy,
-                                                GETDATE(),                                          --Dated payed
+                                                GETDATE(),                                              --Dated payed
                                                 @ComputerName,
                                                 1,
                                                 [tblMonthLedger].[Remarks],
@@ -339,7 +343,7 @@ AS
                     @AmountToDeduct,
                     @ForMonth,
                     @ForMonthRecID,
-                    @ActualLedgeAMount
+                    @MaintenanceAndRentalAmount
             END
 
         CLOSE [CursorName]

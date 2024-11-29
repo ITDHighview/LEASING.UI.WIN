@@ -945,7 +945,15 @@ namespace LEASING.UI.APP.Forms
                 }
                 else if (!IsComputed)
                 {
-                    MessageBox.Show("Please execute the computation", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //MessageBox.Show("Please execute the computation", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    IsComputed = true;
+                    seq = 0;
+                    //txtTotalPostDatedAmount.Text = string.Empty;
+                    M_GetPostDatedCountMonth();
+                    var TotalPostDatedAmount = (dgvpostdatedcheck.Rows.Count() < 0) ? 0 : (Convert.ToDecimal(dgvpostdatedcheck.Rows.Count().ToString()) * ((txtTotalRental.Text == "") ? 0 : Convert.ToDecimal(txtTotalRental.Text)));
+                    txtTotalPostDatedAmount.Text = TotalPostDatedAmount.ToString("N2");
+                    M_GetTotalRental();
+                    txtTotal.Focus();
                 }
                 else
                 {
@@ -984,7 +992,7 @@ namespace LEASING.UI.APP.Forms
                 else if (this.dgvList.Columns[e.ColumnIndex].Name == "ColRemoved")
                 {
 
-                    if (MessageBox.Show("Are you sure you want to Delete this computation?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                    if (MessageBox.Show("Are you sure you want to Delete this Contract Computation?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                     {
 
                         try
@@ -1243,7 +1251,15 @@ namespace LEASING.UI.APP.Forms
             }
             else if (!IsComputed)
             {
-                MessageBox.Show("Please execute the computation", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show("Please execute the computation", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                IsComputed = true;
+                seq = 0;
+                //txtTotalPostDatedAmount.Text = string.Empty;
+                M_GetPostDatedCountMonth();
+                var TotalPostDatedAmount = (dgvpostdatedcheck.Rows.Count() < 0) ? 0 : (Convert.ToDecimal(dgvpostdatedcheck.Rows.Count().ToString()) * ((txtTotalRental.Text == "") ? 0 : Convert.ToDecimal(txtTotalRental.Text)));
+                txtTotalPostDatedAmount.Text = TotalPostDatedAmount.ToString("N2");
+                M_GetTotalRental();
+                txtTotal.Focus();
             }
             else
             {

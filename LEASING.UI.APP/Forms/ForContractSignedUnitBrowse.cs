@@ -142,6 +142,17 @@ namespace LEASING.UI.APP.Forms
                         this._getContractProjectTypeReport(Convert.ToString(dgvList.CurrentRow.Cells["RefId"].Value));
                     }
                 }
+                else if (this.dgvList.Columns[e.ColumnIndex].Name == "ColDecline")
+                {
+                    if (dgvList.Rows.Count > 0)
+                    {
+                        if (Functions.MessageConfirm("Are you sure you want to decline this contract?")== DialogResult.Yes)
+                        {
+
+                        }
+                        //this._getContractProjectTypeReport(Convert.ToString(dgvList.CurrentRow.Cells["RefId"].Value));
+                    }
+                }
             }
         }
     }

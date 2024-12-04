@@ -67,7 +67,7 @@ AS
                     )
                             SELECT
                                 [ParaValues].[data].[value]('c1[1]', 'VARCHAR(10)'),
-                                [ParaValues].[data].[value]('c1[2]', 'DECIMAL(18,2)')
+                                [ParaValues].[data].[value]('c2[1]', 'DECIMAL(18,2)')
                             FROM
                                 @XML.[nodes]('/Table1') AS [ParaValues]([data]);
             END;

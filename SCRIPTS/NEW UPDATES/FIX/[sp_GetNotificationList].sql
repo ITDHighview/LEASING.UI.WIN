@@ -160,6 +160,8 @@ AS
                 ISNULL([tblMonthLedger].[IsPaid], 0) = 0
                 AND ISNULL([tblUnitReference].[IsPaid], 0) = 1
                 AND ISNULL([tblUnitReference].[IsTerminated], 0) = 0
+                AND ISNULL([tblUnitReference].[IsSignedContract], 0) = 1
+                AND ISNULL([tblUnitReference].[IsUnitMove], 0) = 1
                 AND CONVERT(DATE, [tblMonthLedger].[LedgMonth], 103) <= CONVERT(DATE, GETDATE(), 103)
                 AND [tblMonthLedger].[LedgMonth] IN
                         (
@@ -170,6 +172,7 @@ AS
                             WHERE
                                 [#tempAdvancePayment].[ReferenceID] = [tblMonthLedger].[ReferenceID]
                         )
+                AND ISNULL([tblUnitReference].[IsDeclineUnit], 0) = 0
     END;
 
     DROP TABLE IF EXISTS [#tempAdvancePayment]

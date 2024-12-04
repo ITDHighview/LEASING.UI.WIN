@@ -162,7 +162,7 @@ namespace LEASING.UI.APP.Forms
             {
                 for (int iRow = 0; iRow < dgvLedgerList.Rows.Count; iRow++)
                 {
-                    if (Convert.ToBoolean(this.dgvLedgerList.Rows[iRow].Cells["ColCheck"].Value) && (Convert.ToString(this.dgvLedgerList.Rows[iRow].Cells["PaymentStatus"].Value) == "PENDING" || Convert.ToString(this.dgvLedgerList.Rows[iRow].Cells["PaymentStatus"].Value) == "HOLD" || Convert.ToString(this.dgvLedgerList.Rows[iRow].Cells["PaymentStatus"].Value) == "FOR PAYMENT"))
+                    if (Convert.ToBoolean(this.dgvLedgerList.Rows[iRow].Cells["ColCheck"].Value) && (Convert.ToString(this.dgvLedgerList.Rows[iRow].Cells["PaymentStatus"].Value) == "PENDING" || Convert.ToString(this.dgvLedgerList.Rows[iRow].Cells["PaymentStatus"].Value) == "HOLD" || Convert.ToString(this.dgvLedgerList.Rows[iRow].Cells["PaymentStatus"].Value) == "DUE"))
                     {
                         //alDoctorSchedule.Add(Convert.ToString(vMasterRecordID));
                         alAdvancePayment.Add(Convert.ToString(this.dgvLedgerList.Rows[iRow].Cells["Recid"].Value));
@@ -174,7 +174,7 @@ namespace LEASING.UI.APP.Forms
             {
                 for (int iRow = 0; iRow < dgvLedgerList.Rows.Count; iRow++)
                 {
-                    if (Convert.ToString(this.dgvLedgerList.Rows[iRow].Cells["PaymentStatus"].Value) == "PENDING" || Convert.ToString(this.dgvLedgerList.Rows[iRow].Cells["PaymentStatus"].Value) == "HOLD" || Convert.ToString(this.dgvLedgerList.Rows[iRow].Cells["PaymentStatus"].Value) == "FOR PAYMENT")
+                    if (Convert.ToString(this.dgvLedgerList.Rows[iRow].Cells["PaymentStatus"].Value) == "PENDING" || Convert.ToString(this.dgvLedgerList.Rows[iRow].Cells["PaymentStatus"].Value) == "HOLD" || Convert.ToString(this.dgvLedgerList.Rows[iRow].Cells["PaymentStatus"].Value) == "DUE")
                     {
                         //alDoctorSchedule.Add(Convert.ToString(vMasterRecordID));
                         alAdvancePayment.Add(Convert.ToString(this.dgvLedgerList.Rows[iRow].Cells["Recid"].Value));
@@ -954,7 +954,7 @@ namespace LEASING.UI.APP.Forms
                     e.CellElement.GradientStyle = GradientStyles.Solid;
                     e.CellElement.BackColor = Color.Yellow;
                 }
-                else if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "FOR PAYMENT")
+                else if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "DUE")
                 {
                     e.CellElement.ForeColor = Color.White;
                     e.CellElement.DrawFill = true;
@@ -1082,7 +1082,7 @@ namespace LEASING.UI.APP.Forms
                     }
                     if (column.Name == "ColPay")
                     {
-                        if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "FOR PAYMENT")
+                        if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "DUE")
                         {
                             element.ImageAlignment = ContentAlignment.MiddleCenter;
                             element.TextImageRelation = TextImageRelation.TextBeforeImage;
@@ -1102,7 +1102,7 @@ namespace LEASING.UI.APP.Forms
                     }
                     if (column.Name == "ColHold")
                     {
-                        if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "FOR PAYMENT")
+                        if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "DUE")
                         {
                             element.ImageAlignment = ContentAlignment.MiddleCenter;
                             element.TextImageRelation = TextImageRelation.TextBeforeImage;

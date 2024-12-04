@@ -23,8 +23,17 @@ AS
             [tblUnitMstr].[RecId] = @UnitId;
 
 
-        DELETE FROM
-        [dbo].[tblUnitReference]
+        --DELETE FROM
+        --[dbo].[tblUnitReference]
+        --WHERE
+        --    [tblUnitReference].[RecId] = @RecId;
+
+
+        UPDATE
+            [dbo].[tblUnitReference]
+        SET
+            [tblUnitReference].[IsDeclineUnit] = 1,
+			[tblUnitReference].[IsActive] = 0
         WHERE
             [tblUnitReference].[RecId] = @RecId;
 

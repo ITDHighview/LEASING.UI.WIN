@@ -93,6 +93,7 @@ namespace LEASING.UI.APP.Forms
             pictureBox6.Visible = false;
             lblContractClosedflag.Visible = false;
 
+
         }
         private void M_GetContractDetailsInquiry()
         {
@@ -108,9 +109,12 @@ namespace LEASING.UI.APP.Forms
             lblFloorType.Text = string.Empty;
             lblBaseRental.Text = string.Empty;
             txtMonthlyRental.Text = string.Empty;
+
             try
             {
-                using (DataSet dt = InquiryContext.GetContractDetailsInquiry(txtContractId.Text))
+
+
+                using (DataSet dt = InquiryContext.GetQuickContractDetailsInquiry(txtContractId.Text))
                 {
                     if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
@@ -126,14 +130,29 @@ namespace LEASING.UI.APP.Forms
                         pictureBox1.Visible = Convert.ToBoolean(dt.Tables[0].Rows[0]["PaymentStatus"]);
                         lblPaymentFlag.Visible = Convert.ToBoolean(dt.Tables[0].Rows[0]["PaymentStatus"]);
 
-                        if (!Convert.ToBoolean(dt.Tables[0].Rows[0]["PaymentStatus"]))
+                        if (Convert.ToBoolean(dt.Tables[0].Rows[0]["IsDeclineUnit"]) == false)
                         {
-                            radLabel2.Text = "CONTRACT PENDING-Payment Waiting";
+                            if (!Convert.ToBoolean(dt.Tables[0].Rows[0]["PaymentStatus"]))
+                            {
+                                radLabel2.Text = "Contract Pending - Waiting for the Generation of Ledger Transaction.";
+                                radLabel2.BackColor = Color.Red;
+                                radLabel2.ForeColor = Color.White;
+                            }
+                            else
+                            {
+                                radLabel2.Text = "";
+                                radLabel2.BackColor = Color.White;
+                                radLabel2.ForeColor = Color.Black;
+                            }
                         }
                         else
                         {
-                            radLabel2.Text = "";
+                            radLabel2.Text = Convert.ToString(dt.Tables[0].Rows[0]["DeclineUnitlabel"]);
+                            radLabel2.BackColor = Color.Red;
+                            radLabel2.ForeColor = Color.White;
+
                         }
+
 
                         pictureBox2.Visible = Convert.ToBoolean(dt.Tables[0].Rows[0]["ContractSignStatus"]);
                         lblContractSignedFlag.Visible = Convert.ToBoolean(dt.Tables[0].Rows[0]["ContractSignStatus"]);
@@ -149,6 +168,9 @@ namespace LEASING.UI.APP.Forms
 
                         pictureBox6.Visible = Convert.ToBoolean(dt.Tables[0].Rows[0]["ContractStatus"]);
                         lblContractClosedflag.Visible = Convert.ToBoolean(dt.Tables[0].Rows[0]["ContractStatus"]);
+
+
+
 
 
                         lblUnitNo.Text = Convert.ToString(dt.Tables[0].Rows[0]["UnitNo"]);
@@ -170,7 +192,7 @@ namespace LEASING.UI.APP.Forms
             try
             {
                 dgvLedgerList.DataSource = null;
-                using (DataSet dt = ComputationContext.GetLedgerBrowseByContractIdClientId(ComputationRecid, ClientId))
+                using (DataSet dt = ComputationContext.GetQuickLedgerListInquiry(ComputationRecid, ClientId))
                 {
                     if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
@@ -211,14 +233,21 @@ namespace LEASING.UI.APP.Forms
                     e.CellElement.GradientStyle = GradientStyles.Solid;
                     e.CellElement.BackColor = Color.Yellow;
                 }
-                else if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "FOR PAYMENT")
+                else if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "DUE")
+                {
+                    e.CellElement.ForeColor = Color.White;
+                    e.CellElement.DrawFill = true;
+                    e.CellElement.GradientStyle = GradientStyles.Solid;
+                    e.CellElement.BackColor = Color.OrangeRed;
+                }
+                else if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "HOLD")
                 {
                     e.CellElement.ForeColor = Color.White;
                     e.CellElement.DrawFill = true;
                     e.CellElement.GradientStyle = GradientStyles.Solid;
                     e.CellElement.BackColor = Color.Red;
                 }
-                else if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "HOLD")
+                else if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "DECLINED")
                 {
                     e.CellElement.ForeColor = Color.White;
                     e.CellElement.DrawFill = true;

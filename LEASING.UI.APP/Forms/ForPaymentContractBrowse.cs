@@ -69,7 +69,7 @@ namespace LEASING.UI.APP.Forms
                 }
                 else if (this.dgvList.Columns[e.ColumnIndex].Name == "ColGenerate")
                 {
-                    if (MessageBox.Show("Are you sure you want to generate transaction to this Contract?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                    if (MessageBox.Show("Are you sure you want to generate ledger transaction to this Contract?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                     {
                         if (Convert.ToString(dgvList.CurrentRow.Cells["TypeOf"].Value) == "TYPE OF PARKING")
                         {

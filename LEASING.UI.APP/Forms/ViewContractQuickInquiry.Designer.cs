@@ -28,18 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn2 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn5 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn6 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn13 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn14 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn15 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn16 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn17 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn18 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.txtContractId = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
+            this.btnAdvanceSearch = new Telerik.WinControls.UI.RadButton();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.lblContractClosedflag = new Telerik.WinControls.UI.RadLabel();
@@ -82,13 +83,13 @@
             this.radLabel19 = new Telerik.WinControls.UI.RadLabel();
             this.lblBaseRental = new Telerik.WinControls.UI.RadLabel();
             this.lblFloorType = new Telerik.WinControls.UI.RadLabel();
-            this.btnAdvanceSearch = new Telerik.WinControls.UI.RadButton();
             this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             this.radLabel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtContractId)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAdvanceSearch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             this.radLabel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
@@ -136,7 +137,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel19)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblBaseRental)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblFloorType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAdvanceSearch)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -157,7 +157,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 64F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 199F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1008, 747);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1334, 747);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // radLabel1
@@ -170,7 +170,7 @@
             this.radLabel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radLabel1.Location = new System.Drawing.Point(3, 3);
             this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(656, 27);
+            this.radLabel1.Size = new System.Drawing.Size(982, 27);
             this.radLabel1.TabIndex = 0;
             // 
             // txtContractId
@@ -199,6 +199,16 @@
             this.radLabel9.Text = "CONTRACT ID : ";
             this.radLabel9.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // btnAdvanceSearch
+            // 
+            this.btnAdvanceSearch.Image = global::LEASING.UI.APP.Properties.Resources.magnifier;
+            this.btnAdvanceSearch.Location = new System.Drawing.Point(350, 3);
+            this.btnAdvanceSearch.Name = "btnAdvanceSearch";
+            this.btnAdvanceSearch.Size = new System.Drawing.Size(126, 24);
+            this.btnAdvanceSearch.TabIndex = 4;
+            this.btnAdvanceSearch.Text = "Advance Search";
+            this.btnAdvanceSearch.Click += new System.EventHandler(this.btnAdvanceSearch_Click);
+            // 
             // radLabel2
             // 
             this.radLabel2.AutoSize = false;
@@ -220,7 +230,7 @@
             this.radLabel2.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radLabel2.Location = new System.Drawing.Point(3, 36);
             this.radLabel2.Name = "radLabel2";
-            this.radLabel2.Size = new System.Drawing.Size(1002, 58);
+            this.radLabel2.Size = new System.Drawing.Size(1328, 58);
             this.radLabel2.TabIndex = 1;
             this.radLabel2.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -365,7 +375,7 @@
             this.radGroupBox1.HeaderText = "CONTRACT DETAILS";
             this.radGroupBox1.Location = new System.Drawing.Point(3, 100);
             this.radGroupBox1.Name = "radGroupBox1";
-            this.radGroupBox1.Size = new System.Drawing.Size(1002, 193);
+            this.radGroupBox1.Size = new System.Drawing.Size(1328, 193);
             this.radGroupBox1.TabIndex = 2;
             this.radGroupBox1.Text = "CONTRACT DETAILS";
             this.radGroupBox1.ThemeName = "Office2007Silver";
@@ -395,7 +405,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(998, 173);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1324, 173);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // radLabel12
@@ -432,11 +442,11 @@
             // 
             this.radLabel13.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.radLabel13.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLabel13.Location = new System.Drawing.Point(29, 5);
+            this.radLabel13.Location = new System.Drawing.Point(7, 5);
             this.radLabel13.Name = "radLabel13";
-            this.radLabel13.Size = new System.Drawing.Size(114, 19);
+            this.radLabel13.Size = new System.Drawing.Size(136, 19);
             this.radLabel13.TabIndex = 1;
-            this.radLabel13.Text = "CONTRACT DATE :";
+            this.radLabel13.Text = "CONTRACT CREATED :";
             // 
             // radLabel14
             // 
@@ -516,7 +526,7 @@
             this.radGroupBox2.HeaderText = "Ledger";
             this.radGroupBox2.Location = new System.Drawing.Point(3, 299);
             this.radGroupBox2.Name = "radGroupBox2";
-            this.radGroupBox2.Size = new System.Drawing.Size(656, 445);
+            this.radGroupBox2.Size = new System.Drawing.Size(982, 445);
             this.radGroupBox2.TabIndex = 3;
             this.radGroupBox2.Text = "Ledger";
             this.radGroupBox2.ThemeName = "Office2007Silver";
@@ -526,7 +536,7 @@
             this.tableLayoutPanel4.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.tableLayoutPanel4.ColumnCount = 2;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 204F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 272F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 448F));
             this.tableLayoutPanel4.Controls.Add(this.dgvLedgerList, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.radLabel20, 0, 1);
             this.tableLayoutPanel4.Controls.Add(this.txtTotalPay, 1, 1);
@@ -536,7 +546,7 @@
             this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(652, 425);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(978, 425);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
             // dgvLedgerList
@@ -555,62 +565,62 @@
             this.dgvLedgerList.MasterTemplate.AllowAddNewRow = false;
             this.dgvLedgerList.MasterTemplate.AllowColumnReorder = false;
             this.dgvLedgerList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewCommandColumn1.DefaultText = "Pay";
-            gridViewCommandColumn1.FieldName = "ColPay";
-            gridViewCommandColumn1.HeaderImage = global::LEASING.UI.APP.Properties.Resources.Bullet15_Arrow_Blue;
-            gridViewCommandColumn1.HeaderText = "";
-            gridViewCommandColumn1.IsVisible = false;
-            gridViewCommandColumn1.Name = "ColPay";
-            gridViewCommandColumn1.UseDefaultText = true;
-            gridViewCommandColumn1.Width = 30;
-            gridViewCommandColumn2.DefaultText = "Hold";
-            gridViewCommandColumn2.FieldName = "ColHold";
-            gridViewCommandColumn2.HeaderImage = global::LEASING.UI.APP.Properties.Resources.bookmark_16;
-            gridViewCommandColumn2.HeaderText = "";
-            gridViewCommandColumn2.IsVisible = false;
-            gridViewCommandColumn2.Name = "ColHold";
-            gridViewCommandColumn2.UseDefaultText = true;
-            gridViewCommandColumn2.Width = 35;
-            gridViewTextBoxColumn1.FieldName = "seq";
-            gridViewTextBoxColumn1.HeaderText = "seq";
-            gridViewTextBoxColumn1.Name = "seq";
-            gridViewTextBoxColumn1.Width = 56;
-            gridViewTextBoxColumn2.FieldName = "LedgMonth";
-            gridViewTextBoxColumn2.HeaderText = "Month";
-            gridViewTextBoxColumn2.Name = "LedgMonth";
-            gridViewTextBoxColumn2.Width = 155;
-            gridViewTextBoxColumn3.FieldName = "LedgAmount";
-            gridViewTextBoxColumn3.HeaderText = "Amount";
-            gridViewTextBoxColumn3.Name = "LedgAmount";
-            gridViewTextBoxColumn3.Width = 155;
-            gridViewTextBoxColumn4.FieldName = "Remarks";
-            gridViewTextBoxColumn4.HeaderText = "Remarks";
-            gridViewTextBoxColumn4.Name = "Remarks";
-            gridViewTextBoxColumn4.Width = 162;
-            gridViewTextBoxColumn5.FieldName = "PaymentStatus";
-            gridViewTextBoxColumn5.HeaderText = "Status";
-            gridViewTextBoxColumn5.Name = "PaymentStatus";
-            gridViewTextBoxColumn5.Width = 121;
-            gridViewTextBoxColumn6.FieldName = "Recid";
-            gridViewTextBoxColumn6.HeaderText = "Recid";
-            gridViewTextBoxColumn6.IsVisible = false;
-            gridViewTextBoxColumn6.Name = "Recid";
+            gridViewCommandColumn5.DefaultText = "Pay";
+            gridViewCommandColumn5.FieldName = "ColPay";
+            gridViewCommandColumn5.HeaderImage = global::LEASING.UI.APP.Properties.Resources.Bullet15_Arrow_Blue;
+            gridViewCommandColumn5.HeaderText = "";
+            gridViewCommandColumn5.IsVisible = false;
+            gridViewCommandColumn5.Name = "ColPay";
+            gridViewCommandColumn5.UseDefaultText = true;
+            gridViewCommandColumn5.Width = 30;
+            gridViewCommandColumn6.DefaultText = "Hold";
+            gridViewCommandColumn6.FieldName = "ColHold";
+            gridViewCommandColumn6.HeaderImage = global::LEASING.UI.APP.Properties.Resources.bookmark_16;
+            gridViewCommandColumn6.HeaderText = "";
+            gridViewCommandColumn6.IsVisible = false;
+            gridViewCommandColumn6.Name = "ColHold";
+            gridViewCommandColumn6.UseDefaultText = true;
+            gridViewCommandColumn6.Width = 35;
+            gridViewTextBoxColumn13.FieldName = "seq";
+            gridViewTextBoxColumn13.HeaderText = "seq";
+            gridViewTextBoxColumn13.Name = "seq";
+            gridViewTextBoxColumn13.Width = 84;
+            gridViewTextBoxColumn14.FieldName = "LedgMonth";
+            gridViewTextBoxColumn14.HeaderText = "Month";
+            gridViewTextBoxColumn14.Name = "LedgMonth";
+            gridViewTextBoxColumn14.Width = 233;
+            gridViewTextBoxColumn15.FieldName = "LedgAmount";
+            gridViewTextBoxColumn15.HeaderText = "Amount";
+            gridViewTextBoxColumn15.Name = "LedgAmount";
+            gridViewTextBoxColumn15.Width = 233;
+            gridViewTextBoxColumn16.FieldName = "Remarks";
+            gridViewTextBoxColumn16.HeaderText = "Remarks";
+            gridViewTextBoxColumn16.Name = "Remarks";
+            gridViewTextBoxColumn16.Width = 243;
+            gridViewTextBoxColumn17.FieldName = "PaymentStatus";
+            gridViewTextBoxColumn17.HeaderText = "Status";
+            gridViewTextBoxColumn17.Name = "PaymentStatus";
+            gridViewTextBoxColumn17.Width = 182;
+            gridViewTextBoxColumn18.FieldName = "Recid";
+            gridViewTextBoxColumn18.HeaderText = "Recid";
+            gridViewTextBoxColumn18.IsVisible = false;
+            gridViewTextBoxColumn18.Name = "Recid";
             this.dgvLedgerList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewCommandColumn1,
-            gridViewCommandColumn2,
-            gridViewTextBoxColumn1,
-            gridViewTextBoxColumn2,
-            gridViewTextBoxColumn3,
-            gridViewTextBoxColumn4,
-            gridViewTextBoxColumn5,
-            gridViewTextBoxColumn6});
+            gridViewCommandColumn5,
+            gridViewCommandColumn6,
+            gridViewTextBoxColumn13,
+            gridViewTextBoxColumn14,
+            gridViewTextBoxColumn15,
+            gridViewTextBoxColumn16,
+            gridViewTextBoxColumn17,
+            gridViewTextBoxColumn18});
             this.dgvLedgerList.MasterTemplate.ShowRowHeaderColumn = false;
             this.dgvLedgerList.Name = "dgvLedgerList";
             this.dgvLedgerList.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.dgvLedgerList.ReadOnly = true;
             this.dgvLedgerList.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgvLedgerList.ShowGroupPanel = false;
-            this.dgvLedgerList.Size = new System.Drawing.Size(646, 379);
+            this.dgvLedgerList.Size = new System.Drawing.Size(972, 379);
             this.dgvLedgerList.TabIndex = 1;
             this.dgvLedgerList.Text = "radGridView1";
             this.dgvLedgerList.ThemeName = "Office2007Silver";
@@ -645,7 +655,7 @@
             this.radGroupBox3.Controls.Add(this.tableLayoutPanel3);
             this.radGroupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radGroupBox3.HeaderText = "Unit Information";
-            this.radGroupBox3.Location = new System.Drawing.Point(665, 299);
+            this.radGroupBox3.Location = new System.Drawing.Point(991, 299);
             this.radGroupBox3.Name = "radGroupBox3";
             this.radGroupBox3.Size = new System.Drawing.Size(340, 445);
             this.radGroupBox3.TabIndex = 3;
@@ -794,26 +804,16 @@
             this.lblFloorType.Text = "N/A";
             this.lblFloorType.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // btnAdvanceSearch
-            // 
-            this.btnAdvanceSearch.Image = global::LEASING.UI.APP.Properties.Resources.magnifier;
-            this.btnAdvanceSearch.Location = new System.Drawing.Point(350, 3);
-            this.btnAdvanceSearch.Name = "btnAdvanceSearch";
-            this.btnAdvanceSearch.Size = new System.Drawing.Size(126, 24);
-            this.btnAdvanceSearch.TabIndex = 4;
-            this.btnAdvanceSearch.Text = "Advance Search";
-            this.btnAdvanceSearch.Click += new System.EventHandler(this.btnAdvanceSearch_Click);
-            // 
-            // frmContractInquiry
+            // ViewContractQuickInquiry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1008, 747);
+            this.ClientSize = new System.Drawing.Size(1334, 747);
             this.Controls.Add(this.tableLayoutPanel1);
             this.DoubleBuffered = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmContractInquiry";
+            this.Name = "ViewContractQuickInquiry";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Contract Inquiry";
@@ -823,6 +823,7 @@
             this.radLabel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.txtContractId)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAdvanceSearch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             this.radLabel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
@@ -873,7 +874,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel19)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblBaseRental)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblFloorType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAdvanceSearch)).EndInit();
             this.ResumeLayout(false);
 
         }

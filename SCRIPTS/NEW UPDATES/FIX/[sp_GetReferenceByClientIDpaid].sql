@@ -70,7 +70,8 @@ AS
             AND ISNULL([tblUnitReference].[IsTerminated], 0) = 0
             AND ISNULL([tblUnitReference].[IsDone], 0) = 0
             AND ISNULL([tblUnitReference].[IsUnitMoveOut], 0) = 0
-            AND ISNULL([tblUnitReference].[IsPaid], 0) = 1;
+            AND ISNULL([tblUnitReference].[IsPaid], 0) = 1
+            AND ISNULL([tblUnitReference].[IsDeclineUnit], 0) = 0;
 
     END;
 GO

@@ -59,6 +59,7 @@ AS
                      AND ISNULL([tblUnitReference].[IsPaid], 0) = 1
                      AND ISNULL([tblUnitReference].[IsSignedContract], 0) = 1
                      AND ISNULL([tblUnitReference].[IsUnitMove], 0) = 1
+                     AND ISNULL([tblUnitReference].[IsDeclineUnit], 0) = 0
                     THEN
                     'CLOSED'
                                 --'CONTRACT DONE'
@@ -72,6 +73,7 @@ AS
                      AND ISNULL([tblUnitReference].[IsPaid], 0) = 1
                      AND ISNULL([tblUnitReference].[IsSignedContract], 0) = 1
                      AND ISNULL([tblUnitReference].[IsUnitMove], 0) = 1
+                     AND ISNULL([tblUnitReference].[IsDeclineUnit], 0) = 0
                     THEN
                     'TERMINATED'
                                 --'CONTRACT TERMINATED'
@@ -81,6 +83,7 @@ AS
                      AND ISNULL([tblUnitReference].[IsUnitMoveOut], 0) = 0
                      AND ISNULL([tblUnitReference].[IsTerminated], 0) = 0
                      AND ISNULL([tblUnitReference].[IsDone], 0) = 0
+                     AND ISNULL([tblUnitReference].[IsDeclineUnit], 0) = 0
                     THEN
                     'GENERATED' --ledger generated
                 WHEN ISNULL([tblUnitReference].[IsPaid], 0) = 1
@@ -89,10 +92,20 @@ AS
                      AND ISNULL([tblUnitReference].[IsUnitMoveOut], 0) = 0
                      AND ISNULL([tblUnitReference].[IsTerminated], 0) = 0
                      AND ISNULL([tblUnitReference].[IsDone], 0) = 0
+                     AND ISNULL([tblUnitReference].[IsDeclineUnit], 0) = 0
                     THEN
-                    'ON-GOING'  --ledger generated           
+                    'ON-GOING'  --ledger generated       
+                WHEN ISNULL([tblUnitReference].[IsPaid], 0) = 0
+                     AND ISNULL([tblUnitReference].[IsSignedContract], 0) = 0
+                     AND ISNULL([tblUnitReference].[IsUnitMove], 0) = 0
+                     AND ISNULL([tblUnitReference].[IsUnitMoveOut], 0) = 0
+                     AND ISNULL([tblUnitReference].[IsTerminated], 0) = 0
+                     AND ISNULL([tblUnitReference].[IsDone], 0) = 0
+                     AND ISNULL([tblUnitReference].[IsDeclineUnit], 0) = 1
+                    THEN
+                    'DECLINED'  --Declined      
                 ELSE
-                    'ON-GOING'
+                    'N/A'
             END                 AS [CLientReferenceStatus],
             IIF(
                 ISNULL([tblUnitReference].[AdvancePaymentAmount], 0) = 0

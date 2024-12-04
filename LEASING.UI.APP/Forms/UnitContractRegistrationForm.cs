@@ -757,7 +757,7 @@ namespace LEASING.UI.APP.Forms
                 if (dto.Message_Code.Equals("SUCCESS"))
                 {
 
-                    MessageBox.Show("New Reference has been generated successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("New Contract has been generated successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     strFormMode = "READ";
                     M_GetComputationList();
 
@@ -957,7 +957,7 @@ namespace LEASING.UI.APP.Forms
                 }
                 else
                 {
-                    if (MessageBox.Show("Are you sure you want to generate this Reference ?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                    if (MessageBox.Show("Are you sure you want to generate this Contract Computation ?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                     {
                         try
                         {
@@ -992,15 +992,15 @@ namespace LEASING.UI.APP.Forms
                 else if (this.dgvList.Columns[e.ColumnIndex].Name == "ColRemoved")
                 {
 
-                    if (MessageBox.Show("Are you sure you want to Delete this Contract Computation?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                    if (MessageBox.Show("Are you sure you want to Decline this Contract Computation?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                     {
 
                         try
                         {
-                            var result = ComputationContext.DeleteComputation(Convert.ToInt32(dgvList.CurrentRow.Cells["RecId"].Value), Convert.ToInt32(dgvList.CurrentRow.Cells["UnitId"].Value));
+                            var result = ComputationContext.DeclineContractComputation(Convert.ToInt32(dgvList.CurrentRow.Cells["RecId"].Value), Convert.ToInt32(dgvList.CurrentRow.Cells["UnitId"].Value));
                             if (result.Equals("SUCCESS"))
                             {
-                                MessageBox.Show("Reference has been deleted successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageBox.Show("Contract has been declined successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 M_GetComputationList();
                             }
                         }
@@ -1013,7 +1013,7 @@ namespace LEASING.UI.APP.Forms
                 }
                 else if (this.dgvList.Columns[e.ColumnIndex].Name == "ColGenerate")
                 {
-                    if (MessageBox.Show("Are you sure you want to generate transaction to this Contract?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                    if (MessageBox.Show("Are you sure you want to generate ledger transaction to this Contract?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                     {
                         FirstPaymentCollection forms = new FirstPaymentCollection();
                         forms.contractId = Convert.ToInt32(dgvList.CurrentRow.Cells["RecId"].Value);
@@ -1288,6 +1288,7 @@ namespace LEASING.UI.APP.Forms
 
             this.lblContractState.Text = chkIsRenewal.Checked ? RENEWAL_CONTRACT : NEW_CONTRACT;
             this.lblContractState.ForeColor = chkIsRenewal.Checked ? RenewalContract : NewContract;
+            this.btnNewComputation.Text = chkIsRenewal.Checked ? "Renew Contract" : "New Contract";
         }
         private void chkIsRenewal_ToggleStateChanged(object sender, Telerik.WinControls.UI.StateChangedEventArgs args)
         {

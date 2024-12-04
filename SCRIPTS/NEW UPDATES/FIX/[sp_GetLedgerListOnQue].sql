@@ -196,9 +196,9 @@ AS
                        [#tblBulkPostdatedMonth]
             )
 
-        CREATE TABLE #tempAdvancePaymentFiltered
+        CREATE TABLE [#tempAdvancePaymentFiltered]
             (
-                id      [BIGINT] IDENTITY(1, 1),
+                [id]      [BIGINT] IDENTITY(1, 1),
                 [Recid] [BIGINT]
             )
 
@@ -425,7 +425,7 @@ AS
                     SELECT
                         [#tempAdvancePaymentFiltered].[Recid]
                     FROM
-                        #tempAdvancePaymentFiltered
+                        [#tempAdvancePaymentFiltered]
                 )
 
         INSERT INTO [#tempMonthDecalrationFinal]
@@ -537,7 +537,7 @@ AS
                                             SELECT
                                                 [#tempAdvancePaymentFiltered].[Recid]
                                             FROM
-                                                #tempAdvancePaymentFiltered
+                                                [#tempAdvancePaymentFiltered]
                                         )
                             )
                     UNION
@@ -627,7 +627,7 @@ AS
                      AND ISNULL([#tempMonthDecalrationFinal].[IsPaid], 0) = 0
                      AND ISNULL([#tempMonthDecalrationFinal].[IsHold], 0) = 0
                     THEN
-                    'FOR PAYMENT'
+                    'DUE'
                 WHEN CONVERT(VARCHAR(20), [#tempMonthDecalrationFinal].[LedgMonth], 107) = CONVERT(
                                                                                                       VARCHAR(20),
                                                                                                       GETDATE(), 107
@@ -635,7 +635,7 @@ AS
                      AND ISNULL([#tempMonthDecalrationFinal].[IsPaid], 0) = 0
                      AND ISNULL([#tempMonthDecalrationFinal].[IsHold], 0) = 0
                     THEN
-                    'FOR PAYMENT'
+                    'DUE'
                 ELSE
                     'PENDING'
             END                                                                                                AS [PaymentStatus],
@@ -664,14 +664,14 @@ AS
             ISNULL([#tempMonthDecalrationFinal].[BankBranch], '')                                              AS [BankBranch]
         FROM
             [dbo].[#tempMonthDecalrationFinal]
-        --WHERE
-        --    [tblMonthLedger].[Recid] IN
-        --        (
-        --            SELECT
-        --                [#tblBulkPostdatedMonth].[Recid]
-        --            FROM
-        --                [#tblBulkPostdatedMonth]
-        --        )
+        WHERE
+            [#tempMonthDecalrationFinal].[Recid] IN
+                (
+                    SELECT
+                        [#tblBulkPostdatedMonth].[Recid]
+                    FROM
+                        [#tblBulkPostdatedMonth]
+                )
         ORDER BY
             [seq] ASC
 

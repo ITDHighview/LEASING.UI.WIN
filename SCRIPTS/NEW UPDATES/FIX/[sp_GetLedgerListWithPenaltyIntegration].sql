@@ -6,7 +6,7 @@ GO
 -- Author:		<Author,,Name>
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
---EXEC [sp_GetLedgerList] @ReferenceID =10000000, @ClientID='INDV10000000'
+--EXEC [sp_GetLedgerListWithPenaltyIntegration] @ReferenceID =10000000, @ClientID='INDV10000000'
 -- =============================================
 CREATE OR ALTER PROCEDURE [dbo].[sp_GetLedgerListWithPenaltyIntegration]
     @ReferenceID    BIGINT       = NULL,
@@ -95,6 +95,104 @@ AS
             )
 
         CREATE TABLE [#tempAdvancePayment]
+            (
+                [Id]                           [BIGINT] IDENTITY(1, 1),
+                [Recid]                        [BIGINT],
+                [ReferenceID]                  [BIGINT],
+                [ClientID]                     [VARCHAR](500),
+                [LedgMonth]                    [DATE],
+                [LedgAmount]                   [DECIMAL](18, 2),
+                [IsPaid]                       [BIT],
+                [EncodedBy]                    [INT],
+                [EncodedDate]                  [DATETIME],
+                [ComputerName]                 [VARCHAR](30),
+                [TransactionID]                [VARCHAR](500),
+                [IsHold]                       [BIT],
+                [BalanceAmount]                [DECIMAL](18, 2),
+                [PenaltyAmount]                [DECIMAL](18, 2),
+                [ActualAmount]                 [DECIMAL](18, 2),
+                [LedgRentalAmount]             [DECIMAL](18, 2),
+                [Remarks]                      [VARCHAR](500),
+                [Unit_ProjectType]             [VARCHAR](150),
+                [Unit_IsNonVat]                [BIT],
+                [Unit_BaseRentalVatAmount]     [DECIMAL](18, 2),
+                [Unit_BaseRentalWithVatAmount] [DECIMAL](18, 2),
+                [Unit_BaseRentalTax]           [DECIMAL](18, 2),
+                [Unit_TotalRental]             [DECIMAL](18, 2),
+                [Unit_SecAndMainAmount]        [DECIMAL](18, 2),
+                [Unit_SecAndMainVatAmount]     [DECIMAL](18, 2),
+                [Unit_SecAndMainWithVatAmount] [DECIMAL](18, 2),
+                [Unit_Vat]                     [DECIMAL](18, 2),
+                [Unit_Tax]                     [DECIMAL](18, 2),
+                [Unit_TaxAmount]               [DECIMAL](18, 2),
+                [Unit_IsParking]               [BIT],
+                [Unit_AreaTotalAmount]         [DECIMAL](18, 2),
+                [Unit_AreaSqm]                 [DECIMAL](18, 2),
+                [Unit_AreaRateSqm]             [DECIMAL](18, 2),
+                [IsRenewal]                    [BIT],
+                [CompanyORNo]                  [VARCHAR](200),
+                [REF]                          [VARCHAR](200),
+                [BNK_ACCT_NAME]                [VARCHAR](200),
+                [BNK_ACCT_NUMBER]              [VARCHAR](200),
+                [BNK_NAME]                     [VARCHAR](200),
+                [SERIAL_NO]                    [VARCHAR](200),
+                [ModeType]                     [VARCHAR](20),
+                [CompanyPRNo]                  [VARCHAR](50),
+                [BankBranch]                   [VARCHAR](250),
+                [CheckDate]                    [DATETIME],
+                [ReceiptDate]                  [DATETIME],
+                [PaymentRemarks]               [NVARCHAR](4000)
+            )
+        CREATE TABLE [#tempAdvancePaymentZeroAmount]
+            (
+                [Id]                           [BIGINT] IDENTITY(1, 1),
+                [Recid]                        [BIGINT],
+                [ReferenceID]                  [BIGINT],
+                [ClientID]                     [VARCHAR](500),
+                [LedgMonth]                    [DATE],
+                [LedgAmount]                   [DECIMAL](18, 2),
+                [IsPaid]                       [BIT],
+                [EncodedBy]                    [INT],
+                [EncodedDate]                  [DATETIME],
+                [ComputerName]                 [VARCHAR](30),
+                [TransactionID]                [VARCHAR](500),
+                [IsHold]                       [BIT],
+                [BalanceAmount]                [DECIMAL](18, 2),
+                [PenaltyAmount]                [DECIMAL](18, 2),
+                [ActualAmount]                 [DECIMAL](18, 2),
+                [LedgRentalAmount]             [DECIMAL](18, 2),
+                [Remarks]                      [VARCHAR](500),
+                [Unit_ProjectType]             [VARCHAR](150),
+                [Unit_IsNonVat]                [BIT],
+                [Unit_BaseRentalVatAmount]     [DECIMAL](18, 2),
+                [Unit_BaseRentalWithVatAmount] [DECIMAL](18, 2),
+                [Unit_BaseRentalTax]           [DECIMAL](18, 2),
+                [Unit_TotalRental]             [DECIMAL](18, 2),
+                [Unit_SecAndMainAmount]        [DECIMAL](18, 2),
+                [Unit_SecAndMainVatAmount]     [DECIMAL](18, 2),
+                [Unit_SecAndMainWithVatAmount] [DECIMAL](18, 2),
+                [Unit_Vat]                     [DECIMAL](18, 2),
+                [Unit_Tax]                     [DECIMAL](18, 2),
+                [Unit_TaxAmount]               [DECIMAL](18, 2),
+                [Unit_IsParking]               [BIT],
+                [Unit_AreaTotalAmount]         [DECIMAL](18, 2),
+                [Unit_AreaSqm]                 [DECIMAL](18, 2),
+                [Unit_AreaRateSqm]             [DECIMAL](18, 2),
+                [IsRenewal]                    [BIT],
+                [CompanyORNo]                  [VARCHAR](200),
+                [REF]                          [VARCHAR](200),
+                [BNK_ACCT_NAME]                [VARCHAR](200),
+                [BNK_ACCT_NUMBER]              [VARCHAR](200),
+                [BNK_NAME]                     [VARCHAR](200),
+                [SERIAL_NO]                    [VARCHAR](200),
+                [ModeType]                     [VARCHAR](20),
+                [CompanyPRNo]                  [VARCHAR](50),
+                [BankBranch]                   [VARCHAR](250),
+                [CheckDate]                    [DATETIME],
+                [ReceiptDate]                  [DATETIME],
+                [PaymentRemarks]               [NVARCHAR](4000)
+            )
+        CREATE TABLE [#tempAdvancePaymentExactAmount]
             (
                 [Id]                           [BIGINT] IDENTITY(1, 1),
                 [Recid]                        [BIGINT],
@@ -442,6 +540,214 @@ AS
                         [#tempAdvancePaymentFiltered]
                 )
 
+
+
+        INSERT INTO [#tempAdvancePaymentZeroAmount]
+            (
+                [Recid],
+                [ReferenceID],
+                [ClientID],
+                [LedgMonth],
+                [LedgAmount],
+                [IsPaid],
+                [EncodedBy],
+                [EncodedDate],
+                [ComputerName],
+                [TransactionID],
+                [IsHold],
+                [BalanceAmount],
+                [PenaltyAmount],
+                [ActualAmount],
+                [LedgRentalAmount],
+                [Remarks],
+                [Unit_ProjectType],
+                [Unit_IsNonVat],
+                [Unit_BaseRentalVatAmount],
+                [Unit_BaseRentalWithVatAmount],
+                [Unit_BaseRentalTax],
+                [Unit_TotalRental],
+                [Unit_SecAndMainAmount],
+                [Unit_SecAndMainVatAmount],
+                [Unit_SecAndMainWithVatAmount],
+                [Unit_Vat],
+                [Unit_Tax],
+                [Unit_TaxAmount],
+                [Unit_IsParking],
+                [Unit_AreaTotalAmount],
+                [Unit_AreaSqm],
+                [Unit_AreaRateSqm],
+                [IsRenewal],
+                [CompanyORNo],
+                [REF],
+                [BNK_ACCT_NAME],
+                [BNK_ACCT_NUMBER],
+                [BNK_NAME],
+                [SERIAL_NO],
+                [ModeType],
+                [CompanyPRNo],
+                [BankBranch],
+                [CheckDate],
+                [ReceiptDate],
+                [PaymentRemarks]
+            )
+                    SELECT
+                            [#tempAdvancePayment].[Recid],
+                            [#tempAdvancePayment].[ReferenceID],
+                            [#tempAdvancePayment].[ClientID],
+                            [#tempAdvancePayment].[LedgMonth],
+                            [#tempAdvancePayment].[LedgAmount],
+                            [#tempAdvancePayment].[IsPaid],
+                            [#tempAdvancePayment].[EncodedBy],
+                            [#tempAdvancePayment].[EncodedDate],
+                            [#tempAdvancePayment].[ComputerName],
+                            [#tempAdvancePayment].[TransactionID],
+                            [#tempAdvancePayment].[IsHold],
+                            [#tempAdvancePayment].[BalanceAmount],
+                            [#tempAdvancePayment].[PenaltyAmount],
+                            [#tempAdvancePayment].[ActualAmount],
+                            [tblAdvancePayment].[Amount]                      AS [LedgRentalAmount],
+                            'RENTAL WITH SECURITY AND MAINTENANCE NET OF VAT' AS [Remarks],
+                            [#tempAdvancePayment].[Unit_ProjectType],
+                            [#tempAdvancePayment].[Unit_IsNonVat],
+                            [#tempAdvancePayment].[Unit_BaseRentalVatAmount],
+                            [#tempAdvancePayment].[Unit_BaseRentalWithVatAmount],
+                            [#tempAdvancePayment].[Unit_BaseRentalTax],
+                            [#tempAdvancePayment].[Unit_TotalRental],
+                            [#tempAdvancePayment].[Unit_SecAndMainAmount],
+                            [#tempAdvancePayment].[Unit_SecAndMainVatAmount],
+                            [#tempAdvancePayment].[Unit_SecAndMainWithVatAmount],
+                            [#tempAdvancePayment].[Unit_Vat],
+                            [#tempAdvancePayment].[Unit_Tax],
+                            [#tempAdvancePayment].[Unit_TaxAmount],
+                            [#tempAdvancePayment].[Unit_IsParking],
+                            [#tempAdvancePayment].[Unit_AreaTotalAmount],
+                            [#tempAdvancePayment].[Unit_AreaSqm],
+                            [#tempAdvancePayment].[Unit_AreaRateSqm],
+                            [#tempAdvancePayment].[IsRenewal],
+                            [#tempAdvancePayment].[CompanyORNo],
+                            [#tempAdvancePayment].[REF],
+                            [#tempAdvancePayment].[BNK_ACCT_NAME],
+                            [#tempAdvancePayment].[BNK_ACCT_NUMBER],
+                            [#tempAdvancePayment].[BNK_NAME],
+                            [#tempAdvancePayment].[SERIAL_NO],
+                            [#tempAdvancePayment].[ModeType],
+                            [#tempAdvancePayment].[CompanyPRNo],
+                            [#tempAdvancePayment].[BankBranch],
+                            [#tempAdvancePayment].[CheckDate],
+                            [#tempAdvancePayment].[ReceiptDate],
+                            [#tempAdvancePayment].[PaymentRemarks]
+                    FROM
+                            [#tempAdvancePayment]
+                        INNER JOIN
+                            [dbo].[tblAdvancePayment]
+                                ON CONCAT('REF', CAST([#tempAdvancePayment].[ReferenceID] AS VARCHAR(150))) = [tblAdvancePayment].[RefId]
+                                   AND [#tempAdvancePayment].[LedgMonth] = [tblAdvancePayment].[Months]
+                    WHERE
+                            ISNULL([tblAdvancePayment].[Amount], 0) = 0
+
+        INSERT INTO [#tempAdvancePaymentExactAmount]
+            (
+                [Recid],
+                [ReferenceID],
+                [ClientID],
+                [LedgMonth],
+                [LedgAmount],
+                [IsPaid],
+                [EncodedBy],
+                [EncodedDate],
+                [ComputerName],
+                [TransactionID],
+                [IsHold],
+                [BalanceAmount],
+                [PenaltyAmount],
+                [ActualAmount],
+                [LedgRentalAmount],
+                [Remarks],
+                [Unit_ProjectType],
+                [Unit_IsNonVat],
+                [Unit_BaseRentalVatAmount],
+                [Unit_BaseRentalWithVatAmount],
+                [Unit_BaseRentalTax],
+                [Unit_TotalRental],
+                [Unit_SecAndMainAmount],
+                [Unit_SecAndMainVatAmount],
+                [Unit_SecAndMainWithVatAmount],
+                [Unit_Vat],
+                [Unit_Tax],
+                [Unit_TaxAmount],
+                [Unit_IsParking],
+                [Unit_AreaTotalAmount],
+                [Unit_AreaSqm],
+                [Unit_AreaRateSqm],
+                [IsRenewal],
+                [CompanyORNo],
+                [REF],
+                [BNK_ACCT_NAME],
+                [BNK_ACCT_NUMBER],
+                [BNK_NAME],
+                [SERIAL_NO],
+                [ModeType],
+                [CompanyPRNo],
+                [BankBranch],
+                [CheckDate],
+                [ReceiptDate],
+                [PaymentRemarks]
+            )
+                    SELECT
+                            [#tempAdvancePayment].[Recid],
+                            [#tempAdvancePayment].[ReferenceID],
+                            [#tempAdvancePayment].[ClientID],
+                            [#tempAdvancePayment].[LedgMonth],
+                            [#tempAdvancePayment].[LedgAmount],
+                            [#tempAdvancePayment].[IsPaid],
+                            [#tempAdvancePayment].[EncodedBy],
+                            [#tempAdvancePayment].[EncodedDate],
+                            [#tempAdvancePayment].[ComputerName],
+                            [#tempAdvancePayment].[TransactionID],
+                            [#tempAdvancePayment].[IsHold],
+                            [#tempAdvancePayment].[BalanceAmount],
+                            [#tempAdvancePayment].[PenaltyAmount],
+                            [#tempAdvancePayment].[ActualAmount],
+                            [#tempAdvancePayment].[LedgRentalAmount],
+                            [#tempAdvancePayment].[Remarks],
+                            [#tempAdvancePayment].[Unit_ProjectType],
+                            [#tempAdvancePayment].[Unit_IsNonVat],
+                            [#tempAdvancePayment].[Unit_BaseRentalVatAmount],
+                            [#tempAdvancePayment].[Unit_BaseRentalWithVatAmount],
+                            [#tempAdvancePayment].[Unit_BaseRentalTax],
+                            [#tempAdvancePayment].[Unit_TotalRental],
+                            [#tempAdvancePayment].[Unit_SecAndMainAmount],
+                            [#tempAdvancePayment].[Unit_SecAndMainVatAmount],
+                            [#tempAdvancePayment].[Unit_SecAndMainWithVatAmount],
+                            [#tempAdvancePayment].[Unit_Vat],
+                            [#tempAdvancePayment].[Unit_Tax],
+                            [#tempAdvancePayment].[Unit_TaxAmount],
+                            [#tempAdvancePayment].[Unit_IsParking],
+                            [#tempAdvancePayment].[Unit_AreaTotalAmount],
+                            [#tempAdvancePayment].[Unit_AreaSqm],
+                            [#tempAdvancePayment].[Unit_AreaRateSqm],
+                            [#tempAdvancePayment].[IsRenewal],
+                            [#tempAdvancePayment].[CompanyORNo],
+                            [#tempAdvancePayment].[REF],
+                            [#tempAdvancePayment].[BNK_ACCT_NAME],
+                            [#tempAdvancePayment].[BNK_ACCT_NUMBER],
+                            [#tempAdvancePayment].[BNK_NAME],
+                            [#tempAdvancePayment].[SERIAL_NO],
+                            [#tempAdvancePayment].[ModeType],
+                            [#tempAdvancePayment].[CompanyPRNo],
+                            [#tempAdvancePayment].[BankBranch],
+                            [#tempAdvancePayment].[CheckDate],
+                            [#tempAdvancePayment].[ReceiptDate],
+                            [#tempAdvancePayment].[PaymentRemarks]
+                    FROM
+                            [#tempAdvancePayment]
+                        INNER JOIN
+                            [dbo].[tblAdvancePayment]
+                                ON CONCAT('REF', CAST([#tempAdvancePayment].[ReferenceID] AS VARCHAR(150))) = [tblAdvancePayment].[RefId]
+                                   AND [#tempAdvancePayment].[LedgMonth] = [tblAdvancePayment].[Months]
+                    WHERE
+                            ISNULL([tblAdvancePayment].[Amount], 0) > 0
+
         INSERT INTO [#tempMonthDecalrationFinal]
             (
                 [Recid],
@@ -548,57 +854,108 @@ AS
                             )
                     UNION
                     SELECT
-                            [#tempAdvancePayment].[Recid],
-                            [#tempAdvancePayment].[ReferenceID],
-                            [#tempAdvancePayment].[ClientID],
-                            [#tempAdvancePayment].[LedgMonth],
-                            [#tempAdvancePayment].[LedgAmount],
-                            [#tempAdvancePayment].[IsPaid],
-                            [#tempAdvancePayment].[EncodedBy],
-                            [#tempAdvancePayment].[EncodedDate],
-                            [#tempAdvancePayment].[ComputerName],
-                            [#tempAdvancePayment].[TransactionID],
-                            [#tempAdvancePayment].[IsHold],
-                            [#tempAdvancePayment].[BalanceAmount],
-                            [#tempAdvancePayment].[PenaltyAmount],
-                            [#tempAdvancePayment].[ActualAmount],
-                            ISNULL([tblAdvancePayment].[Amount], 0) AS [LedgRentalAmount],
-                            [#tempAdvancePayment].[Remarks],
-                            [#tempAdvancePayment].[Unit_ProjectType],
-                            [#tempAdvancePayment].[Unit_IsNonVat],
-                            [#tempAdvancePayment].[Unit_BaseRentalVatAmount],
-                            [#tempAdvancePayment].[Unit_BaseRentalWithVatAmount],
-                            [#tempAdvancePayment].[Unit_BaseRentalTax],
-                            [#tempAdvancePayment].[Unit_TotalRental],
-                            [#tempAdvancePayment].[Unit_SecAndMainAmount],
-                            [#tempAdvancePayment].[Unit_SecAndMainVatAmount],
-                            [#tempAdvancePayment].[Unit_SecAndMainWithVatAmount],
-                            [#tempAdvancePayment].[Unit_Vat],
-                            [#tempAdvancePayment].[Unit_Tax],
-                            [#tempAdvancePayment].[Unit_TaxAmount],
-                            [#tempAdvancePayment].[Unit_IsParking],
-                            [#tempAdvancePayment].[Unit_AreaTotalAmount],
-                            [#tempAdvancePayment].[Unit_AreaSqm],
-                            [#tempAdvancePayment].[Unit_AreaRateSqm],
-                            [#tempAdvancePayment].[IsRenewal],
-                            [#tempAdvancePayment].[CompanyORNo],
-                            [#tempAdvancePayment].[REF],
-                            [#tempAdvancePayment].[BNK_ACCT_NAME],
-                            [#tempAdvancePayment].[BNK_ACCT_NUMBER],
-                            [#tempAdvancePayment].[BNK_NAME],
-                            [#tempAdvancePayment].[SERIAL_NO],
-                            [#tempAdvancePayment].[ModeType],
-                            [#tempAdvancePayment].[CompanyPRNo],
-                            [#tempAdvancePayment].[BankBranch],
-                            [#tempAdvancePayment].[CheckDate],
-                            [#tempAdvancePayment].[ReceiptDate],
-                            [#tempAdvancePayment].[PaymentRemarks]
+                        [#tempAdvancePaymentExactAmount].[Recid],
+                        [#tempAdvancePaymentExactAmount].[ReferenceID],
+                        [#tempAdvancePaymentExactAmount].[ClientID],
+                        [#tempAdvancePaymentExactAmount].[LedgMonth],
+                        [#tempAdvancePaymentExactAmount].[LedgAmount],
+                        [#tempAdvancePaymentExactAmount].[IsPaid],
+                        [#tempAdvancePaymentExactAmount].[EncodedBy],
+                        [#tempAdvancePaymentExactAmount].[EncodedDate],
+                        [#tempAdvancePaymentExactAmount].[ComputerName],
+                        [#tempAdvancePaymentExactAmount].[TransactionID],
+                        [#tempAdvancePaymentExactAmount].[IsHold],
+                        [#tempAdvancePaymentExactAmount].[BalanceAmount],
+                        [#tempAdvancePaymentExactAmount].[PenaltyAmount],
+                        [#tempAdvancePaymentExactAmount].[ActualAmount],
+                        [#tempAdvancePaymentExactAmount].[LedgRentalAmount],
+                        [#tempAdvancePaymentExactAmount].[Remarks],
+                        [#tempAdvancePaymentExactAmount].[Unit_ProjectType],
+                        [#tempAdvancePaymentExactAmount].[Unit_IsNonVat],
+                        [#tempAdvancePaymentExactAmount].[Unit_BaseRentalVatAmount],
+                        [#tempAdvancePaymentExactAmount].[Unit_BaseRentalWithVatAmount],
+                        [#tempAdvancePaymentExactAmount].[Unit_BaseRentalTax],
+                        [#tempAdvancePaymentExactAmount].[Unit_TotalRental],
+                        [#tempAdvancePaymentExactAmount].[Unit_SecAndMainAmount],
+                        [#tempAdvancePaymentExactAmount].[Unit_SecAndMainVatAmount],
+                        [#tempAdvancePaymentExactAmount].[Unit_SecAndMainWithVatAmount],
+                        [#tempAdvancePaymentExactAmount].[Unit_Vat],
+                        [#tempAdvancePaymentExactAmount].[Unit_Tax],
+                        [#tempAdvancePaymentExactAmount].[Unit_TaxAmount],
+                        [#tempAdvancePaymentExactAmount].[Unit_IsParking],
+                        [#tempAdvancePaymentExactAmount].[Unit_AreaTotalAmount],
+                        [#tempAdvancePaymentExactAmount].[Unit_AreaSqm],
+                        [#tempAdvancePaymentExactAmount].[Unit_AreaRateSqm],
+                        [#tempAdvancePaymentExactAmount].[IsRenewal],
+                        [#tempAdvancePaymentExactAmount].[CompanyORNo],
+                        [#tempAdvancePaymentExactAmount].[REF],
+                        [#tempAdvancePaymentExactAmount].[BNK_ACCT_NAME],
+                        [#tempAdvancePaymentExactAmount].[BNK_ACCT_NUMBER],
+                        [#tempAdvancePaymentExactAmount].[BNK_NAME],
+                        [#tempAdvancePaymentExactAmount].[SERIAL_NO],
+                        [#tempAdvancePaymentExactAmount].[ModeType],
+                        [#tempAdvancePaymentExactAmount].[CompanyPRNo],
+                        [#tempAdvancePaymentExactAmount].[BankBranch],
+                        [#tempAdvancePaymentExactAmount].[CheckDate],
+                        [#tempAdvancePaymentExactAmount].[ReceiptDate],
+                        [#tempAdvancePaymentExactAmount].[PaymentRemarks]
                     FROM
-                            [#tempAdvancePayment]
-                        INNER JOIN
-                            [dbo].[tblAdvancePayment]
-                                ON CONCAT('REF', CAST([#tempAdvancePayment].[ReferenceID] AS VARCHAR(150))) = [tblAdvancePayment].[RefId]
-                                   AND [#tempAdvancePayment].[LedgMonth] = [tblAdvancePayment].[Months]
+                        [#tempAdvancePaymentExactAmount]
+                    --INNER JOIN
+                    --    [dbo].[tblMonthLedger]
+                    --        ON [#tempAdvancePaymentExactAmount].[ReferenceID] = [tblMonthLedger].[ReferenceID]
+                    --           AND [#tempAdvancePaymentExactAmount].[LedgMonth] = [tblMonthLedger].[LedgMonth]
+
+                    UNION
+                    SELECT
+                        [#tempAdvancePaymentZeroAmount].[Recid],
+                        [#tempAdvancePaymentZeroAmount].[ReferenceID],
+                        [#tempAdvancePaymentZeroAmount].[ClientID],
+                        [#tempAdvancePaymentZeroAmount].[LedgMonth],
+                        [#tempAdvancePaymentZeroAmount].[LedgAmount],
+                        [#tempAdvancePaymentZeroAmount].[IsPaid],
+                        [#tempAdvancePaymentZeroAmount].[EncodedBy],
+                        [#tempAdvancePaymentZeroAmount].[EncodedDate],
+                        [#tempAdvancePaymentZeroAmount].[ComputerName],
+                        [#tempAdvancePaymentZeroAmount].[TransactionID],
+                        [#tempAdvancePaymentZeroAmount].[IsHold],
+                        [#tempAdvancePaymentZeroAmount].[BalanceAmount],
+                        [#tempAdvancePaymentZeroAmount].[PenaltyAmount],
+                        [#tempAdvancePaymentZeroAmount].[ActualAmount],
+                        [#tempAdvancePaymentZeroAmount].[LedgRentalAmount],
+                        [#tempAdvancePaymentZeroAmount].[Remarks],
+                        [#tempAdvancePaymentZeroAmount].[Unit_ProjectType],
+                        [#tempAdvancePaymentZeroAmount].[Unit_IsNonVat],
+                        [#tempAdvancePaymentZeroAmount].[Unit_BaseRentalVatAmount],
+                        [#tempAdvancePaymentZeroAmount].[Unit_BaseRentalWithVatAmount],
+                        [#tempAdvancePaymentZeroAmount].[Unit_BaseRentalTax],
+                        [#tempAdvancePaymentZeroAmount].[Unit_TotalRental],
+                        [#tempAdvancePaymentZeroAmount].[Unit_SecAndMainAmount],
+                        [#tempAdvancePaymentZeroAmount].[Unit_SecAndMainVatAmount],
+                        [#tempAdvancePaymentZeroAmount].[Unit_SecAndMainWithVatAmount],
+                        [#tempAdvancePaymentZeroAmount].[Unit_Vat],
+                        [#tempAdvancePaymentZeroAmount].[Unit_Tax],
+                        [#tempAdvancePaymentZeroAmount].[Unit_TaxAmount],
+                        [#tempAdvancePaymentZeroAmount].[Unit_IsParking],
+                        [#tempAdvancePaymentZeroAmount].[Unit_AreaTotalAmount],
+                        [#tempAdvancePaymentZeroAmount].[Unit_AreaSqm],
+                        [#tempAdvancePaymentZeroAmount].[Unit_AreaRateSqm],
+                        [#tempAdvancePaymentZeroAmount].[IsRenewal],
+                        [#tempAdvancePaymentZeroAmount].[CompanyORNo],
+                        [#tempAdvancePaymentZeroAmount].[REF],
+                        [#tempAdvancePaymentZeroAmount].[BNK_ACCT_NAME],
+                        [#tempAdvancePaymentZeroAmount].[BNK_ACCT_NUMBER],
+                        [#tempAdvancePaymentZeroAmount].[BNK_NAME],
+                        [#tempAdvancePaymentZeroAmount].[SERIAL_NO],
+                        [#tempAdvancePaymentZeroAmount].[ModeType],
+                        [#tempAdvancePaymentZeroAmount].[CompanyPRNo],
+                        [#tempAdvancePaymentZeroAmount].[BankBranch],
+                        [#tempAdvancePaymentZeroAmount].[CheckDate],
+                        [#tempAdvancePaymentZeroAmount].[ReceiptDate],
+                        [#tempAdvancePaymentZeroAmount].[PaymentRemarks]
+                    FROM
+                        [#tempAdvancePaymentZeroAmount]
+
 
         SELECT
             ROW_NUMBER() OVER (ORDER BY
@@ -637,7 +994,7 @@ AS
                      AND ISNULL([#tempMonthDecalrationFinal].[IsPaid], 0) = 0
                      AND ISNULL([#tempMonthDecalrationFinal].[IsHold], 0) = 0
                     THEN
-                    'FOR PAYMENT'
+                    'DUE'
                 WHEN CONVERT(VARCHAR(20), [#tempMonthDecalrationFinal].[LedgMonth], 107) = CONVERT(
                                                                                                       VARCHAR(20),
                                                                                                       GETDATE(), 107
@@ -645,7 +1002,7 @@ AS
                      AND ISNULL([#tempMonthDecalrationFinal].[IsPaid], 0) = 0
                      AND ISNULL([#tempMonthDecalrationFinal].[IsHold], 0) = 0
                     THEN
-                    'FOR PAYMENT'
+                    'DUE'
                 ELSE
                     'PENDING'
             END                                                                                                AS [PaymentStatus],
@@ -677,10 +1034,27 @@ AS
         --    AND [tblMonthLedger].[ClientID] = @ClientID
         ORDER BY
             [seq] ASC;
+
+
+
+    --SELECT
+    --    *
+    --FROM
+    --    [#tempAdvancePayment]
+    --SELECT
+    --    *
+    --FROM
+    --    [#tempAdvancePaymentZeroAmount]
+    --SELECT
+    --    *
+    --FROM
+    --    [#tempAdvancePaymentExactAmount]
     END;
     DROP TABLE IF EXISTS [#tempAdvancePaymentFiltered]
     DROP TABLE IF EXISTS [#tempMonthDecalrationFinal]
     DROP TABLE IF EXISTS [#tempAdvancePayment]
     DROP TABLE IF EXISTS [#tempMonthLedger]
+    DROP TABLE IF EXISTS [#tempAdvancePaymentZeroAmount]
+    DROP TABLE IF EXISTS [#tempAdvancePaymentExactAmount]
 GO
 

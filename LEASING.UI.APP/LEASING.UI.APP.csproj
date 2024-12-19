@@ -240,6 +240,12 @@
     <Compile Include="Forms\LocationRegistrationForm.Designer.cs">
       <DependentUpon>LocationRegistrationForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\PenaltyQuestionDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PenaltyQuestionDetails.Designer.cs">
+      <DependentUpon>PenaltyQuestionDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\PrintReceiptOtherPaymentCategory.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -732,6 +738,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\LocationRegistrationForm.resx">
       <DependentUpon>LocationRegistrationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PenaltyQuestionDetails.resx">
+      <DependentUpon>PenaltyQuestionDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\PrintReceiptOtherPaymentCategory.resx">
       <DependentUpon>PrintReceiptOtherPaymentCategory.cs</DependentUpon>

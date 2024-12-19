@@ -80,8 +80,8 @@
             this.dtpFrom = new Telerik.WinControls.UI.RadTextBox();
             this.dtpTo = new Telerik.WinControls.UI.RadTextBox();
             this.btnPayAll = new Telerik.WinControls.UI.RadButton();
-            this.radButton2 = new Telerik.WinControls.UI.RadButton();
-            this.radButton3 = new Telerik.WinControls.UI.RadButton();
+            this.btnDisableMonthlyPenalty = new Telerik.WinControls.UI.RadButton();
+            this.btnWaivePenalty = new Telerik.WinControls.UI.RadButton();
             this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
             this.radPageView1 = new Telerik.WinControls.UI.RadPageView();
             this.radPageViewPagePayment = new Telerik.WinControls.UI.RadPageViewPage();
@@ -114,8 +114,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtpFrom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpTo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPayAll)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnDisableMonthlyPenalty)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnWaivePenalty)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
             this.radGroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPageView1)).BeginInit();
@@ -188,8 +188,8 @@
             this.tableLayoutPanel2.Controls.Add(this.dtpFrom, 1, 4);
             this.tableLayoutPanel2.Controls.Add(this.dtpTo, 1, 5);
             this.tableLayoutPanel2.Controls.Add(this.btnPayAll, 6, 0);
-            this.tableLayoutPanel2.Controls.Add(this.radButton2, 4, 0);
-            this.tableLayoutPanel2.Controls.Add(this.radButton3, 5, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnDisableMonthlyPenalty, 4, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnWaivePenalty, 5, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(2, 18);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -427,25 +427,26 @@
             this.btnPayAll.ThemeName = "Office2007Silver";
             this.btnPayAll.Click += new System.EventHandler(this.btnPayAll_Click);
             // 
-            // radButton2
+            // btnDisableMonthlyPenalty
             // 
-            this.radButton2.Image = global::LEASING.UI.APP.Properties.Resources.block_16;
-            this.radButton2.Location = new System.Drawing.Point(559, 3);
-            this.radButton2.Name = "radButton2";
-            this.radButton2.Size = new System.Drawing.Size(154, 19);
-            this.radButton2.TabIndex = 7;
-            this.radButton2.Text = "Disable Monthly Penalty";
-            this.radButton2.ThemeName = "Office2007Silver";
+            this.btnDisableMonthlyPenalty.Image = global::LEASING.UI.APP.Properties.Resources.block_16;
+            this.btnDisableMonthlyPenalty.Location = new System.Drawing.Point(559, 3);
+            this.btnDisableMonthlyPenalty.Name = "btnDisableMonthlyPenalty";
+            this.btnDisableMonthlyPenalty.Size = new System.Drawing.Size(154, 19);
+            this.btnDisableMonthlyPenalty.TabIndex = 7;
+            this.btnDisableMonthlyPenalty.Text = "Disable Monthly Penalty";
+            this.btnDisableMonthlyPenalty.ThemeName = "Office2007Silver";
+            this.btnDisableMonthlyPenalty.Click += new System.EventHandler(this.btnDisableMonthlyPenalty_Click);
             // 
-            // radButton3
+            // btnWaivePenalty
             // 
-            this.radButton3.Image = global::LEASING.UI.APP.Properties.Resources.orangebullet;
-            this.radButton3.Location = new System.Drawing.Point(719, 3);
-            this.radButton3.Name = "radButton3";
-            this.radButton3.Size = new System.Drawing.Size(173, 19);
-            this.radButton3.TabIndex = 7;
-            this.radButton3.Text = "Waive Contract Penalty";
-            this.radButton3.ThemeName = "Office2007Silver";
+            this.btnWaivePenalty.Image = global::LEASING.UI.APP.Properties.Resources.orangebullet;
+            this.btnWaivePenalty.Location = new System.Drawing.Point(719, 3);
+            this.btnWaivePenalty.Name = "btnWaivePenalty";
+            this.btnWaivePenalty.Size = new System.Drawing.Size(173, 19);
+            this.btnWaivePenalty.TabIndex = 7;
+            this.btnWaivePenalty.Text = "Waive Penalty";
+            this.btnWaivePenalty.ThemeName = "Office2007Silver";
             // 
             // radGroupBox1
             // 
@@ -626,7 +627,7 @@
             this.dgvPaymentList.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.dgvPaymentList.Location = new System.Drawing.Point(0, 0);
             // 
-            // dgvPaymentList
+            // 
             // 
             this.dgvPaymentList.MasterTemplate.AllowAddNewRow = false;
             this.dgvPaymentList.MasterTemplate.AllowColumnReorder = false;
@@ -691,7 +692,7 @@
             this.dgvOtherPaymentHistory.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.dgvOtherPaymentHistory.Location = new System.Drawing.Point(0, 0);
             // 
-            // dgvOtherPaymentHistory
+            // 
             // 
             this.dgvOtherPaymentHistory.MasterTemplate.AllowAddNewRow = false;
             this.dgvOtherPaymentHistory.MasterTemplate.AllowColumnReorder = false;
@@ -786,8 +787,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtpFrom)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpTo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPayAll)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnDisableMonthlyPenalty)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnWaivePenalty)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).EndInit();
             this.radGroupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radPageView1)).EndInit();
@@ -836,7 +837,7 @@
         private Telerik.WinControls.UI.RadPageViewPage radPageViewPagePaymentHistory;
         private Telerik.WinControls.UI.RadPageViewPage radPageViewPageOtherPayment;
         private Telerik.WinControls.UI.RadGridView dgvOtherPaymentHistory;
-        private Telerik.WinControls.UI.RadButton radButton2;
-        private Telerik.WinControls.UI.RadButton radButton3;
+        private Telerik.WinControls.UI.RadButton btnDisableMonthlyPenalty;
+        private Telerik.WinControls.UI.RadButton btnWaivePenalty;
     }
 }

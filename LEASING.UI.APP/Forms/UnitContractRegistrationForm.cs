@@ -29,7 +29,7 @@ namespace LEASING.UI.APP.Forms
         }
         public bool sIsFullPayment = false;
         public bool IsComputed = false;
-        private DataTable dataTable;
+        private DataTable dtAdvancePayment;
 
         public int seq = 0;
         private decimal vUnit_Vat { get; set; } = 0;
@@ -99,7 +99,7 @@ namespace LEASING.UI.APP.Forms
                         txtTotalRental.Text = string.Empty;
                         txtMonthsSecurityDeposit.Text = string.Empty;
                         /*AdvancePayment Table*/
-                        dataTable.Rows.Clear();
+                        dtAdvancePayment.Rows.Clear();
 
                         break;
 
@@ -270,7 +270,7 @@ namespace LEASING.UI.APP.Forms
             //ClientId = string.Empty;
             txtTotalPostDatedAmount.Text = string.Empty;
             txtSecurityPaymentMonthCount.Text = string.Empty;
-            dataTable.Clear();
+            dtAdvancePayment.Clear();
             dgvAdvancePayment.DataSource = null;
             dgvpostdatedcheck.DataSource = null;
         }
@@ -291,7 +291,7 @@ namespace LEASING.UI.APP.Forms
             ClientId = string.Empty;
             txtTotalPostDatedAmount.Text = string.Empty;
             txtSecurityPaymentMonthCount.Text = string.Empty;
-            dataTable.Clear();
+            dtAdvancePayment.Clear();
             dgvAdvancePayment.DataSource = null;
             dgvpostdatedcheck.DataSource = null;
         }
@@ -323,7 +323,7 @@ namespace LEASING.UI.APP.Forms
             //ClientId = string.Empty;
             txtTotalPostDatedAmount.Text = string.Empty;
             txtSecurityPaymentMonthCount.Text = string.Empty;
-            dataTable.Clear();
+            dtAdvancePayment.Clear();
             dgvAdvancePayment.DataSource = null;
             dgvpostdatedcheck.DataSource = null;
 
@@ -624,9 +624,9 @@ namespace LEASING.UI.APP.Forms
             }
             else
             {
-                this.txtTotal.Text = (this.getTotalAmountFromSelectedMonth(dataTable) + this.getFinalSecurityAmount() + this.getFinalWaterAndElectricityAmount()).ToString("N2");
+                this.txtTotal.Text = (this.getTotalAmountFromSelectedMonth(dtAdvancePayment) + this.getFinalSecurityAmount() + this.getFinalWaterAndElectricityAmount()).ToString("N2");
             }
-            this.AdvancePaymentAmount = this.getTotalAmountFromSelectedMonth(dataTable);
+            this.AdvancePaymentAmount = this.getTotalAmountFromSelectedMonth(dtAdvancePayment);
         }
         private decimal getFinalSecurityAmount()
         {
@@ -650,7 +650,7 @@ namespace LEASING.UI.APP.Forms
         private bool IsDuplicate(string Months)
         {
             // Check if the data already exists in the DataTable
-            foreach (DataRow row in dataTable.Rows)
+            foreach (DataRow row in dtAdvancePayment.Rows)
             {
                 if (row.Field<string>("Months") == Months)
                 {
@@ -752,6 +752,7 @@ namespace LEASING.UI.APP.Forms
                 dto.IsRenewal = chkIsRenewal.Checked;
                 dto.DiscountAmount = this.vContract_DiscountAmount;
                 dto.IsDiscounted = this.IsDiscounted;
+                dto.IsContractApplyMonthlyPenalty = !chkNoPenalty.Checked;
                 dto.Message_Code = ComputationContext.SaveComputation(dto);
                 Functions.ShowLoadingBar("Processing...");
                 if (dto.Message_Code.Equals("SUCCESS"))
@@ -782,12 +783,17 @@ namespace LEASING.UI.APP.Forms
             // Check if the difference is more than 6 months
             return monthsDifference > 2;
         }
+        private void InitdtAdvancePayment()
+        {
+            dtAdvancePayment = new DataTable();
+            dtAdvancePayment.Columns.Add("Months", typeof(string));
+            dtAdvancePayment.Columns.Add("Amount", typeof(string));
+        }
         private void frmComputation_Load(object sender, EventArgs e)
         {
             Functions.EventCapturefrmName(this);
-            //string sad = dtpFinishDate.Text;
-            //string fddf = dtpFinishDate.Value.ToString("MM/dd/yyyy");
-            //string asd = DateTime.Now.ToString("MM/dd/yyyy");
+            this.InitdtAdvancePayment();
+
             dtpStartDate.Text = DateTime.Now.ToString("MM/dd/yyyy");
             dtpFinishDate.Text = DateTime.Now.ToString("MM/dd/yyyy");
 
@@ -797,9 +803,7 @@ namespace LEASING.UI.APP.Forms
             //txtMonthsSecurityDeposit.ReadOnly = true;
             txtTotal.ReadOnly = true;
 
-            dataTable = new DataTable();
-            dataTable.Columns.Add("Months", typeof(string));
-            dataTable.Columns.Add("Amount", typeof(string));
+
 
             strFormMode = "READ";
             txtProjectType.ReadOnly = true;
@@ -1117,7 +1121,7 @@ namespace LEASING.UI.APP.Forms
         private decimal getTotalAmountFromSelectedMonth(DataTable dt)
         {
             decimal grandTotal = 0;
-            foreach (DataRow row in dataTable.Rows)
+            foreach (DataRow row in dtAdvancePayment.Rows)
             {
                 string price = (string)row["Amount"];
 
@@ -1191,8 +1195,8 @@ namespace LEASING.UI.APP.Forms
                     return;
                 }
 
-                dataTable.Rows.Add(selectedDate.ToString(), MonthlyRentalFromSelectedMonth);
-                dgvAdvancePayment.DataSource = dataTable;
+                dtAdvancePayment.Rows.Add(selectedDate.ToString(), MonthlyRentalFromSelectedMonth);
+                dgvAdvancePayment.DataSource = dtAdvancePayment;
                 M_GetTotalRental();
                 txtTotalPostDatedAmount.Text = string.Empty;
 
@@ -1350,7 +1354,7 @@ namespace LEASING.UI.APP.Forms
                         txtTotalRental.Text = string.Empty;
                         txtMonthsSecurityDeposit.Text = string.Empty;
                         /*AdvancePayment Table*/
-                        dataTable.Rows.Clear();
+                        dtAdvancePayment.Rows.Clear();
 
                         this.IsDiscounted = frmdiscount.IsDiscounted;
                         this.vContract_DiscountAmount = frmdiscount.vContract_DiscountAmount;
@@ -1375,7 +1379,7 @@ namespace LEASING.UI.APP.Forms
                         dgvpostdatedcheck.DataSource = null;
                         dgvAdvancePayment.DataSource = null;
                         txtSecurityPaymentMonthCount.Text = string.Empty;
-                        dataTable.Rows.Clear();
+                        dtAdvancePayment.Rows.Clear();
                     }
                 }
                 //}

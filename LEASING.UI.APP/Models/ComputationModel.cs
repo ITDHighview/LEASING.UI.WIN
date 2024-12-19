@@ -33,6 +33,7 @@ namespace LEASING.UI.APP.Models
         public bool IsRenewal { get; set; }
         public decimal DiscountAmount { get; set; }
         public bool IsDiscounted { get; set; }
+        public bool IsContractApplyMonthlyPenalty { get; set; }
 
     }
 

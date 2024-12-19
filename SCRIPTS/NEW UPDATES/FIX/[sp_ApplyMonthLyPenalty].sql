@@ -1,8 +1,8 @@
 USE [LEASINGDB]
---SET QUOTED_IDENTIFIER ON|OFF
---SET ANSI_NULLS ON|OFF
+SET QUOTED_IDENTIFIER ON
+SET ANSI_NULLS ON
 GO
-CREATE OR ALTER PROCEDURE [sp_ApplyMonthLyPenalty] @ReferenceID AS BIGINT
+CREATE OR ALTER PROCEDURE [dbo].[sp_ApplyMonthLyPenalty] @ReferenceID AS BIGINT
 -- WITH ENCRYPTION, RECOMPILE, EXECUTE AS CALLER|SELF|OWNER| 'user_name'
 AS
     BEGIN
@@ -33,64 +33,69 @@ AS
         SET
             [tblMonthLedger].[PenaltyAmount] = IIF([tblMonthLedger].[PenaltyAmount] > 0,
                                                    [tblMonthLedger].[PenaltyAmount],
-                                                   CASE
-                                                       WHEN DATEDIFF(
-                                                                        DAY, [tblMonthLedger].[LedgMonth],
-                                                                        CAST(GETDATE() AS DATE)
-                                                                    ) < 30
-                                                           THEN
-                                                           0
-                                                       WHEN DATEDIFF(
-                                                                        DAY, [tblMonthLedger].[LedgMonth],
-                                                                        CAST(GETDATE() AS DATE)
-                                                                    ) = 30
-                                                           THEN
-                                                           --CAST(((@TotalRent * @PenaltyPct) / 100) AS DECIMAL(18, 2))
-                                                           CAST((([tblMonthLedger].[LedgRentalAmount] * @PenaltyPct)
-                                                                 / 100
-                                                                ) AS DECIMAL(18, 2))
-                                                       WHEN DATEDIFF(
-                                                                        DAY, [tblMonthLedger].[LedgMonth],
-                                                                        CAST(GETDATE() AS DATE)
-                                                                    ) >= 31
-                                                            AND DATEDIFF(
-                                                                            DAY, [tblMonthLedger].[LedgMonth],
-                                                                            CAST(GETDATE() AS DATE)
-                                                                        --) <= 31 THEN
-                                                                        ) <= 60
-                                                           THEN
-                                                           --CAST((((@TotalRent * @PenaltyPct) / 100) * 2) AS DECIMAL(18, 2))
-                                                           CAST(((([tblMonthLedger].[LedgRentalAmount] * @PenaltyPct)
-                                                                  / 100
-                                                                 ) * 2
-                                                                ) AS DECIMAL(18, 2))
-                                                       WHEN DATEDIFF(
-                                                                        DAY, [tblMonthLedger].[LedgMonth],
-                                                                        CAST(GETDATE() AS DATE)
-                                                                    ) = 60
-                                                           THEN
-                                                           --CAST((((@TotalRent * @PenaltyPct) / 100) * 3) AS DECIMAL(18, 2))
-                                                           CAST(((([tblMonthLedger].[LedgRentalAmount] * @PenaltyPct)
-                                                                  / 100
-                                                                 ) * 3
-                                                                ) AS DECIMAL(18, 2))
-                                                       WHEN DATEDIFF(
-                                                                        DAY, [tblMonthLedger].[LedgMonth],
-                                                                        CAST(GETDATE() AS DATE)
-                                                                    ) >= 61
-                                                           THEN
-                                                           --CAST((((@TotalRent * @PenaltyPct) / 100) * 4) AS DECIMAL(18, 2))
-                                                           CAST(((([tblMonthLedger].[LedgRentalAmount] * @PenaltyPct)
-                                                                  / 100
-                                                                 ) * 4
-                                                                ) AS DECIMAL(18, 2))
-                                                       ELSE
-                                                           0
-                                                   END),
+                                                   [dbo].[fnGetPenaltyResultAmount](
+                                                                                       [tblMonthLedger].[LedgMonth],
+                                                                                       @ReferenceID,
+                                                                                       [tblMonthLedger].[LedgRentalAmount]
+                                                                                   )),
+            --CASE
+            --    WHEN DATEDIFF(
+            --                     DAY, [tblMonthLedger].[LedgMonth],
+            --                     CAST(GETDATE() AS DATE)
+            --                 ) < 30
+            --        THEN
+            --        0
+            --    WHEN DATEDIFF(
+            --                     DAY, [tblMonthLedger].[LedgMonth],
+            --                     CAST(GETDATE() AS DATE)
+            --                 ) = 30
+            --        THEN
+            --        --CAST(((@TotalRent * @PenaltyPct) / 100) AS DECIMAL(18, 2))
+            --        CAST((([tblMonthLedger].[LedgRentalAmount] * @PenaltyPct)
+            --              / 100
+            --             ) AS DECIMAL(18, 2))
+            --    WHEN DATEDIFF(
+            --                     DAY, [tblMonthLedger].[LedgMonth],
+            --                     CAST(GETDATE() AS DATE)
+            --                 ) >= 31
+            --         AND DATEDIFF(
+            --                         DAY, [tblMonthLedger].[LedgMonth],
+            --                         CAST(GETDATE() AS DATE)
+            --                     --) <= 31 THEN
+            --                     ) <= 60
+            --        THEN
+            --        --CAST((((@TotalRent * @PenaltyPct) / 100) * 2) AS DECIMAL(18, 2))
+            --        CAST(((([tblMonthLedger].[LedgRentalAmount] * @PenaltyPct)
+            --               / 100
+            --              ) * 2
+            --             ) AS DECIMAL(18, 2))
+            --    WHEN DATEDIFF(
+            --                     DAY, [tblMonthLedger].[LedgMonth],
+            --                     CAST(GETDATE() AS DATE)
+            --                 ) = 60
+            --        THEN
+            --        --CAST((((@TotalRent * @PenaltyPct) / 100) * 3) AS DECIMAL(18, 2))
+            --        CAST(((([tblMonthLedger].[LedgRentalAmount] * @PenaltyPct)
+            --               / 100
+            --              ) * 3
+            --             ) AS DECIMAL(18, 2))
+            --    WHEN DATEDIFF(
+            --                     DAY, [tblMonthLedger].[LedgMonth],
+            --                     CAST(GETDATE() AS DATE)
+            --                 ) >= 61
+            --        THEN
+            --        --CAST((((@TotalRent * @PenaltyPct) / 100) * 4) AS DECIMAL(18, 2))
+            --        CAST(((([tblMonthLedger].[LedgRentalAmount] * @PenaltyPct)
+            --               / 100
+            --              ) * 4
+            --             ) AS DECIMAL(18, 2))
+            --    ELSE
+            --        0
+            --END),
             [tblMonthLedger].[IsForMonthlyPenalty] = IIF(
                                                      DATEDIFF(
                                                              DAY, [tblMonthLedger].[LedgMonth], CAST(GETDATE() AS DATE)
-                                                             ) > 30,
+                                                             ) >= 30,
                                                          1,
                                                          0)
         WHERE
@@ -99,7 +104,9 @@ AS
             AND ISNULL([tblMonthLedger].[IsHold], 0) = 0
             AND MONTH([tblMonthLedger].[EncodedDate]) > @PenaltyApplyInMonth
             AND YEAR([tblMonthLedger].[EncodedDate]) = @PenaltyApplyInYear
-			 AND [tblMonthLedger].[Remarks] <> 'PENALTY'
+            AND [tblMonthLedger].[Remarks] <> 'PENALTY'
+			AND ISNULL([tblMonthLedger].[IsForMonthlyPenalty], 0) = 0
+            AND ISNULL([tblMonthLedger].[IsPenaltyApplied], 0) = 0
 
         /*it is use to check the total amount with penalty*/
         UPDATE
@@ -274,7 +281,4 @@ AS
 
     END
 GO
---SET QUOTED_IDENTIFIER ON|OFF
---SET ANSI_NULLS ON|OFF
---GO
 

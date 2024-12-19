@@ -314,41 +314,139 @@ namespace LEASING.UI.APP.Forms
 
             return true;
         }
-        private void getLedgerBrowseByContractIdClientId()
-        {
-            bool IsContractApplyMonthlyPenalty = false;
-            bool IsApplyMonthlyPenalty = false;
-           
 
-       
+        bool IsContractApplyMonthlyPenalty = false;
+        bool IsApplyMonthlyPenalty = false;
+
+
+        private bool IsHasContractApplyMonthlyPenalty(int contractid)
+        {
             try
             {
-                using (DataSet dt = _contract.GetIsContractApplyMonthlyPenalty(this._contractId))
+                using (DataSet dt = _contract.GetIsContractApplyMonthlyPenalty(contractid))
                 {
                     if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
                         IsContractApplyMonthlyPenalty = Convert.ToBoolean(dt.Tables[0].Rows[0]["IsContractApplyMonthlyPenalty"]);
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                Functions.LogError("IsHasContractApplyMonthlyPenalty()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("IsHasContractApplyMonthlyPenalty()", ex.ToString());
+            }
 
-                if (IsContractApplyMonthlyPenalty)
+
+
+            return IsContractApplyMonthlyPenalty;
+        }
+
+
+        bool IsHasPenalty = false;
+        string MonthHavePenalty = string.Empty;
+        string AmountOfPenalty = string.Empty;
+        private void IsContractHaveMonthlyPenalty(int contractid)
+        {
+            try
+            {
+                using (DataSet dt = _contract.GetIsContractHaveMonthlyPenalty(contractid))
                 {
-                    if (Functions.MessageConfirm("Would you like to integrate penalty for this contract?") == DialogResult.Yes)
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
-                        IsApplyMonthlyPenalty = true;
+                        IsHasPenalty = Convert.ToBoolean(dt.Tables[0].Rows[0]["IsHasPenalty"]);
+                        MonthHavePenalty = Convert.ToString(dt.Tables[0].Rows[0]["MonthHavePenalty"]);
+                        AmountOfPenalty = Convert.ToString(dt.Tables[0].Rows[0]["AmountOfPenalty"]);
+
                     }
                 }
-               
-                    dgvLedgerList.DataSource = null;
-                    using (DataSet dt = _contract.GetLedgerListWithPenaltyIntegration(this._contractId, this._clientId, IsApplyMonthlyPenalty))
+            }
+            catch (Exception ex)
+            {
+                Functions.LogError("IsContractHaveMonthlyPenalty()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("IsContractHaveMonthlyPenalty()", ex.ToString());
+            }
+        }
+        private bool IsContractPenaltyIsActive = false;
+        private bool CheckContractMonthlyPenaltyIsActive(int contractid)
+        {
+            try
+            {
+                using (DataSet dt = _contract.CheckContractMonthlyPenaltyIsActive(contractid))
+                {
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
-                        if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                        IsContractPenaltyIsActive = Convert.ToBoolean(dt.Tables[0].Rows[0]["IsContractPenaltyIsActive"]);
+         
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Functions.LogError("CheckContractMonthlyPenaltyIsActive()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("CheckContractMonthlyPenaltyIsActive()", ex.ToString());
+            }
+
+            return IsContractPenaltyIsActive;
+        }
+
+        private void getOnLoadLedgerBrowseByContractIdClientId()
+        {
+
+            try
+            {
+                IsContractHaveMonthlyPenalty(this._contractId);
+
+                
+                if (IsHasContractApplyMonthlyPenalty(this._contractId))
+                {
+                    //if (Functions.MessageConfirm("Would you like to integrate penalty for this contract?") == DialogResult.Yes)
+                    //{
+                    //    IsApplyMonthlyPenalty = true;
+                    //}
+                    if (IsHasPenalty)
+                    {
+                        PenaltyQuestionDetails penaltyquestion = new PenaltyQuestionDetails(MonthHavePenalty, AmountOfPenalty);
+
+                        penaltyquestion.ShowDialog();
+                        if (penaltyquestion.IsProceed)
                         {
-                            dgvLedgerList.DataSource = dt.Tables[0];
+                            IsApplyMonthlyPenalty = true;
                         }
                     }
-                
+                }
 
+                dgvLedgerList.DataSource = null;
+                using (DataSet dt = _contract.GetLedgerListWithPenaltyIntegration(this._contractId, this._clientId, IsApplyMonthlyPenalty))
+                {
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        dgvLedgerList.DataSource = dt.Tables[0];
+                    }
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                Functions.LogError("getOnLoadLedgerBrowseByContractIdClientId()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("getOnLoadLedgerBrowseByContractIdClientId()", ex.ToString());
+            }
+        }
+
+        private void getLedgerBrowseByContractIdClientId()
+        {
+            try
+            {
+                dgvLedgerList.DataSource = null;
+                using (DataSet dt = _contract.GetLedgerListWithPenaltyIntegration(this._contractId, this._clientId, IsApplyMonthlyPenalty))
+                {
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        dgvLedgerList.DataSource = dt.Tables[0];
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -846,10 +944,11 @@ namespace LEASING.UI.APP.Forms
 
             this._contractId = Convert.ToInt32(dgvTransactionList.CurrentRow.Cells["RecId"].Value);
 
-            this.getLedgerBrowseByContractIdClientId();
+            this.getOnLoadLedgerBrowseByContractIdClientId();
             this.getContractById();
             this.checkPaymentProgressStatus();
             this.getPaymentBrowseByContractNumber();
+            btnDisableMonthlyPenalty.Enabled = CheckContractMonthlyPenaltyIsActive(this._contractId);
         }
         private void dgvPaymentList_CellFormatting(object sender, Telerik.WinControls.UI.CellFormattingEventArgs e)
         {
@@ -969,6 +1068,16 @@ namespace LEASING.UI.APP.Forms
                     e.CellElement.BackColor = Color.Red;
 
                 }
+                else if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "FREE")
+                {
+                    e.CellElement.ForeColor = Color.White;
+                    //e.CellElement.Font = new Font("Tahoma", 7f, FontStyle.Bold);
+                    e.CellElement.DrawFill = true;
+                    e.CellElement.GradientStyle = GradientStyles.Solid;
+                    e.CellElement.BackColor = Color.Green;
+                    this.dgvLedgerList.Rows[e.RowIndex].Cells["ColCheck"].ReadOnly = true;
+                    //this.dgvLedgerList.Rows[e.RowIndex].Cells["ColCheck"].Style.DrawFill = true;
+                }
 
                 if (e.CellElement.ColumnInfo is GridViewCommandColumn && !(e.CellElement.RowElement is GridTableHeaderRowElement))
                 {
@@ -1023,6 +1132,18 @@ namespace LEASING.UI.APP.Forms
                     if (column.Name == "ColHold")
                     {
                         if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "PAID")
+                        {
+                            element.ImageAlignment = ContentAlignment.MiddleCenter;
+                            element.TextImageRelation = TextImageRelation.TextBeforeImage;
+                            element.Image = Properties.Resources.cancel16;
+                            element.ToolTipText = "This button is disabled";
+
+                            element.Enabled = false;
+                        }
+                    }
+                    if (column.Name == "ColHold")
+                    {
+                        if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "FREE")
                         {
                             element.ImageAlignment = ContentAlignment.MiddleCenter;
                             element.TextImageRelation = TextImageRelation.TextBeforeImage;
@@ -1154,6 +1275,30 @@ namespace LEASING.UI.APP.Forms
         {
             Functions.EventCapturefrmName(this);
             this.OnInitialized();
+        }
+
+        private void btnDisableMonthlyPenalty_Click(object sender, EventArgs e)
+        {
+            if (dgvTransactionList.Rows.Count > 0)
+            {
+                if (Functions.MessageConfirm("Are you sure you want to disable Monthly penalty to this contract ? ") == DialogResult.Yes)
+                {
+                    string result = _contract.DisableContractMonthlyPenalty(this._contractId);
+                    if (result.Equals("SUCCESS"))
+                    {
+                        Functions.MessageShow("Contract Monthly Penalty has been disable successfully!.");
+                    }
+                    else
+                    {
+                        Functions.MessageShow(result);
+                    }
+                }
+                else
+                {
+                    Functions.MessageShow("Please select active contract.");
+                }
+            }
+
         }
     }
 }

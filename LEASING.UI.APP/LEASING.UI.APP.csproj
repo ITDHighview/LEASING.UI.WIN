@@ -246,6 +246,12 @@
     <Compile Include="Forms\PenaltyQuestionDetails.Designer.cs">
       <DependentUpon>PenaltyQuestionDetails.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\PenaltyWaiveDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PenaltyWaiveDetails.Designer.cs">
+      <DependentUpon>PenaltyWaiveDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\PrintReceiptOtherPaymentCategory.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -701,6 +707,7 @@
     <Compile Include="Models\PurchaseItemModel.cs" />
     <Compile Include="Models\Reports.cs" />
     <Compile Include="Models\UnitModel.cs" />
+    <Compile Include="Models\WaivePenaltyModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -741,6 +748,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\PenaltyQuestionDetails.resx">
       <DependentUpon>PenaltyQuestionDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PenaltyWaiveDetails.resx">
+      <DependentUpon>PenaltyWaiveDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\PrintReceiptOtherPaymentCategory.resx">
       <DependentUpon>PrintReceiptOtherPaymentCategory.cs</DependentUpon>

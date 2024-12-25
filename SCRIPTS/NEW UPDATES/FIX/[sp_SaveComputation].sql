@@ -185,6 +185,7 @@ AS
                     [dbo].[tblUnitReference]
                 WHERE
                     [tblUnitReference].[RecId] = @ComputationID;
+
                 INSERT INTO [dbo].[tblAdvancePayment]
                     (
                         [Months],
@@ -221,6 +222,19 @@ AS
             @UnitId = @UnitId,
             @IsRenewal = @IsRenewal;
 
+
+        UPDATE
+                [dbo].[tblMonthLedger]
+        SET
+                [tblMonthLedger].[IsAdvanceMonth] = 1,
+                [tblMonthLedger].[IsFreeMonth] = IIF([tblAdvancePayment].[Amount] > 0, 0, 1),
+                [tblMonthLedger].[AdvanceMonthAmount] = [tblAdvancePayment].[Amount]
+        FROM
+                [dbo].[tblMonthLedger]
+            INNER JOIN
+                [dbo].[tblAdvancePayment]
+                    ON CONCAT('REF', CAST([tblMonthLedger].[ReferenceID] AS VARCHAR(150))) = [tblAdvancePayment].[RefId]
+                       AND [tblMonthLedger].[LedgMonth] = [tblAdvancePayment].[Months]
 
         SET @ErrorMessage = ERROR_MESSAGE()
         IF @ErrorMessage <> ''

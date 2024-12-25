@@ -36,13 +36,25 @@ AS
             AND [tblMonthLedger].[Remarks] <> 'PENALTY'
             AND ISNULL([tblMonthLedger].[IsForMonthlyPenalty], 0) = 0
             AND ISNULL([tblMonthLedger].[IsPenaltyApplied], 0) = 0
+            AND ISNULL([tblMonthLedger].[IsFreeMonth], 0) = 0
         GROUP BY
             [tblMonthLedger].[ReferenceID]
 
         SELECT TOP 1
-               IIF(DATEDIFF(DAY, [tblMonthLedger].[LedgMonth], CAST(GETDATE() AS DATE)) >= 30, 1, 0) AS [IsHasPenalty],
-               CONVERT(VARCHAR(20), [tblMonthLedger].[LedgMonth], 107)                               AS [MonthHavePenalty],
-               CAST(@TotalPenaltyAmount AS VARCHAR(150))                                             AS [AmountOfPenalty]
+               IIF(
+                   DATEDIFF(DAY, [tblMonthLedger].[LedgMonth], CAST(GETDATE() AS DATE)) >=
+                      (
+                          SELECT
+                              MIN([tblPenaltySetup].[DayCount]) AS DayCount
+                          FROM
+                              [dbo].[tblPenaltySetup]
+                          WHERE
+                              [tblPenaltySetup].[IsForPenalty] = 1
+                      ),
+                   1,
+                   0)                                                  AS [IsHasPenalty],
+               CONVERT(VARCHAR(20), [tblMonthLedger].[LedgMonth], 107) AS [MonthHavePenalty],
+               CAST(@TotalPenaltyAmount AS VARCHAR(150))               AS [AmountOfPenalty]
         FROM
                [dbo].[tblMonthLedger]
         WHERE
@@ -54,6 +66,7 @@ AS
                AND [tblMonthLedger].[Remarks] <> 'PENALTY'
                AND ISNULL([tblMonthLedger].[IsForMonthlyPenalty], 0) = 0
                AND ISNULL([tblMonthLedger].[IsPenaltyApplied], 0) = 0
+               AND ISNULL([tblMonthLedger].[IsFreeMonth], 0) = 0
     END
 GO
 

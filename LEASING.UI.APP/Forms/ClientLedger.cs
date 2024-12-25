@@ -974,7 +974,7 @@ namespace LEASING.UI.APP.Forms
 
                 else if (this.dgvLedgerList.Columns[e.ColumnIndex].Name == "ColHold")
                 {
-                    if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "PENDING")
+                    if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "PENDING" || Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "DUE")
                     {
                         if (MessageBox.Show("Are you sure you want to hold to this payment?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                         {
@@ -986,6 +986,35 @@ namespace LEASING.UI.APP.Forms
                                     if (result.Equals("SUCCESS"))
                                     {
                                         MessageBox.Show("PAYMENT HOLD SUCCESS", "System Message", MessageBoxButtons.OK);
+                                        this.checkPaymentProgressStatus();
+                                        this.getLedgerBrowseByContractIdClientId();
+                                        this.getPaymentBrowseByContractNumber();
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show(result, "System Message", MessageBoxButtons.OK);
+                                    }
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                Functions.LogError("Cell Click : ColHold", this.Text, ex.ToString(), DateTime.Now, this);
+                                Functions.ErrorShow("Cell Click : ColHold", ex.ToString());
+                            }
+                        }
+                    }
+                    else if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "HOLD")
+                    {
+                        if (MessageBox.Show("Are you sure you want to Enable this payment?", "System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                        {
+                            try
+                            {
+                                string result = _payment.EnableHoldPayment(this._contractNumber, Convert.ToInt32(dgvLedgerList.CurrentRow.Cells["Recid"].Value));
+                                if (!string.IsNullOrEmpty(result))
+                                {
+                                    if (result.Equals("SUCCESS"))
+                                    {
+                                        MessageBox.Show("PAYMENT ENABLED SUCCESS", "System Message", MessageBoxButtons.OK);
                                         this.checkPaymentProgressStatus();
                                         this.getLedgerBrowseByContractIdClientId();
                                         this.getPaymentBrowseByContractNumber();
@@ -1195,10 +1224,11 @@ namespace LEASING.UI.APP.Forms
                         {
                             element.ImageAlignment = ContentAlignment.MiddleCenter;
                             element.TextImageRelation = TextImageRelation.TextBeforeImage;
-                            element.Image = Properties.Resources.cancel16;
-                            element.ToolTipText = "this button is disaled";
+                            element.Image = Properties.Resources.arrow_redo;
+                            //element.ToolTipText = "this button is disaled";
+                            element.ToolTipText = "Enable this payment";
 
-                            element.Enabled = false;
+                            element.Enabled = true;
                         }
                     }
                     if (column.Name == "ColPay")
@@ -1299,6 +1329,12 @@ namespace LEASING.UI.APP.Forms
                 }
             }
 
+        }
+
+        private void btnWaivePenalty_Click(object sender, EventArgs e)
+        {
+            PenaltyWaiveDetails form = new PenaltyWaiveDetails(this._contractId);
+            form.ShowDialog();
         }
     }
 }

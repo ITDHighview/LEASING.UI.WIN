@@ -81,7 +81,8 @@ AS
                                 THEN
                                 ISNULL([tblMonthLedger].[BalanceAmount], 0)
                             ELSE
-                        (ISNULL([tblMonthLedger].[LedgRentalAmount], 0) + ISNULL([tblMonthLedger].[PenaltyAmount], 0))
+                        (ISNULL([tblMonthLedger].[LedgRentalAmount], 0))
+                        --(ISNULL([tblMonthLedger].[LedgRentalAmount], 0) + ISNULL([tblMonthLedger].[PenaltyAmount], 0))
                         END AS [LedgAmount]
                     FROM
                         [dbo].[tblMonthLedger]

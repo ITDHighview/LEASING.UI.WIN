@@ -93,9 +93,18 @@ AS
             --        0
             --END),
             [tblMonthLedger].[IsForMonthlyPenalty] = IIF(
-                                                     DATEDIFF(
-                                                             DAY, [tblMonthLedger].[LedgMonth], CAST(GETDATE() AS DATE)
-                                                             ) >= 30,
+                                                         DATEDIFF(
+                                                                     DAY, [tblMonthLedger].[LedgMonth],
+                                                                     CAST(GETDATE() AS DATE)
+                                                                 ) >=
+                                                            (
+                                                                SELECT
+                                                                    MIN([tblPenaltySetup].[DayCount]) AS [DayCount]
+                                                                FROM
+                                                                    [dbo].[tblPenaltySetup]
+                                                                WHERE
+                                                                    [tblPenaltySetup].[IsForPenalty] = 1
+                                                            ),
                                                          1,
                                                          0)
         WHERE
@@ -105,8 +114,9 @@ AS
             AND MONTH([tblMonthLedger].[EncodedDate]) > @PenaltyApplyInMonth
             AND YEAR([tblMonthLedger].[EncodedDate]) = @PenaltyApplyInYear
             AND [tblMonthLedger].[Remarks] <> 'PENALTY'
-			AND ISNULL([tblMonthLedger].[IsForMonthlyPenalty], 0) = 0
+            AND ISNULL([tblMonthLedger].[IsForMonthlyPenalty], 0) = 0
             AND ISNULL([tblMonthLedger].[IsPenaltyApplied], 0) = 0
+            AND ISNULL([tblMonthLedger].[IsFreeMonth], 0) = 0
 
         /*it is use to check the total amount with penalty*/
         UPDATE
@@ -135,6 +145,7 @@ AS
                     AND ISNULL([tblMonthLedger].[IsForMonthlyPenalty], 0) = 1
                     AND ISNULL([tblMonthLedger].[IsPenaltyApplied], 0) = 0
                     AND [tblMonthLedger].[Remarks] <> 'PENALTY'
+                    AND ISNULL([tblMonthLedger].[IsFreeMonth], 0) = 0
             ) > 0
             BEGIN
                 INSERT INTO [dbo].[tblMonthLedger]
@@ -199,6 +210,7 @@ AS
                                    AND ISNULL([tblMonthLedger].[IsHold], 0) = 0
                                    AND ISNULL([tblMonthLedger].[IsForMonthlyPenalty], 0) = 1
                                    AND ISNULL([tblMonthLedger].[IsPenaltyApplied], 0) = 0
+                                   AND ISNULL([tblMonthLedger].[IsFreeMonth], 0) = 0
                         ),            -- LedgMonth - date
                         (
                             SELECT
@@ -211,6 +223,7 @@ AS
                                 AND ISNULL([tblMonthLedger].[IsHold], 0) = 0
                                 AND ISNULL([tblMonthLedger].[IsForMonthlyPenalty], 0) = 1
                                 AND ISNULL([tblMonthLedger].[IsPenaltyApplied], 0) = 0
+                                AND ISNULL([tblMonthLedger].[IsFreeMonth], 0) = 0
                         ),            -- LedgAmount - decimal(18, 2)
                         NULL,         -- IsPaid - bit
                         1,            -- EncodedBy - int
@@ -232,6 +245,7 @@ AS
                                 AND ISNULL([tblMonthLedger].[IsHold], 0) = 0
                                 AND ISNULL([tblMonthLedger].[IsForMonthlyPenalty], 0) = 1
                                 AND ISNULL([tblMonthLedger].[IsPenaltyApplied], 0) = 0
+                                AND ISNULL([tblMonthLedger].[IsFreeMonth], 0) = 0
                         ),            -- LedgRentalAmount - decimal(18, 2)
                         'PENALTY',    -- Remarks - varchar(500)
                         NULL,         -- Unit_ProjectType - varchar(150)
@@ -277,6 +291,7 @@ AS
                     AND ISNULL([tblMonthLedger].[IsHold], 0) = 0
                     AND ISNULL([tblMonthLedger].[IsForMonthlyPenalty], 0) = 1
                     AND ISNULL([tblMonthLedger].[IsPenaltyApplied], 0) = 0
+                    AND ISNULL([tblMonthLedger].[IsFreeMonth], 0) = 0
             END
 
     END

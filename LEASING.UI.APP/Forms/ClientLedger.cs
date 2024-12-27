@@ -1333,8 +1333,14 @@ namespace LEASING.UI.APP.Forms
 
         private void btnWaivePenalty_Click(object sender, EventArgs e)
         {
-            PenaltyWaiveDetails form = new PenaltyWaiveDetails(this._contractId);
-            form.ShowDialog();
+            if (dgvLedgerList.Rows.Count > 0)
+            {
+                PenaltyWaiveDetails form = new PenaltyWaiveDetails(this._contractId);
+                form.ShowDialog();
+                this.getLedgerBrowseByContractIdClientId();
+
+            }
+           
         }
     }
 }

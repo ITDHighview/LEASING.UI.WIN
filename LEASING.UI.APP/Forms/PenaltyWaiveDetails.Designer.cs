@@ -28,11 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PenaltyWaiveDetails));
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn13 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn14 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn15 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn16 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
@@ -49,6 +48,9 @@
             this.radGroupBox2 = new Telerik.WinControls.UI.RadGroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvPenaltyList = new Telerik.WinControls.UI.RadGridView();
+            this.btnUndo = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
             this.radGroupBox1.SuspendLayout();
@@ -79,7 +81,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 44.48161F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 55.51839F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(564, 299);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(586, 299);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // radGroupBox1
@@ -90,9 +92,10 @@
             this.radGroupBox1.HeaderText = "Waive Detail";
             this.radGroupBox1.Location = new System.Drawing.Point(3, 3);
             this.radGroupBox1.Name = "radGroupBox1";
-            this.radGroupBox1.Size = new System.Drawing.Size(558, 127);
+            this.radGroupBox1.Size = new System.Drawing.Size(580, 127);
             this.radGroupBox1.TabIndex = 0;
             this.radGroupBox1.Text = "Waive Detail";
+            this.radGroupBox1.ThemeName = "Office2007Silver";
             // 
             // tableLayoutPanel3
             // 
@@ -114,7 +117,7 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(554, 107);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(576, 107);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
             // radLabel2
@@ -155,6 +158,7 @@
             this.txtAmount.NullText = "0.00";
             this.txtAmount.Size = new System.Drawing.Size(134, 20);
             this.txtAmount.TabIndex = 3;
+            this.txtAmount.ThemeName = "Office2007Silver";
             this.txtAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAmount_KeyPress);
             this.txtAmount.Leave += new System.EventHandler(this.txtAmount_Leave);
             this.txtAmount.MouseMove += new System.Windows.Forms.MouseEventHandler(this.txtAmount_MouseMove);
@@ -167,6 +171,7 @@
             this.txtRequestor.NullText = "Type here...";
             this.txtRequestor.Size = new System.Drawing.Size(134, 19);
             this.txtRequestor.TabIndex = 4;
+            this.txtRequestor.ThemeName = "Office2007Silver";
             // 
             // txtRemarks
             // 
@@ -176,23 +181,26 @@
             this.txtRemarks.NullText = "Type here...";
             this.txtRemarks.Size = new System.Drawing.Size(425, 20);
             this.txtRemarks.TabIndex = 5;
+            this.txtRemarks.ThemeName = "Office2007Silver";
             // 
             // toolStrip1
             // 
             this.tableLayoutPanel3.SetColumnSpan(this.toolStrip1, 2);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnNew,
+            this.toolStripSeparator,
             this.btnSave,
-            this.toolStripSeparator});
+            this.toolStripSeparator1,
+            this.btnUndo});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(554, 24);
+            this.toolStrip1.Size = new System.Drawing.Size(576, 24);
             this.toolStrip1.TabIndex = 6;
             this.toolStrip1.Text = "toolStrip1";
             // 
             // btnNew
             // 
-            this.btnNew.Image = ((System.Drawing.Image)(resources.GetObject("btnNew.Image")));
+            this.btnNew.Image = global::LEASING.UI.APP.Properties.Resources.document_16;
             this.btnNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(51, 21);
@@ -201,7 +209,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
+            this.btnSave.Image = global::LEASING.UI.APP.Properties.Resources.save_16;
             this.btnSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(51, 21);
@@ -221,9 +229,10 @@
             this.radGroupBox2.HeaderText = "Penalty Detail";
             this.radGroupBox2.Location = new System.Drawing.Point(3, 136);
             this.radGroupBox2.Name = "radGroupBox2";
-            this.radGroupBox2.Size = new System.Drawing.Size(558, 160);
+            this.radGroupBox2.Size = new System.Drawing.Size(580, 160);
             this.radGroupBox2.TabIndex = 1;
             this.radGroupBox2.Text = "Penalty Detail";
+            this.radGroupBox2.ThemeName = "Office2007Silver";
             // 
             // tableLayoutPanel2
             // 
@@ -236,7 +245,7 @@
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 9F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(554, 140);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(576, 140);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // dgvPenaltyList
@@ -252,42 +261,57 @@
             // dgvPenaltyList
             // 
             this.dgvPenaltyList.MasterTemplate.AllowAddNewRow = false;
-            gridViewTextBoxColumn13.FieldName = "LedgRecId";
-            gridViewTextBoxColumn13.HeaderText = "Ledger ID";
-            gridViewTextBoxColumn13.Name = "LedgRecId";
-            gridViewTextBoxColumn13.Width = 100;
-            gridViewTextBoxColumn14.EnableExpressionEditor = false;
-            gridViewTextBoxColumn14.FieldName = "LedgeMonth";
-            gridViewTextBoxColumn14.HeaderText = "Due Month";
-            gridViewTextBoxColumn14.Name = "LedgeMonth";
-            gridViewTextBoxColumn14.Width = 150;
-            gridViewTextBoxColumn15.FieldName = "PenaltyAmount";
-            gridViewTextBoxColumn15.HeaderText = "Penalty Amount";
-            gridViewTextBoxColumn15.Name = "PenaltyAmount";
-            gridViewTextBoxColumn15.Width = 150;
-            gridViewTextBoxColumn16.FieldName = "DateGenerated";
-            gridViewTextBoxColumn16.HeaderText = "Date Generated";
-            gridViewTextBoxColumn16.Name = "DateGenerated";
-            gridViewTextBoxColumn16.Width = 150;
+            gridViewTextBoxColumn1.FieldName = "LedgRecId";
+            gridViewTextBoxColumn1.HeaderText = "Ledger ID";
+            gridViewTextBoxColumn1.Name = "LedgRecId";
+            gridViewTextBoxColumn1.Width = 100;
+            gridViewTextBoxColumn2.EnableExpressionEditor = false;
+            gridViewTextBoxColumn2.FieldName = "LedgeMonth";
+            gridViewTextBoxColumn2.HeaderText = "Due Month";
+            gridViewTextBoxColumn2.Name = "LedgeMonth";
+            gridViewTextBoxColumn2.Width = 150;
+            gridViewTextBoxColumn3.FieldName = "PenaltyAmount";
+            gridViewTextBoxColumn3.HeaderText = "Penalty Amount";
+            gridViewTextBoxColumn3.Name = "PenaltyAmount";
+            gridViewTextBoxColumn3.Width = 150;
+            gridViewTextBoxColumn4.FieldName = "DateGenerated";
+            gridViewTextBoxColumn4.HeaderText = "Date Generated";
+            gridViewTextBoxColumn4.Name = "DateGenerated";
+            gridViewTextBoxColumn4.Width = 150;
             this.dgvPenaltyList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn13,
-            gridViewTextBoxColumn14,
-            gridViewTextBoxColumn15,
-            gridViewTextBoxColumn16});
-            this.dgvPenaltyList.MasterTemplate.ShowRowHeaderColumn = false;
+            gridViewTextBoxColumn1,
+            gridViewTextBoxColumn2,
+            gridViewTextBoxColumn3,
+            gridViewTextBoxColumn4});
             this.dgvPenaltyList.Name = "dgvPenaltyList";
+            this.dgvPenaltyList.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.dgvPenaltyList.ReadOnly = true;
             this.dgvPenaltyList.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgvPenaltyList.ShowGroupPanel = false;
-            this.dgvPenaltyList.Size = new System.Drawing.Size(548, 125);
+            this.dgvPenaltyList.Size = new System.Drawing.Size(570, 125);
             this.dgvPenaltyList.TabIndex = 0;
             this.dgvPenaltyList.Text = "radGridView1";
+            this.dgvPenaltyList.ThemeName = "Office2007Silver";
+            // 
+            // btnUndo
+            // 
+            this.btnUndo.Image = global::LEASING.UI.APP.Properties.Resources.co_arrow_left_16;
+            this.btnUndo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnUndo.Name = "btnUndo";
+            this.btnUndo.Size = new System.Drawing.Size(56, 21);
+            this.btnUndo.Text = "Undo";
+            this.btnUndo.Click += new System.EventHandler(this.btnUndo_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 24);
             // 
             // PenaltyWaiveDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(564, 299);
+            this.ClientSize = new System.Drawing.Size(586, 299);
             this.Controls.Add(this.tableLayoutPanel1);
             this.DoubleBuffered = true;
             this.MaximizeBox = false;
@@ -337,5 +361,8 @@
         private System.Windows.Forms.ToolStripButton btnNew;
         private System.Windows.Forms.ToolStripButton btnSave;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripButton btnUndo;
+        private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme1;
     }
 }

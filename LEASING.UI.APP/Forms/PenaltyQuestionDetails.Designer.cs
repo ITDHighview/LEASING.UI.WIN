@@ -36,6 +36,7 @@
             this.btnYes = new Telerik.WinControls.UI.RadButton();
             this.btnNo = new Telerik.WinControls.UI.RadButton();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
+            this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
@@ -48,6 +49,7 @@
             // 
             // tableLayoutPanel1
             // 
+            this.tableLayoutPanel1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 38.76812F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 61.23188F));
@@ -95,6 +97,7 @@
             this.txtMonth.Size = new System.Drawing.Size(158, 29);
             this.txtMonth.TabIndex = 2;
             this.txtMonth.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtMonth.ThemeName = "Office2007Silver";
             // 
             // txtAmount
             // 
@@ -104,6 +107,7 @@
             this.txtAmount.Size = new System.Drawing.Size(158, 29);
             this.txtAmount.TabIndex = 3;
             this.txtAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtAmount.ThemeName = "Office2007Silver";
             // 
             // btnYes
             // 
@@ -112,6 +116,7 @@
             this.btnYes.Size = new System.Drawing.Size(101, 24);
             this.btnYes.TabIndex = 4;
             this.btnYes.Text = "YES";
+            this.btnYes.ThemeName = "Office2007Silver";
             this.btnYes.Click += new System.EventHandler(this.btnYes_Click);
             // 
             // btnNo
@@ -122,6 +127,7 @@
             this.btnNo.Size = new System.Drawing.Size(110, 24);
             this.btnNo.TabIndex = 5;
             this.btnNo.Text = "NO";
+            this.btnNo.ThemeName = "Office2007Silver";
             this.btnNo.Click += new System.EventHandler(this.btnNo_Click);
             // 
             // radLabel3
@@ -174,5 +180,6 @@
         private Telerik.WinControls.UI.RadButton btnYes;
         private Telerik.WinControls.UI.RadButton btnNo;
         private Telerik.WinControls.UI.RadLabel radLabel3;
+        private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme1;
     }
 }

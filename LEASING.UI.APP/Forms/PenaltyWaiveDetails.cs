@@ -1,5 +1,6 @@
 ﻿using LEASING.UI.APP.Common;
 using LEASING.UI.APP.Context;
+using LEASING.UI.APP.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -39,6 +40,7 @@ namespace LEASING.UI.APP.Forms
                         //btnUndo.Enabled = true;
                         btnSave.Enabled = true;
                         btnNew.Enabled = false;
+                        btnUndo.Enabled = true;
                         EnableControls();
                         EmptyFields();
                         break;
@@ -46,6 +48,7 @@ namespace LEASING.UI.APP.Forms
                         //btnUndo.Enabled = false;
                         btnSave.Enabled = false;
                         btnNew.Enabled = true;
+                        btnUndo.Enabled = false;
                         DisAbleControls();
                         EmptyFields();
                         break;
@@ -91,7 +94,7 @@ namespace LEASING.UI.APP.Forms
                     if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
                         dgvPenaltyList.DataSource = dt.Tables[0];
-               
+
                     }
                 }
             }
@@ -103,7 +106,39 @@ namespace LEASING.UI.APP.Forms
         }
         private void SaveWaivePenalty()
         {
+            
+            try
+            {
+                WaivePenaltyModel dto = new WaivePenaltyModel();
+                dto.RefId ="REF"+ Convert.ToString(_contractId);
+                dto.ReferenceID = _contractId;
+                dto.LedgerRecId = Convert.ToInt32(dgvPenaltyList.CurrentRow.Cells["LedgRecId"].Value);
+                dto.Amount = Functions.ConvertStringToDecimal(txtAmount.Text);
+                dto.Requestor = txtRequestor.Text;
+                dto.Remarks = txtRemarks.Text;
+                dto.EncodedBy = Variables.UserID;
 
+                dto.Message_Code = _contract.SaveWaivePenalty(dto);
+                Functions.ShowLoadingBar("Processing...");
+                if (dto.Message_Code.Equals("SUCCESS"))
+                {
+
+                    MessageBox.Show("Waive penalty updated successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    FormMode = ModeStatus.READ.ToString();
+                    GetPenaltyList(_contractId);
+
+                }
+                else
+                {
+                    MessageBox.Show(dto.Message_Code, "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    FormMode = ModeStatus.READ.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                Functions.LogError("SaveWaivePenalty()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("SaveWaivePenalty()", ex.ToString());
+            }
         }
         private void PenaltyWaiveDetails_Load(object sender, EventArgs e)
         {
@@ -111,12 +146,40 @@ namespace LEASING.UI.APP.Forms
             GetPenaltyList(_contractId);
         }
 
+        private bool IsValidForSaving()
+        {
+            if (string.IsNullOrEmpty(txtAmount.Text))
+            {
+
+                Functions.MessageShow("Amount cannot be empty!");
+                return false;
+            }
+            if (string.IsNullOrEmpty(txtRequestor.Text))
+            {
+
+                Functions.MessageShow("Requestor cannot be empty!");
+                return false;
+            }
+            if (string.IsNullOrEmpty(txtRequestor.Text))
+            {
+
+                Functions.MessageShow("Remarks cannot be empty!");
+                return false;
+            }
+
+            return true;
+        }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (Functions.MessageConfirm("Are you sure you want to apply the following details ?") == DialogResult.Yes)
+            if (IsValidForSaving())
             {
-                SaveWaivePenalty();
+                if (Functions.MessageConfirm("Are you sure you want to apply the following details ?") == DialogResult.Yes)
+                {
+                    SaveWaivePenalty();
+                }
+
             }
+           
         }
 
         private void btnNew_Click(object sender, EventArgs e)
@@ -150,6 +213,11 @@ namespace LEASING.UI.APP.Forms
                 // Format the number with commas and two decimal places
                 txtAmount.Text = value.ToString("N2"); // Format with commas and two decimal places
             }
+        }
+
+        private void btnUndo_Click(object sender, EventArgs e)
+        {
+            FormMode = ModeStatus.READ.ToString();
         }
     }
 }

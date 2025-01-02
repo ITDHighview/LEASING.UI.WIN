@@ -23,6 +23,7 @@ namespace LEASING.UI.APP.Forms
         ProjectContext ProjectContext = new ProjectContext();
         UnitContext UnitContext = new UnitContext();
         ComputationContext ComputationContext = new ComputationContext();
+         ClientContext _client = new ClientContext();
         public UnitContractRegistrationForm()
         {
             InitializeComponent();
@@ -789,6 +790,46 @@ namespace LEASING.UI.APP.Forms
             dtAdvancePayment.Columns.Add("Months", typeof(string));
             dtAdvancePayment.Columns.Add("Amount", typeof(string));
         }
+        private void _getContractProjectTypeReport(string refid)
+        {
+            try
+            {
+                using (DataSet dt = _client.GetCheckContractProjectType(refid))
+                {
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {
+                        if (Convert.ToString(dt.Tables[0].Rows[0]["UnitType"]) == "UNIT")
+                        {
+                            if (Convert.ToString(dt.Tables[0].Rows[0]["ProjectType"]) == "RESIDENTIAL")
+                            {
+                                ContractSingedResidentialReport contractResidential = new ContractSingedResidentialReport(refid);
+                                contractResidential.Show();
+                            }
+                            else if (Convert.ToString(dt.Tables[0].Rows[0]["ProjectType"]) == "COMMERCIAL")
+                            {
+                                ContractSingedCommercialReport contractCommercial = new ContractSingedCommercialReport(refid);
+                                contractCommercial.Show();
+                            }
+                            else
+                            {
+                                ContractSingedWareHouseReport contractWareHouse = new ContractSingedWareHouseReport(refid);
+                                contractWareHouse.Show();
+                            }
+                        }
+                        else
+                        {
+                            ContractSingedParkingReport parking = new ContractSingedParkingReport(refid);
+                            parking.Show();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Functions.LogError("_getContractProjectTypeReport()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("_getContractProjectTypeReport()", ex.ToString());
+            }
+        }
         private void frmComputation_Load(object sender, EventArgs e)
         {
             Functions.EventCapturefrmName(this);
@@ -1023,6 +1064,13 @@ namespace LEASING.UI.APP.Forms
                         forms.contractId = Convert.ToInt32(dgvList.CurrentRow.Cells["RecId"].Value);
                         forms.ShowDialog();
                         M_GetComputationList();
+                    }
+                }
+                else if (this.dgvList.Columns[e.ColumnIndex].Name == "ColViewContract")
+                {
+                    if (dgvList.Rows.Count > 0)
+                    {
+                        this._getContractProjectTypeReport(Convert.ToString(dgvList.CurrentRow.Cells["RefId"].Value));
                     }
                 }
             }

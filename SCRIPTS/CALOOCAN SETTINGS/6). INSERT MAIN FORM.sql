@@ -1,5 +1,5 @@
 USE [LEASINGDB]
-
+/*Disregard the [MenuId] not been use - plan to drop the column*/
 INSERT INTO [dbo].[tblForm]
     (
         [MenuId],

@@ -1,5 +1,9 @@
 USE [LEASINGDB]
-
+---------------------NOTES-------------------------------------------------------------------------
+/*[MenuId] is optional for MainDashboard Menu Options*/
+/*[IsBackRoundControl] is a Parent/Header Control*/
+/*[IsHeaderControl] is a Main-Parent/Main-Header Control*/
+-------------------END OF NOTES--------------------------------------------------------------------
 TRUNCATE TABLE [dbo].[tblFormControlsMaster]
 SET IDENTITY_INSERT [dbo].[tblFormControlsMaster] ON;
 INSERT INTO [dbo].[tblFormControlsMaster]

@@ -590,52 +590,52 @@ AS
                 [ReceiptDate],
                 [PaymentRemarks]
             )
-                    SELECT DISTINCT
-                            0,      --[#tempAdvancePayment].[Recid],
+                    SELECT  DISTINCT
+                            0,               --[#tempAdvancePayment].[Recid],
                             [#tempAdvancePayment].[ReferenceID],
                             [#tempAdvancePayment].[ClientID],
                             [#tempAdvancePayment].[LedgMonth],
                             [#tempAdvancePayment].[LedgAmount],
-                            0,      --[#tempAdvancePayment].[IsPaid],
-                            1,      --[#tempAdvancePayment].[EncodedBy],
+                            0,               --[#tempAdvancePayment].[IsPaid],
+                            1,               --[#tempAdvancePayment].[EncodedBy],
                             NULL,
-                            NULL,   --[#tempAdvancePayment].[ComputerName],
-                            NULL,   --[#tempAdvancePayment].[TransactionID],
-                            NULL,   --[#tempAdvancePayment].[IsHold],
-                            NULL,   --[#tempAdvancePayment].[BalanceAmount],
-                            NULL,   --[#tempAdvancePayment].[PenaltyAmount],
-                            NULL,   --[#tempAdvancePayment].[ActualAmount],
+                            NULL,            --[#tempAdvancePayment].[ComputerName],
+                            NULL,            --[#tempAdvancePayment].[TransactionID],
+                            NULL,            --[#tempAdvancePayment].[IsHold],
+                            NULL,            --[#tempAdvancePayment].[BalanceAmount],
+                            NULL,            --[#tempAdvancePayment].[PenaltyAmount],
+                            NULL,            --[#tempAdvancePayment].[ActualAmount],
                             [tblAdvancePayment].[Amount] AS [LedgRentalAmount],
                             'MONTH ADVANCE', --'RENTAL WITH SECURITY AND MAINTENANCE NET OF VAT' AS [Remarks],
-                            NULL,   --[#tempAdvancePayment].[Unit_ProjectType],
-                            NULL,   --[#tempAdvancePayment].[Unit_IsNonVat],
-                            NULL,   --[#tempAdvancePayment].[Unit_BaseRentalVatAmount],
-                            NULL,   --[#tempAdvancePayment].[Unit_BaseRentalWithVatAmount],
-                            NULL,   --[#tempAdvancePayment].[Unit_BaseRentalTax],
-                            NULL,   --[#tempAdvancePayment].[Unit_TotalRental],
-                            NULL,   --[#tempAdvancePayment].[Unit_SecAndMainAmount],
-                            NULL,   --[#tempAdvancePayment].[Unit_SecAndMainVatAmount],
-                            NULL,   --[#tempAdvancePayment].[Unit_SecAndMainWithVatAmount],
-                            NULL,   --[#tempAdvancePayment].[Unit_Vat],
-                            NULL,   --[#tempAdvancePayment].[Unit_Tax],
-                            NULL,   --[#tempAdvancePayment].[Unit_TaxAmount],
-                            NULL,   --[#tempAdvancePayment].[Unit_IsParking],
-                            NULL,   --[#tempAdvancePayment].[Unit_AreaTotalAmount],
-                            NULL,   --[#tempAdvancePayment].[Unit_AreaSqm],
-                            NULL,   --[#tempAdvancePayment].[Unit_AreaRateSqm],
-                            NULL,   --[#tempAdvancePayment].[IsRenewal],
-                            NULL,   --[#tempAdvancePayment].[CompanyORNo],
-                            NULL,   --[#tempAdvancePayment].[REF],
-                            NULL,   --[#tempAdvancePayment].[BNK_ACCT_NAME],
-                            NULL,   --[#tempAdvancePayment].[BNK_ACCT_NUMBER],
-                            NULL,   --[#tempAdvancePayment].[BNK_NAME],
-                            NULL,   --[#tempAdvancePayment].[SERIAL_NO],
-                            NULL,   --[#tempAdvancePayment].[ModeType],
-                            NULL,   --[#tempAdvancePayment].[CompanyPRNo],
-                            NULL,   --[#tempAdvancePayment].[BankBranch],
-                            NULL,   --[#tempAdvancePayment].[CheckDate],
-                            NULL,   --[#tempAdvancePayment].[ReceiptDate],
-                            NULL    --[#tempAdvancePayment].[PaymentRemarks]
+                            NULL,            --[#tempAdvancePayment].[Unit_ProjectType],
+                            NULL,            --[#tempAdvancePayment].[Unit_IsNonVat],
+                            NULL,            --[#tempAdvancePayment].[Unit_BaseRentalVatAmount],
+                            NULL,            --[#tempAdvancePayment].[Unit_BaseRentalWithVatAmount],
+                            NULL,            --[#tempAdvancePayment].[Unit_BaseRentalTax],
+                            NULL,            --[#tempAdvancePayment].[Unit_TotalRental],
+                            NULL,            --[#tempAdvancePayment].[Unit_SecAndMainAmount],
+                            NULL,            --[#tempAdvancePayment].[Unit_SecAndMainVatAmount],
+                            NULL,            --[#tempAdvancePayment].[Unit_SecAndMainWithVatAmount],
+                            NULL,            --[#tempAdvancePayment].[Unit_Vat],
+                            NULL,            --[#tempAdvancePayment].[Unit_Tax],
+                            NULL,            --[#tempAdvancePayment].[Unit_TaxAmount],
+                            NULL,            --[#tempAdvancePayment].[Unit_IsParking],
+                            NULL,            --[#tempAdvancePayment].[Unit_AreaTotalAmount],
+                            NULL,            --[#tempAdvancePayment].[Unit_AreaSqm],
+                            NULL,            --[#tempAdvancePayment].[Unit_AreaRateSqm],
+                            NULL,            --[#tempAdvancePayment].[IsRenewal],
+                            NULL,            --[#tempAdvancePayment].[CompanyORNo],
+                            NULL,            --[#tempAdvancePayment].[REF],
+                            NULL,            --[#tempAdvancePayment].[BNK_ACCT_NAME],
+                            NULL,            --[#tempAdvancePayment].[BNK_ACCT_NUMBER],
+                            NULL,            --[#tempAdvancePayment].[BNK_NAME],
+                            NULL,            --[#tempAdvancePayment].[SERIAL_NO],
+                            NULL,            --[#tempAdvancePayment].[ModeType],
+                            NULL,            --[#tempAdvancePayment].[CompanyPRNo],
+                            NULL,            --[#tempAdvancePayment].[BankBranch],
+                            NULL,            --[#tempAdvancePayment].[CheckDate],
+                            NULL,            --[#tempAdvancePayment].[ReceiptDate],
+                            NULL             --[#tempAdvancePayment].[PaymentRemarks]
                     FROM
                             [#tempAdvancePayment]
                         INNER JOIN
@@ -977,11 +977,15 @@ AS
                 WHEN ISNULL([#tempMonthDecalrationFinal].[IsPaid], 0) = 1
                      AND ISNULL([#tempMonthDecalrationFinal].[IsHold], 0) = 0
                     THEN
-                    IIF(ISNULL([#tempMonthDecalrationFinal].[LedgRentalAmount], 0) = 0, 'FREE', 'PAID')
+                    IIF(ISNULL([#tempMonthDecalrationFinal].[LedgRentalAmount], 0) = 0,
+                        IIF([#tempMonthDecalrationFinal].[Unit_SecAndMainAmount] = 0, 'N/A', 'FREE'),
+                        'PAID')
                 WHEN ISNULL([#tempMonthDecalrationFinal].[IsPaid], 0) = 0
                      AND ISNULL([#tempMonthDecalrationFinal].[IsHold], 0) = 1
                     THEN
-                    IIF(ISNULL([#tempMonthDecalrationFinal].[LedgRentalAmount], 0) = 0, 'FREE', 'HOLD')
+                    IIF(ISNULL([#tempMonthDecalrationFinal].[LedgRentalAmount], 0) = 0,
+                        IIF([#tempMonthDecalrationFinal].[Unit_SecAndMainAmount] = 0, 'N/A', 'FREE'),
+                        'HOLD')
                 WHEN [#tempMonthDecalrationFinal].[LedgMonth] IN
                          (
                              SELECT
@@ -994,7 +998,9 @@ AS
                      AND ISNULL([#tempMonthDecalrationFinal].[IsPaid], 0) = 0
                      AND ISNULL([#tempMonthDecalrationFinal].[IsHold], 0) = 0
                     THEN
-                    IIF(ISNULL([#tempMonthDecalrationFinal].[LedgRentalAmount], 0) = 0, 'FREE', 'DUE')
+                    IIF(ISNULL([#tempMonthDecalrationFinal].[LedgRentalAmount], 0) = 0,
+                        IIF([#tempMonthDecalrationFinal].[Unit_SecAndMainAmount] = 0, 'N/A', 'FREE'),
+                        'DUE')
                 WHEN CONVERT(VARCHAR(20), [#tempMonthDecalrationFinal].[LedgMonth], 107) = CONVERT(
                                                                                                       VARCHAR(20),
                                                                                                       GETDATE(), 107
@@ -1002,9 +1008,13 @@ AS
                      AND ISNULL([#tempMonthDecalrationFinal].[IsPaid], 0) = 0
                      AND ISNULL([#tempMonthDecalrationFinal].[IsHold], 0) = 0
                     THEN
-                     IIF(ISNULL([#tempMonthDecalrationFinal].[LedgRentalAmount], 0) = 0, 'FREE', 'DUE')
+                    IIF(ISNULL([#tempMonthDecalrationFinal].[LedgRentalAmount], 0) = 0,
+                        IIF([#tempMonthDecalrationFinal].[Unit_SecAndMainAmount] = 0, 'N/A', 'FREE'),
+                        'DUE')
                 ELSE
-                     IIF(ISNULL([#tempMonthDecalrationFinal].[LedgRentalAmount], 0) = 0, 'FREE', 'PENDING')
+                    IIF(ISNULL([#tempMonthDecalrationFinal].[LedgRentalAmount], 0) = 0,
+                        IIF([#tempMonthDecalrationFinal].[Unit_SecAndMainAmount] = 0, 'N/A', 'FREE'),
+                        'PENDING')
             END                                                                                                AS [PaymentStatus],
             --IIF(
             --    [tblMonthLedger].[BalanceAmount] <= 0

@@ -111,7 +111,7 @@ AS
             [tblMonthLedger].[ReferenceID] = @ReferenceID
             AND ISNULL([tblMonthLedger].[IsPaid], 0) = 0
             AND ISNULL([tblMonthLedger].[IsHold], 0) = 0
-            AND MONTH([tblMonthLedger].[EncodedDate]) > @PenaltyApplyInMonth
+            AND MONTH([tblMonthLedger].[EncodedDate]) >= @PenaltyApplyInMonth
             AND YEAR([tblMonthLedger].[EncodedDate]) = @PenaltyApplyInYear
             AND [tblMonthLedger].[Remarks] <> 'PENALTY'
             AND ISNULL([tblMonthLedger].[IsForMonthlyPenalty], 0) = 0

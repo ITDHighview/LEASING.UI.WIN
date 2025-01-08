@@ -1107,6 +1107,16 @@ namespace LEASING.UI.APP.Forms
                     this.dgvLedgerList.Rows[e.RowIndex].Cells["ColCheck"].ReadOnly = true;
                     //this.dgvLedgerList.Rows[e.RowIndex].Cells["ColCheck"].Style.DrawFill = true;
                 }
+                else if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "N/A")
+                {
+                    e.CellElement.ForeColor = Color.White;
+                    //e.CellElement.Font = new Font("Tahoma", 7f, FontStyle.Bold);
+                    e.CellElement.DrawFill = true;
+                    e.CellElement.GradientStyle = GradientStyles.Solid;
+                    e.CellElement.BackColor = Color.PaleVioletRed;
+                    this.dgvLedgerList.Rows[e.RowIndex].Cells["ColCheck"].ReadOnly = true;
+                    //this.dgvLedgerList.Rows[e.RowIndex].Cells["ColCheck"].Style.DrawFill = true;
+                }
 
                 if (e.CellElement.ColumnInfo is GridViewCommandColumn && !(e.CellElement.RowElement is GridTableHeaderRowElement))
                 {
@@ -1173,6 +1183,18 @@ namespace LEASING.UI.APP.Forms
                     if (column.Name == "ColHold")
                     {
                         if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "FREE")
+                        {
+                            element.ImageAlignment = ContentAlignment.MiddleCenter;
+                            element.TextImageRelation = TextImageRelation.TextBeforeImage;
+                            element.Image = Properties.Resources.cancel16;
+                            element.ToolTipText = "This button is disabled";
+
+                            element.Enabled = false;
+                        }
+                    }
+                    if (column.Name == "ColHold")
+                    {
+                        if (Convert.ToString(this.dgvLedgerList.Rows[e.RowIndex].Cells["PaymentStatus"].Value) == "N/A")
                         {
                             element.ImageAlignment = ContentAlignment.MiddleCenter;
                             element.TextImageRelation = TextImageRelation.TextBeforeImage;

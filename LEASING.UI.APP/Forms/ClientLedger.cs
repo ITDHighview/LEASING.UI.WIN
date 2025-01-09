@@ -935,6 +935,7 @@ namespace LEASING.UI.APP.Forms
         #endregion
 
         #region GridView
+        bool isContractMonthlyPenaltyActive = false;
         private void dgvTransactionList_SelectionChanged(object sender, EventArgs e)
         {
             if (dgvTransactionList.Rows.Count <= 0)
@@ -948,7 +949,16 @@ namespace LEASING.UI.APP.Forms
             this.getContractById();
             this.checkPaymentProgressStatus();
             this.getPaymentBrowseByContractNumber();
-            btnDisableMonthlyPenalty.Enabled = CheckContractMonthlyPenaltyIsActive(this._contractId);
+            isContractMonthlyPenaltyActive = CheckContractMonthlyPenaltyIsActive(this._contractId);
+            if (isContractMonthlyPenaltyActive)
+            {
+                btnDisableMonthlyPenalty.Text = "Disable Monthly Penalty";
+            }
+            else
+            {
+                btnDisableMonthlyPenalty.Text = "Enable Monthly Penalty";
+            }
+ 
         }
         private void dgvPaymentList_CellFormatting(object sender, Telerik.WinControls.UI.CellFormattingEventArgs e)
         {
@@ -1333,22 +1343,57 @@ namespace LEASING.UI.APP.Forms
         {
             if (dgvTransactionList.Rows.Count > 0)
             {
-                if (Functions.MessageConfirm("Are you sure you want to disable Monthly penalty to this contract ? ") == DialogResult.Yes)
+                if (isContractMonthlyPenaltyActive)
                 {
-                    string result = _contract.DisableContractMonthlyPenalty(this._contractId);
-                    if (result.Equals("SUCCESS"))
+                    if (Functions.MessageConfirm("Are you sure you want to disable Monthly penalty to this contract ? ") == DialogResult.Yes)
                     {
-                        Functions.MessageShow("Contract Monthly Penalty has been disable successfully!.");
+                        string result = _contract.DisableContractMonthlyPenalty(this._contractId,false);
+                        if (result.Equals("SUCCESS"))
+                        {
+                            Functions.MessageShow("Contract Monthly Penalty has been disable successfully!.");
+                   
+                        }
+                        else
+                        {
+                            Functions.MessageShow(result);
+                        }
                     }
                     else
                     {
-                        Functions.MessageShow(result);
+                        Functions.MessageShow("Please select active contract.");
                     }
                 }
                 else
                 {
-                    Functions.MessageShow("Please select active contract.");
+                    if (Functions.MessageConfirm("Are you sure you want to Enable Monthly penalty to this contract ? ") == DialogResult.Yes)
+                    {
+                        string result = _contract.DisableContractMonthlyPenalty(this._contractId,true);
+                        if (result.Equals("SUCCESS"))
+                        {
+                            Functions.MessageShow("Contract Monthly Penalty has been Enable successfully!.");
+                          
+                        }
+                        else
+                        {
+                            Functions.MessageShow(result);
+                        }
+                    }
+                    else
+                    {
+                        Functions.MessageShow("Please select active contract.");
+                    }
                 }
+
+            }
+
+            isContractMonthlyPenaltyActive = CheckContractMonthlyPenaltyIsActive(this._contractId);
+            if (isContractMonthlyPenaltyActive)
+            {
+                btnDisableMonthlyPenalty.Text = "Disable Monthly Penalty";
+            }
+            else
+            {
+                btnDisableMonthlyPenalty.Text = "Enable Monthly Penalty";
             }
 
         }

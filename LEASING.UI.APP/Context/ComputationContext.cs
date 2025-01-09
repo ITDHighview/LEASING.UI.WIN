@@ -936,7 +936,7 @@ namespace LEASING.UI.APP.Context
                 return dsRec;
             }
         }
-        public string DisableContractMonthlyPenalty(int ContractId)
+        public string DisableContractMonthlyPenalty(int ContractId,bool IsEnable)
         {
             SqlCommand _sqlcmd = null;
             SqlParameter _sqlpara;
@@ -945,6 +945,8 @@ namespace LEASING.UI.APP.Context
             _sqlcmd = new SqlCommand();
             _sqlcmd.CommandText = "sp_DisableContractMonthlyPenalty";
             _sqlpara = new SqlParameter("@ReferenceID", ContractId);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@IsEnable", IsEnable);
             _sqlcmd.Parameters.Add(_sqlpara);
 
 

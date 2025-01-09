@@ -3,7 +3,9 @@ SET QUOTED_IDENTIFIER ON
 SET ANSI_NULLS ON
 GO
 --EXEC [sp_DisableContractMonthlyPenalty] 10000000
-CREATE OR ALTER PROCEDURE [sp_DisableContractMonthlyPenalty] @ReferenceID AS BIGINT
+CREATE OR ALTER PROCEDURE [sp_DisableContractMonthlyPenalty]
+    @ReferenceID AS BIGINT,
+    @IsEnable       BIT
 -- WITH ENCRYPTION, RECOMPILE, EXECUTE AS CALLER|SELF|OWNER| 'user_name'
 AS
     BEGIN
@@ -12,7 +14,7 @@ AS
         UPDATE
             [dbo].[tblUnitReference]
         SET
-            [tblUnitReference].[IsContractApplyMonthlyPenalty] = 0
+            [tblUnitReference].[IsContractApplyMonthlyPenalty] = @IsEnable
         WHERE
             [tblUnitReference].[RecId] = @ReferenceID
 

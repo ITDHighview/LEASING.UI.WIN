@@ -316,7 +316,8 @@ namespace LEASING.UI.APP.Forms
         }
 
         bool IsContractApplyMonthlyPenalty = false;
-        bool IsApplyMonthlyPenalty = false;
+        /*Depricated*/
+        //bool IsApplyMonthlyPenalty = false;
 
 
         private bool IsHasContractApplyMonthlyPenalty(int contractid)
@@ -343,30 +344,31 @@ namespace LEASING.UI.APP.Forms
         }
 
 
-        bool IsHasPenalty = false;
-        string MonthHavePenalty = string.Empty;
-        string AmountOfPenalty = string.Empty;
-        private void IsContractHaveMonthlyPenalty(int contractid)
-        {
-            try
-            {
-                using (DataSet dt = _contract.GetIsContractHaveMonthlyPenalty(contractid))
-                {
-                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
-                    {
-                        IsHasPenalty = Convert.ToBoolean(dt.Tables[0].Rows[0]["IsHasPenalty"]);
-                        MonthHavePenalty = Convert.ToString(dt.Tables[0].Rows[0]["MonthHavePenalty"]);
-                        AmountOfPenalty = Convert.ToString(dt.Tables[0].Rows[0]["AmountOfPenalty"]);
+        //bool IsHasPenalty = false;
+        //string MonthHavePenalty = string.Empty;
+        //string AmountOfPenalty = string.Empty;
+        /*Depricated*/
+        //private void IsContractHaveMonthlyPenalty(int contractid)
+        //{
+        //    try
+        //    {
+        //        using (DataSet dt = _contract.GetIsContractHaveMonthlyPenalty(contractid))
+        //        {
+        //            if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+        //            {
+        //                IsHasPenalty = Convert.ToBoolean(dt.Tables[0].Rows[0]["IsHasPenalty"]);
+        //                MonthHavePenalty = Convert.ToString(dt.Tables[0].Rows[0]["MonthHavePenalty"]);
+        //                AmountOfPenalty = Convert.ToString(dt.Tables[0].Rows[0]["AmountOfPenalty"]);
 
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Functions.LogError("IsContractHaveMonthlyPenalty()", this.Text, ex.ToString(), DateTime.Now, this);
-                Functions.ErrorShow("IsContractHaveMonthlyPenalty()", ex.ToString());
-            }
-        }
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Functions.LogError("IsContractHaveMonthlyPenalty()", this.Text, ex.ToString(), DateTime.Now, this);
+        //        Functions.ErrorShow("IsContractHaveMonthlyPenalty()", ex.ToString());
+        //    }
+        //}
         private bool IsContractPenaltyIsActive = false;
         private bool CheckContractMonthlyPenaltyIsActive(int contractid)
         {
@@ -396,29 +398,32 @@ namespace LEASING.UI.APP.Forms
 
             try
             {
-                IsContractHaveMonthlyPenalty(this._contractId);
+                /*Depricated*/
+                //IsContractHaveMonthlyPenalty(this._contractId);
 
-                
-                if (IsHasContractApplyMonthlyPenalty(this._contractId))
-                {
+                /*Depricated*/
+                //if (IsHasContractApplyMonthlyPenalty(this._contractId))
+                //{
                     //if (Functions.MessageConfirm("Would you like to integrate penalty for this contract?") == DialogResult.Yes)
                     //{
                     //    IsApplyMonthlyPenalty = true;
                     //}
-                    if (IsHasPenalty)
-                    {
-                        PenaltyQuestionDetails penaltyquestion = new PenaltyQuestionDetails(MonthHavePenalty, AmountOfPenalty);
 
-                        penaltyquestion.ShowDialog();
-                        if (penaltyquestion.IsProceed)
-                        {
-                            IsApplyMonthlyPenalty = true;
-                        }
-                    }
-                }
+                          /*Depricated*/
+                    //if (IsHasPenalty)
+                    //{
+                    //    PenaltyQuestionDetails penaltyquestion = new PenaltyQuestionDetails(MonthHavePenalty, AmountOfPenalty);
+
+                    //    penaltyquestion.ShowDialog();
+                    //    if (penaltyquestion.IsProceed)
+                    //    {
+                    //        IsApplyMonthlyPenalty = true;
+                    //    }
+                    //}
+                //}
 
                 dgvLedgerList.DataSource = null;
-                using (DataSet dt = _contract.GetLedgerListWithPenaltyIntegration(this._contractId, this._clientId, IsApplyMonthlyPenalty))
+                using (DataSet dt = _contract.GetLedgerListWithPenaltyIntegration(this._contractId, this._clientId, false))
                 {
                     if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
@@ -440,7 +445,7 @@ namespace LEASING.UI.APP.Forms
             try
             {
                 dgvLedgerList.DataSource = null;
-                using (DataSet dt = _contract.GetLedgerListWithPenaltyIntegration(this._contractId, this._clientId, IsApplyMonthlyPenalty))
+                using (DataSet dt = _contract.GetLedgerListWithPenaltyIntegration(this._contractId, this._clientId, false))
                 {
                     if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
@@ -1400,14 +1405,19 @@ namespace LEASING.UI.APP.Forms
 
         private void btnWaivePenalty_Click(object sender, EventArgs e)
         {
-            if (dgvLedgerList.Rows.Count > 0)
-            {
-                PenaltyWaiveDetails form = new PenaltyWaiveDetails(this._contractId);
-                form.ShowDialog();
-                this.getLedgerBrowseByContractIdClientId();
-
-            }
+            
            
+        }
+
+        private void btnCheckPenalties_Click(object sender, EventArgs e)
+        {
+            if (dgvTransactionList.Rows.Count > 0)
+            {
+                ContractPenaltyList frm = new ContractPenaltyList();
+                frm.contractid = this._contractId;
+                frm.ShowDialog();
+                getOnLoadLedgerBrowseByContractIdClientId();
+            }      
         }
     }
 }

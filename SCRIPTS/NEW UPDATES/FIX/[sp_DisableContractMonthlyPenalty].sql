@@ -18,16 +18,21 @@ AS
         WHERE
             [tblUnitReference].[RecId] = @ReferenceID
 
+        IF @IsEnable = 1
+            BEGIN
+                EXEC [dbo].[sp_ApplyMonthLyPenalty]
+                    @ReferenceID = @ReferenceID -- bigint
+            END
         IF @@ROWCOUNT > 0
             BEGIN
 
                 SELECT
-                    'SUCCESS' AS Message_Code
+                    'SUCCESS' AS [Message_Code]
             END
         ELSE
             BEGIN
                 SELECT
-                    'FAIL' AS Message_Code
+                    'FAIL' AS [Message_Code]
             END
     END
 GO

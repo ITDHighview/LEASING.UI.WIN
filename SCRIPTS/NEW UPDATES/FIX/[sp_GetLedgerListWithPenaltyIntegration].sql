@@ -310,23 +310,23 @@ AS
         WHERE
             [tblUnitReference].[RecId] = @ReferenceID
 
-        IF
-            (
-                SELECT
-                    ISNULL([tblUnitReference].[IsContractApplyMonthlyPenalty], 0)
-                FROM
-                    [dbo].[tblUnitReference]
-                WHERE
-                    [tblUnitReference].[RecId] = @ReferenceID
-            ) = 1
-            BEGIN
-                IF ISNULL(@IsApplyPenalty, 0) = 1
-                    BEGIN
-                        --/*Check if the penalty stop when it reach the specific date to penalty*/
-                        EXEC [dbo].[sp_ApplyMonthLyPenalty]
-                            @ReferenceID = @ReferenceID -- bigint
-                    END
-            END
+        --IF
+        --    (
+        --        SELECT
+        --            ISNULL([tblUnitReference].[IsContractApplyMonthlyPenalty], 0)
+        --        FROM
+        --            [dbo].[tblUnitReference]
+        --        WHERE
+        --            [tblUnitReference].[RecId] = @ReferenceID
+        --    ) = 1
+        --    BEGIN
+        --        --IF ISNULL(@IsApplyPenalty, 0) = 1
+        --        --    BEGIN
+        --                --/*Check if the penalty stop when it reach the specific date to penalty*/
+        --                EXEC [dbo].[sp_ApplyMonthLyPenalty]
+        --                    @ReferenceID = @ReferenceID -- bigint
+        --            --END
+        --    END
 
 
 

@@ -19,6 +19,7 @@ namespace LEASING.UI.APP.Forms
     {
         private ComputationContext _contract = new ComputationContext();
         public int _contractId { get; set; } = 0;
+        public string _SelectedMonthToWaive { get; set; } = string.Empty;
         enum ModeStatus
         {
             NEW,
@@ -77,19 +78,20 @@ namespace LEASING.UI.APP.Forms
             txtRequestor.Text = string.Empty;
             txtRemarks.Text = string.Empty;
         }
-        public PenaltyWaiveDetails(int contractId)
+        public PenaltyWaiveDetails(int contractId ,string selectmonthtowaive)
         {
             InitializeComponent();
             this._contractId = contractId;
+            this._SelectedMonthToWaive = selectmonthtowaive;
         }
 
 
-        private void GetPenaltyList(int contractid)
+        private void GetPenaltyList(int contractid,string selectmonth)
         {
             try
             {
                 dgvPenaltyList.DataSource = null;
-                using (DataSet dt = _contract.GetPenaltyList(contractid))
+                using (DataSet dt = _contract.GetPenaltyList(contractid, selectmonth))
                 {
                     if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
@@ -125,7 +127,7 @@ namespace LEASING.UI.APP.Forms
 
                     MessageBox.Show("Waive penalty updated successfully !", "System Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     FormMode = ModeStatus.READ.ToString();
-                    GetPenaltyList(_contractId);
+                    GetPenaltyList(_contractId, _SelectedMonthToWaive);
 
                 }
                 else
@@ -143,7 +145,7 @@ namespace LEASING.UI.APP.Forms
         private void PenaltyWaiveDetails_Load(object sender, EventArgs e)
         {
             FormMode = ModeStatus.READ.ToString();
-            GetPenaltyList(_contractId);
+            GetPenaltyList(_contractId, _SelectedMonthToWaive);
         }
 
         private bool IsValidForSaving()

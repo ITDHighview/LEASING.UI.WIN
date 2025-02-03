@@ -1205,7 +1205,7 @@ namespace LEASING.UI.APP.Context
             }
         }
 
-        public DataSet GetPenaltyList(int ContractId)
+        public DataSet GetPenaltyList(int ContractId,string SelectedMonthToWaive)
         {
 
             SqlCommand _SqlCommand = null;
@@ -1219,6 +1219,8 @@ namespace LEASING.UI.APP.Context
                 _SqlCommand.CommandText = "sp_GetPenaltyList";
 
                 _SqlParameter = new SqlParameter("@ReferenceID", ContractId);
+                _SqlCommand.Parameters.Add(_SqlParameter);
+                _SqlParameter = new SqlParameter("@SelectedMonthToWaive", SelectedMonthToWaive);
                 _SqlCommand.Parameters.Add(_SqlParameter);
                 //_SqlParameter = new SqlParameter("@ClientID", ClientId);
                 //_SqlCommand.Parameters.Add(_SqlParameter);

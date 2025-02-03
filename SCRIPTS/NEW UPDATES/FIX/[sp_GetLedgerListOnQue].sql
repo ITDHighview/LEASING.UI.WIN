@@ -198,7 +198,7 @@ AS
 
         CREATE TABLE [#tempAdvancePaymentFiltered]
             (
-                [id]      [BIGINT] IDENTITY(1, 1),
+                [id]    [BIGINT] IDENTITY(1, 1),
                 [Recid] [BIGINT]
             )
 
@@ -556,7 +556,8 @@ AS
                             [#tempAdvancePayment].[BalanceAmount],
                             [#tempAdvancePayment].[PenaltyAmount],
                             [#tempAdvancePayment].[ActualAmount],
-                            ISNULL([tblAdvancePayment].[Amount], 0) AS [LedgRentalAmount],
+                            --ISNULL([tblAdvancePayment].[Amount], 0) AS [LedgRentalAmount],
+                            ISNULL([#tempAdvancePayment].LedgRentalAmount, 0) AS [LedgRentalAmount],
                             [#tempAdvancePayment].[Remarks],
                             [#tempAdvancePayment].[Unit_ProjectType],
                             [#tempAdvancePayment].[Unit_IsNonVat],
@@ -589,10 +590,10 @@ AS
                             [#tempAdvancePayment].[PaymentRemarks]
                     FROM
                             [#tempAdvancePayment]
-                        INNER JOIN
-                            [dbo].[tblAdvancePayment]
-                                ON CONCAT('REF', CAST([#tempAdvancePayment].[ReferenceID] AS VARCHAR(150))) = [tblAdvancePayment].[RefId]
-                                   AND [#tempAdvancePayment].[LedgMonth] = [tblAdvancePayment].[Months]
+                        --INNER JOIN
+                        --    [dbo].[tblAdvancePayment]
+                        --        ON CONCAT('REF', CAST([#tempAdvancePayment].[ReferenceID] AS VARCHAR(150))) = [tblAdvancePayment].[RefId]
+                        --           AND [#tempAdvancePayment].[LedgMonth] = [tblAdvancePayment].[Months]
         SELECT
             ROW_NUMBER() OVER (ORDER BY
                                    [#tempMonthDecalrationFinal].[LedgMonth] ASC

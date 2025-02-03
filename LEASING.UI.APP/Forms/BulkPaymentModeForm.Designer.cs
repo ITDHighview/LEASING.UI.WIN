@@ -76,14 +76,14 @@
             this.txtBankAccountName = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel12 = new Telerik.WinControls.UI.RadLabel();
             this.txtBankBranch = new Telerik.WinControls.UI.RadTextBox();
-            this.txtRemarks = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
+            this.txtRemarks = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel13 = new Telerik.WinControls.UI.RadLabel();
             this.dtpRecieptDate = new Telerik.WinControls.UI.RadDateTimePicker();
-            this.telerikMetroTouchTheme1 = new Telerik.WinControls.Themes.TelerikMetroTouchTheme();
-            this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
             this.dtpCheckDate = new Telerik.WinControls.UI.RadDateTimePicker();
             this.radLabel14 = new Telerik.WinControls.UI.RadLabel();
+            this.telerikMetroTouchTheme1 = new Telerik.WinControls.Themes.TelerikMetroTouchTheme();
+            this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).BeginInit();
@@ -118,8 +118,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtBankAccountName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBankBranch)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRemarks)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRemarks)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpRecieptDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpCheckDate)).BeginInit();
@@ -668,16 +668,6 @@
             this.txtBankBranch.TabIndex = 2;
             this.txtBankBranch.ThemeName = "Office2007Silver";
             // 
-            // txtRemarks
-            // 
-            this.txtRemarks.AutoSize = false;
-            this.txtRemarks.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRemarks.Location = new System.Drawing.Point(180, 333);
-            this.txtRemarks.Name = "txtRemarks";
-            this.txtRemarks.Size = new System.Drawing.Size(241, 24);
-            this.txtRemarks.TabIndex = 2;
-            this.txtRemarks.ThemeName = "Office2007Silver";
-            // 
             // radLabel8
             // 
             this.radLabel8.Anchor = System.Windows.Forms.AnchorStyles.Right;
@@ -688,6 +678,16 @@
             this.radLabel8.Size = new System.Drawing.Size(87, 24);
             this.radLabel8.TabIndex = 0;
             this.radLabel8.Text = "Remarks.  :";
+            // 
+            // txtRemarks
+            // 
+            this.txtRemarks.AutoSize = false;
+            this.txtRemarks.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRemarks.Location = new System.Drawing.Point(180, 333);
+            this.txtRemarks.Name = "txtRemarks";
+            this.txtRemarks.Size = new System.Drawing.Size(241, 24);
+            this.txtRemarks.TabIndex = 2;
+            this.txtRemarks.ThemeName = "Office2007Silver";
             // 
             // radLabel13
             // 
@@ -739,7 +739,7 @@
             this.radLabel14.TabIndex = 0;
             this.radLabel14.Text = "Check Date.  :";
             // 
-            // frmPaymentMode
+            // BulkPaymentModeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -748,7 +748,7 @@
             this.DoubleBuffered = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmPaymentMode";
+            this.Name = "BulkPaymentModeForm";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Payment Mode";
@@ -789,8 +789,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtBankAccountName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBankBranch)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRemarks)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRemarks)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpRecieptDate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpCheckDate)).EndInit();

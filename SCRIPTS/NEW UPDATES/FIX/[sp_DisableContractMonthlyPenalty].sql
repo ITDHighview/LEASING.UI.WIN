@@ -9,7 +9,8 @@ CREATE OR ALTER PROCEDURE [sp_DisableContractMonthlyPenalty]
 -- WITH ENCRYPTION, RECOMPILE, EXECUTE AS CALLER|SELF|OWNER| 'user_name'
 AS
     BEGIN
-
+        DECLARE @Message_Code VARCHAR(MAX) = '';
+        DECLARE @ErrorMessage NVARCHAR(MAX) = N'';
 
         UPDATE
             [dbo].[tblUnitReference]
@@ -26,14 +27,30 @@ AS
         IF @@ROWCOUNT > 0
             BEGIN
 
-                SELECT
-                    'SUCCESS' AS [Message_Code]
+                SET @Message_Code = 'SUCCESS'
             END
-        ELSE
+        SET @ErrorMessage = ERROR_MESSAGE()
+        IF @ErrorMessage <> ''
             BEGIN
-                SELECT
-                    'FAIL' AS [Message_Code]
+
+                INSERT INTO [dbo].[ErrorLog]
+                    (
+                        [ProcedureName],
+                        [ErrorMessage],
+                        [LogDateTime]
+                    )
+                VALUES
+                    (
+                        'sp_DisableContractMonthlyPenalty', @ErrorMessage, GETDATE()
+                    );
+
+
             END
+
+        SELECT
+            @ErrorMessage AS [ErrorMessage],
+            @Message_Code AS [Message_Code];
+
     END
 GO
 

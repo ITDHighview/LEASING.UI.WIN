@@ -32,7 +32,10 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
             this.dgvList = new Telerik.WinControls.UI.RadGridView();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -53,7 +56,7 @@
             this.radGroupBox1.HeaderText = "Due Month";
             this.radGroupBox1.Location = new System.Drawing.Point(3, 3);
             this.radGroupBox1.Name = "radGroupBox1";
-            this.radGroupBox1.Size = new System.Drawing.Size(326, 522);
+            this.radGroupBox1.Size = new System.Drawing.Size(443, 522);
             this.radGroupBox1.TabIndex = 2;
             this.radGroupBox1.Text = "Due Month";
             this.radGroupBox1.ThemeName = "Office2007Silver";
@@ -89,26 +92,42 @@
             gridViewTextBoxColumn3.HeaderText = "Penalty Amount";
             gridViewTextBoxColumn3.Name = "PenaltyAmount";
             gridViewTextBoxColumn3.Width = 120;
+            gridViewTextBoxColumn4.FieldName = "PenaltyIntegrationStatus";
+            gridViewTextBoxColumn4.HeaderText = "Status";
+            gridViewTextBoxColumn4.Name = "PenaltyIntegrationStatus";
+            gridViewTextBoxColumn4.Width = 120;
             gridViewCommandColumn1.FieldName = "ColWaivePenalty";
             gridViewCommandColumn1.HeaderText = "Waive";
             gridViewCommandColumn1.Image = global::LEASING.UI.APP.Properties.Resources._16_handIcon;
             gridViewCommandColumn1.Name = "ColWaivePenalty";
+            gridViewTextBoxColumn5.FieldName = "IsForMonthlyPenalty";
+            gridViewTextBoxColumn5.HeaderText = "";
+            gridViewTextBoxColumn5.IsVisible = false;
+            gridViewTextBoxColumn5.Name = "IsForMonthlyPenalty";
+            gridViewTextBoxColumn6.FieldName = "IsPenaltyApplied";
+            gridViewTextBoxColumn6.HeaderText = "";
+            gridViewTextBoxColumn6.IsVisible = false;
+            gridViewTextBoxColumn6.Name = "IsPenaltyApplied";
             this.dgvList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewCheckBoxColumn1,
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
             gridViewTextBoxColumn3,
-            gridViewCommandColumn1});
+            gridViewTextBoxColumn4,
+            gridViewCommandColumn1,
+            gridViewTextBoxColumn5,
+            gridViewTextBoxColumn6});
             this.dgvList.MasterTemplate.EnableFiltering = true;
             this.dgvList.MasterTemplate.ShowRowHeaderColumn = false;
             this.dgvList.Name = "dgvList";
             this.dgvList.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.dgvList.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgvList.ShowGroupPanel = false;
-            this.dgvList.Size = new System.Drawing.Size(322, 502);
+            this.dgvList.Size = new System.Drawing.Size(439, 502);
             this.dgvList.TabIndex = 0;
             this.dgvList.Text = "radGridView1";
             this.dgvList.ThemeName = "Office2007Silver";
+            this.dgvList.CellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.dgvList_CellFormatting);
             this.dgvList.CellClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.dgvList_CellClick);
             // 
             // tableLayoutPanel1
@@ -123,7 +142,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 51F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(332, 579);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(449, 579);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
             // btnSave
@@ -132,7 +151,7 @@
             this.btnSave.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Location = new System.Drawing.Point(3, 531);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(326, 45);
+            this.btnSave.Size = new System.Drawing.Size(443, 45);
             this.btnSave.TabIndex = 3;
             this.btnSave.Text = "Save";
             this.btnSave.ThemeName = "Office2007Silver";
@@ -143,7 +162,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(332, 579);
+            this.ClientSize = new System.Drawing.Size(449, 579);
             this.Controls.Add(this.tableLayoutPanel1);
             this.DoubleBuffered = true;
             this.MaximizeBox = false;

@@ -3,7 +3,8 @@ USE [LEASINGDB]
 --SET ANSI_NULLS ON|OFF
 GO
 CREATE OR ALTER PROCEDURE [sp_ApplyBulkPenalty]
-    @XML            XML,
+    --@XML            XML,
+	@SelectedMonth AS DATE,
     @ReferenceID AS BIGINT,
     @EncodedBy AS   INT
 -- WITH ENCRYPTION, RECOMPILE, EXECUTE AS CALLER|SELF|OWNER| 'user_name'
@@ -12,22 +13,22 @@ AS
         DECLARE @Message_Code VARCHAR(MAX) = '';
         DECLARE @ErrorMessage NVARCHAR(MAX) = N'';
 
-        CREATE TABLE [#tblSelectedMonth]
-            (
-                [SelectedMonth] DATE
-            );
-        IF (@XML IS NOT NULL)
-            BEGIN
-                INSERT INTO [#tblSelectedMonth]
-                    (
-                        [SelectedMonth]
-                    )
-                            SELECT
-                                [ParaValues].[data].[value]('c1[1]', 'DATE')
-                            --[ParaValues].[data].[value]('c2[1]', 'DECIMAL(18,2)')
-                            FROM
-                                @XML.[nodes]('/Table1') AS [ParaValues]([data]);
-            END;
+        --CREATE TABLE [#tblSelectedMonth]
+        --    (
+        --        [SelectedMonth] DATE
+        --    );
+        --IF (@XML IS NOT NULL)
+        --    BEGIN
+        --        INSERT INTO [#tblSelectedMonth]
+        --            (
+        --                [SelectedMonth]
+        --            )
+        --                    SELECT
+        --                        [ParaValues].[data].[value]('c1[1]', 'DATE')
+        --                    --[ParaValues].[data].[value]('c2[1]', 'DECIMAL(18,2)')
+        --                    FROM
+        --                        @XML.[nodes]('/Table1') AS [ParaValues]([data]);
+        --    END;
 
 
 
@@ -78,8 +79,9 @@ AS
                 [CheckDate],
                 [ReceiptDate],
                 [PaymentRemarks]
+				
             )
-                    SELECT
+                    SELECT TOP 1
                         [TML].[ReferenceID], -- ReferenceID - bigint
                         [TML].[ClientID],    -- ClientID - varchar(500)
                         [TML].[LedgMonth],   -- LedgMonth - date
@@ -124,9 +126,10 @@ AS
                         NULL,                -- CheckDate - datetime
                         NULL,                -- ReceiptDate - datetime
                         NULL                 -- PaymentRemarks - nvarchar(4000)
+						
                     FROM
                         [dbo].[tblMonthLedger] [TML]
-                        CROSS APPLY
+                        CROSS APPLY 
                         (
                             SELECT
                                 FORMAT(ISNULL(SUM([tblMonthLedger].[PenaltyAmount]), 0), 'N2') AS [Amount]
@@ -150,13 +153,7 @@ AS
                         --AND ISNULL([TML].[IsPenaltyApplied], 0) = 0
                         AND [TML].[Remarks] <> 'PENALTY'
                         --AND ISNULL([TML].[IsFreeMonth], 0) = 0
-                        AND [TML].[LedgMonth] IN
-                                (
-                                    SELECT
-                                        [#tblSelectedMonth].[SelectedMonth]
-                                    FROM
-                                        [#tblSelectedMonth]
-                                )
+                        AND [TML].[LedgMonth]  = @SelectedMonth
 
 
 
@@ -177,13 +174,7 @@ AS
                     --AND ISNULL([tblMonthLedger].[IsPenaltyApplied], 0) = 0
                     --AND ISNULL([tblMonthLedger].[IsFreeMonth], 0) = 0
 					AND [tblMonthLedger].[Remarks] <> 'PENALTY'
-                    AND [tblMonthLedger].[LedgMonth] IN
-                            (
-                                SELECT
-                                    [#tblSelectedMonth].[SelectedMonth]
-                                FROM
-                                    [#tblSelectedMonth]
-                            )
+                    AND [tblMonthLedger].[LedgMonth]   = @SelectedMonth
 
                 SET @Message_Code = 'SUCCESS'
 
@@ -201,7 +192,7 @@ AS
                     )
                 VALUES
                     (
-                        'sp_SaveComputation', @ErrorMessage, GETDATE()
+                        'sp_ApplyBulkPenalty', @ErrorMessage, GETDATE()
                     );
 
 
@@ -211,7 +202,7 @@ AS
             @ErrorMessage AS [ErrorMessage],
             @Message_Code AS [Message_Code];
 
-        DROP TABLE [#tblSelectedMonth];
+       
     END
 
 

@@ -10,6 +10,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Telerik.WinControls;
+using Telerik.WinControls.UI;
 
 namespace LEASING.UI.APP.Forms
 {
@@ -150,7 +152,7 @@ namespace LEASING.UI.APP.Forms
         {
             try
             {
-                SaveResult  = _payment.ApplyBulkPenalty(date, contractid);                              
+                SaveResult = _payment.ApplyBulkPenalty(date, contractid);
             }
             catch (Exception ex)
             {
@@ -158,28 +160,110 @@ namespace LEASING.UI.APP.Forms
                 Functions.ErrorShow("savePenaltyGeneration()", ex.ToString());
             }
         }
+        private bool IsGridCheckboxCheck()
+        {
+            dgvList.EndEdit();
+            foreach (GridViewRowInfo row in dgvList.Rows)
+            {
+                GridViewCellInfo cell = row.Cells["chkSelectMonth"] as GridViewCellInfo;
+                if (Convert.ToBoolean(cell.Value))
+                {
+                    return true;
+                }
+               
+            }
+            return false;
+        }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (Functions.MessageConfirm("Are you sure you want to generate a penalty for following selected Month?") == DialogResult.Yes)
+            if (IsGridCheckboxCheck() == true)
             {
-                Functions.ShowLoadingBar("Processing...");
-                for (int iRow = 0; iRow < dgvList.Rows.Count; iRow++)
-                {                   
-                    if (Convert.ToBoolean(this.dgvList.Rows[iRow].Cells["chkSelectMonth"].Value))
-                    {                                
-                        savePenaltyGeneration(Convert.ToString(this.dgvList.Rows[iRow].Cells["SelectLedgMonth"].Value));
-                    }                  
-                }
-                                        
-                if (SaveResult.Equals("SUCCESS"))
+                if (Functions.MessageConfirm("Are you sure you want to generate a penalty for following selected Month?") == DialogResult.Yes)
                 {
-                    Functions.MessageShow($"Generate :  SUCCESS");
-                    GetForPenaltyMonthList();
+                    Functions.ShowLoadingBar("Processing...");
+                    for (int iRow = 0; iRow < dgvList.Rows.Count; iRow++)
+                    {
+                        if (Convert.ToBoolean(this.dgvList.Rows[iRow].Cells["chkSelectMonth"].Value))
+                        {
+                            savePenaltyGeneration(Convert.ToString(this.dgvList.Rows[iRow].Cells["SelectLedgMonth"].Value));
+                        }
+
+                    }
+
+                    if (SaveResult.Equals("SUCCESS"))
+                    {
+                        Functions.MessageShow($"Generate :  SUCCESS");
+                        GetForPenaltyMonthList();
+                    }
+                    else
+                    {
+                        Functions.MessageShow(SaveResult);
+                    }
                 }
-                else
+            }
+            else
+            {
+                Functions.MessageShow("Please Select Month");
+            }
+            
+        }
+
+        private void dgvList_CellFormatting(object sender, Telerik.WinControls.UI.CellFormattingEventArgs e)
+        {
+            //if (!string.IsNullOrEmpty(Convert.ToString(this.dgvList.Rows[e.RowIndex].Cells["PaymentStatus"].Value)))
+            //{
+            if (Convert.ToString(this.dgvList.Rows[e.RowIndex].Cells["IsForMonthlyPenalty"].Value) == "YES" && Convert.ToString(this.dgvList.Rows[e.RowIndex].Cells["IsPenaltyApplied"].Value) == "YES")
+            {
+                e.CellElement.ForeColor = Color.White;
+                //e.CellElement.Font = new Font("Tahoma", 7f, FontStyle.Bold);
+                e.CellElement.DrawFill = true;
+                e.CellElement.GradientStyle = GradientStyles.Solid;
+                e.CellElement.BackColor = Color.Green;
+                this.dgvList.Rows[e.RowIndex].Cells["chkSelectMonth"].ReadOnly = true;
+                //this.dgvLedgerList.Rows[e.RowIndex].Cells["ColCheck"].Style.DrawFill = true;
+            }
+            else if (Convert.ToString(this.dgvList.Rows[e.RowIndex].Cells["IsForMonthlyPenalty"].Value) == "YES" && Convert.ToString(this.dgvList.Rows[e.RowIndex].Cells["IsPenaltyApplied"].Value) == "NO")
+            {
+                e.CellElement.ForeColor = Color.Black;
+                e.CellElement.DrawFill = true;
+                e.CellElement.GradientStyle = GradientStyles.Solid;
+                e.CellElement.BackColor = Color.Yellow;
+                this.dgvList.Rows[e.RowIndex].Cells["chkSelectMonth"].ReadOnly = false;
+            }
+            //}
+
+            if (e.CellElement.ColumnInfo is GridViewCommandColumn && !(e.CellElement.RowElement is GridTableHeaderRowElement))
+            {
+                GridViewCommandColumn column = (GridViewCommandColumn)e.CellElement.ColumnInfo;
+                RadButtonElement element = (RadButtonElement)e.CellElement.Children[0];
+                (element.Children[2] as Telerik.WinControls.Primitives.BorderPrimitive).Visibility =
+                Telerik.WinControls.ElementVisibility.Collapsed;
+                element.DisplayStyle = DisplayStyle.Image;
+                element.ImageAlignment = ContentAlignment.MiddleCenter;
+                element.Enabled = true;
+                element.Alignment = ContentAlignment.MiddleCenter;
+                element.Visibility = ElementVisibility.Visible;
+                if (column.Name == "ColWaivePenalty")
                 {
-                    Functions.MessageShow(SaveResult);
-                }       
+                    if (Convert.ToString(this.dgvList.Rows[e.RowIndex].Cells["IsForMonthlyPenalty"].Value) == "YES" && Convert.ToString(this.dgvList.Rows[e.RowIndex].Cells["IsPenaltyApplied"].Value) == "YES")
+                    {
+                        //element.ImageAlignment = ContentAlignment.MiddleCenter;
+                        //element.TextImageRelation = TextImageRelation.TextBeforeImage;
+                        //element.Text = "Un-Map";
+                        element.Image = Properties.Resources.ico_edit;
+                        element.ToolTipText = "Waive Penalty Option is Available";
+                        element.Enabled = true;                       
+                    }
+                    else
+                    {
+                        //element.ImageAlignment = ContentAlignment.MiddleCenter;
+                        //element.TextImageRelation = TextImageRelation.TextBeforeImage;
+                        //element.Text = "Un-Map";
+                        element.Image = Properties.Resources.cancel16;
+                        element.ToolTipText = "This button is disabled";
+                        element.Enabled = false;
+                    }
+                }
             }
         }
     }

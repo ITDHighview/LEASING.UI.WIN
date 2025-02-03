@@ -974,7 +974,7 @@ AS
             --    'PAID',
             --    IIF(CONVERT(VARCHAR(20), LedgMonth, 107) = CONVERT(VARCHAR(20), GETDATE(), 107), 'FOR PAYMENT', 'PENDING')) As PaymentStatus,
             CASE
-                WHEN ISNULL([#tempMonthDecalrationFinal].[IsPaid], 0) = 1
+                WHEN  ISNULL([#tempMonthDecalrationFinal].[IsPaid], 0) = 1
                      AND ISNULL([#tempMonthDecalrationFinal].[IsHold], 0) = 0
                     THEN
                     IIF(ISNULL([#tempMonthDecalrationFinal].[LedgRentalAmount], 0) = 0,
@@ -998,9 +998,9 @@ AS
                      AND ISNULL([#tempMonthDecalrationFinal].[IsPaid], 0) = 0
                      AND ISNULL([#tempMonthDecalrationFinal].[IsHold], 0) = 0
                     THEN
-                    IIF(ISNULL([#tempMonthDecalrationFinal].[LedgRentalAmount], 0) = 0,
-                        IIF([#tempMonthDecalrationFinal].[Unit_SecAndMainAmount] = 0, 'N/A', 'FREE'),
-                        'DUE')
+                    IIF(ISNULL([#tempMonthDecalrationFinal].[LedgRentalAmount], 0) >0,
+                        IIF([#tempMonthDecalrationFinal].[Unit_SecAndMainAmount] = 0, 'N/A', 'PENDING'),
+                        'FREE')
                 WHEN CONVERT(VARCHAR(20), [#tempMonthDecalrationFinal].[LedgMonth], 107) = CONVERT(
                                                                                                       VARCHAR(20),
                                                                                                       GETDATE(), 107

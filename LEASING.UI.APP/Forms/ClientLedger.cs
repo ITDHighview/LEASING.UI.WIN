@@ -104,6 +104,7 @@ namespace LEASING.UI.APP.Forms
             this.FormLoadDisabledControls();
             this.FormLoadReadOnlyControls();
             this.getContractById();
+            this.getLedgerTotalPaidAmountByContractId();
         }
         #region XML
         private static string SetXMLTable(ref ArrayList xml)
@@ -283,6 +284,7 @@ namespace LEASING.UI.APP.Forms
                 Functions.GetNotification("PAYMENT SUCCESS ", $" Reciept ID : {RecieptID} generated");
 
                 this.getContractById();
+                this.getLedgerTotalPaidAmountByContractId();
                 this.checkPaymentProgressStatus();
                 this.getLedgerBrowseByContractIdClientId();
                 this.getPaymentBrowseByContractNumber();
@@ -505,7 +507,6 @@ namespace LEASING.UI.APP.Forms
             {
                 return;
             }
-            txtTotalPay.Text = string.Empty;
             try
             {
                 using (DataSet dt = _contract.GetContractById(this._contractId))
@@ -519,7 +520,7 @@ namespace LEASING.UI.APP.Forms
                         this.dtpTo.Text = Convert.ToString(dt.Tables[0].Rows[0]["FinishDate"]);
                         this.TotalRental = Convert.ToInt32(dt.Tables[0].Rows[0]["TotalRent"]);
                         this.AdvancePaymentAmount = Convert.ToString(dt.Tables[0].Rows[0]["AdvancePaymentAmount"]);
-                        this.txtTotalPay.Text = Convert.ToString(dt.Tables[0].Rows[0]["TotalPayAMount"]);
+                 
                     }
                 }
             }
@@ -527,6 +528,26 @@ namespace LEASING.UI.APP.Forms
             {
                 Functions.LogError("getContractById()", this.Text, ex.ToString(), DateTime.Now, this);
                 Functions.ErrorShow("getContractById()", ex.ToString());
+            }
+        }
+
+        private void getLedgerTotalPaidAmountByContractId()
+        {
+            txtTotalPay.Text = string.Empty;
+            try
+            {
+                using (DataSet dt = _contract.GetLedgerTotalPaidAmountByContractId(this._contractId))
+                {
+                    if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
+                    {                       
+                        this.txtTotalPay.Text = Convert.ToString(dt.Tables[0].Rows[0]["LedgerTotalPaidAmount"]);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Functions.LogError("getLedgerTotalPaidAmountByContractId()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("getLedgerTotalPaidAmountByContractId()", ex.ToString());
             }
         }
         private void checkPaymentProgressStatus()
@@ -722,6 +743,7 @@ namespace LEASING.UI.APP.Forms
             }
 
             this.getContractById();
+            this.getLedgerTotalPaidAmountByContractId();
             this.checkPaymentProgressStatus();
             this.getPaymentBrowseByContractNumber();
             this.btnTerminateContract.Enabled = false;
@@ -840,6 +862,7 @@ namespace LEASING.UI.APP.Forms
 
             this.getPaymentBrowseByContractNumber();
             this.getContractById();
+            this.getLedgerTotalPaidAmountByContractId();
             this.checkPaymentProgressStatus();
             this.btnCloseContract.Enabled = false;
         }
@@ -916,6 +939,7 @@ namespace LEASING.UI.APP.Forms
 
             this.getContractBrowseByClientId();
             this.getContractById();
+            this.getLedgerTotalPaidAmountByContractId();
             this.checkPaymentProgressStatus();
             this.getPaymentBrowseByContractNumber();
             this.GetOtherPaymentHistoryBrowse();
@@ -952,6 +976,7 @@ namespace LEASING.UI.APP.Forms
 
             this.getOnLoadLedgerBrowseByContractIdClientId();
             this.getContractById();
+            this.getLedgerTotalPaidAmountByContractId();
             this.checkPaymentProgressStatus();
             this.getPaymentBrowseByContractNumber();
             isContractMonthlyPenaltyActive = CheckContractMonthlyPenaltyIsActive(this._contractId);

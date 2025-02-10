@@ -65,9 +65,13 @@ namespace LEASING.UI.APP.Forms
             {
                 if (this.dgvList.Columns[e.ColumnIndex].Name == "ColWaivePenalty")
                 {
-                    SelectedMonthToWaive = Convert.ToString(dgvList.CurrentRow.Cells["SelectLedgMonth"].Value);
-                    PenaltyWaiveDetails form = new PenaltyWaiveDetails(this.contractid, SelectedMonthToWaive);
-                    form.ShowDialog();
+                    if (Convert.ToString(dgvList.Rows[e.RowIndex].Cells["Ispaid"].Value) == "NO" && Convert.ToString(dgvList.Rows[e.RowIndex].Cells["PenaltyIntegrationStatus"].Value) == "Generated")
+                    {
+                        SelectedMonthToWaive = Convert.ToString(dgvList.CurrentRow.Cells["SelectLedgMonth"].Value);
+                        PenaltyWaiveDetails form = new PenaltyWaiveDetails(this.contractid, SelectedMonthToWaive);
+                        form.ShowDialog();
+                    }
+                  
                 }
             }
         }
@@ -245,7 +249,7 @@ namespace LEASING.UI.APP.Forms
                 element.Visibility = ElementVisibility.Visible;
                 if (column.Name == "ColWaivePenalty")
                 {
-                    if (Convert.ToString(this.dgvList.Rows[e.RowIndex].Cells["IsForMonthlyPenalty"].Value) == "YES" && Convert.ToString(this.dgvList.Rows[e.RowIndex].Cells["IsPenaltyApplied"].Value) == "YES")
+                    if (Convert.ToString(this.dgvList.Rows[e.RowIndex].Cells["IsForMonthlyPenalty"].Value) == "YES" && Convert.ToString(this.dgvList.Rows[e.RowIndex].Cells["IsPenaltyApplied"].Value) == "YES" && Convert.ToString(this.dgvList.Rows[e.RowIndex].Cells["Ispaid"].Value) == "NO")
                     {
                         //element.ImageAlignment = ContentAlignment.MiddleCenter;
                         //element.TextImageRelation = TextImageRelation.TextBeforeImage;

@@ -36,6 +36,7 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
             this.dgvList = new Telerik.WinControls.UI.RadGridView();
             this.office2007SilverTheme1 = new Telerik.WinControls.Themes.Office2007SilverTheme();
@@ -53,7 +54,7 @@
             this.radGroupBox1.HeaderText = "CONTRACT LIST";
             this.radGroupBox1.Location = new System.Drawing.Point(0, 0);
             this.radGroupBox1.Name = "radGroupBox1";
-            this.radGroupBox1.Size = new System.Drawing.Size(763, 338);
+            this.radGroupBox1.Size = new System.Drawing.Size(1021, 338);
             this.radGroupBox1.TabIndex = 2;
             this.radGroupBox1.Text = "CONTRACT LIST";
             this.radGroupBox1.ThemeName = "Office2007Silver";
@@ -110,6 +111,10 @@
             gridViewTextBoxColumn5.HeaderText = "RecId";
             gridViewTextBoxColumn5.IsVisible = false;
             gridViewTextBoxColumn5.Name = "RecId";
+            gridViewTextBoxColumn6.FieldName = "ContractTerminationRemarks";
+            gridViewTextBoxColumn6.HeaderText = "Remarks";
+            gridViewTextBoxColumn6.Name = "ContractTerminationRemarks";
+            gridViewTextBoxColumn6.Width = 260;
             this.dgvList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewCommandColumn1,
             gridViewCommandColumn2,
@@ -118,7 +123,8 @@
             gridViewTextBoxColumn2,
             gridViewTextBoxColumn3,
             gridViewTextBoxColumn4,
-            gridViewTextBoxColumn5});
+            gridViewTextBoxColumn5,
+            gridViewTextBoxColumn6});
             this.dgvList.MasterTemplate.EnableFiltering = true;
             this.dgvList.MasterTemplate.ShowRowHeaderColumn = false;
             this.dgvList.Name = "dgvList";
@@ -126,20 +132,20 @@
             this.dgvList.ReadOnly = true;
             this.dgvList.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dgvList.ShowGroupPanel = false;
-            this.dgvList.Size = new System.Drawing.Size(759, 318);
+            this.dgvList.Size = new System.Drawing.Size(1017, 318);
             this.dgvList.TabIndex = 0;
             this.dgvList.Text = "radGridView1";
             this.dgvList.ThemeName = "Office2007Silver";
             this.dgvList.CellClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.dgvList_CellClick);
             // 
-            // frmClosedContracts
+            // ClosedContractBrowse
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(763, 338);
+            this.ClientSize = new System.Drawing.Size(1021, 338);
             this.Controls.Add(this.radGroupBox1);
             this.DoubleBuffered = true;
-            this.Name = "frmClosedContracts";
+            this.Name = "ClosedContractBrowse";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Closed Contracts";

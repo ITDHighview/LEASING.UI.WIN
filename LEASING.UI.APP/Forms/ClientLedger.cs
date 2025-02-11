@@ -381,7 +381,7 @@ namespace LEASING.UI.APP.Forms
                     if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
                     {
                         IsContractPenaltyIsActive = Convert.ToBoolean(dt.Tables[0].Rows[0]["IsContractPenaltyIsActive"]);
-         
+
 
                     }
                 }
@@ -406,22 +406,22 @@ namespace LEASING.UI.APP.Forms
                 /*Depricated*/
                 //if (IsHasContractApplyMonthlyPenalty(this._contractId))
                 //{
-                    //if (Functions.MessageConfirm("Would you like to integrate penalty for this contract?") == DialogResult.Yes)
-                    //{
-                    //    IsApplyMonthlyPenalty = true;
-                    //}
+                //if (Functions.MessageConfirm("Would you like to integrate penalty for this contract?") == DialogResult.Yes)
+                //{
+                //    IsApplyMonthlyPenalty = true;
+                //}
 
-                          /*Depricated*/
-                    //if (IsHasPenalty)
-                    //{
-                    //    PenaltyQuestionDetails penaltyquestion = new PenaltyQuestionDetails(MonthHavePenalty, AmountOfPenalty);
+                /*Depricated*/
+                //if (IsHasPenalty)
+                //{
+                //    PenaltyQuestionDetails penaltyquestion = new PenaltyQuestionDetails(MonthHavePenalty, AmountOfPenalty);
 
-                    //    penaltyquestion.ShowDialog();
-                    //    if (penaltyquestion.IsProceed)
-                    //    {
-                    //        IsApplyMonthlyPenalty = true;
-                    //    }
-                    //}
+                //    penaltyquestion.ShowDialog();
+                //    if (penaltyquestion.IsProceed)
+                //    {
+                //        IsApplyMonthlyPenalty = true;
+                //    }
+                //}
                 //}
 
                 dgvLedgerList.DataSource = null;
@@ -520,7 +520,7 @@ namespace LEASING.UI.APP.Forms
                         this.dtpTo.Text = Convert.ToString(dt.Tables[0].Rows[0]["FinishDate"]);
                         this.TotalRental = Convert.ToInt32(dt.Tables[0].Rows[0]["TotalRent"]);
                         this.AdvancePaymentAmount = Convert.ToString(dt.Tables[0].Rows[0]["AdvancePaymentAmount"]);
-                 
+
                     }
                 }
             }
@@ -539,7 +539,7 @@ namespace LEASING.UI.APP.Forms
                 using (DataSet dt = _contract.GetLedgerTotalPaidAmountByContractId(this._contractId))
                 {
                     if (dt != null && dt.Tables.Count > 0 && dt.Tables[0].Rows.Count > 0)
-                    {                       
+                    {
                         this.txtTotalPay.Text = Convert.ToString(dt.Tables[0].Rows[0]["LedgerTotalPaidAmount"]);
                     }
                 }
@@ -708,6 +708,7 @@ namespace LEASING.UI.APP.Forms
         }
         private void TerminateCOntract()
         {
+            string vTerminationRemarks = string.Empty;
 
             if (Functions.MessageConfirm("Are you sure you want to Terminate the contract and Move-Out the Client?") == DialogResult.No)
             {
@@ -717,37 +718,54 @@ namespace LEASING.UI.APP.Forms
             {
                 return;
             }
-            try
+
+            ContractTerminationRemarksForm terminationRemarks = new ContractTerminationRemarksForm();
+            terminationRemarks.ShowDialog();
+            if (terminationRemarks.Isproceed)
             {
-                string result = _payment.TerminateContract(this._contractNumber);
-                if (string.IsNullOrEmpty(result))
+                vTerminationRemarks = terminationRemarks.Remarks;
+
+                try
                 {
-                    Functions.MessageShow("Responce is empty please contact system administrator");
-                    return;
+                    string result = _payment.TerminateContract(this._contractNumber, vTerminationRemarks);
+                    if (string.IsNullOrEmpty(result))
+                    {
+                        Functions.MessageShow("Responce is empty please contact system administrator");
+                        return;
+                    }
+
+
+                    if (!result.Equals(_MSSG_SUCCESS_))
+                    {
+                        Functions.MessageShow(result);
+                        return;
+                    }
+
+                    Functions.MessageShow($"CONTRACT TERMINATION {result}");
+                    Functions.GetNotification("CONTRACT TERMINATION ", " You can now proceed for contract closing.");
+                    dgvLedgerList.Enabled = false;
+                    btnDisableMonthlyPenalty.Enabled = false;
+                    btnCheckPenalties.Enabled = false;
+                }
+                catch (Exception ex)
+                {
+                    Functions.LogError("TerminateCOntract()", this.Text, ex.ToString(), DateTime.Now, this);
+                    Functions.ErrorShow("TerminateCOntract()", ex.ToString());
                 }
 
-
-                if (!result.Equals(_MSSG_SUCCESS_))
-                {
-                    Functions.MessageShow(result);
-                    return;
-                }
-
-                Functions.MessageShow($"CONTRACT TERMINATION {result}");
-                Functions.GetNotification("CONTRACT TERMINATION ", " You can now proceed for contract closing.");
+                this.getContractById();
+                this.getLedgerTotalPaidAmountByContractId();
+                this.checkPaymentProgressStatus();
+                this.getPaymentBrowseByContractNumber();
+                this.btnTerminateContract.Enabled = false;
+                this.btnPayAll.Enabled = false;
             }
-            catch (Exception ex)
+            else
             {
-                Functions.LogError("TerminateCOntract()", this.Text, ex.ToString(), DateTime.Now, this);
-                Functions.ErrorShow("TerminateCOntract()", ex.ToString());
+                Functions.MessageShow("CONTRACT TERMINATION Cancel");
             }
 
-            this.getContractById();
-            this.getLedgerTotalPaidAmountByContractId();
-            this.checkPaymentProgressStatus();
-            this.getPaymentBrowseByContractNumber();
-            this.btnTerminateContract.Enabled = false;
-            this.btnPayAll.Enabled = false;
+           
         }
         private void SaveTransaction()
         {
@@ -988,7 +1006,7 @@ namespace LEASING.UI.APP.Forms
             {
                 btnDisableMonthlyPenalty.Text = "Enable Monthly Penalty";
             }
- 
+
         }
         private void dgvPaymentList_CellFormatting(object sender, Telerik.WinControls.UI.CellFormattingEventArgs e)
         {
@@ -1377,11 +1395,11 @@ namespace LEASING.UI.APP.Forms
                 {
                     if (Functions.MessageConfirm("Are you sure you want to disable Monthly penalty to this contract ? ") == DialogResult.Yes)
                     {
-                        string result = _contract.DisableContractMonthlyPenalty(this._contractId,false);
+                        string result = _contract.DisableContractMonthlyPenalty(this._contractId, false);
                         if (result.Equals("SUCCESS"))
                         {
                             Functions.MessageShow("Contract Monthly Penalty has been disable successfully!.");
-                   
+
                         }
                         else
                         {
@@ -1397,11 +1415,11 @@ namespace LEASING.UI.APP.Forms
                 {
                     if (Functions.MessageConfirm("Are you sure you want to Enable Monthly penalty to this contract ? ") == DialogResult.Yes)
                     {
-                        string result = _contract.DisableContractMonthlyPenalty(this._contractId,true);
+                        string result = _contract.DisableContractMonthlyPenalty(this._contractId, true);
                         if (result.Equals("SUCCESS"))
                         {
                             Functions.MessageShow("Contract Monthly Penalty has been Enable successfully!.");
-                          
+
                         }
                         else
                         {
@@ -1430,8 +1448,8 @@ namespace LEASING.UI.APP.Forms
 
         private void btnWaivePenalty_Click(object sender, EventArgs e)
         {
-            
-           
+
+
         }
 
         private void btnCheckPenalties_Click(object sender, EventArgs e)
@@ -1442,7 +1460,7 @@ namespace LEASING.UI.APP.Forms
                 frm.contractid = this._contractId;
                 frm.ShowDialog();
                 getOnLoadLedgerBrowseByContractIdClientId();
-            }      
+            }
         }
     }
 }

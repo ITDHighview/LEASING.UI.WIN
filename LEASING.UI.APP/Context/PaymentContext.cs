@@ -579,7 +579,7 @@ namespace LEASING.UI.APP.Context
             }
             return "";
         }
-        public string TerminateContract(string RefId)
+        public string TerminateContract(string RefId,string ContractTerminationRemarks)
         {
             SqlCommand _sqlcmd = null;
             SqlParameter _sqlpara;
@@ -592,6 +592,8 @@ namespace LEASING.UI.APP.Context
             _sqlpara = new SqlParameter("@EncodedBy", Variables.UserID);
             _sqlcmd.Parameters.Add(_sqlpara);
             _sqlpara = new SqlParameter("@ComputerName", Environment.MachineName);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@ContractTerminationRemarks", ContractTerminationRemarks);
             _sqlcmd.Parameters.Add(_sqlpara);
             try
             {

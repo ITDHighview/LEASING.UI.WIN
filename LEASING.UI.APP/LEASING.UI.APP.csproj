@@ -192,6 +192,12 @@
     <Compile Include="Forms\ContractPenaltyList.Designer.cs">
       <DependentUpon>ContractPenaltyList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ContractTerminationRemarksForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ContractTerminationRemarksForm.Designer.cs">
+      <DependentUpon>ContractTerminationRemarksForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\OtherPaymentReceiveCollection.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -727,6 +733,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ContractPenaltyList.resx">
       <DependentUpon>ContractPenaltyList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ContractTerminationRemarksForm.resx">
+      <DependentUpon>ContractTerminationRemarksForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\OtherPaymentReceiveCollection.resx">
       <DependentUpon>OtherPaymentReceiveCollection.cs</DependentUpon>

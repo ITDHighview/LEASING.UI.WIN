@@ -288,11 +288,7 @@ namespace LEASING.UI.APP.Forms
 
             }
         }
-        private string _getPaymentLevel()
-        {
-
-            return "OTHER";
-        }
+        private string _getPaymentLevel() => "OTHER";
         private void _initReciept(PrintReceiptOtherPaymentCategory pForm)
         {
             if (string.IsNullOrEmpty(this._Company_OR_Number_) && !string.IsNullOrEmpty(this._Company_PR_Number_))

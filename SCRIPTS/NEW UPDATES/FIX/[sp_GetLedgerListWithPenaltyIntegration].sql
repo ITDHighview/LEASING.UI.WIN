@@ -310,26 +310,9 @@ AS
         WHERE
             [tblUnitReference].[RecId] = @ReferenceID
 
-        --IF
-        --    (
-        --        SELECT
-        --            ISNULL([tblUnitReference].[IsContractApplyMonthlyPenalty], 0)
-        --        FROM
-        --            [dbo].[tblUnitReference]
-        --        WHERE
-        --            [tblUnitReference].[RecId] = @ReferenceID
-        --    ) = 1
-        --    BEGIN
-        --        --IF ISNULL(@IsApplyPenalty, 0) = 1
-        --        --    BEGIN
-        --                --/*Check if the penalty stop when it reach the specific date to penalty*/
-        --                EXEC [dbo].[sp_ApplyMonthLyPenalty]
-        --                    @ReferenceID = @ReferenceID -- bigint
-        --            --END
-        --    END
-
-
-
+        --/*Check if the penalty stop when it reach the specific date to penalty*/
+        EXEC [dbo].[sp_ApplyMonthLyPenalty]
+            @ReferenceID = @ReferenceID -- bigint
 
         INSERT INTO [#tempMonthLedger]
             (
@@ -974,7 +957,7 @@ AS
             --    'PAID',
             --    IIF(CONVERT(VARCHAR(20), LedgMonth, 107) = CONVERT(VARCHAR(20), GETDATE(), 107), 'FOR PAYMENT', 'PENDING')) As PaymentStatus,
             CASE
-                WHEN  ISNULL([#tempMonthDecalrationFinal].[IsPaid], 0) = 1
+                WHEN ISNULL([#tempMonthDecalrationFinal].[IsPaid], 0) = 1
                      AND ISNULL([#tempMonthDecalrationFinal].[IsHold], 0) = 0
                     THEN
                     IIF(ISNULL([#tempMonthDecalrationFinal].[LedgRentalAmount], 0) = 0,
@@ -998,7 +981,7 @@ AS
                      AND ISNULL([#tempMonthDecalrationFinal].[IsPaid], 0) = 0
                      AND ISNULL([#tempMonthDecalrationFinal].[IsHold], 0) = 0
                     THEN
-                    IIF(ISNULL([#tempMonthDecalrationFinal].[LedgRentalAmount], 0) >0,
+                    IIF(ISNULL([#tempMonthDecalrationFinal].[LedgRentalAmount], 0) > 0,
                         IIF([#tempMonthDecalrationFinal].[Unit_SecAndMainAmount] = 0, 'N/A', 'PENDING'),
                         'FREE')
                 WHEN CONVERT(VARCHAR(20), [#tempMonthDecalrationFinal].[LedgMonth], 107) = CONVERT(

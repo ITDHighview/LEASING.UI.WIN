@@ -627,6 +627,53 @@ namespace LEASING.UI.APP.Context
             }
             return "";
         }
+        public string MoveOutAndCloseContractForRenewal(string RefId)
+        {
+            SqlCommand _sqlcmd = null;
+            SqlParameter _sqlpara;
+            SqlConnection _sqlcon = null;
+            SqlDataReader _sqlreader = null;
+            _sqlcmd = new SqlCommand();
+            _sqlcmd.CommandText = "sp_MoveOutAndCloseContractForRenewal";
+            _sqlpara = new SqlParameter("@ReferenceID", RefId);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@EncodedBy", Variables.UserID);
+            _sqlcmd.Parameters.Add(_sqlpara);
+            _sqlpara = new SqlParameter("@ComputerName", Environment.MachineName);
+            _sqlcmd.Parameters.Add(_sqlpara);
+        
+            try
+            {
+                _sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["CONNECTIONS"].ToString());
+                _sqlcmd.Connection = _sqlcon;
+                _sqlcmd.CommandType = CommandType.StoredProcedure;
+                _sqlcmd.Connection.Open();
+                _sqlreader = _sqlcmd.ExecuteReader();
+                _sqlreader.Read();
+                int index;
+                if (_sqlreader.HasRows)
+                {
+                    index = _sqlreader.GetOrdinal("Message_Code");
+                    if (!_sqlreader.IsDBNull(index))
+                        return Convert.ToString(_sqlreader.GetString(index));
+                }
+            }
+            catch (Exception expCommon)
+            {
+                return "FAILED|" + Convert.ToString(expCommon.Message);
+            }
+            finally
+            {
+                if (_sqlcon.State != ConnectionState.Closed)
+                {
+                    _sqlcon.Close();
+                }
+                _sqlpara = null;
+                _sqlcmd = null;
+                _sqlreader = null;
+            }
+            return "";
+        }
         public string HoldPayment(string RefId, int ledgerRecId)
         {
             SqlCommand _sqlcmd = null;

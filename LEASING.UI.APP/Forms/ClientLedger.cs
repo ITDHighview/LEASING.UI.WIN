@@ -564,6 +564,8 @@ namespace LEASING.UI.APP.Forms
                             this.btnCloseContract.Enabled = false;
                             this.btnTerminateContract.Enabled = true;
                             this.btnTerminateContract.Visible = true;
+                            this.btnTerminateContract.Text = "Terminate Contract";
+                            this.btnTerminateContract.Image = Properties.Resources.redbullet;
                             this.btnPayAll.Enabled = true;
                             this.btnPayAll.Visible = true;
                         }
@@ -571,8 +573,11 @@ namespace LEASING.UI.APP.Forms
                         {
                             //Functions.GetNotification("Payment Status", this.txtPaymentStatus.Text);
                             this.btnCloseContract.Enabled = true;
-                            this.btnTerminateContract.Enabled = false;
-                            this.btnTerminateContract.Visible = false;
+
+                            this.btnTerminateContract.Enabled = true;
+                            this.btnTerminateContract.Visible = true;
+                            this.btnTerminateContract.Text = "Re-New Contract";
+                            this.btnTerminateContract.Image = Properties.Resources.bookmark_16;
                             this.btnPayAll.Enabled = false;
                             this.btnPayAll.Visible = false;
                         }
@@ -757,7 +762,7 @@ namespace LEASING.UI.APP.Forms
                 this.getLedgerTotalPaidAmountByContractId();
                 this.checkPaymentProgressStatus();
                 this.getPaymentBrowseByContractNumber();
-                this.btnTerminateContract.Enabled = false;
+                //this.btnTerminateContract.Enabled = false;
                 this.btnPayAll.Enabled = false;
             }
             else
@@ -765,7 +770,7 @@ namespace LEASING.UI.APP.Forms
                 Functions.MessageShow("CONTRACT TERMINATION Cancel");
             }
 
-           
+
         }
         private void SaveTransaction()
         {
@@ -890,6 +895,7 @@ namespace LEASING.UI.APP.Forms
             this.dtpTo.Enabled = false;
             this.btnCloseContract.Enabled = false;
             this.btnTerminateContract.Enabled = false;
+
         }
         private void FormLoadReadOnlyControls()
         {
@@ -928,15 +934,23 @@ namespace LEASING.UI.APP.Forms
             if (string.IsNullOrEmpty(this.txtClientName.Text))
             {
                 Functions.MessageShow("Please Select Client");
-                return;
+              
             }
-
-            ClientUnitsBrowse CheckClientUnits = new ClientUnitsBrowse();
-            CheckClientUnits.ClientId = this._clientId;
-            CheckClientUnits.ShowDialog();
+            else
+            {
+                ClientUnitsBrowse CheckClientUnits = new ClientUnitsBrowse();
+                CheckClientUnits.ClientId = this._clientId;
+                CheckClientUnits.ShowDialog();
+            }        
         }
         private void radButton1_Click(object sender, EventArgs e)
         {
+            //this.btnCheckUnits.Enabled = false;
+            //this.btnDisableMonthlyPenalty.Enabled = false;
+            //this.btnCheckPenalties.Enabled = false;
+
+            this.FormLoadDisabledControls();
+            this.FormLoadReadOnlyControls();
             dgvTransactionList.DataSource = null;
             dgvLedgerList.DataSource = null;
             dgvPaymentList.DataSource = null;
@@ -966,9 +980,66 @@ namespace LEASING.UI.APP.Forms
         {
             this.MoveOut();
         }
+
+        private void MoveOutAndCloseTheContractForRenewal()
+        {
+
+            try
+            {
+                string result = _payment.MoveOutAndCloseContractForRenewal(this._contractNumber);
+                if (string.IsNullOrEmpty(result))
+                {
+                    Functions.MessageShow("Responce is empty please contact system administrator");
+                    return;
+                }
+
+
+                if (!result.Equals(_MSSG_SUCCESS_))
+                {
+                    Functions.MessageShow(result);
+                    return;
+                }
+
+
+                Functions.GetNotification("CONTRACT CLOSED ", "");
+                Functions.GetNotification("UNIT MOVE-OUT ", "");
+                             
+            }
+            catch (Exception ex)
+            {
+                Functions.LogError("MoveOutAndCloseTheContractForRenewal()", this.Text, ex.ToString(), DateTime.Now, this);
+                Functions.ErrorShow("MoveOutAndCloseTheContractForRenewal()", ex.ToString());
+            }
+
+            
+        }
         private void btnTerminateContract_Click(object sender, EventArgs e)
         {
-            this.TerminateCOntract();
+            if (btnTerminateContract.Text != "Re-New Contract")
+            {
+                this.TerminateCOntract();
+            }
+            else
+            {
+
+                if (Functions.MessageConfirm("Are you sure you want to Renew Contract?") == DialogResult.Yes)
+                {
+                    if (Convert.ToString(dgvTransactionList.CurrentRow.Cells["TypeOf"].Value) == "TYPE OF UNIT")
+                    {
+                        MoveOutAndCloseTheContractForRenewal();                 
+                        UnitRenewalContractRegistrationForm frmUnit = new UnitRenewalContractRegistrationForm();
+                        frmUnit.ShowDialog();
+                    }
+                    else
+                    {
+                        MoveOutAndCloseTheContractForRenewal();                    
+                        ParkingRenewalContractRegistrationForm frmParking = new ParkingRenewalContractRegistrationForm();
+                        frmParking.ShowDialog();
+                    }
+
+                    
+                }
+            }
         }
         private void btnPayAll_Click(object sender, EventArgs e)
         {
@@ -1432,18 +1503,16 @@ namespace LEASING.UI.APP.Forms
                     }
                 }
 
+                isContractMonthlyPenaltyActive = CheckContractMonthlyPenaltyIsActive(this._contractId);
+                if (isContractMonthlyPenaltyActive)
+                {
+                    btnDisableMonthlyPenalty.Text = "Disable Monthly Penalty";
+                }
+                else
+                {
+                    btnDisableMonthlyPenalty.Text = "Enable Monthly Penalty";
+                }
             }
-
-            isContractMonthlyPenaltyActive = CheckContractMonthlyPenaltyIsActive(this._contractId);
-            if (isContractMonthlyPenaltyActive)
-            {
-                btnDisableMonthlyPenalty.Text = "Disable Monthly Penalty";
-            }
-            else
-            {
-                btnDisableMonthlyPenalty.Text = "Enable Monthly Penalty";
-            }
-
         }
 
         private void btnWaivePenalty_Click(object sender, EventArgs e)

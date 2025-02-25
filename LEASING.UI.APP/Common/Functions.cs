@@ -959,6 +959,7 @@ namespace LEASING.UI.APP.Common
                         command.Parameters.AddWithValue("@UserId", Variables.UserID);
                         command.Parameters.AddWithValue("@ErrorMessage", errorMessage);
                         command.Parameters.AddWithValue("@LogDateTime", logDateTime);
+                        command.Parameters.AddWithValue("@ComputerName", Environment.MachineName);
 
                         // Execute the stored procedure
                         command.ExecuteNonQuery();

@@ -23,7 +23,9 @@ namespace LEASING.UI.APP
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new frmPreEmp_Login(frmPreEmp_Login.LoginMethod.Login));
                 //Application.Run(new GeneralReport());
-                //Application.Run(new frmLoadingBar());
+                //Application.Run(new UnitRenewalContractRegistrationForm());
+                //Application.Run(new ParkingRenewalContractRegistrationForm());
+
             }
 
             catch (Exception vValue)

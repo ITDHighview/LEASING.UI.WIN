@@ -252,6 +252,12 @@
     <Compile Include="Forms\LocationRegistrationForm.Designer.cs">
       <DependentUpon>LocationRegistrationForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ParkingRenewalContractRegistrationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ParkingRenewalContractRegistrationForm.Designer.cs">
+      <DependentUpon>ParkingRenewalContractRegistrationForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\PenaltyQuestionDetails.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -287,6 +293,12 @@
     </Compile>
     <Compile Include="Forms\PurchaseItemRegistrationForm.Designer.cs">
       <DependentUpon>PurchaseItemRegistrationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UnitRenewalContractRegistrationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UnitRenewalContractRegistrationForm.Designer.cs">
+      <DependentUpon>UnitRenewalContractRegistrationForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\UnitProjectRegistrationForm.cs">
       <SubType>Form</SubType>
@@ -764,6 +776,9 @@
     <EmbeddedResource Include="Forms\LocationRegistrationForm.resx">
       <DependentUpon>LocationRegistrationForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ParkingRenewalContractRegistrationForm.resx">
+      <DependentUpon>ParkingRenewalContractRegistrationForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\PenaltyQuestionDetails.resx">
       <DependentUpon>PenaltyQuestionDetails.cs</DependentUpon>
     </EmbeddedResource>
@@ -781,6 +796,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\PurchaseItemRegistrationForm.resx">
       <DependentUpon>PurchaseItemRegistrationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UnitRenewalContractRegistrationForm.resx">
+      <DependentUpon>UnitRenewalContractRegistrationForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\UnitProjectRegistrationForm.resx">
       <DependentUpon>UnitProjectRegistrationForm.cs</DependentUpon>

@@ -10,7 +10,7 @@ CREATE OR ALTER PROCEDURE [dbo].[sp_Nature_PR_Report]
     @Mode         VARCHAR(50) = NULL,
     @PaymentLevel VARCHAR(50) = NULL
 AS
-    BEGIN
+     BEGIN
         SET NOCOUNT ON;
 
 
@@ -939,6 +939,314 @@ AS
                                     [TRANSACTION].[TranID] = @TranID;
                 END
 
+            IF @Mode = 'RENMAIN'
+               AND @PaymentLevel = 'SECOND'
+                BEGIN
+                    INSERT INTO [#tblRecieptReport]
+                        (
+                            [client_no],
+                            [client_Name],
+                            [client_Address],
+                            [PR_No],
+                            [OR_No],
+                            [TIN_No],
+                            [TransactionDate],
+                            [AmountInWords],
+                            [PaymentFor],
+                            [TotalAmountInDigit],
+                            [RENTAL],
+                            [VAT],
+                            [VATPct],
+                            [TOTAL],
+                            [LESSWITHHOLDING],
+                            [TOTALAMOUNTDUE],
+                            [BANKNAME],
+                            [PDCCHECKSERIALNO],
+                            [USER],
+                            [EncodedDate],
+                            [TRANID],
+                            [Mode],
+                            [PaymentLevel],
+                            [UnitNo],
+                            [ProjectName],
+                            [BankBranch],
+                            [BankAccountNumber],
+                            [BankAccountName],
+                            [RENTAL_LESS_VAT],
+                            [RENTAL_LESS_TAX]
+                        )
+                                SELECT
+                                    [CLIENT].[client_no]                                                           AS [client_no],
+                                    [CLIENT].[client_Name]                                                         AS [client_Name],
+                                    [CLIENT].[client_Address]                                                      AS [client_Address],
+                                    [RECEIPT].[PR_No]                                                              AS [PR_No],
+                                    [RECEIPT].[OR_No]                                                              AS [OR_No],
+                                    [CLIENT].[TIN_No]                                                              AS [TIN_No],
+                                    [RECEIPT].[TransactionDate]                                                    AS [TransactionDate],
+                                    UPPER([dbo].[fnNumberToWordsWithDecimal]([TRANSACTION].[ReceiveAmount]))       AS [AmountInWords],
+                                    [PAYMENT].[PAYMENT_FOR]                                                        AS [PaymentFor],
+                                    [TRANSACTION].[ReceiveAmount]                                                  AS [TotalAmountInDigit],
+                                    [TRANSACTION].[ReceiveAmount]
+                                    - [dbo].[fnGetBaseRentalTotalVatAmount](
+                                                                               [dbo].[tblUnitReference].[RefId],
+                                                                               [TRANSACTION].[AmountToPay],
+                                                                               [TRANSACTION].[ReceiveAmount]
+                                                                           )                                       AS [RENTAL],
+                                    CAST([dbo].[fnGetBaseRentalTotalVatAmount](
+                                                                                  [dbo].[tblUnitReference].[RefId],
+                                                                                  [TRANSACTION].[AmountToPay],
+                                                                                  [TRANSACTION].[ReceiveAmount]
+                                                                              ) AS VARCHAR(150))                   AS [VAT],
+                                    CAST(CAST(IIF(ISNULL([tblUnitReference].[Unit_IsNonVat], 0) = 1,
+                                                  0,
+                                                  [tblUnitReference].[Unit_Vat]) AS INT) AS VARCHAR(10)) + '% VAT' AS [VATPct],
+                                    [TRANSACTION].[ReceiveAmount]                                                  AS [TOTAL],
+                                    IIF([tblUnitReference].[Unit_TaxAmount] = 0,
+                                        '',
+                                        CAST([dbo].[fnGetBaseRentalTotalTaxAmount](
+                                                                                      [dbo].[tblUnitReference].[RefId],
+                                                                                      [TRANSACTION].[AmountToPay],
+                                                                                      [TRANSACTION].[ReceiveAmount]
+                                                                                  ) AS VARCHAR(150)))              AS [LESSWITHHOLDING],
+                                    [TRANSACTION].[ReceiveAmount]                                                  AS [TOTALAMOUNTDUE],
+                                    [RECEIPT].[BankName]                                                           AS [BANKNAME],
+                                    [RECEIPT].[PDC_CHECK_SERIAL]                                                   AS [PDCCHECKSERIALNO],
+                                    [TRANSACTION].[USER]                                                           AS [USER],
+                                    GETDATE()                                                                      AS [EncodedDate],
+                                    @TranID                                                                        AS [TRANID],
+                                    @Mode                                                                          AS [Mode],
+                                    @PaymentLevel                                                                  AS [PaymentLevel],
+                                    [tblUnitReference].[UnitNo]                                                    AS [UnitNo],
+                                    [dbo].[fnGetProjectNameById]([tblUnitReference].[ProjectId])                   AS [ProjectName],
+                                    [RECEIPT].[BankBranch]                                                         AS [BankBranch],
+                                    [RECEIPT].[BankAccountNumber]                                                  AS [BankAccountNumber],
+                                    [RECEIPT].[BankAccountName]                                                    AS [BankAccountName],
+                                    '0'                                                                            AS [RENTAL_LESS_VAT],
+                                    '0'                                                                            AS [RENTAL_LESS_TAX]
+                                FROM
+                                    [dbo].[tblUnitReference]
+                                    CROSS APPLY
+                                    (
+                                        SELECT
+                                            [tblClientMstr].[ClientID]      AS [client_no],
+                                            [tblClientMstr].[ClientName]    AS [client_Name],
+                                            [tblClientMstr].[PostalAddress] AS [client_Address],
+                                            [tblClientMstr].[TIN_No]        AS [TIN_No]
+                                        FROM
+                                            [dbo].[tblClientMstr]
+                                        WHERE
+                                            [tblClientMstr].[ClientID] = [tblUnitReference].[ClientID]
+                                    ) [CLIENT]
+                                    OUTER APPLY
+                                    (
+                                        SELECT
+                                                [tblTransaction].[EncodedDate],
+                                                [tblTransaction].[TranID],
+                                                SUM([tblMonthLedger].[LedgRentalAmount])                         AS [AmountToPay],
+                                                ISNULL([dbo].[fn_GetUserName]([tblTransaction].[EncodedBy]), '') AS [USER],
+                                                SUM([tblPayment].[Amount])                                       AS [ReceiveAmount]
+                                        FROM
+                                                [dbo].[tblTransaction]
+                                            INNER JOIN
+                                                [dbo].[tblPayment]
+                                                    ON [tblPayment].[TranId] = [tblTransaction].[TranID]
+                                            INNER JOIN
+                                                [dbo].[tblMonthLedger]
+                                                    ON [tblMonthLedger].[Recid] = [tblPayment].[LedgeRecid]
+                                        WHERE
+                                                [tblUnitReference].[RefId] = [tblTransaction].[RefId]
+                                                AND [tblPayment].[Notes] = 'RENTAL NET OF VAT'
+                                        GROUP BY
+                                                [tblTransaction].[EncodedDate],
+                                                [tblTransaction].[TranID],
+                                                [tblTransaction].[EncodedBy],
+                                                [tblPayment].[Amount],
+                                                [tblTransaction].[PaidAmount]
+                                    ) [TRANSACTION]
+                                    OUTER APPLY
+                                    (
+                                        SELECT
+                                            [tblReceipt].[CompanyPRNo]       AS [PR_No],
+                                            [tblReceipt].[CompanyORNo]       AS [OR_No],
+                                            [tblReceipt].[Amount]            AS [TOTAL],
+                                            [tblReceipt].[Amount]            AS [TotalAmountInDigit],
+                                            [tblReceipt].[BankName]          AS [BankName],
+                                            [tblReceipt].[BankBranch]        AS [BankBranch],
+                                            [tblReceipt].[BankAccountNumber] AS [BankAccountNumber],
+                                            [tblReceipt].[BankAccountName]   AS [BankAccountName],
+                                            [tblReceipt].[SerialNo]          AS [PDC_CHECK_SERIAL],
+                                            [tblReceipt].[TranId],
+                                            [tblReceipt].[ReceiptDate]       AS [TransactionDate],
+                                            [tblReceipt].[CheckDate]         AS [CheckDate],
+                                            [tblReceipt].[PaymentMethod]     AS [ModeType]
+                                        FROM
+                                            [dbo].[tblReceipt]
+                                        WHERE
+                                            [TRANSACTION].[TranID] = [tblReceipt].[TranId]
+                                    ) [RECEIPT]
+                                    OUTER APPLY
+                                    (
+                                        SELECT
+                                            IIF(@IsFullPayment = 1, 'FULL PAYMENT', @combinedString) AS [PAYMENT_FOR]
+                                    ) [PAYMENT]
+                                WHERE
+                                    [TRANSACTION].[TranID] = @TranID;
+                END
+
+            IF @Mode = 'PEN'
+               AND @PaymentLevel = 'SECOND'
+                BEGIN
+                    INSERT INTO [#tblRecieptReport]
+                        (
+                            [client_no],
+                            [client_Name],
+                            [client_Address],
+                            [PR_No],
+                            [OR_No],
+                            [TIN_No],
+                            [TransactionDate],
+                            [AmountInWords],
+                            [PaymentFor],
+                            [TotalAmountInDigit],
+                            [RENTAL],
+                            [VAT],
+                            [VATPct],
+                            [TOTAL],
+                            [LESSWITHHOLDING],
+                            [TOTALAMOUNTDUE],
+                            [BANKNAME],
+                            [PDCCHECKSERIALNO],
+                            [USER],
+                            [EncodedDate],
+                            [TRANID],
+                            [Mode],
+                            [PaymentLevel],
+                            [UnitNo],
+                            [ProjectName],
+                            [BankBranch],
+                            [BankAccountNumber],
+                            [BankAccountName],
+                            [RENTAL_LESS_VAT],
+                            [RENTAL_LESS_TAX]
+                        )
+                                SELECT
+                                    [CLIENT].[client_no]                                                           AS [client_no],
+                                    [CLIENT].[client_Name]                                                         AS [client_Name],
+                                    [CLIENT].[client_Address]                                                      AS [client_Address],
+                                    [RECEIPT].[PR_No]                                                              AS [PR_No],
+                                    [RECEIPT].[OR_No]                                                              AS [OR_No],
+                                    [CLIENT].[TIN_No]                                                              AS [TIN_No],
+                                    [RECEIPT].[TransactionDate]                                                    AS [TransactionDate],
+                                    UPPER([dbo].[fnNumberToWordsWithDecimal]([TRANSACTION].[ReceiveAmount]))       AS [AmountInWords],
+                                    [PAYMENT].[PAYMENT_FOR]                                                        AS [PaymentFor],
+                                    [TRANSACTION].[ReceiveAmount]                                                  AS [TotalAmountInDigit],
+                                    [TRANSACTION].[ReceiveAmount]
+                                    - [dbo].[fnGetBaseRentalTotalVatAmount](
+                                                                               [dbo].[tblUnitReference].[RefId],
+                                                                               [TRANSACTION].[AmountToPay],
+                                                                               [TRANSACTION].[ReceiveAmount]
+                                                                           )                                       AS [RENTAL],
+                                    CAST([dbo].[fnGetBaseRentalTotalVatAmount](
+                                                                                  [dbo].[tblUnitReference].[RefId],
+                                                                                  [TRANSACTION].[AmountToPay],
+                                                                                  [TRANSACTION].[ReceiveAmount]
+                                                                              ) AS VARCHAR(150))                   AS [VAT],
+                                    CAST(CAST(IIF(ISNULL([tblUnitReference].[Unit_IsNonVat], 0) = 1,
+                                                  0,
+                                                  [tblUnitReference].[Unit_Vat]) AS INT) AS VARCHAR(10)) + '% VAT' AS [VATPct],
+                                    [TRANSACTION].[ReceiveAmount]                                                  AS [TOTAL],
+                                    IIF([tblUnitReference].[Unit_TaxAmount] = 0,
+                                        '',
+                                        CAST([dbo].[fnGetBaseRentalTotalTaxAmount](
+                                                                                      [dbo].[tblUnitReference].[RefId],
+                                                                                      [TRANSACTION].[AmountToPay],
+                                                                                      [TRANSACTION].[ReceiveAmount]
+                                                                                  ) AS VARCHAR(150)))              AS [LESSWITHHOLDING],
+                                    [TRANSACTION].[ReceiveAmount]                                                  AS [TOTALAMOUNTDUE],
+                                    [RECEIPT].[BankName]                                                           AS [BANKNAME],
+                                    [RECEIPT].[PDC_CHECK_SERIAL]                                                   AS [PDCCHECKSERIALNO],
+                                    [TRANSACTION].[USER]                                                           AS [USER],
+                                    GETDATE()                                                                      AS [EncodedDate],
+                                    @TranID                                                                        AS [TRANID],
+                                    @Mode                                                                          AS [Mode],
+                                    @PaymentLevel                                                                  AS [PaymentLevel],
+                                    [tblUnitReference].[UnitNo]                                                    AS [UnitNo],
+                                    [dbo].[fnGetProjectNameById]([tblUnitReference].[ProjectId])                   AS [ProjectName],
+                                    [RECEIPT].[BankBranch]                                                         AS [BankBranch],
+                                    [RECEIPT].[BankAccountNumber]                                                  AS [BankAccountNumber],
+                                    [RECEIPT].[BankAccountName]                                                    AS [BankAccountName],
+                                    '0'                                                                            AS [RENTAL_LESS_VAT],
+                                    '0'                                                                            AS [RENTAL_LESS_TAX]
+                                FROM
+                                    [dbo].[tblUnitReference]
+                                    CROSS APPLY
+                                    (
+                                        SELECT
+                                            [tblClientMstr].[ClientID]      AS [client_no],
+                                            [tblClientMstr].[ClientName]    AS [client_Name],
+                                            [tblClientMstr].[PostalAddress] AS [client_Address],
+                                            [tblClientMstr].[TIN_No]        AS [TIN_No]
+                                        FROM
+                                            [dbo].[tblClientMstr]
+                                        WHERE
+                                            [tblClientMstr].[ClientID] = [tblUnitReference].[ClientID]
+                                    ) [CLIENT]
+                                    OUTER APPLY
+                                    (
+                                        SELECT
+                                                [tblTransaction].[EncodedDate],
+                                                [tblTransaction].[TranID],
+                                                SUM([tblMonthLedger].[LedgRentalAmount])                         AS [AmountToPay],
+                                                ISNULL([dbo].[fn_GetUserName]([tblTransaction].[EncodedBy]), '') AS [USER],
+                                                SUM([tblPayment].[Amount])                                       AS [ReceiveAmount]
+                                        FROM
+                                                [dbo].[tblTransaction]
+                                            INNER JOIN
+                                                [dbo].[tblPayment]
+                                                    ON [tblPayment].[TranId] = [tblTransaction].[TranID]
+                                            INNER JOIN
+                                                [dbo].[tblMonthLedger]
+                                                    ON [tblMonthLedger].[Recid] = [tblPayment].[LedgeRecid]
+                                        WHERE
+                                                [tblUnitReference].[RefId] = [tblTransaction].[RefId]
+                                                AND [tblPayment].[Notes] = 'RENTAL NET OF VAT'
+                                        GROUP BY
+                                                [tblTransaction].[EncodedDate],
+                                                [tblTransaction].[TranID],
+                                                [tblTransaction].[EncodedBy],
+                                                [tblPayment].[Amount],
+                                                [tblTransaction].[PaidAmount]
+                                    ) [TRANSACTION]
+                                    OUTER APPLY
+                                    (
+                                        SELECT
+                                            [tblReceipt].[CompanyPRNo]       AS [PR_No],
+                                            [tblReceipt].[CompanyORNo]       AS [OR_No],
+                                            [tblReceipt].[Amount]            AS [TOTAL],
+                                            [tblReceipt].[Amount]            AS [TotalAmountInDigit],
+                                            [tblReceipt].[BankName]          AS [BankName],
+                                            [tblReceipt].[BankBranch]        AS [BankBranch],
+                                            [tblReceipt].[BankAccountNumber] AS [BankAccountNumber],
+                                            [tblReceipt].[BankAccountName]   AS [BankAccountName],
+                                            [tblReceipt].[SerialNo]          AS [PDC_CHECK_SERIAL],
+                                            [tblReceipt].[TranId],
+                                            [tblReceipt].[ReceiptDate]       AS [TransactionDate],
+                                            [tblReceipt].[CheckDate]         AS [CheckDate],
+                                            [tblReceipt].[PaymentMethod]     AS [ModeType]
+                                        FROM
+                                            [dbo].[tblReceipt]
+                                        WHERE
+                                            [TRANSACTION].[TranID] = [tblReceipt].[TranId]
+                                    ) [RECEIPT]
+                                    OUTER APPLY
+                                    (
+                                        SELECT
+                                            IIF(@IsFullPayment = 1, 'FULL PAYMENT', @combinedString) AS [PAYMENT_FOR]
+                                    ) [PAYMENT]
+                                WHERE
+                                    [TRANSACTION].[TranID] = @TranID;
+                END
+
             IF @Mode = 'OTH'
                AND @PaymentLevel = 'OTHER'
                 BEGIN
@@ -1075,10 +1383,6 @@ AS
                                 WHERE
                                     [tblTransaction].[TranID] = @TranID;
                 END
-
-
-
-
 
         END
 

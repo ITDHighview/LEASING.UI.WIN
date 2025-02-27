@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Telerik.WinControls.UI;
 
 namespace LEASING.UI.APP.Forms
 {
@@ -20,95 +21,53 @@ namespace LEASING.UI.APP.Forms
         public string sPaymentLevel { get; set; } = string.Empty;
         public string sMode { get; set; } = string.Empty;
         public bool IsNoOR = false;
-        enum RecieptType
-        {
-            NT_OR,
-            NT_PR,
-            ONCH_OR,
-            ONCH_PR,
-        }
-        private string GetReceiptMode(RecieptType type)
+        private string GetReceiptMode(RadDropDownList type)
         {
             string vmode = string.Empty;
-            switch (type)
+            switch (type.Text)
             {
-                case RecieptType.NT_OR:
-                    if (chkNatureOR_Advance.IsChecked && !chkNatureOR_Deposit.IsChecked)
-                    {
-                        vmode = ADV;
-                    }
-                    else
-                    {
-                        vmode = SEC;
-                    }
+                case "ADVANCE":
+                    vmode = ADV;
                     break;
-                case RecieptType.NT_PR:
-                    if (chkNaturePR_Advance.IsChecked && !chkNaturePR_Deposit.IsChecked)
-                    {
-                        vmode = ADV;
-                    }
-                    else
-                    {
-                        vmode = SEC;
-                    }
-                    break;
-                case RecieptType.ONCH_OR:
-                    if (chkOnchingOR_Advance.IsChecked && !chkOnchingOR_Deposit.IsChecked)
-                    {
-                        vmode = ADV;
-                    }
-                    else
-                    {
-                        vmode = SEC;
-                    }
-                    break;
-                case RecieptType.ONCH_PR:
-                    if (chkOnchingPR_Advance.IsChecked && !chkOnchingPR_Deposit.IsChecked)
-                    {
-                        vmode = ADV;
-                    }
-                    else
-                    {
-                        vmode = SEC;
-                    }
+                case "DEPOSIT":
+                    vmode = SEC;
                     break;
                 default:
                     break;
             }
             return vmode;
         }
-        private void ShowReceipt(RecieptType type)
+        private void ShowReceipt(string type)
         {
             switch (type)
             {
-                case RecieptType.NT_OR:
+                case "NATURE OR":
                     Nature_OR_REPORT Nature_OR_REPORT = new Nature_OR_REPORT(this.sTranID);
-                    Nature_OR_REPORT.sMode = this.GetReceiptMode(type);
+                    Nature_OR_REPORT.sMode = this.GetReceiptMode(ddlRecieptCategory);
                     Nature_OR_REPORT.sPaymentLevel = sPaymentLevel;
                     Nature_OR_REPORT.Show();
                     break;
-                case RecieptType.NT_PR:
+                case "NATURE PR":
                     Nature_PR_REPORT Nature_PR_REPORT = new Nature_PR_REPORT(this.sTranID);
-                    Nature_PR_REPORT.sMode = this.GetReceiptMode(type);
+                    Nature_PR_REPORT.sMode = this.GetReceiptMode(ddlRecieptCategory);
                     Nature_PR_REPORT.sPaymentLevel = sPaymentLevel;
                     Nature_PR_REPORT.Show();
                     break;
-                case RecieptType.ONCH_OR:
+                case "ONGCHING OR":
                     Ongching_OR_REPORT Ongching_OR_REPORT = new Ongching_OR_REPORT(this.sTranID);
-                    Ongching_OR_REPORT.sMode = this.GetReceiptMode(type);
+                    Ongching_OR_REPORT.sMode = this.GetReceiptMode(ddlRecieptCategory);
                     Ongching_OR_REPORT.sPaymentLevel = sPaymentLevel;
                     Ongching_OR_REPORT.Show();
                     break;
-                case RecieptType.ONCH_PR:
+                case "ONGCHING PR":
                     Ongching_PR_REPORT Ongching_PR_REPORT = new Ongching_PR_REPORT(this.sTranID);
-                    Ongching_PR_REPORT.sMode = this.GetReceiptMode(type);
+                    Ongching_PR_REPORT.sMode = this.GetReceiptMode(ddlRecieptCategory);
                     Ongching_PR_REPORT.sPaymentLevel = sPaymentLevel;
                     Ongching_PR_REPORT.Show();
                     break;
                 default:
                     break;
             }
-
         }
         public PrintReceiptFirstPaymentCategory(string TranID, string RefId,string PaymentLevel)
         {
@@ -117,71 +76,15 @@ namespace LEASING.UI.APP.Forms
             sRefId = RefId.Trim();
             sPaymentLevel = PaymentLevel.Trim();
         }
-        private void btnNATURE_OR_Click(object sender, EventArgs e)
-        {
-            this.ShowReceipt(RecieptType.NT_OR);
-        }
-        private void btnNATURE_PR_Click(object sender, EventArgs e)
-        {
-            this.ShowReceipt(RecieptType.NT_PR);
-        }
-        private void btnONGCHING_OR_Click(object sender, EventArgs e)
-        {
-            this.ShowReceipt(RecieptType.ONCH_OR);
-        }
 
-        private void btnONGCHING_PR_Click(object sender, EventArgs e)
-        {
-            this.ShowReceipt(RecieptType.ONCH_PR);
-        }
         private void frmRecieptSelection_Load(object sender, EventArgs e)
         {
-            Functions.EventCapturefrmName(this);
-
-            chkNatureOR_Deposit.IsChecked = true;
-            chkNaturePR_Deposit.IsChecked = true;
-            chkOnchingOR_Deposit.IsChecked = true;
-            chkOnchingPR_Deposit.IsChecked = true;
-
-            chkNatureOR_Advance.Enabled = false;
-            chkNaturePR_Advance.Enabled = false;
-            chkOnchingOR_Advance.Enabled = false;
-            chkOnchingPR_Advance.Enabled = false;
-            //if (IsNoOR)
-            //{
-            //    btnNATURE_OR.Enabled = false;
-            //    btnNATURE_PR.Enabled = true;
-            //    btnONGCHING_OR.Enabled = false;
-            //    btnONGCHING_PR.Enabled = true;
-
-            //    this.pnlNatureOR.Visible = btnNATURE_OR.Enabled;
-            //    this.pnlNaturePR.Visible = btnNATURE_PR.Enabled;
-            //    this.pnlOnchingOR.Visible = btnONGCHING_OR.Enabled;
-            //    this.pnlOnchingPR.Visible = btnONGCHING_PR.Enabled;
-            //}
-            //else if (!IsNoOR)
-            //{
-            //    btnNATURE_OR.Enabled = true;
-            //    btnNATURE_PR.Enabled = false;
-            //    btnONGCHING_OR.Enabled = true;
-            //    btnONGCHING_PR.Enabled = false;
-            //    this.pnlNatureOR.Visible = btnNATURE_OR.Enabled;
-            //    this.pnlNaturePR.Visible = btnNATURE_PR.Enabled;
-            //    this.pnlOnchingOR.Visible = btnONGCHING_OR.Enabled;
-            //    this.pnlOnchingPR.Visible = btnONGCHING_PR.Enabled;
-            //}
-            //else
-            //{
-            //    btnNATURE_OR.Enabled = true;
-            //    btnNATURE_PR.Enabled = true;
-            //    btnONGCHING_OR.Enabled = true;
-            //    btnONGCHING_PR.Enabled = true;
-            //    this.pnlNatureOR.Visible = btnNATURE_OR.Enabled;
-            //    this.pnlNaturePR.Visible = btnNATURE_PR.Enabled;
-            //    this.pnlOnchingOR.Visible = btnONGCHING_OR.Enabled;
-            //    this.pnlOnchingPR.Visible = btnONGCHING_PR.Enabled;
-            //}
+            Functions.EventCapturefrmName(this);         
         }
-   
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            ShowReceipt(ddlCompanyRecieptCategory.Text);
+        }
     }
 }

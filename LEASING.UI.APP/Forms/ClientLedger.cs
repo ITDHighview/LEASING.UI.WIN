@@ -289,7 +289,9 @@ namespace LEASING.UI.APP.Forms
                 this.getLedgerBrowseByContractIdClientId();
                 this.getPaymentBrowseByContractNumber();
 
-                var fReciept = new PrintReceiptSecondPaymentCategory(this.TranID, "", "SECOND");
+                //var fReciept = new PrintReceiptSecondPaymentCategory(this.TranID, "", "SECOND");
+                var fReciept = new PrintReceiptSecondPaymentCategoryTest(this.TranID, "", "SECOND");
+                
                 this.InitReciept(fReciept);
 
             }
@@ -687,10 +689,10 @@ namespace LEASING.UI.APP.Forms
             this.CheckDate = pForm.CheckDate;
             return true;
         }
-        private void InitReciept(PrintReceiptSecondPaymentCategory pForm)
+        private void InitReciept(PrintReceiptSecondPaymentCategoryTest pForm)
         {
-            pForm.IsNoOR = string.IsNullOrEmpty(this.CompanyORNo) && !string.IsNullOrEmpty(this.CompanyPRNo);
-            pForm.sTypeOf = Convert.ToString(dgvTransactionList.CurrentRow.Cells["TypeOf"].Value);
+            //pForm.IsNoOR = string.IsNullOrEmpty(this.CompanyORNo) && !string.IsNullOrEmpty(this.CompanyPRNo);
+            //pForm.sTypeOf = Convert.ToString(dgvTransactionList.CurrentRow.Cells["TypeOf"].Value);
             pForm.ShowDialog();
         }
         private bool IsGridCheckboxCheck()
@@ -1502,6 +1504,11 @@ namespace LEASING.UI.APP.Forms
                         Functions.MessageShow("Please select active contract.");
                     }
                 }
+                this.getOnLoadLedgerBrowseByContractIdClientId();
+                this.getContractById();
+                this.getLedgerTotalPaidAmountByContractId();
+                this.checkPaymentProgressStatus();
+                this.getPaymentBrowseByContractNumber();
 
                 isContractMonthlyPenaltyActive = CheckContractMonthlyPenaltyIsActive(this._contractId);
                 if (isContractMonthlyPenaltyActive)
@@ -1512,6 +1519,7 @@ namespace LEASING.UI.APP.Forms
                 {
                     btnDisableMonthlyPenalty.Text = "Enable Monthly Penalty";
                 }
+              
             }
         }
 

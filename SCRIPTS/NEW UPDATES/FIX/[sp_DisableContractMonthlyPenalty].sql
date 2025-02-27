@@ -19,11 +19,11 @@ AS
         WHERE
             [tblUnitReference].[RecId] = @ReferenceID
 
-        IF @IsEnable = 1
-            BEGIN
-                EXEC [dbo].[sp_ApplyMonthLyPenalty]
-                    @ReferenceID = @ReferenceID -- bigint
-            END
+        --IF @IsEnable = 1
+        --    BEGIN
+        --        EXEC [dbo].[sp_ApplyMonthLyPenalty]
+        --            @ReferenceID = @ReferenceID -- bigint
+        --    END
         IF @@ROWCOUNT > 0
             BEGIN
 

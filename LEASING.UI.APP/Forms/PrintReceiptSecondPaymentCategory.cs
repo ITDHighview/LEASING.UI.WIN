@@ -15,6 +15,7 @@ namespace LEASING.UI.APP.Forms
     {
         const string REN = "REN";
         const string MAIN = "MAIN";
+        const string RENandMAIN = "RENandMAIN";
         enum RecieptType
         {
             NT_OR,

@@ -634,6 +634,7 @@ namespace LEASING.UI.APP.Forms
                 dto.XML = M_getXMLData();
                 dto.AdvancePaymentAmount = AdvancePaymentAmount;
                 dto.IsFullPayment = sIsFullPayment;
+                dto.IsContractApplyMonthlyPenalty = !chkNoPenalty.Checked;
                 dto.Message_Code = ComputationContext.SaveComputationParking(dto);
                 Functions.ShowLoadingBar("Processing...");
                 if (dto.Message_Code.Equals("SUCCESS"))

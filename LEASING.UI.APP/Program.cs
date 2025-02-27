@@ -25,7 +25,9 @@ namespace LEASING.UI.APP
                 //Application.Run(new GeneralReport());
                 //Application.Run(new UnitRenewalContractRegistrationForm());
                 //Application.Run(new ParkingRenewalContractRegistrationForm());
-
+                //Application.Run(new PrintReceiptSecondPaymentCategoryTest("TRN10000000", "REF10000000", "SECOND"));
+                //Application.Run(new PrintReceiptFirstPaymentCategory("TRN10000000", "REF10000000", "SECOND"));
+                
             }
 
             catch (Exception vValue)

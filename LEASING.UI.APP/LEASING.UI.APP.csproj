@@ -276,6 +276,12 @@
     <Compile Include="Forms\PrintReceiptOtherPaymentCategory.Designer.cs">
       <DependentUpon>PrintReceiptOtherPaymentCategory.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\PrintReceiptSecondPaymentCategoryTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PrintReceiptSecondPaymentCategoryTest.Designer.cs">
+      <DependentUpon>PrintReceiptSecondPaymentCategoryTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ProjectRegistrationForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -787,6 +793,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\PrintReceiptOtherPaymentCategory.resx">
       <DependentUpon>PrintReceiptOtherPaymentCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PrintReceiptSecondPaymentCategoryTest.resx">
+      <DependentUpon>PrintReceiptSecondPaymentCategoryTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ProjectRegistrationForm.resx">
       <DependentUpon>ProjectRegistrationForm.cs</DependentUpon>
